@@ -1,5 +1,5 @@
 STUID = ysyx_100006503
-STUNAME = 杨鹏城s
+STUNAME = 杨鹏城
 
 # DO NOT modify the following code!!!
 
