@@ -3,7 +3,8 @@
 #include <assert.h>
 #include "Vtop.h" //change filename to Vmodule.h
 #include "verilated_vcd_c.h"
- 
+#include "verilated.h"
+
 vluint64_t main_time = 0;  //initial time
  
 double sc_time_stamp()
@@ -22,7 +23,7 @@ int main(int argc,char **argv)
      top->trace(tfp, 0);
      tfp->open("top.vcd");
  
-     while(!sc_time_stamp() < 20 && !Verilated::gotFinish())
+     while(sc_time_stamp() < 20 && !Verilated::gotFinish())
      {                                                                                                                 int a = rand() & 1;
      int b = rand() & 1;
      top->a = a;
