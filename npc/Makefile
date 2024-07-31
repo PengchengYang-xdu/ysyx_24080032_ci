@@ -15,7 +15,7 @@ sim:
 	-LDFLAGS -"lreadline"
  
 vd:
-	gtkwave wave.vcd
+	gtkwave *.vcd
  
 count:
 	find . -name "sim_main.cpp" -or -name "*.[vc]" | xargs wc -l
