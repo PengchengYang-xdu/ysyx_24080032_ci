@@ -14,9 +14,8 @@ sim:
     -I$(INCLUDE) ./csrc/sim_main.cpp $(VSRCS) \
 	-LDFLAGS -"lreadline"
  
-vd:
-	
-	make -C obj_dir -f Vtop.mk Vtop
+vd:	
+	./obj_dir/Vtop	
 	gtkwave *.vcd
  
 count:
