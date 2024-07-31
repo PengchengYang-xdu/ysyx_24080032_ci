@@ -2,7 +2,7 @@ all:
 	@echo "Write this Makefile by your self."
  
 VSRCS = $(shell find $(./vsrc ) -name "*.v")
-# CSRCS = $(shell find $(./csrc ) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
+CSRCS = $(shell find $(./csrc ) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
  
 INCLUDE = ./vsrc/include
  
