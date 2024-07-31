@@ -14,8 +14,7 @@ sim:
     -I$(INCLUDE) ./csrc/sim_main.cpp $(VSRCS) \
 	-LDFLAGS -"lreadline"
  
-wave: sim
-	./obj_dir/Vtop
+wave:
 	gtkwave wave.vcd
  
 count:
