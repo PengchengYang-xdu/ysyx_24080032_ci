@@ -20,7 +20,7 @@ int main(int argc,char **argv)
  
      Vtop *top = new Vtop("top");
      top->trace(tfp, 0);
-     tfp->open("wave.vcd");
+     tfp->open("top.vcd");
  
      while(!sc_time_stamp() < 20 && !Verilated::gotFinish())
      {                                                                                                                                                                                                            

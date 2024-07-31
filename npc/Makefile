@@ -14,7 +14,7 @@ sim:
     -I$(INCLUDE) ./csrc/sim_main.cpp $(VSRCS) \
 	-LDFLAGS -"lreadline"
  
-vd:
+vd:     sim
 	gtkwave *.vcd
  
 count:
