@@ -8,7 +8,7 @@
 int main(int argc, char** argv, char** env) {
     if (false && argc && argv && env) {}    
     Vtop* top = new Vtop;
-    while (10) {
+    while (top->f == 1) {
 	int a = rand() & 1;
 	int b = rand() & 1;
 	top->a = a;
