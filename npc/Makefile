@@ -14,15 +14,15 @@ sim:
     -I$(INCLUDE) ./csrc/sim_main.cpp $(VSRCS) \
 	-LDFLAGS -"lreadline"
  
-wave:
+vd:
 	gtkwave wave.vcd
  
 count:
 	find . -name "sim_main.cpp" -or -name "*.[vc]" | xargs wc -l
  
-clean:
+clr:
 	rm -rf obj_dir
-	rm wave.vcd
+	rm *.vcd
  
  
  
