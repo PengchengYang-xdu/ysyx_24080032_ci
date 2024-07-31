@@ -15,7 +15,8 @@ sim:
 	-LDFLAGS -"lreadline"
  
 vd:
-	./obj_dir/Vtop
+	
+	make -C obj_dir -f Vtop.mk Vtop
 	gtkwave *.vcd
  
 count:
