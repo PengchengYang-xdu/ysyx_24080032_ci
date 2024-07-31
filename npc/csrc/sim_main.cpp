@@ -23,8 +23,7 @@ int main(int argc,char **argv)
      tfp->open("top.vcd");
  
      while(!sc_time_stamp() < 20 && !Verilated::gotFinish())
-     {                                                                                                                                                                                                            
-     int a = rand() & 1;
+     {                                                                                                                 int a = rand() & 1;
      int b = rand() & 1;
      top->a = a;
      top->b = b;
