@@ -42,6 +42,7 @@ static char* rl_gets() {
 }
 
 static int cmd_si(char *args) {
+  printf("args is %s\n", args);
   int step = 0;
   if(args == NULL)
     step = 1;
