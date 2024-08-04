@@ -62,6 +62,20 @@ static int cmd_info(char *args) {
   return 0;
 }
 
+static int cmd_x(char *args) {
+  // char *n = strtok(args, " ");
+  // char *baseaddr = strtok(NULL, " ");
+  // if(args == NULL)
+  //   printf("no args.\n");
+  // else if(strcmp(args, "r") == 0)
+  //   isa_reg_display();
+  // else if(strcmp(args, "w") == 0)
+  //   // sdb_watchpoint_display();
+  //   {}
+  printf("%s\n", args);
+  return 0;
+}
+
 static int cmd_c(char *args) {
   cpu_exec(-1);
   return 0;
@@ -85,7 +99,7 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "si", "Step run", cmd_si},
   { "info", "info r(w) : print regs(watchpoint)", cmd_info},
-
+  { "x", "Scan memory", cmd_x},
   /* TODO: Add more commands */
 
 };
