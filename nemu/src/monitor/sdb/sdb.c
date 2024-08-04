@@ -41,6 +41,26 @@ static char* rl_gets() {
   return line_read;
 }
 
+static int cmd_si(char *args) {
+  int step = 0;
+  if(args == NULL)
+    step = 1;
+  else
+    sscanf(args, "%d", &step);
+  cpu_exec(step);
+  return 0;
+}
+
+// static int cmd_info(char *args) {
+//   if(args == NULL)
+//     printf("no args.\n");
+//   else if(strcmp(args, "r") == 0)
+//     isa_reg_display();
+//   else if(strcmp(args, "w") == 0)
+//     sdb_watchpoint_display();
+//   return 0;
+// }
+
 static int cmd_c(char *args) {
   cpu_exec(-1);
   return 0;
@@ -62,6 +82,7 @@ static struct {
   { "help", "Display information about all supported commands", cmd_help },
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
+  { "si", "Step run", cmd_si},
 
   /* TODO: Add more commands */
 
