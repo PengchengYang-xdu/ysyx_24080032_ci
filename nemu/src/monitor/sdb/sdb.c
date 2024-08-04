@@ -42,7 +42,6 @@ static char* rl_gets() {
 }
 
 static int cmd_si(char *args) {
-  printf("args is %s\n", args);
   int step = 0;
   if(args == NULL)
     step = 1;
@@ -52,15 +51,16 @@ static int cmd_si(char *args) {
   return 0;
 }
 
-// static int cmd_info(char *args) {
-//   if(args == NULL)
-//     printf("no args.\n");
-//   else if(strcmp(args, "r") == 0)
-//     isa_reg_display();
-//   else if(strcmp(args, "w") == 0)
-//     sdb_watchpoint_display();
-//   return 0;
-// }
+static int cmd_info(char *args) {
+  if(args == NULL)
+    printf("no args.\n");
+  else if(strcmp(args, "r") == 0)
+    isa_reg_display();
+  else if(strcmp(args, "w") == 0)
+    // sdb_watchpoint_display();
+    {}
+  return 0;
+}
 
 static int cmd_c(char *args) {
   cpu_exec(-1);
@@ -84,6 +84,7 @@ static struct {
   { "c", "Continue the execution of the program", cmd_c },
   { "q", "Exit NEMU", cmd_q },
   { "si", "Step run", cmd_si},
+  { "info", "info r(w) : print regs(watchpoint)", cmd_info},
 
   /* TODO: Add more commands */
 
