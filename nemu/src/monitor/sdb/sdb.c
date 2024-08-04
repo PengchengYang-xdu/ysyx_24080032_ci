@@ -63,8 +63,8 @@ static int cmd_info(char *args) {
 }
 
 static int cmd_x(char *args) {
-  // char *n = strtok(args, " ");
-  // char *baseaddr = strtok(NULL, " ");
+  char *n = strtok(args, " ");
+  char *baseaddr = strtok(NULL, " ");
   // if(args == NULL)
   //   printf("no args.\n");
   // else if(strcmp(args, "r") == 0)
@@ -72,7 +72,7 @@ static int cmd_x(char *args) {
   // else if(strcmp(args, "w") == 0)
   //   // sdb_watchpoint_display();
   //   {}
-  printf("%s\n", args);
+  printf("%s,%s",n,baseaddr);
   return 0;
 }
 
