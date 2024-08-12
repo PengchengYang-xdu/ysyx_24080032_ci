@@ -195,7 +195,7 @@ void sdb_mainloop() {
 
 
 void test_expr() {
-  FILE *fp = fopen("/home/ubuntu/ics2022/nemu/tools/gen-expr/input", "r");
+  FILE *fp = fopen("/home/ypc/Desktop/ysyx/ysyx-workbench/nemu/tools/gen-expr/input", "r");
   if (fp == NULL) perror("test_expr error");
 
   char *e = NULL;
