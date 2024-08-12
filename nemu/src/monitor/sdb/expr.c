@@ -219,7 +219,7 @@ word_t eval(int p, int q, bool *success) {
     if(!*success) return 0;
     word_t val2 = eval(op + 1, q, success);
     if(!*success) return 0;
-
+    printf("val1 = %u, val2 = %u\n", val1, val2);
     switch (tokens[op].type) {
       case '+': return val1 + val2;
       case '-': return val1 - val2;
