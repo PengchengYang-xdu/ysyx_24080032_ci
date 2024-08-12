@@ -211,7 +211,7 @@ void test_expr() {
     assert(success);
     if (res != correct_res) {
       puts(e);
-      printf("expected: %u, got: %u\n", correct_res, res);
+      printf("expected: %u, got: %u, expression: %s\n", correct_res, res, e);
       assert(0);
     }
   }
