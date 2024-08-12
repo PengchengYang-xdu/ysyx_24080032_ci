@@ -108,12 +108,11 @@ int main(int argc, char *argv[]) {
     fp = popen("/tmp/.expr", "r");
     assert(fp != NULL);
 
-    uint64_t result;
-    int _ = fscanf(fp, "%lu", &result);
-    _ = _;
+    int result;
+    ret = fscanf(fp, "%d", &result);
     pclose(fp);
 
-    printf("%lu %s\n", result, buf);
+    printf("%d %s\n", result, buf);
   }
   return 0;
 }

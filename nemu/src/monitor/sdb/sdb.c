@@ -191,9 +191,6 @@ void sdb_mainloop() {
   }
 }
 
-
-
-
 void test_expr() {
   FILE *fp = fopen("/home/ypc/Desktop/ysyx/ysyx-workbench/nemu/tools/gen-expr/input", "r");
   if (fp == NULL) perror("test_expr error");
@@ -224,13 +221,12 @@ void test_expr() {
 
   Log("expr test pass");
 }
-
-
-
 void init_sdb() {
   /* Compile the regular expressions. */
   init_regex();
+
   test_expr();
+
   /* Initialize the watchpoint pool. */
   init_wp_pool();
 }
