@@ -192,6 +192,7 @@ word_t eval(int p, int q, bool *success) {
   }
   else if (p == q) {
     if(tokens[p].type != TK_NUM){
+      printf("%d\n", p);
       printf("type = %c  and  tknum = %d \n", tokens[p].type, TK_NUM);
       *success = false;
       printf("2\n");
