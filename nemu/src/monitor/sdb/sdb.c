@@ -83,6 +83,18 @@ static int cmd_x(char *args) {
   return 0;
 }
 
+static int cmd_p(char *args) {
+  bool success;
+  word_t result = expr(args, &success);
+  if(!success){
+    printf("illegal expression!\n");
+  }
+  else{
+    printf("result : %u\n", result);
+  }
+  return 0;
+}
+
 static int cmd_c(char *args) {
   cpu_exec(-1);
   return 0;
@@ -107,6 +119,7 @@ static struct {
   { "si", "Step run", cmd_si},
   { "info", "info r(w) : print regs(watchpoint)", cmd_info},
   { "x", "Scan memory", cmd_x},
+  { "p", "Calculate the expression", cmd_p},
   /* TODO: Add more commands */
 
 };

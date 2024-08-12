@@ -21,7 +21,7 @@
 #include <regex.h>
 
 enum {
-  TK_NOTYPE = 256, TK_EQ,
+  TK_NOTYPE = 256, TK_EQ = 255, TK_NUM = 256,
 
   /* TODO: Add more token types */
 
@@ -38,6 +38,14 @@ static struct rule {
 
   {" +", TK_NOTYPE},    // spaces
   {"\\+", '+'},         // plus
+  {"-", '-'},
+  {"\\*", '*'},
+  {"/", '/'},
+  {"\\(", '('},
+  {"\\)", ')'},
+  {"[0-9]+", TK_NUM},
+
+
   {"==", TK_EQ},        // equal
 };
 
@@ -88,6 +96,10 @@ static bool make_token(char *e) {
             i, rules[i].regex, position, substr_len, substr_len, substr_start);
 
         position += substr_len;
+        
+        if(rules[i].token_type == TK_NOTYPE) break;//if recognize blank then break;
+
+        tokens[nr_token].type = rules[i].token_type;//if not blank then store;
 
         /* TODO: Now a new token is recognized with rules[i]. Add codes
          * to record the token in the array `tokens'. For certain types
@@ -95,8 +107,12 @@ static bool make_token(char *e) {
          */
 
         switch (rules[i].token_type) {
-          default: TODO();
+          case TK_NUM :
+
+            strncpy(tokens[nr_token].str, substr_start, substr_len);
+
         }
+        nr_token++;
 
         break;
       }
@@ -111,6 +127,114 @@ static bool make_token(char *e) {
   return true;
 }
 
+bool check_parentheses(int p, int q){
+  if(tokens[p].type == '(' && tokens[q].type == ')'){
+    int del = 0;
+    for(int i = p; i <= q; i++){
+      if(tokens[i].type == '(')
+        del++;
+      else if(tokens[i].type == ')'){
+        if(del > 0)
+          del--;
+        else
+          return false;
+      }
+      else if(del == 0 && (tokens[i].type == '+' || tokens[i].type == '-' || tokens[i].type == '*' || tokens[i].type == '/'))
+        return false;
+    }
+    if(del == 0)
+      return true;
+  }
+  return false;
+}
+
+int find_major(int p, int q){
+  int ret = -1;
+  int del = 0;
+  int last_low_p = 0;
+  for(int i = p; i <= q; i++){
+    if(tokens[i].type == TK_NUM)
+      continue;
+    if(tokens[i].type == '(')
+      del++;
+    else if(tokens[i].type == ')'){
+      if(del > 0)
+        del--;
+      else
+        return -1;
+    }
+    else if(del > 0)
+      continue;
+    else{
+      int low_p = 0;
+      switch(tokens[i].type){
+        case('+') : case('-') : low_p = 2; break;
+        case('*') : case('/') : low_p = 1; break;
+        default : assert(0);
+      }
+      if(low_p >= last_low_p){
+        last_low_p = low_p;
+        ret = i;
+      }
+    }
+  }
+  if(del != 0) return -1;
+  return ret;
+}
+
+word_t eval(int p, int q, bool *success) {
+  *success = true;
+  if (p > q) {
+    *success = false;
+    return 0;
+    /* Bad expression */
+  }
+  else if (p == q) {
+    if(tokens[p].type != TK_NUM){
+      *success = false;
+      return 0;
+    }
+    word_t result = strtol(tokens[p].str, NULL, 0);
+    *success = true;
+    return result;
+    /* Single token.
+     * For now this token should be a number.
+     * Return the value of the number.
+     */
+  }
+  else if (check_parentheses(p, q) == true) {
+    /* The expression is surrounded by a matched pair of parentheses.
+     * If that is the case, just throw away the parentheses.
+     */
+    return eval(p + 1, q - 1, success);
+  }
+  else {
+    int op = find_major(p, q);
+    if(op < 0){
+      *success = false;
+      return 0;
+    }
+    
+    word_t val1 = eval(p, op - 1, success);
+    if(!*success) return 0;
+    word_t val2 = eval(op + 1, q, success);
+    if(!*success) return 0;
+
+    switch (tokens[op].type) {
+      case '+': return val1 + val2;
+      case '-': return val1 - val2;
+      case '*': return val1 * val2;
+      case '/': 
+        if(val2 == 0){
+          *success = false;
+          return 0;
+        }
+        return val1 / val2;
+      default: assert(0);
+    /* We should do more things here. */
+    }
+  }
+}
 
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
@@ -118,8 +242,5 @@ word_t expr(char *e, bool *success) {
     return 0;
   }
 
-  /* TODO: Insert codes to evaluate the expression. */
-  TODO();
-
-  return 0;
+  return eval(0, nr_token-1, success);
 }
