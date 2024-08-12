@@ -195,6 +195,7 @@ word_t eval(int p, int q, bool *success) {
       return 0;
     }
     word_t result = strtol(tokens[p].str, NULL, 0);
+    printf("p = %d, q = %d\n", p, q);
     printf("result = %u\n", result);
     *success = true;
     return result;
