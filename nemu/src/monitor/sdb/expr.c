@@ -97,7 +97,7 @@ static bool make_token(char *e) {
 
         position += substr_len;
         
-        if(rules[i].token_type == TK_NOTYPE) {printf("nononono rules = %c \n", rules[i].token_type); break;}//if recognize blank then break;
+        if(rules[i].token_type == TK_NOTYPE) break;//if recognize blank then break;
 
         tokens[nr_token].type = rules[i].token_type;//if not blank then store;
 
@@ -108,8 +108,8 @@ static bool make_token(char *e) {
 
         switch (rules[i].token_type) {
           case TK_NUM :
+
             strncpy(tokens[nr_token].str, substr_start, substr_len);
-            printf("num show up!\n");
 
         }
         nr_token++;
@@ -186,21 +186,16 @@ word_t eval(int p, int q, bool *success) {
   *success = true;
   if (p > q) {
     *success = false;
-    printf("1\n");
     return 0;
     /* Bad expression */
   }
   else if (p == q) {
     if(tokens[p].type != TK_NUM){
-      printf("%d\n", p);
-      printf("type = %c  and  tknum = %d \n", tokens[p].type, TK_NUM);
       *success = false;
-      printf("2\n");
       return 0;
     }
     word_t result = strtol(tokens[p].str, NULL, 0);
     *success = true;
-    printf("3\n");
     return result;
     /* Single token.
      * For now this token should be a number.
@@ -211,14 +206,12 @@ word_t eval(int p, int q, bool *success) {
     /* The expression is surrounded by a matched pair of parentheses.
      * If that is the case, just throw away the parentheses.
      */
-    printf("4\n");
     return eval(p + 1, q - 1, success);
   }
   else {
     int op = find_major(p, q);
     if(op < 0){
       *success = false;
-      printf("5\n");
       return 0;
     }
     
@@ -234,7 +227,6 @@ word_t eval(int p, int q, bool *success) {
       case '/': 
         if(val2 == 0){
           *success = false;
-          printf("6\n");
           return 0;
         }
         return val1 / val2;
