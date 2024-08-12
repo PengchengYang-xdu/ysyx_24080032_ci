@@ -219,6 +219,7 @@ word_t eval(int p, int q, bool *success) {
       return 0;
     }
     else if(op == -2){
+      printf("got op = 2 \n");
       word_t number = strtol(tokens[p].str, NULL, 0);
       return number;
     }
