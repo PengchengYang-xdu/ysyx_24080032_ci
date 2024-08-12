@@ -219,6 +219,7 @@ void test_expr() {
   fclose(fp);
   if (e) free(e);
 
+  printf("all passed!\n");
   Log("expr test pass");
 }
 void init_sdb() {
