@@ -152,9 +152,12 @@ int find_major(int p, int q){
   int ret = -1;
   int del = 0;
   int last_low_p = 0;
+  int acc = 0;
   for(int i = p; i <= q; i++){
-    if(tokens[i].type == TK_NUM)
+    if(tokens[i].type == TK_NUM){
+      acc++;
       continue;
+    }
     if(tokens[i].type == '(')
       del++;
     else if(tokens[i].type == ')'){
@@ -179,6 +182,7 @@ int find_major(int p, int q){
     }
   }
   if(del != 0) return -1;
+  else if(acc == p-q+1) return -2;
   return ret;
 }
 
@@ -210,9 +214,13 @@ word_t eval(int p, int q, bool *success) {
   }
   else {
     int op = find_major(p, q);
-    if(op < 0){
+    if(op == -1){
       *success = false;
       return 0;
+    }
+    else if(op == -2){
+      word_t number = strtol(tokens[p].str, NULL, 0);
+      return number;
     }
     
     word_t val1 = eval(p, op - 1, success);
