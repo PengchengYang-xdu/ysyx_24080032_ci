@@ -195,6 +195,7 @@ word_t eval(int p, int q, bool *success) {
   }
   else if (p == q) {
     if(tokens[p].type != TK_NUM){
+      printf("hey\n");
       *success = false;
       return 0;
     }
