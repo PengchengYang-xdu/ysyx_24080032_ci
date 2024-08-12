@@ -195,10 +195,10 @@ word_t eval(int p, int q, bool *success) {
   }
   else if (p == q) {
     if(tokens[p].type != TK_NUM){
-      printf("hey\n");
       *success = false;
       return 0;
     }
+          printf("hey\n");
     word_t result = strtol(tokens[p].str, NULL, 0);
     *success = true;
     return result;
