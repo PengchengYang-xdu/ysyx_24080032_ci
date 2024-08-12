@@ -97,7 +97,7 @@ static bool make_token(char *e) {
 
         position += substr_len;
         
-        if(rules[i].token_type == TK_NOTYPE) {printf("nononono rules i=%d\n", i); break;}//if recognize blank then break;
+        if(rules[i].token_type == TK_NOTYPE) {printf("nononono rules = %c \n", rules[i].token_type); break;}//if recognize blank then break;
 
         tokens[nr_token].type = rules[i].token_type;//if not blank then store;
 
