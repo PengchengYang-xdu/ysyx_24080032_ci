@@ -285,6 +285,7 @@ word_t eval(int p, int q, bool *success) {
     return eval(p + 1, q - 1, success);
   }
   else {
+    printf("p,q else\n");
     int op = find_major(p, q);
     if(op < 0){
       *success = false;
