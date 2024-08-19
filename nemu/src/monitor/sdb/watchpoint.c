@@ -65,6 +65,7 @@ void wp_display() {
 
 void wp_set(char *expr, word_t res) {
   WP* wp = new_wp();
+  printf("crate success\n");
   strcpy(wp->expr, expr);
   wp->old = res;
   printf("Watchpoint %d: %s\n", wp->NO, expr);
