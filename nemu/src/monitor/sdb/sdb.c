@@ -83,6 +83,8 @@ static int cmd_w(char *args) {
 }
 
 static int cmd_x(char *args) {
+  if(args == NULL)
+    printf("no args.\n");
   char *N = strtok(args, " ");
   char *EXPR = strtok(NULL, " ");
   int len = 0;
