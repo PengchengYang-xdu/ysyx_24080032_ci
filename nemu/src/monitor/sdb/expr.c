@@ -179,6 +179,7 @@ bool check_parentheses(int p, int q){
 }
 
 int find_major(int p, int q){
+  printf("go into find_major\n");
   int ret = -1;
   int del = 0;
   int last_low_p = 0;
@@ -196,6 +197,7 @@ int find_major(int p, int q){
     else if(del > 0)
       continue;
     else{
+      printf("go into else\n");
       int low_p = 0;
       switch(tokens[i].type){
         case TK_OR: low_p++;
@@ -308,8 +310,6 @@ word_t eval(int p, int q, bool *success) {
     }
     if(success1){
       word_t ret = calculate_binary(val1, tokens[op].type, val2, success);
-      printf("tokens[op].type = %d\n", tokens[op].type);
-      printf("success = %d\n", *success);
       return ret;
     }
     else{
