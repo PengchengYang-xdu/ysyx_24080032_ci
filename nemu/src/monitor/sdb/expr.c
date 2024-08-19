@@ -179,7 +179,6 @@ bool check_parentheses(int p, int q){
 }
 
 int find_major(int p, int q){
-  printf("go into find_major\n");
   int ret = -1;
   int del = 0;
   int last_low_p = 0;
@@ -197,8 +196,6 @@ int find_major(int p, int q){
     else if(del > 0)
       continue;
     else{
-      printf("go into else\n");
-      printf("tokens[i].type = %d\n", tokens[i].type);
       int low_p = 0;
       switch(tokens[i].type){
         case TK_OR: low_p++;
@@ -234,26 +231,24 @@ static word_t calculate_unary(int op, word_t val, bool *ok) {
 
 static word_t calculate_binary(word_t val1, int op, word_t val2, bool *ok) {
   *ok = true;
-  printf("ok = %d\n", *ok);
   switch(op) {
-    case '+': printf("ok = %d\n", *ok);return val1 + val2;
-    case '-': printf("ok = %d\n", *ok);return val1 - val2;
-    case '*': printf("ok = %d\n", *ok);return val1 * val2;
+    case '+': return val1 + val2;
+    case '-': return val1 - val2;
+    case '*': return val1 * val2;
     case '/': 
       if (val2 == 0) {
         *ok = false;
         return 0;
       }
-      printf("ok = %d\n", *ok);
       return (sword_t)val1 / (sword_t)val2;
-    case TK_AND: printf("ok = %d\n", *ok);return val1 && val2;
-    case TK_OR: printf("ok = %d\n", *ok);return val1 || val2;
-    case TK_EQ: printf("ok = %d\n", *ok);return val1 == val2;
-    case TK_NEQ: printf("ok = %d\n", *ok);return val1 != val2;
-    case TK_DAYU: printf("ok = %d\n", *ok);return val1 > val2;
-    case TK_XIAOYU: printf("ok = %d\n", *ok);return val1 < val2;
-    case TK_DAYUEQ: printf("ok = %d\n", *ok);return val1 >= val2;
-    case TK_XIAOYUEQ: printf("ok = %d\n", *ok);return val1 <= val2;
+    case TK_AND: return val1 && val2;
+    case TK_OR: return val1 || val2;
+    case TK_EQ: return val1 == val2;
+    case TK_NEQ: return val1 != val2;
+    case TK_DAYU: return val1 > val2;
+    case TK_XIAOYU: return val1 < val2;
+    case TK_DAYUEQ: return val1 >= val2;
+    case TK_XIAOYUEQ: return val1 <= val2;
     default: *ok = false; return 0;
   }
 }
@@ -261,15 +256,11 @@ static word_t calculate_binary(word_t val1, int op, word_t val2, bool *ok) {
 word_t eval(int p, int q, bool *success) {
   *success = true;
   if (p > q) {
-    printf("p>q\n");
     *success = false;
     return 0;
     /* Bad expression */
   }
   else if (p == q) {
-    printf("p==q\n");
-    printf("type=%d\n", tokens[p].type);
-    printf("tknum=%ld\n", strtol(tokens[p].str, NULL, 0));
     switch(tokens[p].type){
       case TK_NUM :
         return strtol(tokens[p].str, NULL, 0);
@@ -285,14 +276,12 @@ word_t eval(int p, int q, bool *success) {
      */
   }
   else if (check_parentheses(p, q) == true) {
-    printf("check_parentheses(p, q) == true\n");
     /* The expression is surrounded by a matched pair of parentheses.
      * If that is the case, just throw away the parentheses.
      */
     return eval(p + 1, q - 1, success);
   }
   else {
-    printf("p,q else\n");
     int op = find_major(p, q);
     if(op < 0){
       *success = false;
@@ -301,10 +290,7 @@ word_t eval(int p, int q, bool *success) {
     bool success1, success2;
     word_t val1 = eval(p, op - 1, &success1);
     word_t val2 = eval(op + 1, q, &success2);
-    printf("val1 = %u and val2 = %u\n", val1, val2);
-    printf("success1 = %d and success2 = %d\n", success1, success2);
-    printf("success = %d\n", *success);
-    printf("tokens[op]oooooooo.type = %d\n", tokens[op].type);
+
     if(!success2){
       *success = false;
       return 0;
@@ -324,7 +310,6 @@ word_t eval(int p, int q, bool *success) {
 word_t expr(char *e, bool *success) {
   if (!make_token(e)) {
     *success = false;
-    printf("make fail\n");
     return 0;
   }
 
