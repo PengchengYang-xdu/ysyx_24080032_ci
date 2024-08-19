@@ -308,6 +308,7 @@ word_t eval(int p, int q, bool *success) {
     }
     if(success1){
       word_t ret = calculate_binary(val1, tokens[op].type, val2, success);
+      printf("tokens[op].type = %d\n", tokens[op].type);
       printf("success = %d\n", *success);
       return ret;
     }
