@@ -232,23 +232,24 @@ static word_t calculate_unary(int op, word_t val, bool *ok) {
 static word_t calculate_binary(word_t val1, int op, word_t val2, bool *ok) {
   *ok = true;
   switch(op) {
-    case '+': return val1 + val2;
-    case '-': return val1 - val2;
-    case '*': return val1 * val2;
+    case '+': printf("ok = %d\n", *ok);return val1 + val2;
+    case '-': printf("ok = %d\n", *ok);return val1 - val2;
+    case '*': printf("ok = %d\n", *ok);return val1 * val2;
     case '/': 
       if (val2 == 0) {
         *ok = false;
         return 0;
-      } 
+      }
+      printf("ok = %d\n", *ok);
       return (sword_t)val1 / (sword_t)val2;
-    case TK_AND: return val1 && val2;
-    case TK_OR: return val1 || val2;
-    case TK_EQ: return val1 == val2;
-    case TK_NEQ: return val1 != val2;
-    case TK_DAYU: return val1 > val2;
-    case TK_XIAOYU: return val1 < val2;
-    case TK_DAYUEQ: return val1 >= val2;
-    case TK_XIAOYUEQ: return val1 <= val2;
+    case TK_AND: printf("ok = %d\n", *ok);return val1 && val2;
+    case TK_OR: printf("ok = %d\n", *ok);return val1 || val2;
+    case TK_EQ: printf("ok = %d\n", *ok);return val1 == val2;
+    case TK_NEQ: printf("ok = %d\n", *ok);return val1 != val2;
+    case TK_DAYU: printf("ok = %d\n", *ok);return val1 > val2;
+    case TK_XIAOYU: printf("ok = %d\n", *ok);return val1 < val2;
+    case TK_DAYUEQ: printf("ok = %d\n", *ok);return val1 >= val2;
+    case TK_XIAOYUEQ: printf("ok = %d\n", *ok);return val1 <= val2;
     default: *ok = false; return 0;
   }
 }
