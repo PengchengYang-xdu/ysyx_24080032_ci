@@ -301,7 +301,7 @@ word_t eval(int p, int q, bool *success) {
     printf("val1 = %u and val2 = %u\n", val1, val2);
     printf("success1 = %d and success2 = %d\n", success1, success2);
     printf("success = %d\n", *success);
-
+    printf("tokens[op]oooooooo.type = %d\n", tokens[op].type);
     if(!success2){
       *success = false;
       return 0;
