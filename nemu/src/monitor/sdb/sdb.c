@@ -58,8 +58,27 @@ static int cmd_info(char *args) {
   else if(strcmp(args, "r") == 0)
     isa_reg_display();
   else if(strcmp(args, "w") == 0)
-    // sdb_watchpoint_display();
-    {}
+    wp_display();
+  return 0;
+}
+
+static int cmd_d(char *args) {
+  if(args == NULL)
+    printf("no args.\n");
+  int num = strtol(args, NULL, 10);
+  wp_delete(num);
+  return 0;
+}
+
+static int cmd_w(char *args) {
+  if(args == NULL)
+    printf("no args.\n");
+  bool succcess;
+  word_t exp = expr(args, &succcess);
+  if(!succcess)
+    printf("illegal exp\n");
+  else
+    wp_set(args, exp);
   return 0;
 }
 
@@ -118,6 +137,8 @@ static struct {
   { "q", "Exit NEMU", cmd_q },
   { "si", "Step run", cmd_si},
   { "info", "info r(w) : print regs(watchpoint)", cmd_info},
+  { "d", "d N : Delete N watchpoint", cmd_d},
+  { "w", "w EXPR : Set EXPR watchpoint", cmd_w},
   { "x", "Scan memory", cmd_x},
   { "p", "Calculate the expression", cmd_p},
   /* TODO: Add more commands */
