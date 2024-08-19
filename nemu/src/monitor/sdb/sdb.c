@@ -75,6 +75,7 @@ static int cmd_w(char *args) {
     printf("no args.\n");
   bool succcess;
   word_t exp = expr(args, &succcess);
+  printf("%u\n",exp);
   if(!succcess)
     printf("illegal exp\n");
   else
