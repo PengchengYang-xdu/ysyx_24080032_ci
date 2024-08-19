@@ -254,11 +254,13 @@ static word_t calculate_binary(word_t val1, int op, word_t val2, bool *ok) {
 word_t eval(int p, int q, bool *success) {
   *success = true;
   if (p > q) {
+    printf("p>q\n");
     *success = false;
     return 0;
     /* Bad expression */
   }
   else if (p == q) {
+    printf("p==q\n");
     switch(tokens[p].type){
       case TK_NUM :
         return strtol(tokens[p].str, NULL, 0);
@@ -274,6 +276,7 @@ word_t eval(int p, int q, bool *success) {
      */
   }
   else if (check_parentheses(p, q) == true) {
+    printf("check_parentheses(p, q) == true\n");
     /* The expression is surrounded by a matched pair of parentheses.
      * If that is the case, just throw away the parentheses.
      */
