@@ -218,6 +218,7 @@ int find_major(int p, int q){
 }
 
 static word_t calculate_unary(int op, word_t val, bool *ok) {
+  *ok = true;
   switch (op)
   {
     case TK_NEG: return -val;
@@ -229,6 +230,7 @@ static word_t calculate_unary(int op, word_t val, bool *ok) {
 }
 
 static word_t calculate_binary(word_t val1, int op, word_t val2, bool *ok) {
+  *ok = true;
   switch(op) {
     case '+': return val1 + val2;
     case '-': return val1 - val2;
@@ -304,7 +306,6 @@ word_t eval(int p, int q, bool *success) {
     }
     if(success1){
       word_t ret = calculate_binary(val1, tokens[op].type, val2, success);
-      printf("success = %d\n", *success);
       return ret;
     }
     else{
