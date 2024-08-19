@@ -134,7 +134,7 @@ static bool make_token(char *e) {
           case '*' :
           case '-' :
           case '+' :
-            if(tokens[nr_token - 1].type != '(' || nr_token == 0 || (tokens[nr_token - 1].type != ')' && tokens[nr_token - 1].type != TK_NUM && tokens[nr_token - 1].type != TK_REG)){
+            if(nr_token == 0 || (tokens[nr_token - 1].type != ')' && tokens[nr_token - 1].type != TK_NUM && tokens[nr_token - 1].type != TK_REG)){
               switch (rules[i].token_type) {
                 case '*' : tokens[nr_token].type = TK_DEREF;
                 case '+' : tokens[nr_token].type = TK_POS;
