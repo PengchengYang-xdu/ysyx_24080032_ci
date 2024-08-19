@@ -231,6 +231,7 @@ static word_t calculate_unary(int op, word_t val, bool *ok) {
 
 static word_t calculate_binary(word_t val1, int op, word_t val2, bool *ok) {
   *ok = true;
+  printf("ok = %d\n", *ok);
   switch(op) {
     case '+': printf("ok = %d\n", *ok);return val1 + val2;
     case '-': printf("ok = %d\n", *ok);return val1 - val2;
