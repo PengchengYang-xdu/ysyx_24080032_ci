@@ -262,7 +262,7 @@ word_t eval(int p, int q, bool *success) {
   else if (p == q) {
     printf("p==q\n");
     printf("type=%d\n", tokens[p].type);
-    printf("type=%ld\n", strtol(tokens[p].str, NULL, 0));
+    printf("tknum=%ld\n", strtol(tokens[p].str, NULL, 0));
     switch(tokens[p].type){
       case TK_NUM :
         return strtol(tokens[p].str, NULL, 0);
@@ -294,6 +294,7 @@ word_t eval(int p, int q, bool *success) {
     bool success1, success2;
     word_t val1 = eval(p, op - 1, &success1);
     word_t val2 = eval(op + 1, q, &success2);
+    printf("val1 = %u and val2 = %u", val1, val2);
 
     if(!success2){
       *success = false;
