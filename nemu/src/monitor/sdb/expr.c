@@ -198,6 +198,7 @@ int find_major(int p, int q){
       continue;
     else{
       printf("go into else\n");
+      printf("tokens[i].type = %d\n", tokens[i].type);
       int low_p = 0;
       switch(tokens[i].type){
         case TK_OR: low_p++;
