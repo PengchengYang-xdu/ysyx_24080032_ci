@@ -184,8 +184,8 @@ int find_major(int p, int q){
   int del = 0;
   int last_low_p = 0;
   for(int i = p; i <= q; i++){
-    printf("p = %d, q = %d\n", p, q);
-    printf("tokens[i].type = %d\n", tokens[i].type);
+    printf("findmajor, p = %d, q = %d\n", p, q);
+    printf("findmajor, tokens[i].type = %d\n", tokens[i].type);
     if(tokens[i].type == '(')
       del++;
     else if(tokens[i].type == ')'){
@@ -267,7 +267,6 @@ word_t eval(int p, int q, bool *success) {
     printf("p=q\n");
     switch(tokens[p].type){
       case TK_NUM :
-        printf("tokens[p].str = %lu", strtol(tokens[p].str, NULL, 0));
         return strtol(tokens[p].str, NULL, 0);
       case TK_REG :
         return isa_reg_str2val(tokens[p].str, success);
