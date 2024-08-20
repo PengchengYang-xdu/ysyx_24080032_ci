@@ -224,7 +224,7 @@ static word_t calculate_unary(int op, word_t val, bool *ok) {
   {
     case TK_NEG: return -val;
     case TK_POS: return val;
-    case TK_DEREF: return vaddr_read(val, 8);
+    case TK_DEREF: printf("deref triggered\n"); return vaddr_read(val, 8);
     default: *ok = false;
   }
   return 0;
