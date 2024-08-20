@@ -91,7 +91,7 @@ static int cmd_x(char *args) {
   int len = 0;
   vaddr_t addr = 0;
   sscanf(N, "%d", &len);
-  sscanf(EXPR, "%u", &addr);
+  sscanf(EXPR, "%x", &addr);
   for(int i = 0; i < len; i ++){
     printf("0x%x : ", addr);
     uint32_t data = vaddr_read(addr, 4);
