@@ -187,7 +187,7 @@ int find_major(int p, int q){
   int last_low_p = 0;
   for(int i = p; i <= q; i++){
     printf("findmajor, p = %d, q = %d\n", p, q);
-    printf("findmajor, tokens[i].type = %d\n", tokens[i].type);
+    printf("findmajor, tokens[%d].type = %d\n", i, tokens[i].type);
     if(tokens[i].type == '(')
       del++;
     else if(tokens[i].type == ')'){
