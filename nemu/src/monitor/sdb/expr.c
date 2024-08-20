@@ -129,7 +129,6 @@ static bool make_token(char *e) {
         switch (rules[i].token_type) {
           case TK_NUM :
           case TK_REG :
-            printf("rules[i].token_type = %d\n", rules[i].token_type);
             strncpy(tokens[nr_token].str, substr_start, substr_len);
             tokens[nr_token].str[substr_len] = '\0';
             break;
@@ -225,7 +224,7 @@ static word_t calculate_unary(int op, word_t val, bool *ok) {
   {
     case TK_NEG: return -val;
     case TK_POS: return val;
-    case TK_DEREF: return vaddr_read(val, 4); printf("addr = %u, vaddr_read = %u\n", val, vaddr_read(val, 4));
+    case TK_DEREF: return vaddr_read(val, 4);
     default: *ok = false;
   }
   return 0;
