@@ -183,6 +183,9 @@ bool check_parentheses(int p, int q){
 }
 
 int find_major(int p, int q){
+  printf("tokens[0].type = %d\n", tokens[0].type);
+  printf("tokens[1].type = %d\n", tokens[1].type);
+  printf("tokens[2].type = %d\n", tokens[2].type);
   int ret = -1;
   int del = 0;
   int last_low_p = 0;
