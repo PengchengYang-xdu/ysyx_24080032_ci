@@ -267,7 +267,6 @@ word_t eval(int p, int q, bool *success) {
       case TK_NUM :
         return strtol(tokens[p].str, NULL, 0);
       case TK_REG :
-        printf("tokens[p].str = %c", *tokens[p].str);
         return isa_reg_str2val(tokens[p].str, success);
       default :
         *success = false;

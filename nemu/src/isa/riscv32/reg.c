@@ -30,5 +30,13 @@ void isa_reg_display() {
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
+  *success = false;
+  int length = sizeof(regs) / sizeof(regs[0]);
+  for(int i = 0; i < length; i ++)
+    if(s == regs[i]){
+      *success = true;
+      return cpu.gpr[i];
+    }
+  printf("reg not found!\n");
   return 0;
 }
