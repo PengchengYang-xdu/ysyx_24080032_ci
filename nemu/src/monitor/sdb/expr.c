@@ -139,7 +139,7 @@ static bool make_token(char *e) {
               printf("rules[i].token_type = %c\n", rules[i].token_type);
               printf("nr_token = %d\n", nr_token);
               switch (rules[i].token_type) {
-                case '*' : tokens[nr_token].type = TK_DEREF; printf("tokens[nr_token].type = %d\n", tokens[0].type); 
+                case '*' : tokens[nr_token].type = TK_DEREF; printf("tokens[0].type = %d\n", tokens[0].type); 
                 case '+' : tokens[nr_token].type = TK_POS;
                 case '-' : tokens[nr_token].type = TK_NEG;
               }
@@ -186,6 +186,7 @@ int find_major(int p, int q){
   int del = 0;
   int last_low_p = 0;
   for(int i = p; i <= q; i++){
+    printf("findmajor, tokens[0].type = %d\n", tokens[0].type);
     printf("findmajor, p = %d, q = %d\n", p, q);
     printf("findmajor, tokens[%d].type = %d\n", i, tokens[i].type);
     if(tokens[i].type == '(')
