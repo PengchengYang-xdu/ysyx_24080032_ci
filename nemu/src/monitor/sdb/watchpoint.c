@@ -66,6 +66,8 @@ void wp_display() {
 void wp_set(char *expr, word_t res) {
   WP* wp = new_wp();
   printf("crate success\n");
+  printf("expr = %c\n", *expr);
+  printf("res = %u\n", res);
   strcpy(wp->expr, expr);
   printf("strcpy success\n");
   wp->old = res;
