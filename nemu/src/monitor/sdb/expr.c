@@ -106,7 +106,6 @@ static bool make_token(char *e) {
   nr_token = 0;
 
   while (e[position] != '\0') {
-    printf("make token\n");
     /* Try all rules one by one. */
     for (i = 0; i < NR_REGEX; i ++) {
       if (regexec(&re[i], e + position, 1, &pmatch, 0) == 0 && pmatch.rm_so == 0) {
@@ -119,8 +118,6 @@ static bool make_token(char *e) {
         position += substr_len;
         
         if(rules[i].token_type == TK_NOTYPE) break;//if recognize blank then break;
-        
-        printf("nr_token = %d", nr_token);
 
         tokens[nr_token].type = rules[i].token_type;//if not blank then store;
 
@@ -128,7 +125,6 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-        printf("rules.token_type = %d\n", rules[i].token_type);
 
         switch (rules[i].token_type) {
           case TK_NUM :
@@ -140,13 +136,10 @@ static bool make_token(char *e) {
           case '-' :
           case '+' :
             if(nr_token == 0 || (tokens[nr_token - 1].type != ')' && tokens[nr_token - 1].type != TK_NUM && tokens[nr_token - 1].type != TK_REG)){
-              printf("yiyuan\n");
-              printf("rules[i].token_type = %c\n", rules[i].token_type);
-              printf("nr_token = %d\n", nr_token);
               switch (rules[i].token_type) {
-                case '*' : tokens[nr_token].type = TK_DEREF; printf("tokens[0].type = %d\n", tokens[0].type); 
-                case '+' : tokens[nr_token].type = TK_POS;
-                case '-' : tokens[nr_token].type = TK_NEG;
+                case '*' : tokens[nr_token].type = TK_DEREF; break;
+                case '+' : tokens[nr_token].type = TK_POS; break;
+                case '-' : tokens[nr_token].type = TK_NEG; break;
               }
             }
             break;
@@ -187,16 +180,10 @@ bool check_parentheses(int p, int q){
 }
 
 int find_major(int p, int q){
-  printf("tokens[0].type = %d\n", tokens[0].type);
-  printf("tokens[1].type = %d\n", tokens[1].type);
-  printf("tokens[2].type = %d\n", tokens[2].type);
   int ret = -1;
   int del = 0;
   int last_low_p = 0;
   for(int i = p; i <= q; i++){
-    printf("findmajor, tokens[0].type = %d\n", tokens[0].type);
-    printf("findmajor, p = %d, q = %d\n", p, q);
-    printf("findmajor, tokens[%d].type = %d\n", i, tokens[i].type);
     if(tokens[i].type == '(')
       del++;
     else if(tokens[i].type == ')'){
@@ -237,7 +224,7 @@ static word_t calculate_unary(int op, word_t val, bool *ok) {
   {
     case TK_NEG: return -val;
     case TK_POS: return val;
-    case TK_DEREF: printf("deref triggered\n"); return vaddr_read(val, 8);
+    case TK_DEREF: return vaddr_read(val, 8);
     default: *ok = false;
   }
   return 0;
@@ -275,7 +262,6 @@ word_t eval(int p, int q, bool *success) {
     /* Bad expression */
   }
   else if (p == q) {
-    printf("p=q\n");
     switch(tokens[p].type){
       case TK_NUM :
         return strtol(tokens[p].str, NULL, 0);
@@ -305,9 +291,6 @@ word_t eval(int p, int q, bool *success) {
     bool success1, success2;
     word_t val1 = eval(p, op - 1, &success1);
     word_t val2 = eval(op + 1, q, &success2);
-    printf("val1 = %u and val2 = %u\n", val1, val2);
-    printf("success1 = %d and success2 = %d\n", success1, success2);
-    printf("tokens[op].type = %d", tokens[op].type);
 
     if(!success2){
       *success = false;
