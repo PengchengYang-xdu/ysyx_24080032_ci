@@ -292,7 +292,7 @@ word_t eval(int p, int q, bool *success) {
     bool success1, success2;
     word_t val1 = eval(p, op - 1, &success1);
     word_t val2 = eval(op + 1, q, &success2);
-    // printf("val1 = %u, val2 = %u\n", val1, val2);
+    printf("val1 = %u, val2 = %u\n", val1, val2);
 
     if(!success2){
       *success = false;
