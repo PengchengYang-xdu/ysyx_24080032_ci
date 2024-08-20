@@ -264,6 +264,7 @@ word_t eval(int p, int q, bool *success) {
     /* Bad expression */
   }
   else if (p == q) {
+    printf("p=q\n");
     switch(tokens[p].type){
       case TK_NUM :
         return strtol(tokens[p].str, NULL, 0);
