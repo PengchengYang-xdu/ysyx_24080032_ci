@@ -157,6 +157,7 @@ config DIFFTEST
   bool "Enable differential testing"
   default n
 
+#added by yangpengcheng
 config WATCHPOINT
   bool "Enable watchpoint"
   default n
