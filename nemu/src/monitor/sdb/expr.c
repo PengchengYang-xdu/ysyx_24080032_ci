@@ -267,8 +267,8 @@ word_t eval(int p, int q, bool *success) {
     printf("p=q\n");
     switch(tokens[p].type){
       case TK_NUM :
-        if (strncmp("0x", tokens[p].str, 2) == 0) return strtol(tokens[p].str, NULL, 16); 
-        else return strtol(tokens[p].str, NULL, 10);
+        printf("tokens[p].str = %c", *tokens[p].str);
+        return strtol(tokens[p].str, NULL, 0);
       case TK_REG :
         return isa_reg_str2val(tokens[p].str, success);
       default :
