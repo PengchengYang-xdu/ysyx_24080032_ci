@@ -132,6 +132,7 @@ static bool make_token(char *e) {
           case TK_NUM :
           case TK_REG :
             strncpy(tokens[nr_token].str, substr_start, substr_len);
+            tokens[nr_token].str[substr_len] = '\0';
             break;
           case '*' :
           case '-' :
