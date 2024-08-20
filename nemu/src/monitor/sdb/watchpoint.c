@@ -14,6 +14,7 @@
 ***************************************************************************************/
 
 #include "sdb.h"
+#include <utils.h>
 
 #define NR_WP 32
 
@@ -65,11 +66,7 @@ void wp_display() {
 
 void wp_set(char *expr, word_t res) {
   WP* wp = new_wp();
-  printf("crate success\n");
-  printf("expr = %c\n", *expr);
-  printf("res = %u\n", res);
   strcpy(wp->expr, expr);
-  printf("strcpy success\n");
   wp->old = res;
   printf("Watchpoint %d: %s\n", wp->NO, expr);
 }
@@ -87,6 +84,8 @@ void wp_difftest() {
     bool _;
     word_t new = expr(h->expr, &_);
     if (h->old != new) {
+      nemu_state.state = NEMU_STOP;
+      printf("Watchpoint triggered!\n");
       printf("Watchpoint %d: %s\n"
         "Old value = %u\n"
         "New value = %u\n"
