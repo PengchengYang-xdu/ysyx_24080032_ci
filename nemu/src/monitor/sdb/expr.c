@@ -126,7 +126,7 @@ static bool make_token(char *e) {
          * to record the token in the array `tokens'. For certain types
          * of tokens, some extra actions should be performed.
          */
-        printf("rules.token_type = %c\n", rules[i].token_type);
+        printf("rules.token_type = %d\n", rules[i].token_type);
 
         switch (rules[i].token_type) {
           case TK_NUM :
