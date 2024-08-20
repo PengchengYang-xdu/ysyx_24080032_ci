@@ -135,7 +135,8 @@ static bool make_token(char *e) {
           case '-' :
           case '+' :
             if(nr_token == 0 || (tokens[nr_token - 1].type != ')' && tokens[nr_token - 1].type != TK_NUM && tokens[nr_token - 1].type != TK_REG)){
-              printf("***\n");
+              printf("yiyuan\n");
+              printf("rules[i].token_type = %c\n", rules[i].token_type);
               switch (rules[i].token_type) {
                 case '*' : tokens[nr_token].type = TK_DEREF;
                 case '+' : tokens[nr_token].type = TK_POS;
