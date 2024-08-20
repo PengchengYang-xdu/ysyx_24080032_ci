@@ -54,7 +54,7 @@ static struct rule {
   {"/", '/'},
   {"\\(", '('},
   {"\\)", ')'},
-  {"(0[xX])?[0-9A-Za-z]+", TK_NUM},
+  {"(0[xX][0-9A-Fa-f]+)|([0-9]+)", TK_NUM},
   {"==", TK_EQ},        // equal
 
   {"(\\$0)|ra|sp|gp|tp|t[0-6]|s[0-9]|s10|s11|a[0-7]", TK_REG}, // Register
