@@ -84,6 +84,7 @@ static int decode_exec(Decode *s) {
   INSTPAT_END();
 
   R(0) = 0; // reset $zero to 0
+  printf("pc = %x\n", s->pc);
 
   return 0;
 }
