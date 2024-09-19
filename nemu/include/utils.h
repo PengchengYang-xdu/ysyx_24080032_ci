@@ -75,3 +75,8 @@ uint64_t get_time();
 
 
 #endif
+
+// ----------- itrace -----------
+
+void itrace_init(word_t pc, uint32_t inst);
+void display_inst();
