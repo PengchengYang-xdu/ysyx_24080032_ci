@@ -138,7 +138,7 @@ int printf(const char *fmt, ...) {
   va_start(args, fmt);
   int ret = vsprintf_internal(buffer, sizeof(buffer), fmt, args);
   va_end(args);
-  putstr(buffer); // Assuming `putstr` outputs string to console
+  putstr(buffer);
   return ret;
 }
 
