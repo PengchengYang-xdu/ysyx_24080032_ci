@@ -89,15 +89,22 @@ void *memcpy(void *out, const void *in, size_t n) {
 
 int memcmp(const void *s1, const void *s2, size_t n) {
   // panic("Not implemented");
-  const unsigned char *p1 = s1, *p2 = s2;
-  while (n--) {
-    if (*p1 != *p2) {
-      return *p1 - *p2;
-    }
-    p1++;
-    p2++;
-  }
-  return 0;
+  const unsigned char *p1, *p2;
+  int res = 0;
+  for(p1 = s1, p2 = s2; 0 < n; p1++, p2++, n--)
+    if((res = *p1 - *p2) != 0)
+      break;
+  return res;
+
+  // const unsigned char *p1 = s1, *p2 = s2;
+  // while (n--) {
+  //   if (*p1 != *p2) {
+  //     return *p1 - *p2;
+  //   }
+  //   p1++;
+  //   p2++;
+  // }
+  // return 0;
 }
 
 #endif
