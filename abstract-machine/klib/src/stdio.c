@@ -11,16 +11,13 @@ static void itoa(int value, char *str, int base, bool is_unsigned) {
   char *p = str;
   char buffer[32];
   int pos = 0;
-  bool is_negative = false;
 
   if (value == 0) {
     *p++ = '0';
-    *p = '\0';
-    return;
   }
 
   if (value < 0 && !is_unsigned) {
-    is_negative = true;
+    *p++ = '-';
     value = -value;
   }
 
@@ -28,10 +25,6 @@ static void itoa(int value, char *str, int base, bool is_unsigned) {
     int digit = value % base;
     buffer[pos++] = (digit < 10) ? ('0' + digit) : ('a' + digit - 10);
     value /= base;
-  }
-
-  if (is_negative) {
-    *p++ = '-';
   }
 
   for (int i = pos - 1; i >= 0; i--) {
@@ -50,9 +43,8 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
     if (*p == '%') {
       p++;
       if (*p == '\0') break;
-
       switch (*p) {
-        case 'd': { // Integer
+        case 'd': {
           int value = va_arg(ap, int);
           char buffer[32];
           itoa(value, buffer, 10, false);
@@ -64,7 +56,7 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
           }
           break;
         }
-        case 'x': { // Hexadecimal
+        case 'x': {
           int value = va_arg(ap, int);
           char buffer[32];
           itoa(value, buffer, 16, true);
@@ -76,7 +68,7 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
           }
           break;
         }
-        case 'u': { // Unsigned integer
+        case 'u': {
           unsigned int value = va_arg(ap, unsigned int);
           char buffer[32];
           itoa(value, buffer, 10, true);
@@ -88,7 +80,7 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
           }
           break;
         }
-        case 's': { // String
+        case 's': {
           const char *str = va_arg(ap, const char *);
           int len = strlen(str);
           if (remaining > len) {
@@ -98,7 +90,7 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
           }
           break;
         }
-        case 'c': { // Character
+        case 'c': {
           char c = (char)va_arg(ap, int);
           if (remaining > 1) {
             *out++ = c;
@@ -113,7 +105,8 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
           }
           break;
       }
-    } else {
+    }
+    else {
       if (remaining > 1) {
         *out++ = *p;
         remaining--;
@@ -128,6 +121,16 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
   
   return out - out_start;
 }
+
+
+
+
+
+
+
+
+
+
 
 int printf(const char *fmt, ...) {
   char buffer[1024];
