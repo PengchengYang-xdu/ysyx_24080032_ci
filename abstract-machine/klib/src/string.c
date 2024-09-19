@@ -58,7 +58,7 @@ void *memset(void *s, int c, size_t n) {
   // panic("Not implemented");
   char *p = s;
   while (n--) {
-    *p++ = (char)c;
+    *p++ = c;
   }
   return s;
 }
