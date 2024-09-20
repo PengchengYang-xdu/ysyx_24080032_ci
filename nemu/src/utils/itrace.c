@@ -36,11 +36,11 @@ void display_inst() {
 
     if((start + 1) % MAX_IRINGBUF == end){
         if(is_exit_status_bad())
-            puts(ANSI_FG_RED);
+            printf(ANSI_FG_RED);
         else
-            puts(ANSI_FG_GREEN);
+            printf(ANSI_FG_GREEN);
     }
     puts(buf);
   }
-  puts(ANSI_NONE);
+  printf(ANSI_NONE);
 }
