@@ -29,6 +29,7 @@ typedef struct {
 } NEMUState;
 
 extern NEMUState nemu_state;
+int is_exit_status_bad();
 
 // ----------- timer -----------
 
