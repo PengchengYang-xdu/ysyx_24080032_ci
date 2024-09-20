@@ -86,14 +86,15 @@ static int decode_exec(Decode *s) {
   /*add by ypc 20240904*/
   INSTPAT("??????? ????? ????? 000 ????? 00100 11", addi   , I, R(rd) = src1 + imm);//li & mv
   INSTPAT("??????? ????? ????? ??? ????? 11011 11", jal    , J, s->dnpc = s->pc; s->dnpc += imm; 
-  IFDEF(CONFIG_ITRACE,{
-    if (rd == 1)  trace_func_call(s->pc, s->dnpc);
+  IFDEF(CONFIG_FTRACE,{
+    if (rd == 1)  display_call_func(s->pc, s->dnpc);
   });
   R(rd) = s->pc + 4);
   INSTPAT("??????? ????? ????? 000 ????? 11001 11", jalr   , I, s->dnpc = (src1 + imm) & ~(word_t)1; 
-  // IFDEF(CONFIG_ITRACE,{
-  //   if (rd == 1)  trace_func_call(s->pc, s->dnpc, false);
-  // });
+  IFDEF(CONFIG_FTRACE,{
+    if (rd == 1)  display_call_func(s->pc, s->dnpc);
+    else if (rd == 0 && src1 == R(1)) display_ret_func(s->pc);
+  });
   R(rd) = s->pc + 4);
   INSTPAT("??????? ????? ????? 010 ????? 01000 11", sw     , S, Mw(src1 + imm, 4, src2));
 
