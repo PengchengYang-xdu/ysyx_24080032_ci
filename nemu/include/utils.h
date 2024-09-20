@@ -89,3 +89,4 @@ void display_pwrite(paddr_t addr, int len, word_t data);
 
 // ----------- ftrace -----------
 void parse_elf(const char *elf_file);
+void printf_symbol();
