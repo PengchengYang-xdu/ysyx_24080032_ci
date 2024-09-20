@@ -109,56 +109,46 @@ void parse_elf(const char *elf_file)
     free(string_table);
 }
 
-// void printf_symbol(){
-//     int p = sizeof(symbol);
-//     while(p != 0){
-//         printf("%ld       %s         %x        %d\n", sizeof(symbol)-p, symbol[sizeof(symbol)-p].name, symbol[sizeof(symbol)-p].addr, symbol[sizeof(symbol)-p].size);
-//         p--;
-//     }
-// }
+int rec_depth = 1;
+void display_call_func(word_t pc, word_t func_addr)
+{
+    /*for(int i = 0; i < func_num; i++)
+    {
+        printf("%s\t0x%08x\t%lu\n", symbol[i].name, symbol[i].addr, symbol[i].size);
+    }
+    exit(0);*/
+    int i = 0;
+    for(; i < func_num; i++)
+    {
+        if(func_addr >= symbol[i].addr && func_addr < (symbol[i].addr + symbol[i].size))
+        {
+            break;
+        }
+    }
+    printf("0x%08x:", pc);
 
-static int find_symbol_func(paddr_t target, bool is_call) {
-	int i;
-	for (i = 0; i < sizeof(symbol); i++) {
-		if (is_call) {
-			if (symbol[i].addr == target) break;
-		} else {
-			if (symbol[i].addr <= target && target < symbol[i].addr + symbol[i].size) break;
-		}
-	}
-	return i < sizeof(symbol) ? i : -1;
+    for(int k = 0; k < rec_depth; k++) printf("  ");
+
+    rec_depth++;
+
+    printf("call  [%s@0x%08x]\n", symbol[i].name, func_addr);
 }
 
+void display_ret_func(word_t pc)
+{
+    int i = 0;
+    for(; i < func_num; i++)
+    {
+        if(pc >= symbol[i].addr && pc < (symbol[i].addr + symbol[i].size))
+        {
+            break;
+        }
+    }
+    printf("0x%08x:", pc);
 
-int call_depth = 0;
+    rec_depth--;
 
-void trace_func_call(paddr_t pc, paddr_t target) {
-	if (symbol == NULL) return;
+    for(int k = 0; k < rec_depth; k++) printf("  ");
 
-	++call_depth;
-
-	if (call_depth <= 2) return; // ignore _trm_init & main
-
-	int i = find_symbol_func(target, true);
-	printf(FMT_PADDR ": %*scall [%s@" FMT_PADDR "]\n",
-		pc,
-		(call_depth-3)*2, "",
-		i>=0?symbol[i].name:"???",
-		target
-	);
-}
-
-void trace_func_ret(paddr_t pc) {
-	if (symbol == NULL) return;
-	
-	if (call_depth <= 2) return; // ignore _trm_init & main
-
-	int i = find_symbol_func(pc, false);
-	printf(FMT_PADDR ": %*sret [%s]\n",
-		pc,
-		(call_depth-3)*2, "",
-		i>=0?symbol[i].name:"???"
-	);
-	
-	--call_depth;
+    printf("ret  [%s]\n", symbol[i].name);
 }
