@@ -34,8 +34,12 @@ void display_inst() {
     p += sprintf(buf, "%s" FMT_WORD ": %08x ", ((start + 1) % MAX_IRINGBUF == end) ? " --> " : "     ", iringbuf[start].pc, iringbuf[start].inst);
     disassemble(p, buf+sizeof(buf)-p, iringbuf[start].pc, (uint8_t *)&iringbuf[start].inst, 4);
 
-    if((start+1)%MAX_IRINGBUF==end && is_exit_status_bad()) printf(ANSI_FG_RED);// abort state is RED
-    else if((start+1)%MAX_IRINGBUF==end && !is_exit_status_bad()) printf(ANSI_FG_GREEN);// end state is GREEN
+    if((start + 1) % MAX_IRINGBUF == end && is_exit_status_bad()){
+        if(is_exit_status_bad())
+            printf(ANSI_FG_RED);
+        else
+            printf(ANSI_FG_GREEN);
+    }
     puts(buf);
   }
   puts(ANSI_NONE);
