@@ -86,3 +86,6 @@ void display_inst();
 
 void display_pread(paddr_t addr, int len);
 void display_pwrite(paddr_t addr, int len, word_t data);
+
+// ----------- ftrace -----------
+void parse_elf(const char *elf_file);
