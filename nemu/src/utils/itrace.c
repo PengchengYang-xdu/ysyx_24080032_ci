@@ -1,4 +1,5 @@
 #include <common.h>
+#include <utils.h>
 
 #define MAX_IRINGBUF 16
 
@@ -25,7 +26,7 @@ void display_inst() {
   int start = full ? p_cur : 0;
 
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
-  char buf[128]; // 128 should be enough!
+  char buf[128];
   char *p;
   printf("Most recently executed instructions\n");
   while((start = (start + 1) % MAX_IRINGBUF) != end){
@@ -33,8 +34,8 @@ void display_inst() {
     p += sprintf(buf, "%s" FMT_WORD ": %08x ", ((start + 1) % MAX_IRINGBUF == end) ? " --> " : "     ", iringbuf[start].pc, iringbuf[start].inst);
     disassemble(p, buf+sizeof(buf)-p, iringbuf[start].pc, (uint8_t *)&iringbuf[start].inst, 4);
 
-    if((start+1)%MAX_IRINGBUF==end && nemu_state.state == NEMU_ABORT) printf(ANSI_FG_RED);// abort state is RED
-    else if((start+1)%MAX_IRINGBUF==end && nemu_state.state == NEMU_END) printf(ANSI_FG_GREEN);// end state is GREEN
+    if((start+1)%MAX_IRINGBUF==end && is_exit_status_bad()) printf(ANSI_FG_RED);// abort state is RED
+    else if((start+1)%MAX_IRINGBUF==end && !is_exit_status_bad()) printf(ANSI_FG_GREEN);// end state is GREEN
     puts(buf);
   }
   puts(ANSI_NONE);
