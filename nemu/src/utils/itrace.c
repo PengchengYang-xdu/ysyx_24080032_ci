@@ -1,17 +1,17 @@
 #include <common.h>
 
-#define MAX_IRINGBUF 128
+#define MAX_IRINGBUF 16
 
 typedef struct {
   word_t pc;
-  uint32_t inst;
+  word_t inst;
 }ItraceNode;
 
 ItraceNode iringbuf[MAX_IRINGBUF];
 int p_cur = 0;
 bool full = false;
 
-void itrace_init(word_t pc, uint32_t inst) {
+void itrace_init(word_t pc, word_t inst) {
   iringbuf[p_cur].pc = pc;
   iringbuf[p_cur].inst = inst;
   p_cur = (p_cur + 1) % MAX_IRINGBUF;
