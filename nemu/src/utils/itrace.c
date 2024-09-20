@@ -22,20 +22,20 @@ void display_inst() {
   if (!full && !p_cur) return;
 
   int end = p_cur;
-  int i = full?p_cur:0;
+  int start = full ? p_cur : 0;
 
   void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   char buf[128]; // 128 should be enough!
   char *p;
   printf("Most recently executed instructions\n");
-  do {
+  while((start = (start + 1) % MAX_IRINGBUF) != end){
     p = buf;
-    p += sprintf(buf, "%s" FMT_WORD ": %08x ", (i+1)%MAX_IRINGBUF==end?" --> ":"     ", iringbuf[i].pc, iringbuf[i].inst);
-    disassemble(p, buf+sizeof(buf)-p, iringbuf[i].pc, (uint8_t *)&iringbuf[i].inst, 4);
+    p += sprintf(buf, "%s" FMT_WORD ": %08x ", ((start + 1) % MAX_IRINGBUF == end) ? " --> " : "     ", iringbuf[start].pc, iringbuf[start].inst);
+    disassemble(p, buf+sizeof(buf)-p, iringbuf[start].pc, (uint8_t *)&iringbuf[start].inst, 4);
 
-    if((i+1)%MAX_IRINGBUF==end && nemu_state.state == NEMU_ABORT) printf(ANSI_FG_RED);// abort state is RED
-    else if((i+1)%MAX_IRINGBUF==end && nemu_state.state == NEMU_END) printf(ANSI_FG_GREEN);// end state is GREEN
+    if((start+1)%MAX_IRINGBUF==end && nemu_state.state == NEMU_ABORT) printf(ANSI_FG_RED);// abort state is RED
+    else if((start+1)%MAX_IRINGBUF==end && nemu_state.state == NEMU_END) printf(ANSI_FG_GREEN);// end state is GREEN
     puts(buf);
-  } while ((i = (i+1)%MAX_IRINGBUF) != end);
+  }
   puts(ANSI_NONE);
 }
