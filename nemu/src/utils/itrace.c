@@ -1,6 +1,6 @@
 #include <common.h>
 
-#define MAX_IRINGBUF 16
+#define MAX_IRINGBUF 128
 
 typedef struct {
   word_t pc;
@@ -33,8 +33,8 @@ void display_inst() {
     p += sprintf(buf, "%s" FMT_WORD ": %08x ", (i+1)%MAX_IRINGBUF==end?" --> ":"     ", iringbuf[i].pc, iringbuf[i].inst);
     disassemble(p, buf+sizeof(buf)-p, iringbuf[i].pc, (uint8_t *)&iringbuf[i].inst, 4);
 
-    if((i+1)%MAX_IRINGBUF==end && nemu_state.state == NEMU_ABORT) printf(ANSI_FG_RED);
-    else if((i+1)%MAX_IRINGBUF==end && nemu_state.state == NEMU_END) printf(ANSI_FG_GREEN);
+    if((i+1)%MAX_IRINGBUF==end && nemu_state.state == NEMU_ABORT) printf(ANSI_FG_RED);// abort state is RED
+    else if((i+1)%MAX_IRINGBUF==end && nemu_state.state == NEMU_END) printf(ANSI_FG_GREEN);// end state is GREEN
     puts(buf);
   } while ((i = (i+1)%MAX_IRINGBUF) != end);
   puts(ANSI_NONE);
