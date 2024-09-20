@@ -112,7 +112,7 @@ void parse_elf(const char *elf_file)
 void printf_symbol(){
     int p = sizeof(symbol);
     while(p != 0){
-        printf("%ld       %s         %u\n", sizeof(symbol)-p, symbol[sizeof(symbol)-p].name, symbol[sizeof(symbol)-p].addr);
+        printf("%ld       %s         %x\n", sizeof(symbol)-p, symbol[sizeof(symbol)-p].name, symbol[sizeof(symbol)-p].addr);
         p--;
     }
 }
