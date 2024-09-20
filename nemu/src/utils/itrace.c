@@ -42,5 +42,5 @@ void display_inst() {
     }
     puts(buf);
   }
-  printf(ANSI_NONE);
+  puts(ANSI_NONE);
 }
