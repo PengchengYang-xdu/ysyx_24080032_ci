@@ -16,7 +16,7 @@ Symbol *symbol = NULL;  //dynamic allocate memory  or direct allocate memory (Sy
 void parse_elf(const char *elf_file)
 {
     if(elf_file == NULL) return;
-    
+
     FILE *fp;
     fp = fopen(elf_file, "rb");
     
@@ -109,10 +109,56 @@ void parse_elf(const char *elf_file)
     free(string_table);
 }
 
-void printf_symbol(){
-    int p = sizeof(symbol);
-    while(p != 0){
-        printf("%ld       %s         %x        %d\n", sizeof(symbol)-p, symbol[sizeof(symbol)-p].name, symbol[sizeof(symbol)-p].addr, symbol[sizeof(symbol)-p].size);
-        p--;
-    }
+// void printf_symbol(){
+//     int p = sizeof(symbol);
+//     while(p != 0){
+//         printf("%ld       %s         %x        %d\n", sizeof(symbol)-p, symbol[sizeof(symbol)-p].name, symbol[sizeof(symbol)-p].addr, symbol[sizeof(symbol)-p].size);
+//         p--;
+//     }
+// }
+
+static int find_symbol_func(paddr_t target, bool is_call) {
+	int i;
+	for (i = 0; i < sizeof(symbol); i++) {
+		if (is_call) {
+			if (symbol[i].addr == target) break;
+		} else {
+			if (symbol[i].addr <= target && target < symbol[i].addr + symbol[i].size) break;
+		}
+	}
+	return i < sizeof(symbol) ? i : -1;
+}
+
+
+int call_depth = 0;
+
+void trace_func_call(paddr_t pc, paddr_t target) {
+	if (symbol == NULL) return;
+
+	++call_depth;
+
+	if (call_depth <= 2) return; // ignore _trm_init & main
+
+	int i = find_symbol_func(target, true);
+	printf(FMT_PADDR ": %*scall [%s@" FMT_PADDR "]\n",
+		pc,
+		(call_depth-3)*2, "",
+		i>=0?symbol[i].name:"???",
+		target
+	);
+}
+
+void trace_func_ret(paddr_t pc) {
+	if (symbol == NULL) return;
+	
+	if (call_depth <= 2) return; // ignore _trm_init & main
+
+	int i = find_symbol_func(pc, false);
+	printf(FMT_PADDR ": %*sret [%s]\n",
+		pc,
+		(call_depth-3)*2, "",
+		i>=0?symbol[i].name:"???"
+	);
+	
+	--call_depth;
 }
