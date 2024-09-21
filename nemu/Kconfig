@@ -153,13 +153,13 @@ config ITRACE_COND
 
 #added by yangpengcheng begin
 config FTRACE
+  depends on TRACE && TARGET_NATIVE_ELF && ENGINE_INTERPRETER
   bool "Enable func tracer"
   default y
 #added by yangpengcheng end
 
 #added by yangpengcheng begin
 config MTRACE
-  depends on TRACE && TARGET_NATIVE_ELF && ENGINE_INTERPRETER
   bool "Enable memory tracer"
   default y
 
