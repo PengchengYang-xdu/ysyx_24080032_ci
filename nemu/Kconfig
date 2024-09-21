@@ -153,7 +153,6 @@ config ITRACE_COND
 
 #added by yangpengcheng begin
 config FTRACE
-  depends on TRACE && TARGET_NATIVE_ELF && ENGINE_INTERPRETER
   bool "Enable func tracer"
   default y
 #added by yangpengcheng end
@@ -169,12 +168,12 @@ config MTRACE_COND
   default "true"
 
 config MTRACE_START
-  depends on TRACE
+  depends on MTRACE
   int "When tracing is enabled (unit: begin addr of memory)"
   default 2147483648
 
 config MTRACE_END
-  depends on TRACE
+  depends on MTRACE
   int "When tracing is disabled (unit: end addr of memory)"
   default 2155872255
 #added by yangpengcheng end
