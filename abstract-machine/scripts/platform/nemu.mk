@@ -15,7 +15,7 @@ NEMUFLAGS += -l $(shell dirname $(IMAGE).elf)/nemu-log.txt
 NEMUFLAGS += -b
 # '-b' added by ypc 20240919
 NEMUFLAGS += -e $(IMAGE).elf
-# '-e' added by ypc 20240920
+# '-e' added by ypc 20240919
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
 CFLAGS += -I$(AM_HOME)/am/src/platform/nemu/include
 .PHONY: $(AM_HOME)/am/src/platform/nemu/trm.c
