@@ -27,10 +27,10 @@ static void single_cycle(void)
     top->eval();
     tfp->dump(main_time);
     main_time++;
-
-    top->Instr = imem_read(memory, top->NextPC);
     
     top->clk = 0;
+    top->eval();
+    top->Instr = imem_read(memory, top->PC);//NextPC chanege to PC
     top->eval();
     tfp->dump(main_time);
     main_time++;

@@ -14,17 +14,7 @@ module ysyx_24080032_regfile #(
 
     input                   RegWr,
     input  [DATA_WIDTH-1:0] busW,
-    input  [ADDR_WIDTH-1:0] Rw,
-    output [DATA_WIDTH-1:0] mem0,
-    output [DATA_WIDTH-1:0] mem1,
-    output [DATA_WIDTH-1:0] mem2,
-    output [DATA_WIDTH-1:0] mem3,
-    output [DATA_WIDTH-1:0] mem4,
-    output [DATA_WIDTH-1:0] mem5,
-    output [DATA_WIDTH-1:0] mem6,
-    output [DATA_WIDTH-1:0] mem7,
-    output [DATA_WIDTH-1:0] mem8,
-    output [DATA_WIDTH-1:0] mem9
+    input  [ADDR_WIDTH-1:0] Rw
 );
 
 reg [DATA_WIDTH-1:0] rf [2**ADDR_WIDTH-1:0];
@@ -40,16 +30,5 @@ end
 
 assign busA = rf[Ra];
 assign busB = rf[Rb];
-
-assign mem0 = rf[0];
-assign mem1 = rf[1];
-assign mem2 = rf[2];
-assign mem3 = rf[3];
-assign mem4 = rf[4];
-assign mem5 = rf[5];
-assign mem6 = rf[6];
-assign mem7 = rf[7];
-assign mem8 = rf[8];
-assign mem9 = rf[9];
 
 endmodule
