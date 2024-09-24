@@ -5,6 +5,7 @@ CSRC = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*.
 # SRC_AUTO_BIND = $(abspath $(BUILD_DIR)/auto_bind.cpp)
 # CSRC += $(SRC_AUTO_BIND)
 # CONSTR = ./constr/top.nxdc
+IMG ?= program.bin #image
 
 BUILD_DIR = ./build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
@@ -27,6 +28,7 @@ $(BIN):  $(CSRC) $(VSRC)
 	verilator $(VERIARG) \
 		-top $(TOPNAME) \
 		--trace \
+		--timing \
 		$^ \
 		$(addprefix -LDFLAGS , $(LDFLAGS)) \
 		$(addprefix -CFLAGS , $(CFLAGS)) \
@@ -36,7 +38,7 @@ $(BIN):  $(CSRC) $(VSRC)
 # 	python3 $(NVBOARD_HOME)/scripts/auto_pin_bind.py  $^ $@
 
 run: $(BIN)
-	@$^
+	@$(BIN) $(IMG)
 
 clr: 
 	rm -rf $(BUILD_DIR)

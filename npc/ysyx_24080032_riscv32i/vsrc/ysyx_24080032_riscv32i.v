@@ -3,13 +3,13 @@
 module ysyx_24080032_riscv32i(
     input clk,
     input rst_n,
-    output [31:0] PC,
+    output [31:0] NextPC,
     input [31:0] Instr
 );
 
 // wire [31:0] Instr;
-wire [31:0] NextPC;
-// wire [31:0] PC;
+// wire [31:0] NextPC;
+wire [31:0] PC;
 
 /*DPI-C*/
 import "DPI-C" function void ebreak();

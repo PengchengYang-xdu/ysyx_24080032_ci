@@ -9,8 +9,12 @@
 #include "svdpi.h"
 #include "Vysyx_24080032_riscv32i__Dpi.h"
 
-#include "../include/imem.h"
-uint32_t *memory;
+// #include "../include/imem.h"
+#include "../include/load_img.h"  // 包含头文件
+
+uint32_t imem_read(uint32_t* memory, uint32_t addr){
+    return memory[(addr - 0x00000000) / 4];
+}
 
 vluint64_t main_time = 0;
 Vysyx_24080032_riscv32i *top = new Vysyx_24080032_riscv32i("top");
@@ -21,6 +25,8 @@ extern void ebreak()
   Verilated::gotFinish(true);
 }
 
+uint32_t Instr_tmp;
+
 static void single_cycle(void) 
 {
     top->clk = 1;
@@ -28,9 +34,11 @@ static void single_cycle(void)
     tfp->dump(main_time);
     main_time++;
 
-    top->Instr = imem_read(memory, top->NextPC);
+    Instr_tmp = imem_read(memory, top->NextPC);//save the instr, not exec immediately
     
     top->clk = 0;
+    top->eval();
+    top->Instr = Instr_tmp;
     top->eval();
     tfp->dump(main_time);
     main_time++;
@@ -44,14 +52,26 @@ static void reset(int i)
   top->rst_n = 1; 
 }
 
-int main(void)
+int main(int argc, char **argv)
 {
+    if (argc < 2) {
+        printf("Usage: %s <program.bin>\n", argv[0]);
+        exit(1);
+    }
+    const char *img_file = argv[1]; // 从命令行获取镜像文件路径
+
     Verilated::traceEverOn(true);
     top->trace(tfp, 0);
     tfp->open("ysyx_24080032_riscv32i.vcd");
 
-    memory = init_imem(21);
-  
+    // memory = init_imem(21);
+    long img_size = load_img(img_file);
+    if (img_size == 0) {
+        printf("Failed to load image: %s\n", img_file);
+        exit(1);
+    }
+    printf("Loaded program image: %s, size: %ld bytes\n", img_file, img_size);
+
     reset(10);
  
     // while(!Verilated::gotFinish()){    
@@ -61,6 +81,8 @@ int main(void)
     for(int i = 0; i < 50; i++){
       single_cycle();
     }
+
+    printf("run done!\n");
 
     top->final();
     tfp->close();
