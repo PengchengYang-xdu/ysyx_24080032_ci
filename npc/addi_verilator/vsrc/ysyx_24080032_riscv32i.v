@@ -3,29 +3,20 @@
 module ysyx_24080032_riscv32i(
     input clk,
     input rst_n,
-    // output [31:0] NextPC,
-    // input [31:0] Instr
-    output [31:0] mem0,
-    output [31:0] mem1,
-    output [31:0] mem2,
-    output [31:0] mem3,
-    output [31:0] mem4,
-    output [31:0] mem5,
-    output [31:0] mem6,
-    output [31:0] mem7,
-    output [31:0] mem8,
-    output [31:0] mem9
+    output [31:0] PC,
+    input [31:0] Instr
 );
 
-wire [31:0] Instr;
+// wire [31:0] Instr;
 wire [31:0] NextPC;
+// wire [31:0] PC;
 
 /*DPI-C*/
-// import "DPI-C" function void ebreak();
-// always @(*)begin
-//     if(Instr == 32'h00100073)
-//         ebreak();
-// end
+import "DPI-C" function void ebreak();
+always @(*)begin
+    if(Instr == 32'h00100073)
+        ebreak();
+end
 
 wire     [2:0]  ExtOP;
 wire            RegWr;
@@ -76,28 +67,17 @@ ysyx_24080032_regfile #(.ADDR_WIDTH(5), .DATA_WIDTH(32)) u_ysyx_24080032_regfile
     .Rb       (Instr[24:20]    ),
     .RegWr    (RegWr           ),
     .busW     (busW            ),
-    .Rw       (Instr[11:7]     ),
-    .mem0     (mem0            ),
-    .mem1     (mem1            ),
-    .mem2     (mem2            ),
-    .mem3     (mem3            ),
-    .mem4     (mem4            ),
-    .mem5     (mem5            ),
-    .mem6     (mem6            ),
-    .mem7     (mem7            ),
-    .mem8     (mem8            ),
-    .mem9     (mem9            )
+    .Rw       (Instr[11:7]     )
 );
 
-ysyx_24080032_imem u_ysyx_24080032_imem(
-    .clk      (clk             ),
-    .rst_n    (rst_n           ),
-    .addr     (NextPC          ),
-    .Instr    (Instr           )
-);
+// ysyx_24080032_imem u_ysyx_24080032_imem(
+//     .clk      (clk             ),
+//     .rst_n    (rst_n           ),
+//     .addr     (NextPC          ),
+//     .Instr    (Instr           )
+// );
 
 wire [31:0] imm;
-wire [31:0] PC;
 
 ysyx_24080032_pcgen u_ysyx_24080032_pcgen(
     .clk      (clk             ),
