@@ -1,6 +1,6 @@
-#include <memory.h>
-#include <common.h>
-#include <device.h>
+#include "../include/memory.h"
+#include "../include/common.h"
+#include "../include/device.h"
 extern bool is_skip_diff;
 static const uint32_t img[] = {
 	0b00000000110000000000001011101111, //jal   x5 12         0x80000000

@@ -14,9 +14,10 @@
 ***************************************************************************************/
 #include <readline/readline.h>
 #include <readline/history.h>
-#include "./include/sdb.h"
-#include "./include/memory.h"
-#include "./include/utils.h"
+#include "../include/sdb.h"
+#include "../include/memory.h"
+#include "../include/utils.h"
+#include "../include/circuit.h"
 
 static int is_batch_mode = false;
 
@@ -82,6 +83,8 @@ static int cmd_w(char *args) {
   return 0;
 }
 
+uint32_t pmem_read(uint32_t paddr);
+
 static int cmd_x(char *args) {
   if(args == NULL)
     printf("no args.\n");
@@ -93,7 +96,7 @@ static int cmd_x(char *args) {
   sscanf(EXPR, "%x", &addr);
   for(int i = 0; i < len; i ++){
     printf("0x%x : ", addr);
-    uint32_t data = vaddr_read(addr, 4);
+    uint32_t data = pmem_read(addr);
     for(int j = 0; j < 4; j ++){
       printf("0x%02x ", data & 0xff);
       data = data >> 8;

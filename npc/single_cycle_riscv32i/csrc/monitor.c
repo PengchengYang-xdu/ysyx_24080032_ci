@@ -1,7 +1,7 @@
-#include "./include/memory.h"
+#include "../include/memory.h"
 #include <getopt.h>
-#include "./include/common.h"
-#include "./include/utils.h"
+#include "../include/common.h"
+#include "../include/utils.h"
 
 
 static char *elf_file = NULL;

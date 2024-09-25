@@ -14,10 +14,10 @@
 ***************************************************************************************/
 
 #include <svdpi.h>
-#include "./include/verilator.h"
-#include "./include/memory.h"
+#include "../include/circuit.h"
+#include "../include/memory.h"
 
-int length = sizeof(regs) / sizeof(regs[0]);
+#define length 32 
 uint32_t gpr[length];
 
 const char *regs[] = {
@@ -29,21 +29,20 @@ const char *regs[] = {
 
 void get_reg(){
   for(int i=0; i < length; i++)
-    gpr[i] = top.rootp -> ysyx_24080032_riscv32i__DOT__u_ysyx_24080032_regfile__DOT__rf[i];
+    gpr[i] = top->rootp -> ysyx_24080032_riscv32i__DOT__u_ysyx_24080032_regfile__DOT__rf[i];
 }
 
 void isa_reg_display() {
   for(int i = 0; i < length; i ++)
-    printf("reg %s ---> %u ---- 0x%x\n", regs[i], cpu.gpr[i], cpu.gpr[i]);
+    printf("reg %s ---> %u ---- 0x%x\n", regs[i], gpr[i], gpr[i]);
 }
 
 uint32_t isa_reg_str2val(const char *s, bool *success) {
   *success = false;
-  int length = sizeof(regs) / sizeof(regs[0]);
   for(int i = 0; i < length; i ++)
     if(strcmp(s, regs[i]) == 0){
       *success = true;
-      return cpu.gpr[i];
+      return gpr[i];
     }
   printf("reg not found!\n");
   return 0;

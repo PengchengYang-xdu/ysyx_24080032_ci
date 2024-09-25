@@ -13,7 +13,7 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#include "./include/common.h"
+#include "../include/common.h"
 #include <sys/time.h>
 
 static uint64_t boot_time = 0;
