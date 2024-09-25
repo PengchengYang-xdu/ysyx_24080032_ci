@@ -2,13 +2,13 @@
 
 module ysyx_24080032_riscv32i(
     input clk,
-    input rst_n,
-    output [31:0] NextPC,
-    input [31:0] Instr
+    input rst_n
+    // output [31:0] NextPC,
+    // input [31:0] Instr
 );
 
-// wire [31:0] Instr;
-// wire [31:0] NextPC;
+wire [31:0] Instr;
+wire [31:0] NextPC;
 wire [31:0] PC;
 
 /*DPI-C*/
@@ -70,12 +70,11 @@ ysyx_24080032_regfile #(.ADDR_WIDTH(5), .DATA_WIDTH(32)) u_ysyx_24080032_regfile
     .Rw       (Instr[11:7]     )
 );
 
-// ysyx_24080032_imem u_ysyx_24080032_imem(
-//     .clk      (clk             ),
-//     .rst_n    (rst_n           ),
-//     .addr     (NextPC          ),
-//     .Instr    (Instr           )
-// );
+ysyx_24080032_imem u_ysyx_24080032_imem(
+    .clk      (clk             ),
+    .addr     (NextPC          ),
+    .Instr    (Instr           )
+);
 
 wire [31:0] imm;
 

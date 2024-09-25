@@ -12,7 +12,7 @@
 // #include "../include/imem.h"
 #include "../include/load_img.h"  // 包含头文件
 
-uint32_t imem_read(uint32_t* memory, uint32_t addr){
+extern int imem_read(int addr){
     return memory[(addr - 0x00000000) / 4];
 }
 
@@ -25,8 +25,6 @@ extern void ebreak()
   Verilated::gotFinish(true);
 }
 
-uint32_t Instr_tmp;
-
 static void single_cycle(void) 
 {
     top->clk = 1;
@@ -34,11 +32,7 @@ static void single_cycle(void)
     tfp->dump(main_time);
     main_time++;
 
-    Instr_tmp = imem_read(memory, top->NextPC);//save the instr, not exec immediately
-    
     top->clk = 0;
-    top->eval();
-    top->Instr = Instr_tmp;
     top->eval();
     tfp->dump(main_time);
     main_time++;

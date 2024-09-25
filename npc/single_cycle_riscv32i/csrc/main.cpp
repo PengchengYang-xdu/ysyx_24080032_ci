@@ -1,6 +1,6 @@
-#include <Verilator.h>
-#include <memory.h>
-#include <utils.h>
+#include "../include/circuit.h"
+#include "../include/memory.h"
+#include "../include/utils.h"
 void init_monitor(int, char *[]);
 void sdb_mainloop();
 

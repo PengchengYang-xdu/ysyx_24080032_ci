@@ -1,5 +1,5 @@
-#include <common.h>
-#include <utils.h>
+#include "../include/common.h"
+#include "../include/utils.h"
 
 #include <elf.h>
 
@@ -56,7 +56,7 @@ void parse_elf(const char *elf_file)
         if(shdr.sh_type == SHT_STRTAB)
         {
             //获取字符串表
-            string_table = malloc(shdr.sh_size);
+            string_table = (char*)malloc(shdr.sh_size);
             fseek(fp, shdr.sh_offset, SEEK_SET);
             if(fread(string_table, shdr.sh_size, 1, fp) <= 0)
             {
@@ -84,7 +84,7 @@ void parse_elf(const char *elf_file)
             Elf32_Sym sym;
 
             size_t sym_count = shdr.sh_size / shdr.sh_entsize;
-            symbol = malloc(sizeof(Symbol) * sym_count);
+            symbol = (Symbol*)malloc(sizeof(Symbol) * sym_count);
 
             for(size_t j = 0; j < sym_count; j++)
             {

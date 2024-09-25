@@ -17,7 +17,9 @@
  * Type 'man regex' for more information about POSIX regex functions.
  */
 #include <regex.h>
-#include <memory/vaddr.h>
+#include "../include/common.h"
+#include "../include/memory.h"
+// #include <memory/vaddr.h>
 
 enum {
   TK_NOTYPE = 256, TK_EQ = 255,
@@ -222,7 +224,7 @@ static word_t calculate_unary(int op, word_t val, bool *ok) {
   {
     case TK_NEG: return -val;
     case TK_POS: return val;
-    case TK_DEREF: return vaddr_read(val, 4);
+    case TK_DEREF: return 0;
     default: *ok = false;
   }
   return 0;
