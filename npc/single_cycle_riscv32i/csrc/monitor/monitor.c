@@ -12,7 +12,7 @@ void init_mem();
 // void init_difftest(char *ref_so_file, long img_size);
 void init_device();
 void init_sdb();
-void init_disasm(const char *triple);
+// void init_disasm(const char *triple);
 
 static void welcome() {
   Log("Trace: %s", ANSI_FMT("ON", ANSI_FG_GREEN));
@@ -107,7 +107,7 @@ void init_monitor(int argc, char *argv[]) {
   /* Initialize the simple debugger. */
   init_sdb();
   
-  init_disasm("riscv32-pc-linux-gnu");
+  // init_disasm("riscv32-pc-linux-gnu");
 
   /* Display welcome message. */
   welcome();
