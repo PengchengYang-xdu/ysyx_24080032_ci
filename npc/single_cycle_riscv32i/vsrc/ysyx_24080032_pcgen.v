@@ -13,7 +13,7 @@ module ysyx_24080032_pcgen(
 
 always @(negedge clk or negedge rst_n)begin
     if(!rst_n)
-        PC <= 32'h00000000;
+        PC <= 32'h80000000;
     else
         PC <= NextPC;
 end
@@ -22,6 +22,6 @@ wire [31:0] PCA, PCB;
 assign PCA = PCASrc ? imm : 32'd4;
 assign PCB = PCBSrc ? rs1 : PC;
 
-assign NextPC = rst_n ? PCA + PCB : 32'h00000000;
+assign NextPC = rst_n ? PCA + PCB : 32'h80000000;
 
 endmodule
