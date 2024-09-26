@@ -19,13 +19,10 @@ INCFLAGS = $(addprefix -I, $(INC_PATH))
 
 CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\""
 
-CPPFLAGS += $(shell llvm-config --cxxflags | tr ' ' '\n' | grep '^-I' | tr '\n' ' ')
-CPPFLAGS += -DCONFIG_TRACE=1
-CPPFLAGS += -DCONFIG_WAVE
-LDFLAGS += $(shell llvm-config --ldflags)
-LIBS += $(shell llvm-config --libs) #please make sure you already have llvm-config or in your PATH
-LIBS += -lreadline
-LINK := g++
+CXXSRC = /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i/csrc/utils/disasm.cc
+CXXFLAGS += $(shell llvm-config --cxxflags) -fPIE
+LIBS += $(shell llvm-config --libs)
+LIBS += -lreadline -ldl -pie
 
 # include $(NVBOARD_HOME)/scripts/nvboard.mk
 $(shell mkdir -p $(BUILD_DIR))

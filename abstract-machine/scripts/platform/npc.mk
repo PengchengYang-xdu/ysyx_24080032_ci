@@ -13,6 +13,12 @@ LDFLAGS   += -T $(AM_HOME)/scripts/linker.ld \
 						 --defsym=_pmem_start=0x80000000 --defsym=_entry_offset=0x0
 LDFLAGS   += --gc-sections -e _start
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
+
+NPCFLAGS += -l $(shell dirname $(IMAGE).bin)/npc_log.txt
+#NPCFLAGS += -e $(IMAGE).elf
+NPCFLAGS += -b
+NPCFLAGS += -e $(IMAGE).elf
+
 .PHONY: $(AM_HOME)/am/src/riscv/npc/trm.c
 
 image: $(IMAGE).elf
@@ -21,7 +27,4 @@ image: $(IMAGE).elf
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
 
 run: image
-	$(MAKE) -C $(NPC_HOME)/single_cycle_riscv32i ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(IMAGE).bin
-
-gdb: image
-	$(MAKE) -C $(NPC_HOME)/single_cycle_riscv32i ISA=$(ISA) gdb ARGS="$(NEMUFLAGS)" IMG=$(IMAGE).bin
+	$(MAKE) -C $(NPC_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
