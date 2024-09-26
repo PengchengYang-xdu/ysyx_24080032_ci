@@ -3,9 +3,6 @@ TOPNAME = ysyx_24080032_riscv32i
 VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
 TBVSRC = $(shell find $(abspath ./tb) -name "*.v")
 CSRC = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
-# SRC_AUTO_BIND = $(abspath $(BUILD_DIR)/auto_bind.cpp)
-# CSRC += $(SRC_AUTO_BIND)
-# CONSTR = ./constr/top.nxdc
 IMG ?= program.bin #image
 
 BUILD_DIR = ./build
@@ -21,6 +18,14 @@ INC_PATH += /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i/incl
 INCFLAGS = $(addprefix -I, $(INC_PATH))
 
 CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\""
+
+CPPFLAGS += $(shell llvm-config --cxxflags | tr ' ' '\n' | grep '^-I' | tr '\n' ' ')
+CPPFLAGS += -DCONFIG_TRACE=1
+CPPFLAGS += -DCONFIG_WAVE
+LDFLAGS += $(shell llvm-config --ldflags)
+LIBS += $(shell llvm-config --libs) #please make sure you already have llvm-config or in your PATH
+LIBS += -lreadline
+LINK := g++
 
 # include $(NVBOARD_HOME)/scripts/nvboard.mk
 $(shell mkdir -p $(BUILD_DIR))

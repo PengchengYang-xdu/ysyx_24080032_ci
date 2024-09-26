@@ -202,13 +202,19 @@ int find_major(int p, int q){
   return ret;
 }
 
+static word_t deref(paddr_t addr){
+  if(in_pmem(addr))
+        return *(uint32_t *)guest_to_host(addr); 
+  return 0;
+}
+
 static word_t calculate_unary(int op, word_t val, bool *ok) {
   *ok = true;
   switch (op)
   {
     case TK_NEG: return -val;
     case TK_POS: return val;
-    case TK_DEREF: return paddr_read(val);
+    case TK_DEREF: return deref(val);
     default: *ok = false;
   }
   return 0;
