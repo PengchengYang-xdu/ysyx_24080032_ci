@@ -1,7 +1,7 @@
 #include <common.h>
 #include <utils.h>
 
-#define MAX_IRINGBUF 16
+#define MAX_IRINGBUF 64
 
 typedef struct {
   word_t pc;

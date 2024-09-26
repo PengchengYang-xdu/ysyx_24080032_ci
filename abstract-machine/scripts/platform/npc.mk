@@ -14,10 +14,10 @@ LDFLAGS   += -T $(AM_HOME)/scripts/linker.ld \
 LDFLAGS   += --gc-sections -e _start
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
 
-NPCFLAGS += -l $(shell dirname $(IMAGE).bin)/npc_log.txt
-#NPCFLAGS += -e $(IMAGE).elf
+NPCFLAGS += -l $(shell dirname $(IMAGE).elf)/npc_log.txt
 NPCFLAGS += -b
 NPCFLAGS += -e $(IMAGE).elf
+
 
 .PHONY: $(AM_HOME)/am/src/riscv/npc/trm.c
 

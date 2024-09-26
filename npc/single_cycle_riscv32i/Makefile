@@ -21,8 +21,8 @@ CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\""
 
 CXXSRC = /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i/csrc/utils/disasm.cc
 CXXFLAGS += $(shell llvm-config --cxxflags) -fPIE
-LIBS += $(shell llvm-config --libs)
-LIBS += -lreadline -ldl -pie
+LDFLAGS += $(shell llvm-config --libs)
+LDFLAGS += -lreadline -ldl -pie
 
 # include $(NVBOARD_HOME)/scripts/nvboard.mk
 $(shell mkdir -p $(BUILD_DIR))

@@ -3,6 +3,8 @@
 
 #define MAX_IRINGBUF 16
 
+extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
+
 typedef struct {
   word_t pc;
   word_t inst;
@@ -25,7 +27,6 @@ void display_inst() {
   int end = p_cur;
   int start = full ? p_cur : 0;
 
-  void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
   char buf[128];
   char *p;
   printf("Most recently executed instructions\n");
