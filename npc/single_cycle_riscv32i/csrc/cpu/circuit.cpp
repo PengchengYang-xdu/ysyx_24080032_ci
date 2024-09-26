@@ -41,7 +41,7 @@ static void statistic() {
   printf("npc_trap\n");
 }
 
-void npc_trap(){
+extern "C" void npc_trap(){
 	dump_wave();
 	close_wave();
 	bool success;

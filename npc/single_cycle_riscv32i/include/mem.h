@@ -15,9 +15,8 @@ static inline bool in_pmem(paddr_t addr) {
   return addr - CONFIG_MBASE < CONFIG_MSIZE;
 }
 
+void init_mem();
 uint8_t* guest_to_host(paddr_t paddr);
-word_t paddr_read(paddr_t addr);
-void paddr_write(paddr_t addr, word_t data);
 
 void get_reg();
 void isa_reg_display();

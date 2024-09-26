@@ -7,6 +7,7 @@
 #include <svdpi.h>
 #include <Vysyx_24080032_riscv32i__Dpi.h>
 #include <Vysyx_24080032_riscv32i.h>
+#include <common.h>
 
 extern Vysyx_24080032_riscv32i *top;
 static inline Vysyx_24080032_riscv32i* init_top() {

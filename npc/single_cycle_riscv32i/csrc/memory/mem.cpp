@@ -29,14 +29,14 @@ static void out_of_bound(paddr_t addr) {
       addr, PMEM_LEFT, PMEM_RIGHT, top->rootp -> ysyx_24080032_riscv32i__DOT__PC);
 }
 
-word_t paddr_read(paddr_t addr) {
+extern "C" int paddr_read(int addr) {
     if(in_pmem(addr))
         return pmem_read(addr);
     out_of_bound(addr);
     return 0;
 }
 
-void paddr_write(paddr_t addr, word_t data) {
+extern "C" void paddr_write(paddr_t addr, word_t data) {
     if(in_pmem(addr))
         { pmem_write(addr, data); return; }
     out_of_bound(addr);
