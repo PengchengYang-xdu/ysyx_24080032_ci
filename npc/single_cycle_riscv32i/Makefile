@@ -1,4 +1,5 @@
 TOPNAME = ysyx_24080032_riscv32i
+
 VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
 TBVSRC = $(shell find $(abspath ./tb) -name "*.v")
 CSRC = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
@@ -15,7 +16,7 @@ VERIARG = --cc -MMD --build
 
 LDFLAGS += -lSDL2 -lSDL2_image
 
-INC_PATH += ./include
+INC_PATH += /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i/include
 
 INCFLAGS = $(addprefix -I, $(INC_PATH))
 

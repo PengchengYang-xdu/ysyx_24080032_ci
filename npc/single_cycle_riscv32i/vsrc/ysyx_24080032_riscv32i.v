@@ -11,13 +11,6 @@ wire [31:0] Instr;
 wire [31:0] NextPC;
 wire [31:0] PC;
 
-/*DPI-C*/
-import "DPI-C" function void ebreak();
-always @(*)begin
-    if(Instr == 32'h00100073)
-        ebreak();
-end
-
 wire     [2:0]  ExtOP;
 wire            RegWr;
 wire            ALUAsrc;
