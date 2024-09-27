@@ -5,6 +5,7 @@ deigned by ypc
 #include <mem.h>
 #include <common.h>
 #include <circuit.h>
+#include <debug.h>
 
 static uint8_t *pmem = NULL;
 
@@ -25,7 +26,7 @@ static void pmem_write(paddr_t addr, word_t data) {
 }
 
 static void out_of_bound(paddr_t addr) {
-  printf("address = " FMT_PADDR " is out of bound of pmem [" FMT_PADDR ", " FMT_PADDR "] at pc = " FMT_WORD,
+  panic("address = " FMT_PADDR " is out of bound of pmem [" FMT_PADDR ", " FMT_PADDR "] at pc = " FMT_WORD,
       addr, PMEM_LEFT, PMEM_RIGHT, top->rootp -> ysyx_24080032_riscv32i__DOT__PC);
 }
 

@@ -38,18 +38,18 @@ void cpu_exec(uint32_t n){
 }
 
 static void statistic() {
-  printf("npc_trap\n");
+  
 }
 
 extern "C" void npc_trap(){
 	dump_wave();
 	close_wave();
 	bool success;
-	int code = isa_reg_str2val("$a0",&success);
+	int code = isa_reg_str2val("a0",&success);
 	if(code == 0)
-		printf("\033[1;32mHIT GOOD TRAP\033[0m");
+		printf("\033[1;32mHIT GOOD TRAP\033[0m at pc = 0x%x\n", top->rootp -> ysyx_24080032_riscv32i__DOT__PC);
 	else
-		printf("\033[1;31mHIT BAD TRAP\033[0m exit code = %d",code);
+		printf("\033[1;31mHIT BAD TRAP\033[0m exit code = %d\n",code);
 	// printf(" trap in %#x\n",pc);
 	statistic();
 	exit(0);
