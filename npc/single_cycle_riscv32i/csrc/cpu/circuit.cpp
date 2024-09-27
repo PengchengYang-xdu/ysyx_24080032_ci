@@ -86,6 +86,7 @@ void cpu_exec(uint32_t n){
 		exec_once();
 		get_reg();
 		g_nr_guest_inst ++;
+		trace_and_difftest();
 		n--;
 	}
 }
