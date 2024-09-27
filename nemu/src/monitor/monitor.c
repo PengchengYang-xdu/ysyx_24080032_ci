@@ -79,6 +79,7 @@ static int parse_args(int argc, char *argv[]) {
   };
   int o;
   while ( (o = getopt_long(argc, argv, "-bhl:d:p:e:", table, NULL)) != -1) {
+    printf("Current option: %c\n", o);  // 添加调试信息
     switch (o) {
       case 'e': elf_file = optarg; break;
       case 'b': sdb_set_batch_mode(); break;
