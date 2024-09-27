@@ -7,6 +7,13 @@ module ysyx_24080032_riscv32i(
     // input [31:0] Instr
 );
 
+/*DPI-C*/
+import "DPI-C" function void npc_trap();
+always @(*)begin
+    if(Instr == 32'h00100073)
+        npc_trap();
+end
+
 wire [31:0] Instr;
 wire [31:0] NextPC;
 wire [31:0] PC;
