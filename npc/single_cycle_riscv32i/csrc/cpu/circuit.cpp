@@ -12,14 +12,20 @@ Vysyx_24080032_riscv32i *top = init_top();
 void single_cycle(){
     top->clk = 1;
     top->eval();
+	#ifdef NPCCONFIG_DUMPWAVE
 	dump_wave();
+	#endif
 
+	#ifdef NPCCONFIG_ITRACE
 	if(top->rst_n)
 		itrace_init(top->rootp -> ysyx_24080032_riscv32i__DOT__PC, top->rootp -> ysyx_24080032_riscv32i__DOT__Instr);
+	#endif
 
 	top->clk = 0;
     top->eval();
-    dump_wave();
+	#ifdef NPCCONFIG_DUMPWAVE
+	dump_wave();
+	#endif
 }
 
 void reset(int i) {
@@ -54,8 +60,12 @@ extern "C" void npc_trap(){
 		printf("\033[1;32mHIT GOOD TRAP\033[0m at pc = 0x%x\n", top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC);
 	else
 		printf("\033[1;31mHIT BAD TRAP\033[0m at pc = 0x%x\nexit code = %d\n",top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC, code);
+	
+	#ifdef NPCCONFIG_ITRACE
 	itrace_init(top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC, top->rootp -> ysyx_24080032_riscv32i__DOT__Instr);
 	display_inst();
+	#endif
+	
 	statistic();
 	exit(0);
 }
