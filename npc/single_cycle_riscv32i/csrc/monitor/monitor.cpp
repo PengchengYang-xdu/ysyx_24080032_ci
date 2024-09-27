@@ -54,9 +54,6 @@ static long load_img() {
 }
 
 static int parse_args(int argc, char *argv[]) {
-  for (int i = 0; i < argc; i++) {
-    printf("Argument %d: %s\n", i, argv[i]);
-  }
   const struct option table[] = {
     {"elf"      , required_argument, NULL, 'e'},
     {"batch"    , no_argument      , NULL, 'b'},
@@ -67,13 +64,12 @@ static int parse_args(int argc, char *argv[]) {
   };
   int o;
   while ( (o = getopt_long(argc, argv, "-bhl:d:e:", table, NULL)) != -1) {
-    printf("Current option: %c\n", o);  // 添加调试信息
     switch (o) {
-      case 'e': printf("elf_file: %s\n", optarg); elf_file = optarg; break;
-      case 'b': printf("Batch mode activated.\n"); sdb_set_batch_mode(); break;
-      case 'l': printf("log_file: %s\n", optarg); log_file = optarg; break;
-      case 'd': printf("diff_so_file: %s\n", optarg); diff_so_file = optarg; break;
-      case 1: printf("Image file: %s\n", img_file); img_file = optarg; return 0;
+      case 'e': elf_file = optarg; break;
+      case 'b': sdb_set_batch_mode(); break;
+      case 'l': log_file = optarg; break;
+      case 'd': diff_so_file = optarg; break;
+      case 1: img_file = optarg; return 0;
       default:
         printf("\t-e,--elf=FILE           elf file pointed\n");
         printf("Usage: %s [OPTION...] IMAGE [args]\n\n", argv[0]);
@@ -83,12 +79,6 @@ static int parse_args(int argc, char *argv[]) {
         printf("\n");
         exit(0);
     }
-  }
-  if (optind < argc) {
-    img_file = argv[optind];
-    printf("Image file: %s\n", img_file);
-  } else {
-    printf("No image file provided.\n");
   }
   return 0;
 }
