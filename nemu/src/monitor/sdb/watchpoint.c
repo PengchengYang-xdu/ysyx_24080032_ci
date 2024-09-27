@@ -88,7 +88,7 @@ void wp_difftest() {
       printf("Watchpoint triggered!\n");
       printf("Watchpoint %d: %s\n"
         "Old value = %u\n"
-        "New value = %u\n"
+        "New value = 0x%x\n"
         , h->NO, h->expr, h->old, new);
       h->old = new;
     }
