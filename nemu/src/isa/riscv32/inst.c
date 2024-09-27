@@ -127,7 +127,10 @@ static int decode_exec(Decode *s) {
   INSTPAT("??????? ????? ????? 000 ????? 11001 11", jalr   , I, s->dnpc = (src1 + imm) & ~(word_t)1; 
   IFDEF(CONFIG_FTRACE,{
     if (rd == 1)  display_call_func(s->pc, s->dnpc);
-    else if (rd == 0 && src1 == R(1)) display_ret_func(s->pc);
+    else if (rd == 0 && src1 == R(1)) {
+    printf("rd = 0x%x,   src1 = 0x%x\n", rd, src1);
+    display_ret_func(s->pc);
+    }
   });
   R(rd) = s->pc + 4);
 
