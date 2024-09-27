@@ -9,7 +9,7 @@ deigned by ypc
 
 void init_log(const char *log_file);
 void init_mem();
-// void init_difftest(char *ref_so_file, long img_size);
+void init_difftest(char *ref_so_file, long img_size);
 void init_device();
 void init_sdb();
 extern "C" void init_disasm(const char *triple);
@@ -102,7 +102,7 @@ void init_monitor(int argc, char *argv[]) {
   long img_size = load_img();
 
   /* Initialize differential testing. */
-  // init_difftest(diff_so_file, img_size);
+  init_difftest(diff_so_file, img_size);
   init_disasm("riscv32-pc-linux-gnu");
 
   /* Initialize the simple debugger. */
