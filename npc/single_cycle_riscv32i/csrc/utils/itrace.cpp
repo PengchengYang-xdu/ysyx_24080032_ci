@@ -1,7 +1,7 @@
 #include <common.h>
 #include <utils.h>
 
-#define MAX_IRINGBUF 16
+#define MAX_IRINGBUF 64
 
 extern "C" void disassemble(char *str, int size, uint64_t pc, uint8_t *code, int nbyte);
 

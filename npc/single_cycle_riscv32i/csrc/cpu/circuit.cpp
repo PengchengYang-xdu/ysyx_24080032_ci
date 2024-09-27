@@ -5,6 +5,7 @@ deigned by ypc
 #include <circuit.h>
 #include <mem.h>
 #include <common.h>
+#include <utils.h>
 
 Vysyx_24080032_riscv32i *top = init_top();
 
@@ -31,6 +32,7 @@ static void exec_once(){
 
 void cpu_exec(uint32_t n){
 	while(n > 0){
+		itrace_init(top->rootp -> ysyx_24080032_riscv32i__DOT__PC, top->rootp -> ysyx_24080032_riscv32i__DOT__Instr);
 		exec_once();
 		get_reg();
 		n--;
@@ -50,6 +52,8 @@ extern "C" void npc_trap(){
 		printf("\033[1;32mHIT GOOD TRAP\033[0m at pc = 0x%x\n", top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC);
 	else
 		printf("\033[1;31mHIT BAD TRAP\033[0m at pc = 0x%x\nexit code = %d\n",top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC, code);
+	itrace_init(top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC, top->rootp -> ysyx_24080032_riscv32i__DOT__Instr);
+	display_inst();
 	statistic();
 	exit(0);
 }
