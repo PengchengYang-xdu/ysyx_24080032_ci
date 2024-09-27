@@ -6,8 +6,10 @@ deigned by ypc
 #include <mem.h>
 #include <common.h>
 #include <utils.h>
+#include <debug.h>
 
 Vysyx_24080032_riscv32i *top = init_top();
+uint64_t g_nr_guest_inst = 0;
 
 void single_cycle(){
     top->clk = 1;
@@ -35,6 +37,15 @@ void reset(int i) {
 	top->rst_n = 1; 
 }
 
+static void statistic() {
+  Log("total guest instructions = %lu", g_nr_guest_inst);
+}
+
+void assert_fail_msg() {
+  isa_reg_display();
+  statistic();
+}
+
 static void exec_once(){
 	single_cycle();
 }
@@ -43,12 +54,9 @@ void cpu_exec(uint32_t n){
 	while(n > 0){
 		exec_once();
 		get_reg();
+		g_nr_guest_inst ++;
 		n--;
 	}
-}
-
-static void statistic() {
-  
 }
 
 extern "C" void npc_trap(){
@@ -68,9 +76,4 @@ extern "C" void npc_trap(){
 	
 	statistic();
 	exit(0);
-}
-
-void assert_fail_msg() {
-//   isa_reg_display();
-  statistic();
 }
