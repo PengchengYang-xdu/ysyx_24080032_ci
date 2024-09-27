@@ -11,18 +11,10 @@ BIN = $(BUILD_DIR)/$(TOPNAME)
 
 VERIARG = --cc -MMD --build 
 
-LDFLAGS += -lSDL2 -lSDL2_image
+LDFLAGS += -lSDL2 -lSDL2_image $(shell llvm-config --libs) -lreadline -ldl -pie
 
 INC_PATH += /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i/include
-
 INCFLAGS = $(addprefix -I, $(INC_PATH))
-
-CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\""
-
-CXXSRC = /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i/csrc/utils/disasm.cc
-CXXFLAGS += $(shell llvm-config --cxxflags) -fPIE
-LDFLAGS += $(shell llvm-config --libs)
-LDFLAGS += -lreadline -ldl -pie
 
 # include $(NVBOARD_HOME)/scripts/nvboard.mk
 $(shell mkdir -p $(BUILD_DIR))
@@ -58,3 +50,10 @@ wave:
 	gtkwave *.vcd
 
 
+
+
+
+CFLAGS += $(INCFLAGS) -DTOP_NAME="\"V$(TOPNAME)\"" \
+		  \
+		  -DNPCCONFIG_ITRACE \
+		  -DNPCCONFIG_DUMPWAVE \

@@ -14,7 +14,9 @@ LDFLAGS   += -T $(AM_HOME)/scripts/linker.ld \
 LDFLAGS   += --gc-sections -e _start
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
 
-NPCFLAGS += -l $(shell dirname $(IMAGE).elf)/npc_log.txt
+
+
+NPCFLAGS += -l $(shell dirname $(IMAGE).elf)/npc-log.txt
 NPCFLAGS += -b
 NPCFLAGS += -e $(IMAGE).elf
 

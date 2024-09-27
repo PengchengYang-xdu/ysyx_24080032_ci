@@ -10,17 +10,17 @@ deigned by ypc
 
 extern FILE* log_fp;
 
-// ----------- state -----------
+// // ----------- state -----------
 
-enum { NEMU_RUNNING, NEMU_STOP, NEMU_END, NEMU_ABORT, NEMU_QUIT };
+// enum { NEMU_RUNNING, NEMU_STOP, NEMU_END, NEMU_ABORT, NEMU_QUIT };
 
-typedef struct {
-  int state;
-  // vaddr_t halt_pc;
-  // uint32_t halt_ret;
-} NEMUState;
+// typedef struct {
+//   int state;
+//   // vaddr_t halt_pc;
+//   // uint32_t halt_ret;
+// } NEMUState;
 
-extern NEMUState nemu_state;
+// extern NEMUState nemu_state;
 // int is_exit_status_bad();
 
 // // ----------- timer -----------
