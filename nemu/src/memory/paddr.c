@@ -18,6 +18,9 @@
 #include <device/mmio.h>
 #include <isa.h>
 
+//difftese
+bool skip = false;
+
 #if   defined(CONFIG_PMEM_MALLOC)
 static uint8_t *pmem = NULL;
 #else // CONFIG_PMEM_GARRAY
