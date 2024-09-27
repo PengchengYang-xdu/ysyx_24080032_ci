@@ -12,6 +12,7 @@ deigned by ypc
 Vysyx_24080032_riscv32i *top = init_top();
 static uint8_t opcode;
 static uint8_t rd;
+static uint8_t src1;
 uint64_t g_nr_guest_inst = 0;
 void difftest_step();
 
@@ -64,13 +65,18 @@ static void trace_and_difftest(){
 	#ifdef NPCCONFIG_FTRACE
 	opcode = BITS(top->rootp -> ysyx_24080032_riscv32i__DOT__Instr, 6, 0);
 	rd = BITS(top->rootp -> ysyx_24080032_riscv32i__DOT__Instr, 11, 7);
-	if(opcode == JAL && rd == 0b00001)
+	if(opcode == JAL && rd == 0b00001){
 		display_call_func(top->rootp -> ysyx_24080032_riscv32i__DOT__PC, top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC);
-	else if(opcode == JALR)
-		if(rd == 0b00001)
+	}
+	else if(opcode == JALR){
+		src1 = BITS(top->rootp -> ysyx_24080032_riscv32i__DOT__Instr, 19, 15);
+		if(rd == 0b00001){
 			display_call_func(top->rootp -> ysyx_24080032_riscv32i__DOT__PC, top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC);
-		else if(rd == 0b00000 && BITS(top->rootp -> ysyx_24080032_riscv32i__DOT__Instr, 19, 15) == gpr[1])
+		}
+		else if(rd == 0b00000 && gpr[src1] == gpr[1]){
 			display_ret_func(top->rootp -> ysyx_24080032_riscv32i__DOT__PC);
+		}
+	}
 	#endif
 
 }
