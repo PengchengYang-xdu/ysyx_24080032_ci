@@ -35,7 +35,7 @@ $(BIN):  $(CSRC) $(VSRC)
 # 	python3 $(NVBOARD_HOME)/scripts/auto_pin_bind.py  $^ $@
 
 run: $(BIN)
-	@$(BIN) $(IMG) $(ARGS)
+	@$(BIN) $(ARGS) $(IMG) 
 
 clr: 
 	rm -rf $(BUILD_DIR)
