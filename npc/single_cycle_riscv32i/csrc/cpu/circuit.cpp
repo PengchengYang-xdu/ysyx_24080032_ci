@@ -14,6 +14,9 @@ void single_cycle(){
     top->eval();
 	dump_wave();
 
+	if(top->rst_n)
+		itrace_init(top->rootp -> ysyx_24080032_riscv32i__DOT__PC, top->rootp -> ysyx_24080032_riscv32i__DOT__Instr);
+
 	top->clk = 0;
     top->eval();
     dump_wave();
@@ -32,7 +35,6 @@ static void exec_once(){
 
 void cpu_exec(uint32_t n){
 	while(n > 0){
-		itrace_init(top->rootp -> ysyx_24080032_riscv32i__DOT__PC, top->rootp -> ysyx_24080032_riscv32i__DOT__Instr);
 		exec_once();
 		get_reg();
 		n--;
