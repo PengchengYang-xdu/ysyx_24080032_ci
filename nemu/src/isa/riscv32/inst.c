@@ -128,7 +128,7 @@ static int decode_exec(Decode *s) {
   IFDEF(CONFIG_FTRACE,{
     if (rd == 1)  display_call_func(s->pc, s->dnpc);
     else if (rd == 0 && src1 == R(1)) {
-    printf("rd = 0x%x,   src1 = 0x%x\n", rd, src1);
+    printf("rd = 0x%x,   src1 = 0x%x,   gpr1 = 0x%x\n", rd, src1, R(1));
     display_ret_func(s->pc);
     }
   });
