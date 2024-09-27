@@ -44,11 +44,16 @@ void reset(int i) {
 
 static void statistic() {
   Log("total guest instructions = %lu", g_nr_guest_inst);
+
 }
 
 void assert_fail_msg() {
-  isa_reg_display();
-  statistic();
+	#ifdef NPCCONFIG_ITRACE
+	itrace_init(top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC, top->rootp -> ysyx_24080032_riscv32i__DOT__Instr);
+	display_inst();
+	#endif
+//   isa_reg_display();
+	statistic();
 }
 
 

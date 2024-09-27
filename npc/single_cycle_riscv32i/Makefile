@@ -4,6 +4,7 @@ VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
 TBVSRC = $(shell find $(abspath ./tb) -name "*.v")
 CSRC = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
 IMG ?= program.bin #image
+NEMU_SO = /home/ypc/Desktop/ysyx/ysyx-workbench/nemu/build/riscv32-nemu-interpreter-so
 
 BUILD_DIR = ./build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
@@ -11,7 +12,7 @@ BIN = $(BUILD_DIR)/$(TOPNAME)
 
 VERIARG = --cc -MMD --build 
 
-LDFLAGS += -lSDL2 -lSDL2_image $(shell llvm-config --libs) -lreadline -ldl -pie
+LDFLAGS += -lSDL2 -lSDL2_image $(shell llvm-config --libs) -lreadline -ldl -pie $(NEMU_SO)
 
 INC_PATH += /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i/include
 INCFLAGS = $(addprefix -I, $(INC_PATH))
@@ -35,7 +36,7 @@ $(BIN):  $(CSRC) $(VSRC)
 # 	python3 $(NVBOARD_HOME)/scripts/auto_pin_bind.py  $^ $@
 
 run: $(BIN)
-	@$(BIN) $(ARGS) $(IMG) 
+	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG) 
 
 clr: 
 	rm -rf $(BUILD_DIR)
