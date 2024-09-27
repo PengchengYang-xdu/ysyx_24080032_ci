@@ -68,6 +68,9 @@ static long load_img() {
 }
 
 static int parse_args(int argc, char *argv[]) {
+  for (int i = 0; i < argc; i++) {
+    printf("Argument %d: %s\n", i, argv[i]);
+  }
   const struct option table[] = {
     {"elf"      , required_argument, NULL, 'e'},
     {"batch"    , no_argument      , NULL, 'b'},
