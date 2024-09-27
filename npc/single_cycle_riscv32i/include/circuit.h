@@ -24,4 +24,10 @@ void init_wave();
 void dump_wave();
 void close_wave();
 
+#define BITMASK(bits) ((1ull << (bits)) - 1)
+#define BITS(x, hi, lo) (((x) >> (lo)) & BITMASK((hi) - (lo) + 1)) // similar to x[hi:lo] in verilog
+#define SEXT(x, len) ({ struct { int64_t n : len; } __x = { .n = x }; (uint64_t)__x.n; })
+#define JAL  0b1101111
+#define JALR 0b1100111
+
 #endif
