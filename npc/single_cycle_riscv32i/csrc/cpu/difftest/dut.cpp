@@ -2,6 +2,8 @@
 #include <mem.h>
 #include <common.h>
 #include <circuit.h>
+#include <utils.h>
+#include <debug.h>
 
 struct CPU_state {
   word_t gpr[REGNUM];
@@ -61,7 +63,7 @@ void init_difftest(char *ref_so_file, long img_size) {
 bool static checkregs(struct CPU_state *ref_r){
   bool flag = true;
   int i;
-  if(ref_r -> pc != pc) flag = false;
+  if(ref_r -> pc != top->rootp -> ysyx_24080032_riscv32i__DOT__PC) flag = false;
   for(i = 0;i < REGNUM;i++){
     if(ref_r -> gpr[i] != gpr[i])
       flag = false;
@@ -89,7 +91,7 @@ void difftest_step() {
     int i;
     //get dut reg into CPU_state struct
     CPU_state dut_r;
-    dut_r.pc = pc;
+    dut_r.pc = top->rootp -> ysyx_24080032_riscv32i__DOT__PC;
     for(i = 0;i < REGNUM;i++)
       dut_r.gpr[i] = gpr[i];
     //copy reg to ref to skip this inst

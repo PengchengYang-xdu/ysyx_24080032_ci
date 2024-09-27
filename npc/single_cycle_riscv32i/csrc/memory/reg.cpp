@@ -4,6 +4,7 @@ deigned by ypc
 
 #include <circuit.h>
 #include <mem.h>
+#include <utils.h>
 
 uint32_t gpr[REGNUM];
 extern Vysyx_24080032_riscv32i *top;

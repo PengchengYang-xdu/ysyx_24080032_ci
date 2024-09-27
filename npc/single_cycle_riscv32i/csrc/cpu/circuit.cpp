@@ -7,6 +7,7 @@ deigned by ypc
 #include <common.h>
 #include <utils.h>
 #include <debug.h>
+#include "../monitor/sdb/sdb.h"
 
 Vysyx_24080032_riscv32i *top = init_top();
 static uint8_t opcode;
@@ -64,12 +65,12 @@ static void trace_and_difftest(){
 	opcode = BITS(top->rootp -> ysyx_24080032_riscv32i__DOT__Instr, 6, 0);
 	rd = BITS(top->rootp -> ysyx_24080032_riscv32i__DOT__Instr, 11, 7);
 	if(opcode == JAL && rd == 0b00001)
-		display_call_func(ysyx_24080032_riscv32i__DOT__PC, ysyx_24080032_riscv32i__DOT__NextPC);
+		display_call_func(top->rootp -> ysyx_24080032_riscv32i__DOT__PC, top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC);
 	else if(opcode == JALR)
 		if(rd == 0b00001)
-			display_call_func(ysyx_24080032_riscv32i__DOT__PC, ysyx_24080032_riscv32i__DOT__NextPC);
+			display_call_func(top->rootp -> ysyx_24080032_riscv32i__DOT__PC, top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC);
 		else if(rd == 0b00000 && BITS(top->rootp -> ysyx_24080032_riscv32i__DOT__Instr, 19, 15) == gpr[1])
-			display_ret_func(ysyx_24080032_riscv32i__DOT__PC);
+			display_ret_func(top->rootp -> ysyx_24080032_riscv32i__DOT__PC);
 	#endif
 
 }
