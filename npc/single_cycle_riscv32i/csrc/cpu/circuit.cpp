@@ -47,10 +47,9 @@ extern "C" void npc_trap(){
 	bool success;
 	int code = isa_reg_str2val("a0",&success);
 	if(code == 0)
-		printf("\033[1;32mHIT GOOD TRAP\033[0m at pc = 0x%x\n", top->rootp -> ysyx_24080032_riscv32i__DOT__PC);
+		printf("\033[1;32mHIT GOOD TRAP\033[0m at pc = 0x%x\n", top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC);
 	else
-		printf("\033[1;31mHIT BAD TRAP\033[0m exit code = %d\n",code);
-	// printf(" trap in %#x\n",pc);
+		printf("\033[1;31mHIT BAD TRAP\033[0m at pc = 0x%x\nexit code = %d\n",top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC, code);
 	statistic();
 	exit(0);
 }
