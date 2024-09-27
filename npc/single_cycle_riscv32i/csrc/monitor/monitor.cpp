@@ -54,6 +54,9 @@ static long load_img() {
 }
 
 static int parse_args(int argc, char *argv[]) {
+  for (int i = 0; i < argc; i++) {
+    printf("Argument %d: %s\n", i, argv[i]);
+  }
   const struct option table[] = {
     {"elf"      , required_argument, NULL, 'e'},
     {"batch"    , no_argument      , NULL, 'b'},
@@ -80,6 +83,12 @@ static int parse_args(int argc, char *argv[]) {
         printf("\n");
         exit(0);
     }
+  }
+  if (optind < argc) {
+    img_file = argv[optind];
+    printf("Image file: %s\n", img_file);
+  } else {
+    printf("No image file provided.\n");
   }
   return 0;
 }
