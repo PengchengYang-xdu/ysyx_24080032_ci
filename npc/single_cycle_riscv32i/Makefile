@@ -4,7 +4,6 @@ VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
 TBVSRC = $(shell find $(abspath ./tb) -name "*.v")
 CSRC = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
 IMG ?= program.bin #image
-NEMU_SO = /home/ypc/Desktop/ysyx/ysyx-workbench/nemu/build/riscv32-nemu-interpreter-so
 
 BUILD_DIR = ./build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
@@ -12,7 +11,7 @@ BIN = $(BUILD_DIR)/$(TOPNAME)
 
 VERIARG = --cc -MMD --build 
 
-LDFLAGS += -lSDL2 -lSDL2_image $(shell llvm-config --libs) -lreadline -ldl -pie $(NEMU_SO)
+LDFLAGS += -lSDL2 -lSDL2_image $(shell llvm-config --libs) -lreadline -ldl -pie
 
 INC_PATH += /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i/include
 INCFLAGS = $(addprefix -I, $(INC_PATH))
@@ -54,10 +53,9 @@ wave:
 
 
 
-CFLAGS += $(INCFLAGS) -DTOP_NAME="\"V$(TOPNAME)\"" \
-		  \
-		  -DNPCCONFIG_ITRACE \
-		  -DNPCCONFIG_FTRACE \
-		  -DNPCCONFIG_DUMPWAVE \
-		  -DNPCCONFIG_WATCHPOINT \
-		  -DNPCCONFIG_DIFFTEST \
+CFLAGS += $(INCFLAGS) -DTOP_NAME="\"V$(TOPNAME)\""
+CFLAGS += -DNPCCONFIG_ITRACE 
+# CFLAGS += -DNPCCONFIG_FTRACE 
+# CFLAGS += -DNPCCONFIG_DUMPWAVE 
+CFLAGS += -DNPCCONFIG_WATCHPOINT 
+# CFLAGS += -DNPCCONFIG_DIFFTEST 

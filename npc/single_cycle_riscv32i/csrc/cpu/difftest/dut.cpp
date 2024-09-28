@@ -69,16 +69,12 @@ bool static checkregs(struct CPU_state *ref_r){
       flag = false;
   }
   if(flag == false){
-    printf("ref-pc=%x\n",ref_r -> pc);
+    printf("ref - pc = %x\n",ref_r -> pc);
     for(i = 0;i < REGNUM;i++){
-    if(ref_r -> gpr[i] >= 0x80000000){
-        printf("ref-%3s = %-#11x",regs[i],ref_r -> gpr[i]);
-        if(i % 3 == 0) printf("\n");
-        }
-    else{
-        printf("ref-%3s = %-11d",regs[i],ref_r -> gpr[i]);
-        if(i % 3 == 0) printf("\n");
-        } 
+        printf("ref - %3s = %-#11x", regs[i], ref_r -> gpr[i]);
+        printf("       ");
+        printf("cpu - %3s = %-#11x", regs[i], gpr[i]);
+        printf("\n");
     }
   }
   return flag;
@@ -103,7 +99,13 @@ void difftest_step() {
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
 
   if(!checkregs(&ref_r)){
-    isa_reg_display();
-    assert(0);
+    // isa_reg_display();
+    printf("difftest triggered!\n");
+    // printf("ref -> gpr[%u] = 0x%x  -------  cpu -> gpr[%u] = 0x%x\n", );
+    #ifdef NPCCONFIG_ITRACE
+	itrace_init(top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC, top->rootp -> ysyx_24080032_riscv32i__DOT__Instr);
+	display_inst();
+	#endif
+    exit(-1);
   }
 }
