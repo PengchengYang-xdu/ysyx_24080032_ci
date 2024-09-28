@@ -19,6 +19,8 @@ CFLAGS += -DMAINARGS=\"$(mainargs)\"
 NPCFLAGS += -l $(shell dirname $(IMAGE).elf)/npc-log.txt
 NPCFLAGS += -b
 NPCFLAGS += -e $(IMAGE).elf
+NPCFLAGS += -d /home/ypc/Desktop/ysyx/ysyx-workbench/nemu/build/riscv32-nemu-interpreter-so
+
 
 
 .PHONY: $(AM_HOME)/am/src/riscv/npc/trm.c
@@ -30,3 +32,4 @@ image: $(IMAGE).elf
 
 run: image
 	$(MAKE) -C $(NPC_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
+
