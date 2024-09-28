@@ -17,7 +17,7 @@ CFLAGS += -DMAINARGS=\"$(mainargs)\"
 
 
 NPCFLAGS += -l $(shell dirname $(IMAGE).elf)/npc-log.txt
-NPCFLAGS += -b
+# NPCFLAGS += -b
 NPCFLAGS += -e $(IMAGE).elf
 NPCFLAGS += -d /home/ypc/Desktop/ysyx/ysyx-workbench/nemu/build/riscv32-nemu-interpreter-so
 
