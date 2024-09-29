@@ -11,20 +11,23 @@ static void itoa(int value, char *str, int base, bool is_unsigned) {
   char *p = str;
   char buffer[32];
   int pos = 0;
+  unsigned int uvalue = value;
 
   if (value == 0) {
     *p++ = '0';
+    *p = '\0';
+    return;
   }
 
   if (value < 0 && !is_unsigned) {
     *p++ = '-';
-    value = -value;
+    uvalue = -value;
   }
 
-  while (value > 0) {
-    int digit = value % base;
+  while (uvalue > 0) {
+    int digit = uvalue % base;
     buffer[pos++] = (digit < 10) ? ('0' + digit) : ('a' + digit - 10);
-    value /= base;
+    uvalue /= base;
   }
 
   for (int i = pos - 1; i >= 0; i--) {
@@ -39,7 +42,7 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
   char *out_start = out;
   size_t remaining = n;
   
-  while (*p) {
+  while (*p && remaining > 1) {  // 避免溢出
     if (*p == '%') {
       p++;
       if (*p == '\0') break;
@@ -53,6 +56,10 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
             strcpy(out, buffer);
             out += len;
             remaining -= len;
+          } else {
+            strncpy(out, buffer, remaining - 1);  // 防止超出缓冲区
+            out += remaining - 1;
+            remaining = 1;
           }
           break;
         }
@@ -65,6 +72,10 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
             strcpy(out, buffer);
             out += len;
             remaining -= len;
+          } else {
+            strncpy(out, buffer, remaining - 1);
+            out += remaining - 1;
+            remaining = 1;
           }
           break;
         }
@@ -77,6 +88,10 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
             strcpy(out, buffer);
             out += len;
             remaining -= len;
+          } else {
+            strncpy(out, buffer, remaining - 1);
+            out += remaining - 1;
+            remaining = 1;
           }
           break;
         }
@@ -87,6 +102,10 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
             strcpy(out, str);
             out += len;
             remaining -= len;
+          } else {
+            strncpy(out, str, remaining - 1);
+            out += remaining - 1;
+            remaining = 1;
           }
           break;
         }
@@ -105,8 +124,7 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
           }
           break;
       }
-    }
-    else {
+    } else {
       if (remaining > 1) {
         *out++ = *p;
         remaining--;
@@ -133,14 +151,13 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
 
 
 int printf(const char *fmt, ...) {
-  // char buffer[1024];
-  // va_list args;
-  // va_start(args, fmt);
-  // int ret = vsprintf_internal(buffer, sizeof(buffer), fmt, args);
-  // va_end(args);
-  // putstr(buffer);
-  // return ret;
-  return 0;
+  char buffer[1024];
+  va_list args;
+  va_start(args, fmt);
+  int ret = vsprintf_internal(buffer, sizeof(buffer), fmt, args);
+  va_end(args);
+  putstr(buffer);
+  return ret;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
