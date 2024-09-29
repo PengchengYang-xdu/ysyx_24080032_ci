@@ -69,10 +69,10 @@ extern FILE* log_fp;
 void itrace_init(word_t pc, uint32_t inst);
 void display_inst();
 
-// // ----------- mtrace -----------
+// ----------- mtrace -----------
 
-// void display_pread(paddr_t addr, int len);
-// void display_pwrite(paddr_t addr, int len, word_t data);
+void display_pread(paddr_t addr);
+void display_pwrite(paddr_t addr, word_t data);
 
 // ----------- ftrace -----------
 void parse_elf(const char *elf_file);

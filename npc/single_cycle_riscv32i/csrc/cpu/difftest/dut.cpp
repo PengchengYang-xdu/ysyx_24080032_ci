@@ -41,7 +41,7 @@ void init_difftest(char *ref_so_file, long img_size) {
   void (*ref_difftest_init)() = (void(*)())dlsym(handle, "difftest_init");
   assert(ref_difftest_init);
 
-  #ifdef CONFIG_TRACE
+  #ifdef NPCCONFIG_DIFFTEST
   Log("Differential testing: %s", ANSI_FMT("ON", ANSI_FG_GREEN));
   Log("The result of every instruction will be compared with %s. "
       "This will help you a lot for debugging, but also significantly reduce the performance. "
@@ -69,7 +69,7 @@ bool static checkregs(struct CPU_state *ref_r){
       flag = false;
   }
   if(flag == false){
-    printf("ref - pc = %x\n",ref_r -> pc);
+    printf("ref - pc = 0x%x\n",ref_r -> pc);
     for(i = 0;i < REGNUM;i++){
         printf("ref - %3s = %-#11x", regs[i], ref_r -> gpr[i]);
         printf("       ");
@@ -105,6 +105,10 @@ void difftest_step() {
     #ifdef NPCCONFIG_ITRACE
 	itrace_init(top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC, top->rootp -> ysyx_24080032_riscv32i__DOT__Instr);
 	display_inst();
+	#endif
+    #ifdef NPCCONFIG_DUMPWAVE
+	dump_wave();
+	close_wave();
 	#endif
     exit(-1);
   }

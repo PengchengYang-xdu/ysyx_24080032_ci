@@ -84,7 +84,7 @@ static int cmd_x(char *args) {
   sscanf(EXPR, "%x", &addr);
   for(int i = 0; i < len; i ++){
     printf("0x%x : ", addr);
-    uint32_t data = paddr_read(addr);
+    uint32_t data = paddr_read(addr, 0, 0);
     for(int j = 0; j < 4; j ++){
       printf("0x%02x ", data & 0xff);
       data = data >> 8;

@@ -16,10 +16,10 @@ module ysyx_24080032_imem(
 //     Instr <= ROM[addr[7:2]];
 // end
 
-import "DPI-C" function int paddr_read(input int addr);
+import "DPI-C" function int paddr_read(int addr, int is_pc_read, int WriteRd);
 
 always @(negedge clk)begin
-    Instr <= paddr_read(addr);
+    Instr <= paddr_read(addr, 1, 0);
 end
 
 endmodule

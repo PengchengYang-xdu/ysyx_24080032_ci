@@ -26,6 +26,7 @@ wire     [3:0]  ALUctr;
 wire     [2:0]  Branch;
 wire            MemtoReg;
 wire            MemWr;
+wire            MemRd;
 wire     [2:0]  MemOp;
 
 ysyx_24080032_ctrgen u_ysyx_24080032_ctrgen(
@@ -40,6 +41,7 @@ ysyx_24080032_ctrgen u_ysyx_24080032_ctrgen(
     .Branch   (Branch          ),
     .MemtoReg (MemtoReg        ),
     .MemWr    (MemWr           ),
+    .MemRd    (MemRd           ),
     .MemOp    (MemOp           )
 );
 
@@ -115,6 +117,7 @@ ysyx_24080032_dmem u_ysyx_24080032_dmem(
     .wr_clk  (clk              ),
     .rd_clk  (clk              ),
     .WrEn    (MemWr            ),
+    .RdEn    (MemRd            ),
     .Addr    (Result           ),
     .DataIn  (rs2              ),
     .MemOp   (MemOp            ),
