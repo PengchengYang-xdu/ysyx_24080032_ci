@@ -133,13 +133,14 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
 
 
 int printf(const char *fmt, ...) {
-  char buffer[1024];
-  va_list args;
-  va_start(args, fmt);
-  int ret = vsprintf_internal(buffer, sizeof(buffer), fmt, args);
-  va_end(args);
-  putstr(buffer);
-  return ret;
+  // char buffer[1024];
+  // va_list args;
+  // va_start(args, fmt);
+  // int ret = vsprintf_internal(buffer, sizeof(buffer), fmt, args);
+  // va_end(args);
+  // putstr(buffer);
+  // return ret;
+  return 0;
 }
 
 int vsprintf(char *out, const char *fmt, va_list ap) {
