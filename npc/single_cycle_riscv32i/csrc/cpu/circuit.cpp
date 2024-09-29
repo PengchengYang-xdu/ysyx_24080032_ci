@@ -103,8 +103,10 @@ void cpu_exec(uint32_t n){
 }
 
 extern "C" void npc_trap(){
+	#ifdef NPCCONFIG_DUMPWAVE
 	dump_wave();
 	close_wave();
+	#endif
 	bool success;
 	int code = isa_reg_str2val("a0",&success);
 	if(code == 0)

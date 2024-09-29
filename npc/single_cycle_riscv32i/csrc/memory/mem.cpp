@@ -6,6 +6,7 @@ deigned by ypc
 #include <common.h>
 #include <circuit.h>
 #include <debug.h>
+#include <utils.h>
 
 static uint8_t *pmem = NULL;
 
@@ -30,15 +31,30 @@ static void out_of_bound(paddr_t addr) {
       addr, PMEM_LEFT, PMEM_RIGHT, top->rootp -> ysyx_24080032_riscv32i__DOT__PC);
 }
 
-extern "C" int paddr_read(int addr) {
+extern "C" int paddr_read(int addr, int is_pc_read, int WriteRd) {
+    #ifdef NPCCONFIG_MTRACE
+    if(!is_pc_read && !WriteRd)
+        display_pread(addr);
+    #endif
     if(in_pmem(addr))
         return pmem_read(addr);
     out_of_bound(addr);
+    #ifdef NPCCONFIG_DUMPWAVE
+	dump_wave();
+	close_wave();
+	#endif
     return 0;
 }
 
-extern "C" void paddr_write(paddr_t addr, word_t data) {
+extern "C" void paddr_write(int addr, int data) {
+    #ifdef NPCCONFIG_MTRACE
+    display_pwrite(addr, data);
+    #endif
     if(in_pmem(addr))
         { pmem_write(addr, data); return; }
     out_of_bound(addr);
+    #ifdef NPCCONFIG_DUMPWAVE
+	dump_wave();
+	close_wave();
+	#endif
 }
