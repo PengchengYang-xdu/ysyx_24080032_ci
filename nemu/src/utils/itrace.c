@@ -20,6 +20,7 @@ void itrace_init(word_t pc, word_t inst) {
 }
 
 void display_inst() {
+  #ifdef CONFIG_ITRACE
   if (!full && !p_cur) return;
 
   int end = p_cur;
@@ -43,4 +44,5 @@ void display_inst() {
     puts(buf);
   }
   printf(ANSI_NONE);
+  #endif
 }
