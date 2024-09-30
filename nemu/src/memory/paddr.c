@@ -24,7 +24,7 @@ bool skip = false;
 #if   defined(CONFIG_PMEM_MALLOC)
 static uint8_t *pmem = NULL;
 #else // CONFIG_PMEM_GARRAY
-static uint8_t pmem[0x0f000000] PG_ALIGN = {};
+static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
 #endif
 
 uint8_t* guest_to_host(paddr_t paddr) { return pmem + paddr - CONFIG_MBASE; }
@@ -49,7 +49,7 @@ void init_mem() {
   pmem = malloc(CONFIG_MSIZE);
   assert(pmem);
 #endif
-  IFDEF(CONFIG_MEM_RANDOM, memset(pmem, rand(), 0x0f000000));
+  IFDEF(CONFIG_MEM_RANDOM, memset(pmem, rand(), CONFIG_MSIZE));
   Log("physical memory area [" FMT_PADDR ", " FMT_PADDR "]", PMEM_LEFT, PMEM_RIGHT);
 }
 
