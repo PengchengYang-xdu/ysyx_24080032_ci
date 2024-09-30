@@ -1,9 +1,9 @@
 #include <common.h>
 #include <utils.h>
-#include </home/ypc/Desktop/ysyx/ysyx-workbench/nemu/include/device/map.h>
+#include <device/map.h>
 
 void display_dread(paddr_t addr, int len, IOMap *map) {
-	printf("dtrace: read %10s at " FMT_PADDR ",%d\n",
+	printf("dtrace: read %10s at " FMT_PADDR ", len = %d\n",
 		map->name, addr, len);
 }
 
