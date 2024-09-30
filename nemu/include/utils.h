@@ -17,7 +17,6 @@
 #define __UTILS_H__
 
 #include <common.h>
-#include <device/map.h>
 
 // ----------- state -----------
 
@@ -92,8 +91,3 @@ void display_pwrite(paddr_t addr, int len, word_t data);
 void parse_elf(const char *elf_file);
 void display_call_func(word_t pc, word_t func_addr);
 void display_ret_func(word_t pc);
-
-// // ----------- dtrace -----------
-
-// void display_dread(paddr_t addr, int len, IOMap *map);
-// void display_dwrite(paddr_t addr, int len, word_t data, IOMap *map);
