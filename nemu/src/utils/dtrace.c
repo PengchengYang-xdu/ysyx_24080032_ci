@@ -8,6 +8,6 @@ void display_dread(paddr_t addr, int len, IOMap *map) {
 }
 
 void display_dwrite(paddr_t addr, int len, word_t data, IOMap *map) {
-	printf("dtrace: write %10s at " FMT_PADDR ",%d with " FMT_WORD "\n",
+	printf("dtrace: write %10s at " FMT_PADDR ", len = %d, data = " FMT_WORD "\n",
 		map->name, addr, len, data);
 }
