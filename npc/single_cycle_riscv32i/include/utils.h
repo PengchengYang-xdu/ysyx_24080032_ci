@@ -23,9 +23,9 @@ extern FILE* log_fp;
 // extern NEMUState nemu_state;
 // int is_exit_status_bad();
 
-// // ----------- timer -----------
+// ----------- timer -----------
 
-// uint64_t get_time();
+uint64_t get_time();
 
 // ----------- log -----------
 

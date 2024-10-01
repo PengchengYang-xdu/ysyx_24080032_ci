@@ -7,8 +7,11 @@ deigned by ypc
 #include <circuit.h>
 #include <debug.h>
 #include <utils.h>
+#include <device.h>
 
 static uint8_t *pmem = NULL;
+extern bool is_skip_diff;
+static uint64_t timer = 0;
 
 uint8_t* guest_to_host(paddr_t paddr) { return pmem + paddr - CONFIG_MBASE; }
 
@@ -37,7 +40,21 @@ extern "C" int paddr_read(int addr, int is_pc_read, int WriteRd) {
         display_pread(addr);
     #endif
     if(in_pmem(addr))
-        return pmem_read(addr);
+        if(addr == RTC_ADDR || addr == RTC_ADDR + 4 || addr == SERIAL_PORT)
+            is_skip_diff = true;
+            if(addr == RTC_ADDR + 4){
+                timer = get_time(); 
+		        return (uint32_t)(timer >> 32);
+            }
+            else if(addr == RTC_ADDR){
+                return (uint32_t)timer;
+            }
+            else if(addr == SERIAL_PORT){
+                printf("serial read, addr = 0x%x\n", addr);
+                return 0;
+            }
+        else
+            return pmem_read(addr);
     out_of_bound(addr);
     #ifdef NPCCONFIG_DUMPWAVE
 	dump_wave();
@@ -50,8 +67,18 @@ extern "C" void paddr_write(int addr, int data) {
     #ifdef NPCCONFIG_MTRACE
     display_pwrite(addr, data);
     #endif
-    if(in_pmem(addr))
-        { pmem_write(addr, data); return; }
+    if(in_pmem(addr)){
+        if(addr == SERIAL_PORT){
+            printf("serial write, addr = 0x%x, data = %s\n", addr, data);
+            is_skip_diff = true;
+            putc((char)addr,stderr);
+            return;
+        }
+        else{
+            pmem_write(addr, data);
+            return;
+        }
+    }
     out_of_bound(addr);
     #ifdef NPCCONFIG_DUMPWAVE
 	dump_wave();
