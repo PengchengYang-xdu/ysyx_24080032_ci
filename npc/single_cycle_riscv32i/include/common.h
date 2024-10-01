@@ -18,7 +18,7 @@ typedef uint32_t paddr_t;
 #define FMT_WORD "0x%08x"
 #define FMT_PADDR "0x%08x"
 
-#define CONFIG_MSIZE 0x0800000
+#define CONFIG_MSIZE 0x0f00000
 #define CONFIG_MBASE 0x80000000
 #define PMEM_LEFT  ((paddr_t)CONFIG_MBASE)
 #define PMEM_RIGHT ((paddr_t)CONFIG_MBASE + CONFIG_MSIZE - 1)
