@@ -50,7 +50,6 @@ extern "C" int paddr_read(int addr, int is_pc_read, int WriteRd) {
                 return (uint32_t)timer;
             }
             else if(addr == SERIAL_PORT){
-                printf("serial read, addr = 0x%x\n", addr);
                 return 0;
             }
         else
@@ -69,7 +68,6 @@ extern "C" void paddr_write(int addr, int data) {
     #endif
     if(in_pmem(addr)){
         if(addr == SERIAL_PORT){
-            printf("serial write, addr = 0x%x, data = %c\n", addr, data);
             is_skip_diff = true;
             putc((char)addr,stderr);
             return;
