@@ -7,6 +7,7 @@
 #include <string.h>
 #include <assert.h>
 #include <common.h>
+#include <device.h>
 
 #define RESET_VECTOR 0x80000000
 #define REGNUM 32
@@ -15,7 +16,7 @@ extern uint32_t gpr[REGNUM];
 extern const char *regs[];
 
 static inline bool in_pmem(paddr_t addr) {
-  return addr - CONFIG_MBASE < CONFIG_MSIZE;
+  return (addr - CONFIG_MBASE < CONFIG_MSIZE) || addr == RTC_ADDR || addr == RTC_ADDR + 4 || addr == SERIAL_PORT;
 }
 
 void init_mem();
