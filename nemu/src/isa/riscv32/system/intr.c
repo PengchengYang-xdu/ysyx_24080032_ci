@@ -23,7 +23,6 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
   /*i need to realize save the mepc mcause and mtvec*/
   csr(MEPC) = epc;
   csr(MCAUSE) = NO;
-  assert(csr(MTVEC) != 0);
   return csr(MTVEC);
 }
 
