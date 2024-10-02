@@ -43,12 +43,24 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
     if (*p == '%') {
       p++;
       if (*p == '\0') break;
+
+      int width = 0;
+      while (*p >= '0' && *p <= '9') {
+        width = width * 10 + (*p - '0');
+        p++;
+      }
+
       switch (*p) {
         case 'd': {
           int value = va_arg(ap, int);
           char buffer[32];
           itoa(value, buffer, 10, false);
           int len = strlen(buffer);
+          int padding = (width > len) ? width - len : 0;
+          while (padding-- > 0 && remaining > 1) {
+            *out++ = ' ';
+            remaining--;
+          }
           if (remaining > len) {
             strcpy(out, buffer);
             out += len;
@@ -61,6 +73,11 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
           char buffer[32];
           itoa(value, buffer, 16, true);
           int len = strlen(buffer);
+          int padding = (width > len) ? width - len : 0;
+          while (padding-- > 0 && remaining > 1) {
+            *out++ = ' ';
+            remaining--;
+          }
           if (remaining > len) {
             strcpy(out, buffer);
             out += len;
@@ -73,6 +90,11 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
           char buffer[32];
           itoa(value, buffer, 10, true);
           int len = strlen(buffer);
+          int padding = (width > len) ? width - len : 0;
+          while (padding-- > 0 && remaining > 1) {
+            *out++ = ' ';
+            remaining--;
+          }
           if (remaining > len) {
             strcpy(out, buffer);
             out += len;
@@ -83,6 +105,11 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
         case 's': {
           const char *str = va_arg(ap, const char *);
           int len = strlen(str);
+          int padding = (width > len) ? width - len : 0;
+          while (padding-- > 0 && remaining > 1) {
+            *out++ = ' ';
+            remaining--;
+          }
           if (remaining > len) {
             strcpy(out, str);
             out += len;
@@ -92,6 +119,11 @@ static int vsprintf_internal(char *out, size_t n, const char *fmt, va_list ap) {
         }
         case 'c': {
           char c = (char)va_arg(ap, int);
+          int padding = (width > 1) ? width - 1 : 0;
+          while (padding-- > 0 && remaining > 1) {
+            *out++ = ' ';
+            remaining--;
+          }
           if (remaining > 1) {
             *out++ = c;
             remaining--;
