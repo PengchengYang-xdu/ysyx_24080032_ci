@@ -27,6 +27,11 @@ void isa_reg_display() {
   int length = sizeof(regs) / sizeof(regs[0]);
   for(int i = 0; i < length; i ++)
     printf("reg %s ---> %u ---- 0x%x\n", regs[i], cpu.gpr[i], cpu.gpr[i]);
+  printf("\n");
+  printf("csr-mtvec  = %-#11x\n",cpu.csr[MTVEC]);
+  printf("csr-mepc   = %-#11x\n",cpu.csr[MEPC]);
+  printf("csr-mstatus= %-#11x\n",cpu.csr[MSTATUS]);
+  printf("csr-mcause = %-#11x\n",cpu.csr[MCAUSE]);
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
