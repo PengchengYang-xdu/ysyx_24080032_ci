@@ -13,24 +13,26 @@
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
 
-#ifndef __ISA_RISCV_H__
-#define __ISA_RISCV_H__
-
 #include <common.h>
+#include <sys/time.h>
+static uint64_t boot_time = 0;
 
-typedef struct {
-  word_t gpr[MUXDEF(CONFIG_RVE, 16, 32)];
-  vaddr_t pc;
-  word_t csr[4096];
-} MUXDEF(CONFIG_RV64, riscv64_CPU_state, riscv32_CPU_state);
+static uint64_t get_time_internal() {
+  struct timeval now;
+  gettimeofday(&now, NULL);
+  uint64_t us = now.tv_sec * 1000000 + now.tv_usec;
+  return us;
+}
 
-// decode
-typedef struct {
-  union {
-    uint32_t val;
-  } inst;
-} MUXDEF(CONFIG_RV64, riscv64_ISADecodeInfo, riscv32_ISADecodeInfo);
+uint64_t get_time() {
+  if (boot_time == 0) boot_time = get_time_internal();
+  //printf("boot = %llu\n",boot_time);
+  uint64_t now = get_time_internal();
+  //printf("now = %llu\n",now);
+  //printf("now - boottime = %llu\n",now - boot_time);
+  return now - boot_time;
+}
 
-#define isa_mmu_check(vaddr, len, type) (MMU_DIRECT)
-
-#endif
+void init_rand() {
+  srand(get_time_internal());
+}
