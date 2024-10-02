@@ -69,7 +69,7 @@ extern "C" void paddr_write(int addr, int data) {
     if(in_pmem(addr)){
         if(addr == SERIAL_PORT){
             is_skip_diff = true;
-            putc((char)addr,stderr);
+            putc((char)data,stderr);
             return;
         }
         else{
