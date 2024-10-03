@@ -40,6 +40,7 @@ void isa_reg_display(CPU_state *ref) {
   printf("csr-mstatus --->  0x%x\n",cpu.csr[MSTATUS]);
   printf("csr-mcause  --->  0x%x\n",cpu.csr[MCAUSE]);
   #ifdef CONFIG_DIFFTEST
+  printf("\n");
   printf("ref-csr-mtvec   --->  0x%x\n",ref->csr[MTVEC]);
   printf("ref-csr-mepc    --->  0x%x\n",ref->csr[MEPC]);
   printf("ref-csr-mstatus --->  0x%x\n",ref->csr[MSTATUS]);
