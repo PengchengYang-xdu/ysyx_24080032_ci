@@ -21,10 +21,6 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
    * Then return the address of the interrupt/exception vector.
    */
   /*i need to realize save the mepc mcause and mtvec*/
-  if(NO == 0xb){
-    epc += 4;
-  }
-  
   csr(MCAUSE) = NO;
   csr(MEPC) = epc;
   printf("epc = 0x%x\n", csr(MEPC));
