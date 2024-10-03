@@ -22,7 +22,7 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
    */
   /*i need to realize save the mepc mcause and mtvec*/
   if(NO == 0xb){
-    csr(MEPC) = epc + 4;
+    csr(MEPC) = epc;
     printf("epc = 0x%x\n", epc);
     csr(MCAUSE) = NO;
     return csr(MTVEC);
