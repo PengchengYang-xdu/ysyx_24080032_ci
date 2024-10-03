@@ -9,7 +9,7 @@ Context* __am_irq_handle(Context *c) {
     Event ev = {0};
     printf("mcause = 0x%x\n", c->mcause);
     switch (c->mcause) {
-      case 0xb:
+      case EVENT_YIELD:
         ev.event = EVENT_YIELD;
         c->mepc += 4;
         printf("mstatus = 0x%x\n", c->mstatus);
