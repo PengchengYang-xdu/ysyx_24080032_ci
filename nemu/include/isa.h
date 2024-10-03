@@ -30,7 +30,11 @@ void init_isa();
 
 // reg
 extern CPU_state cpu;
+#ifdef CONFIG_DIFFTEST
+void isa_reg_display(CPU_state *ref);
+#else
 void isa_reg_display();
+#endif
 word_t isa_reg_str2val(const char *name, bool *success);
 
 // exec
