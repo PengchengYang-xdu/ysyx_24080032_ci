@@ -53,6 +53,7 @@ __am_asm_trap:
   STORE t2, OFFSET_EPC(sp)
 
 
+  csrw mstatus, t1
 
   mv a0, sp
   jal __am_irq_handle
