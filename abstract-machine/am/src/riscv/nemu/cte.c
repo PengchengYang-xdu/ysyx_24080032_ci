@@ -12,6 +12,7 @@ Context* __am_irq_handle(Context *c) {
         ev.event = EVENT_YIELD;
         c->mepc += 4;
         printf("mstatus = 0x%x\n", c->mstatus);
+        printf("mepc = 0x%x\n", c->mepc);
         break;
       default: ev.event = EVENT_ERROR; break;
     }
