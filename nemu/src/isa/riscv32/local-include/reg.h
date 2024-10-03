@@ -18,6 +18,8 @@
 
 #include <common.h>
 
+extern const char *regs[];
+
 #define MSTATUS 0x300
 #define MTVEC   0x305
 #define MEPC    0x341
