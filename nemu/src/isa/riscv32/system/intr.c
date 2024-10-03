@@ -28,6 +28,7 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
     return csr(MTVEC);
   }
   panic("irq is not zixian");
+  return 0;
 }
 
 word_t isa_query_intr() {
