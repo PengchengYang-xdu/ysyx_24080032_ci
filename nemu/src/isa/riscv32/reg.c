@@ -14,6 +14,7 @@
 ***************************************************************************************/
 
 #include <isa.h>
+#include <cpu/difftest.h>
 #include "local-include/reg.h"
 
 const char *regs[] = {
@@ -23,15 +24,27 @@ const char *regs[] = {
   "s8", "s9", "s10", "s11", "t3", "t4", "t5", "t6"
 };
 
-void isa_reg_display() {
+void isa_reg_display(CPU_state *ref) {
   int length = sizeof(regs) / sizeof(regs[0]);
-  for(int i = 0; i < length; i ++)
-    printf("reg %s ---> 0x%x\n", regs[i], cpu.gpr[i]);
+  for(int i = 0; i < length; i ++){
+    printf("reg %s ---> 0x%x", regs[i], cpu.gpr[i]);
+    #ifdef CONFIG_DIFFTEST
+    printf("ref-reg %s ---> 0x%x\n", regs[i], ref->gpr[i]);
+    #endif
+    printf("\n");
+  }
+
   printf("\n");
   printf("csr-mtvec   --->  0x%x\n",cpu.csr[MTVEC]);
   printf("csr-mepc    --->  0x%x\n",cpu.csr[MEPC]);
   printf("csr-mstatus --->  0x%x\n",cpu.csr[MSTATUS]);
   printf("csr-mcause  --->  0x%x\n",cpu.csr[MCAUSE]);
+  #ifdef CONFIG_DIFFTEST
+  printf("ref-csr-mtvec   --->  0x%x\n",ref->csr[MTVEC]);
+  printf("ref-csr-mepc    --->  0x%x\n",ref->csr[MEPC]);
+  printf("ref-csr-mstatus --->  0x%x\n",ref->csr[MSTATUS]);
+  printf("ref-csr-mcause  --->  0x%x\n",ref->csr[MCAUSE]);
+  #endif
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {
