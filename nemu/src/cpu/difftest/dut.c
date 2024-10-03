@@ -95,7 +95,7 @@ static void checkregs(CPU_state *ref, vaddr_t pc) {
   if (!isa_difftest_checkregs(ref, pc)) {
     nemu_state.state = NEMU_ABORT;
     nemu_state.halt_pc = pc;
-    printf("!!! difftest checkregs abort at pc = 0x%x !!!\n", pc);
+    printf(ANSI_FMT("!!! difftest checkregs abort at pc = 0x%x !!!\n", ANSI_FG_RED), pc);
     isa_reg_display();
   }
 }
