@@ -99,7 +99,7 @@ static void checkregs(CPU_state *ref, vaddr_t pc) {
     printf(ANSI_FMT("!!! difftest checkregs abort at pc = 0x%x !!!\n", ANSI_FG_RED), pc);
 
     for(int i = 0; i < 32; i ++){
-    printf("reg %s ---> 0x%011x", regs[i], cpu.gpr[i]);
+    printf("reg %s ---> 0x%-11x", regs[i], cpu.gpr[i]);
     printf("                ref-reg %s ---> 0x%x\n", regs[i], ref->gpr[i]);
     printf("\n");
     }
