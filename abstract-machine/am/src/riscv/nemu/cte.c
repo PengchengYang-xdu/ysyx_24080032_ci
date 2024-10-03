@@ -11,7 +11,6 @@ Context* __am_irq_handle(Context *c) {
     switch (c->mcause) {
       case 0xb:
         ev.event = EVENT_YIELD;
-        c->mepc += 4;
         printf("mstatus = 0x%x\n", c->mstatus);
         printf("mepc = 0x%x\n", c->mepc);
         break;
