@@ -29,7 +29,7 @@ void isa_reg_display(CPU_state *ref) {
   for(int i = 0; i < length; i ++){
     printf("reg %s ---> 0x%x", regs[i], cpu.gpr[i]);
     #ifdef CONFIG_DIFFTEST
-    printf("ref-reg %s ---> 0x%x\n", regs[i], ref->gpr[i]);
+    printf("                ref-reg %s ---> 0x%x\n", regs[i], ref->gpr[i]);
     #endif
     printf("\n");
   }
