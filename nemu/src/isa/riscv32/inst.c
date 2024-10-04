@@ -124,7 +124,10 @@ static int decode_exec(Decode *s) {
   INSTPAT("0000000 ????? ????? 010 ????? 01100 11", slt    , R, R(rd) = (sword_t)src1 < (sword_t)src2);
 
   INSTPAT("0000000 00000 00000 000 00000 11100 11", ecall  , I, bool success; etrace(isa_reg_str2val("a7", &success), s->pc); s->dnpc = isa_raise_intr(isa_reg_str2val("a7", &success), s->pc));//
-  INSTPAT("0011000 00010 00000 000 00000 11100 11", mret   , I, s->dnpc = CSR(MEPC));
+  INSTPAT("0011000 00010 00000 000 00000 11100 11", mret   , I, s->dnpc = CSR(MEPC); CSR(MSTATUS) &= ~(1<<3); \
+  CSR(MSTATUS) |= ((CSR(MSTATUS)&(1<<7))>>4); \
+  CSR(MSTATUS) |= (1<<7); \
+  CSR(MSTATUS) &= ~((1<<11)+(1<<12)));
   INSTPAT("??????? ????? ????? 001 ????? 11100 11", csrrw  , I, R(rd) = CSR(imm); CSR(imm) = src1);
   INSTPAT("??????? ????? ????? 010 ????? 11100 11", csrrs  , I, R(rd) = CSR(imm); CSR(imm) |= src1);
 
