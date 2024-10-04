@@ -5,12 +5,12 @@ void etrace(word_t NO, vaddr_t epc){
   char s[20];
   switch (NO)
   {
-  case 0xb:
+  case 11:
     sprintf(s ,"EVENT_YIELD  ");
     break;
-  // case :
-  //   sprintf(s ,"EVENT_SYSCALL");
-  //   break;
+  case 0 :
+    sprintf(s ,"EVENT_SYSCALL");
+    break;
   default:
     sprintf(s ,"UNKOWN EVENT id = %d",NO);
     break;
