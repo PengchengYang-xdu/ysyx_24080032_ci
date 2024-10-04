@@ -21,6 +21,11 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
    * Then return the address of the interrupt/exception vector.
    */
   /*i need to realize save the mepc mcause and mtvec*/
+  csr(MSTATUS) &= ~(1<<7);
+  csr(MSTATUS) |= ((csr(MSTATUS)&(1<<3))<<4);
+  csr(MSTATUS) &= ~(1<<3);
+  csr(MSTATUS) |= ((1<<11)+(1<<12));
+
   csr(MCAUSE) = NO;
   csr(MEPC) = epc;
   return csr(MTVEC);
