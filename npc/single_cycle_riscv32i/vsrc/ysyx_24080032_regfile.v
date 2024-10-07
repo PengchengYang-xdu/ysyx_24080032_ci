@@ -5,7 +5,6 @@ module ysyx_24080032_regfile #(
     parameter DATA_WIDTH = 32)
 (
     input                   clk,
-    input                   rst_n,
 
     output [DATA_WIDTH-1:0] busA,
     output [DATA_WIDTH-1:0] busB,

@@ -62,7 +62,6 @@ wire [31:0] busW;
 
 ysyx_24080032_regfile #(.ADDR_WIDTH(5), .DATA_WIDTH(32)) u_ysyx_24080032_regfile(
     .clk      (clk             ),
-    .rst_n    (rst_n           ),
     .busA     (rs1             ),
     .busB     (rs2             ),
     .Ra       (Instr[19:15]    ),
