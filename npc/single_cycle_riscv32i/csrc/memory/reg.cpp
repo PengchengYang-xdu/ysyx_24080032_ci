@@ -7,6 +7,7 @@ deigned by ypc
 #include <utils.h>
 
 uint32_t gpr[REGNUM];
+uint32_t csr[4];
 extern Vysyx_24080032_riscv32i *top;
 
 const char *regs[] = {
@@ -18,13 +19,20 @@ const char *regs[] = {
 
 void get_reg(){
   int i;
-  for(i = 0;i < REGNUM; i++)
+  for(i = 0; i < REGNUM; i++)
     gpr[i] = top->rootp -> ysyx_24080032_riscv32i__DOT__u_ysyx_24080032_regfile__DOT__rf[i];
+  for(i = 0; i < 4; i++)
+    csr[i] = top->rootp -> ysyx_24080032_riscv32i__DOT__u_ysyx_24080032_csrfile__DOT__rf[i];
 }
 
 void isa_reg_display() {
   for(int i = 0; i < REGNUM; i ++)
-    printf("reg %s ---> %u ---- 0x%x\n", regs[i], gpr[i], gpr[i]);
+    printf("reg %s ---> 0x%x\n", regs[i], gpr[i]);
+  printf("\n");
+  printf("csr-mstatus   --->  0x%x\n", csr[0]);
+  printf("csr-mtvec   --->  0x%x\n", csr[1]);
+  printf("csr-mepc   --->  0x%x\n", csr[2]);
+  printf("csr-mcause   --->  0x%x\n", csr[3]);
 }
 
 word_t isa_reg_str2val(const char *s, bool *success) {

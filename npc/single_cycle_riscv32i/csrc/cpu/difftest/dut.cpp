@@ -8,7 +8,7 @@
 struct CPU_state {
   word_t gpr[REGNUM];
   word_t pc;
-//   word_t csr[4];
+  word_t csr[4];
 };
 
 bool is_skip_diff = false;
@@ -57,6 +57,8 @@ void init_difftest(char *ref_so_file, long img_size) {
   dut_r.pc = 0x80000000;
   for(int i = 0;i < REGNUM;i++)
     dut_r.gpr[i] = gpr[i];
+  for(int i = 0;i < 4;i++)
+    dut_r.csr[i] = csr[i];
   ref_difftest_regcpy(&dut_r, DIFFTEST_TO_REF);
 }
 
@@ -68,6 +70,10 @@ bool static checkregs(struct CPU_state *ref_r){
     if(ref_r -> gpr[i] != gpr[i])
       flag = false;
   }
+  for(i = 0;i < 4;i++){
+    if(ref_r -> csr[i] != csr[i])
+      flag = false;
+  }
   if(flag == false){
     printf("ref - pc = 0x%x\n",ref_r -> pc);
     for(i = 0;i < REGNUM;i++){
@@ -76,6 +82,17 @@ bool static checkregs(struct CPU_state *ref_r){
         printf("cpu - %3s = %-#11x", regs[i], gpr[i]);
         printf("\n");
     }
+    printf("\n");
+    printf("ref - mstatus = %-#11x\n", ref_r -> csr[0]);
+    printf("ref - mtvec = %-#11x\n", ref_r -> csr[1]);
+    printf("ref - mepc = %-#11x\n", ref_r -> csr[2]);
+    printf("ref - mcause = %-#11x\n", ref_r -> csr[3]);
+    printf("\n");
+    printf("cpu - mstatus = %-#11x\n", csr[0]);
+    printf("cpu - mtvec = %-#11x\n", csr[1]);
+    printf("cpu - mepc = %-#11x\n", csr[2]);
+    printf("cpu - mcause = %-#11x\n", csr[3]);
+    printf("\n");
   }
   return flag;
 }
@@ -90,6 +107,8 @@ void difftest_step() {
     dut_r.pc = top->rootp -> ysyx_24080032_riscv32i__DOT__PC;
     for(i = 0;i < REGNUM;i++)
       dut_r.gpr[i] = gpr[i];
+    for(i = 0;i < 4;i++)
+      dut_r.csr[i] = csr[i];
     //copy reg to ref to skip this inst
     ref_difftest_regcpy(&dut_r, DIFFTEST_TO_REF);
     return;
@@ -99,9 +118,7 @@ void difftest_step() {
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
 
   if(!checkregs(&ref_r)){
-    // isa_reg_display();
     printf("difftest triggered!\n");
-    // printf("ref -> gpr[%u] = 0x%x  -------  cpu -> gpr[%u] = 0x%x\n", );
     #ifdef NPCCONFIG_ITRACE
 	itrace_init(top->rootp -> ysyx_24080032_riscv32i__DOT__NextPC, top->rootp -> ysyx_24080032_riscv32i__DOT__Instr);
 	display_inst();

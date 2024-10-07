@@ -1,11 +1,15 @@
 `timescale 1ns / 1ps
 
-module ysyx_24080032_regfile #(
-    parameter ADDR_WIDTH = 5,
+`define MSTATUS 12'h300
+`define MTVEC   12'h305
+`define MEPC    12'h341
+`define MCAUSE  12'h342
+
+module ysyx_24080032_csrfile #(
+    parameter ADDR_WIDTH = 2,
     parameter DATA_WIDTH = 32)
 (
     input                   clk,
-    input                   rst_n,
 
     output [DATA_WIDTH-1:0] busA,
     output [DATA_WIDTH-1:0] busB,

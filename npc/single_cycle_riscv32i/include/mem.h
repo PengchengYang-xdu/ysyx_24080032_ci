@@ -13,6 +13,7 @@
 #define REGNUM 32
 
 extern uint32_t gpr[REGNUM];
+extern uint32_t csr[4];
 extern const char *regs[];
 
 static inline bool in_pmem(paddr_t addr) {
