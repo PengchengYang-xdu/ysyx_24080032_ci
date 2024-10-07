@@ -20,11 +20,13 @@ wire [31:0] PC;
 
 wire     [2:0]  ExtOP;
 wire            RegWr;
+wire            CsrWr;
 wire            ALUAsrc;
 wire     [1:0]  ALUBsrc;
 wire     [3:0]  ALUctr;
 wire     [2:0]  Branch;
-wire            MemtoReg;
+wire     [1:0]  MemtoReg;
+wire            WcsrSrc;
 wire            MemWr;
 wire            MemRd;
 wire     [2:0]  MemOp;
@@ -33,13 +35,16 @@ ysyx_24080032_ctrgen u_ysyx_24080032_ctrgen(
     .op       (Instr[6:0]      ),
     .func3    (Instr[14:12]    ),
     .func7    (Instr[31:25]    ),
+    .func12   (Instr[31:20]    ),
     .ExtOP    (ExtOP           ),
     .RegWr    (RegWr           ),
+    .CsrWr    (CsrWr           ),
     .ALUAsrc  (ALUAsrc         ),
     .ALUBsrc  (ALUBsrc         ),
     .ALUctr   (ALUctr          ),
     .Branch   (Branch          ),
     .MemtoReg (MemtoReg        ),
+    .WcsrSrc  (WcsrSrc         ),
     .MemWr    (MemWr           ),
     .MemRd    (MemRd           ),
     .MemOp    (MemOp           )
@@ -71,6 +76,18 @@ ysyx_24080032_regfile #(.ADDR_WIDTH(5), .DATA_WIDTH(32)) u_ysyx_24080032_regfile
     .Rw       (Instr[11:7]     )
 );
 
+wire [31:0] Rcsr;
+wire [31:0] Wcsr;
+
+ysyx_24080032_csrfile #(.ADDR_WIDTH(12), .DATA_WIDTH(32)) u_ysyx_24080032_csrfile(
+    .clk      (clk             ),
+    .busA     (Rcsr            ),
+    .Ra       (Instr[31:20]    ),
+    .CsrWr    (CsrWr           ),
+    .busW     (Wcsr            ),
+    .Rw       (Instr[31:20]    )
+);
+
 ysyx_24080032_imem u_ysyx_24080032_imem(
     .clk      (clk             ),
     .addr     (NextPC          ),
@@ -99,7 +116,7 @@ ysyx_24080032_immgen u_ysyx_24080032_immgen(
 wire [31:0] dataa, datab;
 wire [31:0] Result;
 assign dataa = ALUAsrc ? PC : rs1;
-assign datab = ALUBsrc[1] ? 32'd4 : ALUBsrc[0] ? imm : rs2;
+assign datab = ALUBsrc[1] ? (ALUBsrc[0] ? Rcsr : 32'd4) : (ALUBsrc[0] ? imm : rs2);
 
 ysyx_24080032_alu u_ysyx_24080032_alu(
     .dataa   (dataa            ),
@@ -123,6 +140,7 @@ ysyx_24080032_dmem u_ysyx_24080032_dmem(
     .DataOut (DataOut          )
 );
 
-assign busW = MemtoReg ? DataOut : Result;
+assign busW = MemtoReg[1] ? Rcsr : MemtoReg[0] ? DataOut : Result;
+assign Wcsr = WcsrSrc ? rs1 : Result;
 
 endmodule

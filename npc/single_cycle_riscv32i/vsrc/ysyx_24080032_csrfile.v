@@ -6,33 +6,53 @@
 `define MCAUSE  12'h342
 
 module ysyx_24080032_csrfile #(
-    parameter ADDR_WIDTH = 2,
+    parameter ADDR_WIDTH = 12,
     parameter DATA_WIDTH = 32)
 (
     input                   clk,
 
     output [DATA_WIDTH-1:0] busA,
-    output [DATA_WIDTH-1:0] busB,
     input  [ADDR_WIDTH-1:0] Ra,
-    input  [ADDR_WIDTH-1:0] Rb,
 
-    input                   RegWr,
+    input                   CsrWr,
     input  [DATA_WIDTH-1:0] busW,
     input  [ADDR_WIDTH-1:0] Rw
 );
 
-reg [DATA_WIDTH-1:0] rf [2**ADDR_WIDTH-1:0];
+reg [DATA_WIDTH-1:0] rf [3:0];
 
-initial begin
-    rf[0] = {DATA_WIDTH{1'b0}};
+reg [1:0] Rw_addr;
+reg [1:0] Ra_addr;
+
+always @(*) begin
+    case(Ra)
+        `MSTATUS: Ra_addr = 2'b00;
+        `MTVEC:   Ra_addr = 2'b01;
+        `MEPC:    Ra_addr = 2'b10;
+        `MCAUSE:  Ra_addr = 2'b11;
+        default:  Ra_addr = 2'b00;
+    endcase
+end
+
+always @(*) begin
+    case(Rw)
+        `MSTATUS: Rw_addr = 2'b00;
+        `MTVEC:   Rw_addr = 2'b01;
+        `MEPC:    Rw_addr = 2'b10;
+        `MCAUSE:  Rw_addr = 2'b11;
+        default:  Rw_addr = 2'b00;
+    endcase
 end
 
 always @(negedge clk) begin
-    if(RegWr == 1'b1 && Rw != 0)/*0 register cannot touch*/
-        rf[Rw] <= busW;
+    if(CsrWr == 1'b1)
+        rf[Rw_addr] <= busW;
 end
 
-assign busA = rf[Ra];
-assign busB = rf[Rb];
+assign busA = rf[Ra_addr];
+
+initial begin
+    rf[0] = 32'h1800;
+end
 
 endmodule
