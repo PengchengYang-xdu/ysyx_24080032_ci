@@ -120,6 +120,5 @@ extern "C" void npc_trap(){
 	#endif
 	
 	statistic();
-	isa_reg_display();
 	exit(0);
 }

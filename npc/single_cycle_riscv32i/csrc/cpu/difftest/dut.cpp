@@ -67,6 +67,8 @@ bool static checkregs(struct CPU_state *ref_r){
   int i;
   if(ref_r -> pc != top->rootp -> ysyx_24080032_riscv32i__DOT__PC) flag = false;
   for(i = 0;i < REGNUM;i++){
+    // if(i == 5 ||i == 6 ||i == 7)
+    //   continue;
     if(ref_r -> gpr[i] != gpr[i])
       flag = false;
   }
