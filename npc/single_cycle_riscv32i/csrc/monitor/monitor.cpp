@@ -44,6 +44,7 @@ static long load_img() {
   long size = ftell(fp);
 
   Log("The image is %s, size = %ld", img_file, size);
+  fflush(stdout);
 
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(RESET_VECTOR), size, 1, fp);
