@@ -3,8 +3,11 @@
 module ysyx_24080032_pcgen(
     input             clk   ,
     input             rst_n ,
+    input      [31:0] mtvec ,
+    input      [31:0] mepc  ,
     input      [31:0] imm   ,
     input      [31:0] rs1   ,
+    input      [1:0]  irq   ,
     input             PCASrc,
     input             PCBSrc,
     output reg [31:0] PC    ,
@@ -22,6 +25,6 @@ wire [31:0] PCA, PCB;
 assign PCA = PCASrc ? imm : 32'd4;
 assign PCB = PCBSrc ? rs1 : PC;
 
-assign NextPC = rst_n ? PCA + PCB : 32'h80000000;
+assign NextPC = rst_n ? (irq[1] ? (irq[0] ? mtvec : mepc) : PCA + PCB) : 32'h80000000;
 
 endmodule

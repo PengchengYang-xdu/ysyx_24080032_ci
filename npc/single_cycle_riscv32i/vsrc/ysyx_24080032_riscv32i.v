@@ -30,6 +30,7 @@ wire            WcsrSrc;
 wire            MemWr;
 wire            MemRd;
 wire     [2:0]  MemOp;
+wire     [1:0]  irq;
 
 ysyx_24080032_ctrgen u_ysyx_24080032_ctrgen(
     .op       (Instr[6:0]      ),
@@ -47,7 +48,8 @@ ysyx_24080032_ctrgen u_ysyx_24080032_ctrgen(
     .WcsrSrc  (WcsrSrc         ),
     .MemWr    (MemWr           ),
     .MemRd    (MemRd           ),
-    .MemOp    (MemOp           )
+    .MemOp    (MemOp           ),
+    .irq      (irq             )
 );
 
 wire Less;
@@ -78,14 +80,19 @@ ysyx_24080032_regfile #(.ADDR_WIDTH(5), .DATA_WIDTH(32)) u_ysyx_24080032_regfile
 
 wire [31:0] Rcsr;
 wire [31:0] Wcsr;
+wire [31:0] mtvec, mepc;
 
 ysyx_24080032_csrfile #(.ADDR_WIDTH(12), .DATA_WIDTH(32)) u_ysyx_24080032_csrfile(
     .clk      (clk             ),
+    .irq      (irq             ),
+    .PC       (PC              ),
     .busA     (Rcsr            ),
     .Ra       (Instr[31:20]    ),
     .CsrWr    (CsrWr           ),
     .busW     (Wcsr            ),
-    .Rw       (Instr[31:20]    )
+    .Rw       (Instr[31:20]    ),
+    .mtvec    (mtvec           ),
+    .mepc     (mepc            )
 );
 
 ysyx_24080032_imem u_ysyx_24080032_imem(
@@ -99,8 +106,11 @@ wire [31:0] imm;
 ysyx_24080032_pcgen u_ysyx_24080032_pcgen(
     .clk      (clk             ),
     .rst_n    (rst_n           ),
+    .mtvec    (mtvec           ),
+    .mepc     (mepc            ),
     .imm      (imm             ),
     .rs1      (rs1             ),
+    .irq      (irq             ),
     .PCASrc   (PCASrc          ),
     .PCBSrc   (PCBSrc          ),
     .PC       (PC              ),

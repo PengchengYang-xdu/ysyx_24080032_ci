@@ -11,12 +11,18 @@ module ysyx_24080032_csrfile #(
 (
     input                   clk,
 
+    input  [1:0]            irq,
+    input  [31:0]           PC,
+
     output [DATA_WIDTH-1:0] busA,
     input  [ADDR_WIDTH-1:0] Ra,
 
     input                   CsrWr,
     input  [DATA_WIDTH-1:0] busW,
-    input  [ADDR_WIDTH-1:0] Rw
+    input  [ADDR_WIDTH-1:0] Rw,
+
+    output [DATA_WIDTH-1:0] mtvec,
+    output [DATA_WIDTH-1:0] mepc
 );
 
 reg [DATA_WIDTH-1:0] rf [3:0];
@@ -47,6 +53,10 @@ end
 always @(negedge clk) begin
     if(CsrWr == 1'b1)
         rf[Rw_addr] <= busW;
+    if(irq[1]) begin
+        rf[2] <= PC;
+        rf[3] <= 32'h0000000b;
+    end
 end
 
 assign busA = rf[Ra_addr];
@@ -54,5 +64,8 @@ assign busA = rf[Ra_addr];
 initial begin
     rf[0] = 32'h1800;
 end
+
+assign mtvec = rf[1];
+assign mepc  = rf[2];
 
 endmodule
