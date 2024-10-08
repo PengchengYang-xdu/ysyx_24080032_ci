@@ -69,6 +69,7 @@ extern "C" void paddr_write(int addr, int data) {
     if(in_pmem(addr)){
         if(addr == SERIAL_PORT){
             is_skip_diff = true;
+            fflush(stdout);//fuck this code! I'v been fixing this bug for a longlong time!
             putchar((char)data);
             return;
         }
