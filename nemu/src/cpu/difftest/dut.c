@@ -114,6 +114,16 @@ static void checkregs(CPU_state *ref, vaddr_t pc) {
     printf("ref-csr-mstatus --->  0x%-11x\n",ref->csr[MSTATUS]);
     printf("ref-csr-mcause  --->  0x%-11x\n",ref->csr[MCAUSE]);
   }
+  printf("\n");
+    printf("csr-mtvec   --->  0x%-11x\n",cpu.csr[MTVEC]);
+    printf("csr-mepc    --->  0x%-11x\n",cpu.csr[MEPC]);
+    printf("csr-mstatus --->  0x%-11x\n",cpu.csr[MSTATUS]);
+    printf("csr-mcause  --->  0x%-11x\n",cpu.csr[MCAUSE]);
+    printf("\n");
+    printf("ref-csr-mtvec   --->  0x%-11x\n",ref->csr[MTVEC]);
+    printf("ref-csr-mepc    --->  0x%-11x\n",ref->csr[MEPC]);
+    printf("ref-csr-mstatus --->  0x%-11x\n",ref->csr[MSTATUS]);
+    printf("ref-csr-mcause  --->  0x%-11x\n",ref->csr[MCAUSE]);
 }
 
 void difftest_step(vaddr_t pc, vaddr_t npc) {
