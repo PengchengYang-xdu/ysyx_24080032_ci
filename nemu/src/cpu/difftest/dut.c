@@ -114,10 +114,11 @@ static void checkregs(CPU_state *ref, vaddr_t pc) {
     printf("ref-csr-mstatus --->  0x%-11x\n",ref->csr[MSTATUS]);
     printf("ref-csr-mcause  --->  0x%-11x\n",ref->csr[MCAUSE]);
   }
-  printf("csr-mcause  --->  0x%-11x\n",cpu.csr[MCAUSE]);
-  printf("\n");
-  printf("ref-csr-mcause  --->  0x%-11x\n",ref->csr[MCAUSE]);
-  assert(cpu.csr[MCAUSE] != 0xb);
+  if(cpu.csr[MCAUSE] == 0xb){
+    printf("csr-mcause  --->  0x%-11x\n",cpu.csr[MCAUSE]);
+    printf("\n");
+    printf("ref-csr-mcause  --->  0x%-11x\n",ref->csr[MCAUSE]);
+  }
 }
 
 void difftest_step(vaddr_t pc, vaddr_t npc) {
