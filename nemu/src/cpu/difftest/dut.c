@@ -117,7 +117,7 @@ static void checkregs(CPU_state *ref, vaddr_t pc) {
   // printf("csr-mcause  --->  0x%-11x\n",cpu.csr[MCAUSE]);
   // printf("\n");
   // printf("ref-csr-mcause  --->  0x%-11x\n",ref->csr[MCAUSE]);
-  assert(cpu.csr[MCAUSE] == 0xb);
+  assert(cpu.csr[MCAUSE] == 0x0);
 }
 
 void difftest_step(vaddr_t pc, vaddr_t npc) {
