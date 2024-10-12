@@ -70,7 +70,7 @@ bool static checkregs(struct CPU_state *ref_r){
     if(ref_r -> gpr[i] != gpr[i])
       flag = false;
   }
-  for(i = 1;i < 4;i++){
+  for(i = 0;i < 4;i++){
     if(ref_r -> csr[i] != csr[i])
       flag = false;
   }
