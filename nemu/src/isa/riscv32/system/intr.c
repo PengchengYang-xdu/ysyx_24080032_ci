@@ -26,8 +26,8 @@ word_t isa_raise_intr(word_t NO, vaddr_t epc) {
   csr(MSTATUS) &= ~(1<<3);
   csr(MSTATUS) |= ((1<<11)+(1<<12));
 
-  csr(MCAUSE) = NO;
   csr(MEPC) = epc;
+  csr(MCAUSE) = NO;
   return csr(MTVEC);
 }
 
