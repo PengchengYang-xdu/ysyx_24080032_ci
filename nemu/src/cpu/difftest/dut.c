@@ -114,7 +114,7 @@ static void checkregs(CPU_state *ref, vaddr_t pc) {
     printf("ref-csr-mstatus --->  0x%-11x\n",ref->csr[MSTATUS]);
     printf("ref-csr-mcause  --->  0x%-11x\n",ref->csr[MCAUSE]);
   }
-  if(cpu.csr[MCAUSE] == 0xb){
+  if(cpu.csr[MCAUSE] == 0x0){
     printf("csr-mcause  --->  0x%-11x\n",cpu.csr[MCAUSE]);
     printf("\n");
     printf("ref-csr-mcause  --->  0x%-11x\n",ref->csr[MCAUSE]);
