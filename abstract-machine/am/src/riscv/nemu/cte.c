@@ -7,6 +7,7 @@ static Context* (*user_handler)(Event, Context*) = NULL;
 Context* __am_irq_handle(Context *c) {
   if (user_handler) {
     Event ev = {0};
+    printf("mcause = 0x%x\n", c->mcause);
     switch (c->mcause) {
       case 11:
         ev.event = EVENT_YIELD;
@@ -48,7 +49,7 @@ Context *kcontext(Area kstack, void (*entry)(void *), void *arg) {
 
 void yield() {
 #ifdef __riscv_e
-  asm volatile("li a5, 11; ecall");
+  asm volatile("li a5, -1; ecall");
 #else
   asm volatile("li a7, 11; ecall");
 #endif
