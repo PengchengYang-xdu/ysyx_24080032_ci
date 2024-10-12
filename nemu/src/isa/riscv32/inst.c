@@ -24,7 +24,13 @@
 #define Mr vaddr_read
 #define Mw vaddr_write
 
-#define MRET() s->dnpc = CSR(MEPC); 
+#define MRET() { \
+  s->dnpc = CSR(MEPC); \
+  CSR(MSTATUS) &= ~(1<<3); \
+  CSR(MSTATUS) |= ((CSR(MSTATUS)&(1<<7))>>4); \
+  CSR(MSTATUS) |= (1<<7); \
+  CSR(MSTATUS) &= ~((1<<11)+(1<<12));\
+}
 
 enum {
   TYPE_I, TYPE_U, TYPE_S, TYPE_J, TYPE_R, TYPE_B,
