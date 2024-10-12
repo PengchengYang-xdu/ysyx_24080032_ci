@@ -95,11 +95,6 @@ bool static checkregs(struct CPU_state *ref_r){
     printf("cpu - mcause = %-#11x\n", csr[3]);
     printf("\n");
   }
-  if(csr[3] == 0xb && ref_r -> csr[3] == 0xb){
-    printf("ref - mcause = %-#11x\n", ref_r -> csr[3]);
-    printf("\n");
-    printf("cpu - mcause = %-#11x\n", csr[3]);
-  }
   return flag;
 }
 
