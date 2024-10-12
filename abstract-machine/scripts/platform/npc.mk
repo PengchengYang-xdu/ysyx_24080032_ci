@@ -20,7 +20,7 @@ NPCFLAGS += -l $(shell dirname $(IMAGE).elf)/npc-log.txt
 NPCFLAGS += -b
 NPCFLAGS += -e $(IMAGE).elf
 # NPCFLAGS += -d /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i/ref/riscv32-nemu-interpreter-so_20241012
-NPCFLAGS += -d /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i_refactor/ref/riscv32-nemu-interpreter-so
+NPCFLAGS += -d /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i_refactor/ref/riscv32-nemu-interpreter-so_20241012
 
 
 .PHONY: $(AM_HOME)/am/src/riscv/npc/trm.c
