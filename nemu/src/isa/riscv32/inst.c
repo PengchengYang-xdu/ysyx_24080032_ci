@@ -26,10 +26,6 @@
 
 #define MRET() { \
   s->dnpc = CSR(MEPC); \
-  CSR(MSTATUS) &= ~(1<<3); \
-  CSR(MSTATUS) |= ((CSR(MSTATUS)&(1<<7))>>4); \
-  CSR(MSTATUS) |= (1<<7); \
-  CSR(MSTATUS) &= ~((1<<11)+(1<<12));\
 }
 
 enum {
