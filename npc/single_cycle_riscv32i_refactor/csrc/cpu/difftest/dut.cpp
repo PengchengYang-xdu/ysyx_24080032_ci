@@ -57,7 +57,8 @@ void init_difftest(char *ref_so_file, long img_size) {
   dut_r.pc = 0x80000000;
   for(int i = 0;i < REGNUM;i++)
     dut_r.gpr[i] = gpr[i];
-  for(int i = 0;i < 4;i++)
+  dut_r.csr[0] = 0x1800;
+  for(int i = 1;i < 4;i++)
     dut_r.csr[i] = csr[i];
   ref_difftest_regcpy(&dut_r, DIFFTEST_TO_REF);
 }
