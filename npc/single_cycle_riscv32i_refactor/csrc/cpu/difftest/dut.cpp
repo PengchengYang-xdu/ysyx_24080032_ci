@@ -71,10 +71,10 @@ bool static checkregs(struct CPU_state *ref_r){
     if(ref_r -> gpr[i] != gpr[i])
       flag = false;
   }
-  // for(i = 0;i < 4;i++){
-  //   if(ref_r -> csr[i] != csr[i])
-  //     flag = false;
-  // }
+  for(i = 0;i < 4;i++){
+    if(ref_r -> csr[i] != csr[i])
+      flag = false;
+  }
   if(flag == false){
     printf("ref - pc = 0x%x\n",ref_r -> pc);
     printf("ref - pc = 0x%x\n",top->rootp -> ysyx_24080032_riscv32i__DOT__PC_if2id);
