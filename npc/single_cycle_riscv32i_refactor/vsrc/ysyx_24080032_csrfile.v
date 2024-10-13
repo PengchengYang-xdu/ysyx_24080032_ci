@@ -53,7 +53,7 @@ end
 always @(posedge clk) begin
     if(CsrWr == 1'b1)
         rf[Rw_addr] <= busW;
-    if(irq[1]) begin
+    if(irq[0]) begin
         rf[2] <= PC;
         rf[3] <= 32'h0000000b;
     end
