@@ -10,21 +10,6 @@ module ysyx_24080032_dmem(
     output reg [31:0] DataOut
 );
 
-// reg [31:0] DMEM [255:0];
-
-// wire [31:0] tempout;
-// reg [31:0] tempin;
-
-// wire [31:0] dataout_temp;
-
-// assign dataout_temp = RdEn ? DMEM[Addr[31:2]] : 0;
-// assign tempout = WrEn ? DMEM[Addr[31:2]] : 0;
-
-// always@(posedge clk)begin
-//     if(WrEn)
-//         DMEM[Addr[31:2]] <= tempin;
-// end
-
 import "DPI-C" function int paddr_read(int addr, int is_pc_read, int WriteRd);
 import "DPI-C" function void paddr_write(int addr, int data);
 
