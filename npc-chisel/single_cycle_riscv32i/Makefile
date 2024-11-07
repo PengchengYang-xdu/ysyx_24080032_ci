@@ -1,17 +1,18 @@
-BUILD_DIR = ./vsrc
+BUILD_DIR = ./build
 
 export PATH := $(PATH):$(abspath ./utils)
+PRJ = playground
 
 test:
-	mill -i __.test
+	mill -i $(PRJ)
 
 verilog:
 	$(call git_commit, "generate verilog")
 	mkdir -p $(BUILD_DIR)
-	mill -i __.test.runMain Elaborate --split-verilog -td $(BUILD_DIR)
+	mill -i $(PRJ).runMain Elaborate --split-verilog -td $(BUILD_DIR)
 
 help:
-	mill -i __.test.runMain Elaborate --help
+	mill -i $(PRJ).runMain Elaborate --help
 
 compile:
 	mill -i __.compile
