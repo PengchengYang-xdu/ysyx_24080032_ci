@@ -19,6 +19,9 @@ void difftest_step();
 void single_cycle(){
     top->clk = 0;
     top->eval();
+	printf("rstn = %d\n", top->rst_n);
+	printf("clk = %d\n", top->clk);
+	printf("pc = 0x%x\n", top->rootp -> ysyx_24080032_riscv32i__DOT__PC_if2id);
 	#ifdef NPCCONFIG_DUMPWAVE
 	dump_wave();
 	#endif
@@ -30,6 +33,7 @@ void single_cycle(){
 
 	top->clk = 1;
     top->eval();
+	printf("clk = %d\n", top->clk);
 	#ifdef NPCCONFIG_DUMPWAVE
 	dump_wave();
 	#endif

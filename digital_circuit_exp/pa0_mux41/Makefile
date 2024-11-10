@@ -25,6 +25,7 @@ $(BIN):  $(CSRC) $(VSRC) $(NVBOARD_ARCHIVE)
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator $(VERIARG) \
 		-top $(TOPNAME) \
+		--trace \
 		$^ \
 		$(addprefix -LDFLAGS , $(LDFLAGS)) \
 		$(addprefix -CFLAGS , $(CFLAGS)) \
