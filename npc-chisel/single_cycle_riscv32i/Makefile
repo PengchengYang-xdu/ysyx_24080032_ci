@@ -9,7 +9,7 @@ BUILD_DIR = ./build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
 BIN = $(BUILD_DIR)/$(TOPNAME)
 
-VERIARG = --cc -MMD --build 
+VERIARG = --cc -MMD --build --public-flat-rw
 
 LDFLAGS += -lSDL2 -lSDL2_image $(shell llvm-config --libs) -lreadline -ldl -pie
 
@@ -26,6 +26,7 @@ $(BIN):  $(CSRC) $(VSRC)
 		-top $(TOPNAME) \
 		--trace \
 		--timing \
+		--timescale 1ns/1ps \
 		$^ \
 		$(addprefix -LDFLAGS , $(LDFLAGS)) \
 		$(addprefix -CFLAGS , $(CFLAGS)) \
@@ -57,7 +58,7 @@ CFLAGS += $(INCFLAGS) -DTOP_NAME="\"V$(TOPNAME)\""
 CFLAGS += -DNPCCONFIG_ITRACE 
 # CFLAGS += -DNPCCONFIG_FTRACE 
 # CFLAGS += -DNPCCONFIG_MTRACE 
-# CFLAGS += -DNPCCONFIG_DUMPWAVE 
+CFLAGS += -DNPCCONFIG_DUMPWAVE 
 # CFLAGS += -DNPCCONFIG_WATCHPOINT 
 CFLAGS += -DNPCCONFIG_DIFFTEST 
 
@@ -85,7 +86,7 @@ test:
 verilog:
 	$(call git_commit, "generate verilog")
 	mkdir -p $(GEN_DIR)
-	mill -i $(PRJ).runMain Elaborate --target-dir $(GEN_DIR)
+	mill -i $(PRJ).runMain Elaborate --split-verilog --target-dir $(GEN_DIR)
 
 clean_chisel:
 	-rm -rf $(GEN_DIR)

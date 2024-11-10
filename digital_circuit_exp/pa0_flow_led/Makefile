@@ -1,8 +1,6 @@
 TOPNAME = top
 VSRC = $(shell find $(abspath ./vsrc) -name "*.v")
 CSRC = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
-SRC_AUTO_BIND = $(abspath $(BUILD_DIR)/auto_bind.cpp)
-CSRC += $(SRC_AUTO_BIND)
 CONSTR = constr/top.nxdc
 
 BUILD_DIR = ./build
@@ -20,7 +18,7 @@ CFLAGS += $(INCFLAGS)  -DTOP_NAME="\"V$(TOPNAME)\""
 include $(NVBOARD_HOME)/scripts/nvboard.mk
 $(shell mkdir -p $(BUILD_DIR))
 
-$(BIN):  $(CSRC) $(VSRC) $(NVBOARD_ARCHIVE)
+$(BIN):  $(CSRC) $(VSRC)
 	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
 	verilator $(VERIARG) \
 		-top $(TOPNAME) \
@@ -29,8 +27,6 @@ $(BIN):  $(CSRC) $(VSRC) $(NVBOARD_ARCHIVE)
 		$(addprefix -CFLAGS , $(CFLAGS)) \
 		--Mdir $(OBJ_DIR)  --exe -o $(abspath $(BIN))
 
-$(SRC_AUTO_BIND): $(CONSTR) 
-	python3 $(NVBOARD_HOME)/scripts/auto_pin_bind.py  $^ $@
 
 run: $(BIN)
 	@$^
