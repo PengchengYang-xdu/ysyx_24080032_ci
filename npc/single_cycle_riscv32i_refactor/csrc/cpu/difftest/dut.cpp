@@ -127,7 +127,7 @@ void difftest_step() {
 	#endif
     #ifdef NPCCONFIG_DUMPWAVE
 	dump_wave();
-	close_wave();
+	close_wave(2);
 	#endif
     exit(-1);
   }

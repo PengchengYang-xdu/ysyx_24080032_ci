@@ -19,9 +19,6 @@ void difftest_step();
 void single_cycle(){
     top->clk = 0;
     top->eval();
-	printf("rstn = %d\n", top->rst_n);
-	printf("clk = %d\n", top->clk);
-	printf("pc = 0x%x\n", top->rootp -> ysyx_24080032_riscv32i__DOT__PC_if2id);
 	#ifdef NPCCONFIG_DUMPWAVE
 	dump_wave();
 	#endif
@@ -33,7 +30,6 @@ void single_cycle(){
 
 	top->clk = 1;
     top->eval();
-	printf("clk = %d\n", top->clk);
 	#ifdef NPCCONFIG_DUMPWAVE
 	dump_wave();
 	#endif
@@ -109,7 +105,7 @@ void cpu_exec(uint32_t n){
 extern "C" void npc_trap(){
 	#ifdef NPCCONFIG_DUMPWAVE
 	dump_wave();
-	close_wave();
+	close_wave(1);
 	#endif
 	bool success;
 	int code = isa_reg_str2val("a0",&success);

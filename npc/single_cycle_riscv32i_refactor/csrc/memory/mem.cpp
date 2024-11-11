@@ -35,6 +35,8 @@ static void out_of_bound(paddr_t addr) {
 }
 
 extern "C" int paddr_read(int addr, int is_pc_read, int WriteRd) {
+    // if(!is_pc_read)
+        // printf("read! addr = 0x%x\n", addr);
     #ifdef NPCCONFIG_MTRACE
     if(!is_pc_read && !WriteRd)
         display_pread(addr);
@@ -56,11 +58,13 @@ extern "C" int paddr_read(int addr, int is_pc_read, int WriteRd) {
         else
             return pmem_read(addr);
     }
-    // out_of_bound(addr);
-    #ifdef NPCCONFIG_DUMPWAVE
-	dump_wave();
-	close_wave();
-	#endif
+    // if(addr != 0x00000000){
+        // out_of_bound(addr);
+        // #ifdef NPCCONFIG_DUMPWAVE
+	    // dump_wave();
+	    // close_wave(3);
+	    // #endif
+    // }
     return 0;
 }
 
@@ -83,6 +87,6 @@ extern "C" void paddr_write(int addr, int data) {
     out_of_bound(addr);
     #ifdef NPCCONFIG_DUMPWAVE
 	dump_wave();
-	close_wave();
+	close_wave(4);
 	#endif
 }
