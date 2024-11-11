@@ -16,5 +16,5 @@ int main(int argc, char *argv[]) {
   init_wave();
   reset(10);
   sdb_mainloop();
-  close_wave();
+  close_wave(0);
 }

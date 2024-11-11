@@ -20,8 +20,8 @@ NPCFLAGS += -l $(shell dirname $(IMAGE).elf)/npc-log.txt
 NPCFLAGS += -b
 NPCFLAGS += -e $(IMAGE).elf
 
-NPCFLAGS += -d /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i_refactor/ref/riscv32-nemu-interpreter-so_20241012
-# NPCFLAGS += -d /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/ref/riscv32-nemu-interpreter-so_20241012
+# NPCFLAGS += -d /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i_refactor/ref/riscv32-nemu-interpreter-so_20241012
+NPCFLAGS += -d /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/ref/riscv32-nemu-interpreter-so_20241012
 
 
 .PHONY: $(AM_HOME)/am/src/riscv/npc/trm.c
@@ -31,7 +31,7 @@ image: $(IMAGE).elf
 	@echo + OBJCOPY "->" $(IMAGE_REL).bin
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
 
-run: image
-	$(MAKE) -C $(NPC_HOME)/single_cycle_riscv32i_refactor run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
 # run: image
-# 	$(MAKE) -C $(NPC_CHISEL_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
+# 	$(MAKE) -C $(NPC_HOME)/single_cycle_riscv32i_refactor run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
+run: image
+	$(MAKE) -C $(NPC_CHISEL_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
