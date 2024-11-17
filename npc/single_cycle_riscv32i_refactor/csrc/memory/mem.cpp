@@ -41,6 +41,8 @@ extern "C" int paddr_read(int addr, int is_pc_read, int WriteRd) {
     if(!is_pc_read && !WriteRd)
         display_pread(addr);
     #endif
+    // if(addr == RTC_ADDR)
+    //     printf("addr = 0x%x\n", addr);
     if(in_pmem(addr)){
         if(addr == RTC_ADDR || addr == RTC_ADDR + 4 || addr == SERIAL_PORT){
             is_skip_diff = true;
