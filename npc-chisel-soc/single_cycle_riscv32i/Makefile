@@ -1,18 +1,21 @@
 ################################################################        VERILATOR        ################################################################
 ################################        SRC        ################################
-TOPNAME = NPC
+TOPNAME = ysyxSoCFull
 VSRC = $(shell find $(abspath ./vsrc) -name "*.sv" -or -name "*.v")
 CSRC = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
 IMG ?= program.bin #image
 
 ################################        DIR        ################################
+SOC_DIR = /home/ypc/Desktop/ysyx/ysyx-workbench/ysyxSoC
 BUILD_DIR = ./build
 OBJ_DIR = $(BUILD_DIR)/obj_dir
 BIN = $(BUILD_DIR)/$(TOPNAME)
-PRJ_PATH = /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i
+PRJ_PATH = /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i
 
 ################################        FLAG        ################################
-VERIARG = --cc -MMD --build --public-flat-rw -top $(TOPNAME) --trace --no-timing --timescale "1ns/1ns"
+VSRC += $(shell find $(abspath $(SOC_DIR)/build) -name "*.sv" -or -name "*.v")
+VSRC += $(shell find $(abspath $(SOC_DIR)/perip) -name "*.sv" -or -name "*.v")
+VERIARG = --cc -MMD --build --public-flat-rw -top $(TOPNAME) --trace --no-timing --timescale "1ns/1ns" -I$(SOC_DIR)/perip/uart16550/rtl -I$(SOC_DIR)/perip/spi/rtl -O3 -j 8 --autoflush
 LDFLAGS += -lSDL2 -lSDL2_image $(shell llvm-config --libs) -lreadline -ldl -pie
 INC_PATH += $(PRJ_PATH)/include
 INCFLAGS = $(addprefix -I, $(INC_PATH))
@@ -53,6 +56,8 @@ verilog:
 	mkdir -p $(GEN_DIR)
 	mill -i $(PRJ).runMain Elaborate \
 	$(MILLFLAG)
+
+IMG_CHAR = /home/ypc/Desktop/ysyx/ysyx-workbench/ysyxSoC/char-test/build/char-test.bin
 
 run: $(BIN)
 	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG) 
