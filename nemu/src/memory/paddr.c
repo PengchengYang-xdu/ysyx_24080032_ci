@@ -12,7 +12,8 @@
 *
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
-
+#include <ysyxsoc.h>
+#include "../ysyxsoc/include/ysyxsoc_mem.h"
 #include <memory/host.h>
 #include <memory/paddr.h>
 #include <device/mmio.h>
@@ -27,7 +28,14 @@ static uint8_t *pmem = NULL;
 static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
 #endif
 
-uint8_t* guest_to_host(paddr_t paddr) { return pmem + paddr - CONFIG_MBASE; }
+uint8_t* guest_to_host(paddr_t paddr) {
+    uint8_t* ptr = NULL;
+    if(in_pmem(paddr))//change menu base to 0x20000000 and size to 0xfff, in_pmem === in_mrom
+        ptr = pmem + paddr - CONFIG_MBASE;
+    else if(in_sram(paddr))//write and read sram
+        ptr = sram + paddr - SRAM_BASE;
+    return ptr;
+}
 paddr_t host_to_guest(uint8_t *haddr) { return haddr - pmem + CONFIG_MBASE; }
 
 static word_t pmem_read(paddr_t addr, int len) {
