@@ -118,7 +118,7 @@ void init_monitor(int argc, char *argv[]) {
 
   /* Initialize memory. */
   init_mem();
-  init_ysyxsoc_mem();
+  init_ysyxsoc_mem();//attention: have to init_ysyxsoc_mem() in ref.c difftest_init(), otherwise nemu as ref cannot work in ysyxsoc
 
   /* Initialize devices. */
   IFDEF(CONFIG_DEVICE, init_device());
