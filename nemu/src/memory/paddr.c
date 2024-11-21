@@ -32,8 +32,8 @@ uint8_t* guest_to_host(paddr_t paddr) {
     uint8_t* ptr = NULL;
     if(in_pmem(paddr))//change menu base to 0x20000000 and size to 0xfff, in_pmem === in_mrom
         ptr = pmem + paddr - CONFIG_MBASE;
-    else if(in_sram(paddr))//write and read sram
-        ptr = sram + paddr - SRAM_BASE;
+    // else if(in_sram(paddr))//write and read sram
+        // ptr = sram + paddr - SRAM_BASE;
     return ptr;
 }
 paddr_t host_to_guest(uint8_t *haddr) { return haddr - pmem + CONFIG_MBASE; }
@@ -64,7 +64,7 @@ void init_mem() {
 word_t paddr_read(paddr_t addr, int len) {
   IFDEF(CONFIG_MTRACE, if(addr >= CONFIG_MTRACE_START && addr <= CONFIG_MTRACE_END) display_pread(addr, len));
   if (likely(in_pmem(addr))) return pmem_read(addr, len);
-  if (in_sram(addr)) return pmem_read(addr, len);
+//   if (in_sram(addr)) return pmem_read(addr, len);
   IFDEF(CONFIG_DEVICE, return mmio_read(addr, len));
   out_of_bound(addr);
   return 0;
@@ -73,7 +73,7 @@ word_t paddr_read(paddr_t addr, int len) {
 void paddr_write(paddr_t addr, int len, word_t data) {
   IFDEF(CONFIG_MTRACE, if(addr >= CONFIG_MTRACE_START && addr <= CONFIG_MTRACE_END) display_pwrite(addr, len, data));
   if (likely(in_pmem(addr))) { pmem_write(addr, len, data); return; }
-  if (in_sram(addr)) { pmem_write(addr, len, data); return; }
+//   if (in_sram(addr)) { pmem_write(addr, len, data); return; }
   IFDEF(CONFIG_DEVICE, mmio_write(addr, len, data); return);
   out_of_bound(addr);
 }
