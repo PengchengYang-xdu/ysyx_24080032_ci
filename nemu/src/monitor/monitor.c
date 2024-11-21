@@ -15,6 +15,7 @@
 
 #include <isa.h>
 #include <memory/paddr.h>
+#include <ysyxsoc.h>
 
 void init_rand();
 void init_log(const char *log_file);
@@ -117,6 +118,7 @@ void init_monitor(int argc, char *argv[]) {
 
   /* Initialize memory. */
   init_mem();
+  init_ysyxsoc_mem();
 
   /* Initialize devices. */
   IFDEF(CONFIG_DEVICE, init_device());
