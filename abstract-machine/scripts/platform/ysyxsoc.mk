@@ -34,7 +34,7 @@ image: $(IMAGE).elf
 
 # NPCFLAGS += -d /home/ypc/Desktop/ysyx/ysyx-workbench/npc/single_cycle_riscv32i_refactor/ref/riscv32-nemu-interpreter-so_20241012
 # NPCFLAGS += -d /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/ref/riscv32-nemu-interpreter-so_20241012
-NPCFLAGS += -d /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/ref/riscv32-nemu-interpreter-so_20241012
+NPCFLAGS += -d /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/ref/riscv32-nemu-interpreter-so_mrom_sram
 
 
 # run: image
