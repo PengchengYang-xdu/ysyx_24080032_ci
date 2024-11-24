@@ -1,6 +1,8 @@
 #include <am.h>
 #include <klib-macros.h>
 #include "npc.h"
+#include <bootloader.h>
+#include "ysyxsoc.h"
 
 extern char _heap_start;
 int main(const char *args);
@@ -17,7 +19,7 @@ Area heap = RANGE(&_heap_start, PMEM_END);
 static const char mainargs[] = MAINARGS;
 
 void putch(char ch) {
-  outb(SERIAL_PORT, ch);
+  *(volatile char *)(UART_BASE + UART_TX) = ch;
 }
 
 void halt(int code) {
@@ -26,6 +28,8 @@ void halt(int code) {
 }
 
 void _trm_init() {
+  bootloader();
+  verify();
   int ret = main(mainargs);
   halt(ret);
 }
