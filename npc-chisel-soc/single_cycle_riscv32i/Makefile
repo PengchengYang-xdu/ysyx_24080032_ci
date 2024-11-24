@@ -60,7 +60,7 @@ verilog:
 IMG_CHAR = /home/ypc/Desktop/ysyx/ysyx-workbench/ysyxSoC/char-test/build/char-test.bin
 
 run: $(BIN)
-	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG) 
+	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG_CHAR) 
 
 wave: 
 	gtkwave *.vcd
