@@ -6,8 +6,8 @@ PHDRS {
 }
 
 MEMORY {
-    mrom : ORIGIN = 0x20000000, LENGTH = 256M
-    sram : ORIGIN = 0x0f000000, LENGTH = 16M
+    mrom : ORIGIN = 0x20000000, LENGTH = 256M /*expand from 4K to 256M*/
+    sram : ORIGIN = 0x0f000000, LENGTH = 16M /*expand from 8K to 16M*/
 }
 
 SECTIONS {
