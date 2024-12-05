@@ -148,7 +148,7 @@ clean_nv:
 # CFLAGS += -DNPCCONFIG_DUMPWAVE 
 # CFLAGS += -DNPCCONFIG_WATCHPOINT 
 # CFLAGS += -DNPCCONFIG_DIFFTEST 
-# CFLAGS += -DNV_BOARD 
+
 
 
 # if you want to just run the ysyxsoc 
@@ -156,5 +156,6 @@ run: $(BIN)
 	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG) 
 
 #if you want to run the nvboard
+# CFLAGS += -DNV_BOARD 
 # run: $(NV_BIN)
 # 	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(NV_BIN) $(ARGS) $(IMG)
