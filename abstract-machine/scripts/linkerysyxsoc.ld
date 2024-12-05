@@ -43,7 +43,7 @@ SECTIONS {
         _text_start = .;
         *(.text*)
         _text_end = .;
-    } > psram AT > flash : text
+    } > sdram AT > flash : text
 
 
 
@@ -55,7 +55,7 @@ SECTIONS {
         *(.rodata*)
         *(.srodata*)
         _rodata_end = .;
-    } > psram AT > flash
+    } > sdram AT > flash
 
 /*data.extra*/
 
@@ -67,7 +67,7 @@ SECTIONS {
         *(.data*)
         *(.sdata*)
         _data_end = .;
-    } > psram AT > flash : data
+    } > sdram AT > flash : data
 
 /*bss.extra*/
 
@@ -80,7 +80,7 @@ SECTIONS {
         *(.sbss*)
         *(.scommon)
         _bss_end = .;
-    } > psram AT > flash
+    } > sdram AT > flash
 
 
 
