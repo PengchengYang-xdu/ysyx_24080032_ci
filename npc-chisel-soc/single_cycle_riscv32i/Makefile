@@ -152,7 +152,7 @@ clean_nv:
 
 
 # if you want to just run the ysyxsoc 
-run: $(BIN)
+run: 
 	rm -rf $(BUILD_DIR)
 	rm -rf *.vcd
 	rm -rf $(GEN_DIR)
@@ -160,6 +160,7 @@ run: $(BIN)
 	mkdir -p $(GEN_DIR)
 	mill -i $(PRJ).runMain Elaborate \
 	$(MILLFLAG)
+	$(BIN)
 	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG) 
 
 #if you want to run the nvboard
