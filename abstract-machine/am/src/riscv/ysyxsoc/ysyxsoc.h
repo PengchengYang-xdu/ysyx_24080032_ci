@@ -16,3 +16,7 @@
 #define UART_LS_TFE	5	// Transmit FIFO is empty
 #define UART_LS_TE	6	// Transmitter Empty indicator
 #define UART_LS_EI	7	// Error indicator
+
+
+
+
