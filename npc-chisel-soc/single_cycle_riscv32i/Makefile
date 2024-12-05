@@ -152,15 +152,7 @@ clean_nv:
 
 
 # if you want to just run the ysyxsoc 
-run: 
-	rm -rf $(BUILD_DIR)
-	rm -rf *.vcd
-	rm -rf $(GEN_DIR)
-	$(call git_commit, "generate verilog")
-	mkdir -p $(GEN_DIR)
-	mill -i $(PRJ).runMain Elaborate \
-	$(MILLFLAG)
-	$(BIN)
+run: $(BIN)
 	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG) 
 
 #if you want to run the nvboard
