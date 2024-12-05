@@ -148,7 +148,7 @@ clean_nv:
 # CFLAGS += -DNPCCONFIG_DUMPWAVE 
 # CFLAGS += -DNPCCONFIG_WATCHPOINT 
 # CFLAGS += -DNPCCONFIG_DIFFTEST 
-CFLAGS += -DNV_BOARD 
+# CFLAGS += -DNV_BOARD 
 
 
 # if you want to just run the ysyxsoc 
