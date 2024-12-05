@@ -1,3 +1,5 @@
+-include /home/ypc/Desktop/ysyx/ysyx-workbench/Makefile
+
 ################################################################        VERILATOR        ################################################################
 ################################        SRC        ################################
 TOPNAME = ysyxSoCFull
@@ -20,13 +22,6 @@ LDFLAGS += -lSDL2 -lSDL2_image $(shell llvm-config --libs) -lreadline -ldl -pie
 INC_PATH += $(PRJ_PATH)/include
 INCFLAGS = $(addprefix -I, $(INC_PATH))
 CFLAGS += $(INCFLAGS) -DTOP_NAME="\"V$(TOPNAME)\""
-
-CFLAGS += -DNPCCONFIG_ITRACE 
-# CFLAGS += -DNPCCONFIG_FTRACE 
-# CFLAGS += -DNPCCONFIG_MTRACE 
-# CFLAGS += -DNPCCONFIG_DUMPWAVE 
-# CFLAGS += -DNPCCONFIG_WATCHPOINT 
-# CFLAGS += -DNPCCONFIG_DIFFTEST 
 
 ################################        SHELL        ################################
 $(shell mkdir -p $(BUILD_DIR))
@@ -57,10 +52,7 @@ verilog:
 	mill -i $(PRJ).runMain Elaborate \
 	$(MILLFLAG)
 
-IMG_CHAR = /home/ypc/Desktop/ysyx/ysyx-workbench/ysyxSoC/char-test/build/char-test.bin
-
-run: $(BIN)
-	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG_CHAR) 
+# IMG_CHAR = /home/ypc/Desktop/ysyx/ysyx-workbench/ysyxSoC/char-test/build/char-test.bin
 
 wave: 
 	gtkwave *.vcd
@@ -110,3 +102,59 @@ clean:
 
 
 
+################################################################        NVBOARD        ################################################################
+################################        SRC        ################################
+NVBOARD_HOME = /home/ypc/Desktop/ysyx/ysyx-workbench/nvboard
+WORKSPACE = ./nvboard
+NXDC_FILES = $(WORKSPACE)/constr/$(TOPNAME).nxdc
+NV_INC_PATH ?=
+NV_BUILD_DIR = $(WORKSPACE)/build
+NV_OBJ_DIR = $(NV_BUILD_DIR)/obj_dir
+NV_BIN = $(NV_BUILD_DIR)/$(TOPNAME)
+
+$(shell mkdir -p $(NV_BUILD_DIR))
+
+# constraint file
+SRC_AUTO_BIND = $(abspath $(NV_BUILD_DIR)/auto_bind.cpp)
+$(SRC_AUTO_BIND): $(NXDC_FILES)
+	python3 $(NVBOARD_HOME)/scripts/auto_pin_bind.py $^ $@
+
+CSRC += $(SRC_AUTO_BIND)
+
+# rules for NVBoard
+include $(NVBOARD_HOME)/scripts/nvboard.mk
+
+################################       COMMAND       ################################
+$(NV_BIN): $(CSRC) $(VSRC) $(NVBOARD_ARCHIVE)
+	$(call git_commit, "sim NV") # DO NOT REMOVE THIS LINE!!!
+	verilator $(VERIARG) \
+		$^ \
+		$(addprefix -LDFLAGS , $(LDFLAGS)) \
+		$(addprefix -CFLAGS , $(CFLAGS)) \
+		--Mdir $(NV_OBJ_DIR) --exe -o $(abspath $(NV_BIN))
+
+clean_nv:
+	rm -rf $(NV_BUILD_DIR)
+
+
+
+
+
+
+
+# CFLAGS += -DNPCCONFIG_ITRACE 
+# CFLAGS += -DNPCCONFIG_FTRACE 
+# CFLAGS += -DNPCCONFIG_MTRACE 
+# CFLAGS += -DNPCCONFIG_DUMPWAVE 
+# CFLAGS += -DNPCCONFIG_WATCHPOINT 
+# CFLAGS += -DNPCCONFIG_DIFFTEST 
+CFLAGS += -DNV_BOARD 
+
+
+# if you want to just run the ysyxsoc 
+# run: $(BIN)
+# 	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG) 
+
+#if you want to run the nvboard
+run: $(NV_BIN)
+	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(NV_BIN) $(ARGS) $(IMG)

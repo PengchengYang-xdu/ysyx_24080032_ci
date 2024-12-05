@@ -2,7 +2,6 @@
 #define BOOTLOADER_H__
 
 
-void bootloader();
-void verify();
+// void bootloader();
 
 #endif
