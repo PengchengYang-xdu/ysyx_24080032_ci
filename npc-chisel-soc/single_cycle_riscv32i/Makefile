@@ -1,4 +1,4 @@
--include /home/ypc/Desktop/ysyx/ysyx-workbench/Makefile
+include /home/ypc/Desktop/ysyx/ysyx-workbench/Makefile
 
 ################################################################        VERILATOR        ################################################################
 ################################        SRC        ################################
@@ -152,9 +152,9 @@ CFLAGS += -DNV_BOARD
 
 
 # if you want to just run the ysyxsoc 
-# run: $(BIN)
-# 	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG) 
+run: $(BIN)
+	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG) 
 
 #if you want to run the nvboard
-run: $(NV_BIN)
-	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(NV_BIN) $(ARGS) $(IMG)
+# run: $(NV_BIN)
+# 	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(NV_BIN) $(ARGS) $(IMG)
