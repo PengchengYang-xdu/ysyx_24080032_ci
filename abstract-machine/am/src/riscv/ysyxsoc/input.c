@@ -91,14 +91,27 @@ static int key_arr[512] = {
 
 void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
     uint8_t code = inb(PS2_BASE);
+    uint8_t code_last = 0;
     if(code == 0){
         kbd->keydown = 0;
         kbd->keycode = AM_KEY_NONE;
     }
     else{
-        kbd->keydown = 1;
-        kbd->keycode = key_arr[code];
+        if(code == 0xe0){
+
+        }
+        else{
+            if(code_last == 0xf0){
+                kbd->keydown = 0;
+                kbd->keycode = AM_KEY_NONE;
+            }
+            else{
+                kbd->keydown = 1;
+                kbd->keycode = key_arr[code];
+            }
+        }
     }
+    code_last = code;
     printf("kbd->keydown = %d kbd->keycode = %d code = 0x%x\n", kbd->keydown, kbd->keycode, code);
     // kbd->keydown = 0;
     // kbd->keycode = AM_KEY_NONE;
