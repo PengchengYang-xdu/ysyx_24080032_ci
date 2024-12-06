@@ -19,3 +19,8 @@
 /*PS2*/
 #define PS2_BASE 0x10011000
 
+/*GPU*/
+#define VGA_BASE 0x21000000
+#define VGA_SIZE 0x200000
+#define VGA_WIDTH 640
+#define VGA_HIGHT 480
