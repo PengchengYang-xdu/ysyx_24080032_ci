@@ -91,6 +91,7 @@ void __am_keybrd_init() {
 };
 
 void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
+    __am_keybrd_init();
     // uint8_t code = inb(PS2_BASE);
     // printf("code = 0x%x\n", code);
     uint8_t code = 0x1d;
