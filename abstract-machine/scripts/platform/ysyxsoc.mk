@@ -9,6 +9,8 @@ AM_SRCS := riscv/ysyxsoc/start.S \
            platform/dummy/mpe.c \
 \
 		   riscv/ysyxsoc/bootloader.c \
+		   riscv/ysyxsoc/gpu.c \
+		   
 
 CFLAGS    += -fdata-sections -ffunction-sections
 LDFLAGS   += -T $(AM_HOME)/scripts/linkerysyxsoc.ld \
