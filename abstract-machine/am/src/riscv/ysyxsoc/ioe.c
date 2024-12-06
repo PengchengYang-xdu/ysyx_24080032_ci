@@ -3,6 +3,8 @@
 #include "ysyxsoc.h"
 #include "../riscv.h"
 
+extern int key_arr[512];
+
 void __am_timer_init();
 void __am_keybrd_init();
 
