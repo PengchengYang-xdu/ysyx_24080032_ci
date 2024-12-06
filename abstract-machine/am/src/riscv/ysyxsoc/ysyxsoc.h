@@ -6,7 +6,6 @@
 #define UART_REG_DL1 0
 #define UART_REG_DL2 1
 #define UART_REG_LS  5
-
 // Line Status Register bits
 #define UART_LS_DR	0	// Data ready
 #define UART_LS_OE	1	// Overrun Error
@@ -17,6 +16,6 @@
 #define UART_LS_TE	6	// Transmitter Empty indicator
 #define UART_LS_EI	7	// Error indicator
 
-
-
+/*PS2*/
+#define PS2_BASE 0x10011000
 
