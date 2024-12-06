@@ -91,17 +91,17 @@ void __am_keybrd_init() {
 };
 
 void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
-    // uint8_t code = inb(PS2_BASE);
-    // // printf("code = 0x%x\n", code);
-    // if(code == 0){
-    //     kbd->keydown = 0;
-    //     kbd->keycode = AM_KEY_NONE;
-    // }
-    // else{
-    //     kbd->keydown = 1;
-    //     kbd->keycode = key_arr[code];
-    // }
-    kbd->keydown = 0;
-    kbd->keycode = AM_KEY_NONE;
+    uint8_t code = inb(PS2_BASE);
+    // printf("code = 0x%x\n", code);
+    if(code == 0){
+        kbd->keydown = 0;
+        kbd->keycode = AM_KEY_NONE;
+    }
+    else{
+        kbd->keydown = 1;
+        kbd->keycode = key_arr[code];
+    }
+    // kbd->keydown = 0;
+    // kbd->keycode = AM_KEY_NONE;
 }
 
