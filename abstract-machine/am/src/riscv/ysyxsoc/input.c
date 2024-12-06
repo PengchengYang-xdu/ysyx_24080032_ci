@@ -97,20 +97,22 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
         kbd->keycode = AM_KEY_NONE;
     }
     else{
-        if(code_last == 0xf0){
+        if(code == 0xf0){
+            code = inb(PS2_BASE);
+            if(code == 0xe0){
+                code = inb(PS2_BASE);
+            }
             kbd->keydown = 0;
             kbd->keycode = AM_KEY_NONE;
         }
-        else if(code != 0xf0 && code != 0xe0){
+        else{
             if(code_last == 0xe0)
-                code |= 0x0100;
+                code = inb(PS2_BASE) | 1 << 8; 
             kbd->keydown = 1;
             kbd->keycode = key_arr[code];
         }
     }
     code_last = code;
     // printf("kbd->keydown = %d kbd->keycode = %d code = 0x%x\n", kbd->keydown, kbd->keycode, code);
-    // kbd->keydown = 0;
-    // kbd->keycode = AM_KEY_NONE;
 }
 
