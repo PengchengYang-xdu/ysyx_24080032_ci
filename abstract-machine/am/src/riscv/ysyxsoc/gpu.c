@@ -24,7 +24,7 @@ void __am_gpu_fbdraw(AM_GPU_FBDRAW_T *ctl) {
         }
         fb += VGA_WIDTH;//换到下一行
     }
-    ctl->sync = true;//更新屏幕
+    // ctl->sync = true;//更新屏幕
 }
 
 void __am_gpu_status(AM_GPU_STATUS_T *status) {
