@@ -109,7 +109,7 @@ void __am_input_keybrd(AM_INPUT_KEYBRD_T *kbd) {
         }
     }
     code_last = code;
-    printf("kbd->keydown = %d kbd->keycode = %d code = 0x%x\n", kbd->keydown, kbd->keycode, code);
+    // printf("kbd->keydown = %d kbd->keycode = %d code = 0x%x\n", kbd->keydown, kbd->keycode, code);
     // kbd->keydown = 0;
     // kbd->keycode = AM_KEY_NONE;
 }
