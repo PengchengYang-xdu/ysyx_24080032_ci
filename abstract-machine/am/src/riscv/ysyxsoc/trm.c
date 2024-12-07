@@ -1,5 +1,6 @@
 #include <am.h>
 #include <klib-macros.h>
+#include <klib.h>
 #include "npc.h"
 #include <bootloader.h>
 #include "ysyxsoc.h"
@@ -77,6 +78,7 @@ void show_id(){
 void _trm_init() {
     init_uart(1);
     show_id();
+    printf("mainargs = %s\n", mainargs);
     int ret = main(mainargs);
     halt(ret);
 }
