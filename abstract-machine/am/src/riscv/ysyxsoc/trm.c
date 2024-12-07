@@ -1,6 +1,6 @@
 #include <am.h>
 #include <klib-macros.h>
-#include <klib.h>
+// #include <klib.h>
 #include "npc.h"
 #include <bootloader.h>
 #include "ysyxsoc.h"
