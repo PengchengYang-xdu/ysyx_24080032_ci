@@ -19,7 +19,7 @@ Area heap = RANGE(&_heap_start, &_heap_end);
 #ifndef MAINARGS
 #define MAINARGS ""
 #endif
-static const char mainargs[] = MAINARGS;
+const char mainargs[] = MAINARGS;
 
 void putch(char ch) {
     /*added by ypc begin 2024.11.24*/
@@ -76,11 +76,9 @@ void show_id(){
 /*added by ypc begin 2024.11.27*/
 
 void _trm_init() {
-    char mainargs_local[sizeof(mainargs)];
-    strcpy(mainargs_local, mainargs);
     init_uart(1);
     show_id();
-    printf("mainargs_local = %s\n", mainargs_local);
-    int ret = main(mainargs_local);
+    printf("mainargs = %s\n", mainargs);
+    int ret = main(mainargs);
     halt(ret);
 }
