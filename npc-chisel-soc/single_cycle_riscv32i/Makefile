@@ -23,7 +23,6 @@ LDFLAGS += -lSDL2 -lSDL2_image $(shell llvm-config --libs) -lreadline -ldl -pie
 INC_PATH += $(PRJ_PATH)/include
 INCFLAGS = $(addprefix -I, $(INC_PATH))
 CFLAGS += $(INCFLAGS) -DTOP_NAME="\"V$(TOPNAME)\""
-CFLAGS += -DMAINARGS=\"$(mainargs)\"
 
 ################################        SHELL        ################################
 $(shell mkdir -p $(BUILD_DIR))
