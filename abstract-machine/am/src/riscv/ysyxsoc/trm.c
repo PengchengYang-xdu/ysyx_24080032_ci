@@ -76,9 +76,11 @@ void show_id(){
 /*added by ypc begin 2024.11.27*/
 
 void _trm_init() {
+    char mainargs_local[sizeof(mainargs)];
+    strcpy(mainargs_local, mainargs);
     init_uart(1);
     show_id();
-    printf("mainargs = %s\n", mainargs);
-    int ret = main(mainargs);
+    printf("mainargs_local = %s\n", mainargs_local);
+    int ret = main(mainargs_local);
     halt(ret);
 }
