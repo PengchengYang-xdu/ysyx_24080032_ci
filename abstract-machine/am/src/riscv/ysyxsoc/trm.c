@@ -78,7 +78,7 @@ void show_id(){
 void _trm_init() {
     init_uart(1);
     show_id();
-    printf("mainargs = %s\n", mainargs);
-    int ret = main(mainargs);
+    // printf("mainargs = %s\n", mainargs);
+    int ret = main("h");
     halt(ret);
 }
