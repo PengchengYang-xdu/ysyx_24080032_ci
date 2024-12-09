@@ -24,3 +24,6 @@
 #define VGA_SIZE 0x200000
 #define VGA_WIDTH 640
 #define VGA_HIGHT 480
+
+/*RTC*/
+#define RTC_BASE 0x02000000
