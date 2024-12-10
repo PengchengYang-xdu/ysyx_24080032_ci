@@ -78,6 +78,6 @@ void show_id(){
 void _trm_init() {
     init_uart(1);
     show_id();
-    int ret = main("mario");
+    int ret = main("t");
     halt(ret);
 }
