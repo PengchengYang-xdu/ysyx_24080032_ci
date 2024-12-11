@@ -46,21 +46,21 @@ void init_ysyxsoc_mem(){
 
 
 bool in_mrom(paddr_t addr){
-    return addr - MROM_BASE < MROM_SIZE;
+    return addr - MROM_BASE <= MROM_SIZE;
 }
 
 bool in_sram(paddr_t addr){
-    return addr - SRAM_BASE < SRAM_SIZE;
+    return addr - SRAM_BASE <= SRAM_SIZE;
 }
 
 bool in_flash(paddr_t addr) {
-  return addr - FLASH_BASE < FLASH_SIZE;
+  return addr - FLASH_BASE <= FLASH_SIZE;
 }
 
 bool in_sdram(paddr_t addr) {
-  return addr - SDRAM_BASE < SDRAM_SIZE;
+  return addr - SDRAM_BASE <= SDRAM_SIZE;
 }
 
 bool in_psram(paddr_t addr) {
-  return addr - PSRAM_BASE < PSRAM_SIZE;
+  return addr - PSRAM_BASE <= PSRAM_SIZE;
 }
