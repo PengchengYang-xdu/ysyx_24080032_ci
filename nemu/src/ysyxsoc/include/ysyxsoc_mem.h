@@ -33,10 +33,10 @@
 #define MMIO_SIZE 0x3fffffff
 
 #define PSRAM_BASE 0x80000000
-#define PSRAM_SIZE 0x00200000
+#define PSRAM_SIZE 0x1fffffff
 
 #define SDRAM_BASE 0xa0000000
-#define SDRAM_SIZE 0x02000000
+#define SDRAM_SIZE 0x1fffffff
 
 #define MEM_BASE 0xc0000000
 #define MEM_SIZE 0x3fffffff
