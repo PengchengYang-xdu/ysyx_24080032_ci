@@ -32,6 +32,8 @@ uint8_t* guest_to_host(paddr_t paddr) {
     uint8_t* ptr = NULL;
     if(in_pmem(paddr))//change menu base to 0x20000000 and size to 0xfff, in_pmem === in_mrom
         ptr = pmem + paddr - CONFIG_MBASE;
+    else if(in_mrom(paddr))//write and read sram
+        ptr = mrom + paddr - MROM_BASE;
     else if(in_sram(paddr))//write and read sram
         ptr = sram + paddr - SRAM_BASE;
     else if(in_flash(paddr))//write and read sram
@@ -71,6 +73,7 @@ word_t paddr_read(paddr_t addr, int len) {
   IFDEF(CONFIG_MTRACE, if(addr >= CONFIG_MTRACE_START && addr <= CONFIG_MTRACE_END) display_pread(addr, len));
   if (likely(in_pmem(addr))) return pmem_read(addr, len);
 
+  if (in_mrom(addr)) return pmem_read(addr, len);
   if (in_sram(addr)) return pmem_read(addr, len);
   if (in_flash(addr)) return pmem_read(addr, len);
   if (in_sdram(addr)) return pmem_read(addr, len);
