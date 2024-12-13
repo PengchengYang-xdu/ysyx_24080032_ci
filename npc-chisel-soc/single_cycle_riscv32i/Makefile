@@ -18,7 +18,7 @@ PRJ_PATH = /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_ris
 ################################        FLAG        ################################
 VSRC += $(shell find $(abspath $(SOC_DIR)/build) -name "*.sv" -or -name "*.v")
 VSRC += $(shell find $(abspath $(SOC_DIR)/perip) -name "*.sv" -or -name "*.v")
-VERIARG = --cc -MMD --build --public-flat-rw -top $(TOPNAME) --trace --no-timing --timescale "1ns/1ns" -I$(SOC_DIR)/perip/uart16550/rtl -I$(SOC_DIR)/perip/spi/rtl -O3 -j 8 --autoflush
+VERIARG = --cc -MMD --build --public-flat-rw -top $(TOPNAME) --trace-fst --no-timing --timescale "1ns/1ns" -I$(SOC_DIR)/perip/uart16550/rtl -I$(SOC_DIR)/perip/spi/rtl -O3 -j 8 --autoflush
 LDFLAGS += -lSDL2 -lSDL2_image $(shell llvm-config --libs) -lreadline -ldl -pie
 INC_PATH += $(PRJ_PATH)/include
 INCFLAGS = $(addprefix -I, $(INC_PATH))
@@ -62,6 +62,7 @@ clr:
 	rm -rf $(BUILD_DIR)
 	rm -rf *.vcd
 	rm -rf $(GEN_DIR)
+	rm -rf *.fst
 
 
 
