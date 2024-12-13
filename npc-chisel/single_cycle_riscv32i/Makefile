@@ -1,3 +1,5 @@
+include /home/ypc/Desktop/ysyx/ysyx-workbench/Makefile
+
 ################################################################        VERILATOR        ################################################################
 ################################        SRC        ################################
 TOPNAME = NPC
@@ -18,7 +20,7 @@ INC_PATH += $(PRJ_PATH)/include
 INCFLAGS = $(addprefix -I, $(INC_PATH))
 CFLAGS += $(INCFLAGS) -DTOP_NAME="\"V$(TOPNAME)\""
 
-# CFLAGS += -DNPCCONFIG_ITRACE 
+CFLAGS += -DNPCCONFIG_ITRACE 
 # CFLAGS += -DNPCCONFIG_FTRACE 
 # CFLAGS += -DNPCCONFIG_MTRACE 
 # CFLAGS += -DNPCCONFIG_DUMPWAVE 
@@ -30,7 +32,7 @@ $(shell mkdir -p $(BUILD_DIR))
 
 ################################       COMMAND       ################################
 $(BIN):  $(CSRC) $(VSRC)
-	$(call git_commit, "sim RTL") # DO NOT REMOVE THIS LINE!!!
+	$(call git_commit, "sim RTL_NPC") # DO NOT REMOVE THIS LINE!!!
 	verilator $(VERIARG) \
 		$^ \
 		$(addprefix -LDFLAGS , $(LDFLAGS)) \

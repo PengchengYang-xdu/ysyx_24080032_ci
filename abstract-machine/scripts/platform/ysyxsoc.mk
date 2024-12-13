@@ -50,3 +50,8 @@ run: image
 	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i clr
 	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i verilog
 	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
+
+
+perf:
+	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i perf ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
+	
