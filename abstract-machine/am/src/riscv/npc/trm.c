@@ -27,7 +27,6 @@ void halt(int code) {
 }
 
 void _trm_init() {
-    printf("this is npc sim\n");
     int ret = main(mainargs);
     halt(ret);
 }

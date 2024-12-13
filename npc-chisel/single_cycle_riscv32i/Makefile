@@ -20,13 +20,6 @@ INC_PATH += $(PRJ_PATH)/include
 INCFLAGS = $(addprefix -I, $(INC_PATH))
 CFLAGS += $(INCFLAGS) -DTOP_NAME="\"V$(TOPNAME)\""
 
-CFLAGS += -DNPCCONFIG_ITRACE 
-# CFLAGS += -DNPCCONFIG_FTRACE 
-# CFLAGS += -DNPCCONFIG_MTRACE 
-# CFLAGS += -DNPCCONFIG_DUMPWAVE 
-# CFLAGS += -DNPCCONFIG_WATCHPOINT 
-# CFLAGS += -DNPCCONFIG_DIFFTEST 
-
 ################################        SHELL        ################################
 $(shell mkdir -p $(BUILD_DIR))
 
@@ -56,8 +49,8 @@ verilog:
 	mill -i $(PRJ).runMain Elaborate \
 	$(MILLFLAG)
 
-run: $(BIN)
-	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG) 
+# run: $(BIN)
+# 	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG) 
 
 wave: 
 	gtkwave *.vcd
@@ -106,4 +99,20 @@ clean:
 
 
 
+CFLAGS += -DNPCCONFIG_ITRACE 
+# CFLAGS += -DNPCCONFIG_FTRACE 
+# CFLAGS += -DNPCCONFIG_MTRACE 
+# CFLAGS += -DNPCCONFIG_DUMPWAVE 
+# CFLAGS += -DNPCCONFIG_WATCHPOINT 
+# CFLAGS += -DNPCCONFIG_DIFFTEST 
 
+
+
+# if you want to just run the npc
+run: $(BIN)
+	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG) 
+
+#if you want to run the nvboard
+# CFLAGS += -DNV_BOARD 
+# run: $(NV_BIN)
+# 	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(NV_BIN) $(ARGS) $(IMG)
