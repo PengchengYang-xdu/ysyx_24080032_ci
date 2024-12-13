@@ -161,3 +161,10 @@ run: $(BIN)
 # CFLAGS += -DNV_BOARD 
 # run: $(NV_BIN)
 # 	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(NV_BIN) $(ARGS) $(IMG)
+
+#如果想要评估性能，使用指令 make -C /home/ypc/Desktop/ysyx/ysyx-workbench/am-kernels/benchmarks/microbench ARCH=riscv32e-ysyxsoc perf
+PERF_MD = /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/Perf/perf.md
+perf: checkout save_perf
+
+checkout:
+	@git checkout 
