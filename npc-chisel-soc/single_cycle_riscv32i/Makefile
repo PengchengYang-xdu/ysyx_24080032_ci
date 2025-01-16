@@ -174,7 +174,7 @@ run: $(BIN)
 #所有评估性能的commit都提交到perf分支上面,这个分支也是用来完成性能优化和缓存的分支
 PERF_MD = /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/Perf/perf.md
 LOG = $(shell cat $(PERF_MD) | sed ':a;N;$!ba;s/\n/\\n/g')
-EXPLAIN = "2024-12-16 11时45分 任务进度 完成icache的实现, b = 4, k = 4, 测试一下microbench"
+EXPLAIN = "2024年1月16日 16时47分 任务进度 完成icache的实现 校准访存延迟后 测试一下microbench"
 
 perf: checkout run save_perf
 
