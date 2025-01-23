@@ -64,3 +64,33 @@ bool in_sdram(paddr_t addr) {
 bool in_psram(paddr_t addr) {
   return addr - PSRAM_BASE <= PSRAM_SIZE;
 }
+
+
+
+
+bool in_uart(paddr_t addr) {
+  return addr - UART_BASE <= UART_SIZE;
+}
+bool in_clint(paddr_t addr) {
+  return addr - CLINT_BASE <= CLINT_SIZE;
+}
+bool in_gpio(paddr_t addr) {
+  return addr - GPIO_BASE <= GPIO_SIZE;
+}
+bool in_spi(paddr_t addr) {
+  return addr - SPI_BASE <= SPI_SIZE;
+}
+bool in_ps2(paddr_t addr) {
+  return addr - PS2_BASE <= PS2_SIZE;
+}
+bool in_vga(paddr_t addr) {
+  return addr - VGA_BASE <= VGA_SIZE;
+}
+bool in_mmio(paddr_t addr) {
+  return addr - MMIO_BASE <= MMIO_SIZE;
+}
+
+
+bool in_dev(paddr_t addr) {
+    return in_uart(addr) || in_clint(addr) || in_gpio(addr) || in_spi(addr) || in_ps2(addr) || in_vga(addr) || in_mmio(addr);
+}
