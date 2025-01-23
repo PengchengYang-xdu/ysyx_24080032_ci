@@ -20,8 +20,6 @@
 #include <ysyxsoc.h>
 #include "../ysyxsoc/include/ysyxsoc_mem.h"
 
-#ifndef CONFIG_TARGET_SHARE
-    #ifdef CONFIG_ICACHESIM
 void replace_substring(char *str, const char *old_sub, const char *new_sub) {
     char *pos, temp[1024];
     int old_len = strlen(old_sub);
@@ -34,8 +32,6 @@ void replace_substring(char *str, const char *old_sub, const char *new_sub) {
         strcpy(str, temp);
     }
 }
-    #endif
-#endif
 
 void init_rand();
 void init_log(const char *log_file);
