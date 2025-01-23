@@ -12,11 +12,27 @@
 *
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
-
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 #include <isa.h>
 #include <memory/paddr.h>
 #include <ysyxsoc.h>
 #include "../ysyxsoc/include/ysyxsoc_mem.h"
+
+
+void replace_substring(char *str, const char *old_sub, const char *new_sub) {
+    char *pos, temp[1024];
+    int old_len = strlen(old_sub);
+
+    while ((pos = strstr(str, old_sub)) != NULL) {
+        strncpy(temp, str, pos - str);
+        temp[pos - str] = '\0';
+        strcat(temp, new_sub);
+        strcat(temp, pos + old_len);
+        strcpy(str, temp);
+    }
+}
 
 void init_rand();
 void init_log(const char *log_file);
@@ -55,9 +71,13 @@ static long load_img() {
   printf("%s\n", img_file);
   
 #ifdef CONFIG_ICACHESIM
-  FILE *fp = fopen("/home/ypc/Desktop/ysyx/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv32e-ysyxsoc.bin", "rb");
+    char img_file_copy[1024];
+    strncpy(img_file_copy, img_file, sizeof(img_file_copy));
+    img_file_copy[sizeof(img_file_copy) - 1] = '\0';
+    replace_substring(img_file_copy, "nemu", "ysyxsoc");
+    FILE *fp = fopen(img_file_copy, "rb");
 #elif
-  FILE *fp = fopen(img_file, "rb");
+    FILE *fp = fopen(img_file, "rb");
 #endif
   Assert(fp, "Can not open '%s'", img_file);
 
