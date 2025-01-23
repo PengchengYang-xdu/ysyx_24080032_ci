@@ -25,4 +25,6 @@ bool in_vga(paddr_t addr);
 bool in_mmio(paddr_t addr);
 
 bool in_dev(paddr_t addr);
+
+void write_icachesim(paddr_t addr);
 #endif

@@ -1,5 +1,7 @@
 #include "../include/ysyxsoc_mem.h"
 
+void init_icachesim();
+
 uint8_t *mrom = NULL;
 uint8_t *sram = NULL;
 uint8_t *flash = NULL;
@@ -42,6 +44,8 @@ void init_ysyxsoc_mem(){
     init_sdram();
     init_psram();
     printf("init soc mem success!\n");
+    init_icachesim();
+    printf("init icachesim success!\n");
 }
 
 
@@ -93,4 +97,17 @@ bool in_mmio(paddr_t addr) {
 
 bool in_dev(paddr_t addr) {
     return in_uart(addr) || in_clint(addr) || in_gpio(addr) || in_spi(addr) || in_ps2(addr) || in_vga(addr) || in_mmio(addr);
+}
+
+
+static FILE *icache_fp = NULL;
+static char * icache_file = "build/icachesim.log";
+
+void init_icachesim(){
+    icache_fp = fopen(icache_file, "w");
+    assert(icache_fp);
+}
+
+void write_icachesim(paddr_t addr){
+    fprintf(icache_fp, "%u\n", addr);
 }
