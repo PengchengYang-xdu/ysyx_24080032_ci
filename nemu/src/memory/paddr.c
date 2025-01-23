@@ -30,7 +30,7 @@ static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
 
 uint8_t* guest_to_host(paddr_t paddr) {
     uint8_t* ptr = NULL;
-    if(in_pmem(paddr))
+    if(in_pmem(paddr))//change menu base to 0x20000000 and size to 0xfff, in_pmem === in_mrom
         ptr = pmem + paddr - CONFIG_MBASE;
     else if(in_mrom(paddr))//write and read mrom
         ptr = mrom + paddr - MROM_BASE;
@@ -70,11 +70,10 @@ void init_mem() {
 }
 
 word_t paddr_read(paddr_t addr, int len) {
-  if (in_dev(addr)) {dev_skip = true; return 0;}
-
   IFDEF(CONFIG_MTRACE, if(addr >= CONFIG_MTRACE_START && addr <= CONFIG_MTRACE_END) display_pread(addr, len));
   if (likely(in_pmem(addr))) return pmem_read(addr, len);
 
+  if (in_dev(addr)) {dev_skip = true; return 0;}
   if (in_mrom(addr)) return pmem_read(addr, len);
   if (in_sram(addr)) return pmem_read(addr, len);
   if (in_flash(addr)) return pmem_read(addr, len);
@@ -87,11 +86,10 @@ word_t paddr_read(paddr_t addr, int len) {
 }
 
 void paddr_write(paddr_t addr, int len, word_t data) {
-  if (in_dev(addr)) {dev_skip = true; return;}
-
   IFDEF(CONFIG_MTRACE, if(addr >= CONFIG_MTRACE_START && addr <= CONFIG_MTRACE_END) display_pwrite(addr, len, data));
   if (likely(in_pmem(addr))) { pmem_write(addr, len, data); return; }
 
+  if (in_dev(addr)) {dev_skip = true; return;}
   if (in_sram(addr)) { pmem_write(addr, len, data); return; }
   if (in_flash(addr)) { pmem_write(addr, len, data); return; }
   if (in_sdram(addr)) { pmem_write(addr, len, data); return; }
