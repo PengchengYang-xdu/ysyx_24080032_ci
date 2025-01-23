@@ -77,7 +77,7 @@ void show_id(){
 
 void _trm_init() {
     init_uart(1);
-    show_id();
+    // show_id();
     // int ret = main("train");
     int ret = main(mainargs);
     halt(ret);
