@@ -74,6 +74,7 @@ static long load_img() {
     strncpy(img_file_copy, img_file, sizeof(img_file_copy));
     img_file_copy[sizeof(img_file_copy) - 1] = '\0';
     replace_substring(img_file_copy, "nemu", "ysyxsoc");
+    printf("copy is %s\n", img_file_copy);
     FILE *fp = fopen(img_file_copy, "rb");
 #elif
     FILE *fp = fopen(img_file, "rb");
