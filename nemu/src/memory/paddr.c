@@ -98,7 +98,6 @@ void paddr_write(paddr_t addr, int len, word_t data) {
 
   IFDEF(CONFIG_MTRACE, if(addr >= CONFIG_MTRACE_START && addr <= CONFIG_MTRACE_END) display_pwrite(addr, len, data));
   if (likely(in_pmem(addr))) { pmem_write(addr, len, data); return; }
-  printf("not in pmem , addr = 0x%x\n", addr);
   IFDEF(CONFIG_DEVICE, mmio_write(addr, len, data); return);
   out_of_bound(addr);
 }
