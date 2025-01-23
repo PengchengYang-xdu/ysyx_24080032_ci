@@ -44,7 +44,7 @@ void sdb_set_batch_mode();
 static char *elf_file = NULL;
 static char *log_file = NULL;
 static char *diff_so_file = NULL;
-static char *img_file = "/home/ypc/Desktop/ysyx/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv32e-ysyxsoc.bin";
+static char *img_file = NULL;
 static int difftest_port = 1234;
 
 static long load_img() {
@@ -53,7 +53,7 @@ static long load_img() {
     return 4096; // built-in image size
   }
 
-  FILE *fp = fopen(img_file, "rb");
+  FILE *fp = fopen("/home/ypc/Desktop/ysyx/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv32e-ysyxsoc.bin", "rb");
   Assert(fp, "Can not open '%s'", img_file);
 
   fseek(fp, 0, SEEK_END);
