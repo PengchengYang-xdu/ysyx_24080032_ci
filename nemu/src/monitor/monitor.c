@@ -74,17 +74,19 @@ static long load_img() {
     strncpy(img_file_copy, img_file, sizeof(img_file_copy));
     img_file_copy[sizeof(img_file_copy) - 1] = '\0';
     replace_substring(img_file_copy, "nemu", "ysyxsoc");
-    printf("copy is %s\n", img_file_copy);
     FILE *fp = fopen(img_file_copy, "rb");
+    Assert(fp, "Can not open '%s'", img_file_copy);
+    fseek(fp, 0, SEEK_END);
+    long size = ftell(fp);
+    Log("The image is %s, size = %ld", img_file_copy, size);
 #elif
     FILE *fp = fopen(img_file, "rb");
+    Assert(fp, "Can not open '%s'", img_file);
+    fseek(fp, 0, SEEK_END);
+    long size = ftell(fp);
+    Log("The image is %s, size = %ld", img_file, size);
 #endif
-  Assert(fp, "Can not open '%s'", img_file);
 
-  fseek(fp, 0, SEEK_END);
-  long size = ftell(fp);
-
-  Log("The image is %s, size = %ld", img_file, size);
 
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(FLASH_BASE), size, 1, fp);
