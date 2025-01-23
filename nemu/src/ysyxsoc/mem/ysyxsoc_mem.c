@@ -45,9 +45,9 @@ void init_ysyxsoc_mem(){
     init_sdram();
     init_psram();
     printf("init soc mem success!\n");
+#endif
     init_icachesim();
     printf("init icachesim success!\n");
-#endif
 }
 
 
