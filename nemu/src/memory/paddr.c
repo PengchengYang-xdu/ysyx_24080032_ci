@@ -70,7 +70,7 @@ void init_mem() {
 }
 
 word_t paddr_read(paddr_t addr, int len) {
-  if (in_dev(addr)) {dev_skip = true; printf("read_addr = 0x%x\n", addr); return 0;}
+  if (in_dev(addr)) {dev_skip = true; return 0;}
 
   IFDEF(CONFIG_MTRACE, if(addr >= CONFIG_MTRACE_START && addr <= CONFIG_MTRACE_END) display_pread(addr, len));
   if (likely(in_pmem(addr))) return pmem_read(addr, len);
@@ -87,7 +87,7 @@ word_t paddr_read(paddr_t addr, int len) {
 }
 
 void paddr_write(paddr_t addr, int len, word_t data) {
-  if (in_dev(addr)) {dev_skip = true; printf("write_addr = 0x%x\n", addr); return;}
+  if (in_dev(addr)) {dev_skip = true; return;}
 
   IFDEF(CONFIG_MTRACE, if(addr >= CONFIG_MTRACE_START && addr <= CONFIG_MTRACE_END) display_pwrite(addr, len, data));
   if (likely(in_pmem(addr))) { pmem_write(addr, len, data); return; }
