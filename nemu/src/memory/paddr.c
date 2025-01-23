@@ -30,7 +30,7 @@ static uint8_t pmem[CONFIG_MSIZE] PG_ALIGN = {};
 
 uint8_t* guest_to_host(paddr_t paddr) {
     uint8_t* ptr = NULL;
-    if(in_pmem(paddr))//change menu base to 0x20000000 and size to 0xfff, in_pmem === in_mrom
+    if(in_pmem(paddr))
         ptr = pmem + paddr - CONFIG_MBASE;
     else if(in_mrom(paddr))//write and read mrom
         ptr = mrom + paddr - MROM_BASE;
