@@ -38,6 +38,7 @@ void init_psram(){
 
 
 void init_ysyxsoc_mem(){
+#ifdef CONFIG_TARGET_SHARE
     init_mrom();
     init_sram();
     init_flash();
@@ -46,6 +47,7 @@ void init_ysyxsoc_mem(){
     printf("init soc mem success!\n");
     init_icachesim();
     printf("init icachesim success!\n");
+#endif
 }
 
 
