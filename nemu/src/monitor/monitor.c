@@ -44,7 +44,7 @@ void sdb_set_batch_mode();
 static char *elf_file = NULL;
 static char *log_file = NULL;
 static char *diff_so_file = NULL;
-static char *img_file = NULL;
+static char *img_file = "/home/ypc/Desktop/ysyx/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv32e-ysyxsoc.bin";
 static int difftest_port = 1234;
 
 static long load_img() {
