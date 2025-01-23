@@ -68,7 +68,6 @@ static long load_img() {
     Log("No image is given. Use the default build-in image.");
     return 4096; // built-in image size
   }
-  printf("%s\n", img_file);
   
 #ifdef CONFIG_ICACHESIM
     char img_file_copy[1024];
