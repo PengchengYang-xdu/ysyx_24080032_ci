@@ -41,11 +41,13 @@ void init_ysyxsoc_mem(){
     init_mrom();
     init_sram();
     init_flash();
-    // init_sdram();
+    init_sdram();
     init_psram();
     printf("init soc mem success!\n");
+#ifdef CONFIG_ICACHESIM
     init_icachesim();
     printf("init icachesim success!\n");
+#endif
 }
 
 
