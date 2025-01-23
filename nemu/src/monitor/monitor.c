@@ -68,29 +68,6 @@ static long load_img() {
     return 4096; // built-in image size
   }
 
-// #ifdef CONFIG_ICACHESIM
-//     char img_file_copy[1024];
-//     strncpy(img_file_copy, img_file, sizeof(img_file_copy));
-//     img_file_copy[sizeof(img_file_copy) - 1] = '\0';
-//     replace_substring(img_file_copy, "nemu", "ysyxsoc");
-//     FILE *fp = fopen(img_file_copy, "rb");
-//     Assert(fp, "Can not open '%s'", img_file_copy);
-//     fseek(fp, 0, SEEK_END);
-//     long size = ftell(fp);
-//     Log("The image is %s, size = %ld", img_file_copy, size);
-// #elif CONFIG_TARGET_SHARE
-//     FILE *fp = fopen(img_file, "rb");
-//     Assert(fp, "Can not open '%s'", img_file);
-//     fseek(fp, 0, SEEK_END);
-//     long size = ftell(fp);
-//     Log("The image is %s, size = %ld", img_file, size); 
-// #else
-    // FILE *fp = fopen(img_file, "rb");
-    // Assert(fp, "Can not open '%s'", img_file);
-    // fseek(fp, 0, SEEK_END);
-    // long size = ftell(fp);
-    // Log("The image is %s, size = %ld", img_file, size); 
-// #endif
 
 #ifdef CONFIG_TARGET_SHARE
     FILE *fp = fopen(img_file, "rb");
