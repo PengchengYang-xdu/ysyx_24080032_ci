@@ -21,6 +21,7 @@ void engine_start();
 int is_exit_status_bad();
 
 int main(int argc, char *argv[]) {
+    IFDEF(CONFIG_DEVICE, printf("6666666666666666666\n"));
   /* Initialize the monitor. */
 #ifdef CONFIG_TARGET_AM
   am_init_monitor();
