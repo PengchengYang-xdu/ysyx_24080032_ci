@@ -109,5 +109,5 @@ void init_icachesim(){
 }
 
 void write_icachesim(paddr_t addr){
-    fprintf(icache_fp, "%u\n", addr);
+    fprintf(icache_fp, "%x\n", addr);
 }
