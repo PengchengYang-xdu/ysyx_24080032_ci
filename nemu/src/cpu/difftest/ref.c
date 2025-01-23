@@ -82,8 +82,8 @@ __EXPORT void difftest_init(int port) {
 }
 
 __EXPORT bool difftest_skip() {
-  extern bool skip;
-  bool skip_temp = skip;
-  skip = false;
+  extern bool dev_skip;
+  bool skip_temp = dev_skip;
+  dev_skip = false;
   return skip_temp;
 }
