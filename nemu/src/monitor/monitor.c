@@ -52,8 +52,13 @@ static long load_img() {
     Log("No image is given. Use the default build-in image.");
     return 4096; // built-in image size
   }
-
+  printf("%s\n", img_file);
+  
+#ifdef CONFIG_ICACHESIM
   FILE *fp = fopen("/home/ypc/Desktop/ysyx/ysyx-workbench/am-kernels/tests/cpu-tests/build/dummy-riscv32e-ysyxsoc.bin", "rb");
+#elif
+  FILE *fp = fopen(img_file, "rb");
+#endif
   Assert(fp, "Can not open '%s'", img_file);
 
   fseek(fp, 0, SEEK_END);
