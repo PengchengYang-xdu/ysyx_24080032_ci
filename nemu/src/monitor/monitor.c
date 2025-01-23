@@ -20,20 +20,19 @@
 #include <ysyxsoc.h>
 #include "../ysyxsoc/include/ysyxsoc_mem.h"
 
-#ifdef CONFIG_ICACHESIM
-void replace_substring(char *str, const char *old_sub, const char *new_sub) {
-    char *pos, temp[1024];
-    int old_len = strlen(old_sub);
 
-    while ((pos = strstr(str, old_sub)) != NULL) {
-        strncpy(temp, str, pos - str);
-        temp[pos - str] = '\0';
-        strcat(temp, new_sub);
-        strcat(temp, pos + old_len);
-        strcpy(str, temp);
-    }
-}
-#endif
+// void replace_substring(char *str, const char *old_sub, const char *new_sub) {
+//     char *pos, temp[1024];
+//     int old_len = strlen(old_sub);
+
+//     while ((pos = strstr(str, old_sub)) != NULL) {
+//         strncpy(temp, str, pos - str);
+//         temp[pos - str] = '\0';
+//         strcat(temp, new_sub);
+//         strcat(temp, pos + old_len);
+//         strcpy(str, temp);
+//     }
+// }
 
 void init_rand();
 void init_log(const char *log_file);
