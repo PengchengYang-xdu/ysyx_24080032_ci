@@ -39,7 +39,7 @@ gdb: image
 MICROBENCH_HOME = /home/ypc/Desktop/ysyx/ysyx-workbench/am-kernels/benchmarks/microbench
 
 ifeq ($(MAKECMDGOALS),icachesim)
-CFLAGS += -DCONFIG_ICACHESIM
+CFLAGS += -CONFIG_ICACHESIM
 endif
 
 YSYXSOC_IMAGE := $(subst nemu,ysyxsoc,$(IMAGE))
