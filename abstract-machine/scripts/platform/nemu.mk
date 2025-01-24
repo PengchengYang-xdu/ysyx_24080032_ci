@@ -30,3 +30,10 @@ run: image
 
 gdb: image
 	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) gdb ARGS="$(NEMUFLAGS)" IMG=$(IMAGE).bin
+
+ifeq ($(MAKECMDGOALS),icachesim)
+CFLAGS += -DNPCCONFIG_ICACHESIM
+endif
+
+icachesim: image
+	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(IMAGE).bin
