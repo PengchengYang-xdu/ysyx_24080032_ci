@@ -1,7 +1,5 @@
 .DEFAULT_GOAL = app
-ifeq ($(MAKECMDGOALS),icachesim)
-CFLAGS += -DCONFIG_ICACHESIM
-endif
+
 # Add necessary options if the target is a shared library
 ifeq ($(SHARE),1)
 SO = -so
@@ -26,7 +24,7 @@ LD := $(CXX)
 INCLUDES = $(addprefix -I, $(INC_PATH))
 CFLAGS  := -O2 -MMD -Wall -Werror -g $(INCLUDES) $(CFLAGS)
 LDFLAGS := -O2 $(LDFLAGS)
-
+CFLAGS += -DCONFIG_ICACHESIM
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o) $(CXXSRC:%.cc=$(OBJ_DIR)/%.o)
 
 # Compilation patterns
