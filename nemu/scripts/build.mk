@@ -55,7 +55,3 @@ $(BINARY):: $(OBJS) $(ARCHIVES)
 
 clean:
 	-rm -rf $(BUILD_DIR)
-
-ifeq ($(MAKECMDGOALS),icachesim)
-CFLAGS += -DCONFIG_ICACHESIM
-endif
