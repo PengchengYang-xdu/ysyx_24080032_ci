@@ -67,7 +67,7 @@ static long load_img() {
     Log("No image is given. Use the default build-in image.");
     return 4096; // built-in image size
   }
-printf("1");
+
 
 #ifdef CONFIG_TARGET_SHARE
     FILE *fp = fopen(img_file, "rb");
@@ -94,13 +94,13 @@ printf("1");
 #endif
 
 
-printf("2");
+
 
 
   fseek(fp, 0, SEEK_SET);
   int ret = fread(guest_to_host(CONFIG_MBASE), size, 1, fp);
   assert(ret == 1);
-printf("3");
+
   fclose(fp);
   return size;
 }
@@ -143,7 +143,7 @@ void init_monitor(int argc, char *argv[]) {
 
   /* Parse arguments. */
   parse_args(argc, argv);
-printf("0");
+
   parse_elf(elf_file);
   // printf_symbol();
 
