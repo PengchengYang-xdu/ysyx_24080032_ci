@@ -124,3 +124,9 @@ void init_icachesim(){
 void write_icachesim(paddr_t addr){
     fprintf(icache_fp, "%x\n", addr);
 }
+
+//下面是增加的一些函数, 用于在icachesim时候, nemu跑ysyxsoc的程序流, 遇到访问外设, 能够处理.
+// word_t uart_read(paddr_t addr, int len){
+//     assert(len == 1)
+//     word_t ret = 
+// }
