@@ -3,7 +3,7 @@ PHDRS { text PT_LOAD; data PT_LOAD; }
 
 SECTIONS {
   /* _pmem_start and _entry_offset are defined in LDFLAGS */
-  . = 0x30000000 + 0x0;/*放入flash中*/
+  . = 0x80000000 + 0x0;/*放入flash中*/
   .text : {
     *(entry)
     *(.text*)
@@ -30,5 +30,4 @@ SECTIONS {
   end = .;
   _end = .;
   _heap_start = ALIGN(0x1000);
-  _heap_end = _heap_start + 2M;
 }
