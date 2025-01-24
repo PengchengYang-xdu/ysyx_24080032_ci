@@ -20,18 +20,6 @@
 #include <ysyxsoc.h>
 #include "../ysyxsoc/include/ysyxsoc_mem.h"
 
-// void replace_substring(char *str, const char *old_sub, const char *new_sub) {
-//     char *pos, temp[1024];
-//     int old_len = strlen(old_sub);
-
-//     while ((pos = strstr(str, old_sub)) != NULL) {
-//         strncpy(temp, str, pos - str);
-//         temp[pos - str] = '\0';
-//         strcat(temp, new_sub);
-//         strcat(temp, pos + old_len);
-//         strcpy(str, temp);
-//     }
-// }
 
 void init_rand();
 void init_log(const char *log_file);
@@ -69,29 +57,12 @@ static long load_img() {
   }
 
 
-// #ifdef CONFIG_TARGET_SHARE
-//     FILE *fp = fopen(img_file, "rb");
-//     Assert(fp, "Can not open '%s'", img_file);
-//     fseek(fp, 0, SEEK_END);
-//     long size = ftell(fp);
-//     Log("The image is %s, size = %ld", img_file, size); 
-// #elif CONFIG_ICACHESIM
-//     char img_file_copy[1024];
-//     strncpy(img_file_copy, img_file, sizeof(img_file_copy));
-//     img_file_copy[sizeof(img_file_copy) - 1] = '\0';
-//     replace_substring(img_file_copy, "nemu", "ysyxsoc");
-//     FILE *fp = fopen(img_file_copy, "rb");
-//     Assert(fp, "Can not open '%s'", img_file_copy);
-//     fseek(fp, 0, SEEK_END);
-//     long size = ftell(fp);
-//     Log("The image is %s, size = %ld", img_file_copy, size);
-// #else
-    FILE *fp = fopen(img_file, "rb");
-    Assert(fp, "Can not open '%s'", img_file);
-    fseek(fp, 0, SEEK_END);
-    long size = ftell(fp);
-    Log("The image is %s, size = %ld", img_file, size); 
-// #endif
+
+  FILE *fp = fopen(img_file, "rb");
+  Assert(fp, "Can not open '%s'", img_file);
+  fseek(fp, 0, SEEK_END);
+  long size = ftell(fp);
+  Log("The image is %s, size = %ld", img_file, size); 
 
 
 
