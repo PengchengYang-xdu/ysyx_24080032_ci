@@ -89,6 +89,13 @@ word_t paddr_read(paddr_t addr, int len) {
   if (in_sdram(addr)) return pmem_read(addr, len);
   if (in_psram(addr)) return pmem_read(addr, len);
 #elif CONFIG_ICACHESIM
+    if (in_dev(addr)) {dev_skip = true; return 0;}
+
+    if (in_mrom(addr)) return pmem_read(addr, len);
+    if (in_sram(addr)) return pmem_read(addr, len);
+    if (in_flash(addr)) return pmem_read(addr, len);
+    if (in_sdram(addr)) return pmem_read(addr, len);
+    if (in_psram(addr)) return pmem_read(addr, len);
 #endif
 
   IFDEF(CONFIG_MTRACE, if(addr >= CONFIG_MTRACE_START && addr <= CONFIG_MTRACE_END) display_pread(addr, len));
@@ -113,6 +120,12 @@ void paddr_write(paddr_t addr, int len, word_t data) {
   if (in_sdram(addr)) { pmem_write(addr, len, data); return; }
   if (in_psram(addr)) { pmem_write(addr, len, data); return; }
 #elif CONFIG_ICACHESIM
+  if (in_dev(addr)) {dev_skip = true; return;}
+
+  if (in_sram(addr)) { pmem_write(addr, len, data); return; }
+  if (in_flash(addr)) { pmem_write(addr, len, data); return; }
+  if (in_sdram(addr)) { pmem_write(addr, len, data); return; }
+  if (in_psram(addr)) { pmem_write(addr, len, data); return; }
 #endif
 
   IFDEF(CONFIG_MTRACE, if(addr >= CONFIG_MTRACE_START && addr <= CONFIG_MTRACE_END) display_pwrite(addr, len, data));
