@@ -56,10 +56,9 @@ void init_ysyxsoc_mem(){
     printf("init soc mem success!\n");
     init_icachesim();
     printf("init icachesim success!\n");
-#else
+#endif
     init_icachesim();
     printf("init icachesim success!\n");
-#endif
 }
 
 
