@@ -38,4 +38,4 @@ endif
 YSYXSOC_IMAGE := $(subst nemu,ysyxsoc,$(IMAGE))
 
 icachesim: image
-	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) icachesim ARGS="$(NEMUFLAGS)" IMG=$(YSYXSOC_IMAGE).bin
+	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(YSYXSOC_IMAGE).bin
