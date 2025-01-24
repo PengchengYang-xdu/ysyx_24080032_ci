@@ -164,5 +164,5 @@ $(CLEAN_ALL):
 .PHONY: clean-all $(CLEAN_ALL)
 
 ifeq ($(MAKECMDGOALS),icachesim)
-ARCH = riscv32e-ysyxsoc
+	override ARCH = riscv32e-ysyxsoc
 endif
