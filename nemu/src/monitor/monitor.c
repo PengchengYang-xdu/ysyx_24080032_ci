@@ -143,7 +143,7 @@ void init_monitor(int argc, char *argv[]) {
 
   /* Parse arguments. */
   parse_args(argc, argv);
-
+printf("0");
   parse_elf(elf_file);
   // printf_symbol();
 
