@@ -21,9 +21,6 @@ void engine_start();
 int is_exit_status_bad();
 
 int main(int argc, char *argv[]) {
-#ifdef CONFIG_ICACHESIM
-  printf("66666666666666666666\n");
-#endif
   /* Initialize the monitor. */
 #ifdef CONFIG_TARGET_AM
   am_init_monitor();
