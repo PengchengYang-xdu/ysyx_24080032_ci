@@ -31,11 +31,16 @@ run: image
 gdb: image
 	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) gdb ARGS="$(NEMUFLAGS)" IMG=$(IMAGE).bin
 
+
+MICROBENCH_HOME = /home/ypc/Desktop/ysyx/ysyx-workbench/am-kernels/benchmarks/microbench
+
+
 ifeq ($(MAKECMDGOALS),icachesim)
 CFLAGS += -DNPCCONFIG_ICACHESIM
 endif
 
 YSYXSOC_IMAGE := $(subst nemu,ysyxsoc,$(IMAGE))
 
-icachesim: image
+icachesim:
+	$(MAKE) -C $(MICROBENCH_HOME) ARCH=riscv32e-ysyxsoc mainargs=test
 	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(YSYXSOC_IMAGE).bin
