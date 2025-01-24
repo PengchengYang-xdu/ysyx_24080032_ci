@@ -27,4 +27,12 @@ bool in_mmio(paddr_t addr);
 bool in_dev(paddr_t addr);
 
 void write_icachesim(paddr_t addr);
+
+
+word_t uart_read_soc2nemu(paddr_t addr, int len);
+void uart_write_soc2nemu(paddr_t addr, int len, word_t data);
+word_t clint_read_soc2nemu(paddr_t addr, int len);
+void clint_write_soc2nemu(paddr_t addr, int len, word_t data);
+word_t soc2nemu_read(paddr_t addr, int len);
+void soc2nemu_write(paddr_t addr, int len, word_t data);
 #endif

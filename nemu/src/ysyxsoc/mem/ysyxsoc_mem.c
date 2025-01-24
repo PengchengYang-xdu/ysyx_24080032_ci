@@ -125,8 +125,51 @@ void write_icachesim(paddr_t addr){
     fprintf(icache_fp, "%x\n", addr);
 }
 
-//下面是增加的一些函数, 用于在icachesim时候, nemu跑ysyxsoc的程序流, 遇到访问外设, 能够处理.
-// word_t uart_read(paddr_t addr, int len){
-//     assert(len == 1)
-//     word_t ret = 
-// }
+//下面是增加的一些函数, 用于在icachesim时候, nemu跑ysyxsoc的程序流, 遇到访问ysyxsoc外设, 能够处理.
+word_t uart_read_soc2nemu(paddr_t addr, int len){
+    assert(len == 1);
+    if(addr == UART_BASE + UART_REG_LS)
+        return 32;
+    return 0;
+}
+void uart_write_soc2nemu(paddr_t addr, int len, word_t data){
+    assert(len == 1);
+    if(addr == UART_BASE + UART_REG_RB)
+        putchar(data);
+}
+
+
+word_t clint_read_soc2nemu(paddr_t addr, int len){
+    paddr_t hi = CLINT_BASE + 0x4;
+    paddr_t lo = CLINT_BASE + 0x0;
+    assert(addr == hi || addr == lo);
+    uint64_t us = get_time();
+    if(addr == lo)
+        return (uint32_t)us;
+    else if(addr == hi)
+        return us >> 32;
+    assert(0);
+    return 0;
+}
+void clint_write_soc2nemu(paddr_t addr, int len, word_t data){
+    assert(0);
+}
+
+word_t soc2nemu_read(paddr_t addr, int len){
+    word_t ret;
+    if(in_uart(addr))
+        ret = uart_read_soc2nemu(addr, len);
+    else if(in_clint(addr))
+        ret = clint_read_soc2nemu(addr, len);
+    else
+        assert(0);
+    return ret;
+}
+void soc2nemu_write(paddr_t addr, int len, word_t data){
+    if(in_uart(addr))
+        uart_write_soc2nemu(addr, len, data);
+    else if(in_clint(addr))
+        clint_write_soc2nemu(addr, len, data);
+    else
+        assert(0);
+}
