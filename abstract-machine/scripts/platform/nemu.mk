@@ -38,9 +38,9 @@ gdb: image
 
 MICROBENCH_HOME = /home/ypc/Desktop/ysyx/ysyx-workbench/am-kernels/benchmarks/microbench
 
-# ifeq ($(MAKECMDGOALS),icachesim)
-# CFLAGS += -CONFIG_ICACHESIM
-# endif
+ifeq ($(MAKECMDGOALS),icachesim)
+CFLAGS += -DCONFIG_ICACHESIM
+endif
 
 YSYXSOC_IMAGE := $(subst nemu,ysyxsoc,$(IMAGE))
 
@@ -48,4 +48,4 @@ icachesim:
 #首先制作ysyxsoc的microbench train程序流
 	$(MAKE) -C $(MICROBENCH_HOME) ARCH=riscv32e-ysyxsoc mainargs=test
 #之后用nemu执行ysyxsoc的程序流, 从而生成icachesim.log
-	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(YSYXSOC_IMAGE).bin CFLAGS CONFIG_ICACHESIM
+	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(YSYXSOC_IMAGE).bin
