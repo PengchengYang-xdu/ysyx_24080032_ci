@@ -48,6 +48,6 @@ icachesim:
 #首先制作ysyxsoc的microbench train程序流
 	$(MAKE) -C $(MICROBENCH_HOME) ARCH=riscv32e-ysyxsoc mainargs=test
 	@echo "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh\n"
-	@echo $(CFLAGS)
+	@echo "CFLAGS: $(CFLAGS)"
 #之后用nemu执行ysyxsoc的程序流, 从而生成icachesim.log
 	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(YSYXSOC_IMAGE).bin
