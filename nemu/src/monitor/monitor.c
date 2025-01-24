@@ -111,7 +111,7 @@ static int parse_args(int argc, char *argv[]) {
 
 void init_monitor(int argc, char *argv[]) {
   /* Perform some global initialization. */
-printf("111111111111111\n");
+
   /* Parse arguments. */
   parse_args(argc, argv);
 
@@ -127,14 +127,13 @@ printf("111111111111111\n");
   /* Initialize memory. */
   init_mem();
   init_ysyxsoc_mem();//attention: have to init_ysyxsoc_mem() in ref.c difftest_init(), otherwise nemu as ref cannot work in ysyxsoc
-printf("2222222222222\n");
+
   /* Initialize devices. */
   IFDEF(CONFIG_DEVICE, init_device());
-printf("33333333333333\n");
-printf("kkkkkkkkk\n");
+
   /* Perform ISA dependent initialization. */
   init_isa();
-printf("44444444444\n");
+
   /* Load the image to memory. This will overwrite the built-in image. */
   long img_size = load_img();
 
@@ -157,7 +156,6 @@ printf("44444444444\n");
 
   /* Display welcome message. */
   welcome();
-  printf("99999999999\n");
 }
 #else // CONFIG_TARGET_AM
 static long load_img() {
