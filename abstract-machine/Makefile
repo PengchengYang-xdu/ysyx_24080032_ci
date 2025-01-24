@@ -166,3 +166,5 @@ $(CLEAN_ALL):
 ifeq ($(MAKECMDGOALS),icachesim)
 override ARCH = riscv32e-ysyxsoc
 endif
+
+CFLAGS += -DCONFIG_ICACHESIM
