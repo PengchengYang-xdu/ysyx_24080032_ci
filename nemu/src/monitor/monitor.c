@@ -131,6 +131,7 @@ printf("2222222222222\n");
   /* Initialize devices. */
   IFDEF(CONFIG_DEVICE, init_device());
 printf("33333333333333\n");
+printf("kkkkkkkkk\n");
   /* Perform ISA dependent initialization. */
   init_isa();
 printf("44444444444\n");
