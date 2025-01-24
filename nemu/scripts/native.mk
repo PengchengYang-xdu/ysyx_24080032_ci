@@ -55,7 +55,3 @@ clean-all: clean distclean clean-tools
 
 count :
 	find ./ -type f \( -name "*.c" -o -name "*.h" \) | xargs wc -l
-
-ifeq ($(MAKECMDGOALS),icachesim)
-CFLAGS += -DCONFIG_ICACHESIM
-endif
