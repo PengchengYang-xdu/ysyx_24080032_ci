@@ -1,5 +1,7 @@
 .DEFAULT_GOAL = app
-
+ifeq ($(MAKECMDGOALS),icachesim)
+CFLAGS += -DCONFIG_ICACHESIM
+endif
 # Add necessary options if the target is a shared library
 ifeq ($(SHARE),1)
 SO = -so
