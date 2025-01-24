@@ -162,3 +162,7 @@ clean-all: $(CLEAN_ALL) clean
 $(CLEAN_ALL):
 	-@$(MAKE) -s -C $@ clean
 .PHONY: clean-all $(CLEAN_ALL)
+
+ifeq ($(MAKECMDGOALS),icachesim)
+ARCH = riscv32e-ysyxsoc
+endif
