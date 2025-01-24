@@ -22,7 +22,6 @@ void halt(int code) {
 }
 
 void _trm_init() {
-    putch('a');
   int ret = main(mainargs);
   halt(ret);
 }
