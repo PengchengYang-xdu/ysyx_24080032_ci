@@ -29,13 +29,5 @@ SECTIONS {
   _stack_pointer = .;
   end = .;
   _end = .;
-  _heap_start = ALIGN(0x1000) + 0x800;
-  /* end = .;
-  _end = .;
-  _heap_start = ALIGN(0x10);
-  _heap_end = _heap_start + 2M;
-
-  _stack_top = ALIGN(0x1000);
-  . = _stack_top + 0x8000;
-  _stack_pointer = .; */
+  _heap_start = ALIGN(0x1000);
 }
