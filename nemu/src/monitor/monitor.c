@@ -111,7 +111,7 @@ static int parse_args(int argc, char *argv[]) {
 
 void init_monitor(int argc, char *argv[]) {
   /* Perform some global initialization. */
-
+printf("111111111111111\n");
   /* Parse arguments. */
   parse_args(argc, argv);
 
@@ -127,7 +127,7 @@ void init_monitor(int argc, char *argv[]) {
   /* Initialize memory. */
   init_mem();
   init_ysyxsoc_mem();//attention: have to init_ysyxsoc_mem() in ref.c difftest_init(), otherwise nemu as ref cannot work in ysyxsoc
-
+printf("2222222222222\n");
   /* Initialize devices. */
   IFDEF(CONFIG_DEVICE, init_device());
 
