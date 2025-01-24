@@ -133,7 +133,7 @@ printf("2222222222222\n");
 printf("33333333333333\n");
   /* Perform ISA dependent initialization. */
   init_isa();
-
+printf("44444444444\n");
   /* Load the image to memory. This will overwrite the built-in image. */
   long img_size = load_img();
 
@@ -156,7 +156,7 @@ printf("33333333333333\n");
 
   /* Display welcome message. */
   welcome();
-  printf("4444444444\n");
+  printf("99999999999\n");
 }
 #else // CONFIG_TARGET_AM
 static long load_img() {
