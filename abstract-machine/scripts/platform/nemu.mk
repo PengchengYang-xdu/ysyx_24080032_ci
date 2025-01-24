@@ -40,6 +40,7 @@ MICROBENCH_HOME = /home/ypc/Desktop/ysyx/ysyx-workbench/am-kernels/benchmarks/mi
 
 ifeq ($(MAKECMDGOALS),icachesim)
 CFLAGS += -DCONFIG_ICACHESIM
+$(info CFLAGS is set to: $(CFLAGS))
 endif
 
 YSYXSOC_IMAGE := $(subst nemu,ysyxsoc,$(IMAGE))
