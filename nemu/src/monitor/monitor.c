@@ -156,6 +156,7 @@ printf("33333333333333\n");
 
   /* Display welcome message. */
   welcome();
+  printf("4444444444\n");
 }
 #else // CONFIG_TARGET_AM
 static long load_img() {
