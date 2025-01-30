@@ -1,7 +1,7 @@
 [
   {
     "label": "playground.runIvyDeps",
-    "millis": 19,
+    "millis": 22,
     "cached": true,
     "inputsHash": -1901708194
   },
@@ -13,7 +13,7 @@
   },
   {
     "label": "playground.platformSuffix",
-    "millis": 2,
+    "millis": 3,
     "cached": true,
     "inputsHash": 1242928766
   },
@@ -40,7 +40,7 @@
   },
   {
     "label": "playground.scalaLibraryIvyDeps",
-    "millis": 3,
+    "millis": 2,
     "cached": true,
     "dependencies": [
       "playground.scalaOrganization",
@@ -50,7 +50,7 @@
   },
   {
     "label": "playground.mandatoryIvyDeps",
-    "millis": 3,
+    "millis": 2,
     "cached": true,
     "dependencies": [
       "playground.mandatoryIvyDeps.super.mill.scalalib.JavaModule.mandatoryIvyDeps",
@@ -60,7 +60,7 @@
   },
   {
     "label": "playground.transitiveIvyDeps",
-    "millis": 3,
+    "millis": 2,
     "cached": true,
     "dependencies": [
       "playground.scalaVersion",
@@ -72,7 +72,7 @@
   },
   {
     "label": "playground.resolvedRunIvyDeps",
-    "millis": 14,
+    "millis": 15,
     "cached": true,
     "dependencies": [
       "playground.scalaVersion",
@@ -91,9 +91,9 @@
   },
   {
     "label": "playground.compileResources",
-    "millis": 4,
-    "inputsHash": -1956593701,
-    "previousInputsHash": 1055811888
+    "millis": 3,
+    "inputsHash": -1797325831,
+    "previousInputsHash": -1956593701
   },
   {
     "label": "playground.unmanagedClasspath",
@@ -103,7 +103,7 @@
   },
   {
     "label": "playground.localCompileClasspath",
-    "millis": 1,
+    "millis": 2,
     "cached": true,
     "dependencies": [
       "playground.compileResources",
@@ -113,9 +113,9 @@
   },
   {
     "label": "playground.resources",
-    "millis": 6,
-    "inputsHash": -1107041862,
-    "previousInputsHash": 2110987717
+    "millis": 3,
+    "inputsHash": 351198952,
+    "previousInputsHash": -1107041862
   },
   {
     "label": "mill.scalalib.ZincWorkerModule.classpath",
@@ -125,13 +125,13 @@
   },
   {
     "label": "mill.scalalib.ZincWorkerModule.zincLogDebug",
-    "millis": 3,
-    "inputsHash": 1509263532,
-    "previousInputsHash": -635563047
+    "millis": 2,
+    "inputsHash": 1613022690,
+    "previousInputsHash": 1509263532
   },
   {
     "label": "mill.scalalib.ZincWorkerModule.worker",
-    "millis": 25,
+    "millis": 32,
     "cached": false,
     "dependencies": [
       "mill.scalalib.ZincWorkerModule.classpath",
@@ -141,15 +141,15 @@
   },
   {
     "label": "playground.upstreamCompileOutput",
-    "millis": 2,
+    "millis": 6,
     "cached": true,
     "inputsHash": -1653019322
   },
   {
     "label": "playground.sources.super.mill.scalalib.SbtModule.sources",
     "millis": 9,
-    "inputsHash": 1095245608,
-    "previousInputsHash": 1008858261
+    "inputsHash": -647755027,
+    "previousInputsHash": 1095245608
   },
   {
     "label": "playground.sources",
@@ -157,18 +157,18 @@
     "dependencies": [
       "playground.sources.super.mill.scalalib.SbtModule.sources"
     ],
-    "inputsHash": -927166072,
-    "previousInputsHash": -726674358
+    "inputsHash": 1977327188,
+    "previousInputsHash": -927166072
   },
   {
     "label": "playground.generatedSources",
-    "millis": 2,
+    "millis": 1,
     "cached": true,
     "inputsHash": 2007639297
   },
   {
     "label": "playground.allSources",
-    "millis": 1,
+    "millis": 3,
     "cached": true,
     "dependencies": [
       "playground.sources",
@@ -204,7 +204,7 @@
   },
   {
     "label": "playground.resolvedIvyDeps",
-    "millis": 16,
+    "millis": 17,
     "cached": true,
     "dependencies": [
       "playground.transitiveCompileIvyDeps",
@@ -216,13 +216,13 @@
   },
   {
     "label": "playground.transitiveCompileClasspath",
-    "millis": 3,
+    "millis": 2,
     "cached": true,
     "inputsHash": -1583066387
   },
   {
     "label": "playground.compileClasspath",
-    "millis": 8,
+    "millis": 15,
     "cached": true,
     "dependencies": [
       "playground.resolvedIvyDeps",
@@ -233,25 +233,25 @@
   },
   {
     "label": "playground.javacOptions",
-    "millis": 1,
+    "millis": 2,
     "cached": true,
     "inputsHash": -1804781579
   },
   {
     "label": "playground.mandatoryScalacOptions",
-    "millis": 1,
+    "millis": 2,
     "cached": true,
     "inputsHash": 1087479528
   },
   {
     "label": "playground.scalacPluginIvyDeps",
-    "millis": 2,
+    "millis": 3,
     "cached": true,
     "inputsHash": -1465470141
   },
   {
     "label": "playground.enablePluginScalacOptions.super.mill.scalalib.ScalaModule.enablePluginScalacOptions",
-    "millis": 2,
+    "millis": 3,
     "cached": true,
     "dependencies": [
       "playground.scalaVersion",
@@ -263,7 +263,7 @@
   },
   {
     "label": "playground.scalacOptions",
-    "millis": 2,
+    "millis": 3,
     "cached": true,
     "inputsHash": -911707052
   },
@@ -304,13 +304,13 @@
   },
   {
     "label": "playground.zincReportCachedProblems",
-    "millis": 2,
-    "inputsHash": 2130851638,
-    "previousInputsHash": -675465106
+    "millis": 4,
+    "inputsHash": -571902794,
+    "previousInputsHash": 2130851638
   },
   {
     "label": "playground.compile",
-    "millis": 1,
+    "millis": 2,
     "cached": true,
     "dependencies": [
       "playground.scalaVersion",
@@ -340,7 +340,7 @@
   },
   {
     "label": "playground.runClasspath",
-    "millis": 10,
+    "millis": 19,
     "cached": true,
     "dependencies": [
       "playground.resolvedRunIvyDeps",
@@ -351,15 +351,15 @@
   },
   {
     "label": "playground.forkArgs",
-    "millis": 1,
+    "millis": 2,
     "cached": true,
     "inputsHash": -2055841867
   },
   {
     "label": "playground.forkEnv",
-    "millis": 6,
-    "inputsHash": -1532291969,
-    "previousInputsHash": -1404383981
+    "millis": 7,
+    "inputsHash": -1935758050,
+    "previousInputsHash": -1532291969
   },
   {
     "label": "playground.forkWorkingDir",
@@ -369,13 +369,13 @@
   },
   {
     "label": "playground.runUseArgsFile",
-    "millis": 2,
+    "millis": 1,
     "cached": true,
     "inputsHash": 1879284624
   },
   {
     "label": "playground.runMain",
-    "millis": 3331,
+    "millis": 4271,
     "cached": false,
     "dependencies": [
       "playground.runClasspath",
