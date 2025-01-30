@@ -37,6 +37,7 @@ VM_MODPREFIX = VNPC
 VM_USER_CFLAGS = \
 	-I/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/include \
 	-DTOP_NAME="VNPC" \
+	-DNPCCONFIG_ITRACE \
 	-DNPCCONFIG_DIFFTEST \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
