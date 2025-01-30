@@ -81,7 +81,7 @@ void init_mem() {
 word_t paddr_read(paddr_t addr, int len) {
     // printf("read_now, addr = 0x%x\n", addr);
 // #ifdef CONFIG_TARGET_SHARE
-  if (in_dev(addr)) {dev_skip = true; return 0;}
+//   if (in_dev(addr)) {dev_skip = true; return 0;}
 
   if (in_mrom(addr)) return pmem_read(addr, len);
   if (in_sram(addr)) return pmem_read(addr, len);
@@ -113,7 +113,7 @@ word_t paddr_read(paddr_t addr, int len) {
 void paddr_write(paddr_t addr, int len, word_t data) {
     // printf("write_now, addr = 0x%x\n", addr);
 // #ifdef CONFIG_TARGET_SHARE
-  if (in_dev(addr)) {dev_skip = true; return;}
+//   if (in_dev(addr)) {dev_skip = true; return;}
 
   if (in_sram(addr)) { pmem_write(addr, len, data); return; }
   if (in_flash(addr)) { pmem_write(addr, len, data); return; }
