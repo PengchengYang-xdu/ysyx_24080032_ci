@@ -17,7 +17,7 @@
         "GDMSESSION": "ubuntu",
         "AM_HOME": "/home/ypc/Desktop/ysyx/ysyx-workbench/abstract-machine",
         "LC_MEASUREMENT": "zh_CN.UTF-8",
-        "OLDPWD": "/home/ypc/Desktop",
+        "OLDPWD": "/home/ypc",
         "SYSTEMD_EXEC_PID": "2327",
         "XDG_SESSION_TYPE": "wayland",
         "NVBOARD_HOME": "/home/ypc/Desktop/ysyx/ysyx-workbench/nvboard",
@@ -28,6 +28,7 @@
         "XDG_MENU_PREFIX": "gnome-",
         "SESSION_MANAGER": "local/ypc:@/tmp/.ICE-unix/2283,unix/ypc:/tmp/.ICE-unix/2283",
         "MAKEOVERRIDES": "${-*-command-variables-*-}",
+        "ALL": "dummy",
         "LC_TIME": "zh_CN.UTF-8",
         "CONDA_EXE": "/home/ypc/anaconda3/bin/conda",
         "CONDA_DEFAULT_ENV": "base",
@@ -37,7 +38,7 @@
         "XDG_SESSION_DESKTOP": "ubuntu",
         "XDG_DATA_DIRS": "/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop",
         "LC_ADDRESS": "zh_CN.UTF-8",
-        "MAKEFLAGS": "w -- ARCH=riscv32e-npc",
+        "MAKEFLAGS": "s -- ALL=dummy ARCH=riscv32e-npc",
         "MANAGERPID": "2133",
         "LC_IDENTIFICATION": "zh_CN.UTF-8",
         "XMODIFIERS": "@im=fcitx",
@@ -59,8 +60,8 @@
         "USE_CCACHE": "1",
         "NPC_HOME": "/home/ypc/Desktop/ysyx/ysyx-workbench/npc",
         "SHLVL": "1",
-        "MFLAGS": "-w",
-        "MAKELEVEL": "2",
+        "MFLAGS": "-s",
+        "MAKELEVEL": "3",
         "MAKE_TERMERR": "/dev/pts/7",
         "_": "/usr/bin/make",
         "MAKE_TERMOUT": "/dev/pts/7",
@@ -86,6 +87,6 @@
         "DESKTOP_SESSION": "ubuntu",
         "_CE_CONDA": ""
     },
-    "valueHash": 113672154,
-    "inputsHash": 435800931
+    "valueHash": -1192621835,
+    "inputsHash": -798038741
 }
