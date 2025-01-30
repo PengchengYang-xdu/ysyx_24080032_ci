@@ -1,8 +1,8 @@
 {
     "value": [
-        "ref:v0:8aa8fb7d:/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/build.sc",
+        "ref:v0:4ed23a93:/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/build.sc",
         "ref:v0:045c0be3:/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/out/mill-build/generateScriptSources.dest"
     ],
-    "valueHash": 1417263995,
-    "inputsHash": -399221655
+    "valueHash": -370245950,
+    "inputsHash": 9591691
 }
