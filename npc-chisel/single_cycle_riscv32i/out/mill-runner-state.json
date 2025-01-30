@@ -1,8 +1,8 @@
 {
     "workerCache": {
         "mill.scalalib.ZincWorkerModule.worker": {
-            "identityHashCode": 1119920494,
-            "inputHash": -1111421689
+            "identityHashCode": 606365803,
+            "inputHash": -176473794
         }
     },
     "evalWatched": [
