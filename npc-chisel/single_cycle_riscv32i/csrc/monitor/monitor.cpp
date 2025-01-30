@@ -8,7 +8,7 @@ deigned by ypc
 #include <debug.h>
 
 void init_log(const char *log_file);
-// void init_mem();
+void init_mem();
 void init_difftest(char *ref_so_file, long img_size);
 void init_device();
 void init_sdb();
