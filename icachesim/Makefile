@@ -1,0 +1,2 @@
+ICAHCESIM_HOME = ../icachesim
+ICACHESIM_LOG_DIR = 
