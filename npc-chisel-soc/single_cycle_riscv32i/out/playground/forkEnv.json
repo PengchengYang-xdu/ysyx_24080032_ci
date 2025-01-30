@@ -6,7 +6,7 @@
         "SSL_CERT_DIR": "/usr/lib/ssl/certs",
         "LANG": "en_US.UTF-8",
         "LC_NAME": "zh_CN.UTF-8",
-        "VSCODE_IPC_HOOK_CLI": "/run/user/1000/vscode-ipc-cc2a0469-1128-4391-a808-b06a8d838d94.sock",
+        "VSCODE_IPC_HOOK_CLI": "/run/user/1000/vscode-ipc-592da438-df0b-4c48-986d-cd582c9e29f0.sock",
         "_CE_CONDA": "",
         "SHELL": "/bin/bash",
         "LOGNAME": "ypc",
@@ -58,9 +58,9 @@
         "BROWSER": "/home/ypc/.vscode-server/cli/servers/Stable-ea1445cc7016315d0f5728f8e8b12a45dc0a7286/server/bin/helpers/browser.sh",
         "MFLAGS": "-s",
         "MAKELEVEL": "3",
-        "MAKE_TERMERR": "/dev/pts/9",
+        "MAKE_TERMERR": "/dev/pts/7",
         "_": "/usr/bin/make",
-        "MAKE_TERMOUT": "/dev/pts/9",
+        "MAKE_TERMOUT": "/dev/pts/7",
         "CLK_FREQ_MHZ": "100",
         "TERM_PROGRAM_VERSION": "1.91.0",
         "PWD": "/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i",
@@ -72,6 +72,6 @@
         "CCACHE_DIR": "/home/ypc/.ccache",
         "CONDA_PROMPT_MODIFIER": "(base) "
     },
-    "valueHash": -1065855845,
-    "inputsHash": 1758755776
+    "valueHash": 1695520614,
+    "inputsHash": 1123473873
 }
