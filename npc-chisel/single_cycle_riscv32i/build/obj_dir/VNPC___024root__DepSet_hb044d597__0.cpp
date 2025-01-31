@@ -31,15 +31,15 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT___clint_wready = vlSelf->NPC__DOT__clint__DOT__wready;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT___GEN_1 = 
         (0U == (IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__delay));
-    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_in_ready 
+    vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_in_ready 
         = vlSelf->NPC__DOT__core__DOT__ifu__DOT__in_ready;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_valid 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__out_valid;
-    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_out_valid 
+    vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_out_valid 
         = vlSelf->NPC__DOT__core__DOT__ifu__DOT__out_valid;
     vlSelf->NPC__DOT__core__DOT___exu_io_pipe_in_ready 
         = vlSelf->NPC__DOT__core__DOT__exu__DOT__in_ready;
-    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_valid 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_valid 
         = vlSelf->NPC__DOT__core__DOT__idu__DOT__out_valid;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_ready 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__in_ready;
@@ -134,7 +134,7 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__csr__DOT__io_csr_mepc 
         = vlSelf->NPC__DOT__core__DOT__csr__DOT__csr_ext__DOT__Memory
         [2U];
-    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_imm_b_sext 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_imm_b_sext 
         = (((- (IData)((vlSelf->NPC__DOT__arb__DOT__imem_rdata 
                         >> 0x1fU))) << 0xcU) | ((0x800U 
                                                  & (vlSelf->NPC__DOT__arb__DOT__imem_rdata 
@@ -151,7 +151,7 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_wb_addr 
         = (0x1fU & (vlSelf->NPC__DOT__arb__DOT__imem_rdata 
                     >> 7U));
-    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_in_ready 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_ready 
         = vlSelf->NPC__DOT__core__DOT__idu__DOT__in_ready;
     vlSelf->NPC__DOT__core__DOT___wbu_io_pipe_in_ready 
         = vlSelf->NPC__DOT__core__DOT__wbu__DOT__in_ready;
@@ -194,10 +194,8 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
                                                   ? 6U
                                                   : 1U)));
     vlSelf->NPC__DOT__xbar__DOT__io_arb_bvalid = vlSelf->NPC__DOT__xbar__DOT__arb_bvalid;
-    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_arvalid 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__arvalid;
-    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_rready 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__rready;
+    vlSelf->NPC__DOT__core__DOT__io_imem_arvalid = vlSelf->NPC__DOT__core__DOT__ifu__DOT__arvalid;
+    vlSelf->NPC__DOT__core__DOT__io_imem_rready = vlSelf->NPC__DOT__core__DOT__ifu__DOT__rready;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_arvalid 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__arvalid;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_rready 
@@ -208,15 +206,15 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__wvalid;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_bready 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__bready;
-    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc 
         = vlSelf->NPC__DOT__core__DOT__ifu__DOT__reg_pc;
     vlSelf->NPC__DOT__arb__DOT__imem_mem_done = ((IData)(vlSelf->NPC__DOT__arb__DOT__mem_rready) 
                                                  & (IData)(vlSelf->NPC__DOT__xbar__DOT__arb_rvalid));
     vlSelf->NPC__DOT__arb__DOT__io_imem_rdata = vlSelf->NPC__DOT__arb__DOT__imem_rdata;
-    vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs1_addr 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs1_addr 
         = (0x1fU & (vlSelf->NPC__DOT__arb__DOT__imem_rdata 
                     >> 0xfU));
-    vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs2_addr 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs2_addr 
         = (0x1fU & (vlSelf->NPC__DOT__arb__DOT__imem_rdata 
                     >> 0x14U));
     vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_87 
@@ -248,25 +246,25 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__xbar__DOT__io_clint_awready = vlSelf->NPC__DOT___clint_awready;
     vlSelf->NPC__DOT__xbar__DOT__io_clint_wready = vlSelf->NPC__DOT___clint_wready;
     vlSelf->NPC__DOT__core__DOT__wbu__DOT__io_pipe_out_ready 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_in_ready;
-    vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_in_ready 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_in_ready;
+        = vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_in_ready;
+    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_in_ready 
+        = vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_in_ready;
     vlSelf->NPC__DOT__core__DOT__wbu__DOT__io_pipe_in_valid 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_valid;
     vlSelf->NPC__DOT__core__DOT___lsu_io_pipe_out_valid 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_valid;
     vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_valid 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_out_valid;
-    vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_out_valid 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_out_valid;
+        = vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_out_valid;
+    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_out_valid 
+        = vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_out_valid;
     vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_ready 
         = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_in_ready;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_ready 
         = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_in_ready;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_valid 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_valid;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_valid 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_valid;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_valid;
+    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_valid 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_valid;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_out_ready 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_ready;
     vlSelf->NPC__DOT__core__DOT___lsu_io_pipe_in_ready 
@@ -419,11 +417,11 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__csr__DOT__csr_ext__DOT__R2_data 
         = vlSelf->NPC__DOT__core__DOT__csr__DOT__io_csr_mepc;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_imm_b_sext 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_imm_b_sext;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_imm_b_sext 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_imm_b_sext;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_imm_b_sext;
+    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_imm_b_sext 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_imm_b_sext;
     vlSelf->NPC__DOT__core__DOT___exu_io_br_target 
-        = (vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_imm_b_sext 
+        = (vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_imm_b_sext 
            + vlSelf->NPC__DOT__core__DOT__ifu__DOT__reg_pc);
     vlSelf->NPC__DOT__arb__DOT__reset = vlSelf->NPC__DOT__reset;
     vlSelf->NPC__DOT__xbar__DOT__reset = vlSelf->NPC__DOT__reset;
@@ -457,9 +455,9 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__io_gpr_addr 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_wb_addr;
     vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_out_ready 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_in_ready;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_ready 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_in_ready;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_ready;
+    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_in_ready 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_ready;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_ready 
         = vlSelf->NPC__DOT__core__DOT___wbu_io_pipe_in_ready;
     vlSelf->NPC__DOT__core__DOT__wbu__DOT__io_pipe_in_ready 
@@ -516,12 +514,14 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
                                                   : 0U);
     vlSelf->NPC__DOT__arb__DOT__io_mem_bvalid = vlSelf->NPC__DOT__xbar__DOT__io_arb_bvalid;
     vlSelf->NPC__DOT___xbar_io_arb_bvalid = vlSelf->NPC__DOT__xbar__DOT__io_arb_bvalid;
-    vlSelf->NPC__DOT__arb__DOT__io_imem_arvalid = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_arvalid;
-    vlSelf->NPC__DOT__core__DOT__io_imem_arvalid = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_arvalid;
-    vlSelf->NPC__DOT___core_io_imem_arvalid = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_arvalid;
-    vlSelf->NPC__DOT__arb__DOT__io_imem_rready = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_rready;
-    vlSelf->NPC__DOT__core__DOT__io_imem_rready = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_rready;
-    vlSelf->NPC__DOT___core_io_imem_rready = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_rready;
+    vlSelf->NPC__DOT__arb__DOT__io_imem_arvalid = vlSelf->NPC__DOT__core__DOT__io_imem_arvalid;
+    vlSelf->NPC__DOT___core_io_imem_arvalid = vlSelf->NPC__DOT__core__DOT__io_imem_arvalid;
+    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_arvalid 
+        = vlSelf->NPC__DOT__core__DOT__io_imem_arvalid;
+    vlSelf->NPC__DOT__arb__DOT__io_imem_rready = vlSelf->NPC__DOT__core__DOT__io_imem_rready;
+    vlSelf->NPC__DOT___core_io_imem_rready = vlSelf->NPC__DOT__core__DOT__io_imem_rready;
+    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_rready 
+        = vlSelf->NPC__DOT__core__DOT__io_imem_rready;
     vlSelf->NPC__DOT__arb__DOT__io_dmem_arvalid = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_arvalid;
     vlSelf->NPC__DOT__core__DOT__io_dmem_arvalid = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_arvalid;
     vlSelf->NPC__DOT___core_io_dmem_arvalid = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_arvalid;
@@ -538,32 +538,32 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__io_dmem_bready = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_bready;
     vlSelf->NPC__DOT___core_io_dmem_bready = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_bready;
     vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_bits_if2id_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_bits_exe2ls_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
-    vlSelf->NPC__DOT__arb__DOT__io_imem_araddr = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
-    vlSelf->NPC__DOT__core__DOT__io_imem_araddr = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
-    vlSelf->NPC__DOT___core_io_imem_araddr = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
+    vlSelf->NPC__DOT__arb__DOT__io_imem_araddr = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
+    vlSelf->NPC__DOT__core__DOT__io_imem_araddr = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
+    vlSelf->NPC__DOT___core_io_imem_araddr = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT___ifu_io_csr_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
+    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_csr_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_out_bits_if2id_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_out_bits_if2id_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_out_bits_exe2ls_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT__csr__DOT__io_csr_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__xbar__DOT___clint_done1_T = vlSelf->NPC__DOT__arb__DOT__imem_mem_done;
     vlSelf->NPC__DOT__xbar__DOT____VdfgTmp_hbde7f97a__0 
         = ((IData)(vlSelf->NPC__DOT__arb__DOT__imem_mem_done) 
@@ -599,7 +599,7 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
                                                   (2U 
                                                    & ((~ 
                                                        ((IData)(vlSelf->NPC__DOT__arb__DOT__imem_rvalid) 
-                                                        & (IData)(vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_rready))) 
+                                                        & (IData)(vlSelf->NPC__DOT__core__DOT__io_imem_rready))) 
                                                       << 1U)))
                                                   : 
                                                  ((1U 
@@ -609,7 +609,7 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
                                                     ? 2U
                                                     : 1U)
                                                    : 
-                                                  (((IData)(vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_arvalid) 
+                                                  (((IData)(vlSelf->NPC__DOT__core__DOT__io_imem_arvalid) 
                                                     & (IData)(vlSelf->NPC__DOT__arb__DOT__imem_arready))
                                                     ? 1U
                                                     : 
@@ -632,20 +632,20 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__io_imem_rdata = vlSelf->NPC__DOT__arb__DOT__io_imem_rdata;
     vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_bits_if2id_inst 
         = vlSelf->NPC__DOT__arb__DOT__io_imem_rdata;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs1_addr 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs1_addr;
+    vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs1_addr 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs1_addr;
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__io_gpr_rs1_addr 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs1_addr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs1_addr;
     vlSelf->NPC__DOT__core__DOT__gpr__DOT___gpr_ext_R1_data 
         = vlSelf->NPC__DOT__core__DOT__gpr__DOT__gpr_ext__DOT__Memory
-        [vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs1_addr];
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs2_addr 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs2_addr;
+        [vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs1_addr];
+    vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs2_addr 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs2_addr;
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__io_gpr_rs2_addr 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs2_addr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs2_addr;
     vlSelf->NPC__DOT__core__DOT__gpr__DOT___gpr_ext_R0_data 
         = vlSelf->NPC__DOT__core__DOT__gpr__DOT__gpr_ext__DOT__Memory
-        [vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs2_addr];
+        [vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs2_addr];
     vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_4 = 
         ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_87) 
          | ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_89) 
@@ -800,7 +800,7 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__gpr_ext__DOT__R1_data 
         = vlSelf->NPC__DOT__core__DOT__gpr__DOT___gpr_ext_R1_data;
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__io_gpr_rs1_data 
-        = ((0U != (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs1_addr))
+        = ((0U != (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs1_addr))
             ? vlSelf->NPC__DOT__core__DOT__gpr__DOT___gpr_ext_R1_data
             : 0U);
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__gpr_ext__DOT__R0_addr 
@@ -808,7 +808,7 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__gpr_ext__DOT__R0_data 
         = vlSelf->NPC__DOT__core__DOT__gpr__DOT___gpr_ext_R0_data;
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__io_gpr_rs2_data 
-        = ((0U != (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs2_addr))
+        = ((0U != (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs2_addr))
             ? vlSelf->NPC__DOT__core__DOT__gpr__DOT___gpr_ext_R0_data
             : 0U);
     vlSelf->NPC__DOT__core__DOT__idu__DOT____VdfgTmp_h2da9d508__0 
@@ -917,11 +917,11 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
                                                    ((1U 
                                                      & (IData)(vlSelf->NPC__DOT__arb__DOT__n_state))
                                                      ? vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_araddr
-                                                     : vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr)
+                                                     : vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc)
                                                     : 
                                                    ((1U 
                                                      & (IData)(vlSelf->NPC__DOT__arb__DOT__n_state))
-                                                     ? vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr
+                                                     ? vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc
                                                      : 0U)));
     vlSelf->__Vtableidx1 = (((IData)(vlSelf->NPC__DOT__xbar__DOT__io_arb_rresp) 
                              << 5U) | (((IData)(vlSelf->NPC__DOT__arb__DOT__imem_rresp) 
@@ -957,7 +957,7 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
          | ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_79) 
             | ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_81) 
                | (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_1))));
-    vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op 
         = ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT____VdfgTmp_hcb32bbc0__0)
             ? 2U : ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_5)
                      ? 0U : ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_7)
@@ -1393,19 +1393,19 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
                                                                | ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_53) 
                                                                   | (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_5)))))))))))))))))))));
     if (vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_1) {
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen = 0U;
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen = 0U;
         vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_rf_wen = 1U;
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel = 1U;
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel = 1U;
     } else if (vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_3) {
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen = 1U;
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen = 1U;
         vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_rf_wen = 0U;
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel = 0U;
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel = 0U;
     } else if (vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_9) {
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen = 0U;
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen = 0U;
         vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_rf_wen = 1U;
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel = 1U;
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel = 1U;
     } else {
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen 
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen 
             = vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_8;
         vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_rf_wen 
             = ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_8)
@@ -1432,7 +1432,7 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
                                           | ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_71) 
                                              | ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_73) 
                                                 | (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_2)))))));
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel 
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel 
             = ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_6)
                 ? 0U : ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT____VdfgTmp_hd611f556__0)
                          ? 2U : ((1U & ((~ (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_2)) 
@@ -1470,32 +1470,32 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__arb__DOT___GEN_3 = (1U & ((~ (IData)(vlSelf->NPC__DOT__arb__DOT___GEN_2)) 
                                                 | (IData)(vlSelf->NPC__DOT__arb__DOT___GEN)));
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_mem_op 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_bits_exe2ls_mem_op 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op;
     vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_mem_op 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_out_bits_exe2ls_mem_op 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op;
+    vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_mem_wen 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_bits_exe2ls_mem_wen 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen;
     vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_mem_wen 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_out_bits_exe2ls_mem_wen 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen;
+    vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__isL = ((IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT____VdfgTmp_h310fdd7c__0) 
                                                   & (0U 
-                                                     == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen)));
+                                                     == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen)));
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__isS = ((IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT____VdfgTmp_h310fdd7c__0) 
                                                   & (1U 
-                                                     == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen)));
-    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun 
+                                                     == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen)));
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun 
         = ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT____VdfgTmp_h336b3a0a__0)
             ? 1U : ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_21)
                      ? 2U : ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_23)
@@ -1600,7 +1600,7 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
                                                                                 | (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_3)))))))))))))))))))))))))));
     vlSelf->NPC__DOT__core__DOT__exu__DOT___GEN = (0x1fU 
                                                    & vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0);
-    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_op2_data 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op2_data 
         = vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0;
     vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
         = ((0U == ((((((((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_1) 
@@ -1673,7 +1673,7 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
                                                           : 
                                                          ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_4) 
                                                           << 1U)))))))))))))
-                ? vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr
+                ? vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc
                 : ((2U == ((((((((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_1) 
                                  | (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_3)) 
                                 | (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_5)) 
@@ -1747,9 +1747,9 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
         ((IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT___GEN_1) 
          & (IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__isS));
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_exe_fun 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun;
+    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun;
     vlSelf->NPC__DOT__core__DOT__csr__DOT____Vcellinp__csr_ext__W3_en 
         = ((IData)(vlSelf->NPC__DOT__core__DOT__wbu__DOT__n_state) 
            & ((~ (IData)(vlSelf->__VdfgTmp_h9e652396__0)) 
@@ -1777,25 +1777,25 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
         vlSelf->NPC__DOT__core__DOT___wbu_io_csr_cmd = 0U;
     }
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_op2_data 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_op2_data;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op2_data 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_op2_data;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op2_data;
+    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_op2_data 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op2_data;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_wb_sel 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_bits_exe2ls_wb_sel 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel;
     vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_wb_sel 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_out_bits_exe2ls_wb_sel 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel;
+    vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel;
     vlSelf->NPC__DOT__core__DOT___exu_io_jmp_flg = 
-        (2U == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel));
+        (2U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel));
     vlSelf->NPC__DOT__core__DOT__exu__DOT___alu_out_T_14 
         = (0x7fffffffffffffffULL & ((QData)((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp)) 
                                     << (0x1fU & vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0)));
-    vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data 
         = vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp;
     vlSelf->NPC__DOT__core__DOT__exu__DOT___br_flg_T_3 
         = (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
@@ -1822,7 +1822,7 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
         = ((0U == (IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__c_state))
             ? (((IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__in_ready) 
                 & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_valid))
-                ? (1U | ((IData)((7U == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))) 
+                ? (1U | ((IData)((7U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))) 
                          << 1U)) : 0U) : ((1U == (IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__c_state))
                                            ? ((((IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__arvalid) 
                                                 & (IData)(vlSelf->NPC__DOT__arb__DOT__io_dmem_arready)) 
@@ -1878,79 +1878,79 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_jmp_flg 
         = vlSelf->NPC__DOT__core__DOT___exu_io_jmp_flg;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_op1_data 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_bits_exe2ls_op1_data 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data;
     vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_op1_data 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_out_bits_exe2ls_op1_data 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data;
+    vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data;
     vlSelf->NPC__DOT__core__DOT___exu_io_br_flg = (1U 
                                                    & ((0xbU 
-                                                       == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                       == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                        ? (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT___br_flg_T_3)
                                                        : 
                                                       ((0xcU 
-                                                        == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                        == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                         ? 
                                                        (~ (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT___br_flg_T_3))
                                                         : 
                                                        ((0xdU 
-                                                         == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                         == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                          ? (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT____VdfgTmp_hffab811e__0)
                                                          : 
                                                         ((0xeU 
-                                                          == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                          == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                           ? 
                                                          VL_GTES_III(32, vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp, vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0)
                                                           : 
                                                          ((0xfU 
-                                                           == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                           == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                            ? (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT___br_flg_T_17)
                                                            : 
                                                           ((~ (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT___br_flg_T_17)) 
                                                            & (0x10U 
-                                                              == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun)))))))));
+                                                              == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun)))))))));
     vlSelf->NPC__DOT__core__DOT___exu_io_alu_out = 
-        ((1U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+        ((1U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
           ? vlSelf->NPC__DOT__core__DOT__exu__DOT___alu_out_T_31
-          : ((2U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+          : ((2U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
               ? (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
                  - vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0)
-              : ((3U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+              : ((3U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                   ? (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
                      & vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0)
-                  : ((4U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                  : ((4U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                       ? (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
                          | vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0)
-                      : ((5U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                      : ((5U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                           ? (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
                              ^ vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0)
-                          : ((6U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                          : ((6U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                               ? (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
                                  << (0x1fU & vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0))
-                              : ((7U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                              : ((7U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                   ? (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
                                      >> (0x1fU & vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0))
-                                  : ((8U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                  : ((8U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                       ? VL_SHIFTRS_III(32,32,5, vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp, 
                                                        (0x1fU 
                                                         & vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0))
-                                      : ((9U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                      : ((9U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                           ? (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT____VdfgTmp_hffab811e__0)
                                           : ((0xaU 
-                                              == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                              == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                               ? (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT___br_flg_T_17)
                                               : ((0x11U 
-                                                  == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                  == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                   ? 
                                                  (0xfffffffeU 
                                                   & vlSelf->NPC__DOT__core__DOT__exu__DOT___alu_out_T_31)
                                                   : 
                                                  ((0x12U 
-                                                   == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                   == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                    ? vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp
                                                    : 0U))))))))))));
     vlSelf->NPC__DOT__xbar__DOT___GEN_13 = ((IData)(vlSelf->NPC__DOT__xbar__DOT___GEN_2) 
@@ -1967,7 +1967,7 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
                     ? 2U : 1U) : ((2U == (IData)(vlSelf->NPC__DOT__core__DOT__ifu__DOT__c_state))
                                    ? (2U | ((IData)(vlSelf->NPC__DOT__arb__DOT__io_imem_rvalid) 
                                             & (IData)(vlSelf->NPC__DOT__core__DOT__ifu__DOT__rready)))
-                                   : (((IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_in_ready) 
+                                   : (((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_ready) 
                                        & (IData)(vlSelf->NPC__DOT__core__DOT__ifu__DOT__out_valid))
                                        ? 0U : 3U))));
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_arready 
@@ -2124,9 +2124,9 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
            [vlSelf->NPC__DOT__core__DOT__csr__DOT__csr_addr_process]
             : 0U);
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__casez_tmp 
-        = ((4U & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))
-            ? ((2U & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))
-                ? 0U : ((1U & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))
+        = ((4U & (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))
+            ? ((2U & (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))
+                ? 0U : ((1U & (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))
                          ? (0xffffU & (((3U == (3U 
                                                 & vlSelf->NPC__DOT__core__DOT___exu_io_alu_out)) 
                                         | (2U == (3U 
@@ -2135,10 +2135,10 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
                                            >> 0x10U)
                                         : vlSelf->NPC__DOT__arb__DOT__io_dmem_rdata))
                          : (IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__casez_tmp_2)))
-            : ((2U & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))
-                ? ((1U & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))
+            : ((2U & (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))
+                ? ((1U & (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))
                     ? 0U : vlSelf->NPC__DOT__arb__DOT__io_dmem_rdata)
-                : ((1U & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))
+                : ((1U & (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))
                     ? ((3U == (3U & vlSelf->NPC__DOT__core__DOT___exu_io_alu_out))
                         ? (((- (IData)((vlSelf->NPC__DOT__arb__DOT__io_dmem_rdata 
                                         >> 0x1fU))) 
@@ -2191,11 +2191,11 @@ VL_INLINE_OPT void VNPC___024root___ico_sequent__TOP__0(VNPC___024root* vlSelf) 
                     : ((4U == (IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_csr_cmd))
                         ? 0xbU : 0U))));
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_wb_data 
-        = ((1U == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel))
+        = ((1U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel))
             ? vlSelf->NPC__DOT__core__DOT__lsu__DOT__casez_tmp
             : ((IData)(vlSelf->NPC__DOT__core__DOT___exu_io_jmp_flg)
                 ? ((IData)(4U) + vlSelf->NPC__DOT__core__DOT__ifu__DOT__reg_pc)
-                : ((3U == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel))
+                : ((3U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel))
                     ? vlSelf->NPC__DOT__core__DOT__csr__DOT__io_csr_rdata
                     : vlSelf->NPC__DOT__core__DOT___exu_io_alu_out)));
     vlSelf->NPC__DOT__core__DOT__wbu__DOT__io_pipe_in_bits_ls2wb_csr_wdata 
@@ -2425,18 +2425,18 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
             = vlSelf->NPC__DOT__core__DOT___exu_io_alu_out;
         vlSelf->NPC__DOT__core__DOT__lsu__DOT__araddr 
             = vlSelf->NPC__DOT__core__DOT___exu_io_alu_out;
-        if ((0U == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))) {
+        if ((0U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))) {
             vlSelf->NPC__DOT__core__DOT__lsu__DOT__wstrb 
                 = ((3U == (3U & vlSelf->NPC__DOT__core__DOT___exu_io_alu_out))
                     ? 8U : ((2U == (3U & vlSelf->NPC__DOT__core__DOT___exu_io_alu_out))
                              ? 4U : ((1U == (3U & vlSelf->NPC__DOT__core__DOT___exu_io_alu_out))
                                       ? 2U : 1U)));
-        } else if ((1U == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))) {
+        } else if ((1U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))) {
             vlSelf->NPC__DOT__core__DOT__lsu__DOT__wstrb 
                 = (((3U == (3U & vlSelf->NPC__DOT__core__DOT___exu_io_alu_out)) 
                     | (2U == (3U & vlSelf->NPC__DOT__core__DOT___exu_io_alu_out)))
                     ? 0xcU : 3U);
-        } else if ((2U == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))) {
+        } else if ((2U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))) {
             vlSelf->NPC__DOT__core__DOT__lsu__DOT__wstrb = 0xfU;
         }
         if ((1U & (~ (IData)(vlSelf->NPC__DOT__arb__DOT___GEN_8)))) {
@@ -2661,7 +2661,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     }
     if (vlSelf->NPC__DOT__core__DOT__csr__DOT____Vcellinp__csr_ext__W4_en) {
         vlSelf->NPC__DOT__core__DOT__csr__DOT__csr_ext__DOT____Vlvbound_hc1e5bfb4__0 
-            = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+            = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
         __Vdlyvval__NPC__DOT__core__DOT__csr__DOT__csr_ext__DOT__Memory__v4 
             = vlSelf->NPC__DOT__core__DOT__csr__DOT__csr_ext__DOT____Vlvbound_hc1e5bfb4__0;
         __Vdlyvset__NPC__DOT__core__DOT__csr__DOT__csr_ext__DOT__Memory__v4 = 1U;
@@ -2745,7 +2745,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__arb__DOT__mem_arvalid = ((~ (IData)(vlSelf->reset)) 
                                                & ((~ (IData)(vlSelf->NPC__DOT__arb__DOT___GEN)) 
                                                   & ((IData)(vlSelf->NPC__DOT__arb__DOT___GEN_0)
-                                                      ? (IData)(vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_arvalid)
+                                                      ? (IData)(vlSelf->NPC__DOT__core__DOT__io_imem_arvalid)
                                                       : 
                                                      ((~ (IData)(vlSelf->NPC__DOT__arb__DOT___GEN_1)) 
                                                       & ((IData)(vlSelf->NPC__DOT__arb__DOT___GEN_4)
@@ -2804,7 +2804,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__arb__DOT__mem_rready = ((~ (IData)(vlSelf->reset)) 
                                               & ((~ (IData)(vlSelf->NPC__DOT__arb__DOT___GEN)) 
                                                  & ((IData)(vlSelf->NPC__DOT__arb__DOT___GEN_0)
-                                                     ? (IData)(vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_rready)
+                                                     ? (IData)(vlSelf->NPC__DOT__core__DOT__io_imem_rready)
                                                      : 
                                                     ((~ (IData)(vlSelf->NPC__DOT__arb__DOT___GEN_1)) 
                                                      & ((IData)(vlSelf->NPC__DOT__arb__DOT___GEN_4)
@@ -2853,7 +2853,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
         (0U == (IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__delay));
     vlSelf->NPC__DOT__core__DOT___exu_io_pipe_in_ready 
         = vlSelf->NPC__DOT__core__DOT__exu__DOT__in_ready;
-    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_valid 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_valid 
         = vlSelf->NPC__DOT__core__DOT__idu__DOT__out_valid;
     vlSelf->__VdfgTmp_h5d58cd1a__0 = ((IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT__in_ready) 
                                       & (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__out_valid));
@@ -2866,14 +2866,14 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__xbar__DOT__io_sram_arvalid = vlSelf->NPC__DOT__xbar__DOT__sram_arvalid;
     vlSelf->NPC__DOT__xbar__DOT__io_sram_awvalid = vlSelf->NPC__DOT__xbar__DOT__sram_awvalid;
     vlSelf->NPC__DOT__xbar__DOT__io_sram_wvalid = vlSelf->NPC__DOT__xbar__DOT__sram_wvalid;
-    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_in_ready 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_ready 
         = vlSelf->NPC__DOT__core__DOT__idu__DOT__in_ready;
     vlSelf->NPC__DOT__xbar__DOT__io_arb_wready = vlSelf->NPC__DOT__xbar__DOT__arb_wready;
     vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_valid 
         = vlSelf->NPC__DOT__core__DOT__exu__DOT__out_valid;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_ready 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__in_ready;
-    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_in_ready 
+    vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_in_ready 
         = vlSelf->NPC__DOT__core__DOT__ifu__DOT__in_ready;
     vlSelf->NPC__DOT__core__DOT___wbu_io_pipe_out_valid 
         = vlSelf->NPC__DOT__core__DOT__wbu__DOT__out_valid;
@@ -2899,10 +2899,8 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__arb__DOT__io_mem_awvalid = vlSelf->NPC__DOT__arb__DOT__mem_awvalid;
     vlSelf->NPC__DOT__xbar__DOT__w_req = ((IData)(vlSelf->NPC__DOT__arb__DOT__mem_awvalid) 
                                           & (IData)(vlSelf->NPC__DOT__xbar__DOT__arb_awready));
-    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_arvalid 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__arvalid;
-    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_rready 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__rready;
+    vlSelf->NPC__DOT__core__DOT__io_imem_arvalid = vlSelf->NPC__DOT__core__DOT__ifu__DOT__arvalid;
+    vlSelf->NPC__DOT__core__DOT__io_imem_rready = vlSelf->NPC__DOT__core__DOT__ifu__DOT__rready;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_rready 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__rready;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_bready 
@@ -2939,7 +2937,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__xbar__DOT__io_uart_araddr = vlSelf->NPC__DOT__xbar__DOT__uart_araddr;
     vlSelf->NPC__DOT__xbar__DOT__io_uart_wdata = vlSelf->NPC__DOT__xbar__DOT__uart_wdata;
     vlSelf->NPC__DOT__xbar__DOT__io_sram_wstrb = vlSelf->NPC__DOT__xbar__DOT__sram_wstrb;
-    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_out_valid 
+    vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_out_valid 
         = vlSelf->NPC__DOT__core__DOT__ifu__DOT__out_valid;
     vlSelf->NPC__DOT__xbar__DOT__io_arb_rdata = vlSelf->NPC__DOT__xbar__DOT__arb_rdata;
     vlSelf->NPC__DOT__core__DOT__wbu__DOT__n_state 
@@ -2975,7 +2973,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__arb__DOT__io_mem_awaddr = vlSelf->NPC__DOT__arb__DOT__mem_awaddr;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_wdata 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__wdata;
-    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_imm_b_sext 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_imm_b_sext 
         = (((- (IData)((vlSelf->NPC__DOT__arb__DOT__imem_rdata 
                         >> 0x1fU))) << 0xcU) | ((0x800U 
                                                  & (vlSelf->NPC__DOT__arb__DOT__imem_rdata 
@@ -2990,10 +2988,10 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
         = (0x1fU & (vlSelf->NPC__DOT__arb__DOT__imem_rdata 
                     >> 7U));
     vlSelf->NPC__DOT__arb__DOT__io_imem_rdata = vlSelf->NPC__DOT__arb__DOT__imem_rdata;
-    vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs1_addr 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs1_addr 
         = (0x1fU & (vlSelf->NPC__DOT__arb__DOT__imem_rdata 
                     >> 0xfU));
-    vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs2_addr 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs2_addr 
         = (0x1fU & (vlSelf->NPC__DOT__arb__DOT__imem_rdata 
                     >> 0x14U));
     vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_87 
@@ -3017,9 +3015,9 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_ready 
         = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_in_ready;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_valid 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_valid;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_valid 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_valid;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_valid;
+    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_valid 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_valid;
     vlSelf->NPC__DOT__core__DOT__idu__DOT__n_state 
         = (1U & ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__c_state)
                   ? (~ (IData)(vlSelf->__VdfgTmp_h5d58cd1a__0))
@@ -3049,9 +3047,9 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__mem__DOT__wvalid = vlSelf->NPC__DOT__xbar__DOT__io_sram_wvalid;
     vlSelf->NPC__DOT___xbar_io_sram_wvalid = vlSelf->NPC__DOT__xbar__DOT__io_sram_wvalid;
     vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_out_ready 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_in_ready;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_ready 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_in_ready;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_ready;
+    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_in_ready 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_ready;
     vlSelf->NPC__DOT__arb__DOT__io_mem_wready = vlSelf->NPC__DOT__xbar__DOT__io_arb_wready;
     vlSelf->NPC__DOT___xbar_io_arb_wready = vlSelf->NPC__DOT__xbar__DOT__io_arb_wready;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_valid 
@@ -3063,9 +3061,9 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT___lsu_io_pipe_in_ready 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_ready;
     vlSelf->NPC__DOT__core__DOT__wbu__DOT__io_pipe_out_ready 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_in_ready;
-    vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_in_ready 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_in_ready;
+        = vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_in_ready;
+    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_in_ready 
+        = vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_in_ready;
     vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_in_valid 
         = vlSelf->NPC__DOT__core__DOT___wbu_io_pipe_out_valid;
     vlSelf->NPC__DOT__core__DOT__wbu__DOT__io_pipe_out_valid 
@@ -3109,12 +3107,14 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
         = vlSelf->NPC__DOT__core__DOT__csr__DOT__io_csr_mepc;
     vlSelf->NPC__DOT__xbar__DOT__io_arb_awvalid = vlSelf->NPC__DOT__arb__DOT__io_mem_awvalid;
     vlSelf->NPC__DOT___arb_io_mem_awvalid = vlSelf->NPC__DOT__arb__DOT__io_mem_awvalid;
-    vlSelf->NPC__DOT__arb__DOT__io_imem_arvalid = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_arvalid;
-    vlSelf->NPC__DOT__core__DOT__io_imem_arvalid = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_arvalid;
-    vlSelf->NPC__DOT___core_io_imem_arvalid = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_arvalid;
-    vlSelf->NPC__DOT__arb__DOT__io_imem_rready = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_rready;
-    vlSelf->NPC__DOT__core__DOT__io_imem_rready = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_rready;
-    vlSelf->NPC__DOT___core_io_imem_rready = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_rready;
+    vlSelf->NPC__DOT__arb__DOT__io_imem_arvalid = vlSelf->NPC__DOT__core__DOT__io_imem_arvalid;
+    vlSelf->NPC__DOT___core_io_imem_arvalid = vlSelf->NPC__DOT__core__DOT__io_imem_arvalid;
+    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_arvalid 
+        = vlSelf->NPC__DOT__core__DOT__io_imem_arvalid;
+    vlSelf->NPC__DOT__arb__DOT__io_imem_rready = vlSelf->NPC__DOT__core__DOT__io_imem_rready;
+    vlSelf->NPC__DOT___core_io_imem_rready = vlSelf->NPC__DOT__core__DOT__io_imem_rready;
+    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_rready 
+        = vlSelf->NPC__DOT__core__DOT__io_imem_rready;
     vlSelf->NPC__DOT__arb__DOT__io_dmem_rready = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_rready;
     vlSelf->NPC__DOT__core__DOT__io_dmem_rready = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_rready;
     vlSelf->NPC__DOT___core_io_dmem_rready = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_rready;
@@ -3181,7 +3181,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
                                                   (2U 
                                                    & ((~ 
                                                        ((IData)(vlSelf->NPC__DOT__arb__DOT__imem_rvalid) 
-                                                        & (IData)(vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_rready))) 
+                                                        & (IData)(vlSelf->NPC__DOT__core__DOT__io_imem_rready))) 
                                                       << 1U)))
                                                   : 
                                                  ((1U 
@@ -3191,7 +3191,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
                                                     ? 2U
                                                     : 1U)
                                                    : 
-                                                  (((IData)(vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_arvalid) 
+                                                  (((IData)(vlSelf->NPC__DOT__core__DOT__io_imem_arvalid) 
                                                     & (IData)(vlSelf->NPC__DOT__arb__DOT__imem_arready))
                                                     ? 1U
                                                     : 
@@ -3233,9 +3233,9 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__xbar__DOT__io_clint_wstrb = vlSelf->NPC__DOT__xbar__DOT__io_sram_wstrb;
     vlSelf->NPC__DOT___xbar_io_clint_wstrb = vlSelf->NPC__DOT__xbar__DOT__io_sram_wstrb;
     vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_valid 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_out_valid;
-    vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_out_valid 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_out_valid;
+        = vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_out_valid;
+    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_out_valid 
+        = vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_out_valid;
     vlSelf->NPC__DOT__arb__DOT__io_mem_rdata = vlSelf->NPC__DOT__xbar__DOT__io_arb_rdata;
     vlSelf->NPC__DOT___xbar_io_arb_rdata = vlSelf->NPC__DOT__xbar__DOT__io_arb_rdata;
     vlSelf->NPC__DOT__xbar__DOT__io_arb_wstrb = vlSelf->NPC__DOT__arb__DOT__io_mem_wstrb;
@@ -3287,9 +3287,9 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__io_dmem_wdata = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_wdata;
     vlSelf->NPC__DOT___core_io_dmem_wdata = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_wdata;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_imm_b_sext 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_imm_b_sext;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_imm_b_sext 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_imm_b_sext;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_imm_b_sext;
+    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_imm_b_sext 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_imm_b_sext;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_wb_addr 
         = vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_wb_addr;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_bits_exe2ls_wb_addr 
@@ -3322,20 +3322,20 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__io_imem_rdata = vlSelf->NPC__DOT__arb__DOT__io_imem_rdata;
     vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_bits_if2id_inst 
         = vlSelf->NPC__DOT__arb__DOT__io_imem_rdata;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs1_addr 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs1_addr;
+    vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs1_addr 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs1_addr;
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__io_gpr_rs1_addr 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs1_addr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs1_addr;
     vlSelf->NPC__DOT__core__DOT__gpr__DOT___gpr_ext_R1_data 
         = vlSelf->NPC__DOT__core__DOT__gpr__DOT__gpr_ext__DOT__Memory
-        [vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs1_addr];
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs2_addr 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs2_addr;
+        [vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs1_addr];
+    vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs2_addr 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs2_addr;
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__io_gpr_rs2_addr 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs2_addr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs2_addr;
     vlSelf->NPC__DOT__core__DOT__gpr__DOT___gpr_ext_R0_data 
         = vlSelf->NPC__DOT__core__DOT__gpr__DOT__gpr_ext__DOT__Memory
-        [vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs2_addr];
+        [vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs2_addr];
     vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_4 = 
         ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_87) 
          | ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_89) 
@@ -3427,7 +3427,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__gpr_ext__DOT__R1_data 
         = vlSelf->NPC__DOT__core__DOT__gpr__DOT___gpr_ext_R1_data;
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__io_gpr_rs1_data 
-        = ((0U != (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs1_addr))
+        = ((0U != (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs1_addr))
             ? vlSelf->NPC__DOT__core__DOT__gpr__DOT___gpr_ext_R1_data
             : 0U);
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__gpr_ext__DOT__R0_addr 
@@ -3435,7 +3435,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__gpr_ext__DOT__R0_data 
         = vlSelf->NPC__DOT__core__DOT__gpr__DOT___gpr_ext_R0_data;
     vlSelf->NPC__DOT__core__DOT__gpr__DOT__io_gpr_rs2_data 
-        = ((0U != (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_gpr_rs2_addr))
+        = ((0U != (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_gpr_rs2_addr))
             ? vlSelf->NPC__DOT__core__DOT__gpr__DOT___gpr_ext_R0_data
             : 0U);
     vlSelf->NPC__DOT__core__DOT__idu__DOT____VdfgTmp_h2da9d508__0 
@@ -3530,7 +3530,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
          | ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_79) 
             | ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_81) 
                | (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_1))));
-    vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op 
         = ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT____VdfgTmp_hcb32bbc0__0)
             ? 2U : ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_5)
                      ? 0U : ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_7)
@@ -3966,19 +3966,19 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
                                                                | ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_53) 
                                                                   | (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_5)))))))))))))))))))));
     if (vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_1) {
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen = 0U;
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen = 0U;
         vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_rf_wen = 1U;
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel = 1U;
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel = 1U;
     } else if (vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_3) {
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen = 1U;
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen = 1U;
         vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_rf_wen = 0U;
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel = 0U;
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel = 0U;
     } else if (vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_9) {
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen = 0U;
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen = 0U;
         vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_rf_wen = 1U;
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel = 1U;
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel = 1U;
     } else {
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen 
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen 
             = vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_8;
         vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_rf_wen 
             = ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_8)
@@ -4005,7 +4005,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
                                           | ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_71) 
                                              | ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_73) 
                                                 | (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_2)))))));
-        vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel 
+        vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel 
             = ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_6)
                 ? 0U : ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT____VdfgTmp_hd611f556__0)
                          ? 2U : ((1U & ((~ (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_2)) 
@@ -4017,32 +4017,32 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__arb__DOT___GEN_3 = (1U & ((~ (IData)(vlSelf->NPC__DOT__arb__DOT___GEN_2)) 
                                                 | (IData)(vlSelf->NPC__DOT__arb__DOT___GEN)));
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_mem_op 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_bits_exe2ls_mem_op 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op;
     vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_mem_op 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_out_bits_exe2ls_mem_op 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op;
+    vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_mem_wen 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_bits_exe2ls_mem_wen 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen;
     vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_mem_wen 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_out_bits_exe2ls_mem_wen 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen;
+    vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__isL = ((IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT____VdfgTmp_h310fdd7c__0) 
                                                   & (0U 
-                                                     == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen)));
+                                                     == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen)));
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__isS = ((IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT____VdfgTmp_h310fdd7c__0) 
                                                   & (1U 
-                                                     == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_wen)));
-    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun 
+                                                     == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_wen)));
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun 
         = ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT____VdfgTmp_h336b3a0a__0)
             ? 1U : ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_21)
                      ? 2U : ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_23)
@@ -4147,7 +4147,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
                                                                                 | (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_3)))))))))))))))))))))))))));
     vlSelf->NPC__DOT__core__DOT__exu__DOT___GEN = (0x1fU 
                                                    & vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0);
-    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_op2_data 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op2_data 
         = vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0;
     vlSelf->NPC__DOT__arb__DOT___GEN_8 = (1U & ((~ (IData)(vlSelf->NPC__DOT__arb__DOT___GEN_6)) 
                                                 | (IData)(vlSelf->NPC__DOT__arb__DOT___GEN_7)));
@@ -4177,9 +4177,9 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
         ((IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT___GEN_1) 
          & (IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__isS));
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_exe_fun 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun;
+    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun;
     vlSelf->NPC__DOT__core__DOT__csr__DOT____Vcellinp__csr_ext__W3_en 
         = ((IData)(vlSelf->NPC__DOT__core__DOT__wbu__DOT__n_state) 
            & ((~ (IData)(vlSelf->__VdfgTmp_h9e652396__0)) 
@@ -4207,21 +4207,21 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
         vlSelf->NPC__DOT__core__DOT___wbu_io_csr_cmd = 0U;
     }
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_op2_data 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_op2_data;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op2_data 
-        = vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_op2_data;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op2_data;
+    vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_op2_data 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op2_data;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_wb_sel 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_bits_exe2ls_wb_sel 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel;
     vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_wb_sel 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_out_bits_exe2ls_wb_sel 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel;
+    vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel;
     vlSelf->NPC__DOT__core__DOT___exu_io_jmp_flg = 
-        (2U == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel));
+        (2U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel));
     vlSelf->NPC__DOT__arb__DOT__io_imem_arready = ((IData)(vlSelf->NPC__DOT__arb__DOT___GEN_8) 
                                                    & (IData)(vlSelf->NPC__DOT__arb__DOT__imem_arready));
     vlSelf->NPC__DOT___arb_io_dmem_arready = vlSelf->NPC__DOT__arb__DOT__io_dmem_arready;
@@ -4234,7 +4234,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
         = ((0U == (IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__c_state))
             ? (((IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__in_ready) 
                 & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_valid))
-                ? (1U | ((IData)((7U == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))) 
+                ? (1U | ((IData)((7U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))) 
                          << 1U)) : 0U) : ((1U == (IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__c_state))
                                            ? ((((IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__arvalid) 
                                                 & (IData)(vlSelf->NPC__DOT__arb__DOT__io_dmem_arready)) 
@@ -4301,7 +4301,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__1(VNPC___024root* vlSelf) 
                     ? 2U : 1U) : ((2U == (IData)(vlSelf->NPC__DOT__core__DOT__ifu__DOT__c_state))
                                    ? (2U | ((IData)(vlSelf->NPC__DOT__arb__DOT__io_imem_rvalid) 
                                             & (IData)(vlSelf->NPC__DOT__core__DOT__ifu__DOT__rready)))
-                                   : (((IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_in_ready) 
+                                   : (((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_ready) 
                                        & (IData)(vlSelf->NPC__DOT__core__DOT__ifu__DOT__out_valid))
                                        ? 0U : 3U))));
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_arready 
@@ -4418,7 +4418,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__2(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT___mem_awready = vlSelf->NPC__DOT__mem__DOT__awready;
     vlSelf->NPC__DOT___uart_awready = vlSelf->NPC__DOT__uart__DOT__awready;
     vlSelf->NPC__DOT___clint_awready = vlSelf->NPC__DOT__clint__DOT__awready;
-    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc 
         = vlSelf->NPC__DOT__core__DOT__ifu__DOT__reg_pc;
     vlSelf->NPC__DOT___mem_bvalid = vlSelf->NPC__DOT__mem__DOT__bvalid;
     vlSelf->NPC__DOT___uart_bvalid = vlSelf->NPC__DOT__uart__DOT__bvalid;
@@ -4439,32 +4439,32 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__2(VNPC___024root* vlSelf) 
     vlSelf->NPC__DOT__xbar__DOT__io_uart_awready = vlSelf->NPC__DOT___uart_awready;
     vlSelf->NPC__DOT__xbar__DOT__io_clint_awready = vlSelf->NPC__DOT___clint_awready;
     vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_in_bits_if2id_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_bits_exe2ls_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
-    vlSelf->NPC__DOT__arb__DOT__io_imem_araddr = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
-    vlSelf->NPC__DOT__core__DOT__io_imem_araddr = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
-    vlSelf->NPC__DOT___core_io_imem_araddr = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
+    vlSelf->NPC__DOT__arb__DOT__io_imem_araddr = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
+    vlSelf->NPC__DOT__core__DOT__io_imem_araddr = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
+    vlSelf->NPC__DOT___core_io_imem_araddr = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT___ifu_io_csr_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
+    vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_csr_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_pipe_out_bits_if2id_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT___ifu_io_pipe_out_bits_if2id_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_out_bits_exe2ls_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__core__DOT__csr__DOT__io_csr_reg_pc 
-        = vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc;
     vlSelf->NPC__DOT__xbar__DOT__io_sram_bvalid = vlSelf->NPC__DOT___mem_bvalid;
     vlSelf->NPC__DOT__xbar__DOT__io_uart_bvalid = vlSelf->NPC__DOT___uart_bvalid;
     vlSelf->NPC__DOT__xbar__DOT__io_clint_bvalid = vlSelf->NPC__DOT___clint_bvalid;
@@ -4514,7 +4514,7 @@ VL_INLINE_OPT void VNPC___024root___nba_comb__TOP__0(VNPC___024root* vlSelf) {
     vlSelf->NPC__DOT__mem__DOT__AXI_B_fire = ((IData)(vlSelf->NPC__DOT__mem__DOT__bvalid) 
                                               & (IData)(vlSelf->NPC__DOT__xbar__DOT__sram_bready));
     vlSelf->NPC__DOT__core__DOT___exu_io_br_target 
-        = (vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_imm_b_sext 
+        = (vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_imm_b_sext 
            + vlSelf->NPC__DOT__core__DOT__ifu__DOT__reg_pc);
     vlSelf->NPC__DOT__arb__DOT__casez_tmp_0 = ((4U 
                                                 & (IData)(vlSelf->NPC__DOT__arb__DOT__n_state))
@@ -4534,11 +4534,11 @@ VL_INLINE_OPT void VNPC___024root___nba_comb__TOP__0(VNPC___024root* vlSelf) {
                                                    ((1U 
                                                      & (IData)(vlSelf->NPC__DOT__arb__DOT__n_state))
                                                      ? vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_dmem_araddr
-                                                     : vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr)
+                                                     : vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc)
                                                     : 
                                                    ((1U 
                                                      & (IData)(vlSelf->NPC__DOT__arb__DOT__n_state))
-                                                     ? vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr
+                                                     ? vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc
                                                      : 0U)));
     vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
         = ((0U == ((((((((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_1) 
@@ -4611,7 +4611,7 @@ VL_INLINE_OPT void VNPC___024root___nba_comb__TOP__0(VNPC___024root* vlSelf) {
                                                           : 
                                                          ((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___GEN_4) 
                                                           << 1U)))))))))))))
-                ? vlSelf->NPC__DOT__core__DOT__ifu__DOT__io_imem_araddr
+                ? vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_reg_pc
                 : ((2U == ((((((((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_1) 
                                  | (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_3)) 
                                 | (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT___csignals_T_5)) 
@@ -4725,7 +4725,7 @@ VL_INLINE_OPT void VNPC___024root___nba_comb__TOP__0(VNPC___024root* vlSelf) {
     vlSelf->NPC__DOT__core__DOT__exu__DOT___alu_out_T_14 
         = (0x7fffffffffffffffULL & ((QData)((IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp)) 
                                     << (0x1fU & vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0)));
-    vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data 
+    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data 
         = vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp;
     vlSelf->NPC__DOT__core__DOT__exu__DOT___br_flg_T_3 
         = (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
@@ -4758,79 +4758,79 @@ VL_INLINE_OPT void VNPC___024root___nba_comb__TOP__0(VNPC___024root* vlSelf) {
     vlSelf->NPC__DOT__xbar__DOT___GEN_2 = (3U == (IData)(vlSelf->NPC__DOT__xbar__DOT__casez_tmp));
     vlSelf->NPC__DOT__xbar__DOT___GEN_4 = (5U == (IData)(vlSelf->NPC__DOT__xbar__DOT__casez_tmp));
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_in_bits_id2exe_op1_data 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data;
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_in_bits_exe2ls_op1_data 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data;
-    vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data;
     vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_op1_data 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data;
     vlSelf->NPC__DOT__core__DOT__exu__DOT__io_pipe_out_bits_exe2ls_op1_data 
-        = vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data;
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data;
+    vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_op1_data 
+        = vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_op1_data;
     vlSelf->NPC__DOT__core__DOT___exu_io_br_flg = (1U 
                                                    & ((0xbU 
-                                                       == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                       == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                        ? (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT___br_flg_T_3)
                                                        : 
                                                       ((0xcU 
-                                                        == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                        == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                         ? 
                                                        (~ (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT___br_flg_T_3))
                                                         : 
                                                        ((0xdU 
-                                                         == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                         == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                          ? (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT____VdfgTmp_hffab811e__0)
                                                          : 
                                                         ((0xeU 
-                                                          == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                          == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                           ? 
                                                          VL_GTES_III(32, vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp, vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0)
                                                           : 
                                                          ((0xfU 
-                                                           == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                           == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                            ? (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT___br_flg_T_17)
                                                            : 
                                                           ((~ (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT___br_flg_T_17)) 
                                                            & (0x10U 
-                                                              == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun)))))))));
+                                                              == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun)))))))));
     vlSelf->NPC__DOT__core__DOT___exu_io_alu_out = 
-        ((1U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+        ((1U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
           ? vlSelf->NPC__DOT__core__DOT__exu__DOT___alu_out_T_31
-          : ((2U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+          : ((2U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
               ? (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
                  - vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0)
-              : ((3U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+              : ((3U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                   ? (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
                      & vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0)
-                  : ((4U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                  : ((4U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                       ? (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
                          | vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0)
-                      : ((5U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                      : ((5U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                           ? (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
                              ^ vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0)
-                          : ((6U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                          : ((6U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                               ? (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
                                  << (0x1fU & vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0))
-                              : ((7U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                              : ((7U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                   ? (vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp 
                                      >> (0x1fU & vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0))
-                                  : ((8U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                  : ((8U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                       ? VL_SHIFTRS_III(32,32,5, vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp, 
                                                        (0x1fU 
                                                         & vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp_0))
-                                      : ((9U == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                      : ((9U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                           ? (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT____VdfgTmp_hffab811e__0)
                                           : ((0xaU 
-                                              == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                              == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                               ? (IData)(vlSelf->NPC__DOT__core__DOT__exu__DOT___br_flg_T_17)
                                               : ((0x11U 
-                                                  == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                  == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                   ? 
                                                  (0xfffffffeU 
                                                   & vlSelf->NPC__DOT__core__DOT__exu__DOT___alu_out_T_31)
                                                   : 
                                                  ((0x12U 
-                                                   == (IData)(vlSelf->NPC__DOT__core__DOT___idu_io_pipe_out_bits_id2exe_exe_fun))
+                                                   == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_exe_fun))
                                                    ? vlSelf->NPC__DOT__core__DOT__idu__DOT__casez_tmp
                                                    : 0U))))))))))));
     vlSelf->NPC__DOT__core__DOT__wbu__DOT__io_pipe_in_bits_ls2wb_csr_wdata 
@@ -4955,9 +4955,9 @@ VL_INLINE_OPT void VNPC___024root___nba_comb__TOP__0(VNPC___024root* vlSelf) {
                                                | ((IData)(vlSelf->NPC__DOT__xbar__DOT___GEN_2) 
                                                   | (IData)(vlSelf->NPC__DOT__xbar__DOT___GEN_7))));
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__casez_tmp 
-        = ((4U & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))
-            ? ((2U & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))
-                ? 0U : ((1U & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))
+        = ((4U & (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))
+            ? ((2U & (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))
+                ? 0U : ((1U & (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))
                          ? (0xffffU & (((3U == (3U 
                                                 & vlSelf->NPC__DOT__core__DOT___exu_io_alu_out)) 
                                         | (2U == (3U 
@@ -4966,10 +4966,10 @@ VL_INLINE_OPT void VNPC___024root___nba_comb__TOP__0(VNPC___024root* vlSelf) {
                                            >> 0x10U)
                                         : vlSelf->NPC__DOT__arb__DOT__io_dmem_rdata))
                          : (IData)(vlSelf->NPC__DOT__core__DOT__lsu__DOT__casez_tmp_2)))
-            : ((2U & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))
-                ? ((1U & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))
+            : ((2U & (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))
+                ? ((1U & (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))
                     ? 0U : vlSelf->NPC__DOT__arb__DOT__io_dmem_rdata)
-                : ((1U & (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_mem_op))
+                : ((1U & (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_mem_op))
                     ? ((3U == (3U & vlSelf->NPC__DOT__core__DOT___exu_io_alu_out))
                         ? (((- (IData)((vlSelf->NPC__DOT__arb__DOT__io_dmem_rdata 
                                         >> 0x1fU))) 
@@ -4993,11 +4993,11 @@ VL_INLINE_OPT void VNPC___024root___nba_comb__TOP__0(VNPC___024root* vlSelf) {
     vlSelf->NPC__DOT__xbar__DOT___GEN_12 = ((IData)(vlSelf->NPC__DOT__xbar__DOT___GEN_3) 
                                             | (IData)(vlSelf->NPC__DOT__xbar__DOT___GEN_11));
     vlSelf->NPC__DOT__core__DOT__lsu__DOT__io_pipe_out_bits_ls2wb_wb_data 
-        = ((1U == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel))
+        = ((1U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel))
             ? vlSelf->NPC__DOT__core__DOT__lsu__DOT__casez_tmp
             : ((IData)(vlSelf->NPC__DOT__core__DOT___exu_io_jmp_flg)
                 ? ((IData)(4U) + vlSelf->NPC__DOT__core__DOT__ifu__DOT__reg_pc)
-                : ((3U == (IData)(vlSelf->NPC__DOT__core__DOT___exu_io_pipe_out_bits_exe2ls_wb_sel))
+                : ((3U == (IData)(vlSelf->NPC__DOT__core__DOT__idu__DOT__io_pipe_out_bits_id2exe_wb_sel))
                     ? vlSelf->NPC__DOT__core__DOT__csr__DOT__io_csr_rdata
                     : vlSelf->NPC__DOT__core__DOT___exu_io_alu_out)));
     vlSelf->NPC__DOT__xbar__DOT___GEN_13 = ((IData)(vlSelf->NPC__DOT__xbar__DOT___GEN_2) 
@@ -5070,7 +5070,7 @@ void VNPC___024root___eval(VNPC___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VNPC___024root___dump_triggers__ico(vlSelf);
 #endif
-                VL_FATAL_MT("/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/NPC.sv", 58, "", "Input combinational region did not converge.");
+                VL_FATAL_MT("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/NPC.sv", 58, "", "Input combinational region did not converge.");
             }
             vlSelf->__VicoIterCount = ((IData)(1U) 
                                        + vlSelf->__VicoIterCount);
@@ -5093,7 +5093,7 @@ void VNPC___024root___eval(VNPC___024root* vlSelf) {
 #ifdef VL_DEBUG
                     VNPC___024root___dump_triggers__act(vlSelf);
 #endif
-                    VL_FATAL_MT("/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/NPC.sv", 58, "", "Active region did not converge.");
+                    VL_FATAL_MT("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/NPC.sv", 58, "", "Active region did not converge.");
                 }
                 vlSelf->__VactIterCount = ((IData)(1U) 
                                            + vlSelf->__VactIterCount);
@@ -5108,7 +5108,7 @@ void VNPC___024root___eval(VNPC___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VNPC___024root___dump_triggers__nba(vlSelf);
 #endif
-                VL_FATAL_MT("/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/NPC.sv", 58, "", "NBA region did not converge.");
+                VL_FATAL_MT("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/NPC.sv", 58, "", "NBA region did not converge.");
             }
             __VnbaIterCount = ((IData)(1U) + __VnbaIterCount);
             VNPC___024root___eval_nba(vlSelf);

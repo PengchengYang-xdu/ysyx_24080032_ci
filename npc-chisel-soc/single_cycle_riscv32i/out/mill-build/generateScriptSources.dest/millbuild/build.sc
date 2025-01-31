@@ -4,9 +4,9 @@ import _root_.mill.runner.MillBuildRootModule
 
 object MiscInfo_build {
   implicit lazy val millBuildRootModuleInfo: _root_.mill.runner.MillBuildRootModule.Info = _root_.mill.runner.MillBuildRootModule.Info(
-    Vector("/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/mill-launcher/0.11.5.jar").map(_root_.os.Path(_)),
-    _root_.os.Path("/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i"),
-    _root_.os.Path("/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i"),
+    Vector("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/mill-launcher/0.11.5.jar").map(_root_.os.Path(_)),
+    _root_.os.Path("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i"),
+    _root_.os.Path("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i"),
     _root_.scala.Seq()
   )
   implicit lazy val millBaseModuleInfo: _root_.mill.main.RootModule.Info = _root_.mill.main.RootModule.Info(
@@ -18,7 +18,7 @@ import MiscInfo_build.{millBuildRootModuleInfo, millBaseModuleInfo}
 object build extends build
 class build extends _root_.mill.main.RootModule {
 
-//MILL_ORIGINAL_FILE_PATH=/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build.sc
+//MILL_ORIGINAL_FILE_PATH=/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build.sc
 //MILL_USER_CODE_START_MARKER
 // import Mill dependency
 import mill._
