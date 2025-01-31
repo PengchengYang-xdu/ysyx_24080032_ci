@@ -40,7 +40,7 @@ MICROBENCH_HOME = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/am-kernels/benchm
 
 YSYXSOC_IMAGE := $(subst nemu,ysyxsoc,$(IMAGE))
 
-ICACHESIM_LOG_PRE_DIR = /mnt/hgfs/share/icachesim
+ICACHESIM_LOG_PRE_DIR = /home/yangpengcheng/ysyx/ysyx
 
 icachesim:
 #首先制作ysyxsoc的microbench train程序流
