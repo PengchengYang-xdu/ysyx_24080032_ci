@@ -36,7 +36,7 @@ gdb: image
 
 
 
-MICROBENCH_HOME = /home/ypc/Desktop/ysyx/ysyx-workbench/am-kernels/benchmarks/microbench
+MICROBENCH_HOME = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/am-kernels/benchmarks/microbench
 
 YSYXSOC_IMAGE := $(subst nemu,ysyxsoc,$(IMAGE))
 
