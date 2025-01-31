@@ -231,7 +231,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__0(VNPC___024root* vlSelf) 
                 VL_WRITEF("[%0t] %%Error: Clint.sv:237: Assertion failed in %NNPC.clint: Ilegal write in CLINT\n\n",
                           64,VL_TIME_UNITED_Q(1),-9,
                           vlSymsp->name());
-                VL_STOP_MT("/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/Clint.sv", 237, "");
+                VL_STOP_MT("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/Clint.sv", 237, "");
                 vlSelf->NPC__DOT__clint__DOT__bvalid = 1U;
             } else {
                 vlSelf->NPC__DOT__clint__DOT__bvalid = 0U;
@@ -271,7 +271,7 @@ VL_INLINE_OPT void VNPC___024root___nba_sequent__TOP__0(VNPC___024root* vlSelf) 
                           vlSymsp->name());
                 vlSelf->NPC__DOT__uart__DOT__rdata = 0U;
                 vlSelf->NPC__DOT__uart__DOT__rvalid = 1U;
-                VL_STOP_MT("/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/Uart.sv", 103, "");
+                VL_STOP_MT("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/Uart.sv", 103, "");
             } else {
                 vlSelf->NPC__DOT__uart__DOT__rdata = 0U;
                 vlSelf->NPC__DOT__uart__DOT__rvalid = 0U;

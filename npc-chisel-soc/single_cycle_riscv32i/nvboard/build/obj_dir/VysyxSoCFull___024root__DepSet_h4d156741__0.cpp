@@ -11740,7 +11740,7 @@ VL_INLINE_OPT void VysyxSoCFull___024root___ico_sequent__TOP__3(VysyxSoCFull___0
         VL_WRITEF("[%0t] %%Error: ysyxSoCFull.v:55794: Assertion failed in %NysyxSoCFull.psram.psramChiselHelper\n",
                   64,VL_TIME_UNITED_Q(1000),-9,vlSymsp->name());
         Verilated::runFlushCallbacks();
-        VL_STOP_MT("/home/ypc/Desktop/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v", 55794, "");
+        VL_STOP_MT("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v", 55794, "");
     }
     vlSelf->ysyxSoCFull__DOT__psram__DOT__di_buf__DOT__out_en 
         = vlSelf->ysyxSoCFull__DOT__psram__DOT____Vcellinp__di_buf__out_en;

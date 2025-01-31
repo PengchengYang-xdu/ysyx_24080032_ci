@@ -1,8 +1,8 @@
 monitor.o: \
- /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/csrc/monitor/monitor.cpp \
- /home/ypc/Desktop/ysyx/ysyx-workbench/nvboard/usr/include/nvboard.h \
- /home/ypc/Desktop/ysyx/ysyx-workbench/nvboard/usr/include/pins.h \
- /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/include/circuit.h \
+ /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/csrc/monitor/monitor.cpp \
+ /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/nvboard/usr/include/nvboard.h \
+ /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/nvboard/usr/include/pins.h \
+ /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/include/circuit.h \
  VysyxSoCFull___024root.h /usr/local/share/verilator/include/verilated.h \
  /usr/local/share/verilator/include/verilatedos.h \
  /usr/local/share/verilator/include/verilated_config.h \
@@ -14,8 +14,8 @@ monitor.o: \
  /usr/local/share/verilator/include/verilated_trace_defs.h \
  /usr/local/share/verilator/include/vltstd/svdpi.h VysyxSoCFull__Dpi.h \
  VysyxSoCFull.h \
- /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/include/common.h \
- /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/include/mem.h \
- /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/include/device.h \
- /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/include/utils.h \
- /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/include/debug.h
+ /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/include/common.h \
+ /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/include/mem.h \
+ /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/include/device.h \
+ /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/include/utils.h \
+ /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/include/debug.h
