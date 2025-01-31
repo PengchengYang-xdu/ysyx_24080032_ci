@@ -82,7 +82,7 @@ VL_ATTR_COLD void VNPC___024root___eval_settle(VNPC___024root* vlSelf) {
 #ifdef VL_DEBUG
                 VNPC___024root___dump_triggers__stl(vlSelf);
 #endif
-                VL_FATAL_MT("/home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/NPC.sv", 58, "", "Settle region did not converge.");
+                VL_FATAL_MT("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/NPC.sv", 58, "", "Settle region did not converge.");
             }
             vlSelf->__VstlIterCount = ((IData)(1U) 
                                        + vlSelf->__VstlIterCount);

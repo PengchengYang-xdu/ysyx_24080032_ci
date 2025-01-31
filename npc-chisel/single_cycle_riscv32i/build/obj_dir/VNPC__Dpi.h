@@ -16,11 +16,11 @@ extern "C" {
 
 
     // DPI IMPORTS
-    // DPI import at /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/Ebreak.sv:7:30
+    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/Ebreak.sv:7:30
     extern void npc_trap();
-    // DPI import at /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/Mem.sv:31:29
+    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/Mem.sv:31:29
     extern int paddr_read(int addr, int is_pc_read);
-    // DPI import at /home/ypc/Desktop/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/Mem.sv:32:30
+    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/vsrc/Mem.sv:32:30
     extern void paddr_write(int addr, int data, char wmask);
 
 #ifdef __cplusplus
