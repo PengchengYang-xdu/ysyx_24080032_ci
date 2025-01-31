@@ -114,7 +114,7 @@ bool in_dev(paddr_t addr) {
 
 
 static FILE *icache_fp = NULL;
-static char * icache_file = "/mnt/hgfs/share/icachesim/icachesim.log";
+static char * icache_file = "/home/yangpengcheng/ysyx/ysyx/icachesim.log";
 
 void init_icachesim(){
     icache_fp = fopen(icache_file, "w");
