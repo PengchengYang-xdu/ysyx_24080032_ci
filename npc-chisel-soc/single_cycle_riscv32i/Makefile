@@ -147,7 +147,7 @@ clean_nv:
 # CFLAGS += -DNPCCONFIG_ITRACE
 # CFLAGS += -DNPCCONFIG_FTRACE
 # CFLAGS += -DNPCCONFIG_MTRACE
-CFLAGS += -DNPCCONFIG_DUMPWAVE
+# CFLAGS += -DNPCCONFIG_DUMPWAVE
 # CFLAGS += -DNPCCONFIG_WATCHPOINT
 # CFLAGS += -DNPCCONFIG_DIFFTEST
 
@@ -175,7 +175,7 @@ run: $(BIN)
 
 PERF_MD = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/perf/perf.md
 SAVE_MD = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/records/perf_$(shell date +%Y%m%d_%H%M%S).md
-EXPLAIN = 任务进度:完成icache的实现,添加了icache相关计数器 属性:icache开启,b=4,k=16
+EXPLAIN = 任务进度:正在做icachesim,修复了icache没有判断sdram地址的错误 属性:icache开启,b=4,k=16
 
 perf: checkout run save_perf
 
