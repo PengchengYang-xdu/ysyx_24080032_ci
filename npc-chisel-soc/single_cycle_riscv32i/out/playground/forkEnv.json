@@ -42,7 +42,7 @@
         "XDG_SESSION_ID": "21577",
         "SSL_CERT_FILE": "/usr/lib/ssl/certs/ca-certificates.crt",
         "MODULESHOME": "/usr/share/modules",
-        "ALL": "string",
+        "ALL": "dummy",
         "LC_TIME": "zh_CN.UTF-8",
         "CONDA_EXE": "/home/yangpengcheng/miniconda3/bin/conda",
         "CONDA_DEFAULT_ENV": "base",
@@ -51,7 +51,7 @@
         "COLORTERM": "truecolor",
         "XDG_DATA_DIRS": "/usr/share/gnome:/home/yangpengcheng/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop",
         "LC_ADDRESS": "zh_CN.UTF-8",
-        "MAKEFLAGS": "s -- ALL=string ARCH=riscv32e-ysyxsoc",
+        "MAKEFLAGS": "s -- ALL=dummy ARCH=riscv32e-ysyxsoc",
         "CC": "riscv64-linux-gnu-gcc",
         "USER": "yangpengcheng",
         "LC_PAPER": "zh_CN.UTF-8",
@@ -89,6 +89,6 @@
         "VSCODE_IPC_HOOK_CLI": "/run/user/1013/vscode-ipc-a9383238-9924-46db-b4b0-69b04c7e8b95.sock",
         "RISCV64": "/home/yangpengcheng/workspace/opt/riscv"
     },
-    "valueHash": 797783865,
-    "inputsHash": 1031547038
+    "valueHash": -248691016,
+    "inputsHash": -1225510706
 }

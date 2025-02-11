@@ -13,10 +13,10 @@
         "ref:v0:02ea3a3f:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Perip.scala",
         "ref:v0:2d52a740:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/Elaborate.scala",
         "ref:v0:86c7a4b7:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/NPC.scala",
-        "ref:v0:d37e5a61:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala",
+        "ref:v0:bb0d9b64:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala",
         "ref:v0:2b40f26f:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala",
         "ref:v0:bb163b69:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Config.scala"
     ],
-    "valueHash": -779681561,
-    "inputsHash": -450744227
+    "valueHash": 1204708608,
+    "inputsHash": -1856506493
 }
