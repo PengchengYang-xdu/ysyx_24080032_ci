@@ -55,10 +55,10 @@ verilog:
 
 # IMG_CHAR = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/char-test/build/char-test.bin
 
-wave: 
+wave:
 	gtkwave *.vcd
 
-clr: 
+clr:
 	rm -rf $(BUILD_DIR)
 	rm -rf *.vcd
 	rm -rf $(GEN_DIR)
@@ -144,21 +144,21 @@ clean_nv:
 
 
 
-# CFLAGS += -DNPCCONFIG_ITRACE 
-# CFLAGS += -DNPCCONFIG_FTRACE 
-# CFLAGS += -DNPCCONFIG_MTRACE 
-# CFLAGS += -DNPCCONFIG_DUMPWAVE 
-# CFLAGS += -DNPCCONFIG_WATCHPOINT 
-# CFLAGS += -DNPCCONFIG_DIFFTEST 
+# CFLAGS += -DNPCCONFIG_ITRACE
+# CFLAGS += -DNPCCONFIG_FTRACE
+# CFLAGS += -DNPCCONFIG_MTRACE
+CFLAGS += -DNPCCONFIG_DUMPWAVE
+# CFLAGS += -DNPCCONFIG_WATCHPOINT
+# CFLAGS += -DNPCCONFIG_DIFFTEST
 
 
 
-# if you want to just run the ysyxsoc 
+# if you want to just run the ysyxsoc
 run: $(BIN)
 	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(BIN) $(ARGS) $(IMG) 
 
 #if you want to run the nvboard
-# CFLAGS += -DNV_BOARD 
+# CFLAGS += -DNV_BOARD
 # run: $(NV_BIN)
 # 	@LD_LIBRARY_PATH=$(dir $(NEMU_SO)) $(NV_BIN) $(ARGS) $(IMG)
 
