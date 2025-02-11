@@ -118,7 +118,7 @@ class iCache(val b: Int, val k: Int) extends Module{
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
-        s_IDLE           ->  Mux(isifu_rreq & issdram_raddr, s_icache_lookup, s_IDLE),
+        s_IDLE           ->  Mux(isifu_rreq, s_icache_lookup, s_IDLE),
         s_icache_lookup  ->  Mux(hit0, s_IDLE, s_i_0),
         s_i_0            ->  Mux(io.out.arready & out_arvalid, s_i_1, s_i_0),
         s_i_1            ->  Mux(io.out.rvalid & out_rready, s_i_2, s_i_1),
