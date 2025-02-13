@@ -119,7 +119,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     for (i <- 0 until ways) {
         when (icache(req_index).set(i).tag === req_tag) {
             ways_hit := true.B
-            ways_hit_num := i
+            ways_hit_num := i.toUInt
         }
     }
     val hit0 = RegEnable(ways_hit, n_state === s_icache_lookup)
