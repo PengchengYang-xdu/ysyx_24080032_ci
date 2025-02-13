@@ -26,7 +26,7 @@ image: $(IMAGE).elf
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
 
 run: image
-	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(IMAGE).bin
+	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(YSYXSOC_IMAGE).bin ADD_CFLAGS=1
 
 gdb: image
 	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) gdb ARGS="$(NEMUFLAGS)" IMG=$(IMAGE).bin
@@ -37,7 +37,6 @@ gdb: image
 
 
 MICROBENCH_HOME = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/am-kernels/benchmarks/microbench
-# MICROBENCH_HOME = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/am-kernels/tests/cpu-tests
 YSYXSOC_IMAGE := $(subst nemu,ysyxsoc,$(IMAGE))
 
 ICACHESIM_LOG_PRE_DIR = /home/yangpengcheng/ysyx/ysyx
@@ -48,6 +47,6 @@ icachesim:
 #之后用nemu执行ysyxsoc的程序流, 从而生成icachesim.log
 	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(YSYXSOC_IMAGE).bin ADD_CFLAGS=1
 #之后用pbzip2进行压缩
-	pbzip2 -p8 -kv -c $(ICACHESIM_LOG_PRE_DIR)/icachesim.log > $(AM_HOME)/../icachesim/icachesim_log/icachesim.log.bz2
+	pbzip2 -p8 -kv -c $(ICACHESIM_LOG_PRE_DIR)/icachesim.log > $(AM_HOME)/../icachesim/icachesim_log/string.log.bz2
 #删除大文件
 	rm -rf $(ICACHESIM_LOG_PRE_DIR)/icachesim.log
