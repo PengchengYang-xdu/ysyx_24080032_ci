@@ -87,7 +87,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     val m = log2(block_size).toInt
     val n = log2(sets).toInt
-    val w = log2(ways).toInt
+    val w = math.ceil(log2(ways)).toInt
     val index_width = n
     val offset_width = m
     val tag_width = 32 - m - n
