@@ -164,7 +164,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         }
     }
 
-    when(c_state === s_i_2 && issdram_raddr){
+    when(c_state === s_i_2 && issdram_raddr){//替换或填充逻辑
         icache(req_index).set(0).valid := true.B
         icache(req_index).set(0).tag := req_tag
         icache(req_index).set(0).data(req_offset >> 2) := icache_wdata
