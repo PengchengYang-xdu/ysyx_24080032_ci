@@ -7,7 +7,7 @@
 #include <icache.h>
 
 
-iCache *init_icache(uint sets, uint ways, ReplacementPolicy policy){
+iCache *init_icache(uint32_t sets, uint32_t ways, ReplacementPolicy policy){
     iCache *icache = (iCache *)malloc(sizeof(iCache));
     icache->sets = sets;
     icache->ways = ways;
@@ -34,14 +34,14 @@ iCache *init_icache(uint sets, uint ways, ReplacementPolicy policy){
     return icache;
 }
 
-int lookup_icache(iCache *cache, uint address, ReplacementPolicy policy){
-    uint index = get_index(address, BLOCK_SIZE, cache->sets);
-    uint tag = get_tag(address, BLOCK_SIZE, cache->sets);
+int lookup_icache(iCache *cache, uint32_t address, ReplacementPolicy policy){
+    uint32_t index = get_index(address, BLOCK_SIZE, cache->sets);
+    uint32_t tag = get_tag(address, BLOCK_SIZE, cache->sets);
     int hit = 0;
 
     //查找index对应的icache组
     for(int j = 0; j < cache->ways; j++){
-        uint idx = index * cache->ways + j;
+        uint32_t idx = index * cache->ways + j;
         if (cache->blocks[idx].valid && cache->blocks[idx].tag == tag) {
             hit = 1;
             if (policy == LRU) {
@@ -59,7 +59,7 @@ int lookup_icache(iCache *cache, uint address, ReplacementPolicy policy){
 
         //遍历查找这个组中是否存在空的cache块, 如果是, 那么替换就变成了填充
         for(int j = 0; j < cache->ways; j++){
-            uint idx = index * cache->ways + j;
+            uint32_t idx = index * cache->ways + j;
             if (cache->blocks[idx].valid == 0){
                 replace_index = idx;
                 break;
@@ -93,15 +93,15 @@ int lookup_icache(iCache *cache, uint address, ReplacementPolicy policy){
     return hit;
 }
 
-uint get_tag(uint address, uint block_size, uint sets) {
-    uint m = log2(block_size);
-    uint n = log2(sets);
+uint32_t get_tag(uint32_t address, uint32_t block_size, uint32_t sets) {
+    uint32_t m = log2(block_size);
+    uint32_t n = log2(sets);
     return address >> (m + n);
 }
 
-uint get_index(uint address, uint block_size, uint sets) {
-    uint m = log2(block_size);
-    uint n = log2(sets);
+uint32_t get_index(uint32_t address, uint32_t block_size, uint32_t sets) {
+    uint32_t m = log2(block_size);
+    uint32_t n = log2(sets);
     return (address >> m) & ((1 << n - 1));
 }
 

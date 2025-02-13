@@ -15,7 +15,7 @@ uint64_t hit_num = 0;
 uint64_t miss_num = 0;
 
 int main() {
-    FILE *fp = popen("bzcat /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/icachesim/icachesim_log/icachesim.log.bz2", "r");
+    FILE *fp = popen("bzcat /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/icachesim/icachesim_log/string.log.bz2", "r");
     if(fp == NULL){
         perror("failed to open bz2 file");
         return -1;
