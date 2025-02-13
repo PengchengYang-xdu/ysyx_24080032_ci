@@ -12,14 +12,17 @@ class iCacheIO extends Bundle {
     val out = Flipped(new AXI4WithoutClk)
 }
 
-//b = 4字节, k = 4个
-class iCachePacIO(val m: Int, val n: Int) extends Bundle{
+class iCacheBlock(val m: Int, val n: Int) extends Bundle{
     val valid = Bool()
     val tag = UInt((32 - m - n).W)
     val data = Vec((2 << (m - 1)) / 4, UInt(WORD_LEN.W))
 }
 
-class iCache(val b: Int, val k: Int) extends Module{
+class iCacheSet(val m: Int, val n: Int, val ways: Int) extends Bundle{
+    val set = Vec(ways, new iCacheBlock(m, n))
+}
+
+class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val io = IO(new iCacheIO)
 
     val in_arready = RegInit(true.B)
@@ -82,8 +85,8 @@ class iCache(val b: Int, val k: Int) extends Module{
     io.out.wlast := out_wlast
     io.out.bready := out_bready
 
-    val m = log2(b).toInt
-    val n = log2(k).toInt
+    val m = log2(block_size).toInt
+    val n = log2(sets).toInt
     val index_width = n
     val offset_width = m
     val tag_width = 32 - m - n
@@ -98,7 +101,7 @@ class iCache(val b: Int, val k: Int) extends Module{
     dontTouch(req_offset)
     dontTouch(req_tag)
 
-    val icache = RegInit(VecInit(Seq.fill(k)(0.U.asTypeOf(new iCachePacIO(m, n)))))
+    val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways)))))
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
@@ -110,7 +113,16 @@ class iCache(val b: Int, val k: Int) extends Module{
     val issdram_raddr = (io.in.araddr >= "ha000_0000".U(32.W) && io.in.araddr <= "hbfff_ffff".U(32.W))
     val isifu_rreq = io.in.arvalid & in_arready
 
-    val hit0 = RegEnable(icache(req_index).tag === req_tag, n_state === s_icache_lookup)
+    val ways_hit = Wire(Bool())
+    val ways_hit_num = RegInit(0.U(32.W))
+    ways_hit := false.B
+    for (i <- 0 until ways) {
+        when (icache(req_index).set(i).tag === req_tag) {
+            ways_hit := true.B
+            ways_hit_num := i
+        }
+    }
+    val hit0 = RegEnable(ways_hit, n_state === s_icache_lookup)
 
     val icache_wdata = RegInit(0.U(32.W))
     icache_wdata := Mux(n_state === s_i_2, io.out.rdata, icache_wdata)
@@ -132,8 +144,8 @@ class iCache(val b: Int, val k: Int) extends Module{
         }
         is(s_icache_lookup){
             in_arready := false.B
-            in_rvalid := icache(req_index).tag === req_tag
-            in_rdata := icache(req_index).data(req_offset >> 2)
+            in_rvalid := ways_hit
+            in_rdata := icache(req_index).set(ways_hit_num).data(req_offset >> 2)
         }
         is(s_i_0){
             ConnectIn2Out()
@@ -151,9 +163,9 @@ class iCache(val b: Int, val k: Int) extends Module{
     }
 
     when(c_state === s_i_2 && issdram_raddr){
-        icache(req_index).valid := true.B
-        icache(req_index).tag := req_tag
-        icache(req_index).data(req_offset >> 2) := icache_wdata
+        icache(req_index).set(0).valid := true.B
+        icache(req_index).set(0).tag := req_tag
+        icache(req_index).set(0).data(req_offset >> 2) := icache_wdata
     }
 
 /*-----------------------function-----------------------*/
