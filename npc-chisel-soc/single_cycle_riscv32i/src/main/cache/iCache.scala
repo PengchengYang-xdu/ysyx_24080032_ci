@@ -87,9 +87,11 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     val m = log2(block_size).toInt
     val n = log2(sets).toInt
+    val w = log2(ways - 1).toInt
     val index_width = n
     val offset_width = m
     val tag_width = 32 - m - n
+    val ways_width = w + 1
 
     val req_index = Wire(UInt(index_width.W))
     req_index := io.in.araddr(m + n - 1, m)
@@ -114,7 +116,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val isifu_rreq = io.in.arvalid & in_arready
 
     val ways_hit = Wire(Bool())
-    val ways_hit_num = RegInit(0.U(32.W))
+    val ways_hit_num = RegInit(0.U(ways_width.W))
     ways_hit := false.B
     for (i <- 0 until ways) {
         when (icache(req_index).set(i).tag === req_tag) {
