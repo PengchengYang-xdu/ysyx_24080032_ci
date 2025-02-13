@@ -87,11 +87,11 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     val m = log2(block_size).toInt
     val n = log2(sets).toInt
-    val w = log2(ways - 1).toInt
+    val w = log2(ways).toInt
     val index_width = n
     val offset_width = m
     val tag_width = 32 - m - n
-    val ways_width = w + 1
+    val ways_width = w
 
     val req_index = Wire(UInt(index_width.W))
     req_index := io.in.araddr(m + n - 1, m)
