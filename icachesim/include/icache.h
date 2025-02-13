@@ -26,18 +26,18 @@ typedef struct {
 //iCache数据结构
 typedef struct {
     iCacheBlock *blocks;
-    uint sets;
-    uint ways;
+    uint32_t sets;
+    uint32_t ways;
     ReplacementPolicy policy;
     
     int *lru_history;  // LRU历史记录
     uint *fifo_queue; // FIFO队列
 } iCache;
 
-iCache *init_icache(uint sets, uint ways, ReplacementPolicy policy);
-int lookup_icache(iCache *cache, uint address, ReplacementPolicy policy);
-uint get_tag(uint address, uint block_size, uint sets);
-uint get_index(uint address, uint block_size, uint sets);
+iCache *init_icache(uint32_t sets, uint32_t ways, ReplacementPolicy policy);
+int lookup_icache(iCache *cache, uint32_t address, ReplacementPolicy policy);
+uint32_t get_tag(uint32_t address, uint32_t block_size, uint32_t sets);
+uint32_t get_index(uint32_t address, uint32_t block_size, uint32_t sets);
 void free_cache(iCache *cache);
 
 

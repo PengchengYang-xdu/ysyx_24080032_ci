@@ -16,7 +16,7 @@ $(bin): $(SRCS)
 
 run: $(bin)
 	@echo "running icachesim..."
-	$(bin) $(ICACHESIM_LOG_DIR)/icachesim.log.bz2
+	$(bin)
 
 clean:
 	rm -rf $(BUILD_DIR)
