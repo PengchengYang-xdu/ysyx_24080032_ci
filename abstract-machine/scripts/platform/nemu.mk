@@ -48,6 +48,6 @@ icachesim:
 #之后用nemu执行ysyxsoc的程序流, 从而生成icachesim.log
 	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(YSYXSOC_IMAGE).bin ADD_CFLAGS=1
 #之后用pbzip2进行压缩
-	pbzip2 -p8 -kv -c $(ICACHESIM_LOG_PRE_DIR)/icachesim.log > $(AM_HOME)/../icachesim/icachesim_log/string.log.bz2
+	pbzip2 -p8 -kv -c $(ICACHESIM_LOG_PRE_DIR)/icachesim.log > $(AM_HOME)/../icachesim/icachesim_log/test.log.bz2
 #删除大文件
 	# rm -rf $(ICACHESIM_LOG_PRE_DIR)/icachesim.log
