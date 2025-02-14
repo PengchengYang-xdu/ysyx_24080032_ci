@@ -121,7 +121,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     ways_hit := false.B
     val ways_hit_num = RegInit(0.U(ways_width.W))
     for (i <- 0 until ways) {
-        when (icache(req_index).set(i).tag === req_tag) {
+        when (!ways_hit && icache(req_index).set(i).tag === req_tag) {
             ways_hit := true.B
             ways_hit_num := i.U
         }
@@ -180,14 +180,12 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val hasEmpty = Wire(Bool())
     hasEmpty := false.B
     val emptyIndex = RegInit(0.U(ways_width.W))
-    for (i <- ways until 0) {
-        when(icache(req_index).set(i).valid === false.B) {
+    for (i <- 0 until ways) {
+        when(!hasEmpty && icache(req_index).set(i).valid === false.B) {
             hasEmpty := true.B
             emptyIndex := i.U
         }
     }
-    dontTouch(hasEmpty)
-    dontTouch(emptyIndex)
 
     when(c_state === s_i_2 && issdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
         val set = icache(req_index).set
