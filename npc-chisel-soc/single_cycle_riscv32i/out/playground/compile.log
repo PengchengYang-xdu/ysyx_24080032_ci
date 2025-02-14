@@ -6,13 +6,8 @@
 [0m[[0m[31merror[0m] [0m[0m                updateLRU(icache, req_index, emptyIndex)[0m
 [0m[[0m[31merror[0m] [0m[0m                ^[0m
 [0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:210:17: not found: value fifoPtr[0m
-[0m[[0m[31merror[0m] [0m[0m                fifoPtr := (emptyIndex + 1.U) % ways[0m
+[0m[[0m[31merror[0m] [0m[0m                fifoPtr := (emptyIndex + 1.U) % ways.U[0m
 [0m[[0m[31merror[0m] [0m[0m                ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:210:49: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Int[0m
-[0m[[0m[31merror[0m] [0m[0m required: chisel3.UInt[0m
-[0m[[0m[31merror[0m] [0m[0m                fifoPtr := (emptyIndex + 1.U) % ways[0m
-[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
 [0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:216:36: not found: value getLRUIndex[0m
 [0m[[0m[31merror[0m] [0m[0m                    val lruIndex = getLRUIndex(icache(req_index), w)[0m
 [0m[[0m[31merror[0m] [0m[0m                                   ^[0m
@@ -33,4 +28,7 @@
 [0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:313:47: value lruMatrix is not a member of npc.core.icache.iCacheSet[0m
 [0m[[0m[31merror[0m] [0m[0m            val lruMatrix = icache(req_index).lruMatrix[0m
 [0m[[0m[31merror[0m] [0m[0m                                              ^[0m
-[0m[[0m[31merror[0m] [0m[0m13 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:327:33: value lruMatrix is not a member of npc.core.icache.iCacheSet[0m
+[0m[[0m[31merror[0m] [0m[0m            val lruMatrix = set.lruMatrix[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m12 errors found[0m

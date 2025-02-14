@@ -189,7 +189,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     }
 
     //命中的时候更新LRU矩阵
-    if(policy == "LRU"){
+    if(replacementPolicy == "LRU"){
         when(hit0){
             updateLRU(icache, req_index, ways_hit_num)
         }
@@ -204,9 +204,9 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             set(emptyIndex).tag := req_tag
             set(emptyIndex).data(req_offset >> 2) := icache_wdata
             //填充的时候更新LRU矩阵
-            if(policy == "LRU"){
+            if(replacementPolicy == "LRU"){
                 updateLRU(icache, req_index, emptyIndex)
-            } else if(policy == "FIFO"){
+            } else if(replacementPolicy == "FIFO"){
                 fifoPtr := (emptyIndex + 1.U) % ways.U
             }
         } .otherwise{
@@ -308,7 +308,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         out_bready := io.in.bready
     }
 
-    if(policy == "LRU"){
+    if(replacementPolicy == "LRU"){
         def updateLRU(icache: Vec[iCacheSet], req_index: UInt, ways_hit_num: UInt): Unit = {
             val lruMatrix = icache(req_index).lruMatrix
             for(j <- 0 until ways) {
