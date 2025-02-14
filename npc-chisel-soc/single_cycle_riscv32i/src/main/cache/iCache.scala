@@ -176,19 +176,22 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         case _ => throw new Exception("Unknown replacement policy!")
     }
 
+    //检查空闲的cache块
+    val hasEmpty = Wire(Bool())
+    hasEmpty := false.B
+    val emptyIndex = RegInit(0.U(ways_width.W))
+    for (i <- 0 until ways) {
+        when(icache(req_index).set(i).valid === false.B) {
+            hasEmpty := true.B
+            emptyIndex := i.U
+        }
+    }
+
     when(c_state === s_i_2 && issdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
         val set = icache(req_index).set
 
-        //检查空闲的cache块
-        val hasEmpty = Wire(Bool())
-        hasEmpty := false.B
-        val emptyIndex = RegInit(0.U(ways_width.W))
-        for (i <- 0 until ways) {
-            when(set(i).valid === false.B && c_state === s_i_2 && issdram_raddr) {
-                hasEmpty := true.B
-                emptyIndex := i.U
-            }
-        }
+        
+        
 
         when(hasEmpty === true.B) {
             // 如果有空闲块，填充
