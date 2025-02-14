@@ -186,6 +186,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             emptyIndex := i.U
         }
     }
+    dontTouch(hasEmpty)
+    dontTouch(emptyIndex)
 
     when(c_state === s_i_2 && issdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
         val set = icache(req_index).set
