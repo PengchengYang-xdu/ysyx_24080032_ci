@@ -180,10 +180,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val hasEmpty = Wire(Bool())
     hasEmpty := false.B
     val emptyIndex = RegInit(0.U(ways_width.W))
-    for (j <- 0 until ways) {
-        when(icache(req_index).set(j).valid === false.B) {
+    for (i <- ways until 0) {
+        when(icache(req_index).set(i).valid === false.B) {
             hasEmpty := true.B
-            emptyIndex := j.U
+            emptyIndex := i.U
         }
     }
 
