@@ -1,34 +1,34 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:194:13: not found: value updateLRU[0m
-[0m[[0m[31merror[0m] [0m[0m            updateLRU(icache, req_index, ways_hit_num)[0m
-[0m[[0m[31merror[0m] [0m[0m            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:208:17: not found: value updateLRU[0m
-[0m[[0m[31merror[0m] [0m[0m                updateLRU(icache, req_index, emptyIndex)[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:195:17: not found: value updateLRU[0m
+[0m[[0m[31merror[0m] [0m[0m                updateLRU(icache, req_index, ways_hit_num)[0m
 [0m[[0m[31merror[0m] [0m[0m                ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:210:17: not found: value fifoPtr[0m
-[0m[[0m[31merror[0m] [0m[0m                fifoPtr := (emptyIndex + 1.U) % ways.U[0m
-[0m[[0m[31merror[0m] [0m[0m                ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:216:36: not found: value getLRUIndex[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:215:21: not found: value updateLRU[0m
+[0m[[0m[31merror[0m] [0m[0m                    updateLRU(icache, req_index, emptyIndex)[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:217:21: not found: value fifoPtr[0m
+[0m[[0m[31merror[0m] [0m[0m                    fifoPtr := (emptyIndex + 1.U) % ways.U[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:223:36: not found: value getLRUIndex[0m
 [0m[[0m[31merror[0m] [0m[0m                    val lruIndex = getLRUIndex(icache(req_index), w)[0m
 [0m[[0m[31merror[0m] [0m[0m                                   ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:221:21: not found: value updateLRU[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:228:21: not found: value updateLRU[0m
 [0m[[0m[31merror[0m] [0m[0m                    updateLRU(icache, req_index, lruIndex)[0m
 [0m[[0m[31merror[0m] [0m[0m                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:223:37: not found: value fifoPtr[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:230:37: not found: value fifoPtr[0m
 [0m[[0m[31merror[0m] [0m[0m                    val fifoIndex = fifoPtr[0m
 [0m[[0m[31merror[0m] [0m[0m                                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:228:21: not found: value fifoPtr[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:235:21: not found: value fifoPtr[0m
 [0m[[0m[31merror[0m] [0m[0m                    fifoPtr := (emptyIndex + 1.U) % ways[0m
 [0m[[0m[31merror[0m] [0m[0m                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:228:53: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:235:53: type mismatch;[0m
 [0m[[0m[31merror[0m] [0m[0m found   : Int[0m
 [0m[[0m[31merror[0m] [0m[0m required: chisel3.UInt[0m
 [0m[[0m[31merror[0m] [0m[0m                    fifoPtr := (emptyIndex + 1.U) % ways[0m
 [0m[[0m[31merror[0m] [0m[0m                                                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:313:47: value lruMatrix is not a member of npc.core.icache.iCacheSet[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:320:47: value lruMatrix is not a member of npc.core.icache.iCacheSet[0m
 [0m[[0m[31merror[0m] [0m[0m            val lruMatrix = icache(req_index).lruMatrix[0m
 [0m[[0m[31merror[0m] [0m[0m                                              ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:327:33: value lruMatrix is not a member of npc.core.icache.iCacheSet[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:334:33: value lruMatrix is not a member of npc.core.icache.iCacheSet[0m
 [0m[[0m[31merror[0m] [0m[0m            val lruMatrix = set.lruMatrix[0m
 [0m[[0m[31merror[0m] [0m[0m                                ^[0m
 [0m[[0m[31merror[0m] [0m[0m12 errors found[0m
