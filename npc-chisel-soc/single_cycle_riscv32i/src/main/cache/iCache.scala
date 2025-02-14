@@ -201,7 +201,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             // 如果有空闲块，替换逻辑
             policy match {
                 case "LRU" =>
-                    val lruIndex = getLRUIndex(icache(req_index))
+                    val lruIndex = getLRUIndex(icache(req_index), w)
                     set(lruIndex).valid := true.B
                     set(lruIndex).tag := req_tag
                     set(lruIndex).data(req_offset >> 2) := icache_wdata
@@ -313,12 +313,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         }
     }
 
-    def getLRUIndex(set: iCacheSet): UInt = {
+    def getLRUIndex(set: iCacheSet, val w: Int): UInt = {
+        val LRUIndex = Wire(UInt(w.W))
         val lruMatrix = set.lruMatrix
         for(i <- 0 until ways){
                 val isZeroRow = (0 until ways).map(j => lruMatrix(i)(j) === 0.U).reduce(_ && _)
                 when(isZeroRow){
-                    val LRUIndex = i.U
+                    LRUIndex := i.U
                 }
         }
         LRUIndex
