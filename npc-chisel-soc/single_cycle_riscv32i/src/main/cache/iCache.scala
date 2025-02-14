@@ -190,7 +190,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             }
         }
 
-        if(hasEmpty) {
+        if(hasEmpty === true.B) {
             // 如果有空闲块，填充
             set(emptyIndex).valid := true.B
             set(emptyIndex).tag := req_tag
