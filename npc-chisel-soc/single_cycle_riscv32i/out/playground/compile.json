@@ -1,0 +1,8 @@
+{
+    "value": {
+        "analysisFile": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/zinc",
+        "classes": "ref:v0:bc80191a:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes"
+    },
+    "valueHash": 1016517955,
+    "inputsHash": -2047492217
+}
