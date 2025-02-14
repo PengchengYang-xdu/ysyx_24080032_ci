@@ -201,7 +201,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             // 如果有空闲块，替换逻辑
             policy match {
                 case "LRU" =>
-                    val lruIndex = getLRUIndex(set)
+                    val lruIndex = getLRUIndex(icache(req_index))
                     set(lruIndex).valid := true.B
                     set(lruIndex).tag := req_tag
                     set(lruIndex).data(req_offset >> 2) := icache_wdata
