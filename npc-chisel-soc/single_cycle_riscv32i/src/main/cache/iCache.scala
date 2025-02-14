@@ -207,7 +207,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             if(policy == "LRU"){
                 updateLRU(icache, req_index, emptyIndex)
             } else if(policy == "FIFO"){
-                fifoPtr := (emptyIndex + 1.U) % ways
+                fifoPtr := (emptyIndex + 1.U) % ways.U
             }
         } .otherwise{
             // 如果没有空闲块，替换逻辑
