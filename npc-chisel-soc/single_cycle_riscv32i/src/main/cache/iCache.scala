@@ -106,11 +106,11 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways)))))
     dontTouch(icache)
 
-    if(replacementPolicy == "LRU"){
+    // if(replacementPolicy == "LRU"){
         val lruMatrix = VecInit(Seq.fill(sets)(VecInit(Seq.fill(ways)(VecInit(Seq.fill(ways)(0.U(1.W)))))))
-    } else if(replacementPolicy == "FIFO"){
+    // } else if(replacementPolicy == "FIFO"){
         val fifoPtr = RegInit(0.U(ways_width.W))
-    }
+    // }
 
     /*-----------------------FSM-----------------------*/
     val s_IDLE :: s_icache_lookup :: s_i_0 :: s_i_1 :: s_i_2 :: Nil = Enum(5)
