@@ -21,7 +21,7 @@ class iCacheBlock(val m: Int, val n: Int) extends Bundle{
 class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int) extends Bundle{
     val set = Vec(ways, new iCacheBlock(m, n))
     val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
-    val fifoPtr = RegInit(0.U(ways_width.W))
+    val fifoPtr = UInt(ways_width.W)
 }
 
 class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementPolicy: String) extends Module{
