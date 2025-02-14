@@ -23,7 +23,7 @@ class iCacheSet(val m: Int, val n: Int, val ways: Int, val replacementPolicy: St
     if(replacementPolicy == "LRU"){
         val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
     } else if(replacementPolicy == "FIFO"){
-        val fifoPtr = RegInit(0.U(ways_width.W))
+        val fifoPtr = RegInit(0.U((math.ceil(log2(ways)).toInt).W))
     }
 }
 

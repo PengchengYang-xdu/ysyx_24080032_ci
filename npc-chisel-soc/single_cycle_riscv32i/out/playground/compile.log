@@ -1,2 +1,36 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:26:35: not found: value ways_width[0m
+[0m[[0m[31merror[0m] [0m[0m        val fifoPtr = RegInit(0.U(ways_width.W))[0m
+[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:194:13: not found: value updateLRU[0m
+[0m[[0m[31merror[0m] [0m[0m            updateLRU(icache, req_index, ways_hit_num)[0m
+[0m[[0m[31merror[0m] [0m[0m            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:208:17: not found: value updateLRU[0m
+[0m[[0m[31merror[0m] [0m[0m                updateLRU(icache, req_index, emptyIndex)[0m
+[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:210:17: not found: value fifoPtr[0m
+[0m[[0m[31merror[0m] [0m[0m                fifoPtr := (emptyIndex + 1.U) % ways[0m
+[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:210:49: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int[0m
+[0m[[0m[31merror[0m] [0m[0m required: chisel3.UInt[0m
+[0m[[0m[31merror[0m] [0m[0m                fifoPtr := (emptyIndex + 1.U) % ways[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:216:36: not found: value getLRUIndex[0m
+[0m[[0m[31merror[0m] [0m[0m                    val lruIndex = getLRUIndex(icache(req_index), w)[0m
+[0m[[0m[31merror[0m] [0m[0m                                   ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:221:21: not found: value updateLRU[0m
+[0m[[0m[31merror[0m] [0m[0m                    updateLRU(icache, req_index, lruIndex)[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:223:37: not found: value fifoPtr[0m
+[0m[[0m[31merror[0m] [0m[0m                    val fifoIndex = fifoPtr[0m
+[0m[[0m[31merror[0m] [0m[0m                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:228:21: not found: value fifoPtr[0m
+[0m[[0m[31merror[0m] [0m[0m                    fifoPtr := (emptyIndex + 1.U) % ways[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:228:53: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int[0m
+[0m[[0m[31merror[0m] [0m[0m required: chisel3.UInt[0m
+[0m[[0m[31merror[0m] [0m[0m                    fifoPtr := (emptyIndex + 1.U) % ways[0m
+[0m[[0m[31merror[0m] [0m[0m                                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m14 errors found[0m
