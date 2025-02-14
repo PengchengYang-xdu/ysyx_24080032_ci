@@ -12,14 +12,17 @@ class iCacheIO extends Bundle {
     val out = Flipped(new AXI4WithoutClk)
 }
 
-//b = 4字节, k = 4个
-class iCachePacIO(val m: Int, val n: Int) extends Bundle{
+class iCacheBlock(val m: Int, val n: Int) extends Bundle{
     val valid = Bool()
     val tag = UInt((32 - m - n).W)
     val data = Vec((2 << (m - 1)) / 4, UInt(WORD_LEN.W))
 }
 
-class iCache(val b: Int, val k: Int) extends Module{
+class iCacheSet(val m: Int, val n: Int, val ways: Int) extends Bundle{
+    val set = Vec(ways, new iCacheBlock(m, n))
+}
+
+class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val io = IO(new iCacheIO)
 
     val in_arready = RegInit(true.B)
@@ -82,11 +85,13 @@ class iCache(val b: Int, val k: Int) extends Module{
     io.out.wlast := out_wlast
     io.out.bready := out_bready
 
-    val m = log2(b).toInt
-    val n = log2(k).toInt
+    val m = log2(block_size).toInt
+    val n = log2(sets).toInt
+    val w = math.ceil(log2(ways)).toInt
     val index_width = n
     val offset_width = m
     val tag_width = 32 - m - n
+    val ways_width = w
 
     val req_index = Wire(UInt(index_width.W))
     req_index := io.in.araddr(m + n - 1, m)
@@ -98,7 +103,7 @@ class iCache(val b: Int, val k: Int) extends Module{
     dontTouch(req_offset)
     dontTouch(req_tag)
 
-    val icache = RegInit(VecInit(Seq.fill(k)(0.U.asTypeOf(new iCachePacIO(m, n)))))
+    val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways)))))
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
@@ -110,7 +115,16 @@ class iCache(val b: Int, val k: Int) extends Module{
     val issdram_raddr = (io.in.araddr >= "ha000_0000".U(32.W) && io.in.araddr <= "hbfff_ffff".U(32.W))
     val isifu_rreq = io.in.arvalid & in_arready
 
-    val hit0 = RegEnable(icache(req_index).tag === req_tag, n_state === s_icache_lookup)
+    val ways_hit = Wire(Bool())
+    ways_hit := false.B
+    val ways_hit_num = RegInit(0.U(ways_width.W))
+    for (i <- 0 until ways) {
+        when (icache(req_index).set(i).tag === req_tag) {
+            ways_hit := true.B
+            ways_hit_num := i.U
+        }
+    }
+    val hit0 = RegEnable(ways_hit, n_state === s_icache_lookup)
 
     val icache_wdata = RegInit(0.U(32.W))
     icache_wdata := Mux(n_state === s_i_2, io.out.rdata, icache_wdata)
@@ -132,8 +146,8 @@ class iCache(val b: Int, val k: Int) extends Module{
         }
         is(s_icache_lookup){
             in_arready := false.B
-            in_rvalid := icache(req_index).tag === req_tag
-            in_rdata := icache(req_index).data(req_offset >> 2)
+            in_rvalid := ways_hit
+            in_rdata := icache(req_index).set(ways_hit_num).data(req_offset >> 2)
         }
         is(s_i_0){
             ConnectIn2Out()
@@ -150,10 +164,58 @@ class iCache(val b: Int, val k: Int) extends Module{
         }
     }
 
-    when(c_state === s_i_2 && issdram_raddr){
-        icache(req_index).valid := true.B
-        icache(req_index).tag := req_tag
-        icache(req_index).data(req_offset >> 2) := icache_wdata
+    // val policy = replacementPolicy.toUpperCase match {
+    //     case "LRU" => "LRU"
+    //     case "FIFO" => "FIFO"
+    //     case "RANDOM" => "RANDOM"
+    //     case _ => throw new Exception("Unknown replacement policy!")
+    // }
+
+    when(c_state === s_i_2 && issdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
+        // val set = icache(req_index).set
+
+        // //检查空闲的cache块
+        // val emptyIndex = RegInit(0.U(ways_width.W))
+        // for (i <- 0 until ways) {
+        //     when (set(i).valid === false.B) {
+        //         emptyIndex := i.U
+        //     }
+        // }
+
+        // if (emptyIndex >= 0) {
+        //     // 如果有空闲块，填充
+        //     set(emptyIndex).valid := true.B
+        //     set(emptyIndex).tag := req_tag
+        //     set(emptyIndex).data(req_offset >> 2) := icache_wdata
+        // } else {
+        //     // 如果有空闲块，替换逻辑
+        //     policy match {
+        //         case "LRU" =>
+        //             val lruIndex = getLRUIndex(set)
+        //             set(lruIndex).valid := true.B
+        //             set(lruIndex).tag := req_tag
+        //             set(lruIndex).data(req_offset >> 2) := icache_wdata
+        //         case "FIFO" =>
+        //             val fifoIndex = getFIFOIndex(set)
+        //             set(fifoIndex).valid := true.B
+        //             set(fifoIndex).tag := req_tag
+        //             set(fifoIndex).data(req_offset >> 2) := icache_wdata
+        //         case "RANDOM" =>
+        //             val randomIndex = scala.util.Random.nextInt(ways)
+        //             set(randomIndex).valid := true.B
+        //             set(randomIndex).tag := req_tag
+        //             set(randomIndex).data(req_offset >> 2) := icache_wdata
+        //     }
+        // }
+
+
+
+
+
+
+        icache(req_index).set(0).valid := true.B
+        icache(req_index).set(0).tag := req_tag
+        icache(req_index).set(0).data(req_offset >> 2) := icache_wdata
     }
 
 /*-----------------------function-----------------------*/
@@ -228,4 +290,6 @@ class iCache(val b: Int, val k: Int) extends Module{
         out_wlast := io.in.wlast
         out_bready := io.in.bready
     }
+
+    // def getLRUIndex
 }
