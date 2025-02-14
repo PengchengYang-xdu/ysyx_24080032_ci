@@ -189,11 +189,11 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     }
 
     //命中的时候更新LRU矩阵
+    if(replacementPolicy == "LRU"){
         when(hit0){
-            if(replacementPolicy == "LRU"){
-                updateLRU(icache, req_index, ways_hit_num)
-            }
+            updateLRU(icache, req_index, ways_hit_num)
         }
+    }
 
     when(c_state === s_i_2 && issdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
         val set = icache(req_index).set
