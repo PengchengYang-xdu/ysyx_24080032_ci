@@ -1,28 +1,25 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:210:17: not found: value fifoPtr[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:218:17: not found: value fifoPtr[0m
 [0m[[0m[31merror[0m] [0m[0m                fifoPtr := (emptyIndex + 1.U) % ways.U[0m
 [0m[[0m[31merror[0m] [0m[0m                ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:223:37: not found: value fifoPtr[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:231:37: not found: value fifoPtr[0m
 [0m[[0m[31merror[0m] [0m[0m                    val fifoIndex = fifoPtr[0m
 [0m[[0m[31merror[0m] [0m[0m                                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:228:21: not found: value fifoPtr[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:236:21: not found: value fifoPtr[0m
 [0m[[0m[31merror[0m] [0m[0m                    fifoPtr := (emptyIndex + 1.U) % ways[0m
 [0m[[0m[31merror[0m] [0m[0m                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:228:53: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:236:53: type mismatch;[0m
 [0m[[0m[31merror[0m] [0m[0m found   : Int[0m
 [0m[[0m[31merror[0m] [0m[0m required: chisel3.UInt[0m
 [0m[[0m[31merror[0m] [0m[0m                    fifoPtr := (emptyIndex + 1.U) % ways[0m
 [0m[[0m[31merror[0m] [0m[0m                                                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:312:47: value lruMatrix is not a member of npc.core.icache.iCacheSet[0m
-[0m[[0m[31merror[0m] [0m[0m            val lruMatrix = icache(req_index).lruMatrix[0m
-[0m[[0m[31merror[0m] [0m[0m                                              ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:326:33: value lruMatrix is not a member of npc.core.icache.iCacheSet[0m
-[0m[[0m[31merror[0m] [0m[0m            val lruMatrix = set.lruMatrix[0m
-[0m[[0m[31merror[0m] [0m[0m                                ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:328:93: missing parameter type for expanded function ((<x$2: error>, x$3) => x$2.$amp$amp(x$3))[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:323:30: Option[chisel3.Vec[chisel3.Vec[chisel3.UInt]]] does not take parameters[0m
+[0m[[0m[31merror[0m] [0m[0m                    lruMatrix(ways_hit_num)(j) := 1.U[0m
+[0m[[0m[31merror[0m] [0m[0m                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:327:26: Option[chisel3.Vec[chisel3.Vec[chisel3.UInt]]] does not take parameters[0m
+[0m[[0m[31merror[0m] [0m[0m                lruMatrix(i)(ways_hit_num) := 0.U[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:336:70: Option[chisel3.Vec[chisel3.Vec[chisel3.UInt]]] does not take parameters[0m
 [0m[[0m[31merror[0m] [0m[0m                    val isZeroRow = (0 until ways).map(j => lruMatrix(i)(j) === 0.U).reduce(_ && _)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:328:98: missing parameter type for expanded function ((<x$2: error>, <x$3: error>) => x$2.$amp$amp(x$3))[0m
-[0m[[0m[31merror[0m] [0m[0m                    val isZeroRow = (0 until ways).map(j => lruMatrix(i)(j) === 0.U).reduce(_ && _)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                                 ^[0m
-[0m[[0m[31merror[0m] [0m[0m8 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m7 errors found[0m

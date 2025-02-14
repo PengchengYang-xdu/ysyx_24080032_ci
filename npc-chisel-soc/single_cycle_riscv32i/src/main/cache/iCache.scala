@@ -215,7 +215,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             if(replacementPolicy == "LRU"){
                 updateLRU(icache, req_index, emptyIndex)
             } else if(replacementPolicy == "FIFO"){
-                fifoPtr := (emptyIndex + 1.U) % ways.U
+                icache(req_index).fifoPtr := (emptyIndex + 1.U) % ways.U
             }
         } .otherwise{
             // 如果没有空闲块，替换逻辑
@@ -228,12 +228,12 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
                     //替换的时候更新LRU矩阵
                     updateLRU(icache, req_index, lruIndex)
                 case "FIFO" =>
-                    val fifoIndex = fifoPtr
+                    val fifoIndex = icache(req_index).fifoPtr
                     set(fifoIndex).valid := true.B
                     set(fifoIndex).tag := req_tag
                     set(fifoIndex).data(req_offset >> 2) := icache_wdata
                     //替换的时候更新FIFO指针
-                    fifoPtr := (emptyIndex + 1.U) % ways
+                    icache(req_index).fifoPtr := (emptyIndex + 1.U) % ways
                 case "RANDOM" =>
                     val randomIndex = scala.util.Random.nextInt(ways)
                     set(randomIndex).valid := true.B
