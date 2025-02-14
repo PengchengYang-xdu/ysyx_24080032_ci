@@ -233,7 +233,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
                     set(fifoIndex).tag := req_tag
                     set(fifoIndex).data(req_offset >> 2) := icache_wdata
                     //替换的时候更新FIFO指针
-                    icache(req_index).fifoPtr := (emptyIndex + 1.U) % ways
+                    icache(req_index).fifoPtr := (emptyIndex + 1.U) % ways.U
                 case "RANDOM" =>
                     val randomIndex = scala.util.Random.nextInt(ways)
                     set(randomIndex).valid := true.B
