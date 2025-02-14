@@ -18,10 +18,10 @@ class iCacheBlock(val m: Int, val n: Int) extends Bundle{
     val data = Vec((2 << (m - 1)) / 4, UInt(WORD_LEN.W))
 }
 
-class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int) extends Bundle{
+class iCacheSet(val m: Int, val n: Int, val ways: Int) extends Bundle{
     val set = Vec(ways, new iCacheBlock(m, n))
-    val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
-    val fifoPtr = UInt(ways_width.W)
+    // val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
+    // val fifoPtr = UInt(ways_width.W)
 }
 
 class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementPolicy: String) extends Module{
@@ -105,8 +105,14 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     dontTouch(req_offset)
     dontTouch(req_tag)
 
-    val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways, w)))))
+    val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways)))))
     dontTouch(icache)
+
+    if(replacementPolicy == "LRU"){
+        val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
+    } else if(replacementPolicy == "FIFO"){
+        val fifoPtr = UInt(ways_width.W)
+    }
 
     /*-----------------------FSM-----------------------*/
     val s_IDLE :: s_icache_lookup :: s_i_0 :: s_i_1 :: s_i_2 :: Nil = Enum(5)
