@@ -117,13 +117,14 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     val ways_hit = Wire(Bool())
     ways_hit := false.B
-    val ways_hit_num = RegInit(0.U(ways_width.W))
+    // val ways_hit_num = RegInit(0.U(ways_width.W))
     for (i <- 0 until ways) {
         when (icache(req_index).set(i).tag === req_tag) {
             ways_hit := true.B
-            ways_hit_num := i.U
+            // ways_hit_num := i.U
         }
     }
+    val ways_hit_num = icache(req_index).set.indexWhere(_.tag === req_tag)
     val hit0 = RegEnable(ways_hit, n_state === s_icache_lookup)
 
     val icache_wdata = RegInit(0.U(32.W))
