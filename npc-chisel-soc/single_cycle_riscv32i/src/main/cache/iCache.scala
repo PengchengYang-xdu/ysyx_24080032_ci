@@ -20,19 +20,8 @@ class iCacheBlock(val m: Int, val n: Int) extends Bundle{
 
 class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int, val replacementPolicy: String) extends Bundle{
     val set = Vec(ways, new iCacheBlock(m, n))
-    // if(replacementPolicy == "LRU"){
-        val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
-    // } else if(replacementPolicy == "FIFO"){
-        val fifoPtr = Reg(UInt(ways_width.W))
-    // }
-    // val lruMatrix = replacementPolicy match{
-    //     case "LRU" => Some(Vec(ways, Vec(ways, UInt(1.W))))
-    //     case _ => None
-    // }
-    // val fifoPtr = replacementPolicy match{
-    //     case "FIFO" => Some(RegInit(0.U(ways_width.W)))
-    //     case _ => None
-    // }
+    val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
+    val fifoPtr = RegInit(0.U(ways_width.W))
 }
 
 class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementPolicy: String) extends Module{
