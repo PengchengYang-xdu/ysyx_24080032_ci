@@ -308,7 +308,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         out_bready := io.in.bready
     }
 
-    if(replacementPolicy == "LRU"){
         def updateLRU(icache: Vec[iCacheSet], req_index: UInt, ways_hit_num: UInt): Unit = {
             val lruMatrix = icache(req_index).lruMatrix
             for(j <- 0 until ways) {
@@ -333,7 +332,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             }
             LRUIndex
         }
-    }
 
     
 }
