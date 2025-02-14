@@ -178,7 +178,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val hasEmpty = Wire(Bool())
     hasEmpty := false.B
     val emptyIndex = RegInit(0.U(ways_width.W))
-    for (i <- 0 until ways) {
+    for (i <- (ways - 1) to 0 by -1) {
         when(icache(req_index).set(i).valid === false.B) {
             hasEmpty := true.B
             emptyIndex := i.U
@@ -305,30 +305,30 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         out_bready := io.in.bready
     }
 
-        def updateLRU(icache: Vec[iCacheSet], req_index: UInt, ways_hit_num: UInt): Unit = {
-            val lruMatrix = icache(req_index).lruMatrix
-            for(j <- 0 until ways) {
-                when(j.U =/= ways_hit_num){
-                    lruMatrix(ways_hit_num)(j) := 1.U
-                }
-            }
-            for(i <- 0 until ways){
-                lruMatrix(i)(ways_hit_num) := 0.U
-            }
-        }
+   def updateLRU(icache: Vec[iCacheSet], req_index: UInt, ways_hit_num: UInt): Unit = {
+       val lruMatrix = icache(req_index).lruMatrix
+       for(j <- 0 until ways) {
+           when(j.U =/= ways_hit_num){
+               lruMatrix(ways_hit_num)(j) := 1.U
+           }
+       }
+       for(i <- 0 until ways){
+           lruMatrix(i)(ways_hit_num) := 0.U
+       }
+   }
 
-        def getLRUIndex(set: iCacheSet, w: Int): UInt = {
-            val LRUIndex = Wire(UInt(w.W))
-            LRUIndex := 0.U
-            val lruMatrix = set.lruMatrix
-            for(i <- 0 until ways){
-                    val isZeroRow = (0 until ways).map(j => lruMatrix(i)(j) === 0.U).reduce(_ && _)
-                    when(isZeroRow){
-                        LRUIndex := i.U
-                    }
-            }
-            LRUIndex
-        }
+   def getLRUIndex(set: iCacheSet, w: Int): UInt = {
+       val LRUIndex = Wire(UInt(w.W))
+       LRUIndex := 0.U
+       val lruMatrix = set.lruMatrix
+       for(i <- 0 until ways){
+               val isZeroRow = (0 until ways).map(j => lruMatrix(i)(j) === 0.U).reduce(_ && _)
+               when(isZeroRow){
+                   LRUIndex := i.U
+               }
+       }
+       LRUIndex
+   }
 
     
 }
