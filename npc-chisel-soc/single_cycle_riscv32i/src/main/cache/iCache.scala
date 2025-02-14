@@ -313,7 +313,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         }
     }
 
-    def getLRUIndex(set: iCacheSet, val w: Int): UInt = {
+    def getLRUIndex(set: iCacheSet, w: Int): UInt = {
         val LRUIndex = Wire(UInt(w.W))
         val lruMatrix = set.lruMatrix
         for(i <- 0 until ways){
