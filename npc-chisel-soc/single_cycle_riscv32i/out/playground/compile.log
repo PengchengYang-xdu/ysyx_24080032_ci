@@ -1,7 +1,7 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:26:35: not found: value ways_width[0m
-[0m[[0m[31merror[0m] [0m[0m        val fifoPtr = RegInit(0.U(ways_width.W))[0m
-[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:26:46: not found: value log2[0m
+[0m[[0m[31merror[0m] [0m[0m        val fifoPtr = RegInit(0.U((math.ceil(log2(ways)).toInt).W))[0m
+[0m[[0m[31merror[0m] [0m[0m                                             ^[0m
 [0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:194:13: not found: value updateLRU[0m
 [0m[[0m[31merror[0m] [0m[0m            updateLRU(icache, req_index, ways_hit_num)[0m
 [0m[[0m[31merror[0m] [0m[0m            ^[0m
