@@ -184,7 +184,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         hasEmpty := false.B
         val emptyIndex = RegInit(0.U(ways_width.W))
         for (i <- 0 until ways) {
-            when(set(i).valid === false.B) {
+            when(set(i).valid === false.B && c_state === s_i_2 && issdram_raddr) {
                 hasEmpty := true.B
                 emptyIndex := i.U
             }
