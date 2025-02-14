@@ -18,7 +18,7 @@ class iCacheBlock(val m: Int, val n: Int) extends Bundle{
     val data = Vec((2 << (m - 1)) / 4, UInt(WORD_LEN.W))
 }
 
-class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int, val replacementPolicy: String) extends Bundle{
+class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int) extends Bundle{
     val set = Vec(ways, new iCacheBlock(m, n))
     val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
     val fifoPtr = RegInit(0.U(ways_width.W))
@@ -105,7 +105,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     dontTouch(req_offset)
     dontTouch(req_tag)
 
-    val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways, w, replacementPolicy)))))
+    val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways, w)))))
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
