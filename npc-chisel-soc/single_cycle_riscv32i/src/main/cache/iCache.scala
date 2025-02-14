@@ -148,8 +148,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             DefaultOut()
         }
         is(s_icache_lookup){
-            updateLRU(icache, req_index, ways_hit_num)
-
             in_arready := false.B
             in_rvalid := ways_hit
             in_rdata := icache(req_index).set(ways_hit_num).data(req_offset >> 2)
@@ -185,6 +183,11 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             hasEmpty := true.B
             emptyIndex := i.U
         }
+    }
+
+    //命中的时候更新LRU矩阵
+    when(hit0){
+        updateLRU(icache, req_index, ways_hit_num)
     }
 
     when(c_state === s_i_2 && issdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
