@@ -198,17 +198,17 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             set(emptyIndex).valid := true.B
             set(emptyIndex).tag := req_tag
             set(emptyIndex).data(req_offset >> 2) := icache_wdata
-
+            //填充的时候更新LRU矩阵
             updateLRU(icache, req_index, emptyIndex)
         } .otherwise{
-            // 如果有空闲块，替换逻辑
+            // 如果没有空闲块，替换逻辑
             policy match {
                 case "LRU" =>
                     val lruIndex = getLRUIndex(icache(req_index), w)
                     set(lruIndex).valid := true.B
                     set(lruIndex).tag := req_tag
                     set(lruIndex).data(req_offset >> 2) := icache_wdata
-
+                    //替换的时候更新LRU矩阵
                     updateLRU(icache, req_index, lruIndex)
                 case "FIFO" =>
                     // val fifoIndex = getFIFOIndex(set)
@@ -223,12 +223,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
                     set(randomIndex).data(req_offset >> 2) := icache_wdata
             }
         }
-
-        
-
-        // icache(req_index).set(0).valid := true.B
-        // icache(req_index).set(0).tag := req_tag
-        // icache(req_index).set(0).data(req_offset >> 2) := icache_wdata
     }
 
 /*-----------------------function-----------------------*/
