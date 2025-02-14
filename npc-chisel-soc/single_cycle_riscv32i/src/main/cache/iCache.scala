@@ -105,7 +105,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     dontTouch(req_offset)
     dontTouch(req_tag)
 
-    val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways, w)))))
+    val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways, ways_width)))))
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
@@ -188,7 +188,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     //命中的时候更新LRU矩阵
     if(replacementPolicy == "LRU"){
         when(hit0){
-            updateLRU(icache, req_index, ways_hit_num)
+            updateLRU(icache(req_index), ways_hit_num)
         }
     }
 
@@ -202,7 +202,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             set(emptyIndex).data(req_offset >> 2) := icache_wdata
             //填充的时候更新LRU矩阵
             if(replacementPolicy == "LRU"){
-                updateLRU(icache, req_index, emptyIndex)
+                updateLRU(icache(req_index), emptyIndex)
             } else if(replacementPolicy == "FIFO"){
                 icache(req_index).fifoPtr := (emptyIndex + 1.U) % ways.U
             }
@@ -210,12 +210,12 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             // 如果没有空闲块，替换逻辑
             policy match {
                 case "LRU" =>
-                    val lruIndex = getLRUIndex(icache(req_index), w)
+                    val lruIndex = getLRUIndex(icache(req_index), ways_width)
                     set(lruIndex).valid := true.B
                     set(lruIndex).tag := req_tag
                     set(lruIndex).data(req_offset >> 2) := icache_wdata
                     //替换的时候更新LRU矩阵
-                    updateLRU(icache, req_index, lruIndex)
+                    updateLRU(icache(req_index), lruIndex)
                 case "FIFO" =>
                     val fifoIndex = icache(req_index).fifoPtr
                     set(fifoIndex).valid := true.B
@@ -305,8 +305,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         out_bready := io.in.bready
     }
 
-   def updateLRU(icache: Vec[iCacheSet], req_index: UInt, ways_hit_num: UInt): Unit = {
-       val lruMatrix = icache(req_index).lruMatrix
+   def updateLRU(set: iCacheSet, ways_hit_num: UInt): Unit = {
+       val lruMatrix = set.lruMatrix
        for(j <- 0 until ways) {
            when(j.U =/= ways_hit_num){
                lruMatrix(ways_hit_num)(j) := 1.U
@@ -317,15 +317,15 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
        }
    }
 
-   def getLRUIndex(set: iCacheSet, w: Int): UInt = {
-       val LRUIndex = Wire(UInt(w.W))
+   def getLRUIndex(set: iCacheSet, ways_width: Int): UInt = {
+       val LRUIndex = Wire(UInt(ways_width.W))
        LRUIndex := 0.U
        val lruMatrix = set.lruMatrix
        for(i <- 0 until ways){
-               val isZeroRow = (0 until ways).map(j => lruMatrix(i)(j) === 0.U).reduce(_ && _)
-               when(isZeroRow){
-                   LRUIndex := i.U
-               }
+            val isZeroRow = (0 until ways).map(j => lruMatrix(i)(j) === 0.U).reduce(_ && _)
+            when(isZeroRow){
+                LRUIndex := i.U
+            }
        }
        LRUIndex
    }
