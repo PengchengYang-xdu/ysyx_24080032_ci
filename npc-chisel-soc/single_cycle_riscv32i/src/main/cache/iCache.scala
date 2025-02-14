@@ -190,14 +190,14 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             }
         }
 
-        if(hasEmpty === true.B) {
+        when(hasEmpty === true.B) {
             // 如果有空闲块，填充
             set(emptyIndex).valid := true.B
             set(emptyIndex).tag := req_tag
             set(emptyIndex).data(req_offset >> 2) := icache_wdata
 
             updateLRU(icache, req_index, emptyIndex)
-        }else{
+        } .otherwise{
             // 如果有空闲块，替换逻辑
             policy match {
                 case "LRU" =>
