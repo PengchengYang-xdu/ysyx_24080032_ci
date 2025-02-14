@@ -189,11 +189,17 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     }
 
     //命中的时候更新LRU矩阵
-    if(replacementPolicy == "LRU"){
-        when(hit0){
-            updateLRU(icache, req_index, ways_hit_num)
-        }
+    policy match {
+        case "LRU" =>
+            when(hit0){
+                updateLRU(icache, req_index, ways_hit_num)
+            }
     }
+    // if(replacementPolicy == "LRU"){
+    //     when(hit0){
+    //         updateLRU(icache, req_index, ways_hit_num)
+    //     }
+    // }
 
     when(c_state === s_i_2 && issdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
         val set = icache(req_index).set
@@ -204,10 +210,11 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             set(emptyIndex).tag := req_tag
             set(emptyIndex).data(req_offset >> 2) := icache_wdata
             //填充的时候更新LRU矩阵
-            if(replacementPolicy == "LRU"){
-                updateLRU(icache, req_index, emptyIndex)
-            } else if(replacementPolicy == "FIFO"){
-                fifoPtr := (emptyIndex + 1.U) % ways.U
+            policy match {
+                case "LRU" =>
+                    updateLRU(icache, req_index, emptyIndex)
+                case "FIFO" =>
+                    fifoPtr := (emptyIndex + 1.U) % ways.U
             }
         } .otherwise{
             // 如果没有空闲块，替换逻辑
