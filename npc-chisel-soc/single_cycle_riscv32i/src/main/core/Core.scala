@@ -38,11 +38,11 @@ class Core extends Module {
     StageConnect(lsu.io_pipe.out, wbu.io_pipe.in)
     StageConnect(wbu.io_pipe.out, ifu.io_pipe.in)
 
-    // val icache = Module(new iCache(4, 16, 3, "FIFO"))
-    // io.imem <> icache.io.out
-    // icache.io.in <> ifu.io.imem
+    val icache = Module(new iCache(4, 16, 1, "FIFO"))
+    io.imem <> icache.io.out
+    icache.io.in <> ifu.io.imem
     
-    io.imem <> ifu.io.imem
+    // io.imem <> ifu.io.imem
 
     ifu.io.br_flg := exu.io.br_flg
     ifu.io.jmp_flg := exu.io.jmp_flg
