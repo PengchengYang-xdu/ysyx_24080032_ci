@@ -427,10 +427,10 @@ void cpu_exec(uint64_t n){
 		get_reg();
 
         PerfAnalysis();
-		// if(cycle_num > 100000000){
-		// 	close_wave(88);
-		// 	assert(0);
-		// }
+		if(cycle_num > 100000000){
+			close_wave(88);
+			assert(0);
+		}
 		if(pre_pc != now_pc){
 			trace_and_difftest();
         }
