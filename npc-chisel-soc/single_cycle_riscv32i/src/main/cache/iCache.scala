@@ -119,7 +119,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
 
     val ways_hit = Wire(Bool())
     ways_hit := false.B
-    val ways_hit_num = RegInit(0.U(ways_width.W))
+    val ways_hit_num = Wire(UInt(ways_width.W))
+    ways_hit_num := 0.U
     for (i <- 0 until ways) {
         when (icache(req_index).set(i).tag === req_tag) {
             ways_hit := true.B
