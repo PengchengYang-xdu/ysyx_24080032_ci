@@ -38,10 +38,6 @@ VM_USER_CFLAGS = \
 	-I/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/include \
 	-I/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/nvboard/usr/include \
 	-DTOP_NAME="VysyxSoCFull" \
-<<<<<<< Updated upstream
-=======
-	-DNPCCONFIG_DUMPWAVE \
->>>>>>> Stashed changes
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
