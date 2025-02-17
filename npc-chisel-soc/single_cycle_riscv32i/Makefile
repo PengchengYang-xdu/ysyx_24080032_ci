@@ -177,7 +177,7 @@ PERF_MD = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cyc
 SAVE_MD = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/records/perf_$(shell date +%Y%m%d_%H%M%S).md
 EXPLAIN = 任务进度:icache完成替换逻辑,接下来做更大的块 属性:icache开启,block=4,sets=16,ways=3,policy=lru
 
-perf: clr verilog checkout run save_perf
+perf: checkout run save_perf
 
 checkout:
 	@git checkout perf
