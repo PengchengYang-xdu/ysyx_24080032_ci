@@ -121,7 +121,7 @@ const char* VysyxSoCFull::hierName() const { return vlSymsp->name(); }
 const char* VysyxSoCFull::modelName() const { return "VysyxSoCFull"; }
 unsigned VysyxSoCFull::threads() const { return 1; }
 std::unique_ptr<VerilatedTraceConfig> VysyxSoCFull::traceConfig() const {
-    return std::unique_ptr<VerilatedTraceConfig>{new VerilatedTraceConfig{false, false, false}};
+    return std::unique_ptr<VerilatedTraceConfig>{new VerilatedTraceConfig{false, true, true}};
 };
 
 //============================================================
