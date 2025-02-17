@@ -42,6 +42,7 @@
         "XDG_SESSION_ID": "22688",
         "SSL_CERT_FILE": "/usr/lib/ssl/certs/ca-certificates.crt",
         "MODULESHOME": "/usr/share/modules",
+        "ALL": "dummy",
         "LC_TIME": "zh_CN.UTF-8",
         "CONDA_EXE": "/home/yangpengcheng/miniconda3/bin/conda",
         "CONDA_DEFAULT_ENV": "base",
@@ -50,7 +51,7 @@
         "COLORTERM": "truecolor",
         "XDG_DATA_DIRS": "/usr/share/gnome:/home/yangpengcheng/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share:/usr/share:/var/lib/snapd/desktop",
         "LC_ADDRESS": "zh_CN.UTF-8",
-        "MAKEFLAGS": "w -- ARCH=riscv32e-ysyxsoc",
+        "MAKEFLAGS": "s -- ALL=dummy ARCH=riscv32e-ysyxsoc",
         "CC": "riscv64-linux-gnu-gcc",
         "USER": "yangpengcheng",
         "LC_PAPER": "zh_CN.UTF-8",
@@ -67,8 +68,8 @@
         "SPIKE": "/home/yangpengcheng/workspace/opt/spike",
         "SHLVL": "1",
         "BROWSER": "/home/yangpengcheng/.vscode-server/cli/servers/Stable-33fc5a94a3f99ebe7087e8fe79fbe1d37a251016/server/bin/helpers/browser.sh",
-        "MFLAGS": "-w",
-        "MAKELEVEL": "2",
+        "MFLAGS": "-s",
+        "MAKELEVEL": "3",
         "MAKE_TERMERR": "/dev/pts/20",
         "_": "/usr/bin/make",
         "MAKE_TERMOUT": "/dev/pts/20",
@@ -88,6 +89,6 @@
         "VSCODE_IPC_HOOK_CLI": "/run/user/1013/vscode-ipc-4f70a510-9bad-49b4-8635-52d96d000692.sock",
         "RISCV64": "/home/yangpengcheng/workspace/opt/riscv"
     },
-    "valueHash": 2093291372,
-    "inputsHash": -679597230
+    "valueHash": -550689650,
+    "inputsHash": 2095688731
 }
