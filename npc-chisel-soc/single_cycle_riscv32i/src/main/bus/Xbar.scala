@@ -20,6 +20,7 @@ class XbarIO extends Bundle{
 
 class Xbar extends Module {
     val io = IO(new XbarIO)
+    val ready = Wire(Bool())
 
     //imem reg
     val imem_arready = RegInit(true.B)
@@ -33,7 +34,7 @@ class Xbar extends Module {
     val imem_bresp = RegInit(0.U)
     val imem_bvalid = RegInit(false.B)
     val imem_bid = RegInit(0.U)
-    io.imem.arready := imem_arready
+    io.imem.arready := Mux(ready, imem_arready, 0.U)
     io.imem.rdata := imem_rdata
     io.imem.rresp := imem_rresp
     io.imem.rvalid := imem_rvalid
@@ -56,7 +57,7 @@ class Xbar extends Module {
     val dmem_bresp = RegInit(0.U)
     val dmem_bvalid = RegInit(false.B)
     val dmem_bid = RegInit(0.U)
-    io.dmem.arready := dmem_arready
+    io.dmem.arready := Mux(ready, dmem_arready, 0.U)
     io.dmem.rdata := dmem_rdata
     io.dmem.rresp := dmem_rresp
     io.dmem.rvalid := dmem_rvalid
@@ -152,12 +153,14 @@ class Xbar extends Module {
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
 
+    ready := (n_state === s_soc_d_0 && c_state === s_soc_d_0) || (n_state === s_soc_i_0 && c_state === s_soc_i_0)
+
     val isclint_raddr = (io.dmem.araddr >= "h0200_0000".U(32.W) && io.dmem.araddr <= "h0200_ffff".U(32.W))
     val isclint_waddr = (io.dmem.awaddr >= "h0200_0000".U(32.W) && io.dmem.awaddr <= "h0200_ffff".U(32.W))
 
-    val isimem_req = io.imem.arvalid & imem_arready
-    val isdmem_req_r = io.dmem.arvalid & dmem_arready
-    val isdmem_req_w = io.dmem.awvalid & dmem_awready & io.dmem.wvalid & dmem_wready
+    val isimem_req = io.imem.arvalid
+    val isdmem_req_r = io.dmem.arvalid
+    val isdmem_req_w = io.dmem.awvalid & io.dmem.wvalid
     val isdmem_req = (isdmem_req_r & !isclint_raddr) | (isdmem_req_w & !isclint_waddr)
     val isclint_req = (isdmem_req_r & isclint_raddr) | (isdmem_req_w & isclint_waddr)
 
@@ -408,231 +411,4 @@ class Xbar extends Module {
         clint_bready := false.B
     }
 
-
-
-// /*-----------------------FSM-----------------------*/
-//     val s_IDLE :: s_soc_i :: s_soc_d :: s_clint :: Nil = Enum(4)
-//     val c_state = RegInit(s_IDLE)
-//     val n_state = WireDefault(c_state)
-//     dontTouch(n_state)
-
-//     val isclint_r = (io.dmem.araddr >= "h0200_0000".U(32.W) && io.dmem.araddr <= "h0200_ffff".U(32.W))
-//     val isclint_w = (io.dmem.awaddr >= "h0200_0000".U(32.W) && io.dmem.awaddr <= "h0200_ffff".U(32.W))
-//     val isclint = isclint_r | isclint_w
-
-//     // val w_req = io.arb.awvalid & arb_awready
-//     // val r_req = io.arb.arvalid & arb_arready
-//     // val req = w_req | r_req
-//     // //fire signal 
-//     // val sram_done0 = (io.sram.rvalid & sram_rready) | (io.sram.bvalid & sram_bready)
-//     // val sram_done1 = (arb_rvalid & io.arb.rready) | (arb_bvalid & io.arb.bready)
-//     // val uart_done0 = (io.uart.rvalid & uart_rready) | (io.uart.bvalid & uart_bready)
-//     // val uart_done1 = (arb_rvalid & io.arb.rready) | (arb_bvalid & io.arb.bready)
-//     // val clint_done0 = (io.clint.rvalid & clint_rready) | (io.clint.bvalid & clint_bready)
-//     // val clint_done1 = (arb_rvalid & io.arb.rready) | (arb_bvalid & io.arb.bready)
-//     // //read channel
-//     // val r_sram_bound = io.arb.araddr >= "h8000_0000".U(WORD_LEN.W) && io.arb.araddr <= "h87ff_ffff".U(WORD_LEN.W)
-//     // val r_uart_bound = io.arb.araddr === "ha000_03f8".U(WORD_LEN.W)
-//     // val r_clint_bound = io.arb.araddr === "ha000_0048".U(32.W) || io.arb.araddr === "ha000_004c".U(32.W)
-//     // //write channel
-//     // val w_sram_bound = io.arb.awaddr >= "h8000_0000".U(WORD_LEN.W) && io.arb.awaddr <= "h87ff_ffff".U(WORD_LEN.W)
-//     // val w_uart_bound = io.arb.awaddr === "ha000_03f8".U(WORD_LEN.W)
-//     // val w_clint_bound = io.arb.awaddr === "ha000_0048".U(32.W) || io.arb.awaddr === "ha000_004c".U(32.W)
-//     // //trigger
-//     // val sw = MuxCase(s_outofbound, Seq(
-//     //     w_sram_bound  -> s_sram_0,
-//     //     w_uart_bound  -> s_uart_0,
-//     //     w_clint_bound -> s_clint_0
-//     // ))
-//     // val sr = MuxCase(s_outofbound, Seq(
-//     //     r_sram_bound  -> s_sram_0,
-//     //     r_uart_bound  -> s_uart_0,
-//     //     r_clint_bound -> s_clint_0
-//     // ))
-
-//     c_state := n_state//first phase
-
-//     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
-//         s_IDLE       ->  MuxCase(s_IDLE, Seq(
-//             io.imem.arvalid                                                      ->    s_soc_i,
-//             ((io.dmem.arvalid & !isclint_r) | (io.dmem.awvalid & !isclint_w))    ->    s_soc_d,
-//             ((io.dmem.arvalid & isclint_r) | (io.dmem.awvalid & isclint_w))      ->    s_clint
-//         )),
-//         s_soc_i      ->  Mux(sram_done0, s_sram_1, s_sram_0),
-//     ))
-
-//     switch(n_state){//third phase
-//         is(s_IDLE){
-//             DefaultArb()
-//             DefaultSram()
-//             DefaultUart()
-//             DefaultClint()
-//         }
-//         is(s_outofbound){
-//             DefaultArb()
-//             DefaultSram()
-//             DefaultUart()
-//             DefaultClint()
-//             arb_bresp := Mux(sw === s_outofbound, 1.U, 0.U)
-//             arb_rresp := Mux(sr === s_outofbound, 1.U, 0.U)
-//         }
-//         is(s_sram_0){
-//             ConnectSram()
-//             DefaultUart()
-//             DefaultClint()
-//         }
-//         is(s_sram_1){
-//             ConnectSram()
-//             DefaultUart()
-//             DefaultClint()
-//             sram_arvalid := false.B
-//             sram_rready := false.B
-//             sram_awvalid := false.B
-//             sram_wvalid := false.B
-//             sram_bready := false.B
-//         }
-//         is(s_uart_0){
-//             ConnectUart()
-//             DefaultSram()
-//             DefaultClint()
-//         }
-//         is(s_uart_1){
-//             ConnectUart()
-//             DefaultSram()
-//             DefaultClint()
-//             uart_arvalid := false.B
-//             uart_rready := false.B
-//             uart_awvalid := false.B
-//             uart_wvalid := false.B
-//             uart_bready := false.B
-//         }
-//         is(s_clint_0){
-//             ConnectClint()
-//             DefaultSram()
-//             DefaultUart()
-//         }
-//         is(s_clint_1){
-//             ConnectClint()
-//             DefaultSram()
-//             DefaultUart()
-//             clint_arvalid := false.B
-//             clint_rready := false.B
-//             clint_awvalid := false.B
-//             clint_wvalid := false.B
-//             clint_bready := false.B
-//         }
-//     }
-
-
-
-// /*-----------------------function-----------------------*/
-//     def ConnectSram(): Unit = {
-//         arb_arready := io.sram.arready
-//         arb_rdata := io.sram.rdata
-//         arb_rresp := io.sram.rresp
-//         arb_rvalid := io.sram.rvalid
-//         arb_awready := io.sram.awready
-//         arb_wready := io.sram.wready
-//         arb_bresp := io.sram.bresp
-//         arb_bvalid := io.sram.bvalid
-
-//         sram_araddr := io.arb.araddr
-//         sram_arvalid := io.arb.arvalid
-//         sram_rready := io.arb.rready
-//         sram_awaddr := io.arb.awaddr
-//         sram_awvalid := io.arb.awvalid
-//         sram_wdata := io.arb.wdata
-//         sram_wstrb := io.arb.wstrb
-//         sram_wvalid := io.arb.wvalid
-//         sram_bready := io.arb.bready
-//     }
-
-//     def ConnectUart(): Unit = {
-//         arb_arready := io.uart.arready
-//         arb_rdata := io.uart.rdata
-//         arb_rresp := io.uart.rresp
-//         arb_rvalid := io.uart.rvalid
-//         arb_awready := io.uart.awready
-//         arb_wready := io.uart.wready
-//         arb_bresp := io.uart.bresp
-//         arb_bvalid := io.uart.bvalid
-
-//         uart_araddr := io.arb.araddr
-//         uart_arvalid := io.arb.arvalid
-//         uart_rready := io.arb.rready
-//         uart_awaddr := io.arb.awaddr
-//         uart_awvalid := io.arb.awvalid
-//         uart_wdata := io.arb.wdata
-//         uart_wstrb := io.arb.wstrb
-//         uart_wvalid := io.arb.wvalid
-//         uart_bready := io.arb.bready
-//     }
-
-//     def ConnectClint(): Unit = {
-//         arb_arready := io.clint.arready
-//         arb_rdata := io.clint.rdata
-//         arb_rresp := io.clint.rresp
-//         arb_rvalid := io.clint.rvalid
-//         arb_awready := io.clint.awready
-//         arb_wready := io.clint.wready
-//         arb_bresp := io.clint.bresp
-//         arb_bvalid := io.clint.bvalid
-
-//         clint_araddr := io.arb.araddr
-//         clint_arvalid := io.arb.arvalid
-//         clint_rready := io.arb.rready
-//         clint_awaddr := io.arb.awaddr
-//         clint_awvalid := io.arb.awvalid
-//         clint_wdata := io.arb.wdata
-//         clint_wstrb := io.arb.wstrb
-//         clint_wvalid := io.arb.wvalid
-//         clint_bready := io.arb.bready
-//     }
-
-//     def DefaultSram(): Unit = {
-//         sram_araddr := 0.U
-//         sram_arvalid := false.B
-//         sram_rready := false.B
-//         sram_awaddr := 0.U
-//         sram_awvalid := false.B
-//         sram_wdata := 0.U
-//         sram_wstrb := 0.U
-//         sram_wvalid := false.B
-//         sram_bready := false.B
-//     }
-
-//     def DefaultUart(): Unit = {
-//         uart_araddr := 0.U
-//         uart_arvalid := false.B
-//         uart_rready := false.B
-//         uart_awaddr := 0.U
-//         uart_awvalid := false.B
-//         uart_wdata := 0.U
-//         uart_wstrb := 0.U
-//         uart_wvalid := false.B
-//         uart_bready := false.B
-//     }
-
-//     def DefaultClint(): Unit = {
-//         clint_araddr := 0.U
-//         clint_arvalid := false.B
-//         clint_rready := false.B
-//         clint_awaddr := 0.U
-//         clint_awvalid := false.B
-//         clint_wdata := 0.U
-//         clint_wstrb := 0.U
-//         clint_wvalid := false.B
-//         clint_bready := false.B
-//     }
-
-//     def DefaultArb(): Unit = {
-//         arb_arready := true.B
-//         // arb_rdata := 0.U
-//         arb_rresp := 0.U
-//         arb_rvalid := false.B
-//         arb_awready := true.B
-//         arb_wready := true.B
-//         arb_bresp := 0.U
-//         arb_bvalid := false.B
-//     }
 }
