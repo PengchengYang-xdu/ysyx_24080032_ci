@@ -153,7 +153,7 @@ class Xbar extends Module {
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
 
-    ready := (n_state === s_soc_d_0 && c_state === s_soc_d_0) || (n_state === s_soc_i_0 && c_state === s_soc_i_0)
+    ready := (n_state === s_soc_d_0 && c_state === s_IDLE) || (n_state === s_soc_i_0 && c_state === s_IDLE)
 
     val isclint_raddr = (io.dmem.araddr >= "h0200_0000".U(32.W) && io.dmem.araddr <= "h0200_ffff".U(32.W))
     val isclint_waddr = (io.dmem.awaddr >= "h0200_0000".U(32.W) && io.dmem.awaddr <= "h0200_ffff".U(32.W))
