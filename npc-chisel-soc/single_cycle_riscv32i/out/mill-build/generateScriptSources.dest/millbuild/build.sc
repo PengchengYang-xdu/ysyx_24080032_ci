@@ -1,24 +1,26 @@
-package build_
-import _root_.{build_ => $file}
-import build_.{package_ => build}
+package millbuild
+
 import _root_.mill.runner.MillBuildRootModule
-@_root_.scala.annotation.nowarn
-object MillMiscInfo extends mill.main.RootModule.Info(
-  Vector("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/mill-launcher/0.12.8.jar"),
-  "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i",
-  "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out",
-  "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i"
-)
-import MillMiscInfo._
 
-object package_ extends package_{
-  
-  override lazy val millDiscover: _root_.mill.define.Discover = _root_.mill.define.Discover[this.type]
-
+object MiscInfo_build {
+  implicit lazy val millBuildRootModuleInfo: _root_.mill.runner.MillBuildRootModule.Info = _root_.mill.runner.MillBuildRootModule.Info(
+    Vector("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/mill-launcher/0.11.5.jar").map(_root_.os.Path(_)),
+    _root_.os.Path("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i"),
+    _root_.os.Path("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i"),
+    _root_.scala.Seq()
+  )
+  implicit lazy val millBaseModuleInfo: _root_.mill.main.RootModule.Info = _root_.mill.main.RootModule.Info(
+    millBuildRootModuleInfo.projectRoot,
+    _root_.mill.define.Discover[build]
+  )
 }
-abstract class package_ extends _root_.mill.main.RootModule()  {
+import MiscInfo_build.{millBuildRootModuleInfo, millBaseModuleInfo}
+object build extends build
+class build extends _root_.mill.main.RootModule {
+
 //MILL_ORIGINAL_FILE_PATH=/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build.sc
 //MILL_USER_CODE_START_MARKER
+// import Mill dependency
 import mill._
 import mill.define.Sources
 import mill.modules.Util
