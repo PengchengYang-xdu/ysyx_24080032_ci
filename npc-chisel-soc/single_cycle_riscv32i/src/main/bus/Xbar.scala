@@ -20,6 +20,7 @@ class XbarIO extends Bundle{
 
 class Xbar extends Module {
     val io = IO(new XbarIO)
+    val ready = Wire(Bool())
 
     //imem reg
     val imem_arready = RegInit(true.B)
@@ -33,7 +34,7 @@ class Xbar extends Module {
     val imem_bresp = RegInit(0.U)
     val imem_bvalid = RegInit(false.B)
     val imem_bid = RegInit(0.U)
-    io.imem.arready := imem_arready
+    io.imem.arready := Mux(ready, imem_arready, 0.U)
     io.imem.rdata := imem_rdata
     io.imem.rresp := imem_rresp
     io.imem.rvalid := imem_rvalid
@@ -56,7 +57,7 @@ class Xbar extends Module {
     val dmem_bresp = RegInit(0.U)
     val dmem_bvalid = RegInit(false.B)
     val dmem_bid = RegInit(0.U)
-    io.dmem.arready := dmem_arready
+    io.dmem.arready := Mux(ready, dmem_arready, 0.U)
     io.dmem.rdata := dmem_rdata
     io.dmem.rresp := dmem_rresp
     io.dmem.rvalid := dmem_rvalid
@@ -151,6 +152,8 @@ class Xbar extends Module {
     val c_state = RegInit(s_IDLE)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
+
+    ready := (n_state === s_soc_d_0 && c_state === s_soc_d_0) || (n_state === s_soc_i_0 && c_state === s_soc_i_0)
 
     val isclint_raddr = (io.dmem.araddr >= "h0200_0000".U(32.W) && io.dmem.araddr <= "h0200_ffff".U(32.W))
     val isclint_waddr = (io.dmem.awaddr >= "h0200_0000".U(32.W) && io.dmem.awaddr <= "h0200_ffff".U(32.W))
@@ -407,6 +410,5 @@ class Xbar extends Module {
         clint_wlast := true.B
         clint_bready := false.B
     }
-
 
 }
