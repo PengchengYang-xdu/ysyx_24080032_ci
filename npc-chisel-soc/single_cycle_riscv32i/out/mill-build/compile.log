@@ -1,2 +1,7 @@
+Detected Mill version change ? -> 0.12.8. Dropping previous incremental compilation state
 [0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/mill-build/compile.dest/classes ...[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build.sc:31:23: trait SbtModuleTests in trait SbtModule is deprecated (since Mill 0.11.10): Use SbtTests instead[0m
+[0m[[0m[33mwarn[0m] [0m[0m  object test extends SbtModuleTests with TestModule.ScalaTest with ScalafmtModule {[0m
+[0m[[0m[33mwarn[0m] [0m[0m                      ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
 [0m[[0m[0minfo[0m] [0m[0mdone compiling[0m

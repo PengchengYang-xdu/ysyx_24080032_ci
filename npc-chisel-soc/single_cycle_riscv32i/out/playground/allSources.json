@@ -1,9 +1,9 @@
 {
     "value": [
-        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/src/main/scala",
-        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/src/main/java",
-        "ref:v0:a291714e:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main"
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/sources.super/SbtModule.dest/src/src/main/scala",
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/sources.super/SbtModule.dest/src/src/main/java",
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/sources.dest/src/main"
     ],
-    "valueHash": 1699803656,
-    "inputsHash": -1516872815
+    "valueHash": -1155618041,
+    "inputsHash": -1817848163
 }
