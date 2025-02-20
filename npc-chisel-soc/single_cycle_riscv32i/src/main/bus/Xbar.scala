@@ -275,17 +275,19 @@ class Xbar extends Module {
     }
 
     def ConnectDmem2Soc(): Unit = {
-        dmem_arready := io.soc.arready
-        dmem_rdata := io.soc.rdata
-        dmem_rresp := io.soc.rresp
-        dmem_rvalid := io.soc.rvalid
-        dmem_rlast := io.soc.rlast
-        dmem_rid := io.soc.rid
-        dmem_awready := io.soc.awready
-        dmem_wready := io.soc.wready
-        dmem_bresp := io.soc.bresp
-        dmem_bvalid := io.soc.bvalid
-        dmem_bid := io.soc.bid
+        when(n_state === s_soc_d_1){
+            dmem_arready := io.soc.arready
+            dmem_rdata := io.soc.rdata
+            dmem_rresp := io.soc.rresp
+            dmem_rvalid := io.soc.rvalid
+            dmem_rlast := io.soc.rlast
+            dmem_rid := io.soc.rid
+            dmem_awready := io.soc.awready
+            dmem_wready := io.soc.wready
+            dmem_bresp := io.soc.bresp
+            dmem_bvalid := io.soc.bvalid
+            dmem_bid := io.soc.bid
+        }
 
         soc_araddr := io.dmem.araddr
         soc_arvalid := io.dmem.arvalid
@@ -308,17 +310,19 @@ class Xbar extends Module {
     }
 
     def ConnectDmem2Clint(): Unit = {
-        dmem_arready := io.clint.arready
-        dmem_rdata := io.clint.rdata
-        dmem_rresp := io.clint.rresp
-        dmem_rvalid := io.clint.rvalid
-        dmem_rlast := io.clint.rlast
-        dmem_rid := io.clint.rid
-        dmem_awready := io.clint.awready
-        dmem_wready := io.clint.wready
-        dmem_bresp := io.clint.bresp
-        dmem_bvalid := io.clint.bvalid
-        dmem_bid := io.clint.bid
+        when(n_state === s_soc_i_1){
+            dmem_arready := io.clint.arready
+            dmem_rdata := io.clint.rdata
+            dmem_rresp := io.clint.rresp
+            dmem_rvalid := io.clint.rvalid
+            dmem_rlast := io.clint.rlast
+            dmem_rid := io.clint.rid
+            dmem_awready := io.clint.awready
+            dmem_wready := io.clint.wready
+            dmem_bresp := io.clint.bresp
+            dmem_bvalid := io.clint.bvalid
+            dmem_bid := io.clint.bid
+        }
 
         clint_araddr := io.dmem.araddr
         clint_arvalid := io.dmem.arvalid
