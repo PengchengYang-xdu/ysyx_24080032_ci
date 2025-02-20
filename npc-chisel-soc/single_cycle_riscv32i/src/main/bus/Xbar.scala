@@ -409,7 +409,8 @@ class Xbar extends Module {
         clint_wlast := true.B
         clint_bready := false.B
     }
-    val c_state_r1 = Reg(c_state)
+    val c_state_r1 = RegInit(s_IDLE)
+    c_state_r1 := c_state
     ready := (n_state === s_soc_d_0 && c_state === s_soc_d_0 && c_state_r1 === s_soc_d_0)
     dontTouch(ready)
     dontTouch(c_state_r1)
