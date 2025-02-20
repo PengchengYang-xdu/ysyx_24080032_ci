@@ -35,7 +35,7 @@ class Xbar extends Module {
     val imem_bresp = RegInit(0.U)
     val imem_bvalid = RegInit(false.B)
     val imem_bid = RegInit(0.U)
-    io.imem.arready := imem_arready
+    io.imem.arready := Mux(ready, imem_arready, 0.U)
     io.imem.rdata := imem_rdata
     io.imem.rresp := imem_rresp
     io.imem.rvalid := imem_rvalid
@@ -242,17 +242,19 @@ class Xbar extends Module {
 
 /*-----------------------function-----------------------*/
     def ConnectImem2Soc(): Unit = {
-        imem_arready := io.soc.arready
-        imem_rdata := io.soc.rdata
-        imem_rresp := io.soc.rresp
-        imem_rvalid := io.soc.rvalid
-        imem_rlast := io.soc.rlast
-        imem_rid := io.soc.rid
-        imem_awready := io.soc.awready
-        imem_wready := io.soc.wready
-        imem_bresp := io.soc.bresp
-        imem_bvalid := io.soc.bvalid
-        imem_bid := io.soc.bid
+        when(n_state === s_soc_i_1){
+            imem_arready := io.soc.arready
+            imem_rdata := io.soc.rdata
+            imem_rresp := io.soc.rresp
+            imem_rvalid := io.soc.rvalid
+            imem_rlast := io.soc.rlast
+            imem_rid := io.soc.rid
+            imem_awready := io.soc.awready
+            imem_wready := io.soc.wready
+            imem_bresp := io.soc.bresp
+            imem_bvalid := io.soc.bvalid
+            imem_bid := io.soc.bid
+        }
 
         soc_araddr := io.imem.araddr
         soc_arvalid := io.imem.arvalid
