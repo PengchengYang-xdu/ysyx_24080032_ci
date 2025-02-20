@@ -310,7 +310,7 @@ class Xbar extends Module {
     }
 
     def ConnectDmem2Clint(): Unit = {
-        when(n_state === s_soc_i_1){
+        when(n_state === s_soc_d_1){
             dmem_arready := io.clint.arready
             dmem_rdata := io.clint.rdata
             dmem_rresp := io.clint.rresp
