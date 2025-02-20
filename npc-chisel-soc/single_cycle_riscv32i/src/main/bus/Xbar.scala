@@ -64,7 +64,7 @@ class Xbar extends Module {
     io.dmem.rvalid := dmem_rvalid
     io.dmem.rlast := dmem_rlast
     io.dmem.rid := dmem_rid
-    io.dmem.awready := Mux(ready, dmem_awready, 0.U)
+    io.dmem.awready := Mux(ready, 0.U, dmem_awready)
     io.dmem.wready := dmem_wready
     io.dmem.bresp := dmem_bresp
     io.dmem.bvalid := dmem_bvalid
