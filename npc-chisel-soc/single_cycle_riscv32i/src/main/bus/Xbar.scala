@@ -155,9 +155,9 @@ class Xbar extends Module {
     val isclint_raddr = (io.dmem.araddr >= "h0200_0000".U(32.W) && io.dmem.araddr <= "h0200_ffff".U(32.W))
     val isclint_waddr = (io.dmem.awaddr >= "h0200_0000".U(32.W) && io.dmem.awaddr <= "h0200_ffff".U(32.W))
 
-    val isimem_req = io.imem.arvalid
-    val isdmem_req_r = io.dmem.arvalid
-    val isdmem_req_w = io.dmem.awvalid & io.dmem.wvalid
+    val isimem_req = io.imem.arvalid & imem_arready
+    val isdmem_req_r = io.dmem.arvalid & dmem_arready
+    val isdmem_req_w = io.dmem.awvalid & dmem_awready & io.dmem.wvalid & dmem_wready
     val isdmem_req = (isdmem_req_r & !isclint_raddr) | (isdmem_req_w & !isclint_waddr)
     val isclint_req = (isdmem_req_r & isclint_raddr) | (isdmem_req_w & isclint_waddr)
 
@@ -359,8 +359,8 @@ class Xbar extends Module {
         dmem_rvalid := false.B
         dmem_rlast := true.B
         dmem_rid := 0.U
-        dmem_awready := false.B
-        dmem_wready := false.B
+        dmem_awready := true.B
+        dmem_wready := true.B
         dmem_bresp := 0.U
         dmem_bvalid := false.B
         dmem_bid := 0.U

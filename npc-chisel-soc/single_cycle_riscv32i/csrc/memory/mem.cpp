@@ -190,7 +190,7 @@ extern "C" void sdram_write(int id, int bank_addr, int row_addr, int col_addr, i
 		break;
 	case 0b0011:
 		*(uint16_t *)guest_to_host_sdram(addr_processed, id) = wdata;
-		printf("sdram_write addr = %#x , data = %#x ,wstrb = %d\n", addr_processed, wdata, wstrb);
+		// printf("sdram_write addr = %#x , data = %#x ,wstrb = %d\n", addr_processed, wdata, wstrb);
 		break;
 	default:
         // printf("default : sdram_write addr = %#x , data = %#x ,wstrb = %d\n", addr_processed, wdata, wstrb);
