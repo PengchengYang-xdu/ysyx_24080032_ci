@@ -40,7 +40,7 @@ class Xbar extends Module {
     io.imem.rvalid := imem_rvalid
     io.imem.rlast := imem_rlast
     io.imem.rid := imem_rid
-    io.imem.awready := imem_awready
+    io.imem.awready := Mux(ready, imem_awready, 0.U)
     io.imem.wready := imem_wready
     io.imem.bresp := imem_bresp
     io.imem.bvalid := imem_bvalid
@@ -63,7 +63,7 @@ class Xbar extends Module {
     io.dmem.rvalid := dmem_rvalid
     io.dmem.rlast := dmem_rlast
     io.dmem.rid := dmem_rid
-    io.dmem.awready := dmem_awready
+    io.dmem.awready := Mux(ready, dmem_awready, 0.U)
     io.dmem.wready := dmem_wready
     io.dmem.bresp := dmem_bresp
     io.dmem.bvalid := dmem_bvalid
