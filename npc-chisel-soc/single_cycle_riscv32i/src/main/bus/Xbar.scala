@@ -35,7 +35,7 @@ class Xbar extends Module {
     val imem_bresp = RegInit(0.U)
     val imem_bvalid = RegInit(false.B)
     val imem_bid = RegInit(0.U)
-    io.imem.arready := Mux(ready, imem_arready, 0.U)
+    io.imem.arready := imem_arready
     io.imem.rdata := imem_rdata
     io.imem.rresp := imem_rresp
     io.imem.rvalid := imem_rvalid
