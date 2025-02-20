@@ -20,7 +20,7 @@ class XbarIO extends Bundle{
 
 class Xbar extends Module {
     val io = IO(new XbarIO)
-    val ready = Wire(Bool())
+    // val ready = Wire(Bool())
 
     //imem reg
     val imem_arready = RegInit(true.B)
