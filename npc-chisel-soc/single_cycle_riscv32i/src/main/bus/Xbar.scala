@@ -354,7 +354,7 @@ class Xbar extends Module {
     }
 
     def DefaultImem(): Unit = {
-        imem_arready := false.B
+        imem_arready := true.B
         // imem_rdata := 0.U
         imem_rresp := 0.U
         imem_rvalid := false.B
@@ -368,13 +368,13 @@ class Xbar extends Module {
     }
 
     def DefaultDmem(): Unit = {
-        dmem_arready := false.B
+        dmem_arready := true.B
         // dmem_rdata := 0.U
         dmem_rresp := 0.U
         dmem_rvalid := false.B
         dmem_rlast := true.B
         dmem_rid := 0.U
-        dmem_awready := false.B
+        dmem_awready := true.B
         dmem_wready := true.B
         dmem_bresp := 0.U
         dmem_bvalid := false.B
