@@ -183,12 +183,13 @@ class Xbar extends Module {
         s_clint_0    ->  Mux(clint_done0, s_clint_1, s_clint_0),
         s_clint_1    ->  Mux(clint_done1, s_IDLE, s_clint_1)
     ))
-    DefaultImem()
-    DefaultDmem()
-    DefaultSoc()
-    DefaultClint()
+
     switch(n_state){//third phase
         is(s_IDLE){
+            DefaultImem()
+            DefaultDmem()
+            DefaultSoc()
+            DefaultClint()
         }
         is(s_soc_i_0){
             ConnectImem2Soc()
@@ -358,7 +359,7 @@ class Xbar extends Module {
         dmem_rvalid := false.B
         dmem_rlast := true.B
         dmem_rid := 0.U
-        dmem_awready := false.B
+        dmem_awready := true.B
         dmem_wready := true.B
         dmem_bresp := 0.U
         dmem_bvalid := false.B
