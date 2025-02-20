@@ -411,5 +411,5 @@ class Xbar extends Module {
     }
     val c_state_r1 = c_state
     ready := (n_state === s_soc_d_0 && c_state === s_soc_d_0 && c_state_r1 === s_soc_d_0)
-
+    dontTouch(ready)
 }
