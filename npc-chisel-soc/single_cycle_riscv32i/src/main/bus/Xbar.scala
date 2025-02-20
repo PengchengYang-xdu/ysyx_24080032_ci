@@ -359,8 +359,8 @@ class Xbar extends Module {
         dmem_rvalid := false.B
         dmem_rlast := true.B
         dmem_rid := 0.U
-        dmem_awready := true.B
-        dmem_wready := true.B
+        dmem_awready := false.B
+        dmem_wready := false.B
         dmem_bresp := 0.U
         dmem_bvalid := false.B
         dmem_bid := 0.U
