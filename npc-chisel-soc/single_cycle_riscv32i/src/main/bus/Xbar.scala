@@ -21,6 +21,8 @@ class XbarIO extends Bundle{
 class Xbar extends Module {
     val io = IO(new XbarIO)
 
+    val ready = Wire(Bool())
+
     //imem reg
     val imem_arready = RegInit(false.B)
     val imem_rdata = RegInit(0.U)
@@ -62,7 +64,7 @@ class Xbar extends Module {
     io.dmem.rvalid := dmem_rvalid
     io.dmem.rlast := dmem_rlast
     io.dmem.rid := dmem_rid
-    io.dmem.awready := dmem_awready
+    io.dmem.awready := Mux(ready, dmem_awready, 0.U)
     io.dmem.wready := dmem_wready
     io.dmem.bresp := dmem_bresp
     io.dmem.bvalid := dmem_bvalid
@@ -407,5 +409,6 @@ class Xbar extends Module {
         clint_wlast := true.B
         clint_bready := false.B
     }
+    ready := n_state === s_IDLE
 
 }
