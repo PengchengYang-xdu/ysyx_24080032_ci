@@ -242,19 +242,17 @@ class Xbar extends Module {
 
 /*-----------------------function-----------------------*/
     def ConnectImem2Soc(): Unit = {
-        when(n_state === s_soc_i_1){
-            imem_arready := io.soc.arready
-            imem_rdata := io.soc.rdata
-            imem_rresp := io.soc.rresp
-            imem_rvalid := io.soc.rvalid
-            imem_rlast := io.soc.rlast
-            imem_rid := io.soc.rid
-            imem_awready := io.soc.awready
-            imem_wready := io.soc.wready
-            imem_bresp := io.soc.bresp
-            imem_bvalid := io.soc.bvalid
-            imem_bid := io.soc.bid
-        }
+        imem_arready := io.soc.arready
+        imem_rdata := io.soc.rdata
+        imem_rresp := io.soc.rresp
+        imem_rvalid := io.soc.rvalid
+        imem_rlast := io.soc.rlast
+        imem_rid := io.soc.rid
+        imem_awready := io.soc.awready
+        imem_wready := io.soc.wready
+        imem_bresp := io.soc.bresp
+        imem_bvalid := io.soc.bvalid
+        imem_bid := io.soc.bid
 
         soc_araddr := io.imem.araddr
         soc_arvalid := io.imem.arvalid
