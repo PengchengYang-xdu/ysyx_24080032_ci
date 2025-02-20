@@ -64,7 +64,7 @@ class Xbar extends Module {
     io.dmem.rvalid := dmem_rvalid
     io.dmem.rlast := dmem_rlast
     io.dmem.rid := dmem_rid
-    io.dmem.awready := Mux(ready, 0.U, dmem_awready)
+    io.dmem.awready := Mux(ready, dmem_awready, 0.U)
     io.dmem.wready := dmem_wready
     io.dmem.bresp := dmem_bresp
     io.dmem.bvalid := dmem_bvalid
@@ -409,6 +409,7 @@ class Xbar extends Module {
         clint_wlast := true.B
         clint_bready := false.B
     }
-    ready := n_state === s_IDLE
+    val c_state_r1 := c_state
+    ready := (n_state === s_soc_d_0 && c_state === s_soc_d_0 && c_state_r1 === s_soc_d_0)
 
 }
