@@ -657,7 +657,7 @@ class Xbar extends Module {
 
     def DefaultImem(): Unit = {
         io.imem.arready := true.B
-        // io.imem.rdata := 0.U
+        io.imem.rdata := DontCare
         io.imem.rresp := 0.U
         io.imem.rvalid := false.B
         io.imem.rlast := true.B
@@ -671,7 +671,7 @@ class Xbar extends Module {
 
     def DefaultDmem(): Unit = {
         io.dmem.arready := true.B
-        // io.dmem.rdata := 0.U
+        io.dmem.rdata := DontCare
         io.dmem.rresp := 0.U
         io.dmem.rvalid := false.B
         io.dmem.rlast := true.B
