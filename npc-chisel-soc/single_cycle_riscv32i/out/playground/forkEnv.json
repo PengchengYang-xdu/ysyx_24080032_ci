@@ -40,7 +40,6 @@
         "XDG_SESSION_ID": "22688",
         "SSL_CERT_FILE": "/usr/lib/ssl/certs/ca-certificates.crt",
         "MODULESHOME": "/usr/share/modules",
-        "ALL": "string",
         "LC_TIME": "zh_CN.UTF-8",
         "CONDA_EXE": "/home/yangpengcheng/miniconda3/bin/conda",
         "CONDA_DEFAULT_ENV": "base",
@@ -51,7 +50,7 @@
         "RISCV32": "/home/yangpengcheng/workspace/opt/riscv32",
         "LM_LICENSE_FILE": "/home/yangpengcheng/license.dat",
         "LC_ADDRESS": "zh_CN.UTF-8",
-        "MAKEFLAGS": "s -- ALL=string ARCH=riscv32e-ysyxsoc",
+        "MAKEFLAGS": "s -- ARCH=riscv32e-ysyxsoc",
         "CC": "riscv64-linux-gnu-gcc",
         "USER": "yangpengcheng",
         "LC_PAPER": "zh_CN.UTF-8",
@@ -90,6 +89,6 @@
         "VSCODE_IPC_HOOK_CLI": "/run/user/1013/vscode-ipc-8b1b09fd-272f-40f4-a712-30b2b13ae7e7.sock",
         "RISCV64": "/home/yangpengcheng/workspace/opt/riscv"
     },
-    "valueHash": -448292133,
-    "inputsHash": -956852229
+    "valueHash": -1940641931,
+    "inputsHash": 188570347
 }
