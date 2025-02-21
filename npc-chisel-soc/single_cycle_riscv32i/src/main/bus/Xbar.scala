@@ -498,7 +498,7 @@ class Xbar extends Module {
 
     val soc_i_done = ~io.soc.rvalid & soc_rvalid_r & soc_rready & burstCnt === 0.U
     val soc_d_done = (~io.soc.rvalid & soc_rvalid_r & soc_rready) | (~io.soc.bvalid & soc_bvalid_r & soc_bready)
-    val clint_d_done = (~io.clint.rvalid & clint_rvalid_r & io.clint.rready) | (~io.clint.bvalid & clint_bvalid_r & io.clint.bready)
+    val clint_d_done = (~io.clint.rvalid & clint_rvalid_r) | (~io.clint.bvalid & clint_bvalid_r)
 
     c_state := n_state//first phase
 
