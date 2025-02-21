@@ -705,24 +705,24 @@ class Xbar extends Module {
     }
 
     def DefaultClint(): Unit = {
-        clint_araddr := 0.U
-        clint_arvalid := false.B
-        clint_arid := 0.U
-        clint_arlen := 0.U
-        clint_arsize := 0.U
-        clint_arburst := 0.U
-        clint_rready := false.B
-        clint_awaddr := 0.U
-        clint_awvalid := false.B
-        clint_awid := 0.U
-        clint_awlen := 0.U
-        clint_awsize := 0.U
-        clint_awburst := 0.U
-        clint_wdata := 0.U
-        clint_wstrb := 0.U
-        clint_wvalid := false.B
-        clint_wlast := true.B
-        clint_bready := false.B
+        io.clint.araddr := 0.U
+        io.clint.arvalid := false.B
+        io.clint.arid := 0.U
+        io.clint.arlen := 0.U
+        io.clint.arsize := 0.U
+        io.clint.arburst := 0.U
+        io.clint.rready := false.B
+        io.clint.awaddr := 0.U
+        io.clint.awvalid := false.B
+        io.clint.awid := 0.U
+        io.clint.awlen := 0.U
+        io.clint.awsize := 0.U
+        io.clint.awburst := 0.U
+        io.clint.wdata := 0.U
+        io.clint.wstrb := 0.U
+        io.clint.wvalid := false.B
+        io.clint.wlast := true.B
+        io.clint.bready := false.B
     }
 
 }
