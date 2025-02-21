@@ -471,6 +471,14 @@ class Xbar extends Module {
     io.soc.wvalid := soc_wvalid
     io.soc.wlast := soc_wlast
     io.soc.bready := soc_bready
+    val soc_rvalid_r = RegNext(io.soc.rvalid)
+    val soc_rready_r = RegNext(io.soc.rready)
+    val soc_bvalid_r = RegNext(io.soc.bvalid)
+    val soc_bready_r = RegNext(io.soc.bready)
+    val clint_rvalid_r = RegNext(io.clint.rvalid)
+    val clint_rready_r = RegNext(io.clint.rready)
+    val clint_bvalid_r = RegNext(io.clint.bvalid)
+    val clint_bready_r = RegNext(io.clint.bready)
 
     val burstCnt = dontTouch(RegInit(0.U(8.W)))
 /*-----------------------FSM-----------------------*/
@@ -488,9 +496,9 @@ class Xbar extends Module {
     val isdmem_req_soc = (isdmem_req_r & !isclint_raddr) | (isdmem_req_w & !isclint_waddr)
     val isdmem_req_clint = (isdmem_req_r & isclint_raddr) | (isdmem_req_w & isclint_waddr)
 
-    val soc_i_done = io.soc.rvalid & soc_rready & burstCnt === 0.U
-    val soc_d_done = (io.soc.rvalid & soc_rready) | (io.soc.bvalid & soc_bready)
-    val clint_d_done = (io.clint.rvalid & io.clint.rready) | (io.clint.bvalid & io.clint.bready)
+    val soc_i_done = ~io.soc.rvalid & soc_rvalid_r & soc_rready & burstCnt === 0.U
+    val soc_d_done = (~io.soc.rvalid & soc_rvalid_r & soc_rready) | (~io.soc.bvalid & soc_bvalid_r & soc_bready)
+    val clint_d_done = (~io.clint.rvalid & clint_rvalid_r & io.clint.rready) | (~io.clint.bvalid & clint_bvalid_r & io.clint.bready)
 
     c_state := n_state//first phase
 
