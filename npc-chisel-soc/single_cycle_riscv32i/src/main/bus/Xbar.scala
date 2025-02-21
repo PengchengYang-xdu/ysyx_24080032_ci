@@ -434,8 +434,8 @@ class XbarIO extends Bundle{
 class Xbar extends Module {
     val io = IO(new XbarIO)
 
-    val imem_rdate = RegInit(0.U)
-    val dmem_rdate = RegInit(0.U)
+    val imem_rdata = RegInit(0.U)
+    val dmem_rdata = RegInit(0.U)
 
     //soc reg
     val soc_araddr = RegInit(0.U)
