@@ -434,9 +434,6 @@ class XbarIO extends Bundle{
 class Xbar extends Module {
     val io = IO(new XbarIO)
 
-    val dmem_rdata = RegInit(0.U)
-    dontTouch(dmem_rdata)
-
     //soc reg
     val soc_araddr = RegInit(0.U)
     val soc_arvalid = RegInit(false.B)
@@ -557,7 +554,6 @@ class Xbar extends Module {
                 soc_awvalid := true.B
                 soc_awaddr := dmem_awaddr
             }
-            dmem_rdata := Mux(io.soc.rvalid & soc_rready, io.soc.rdata, dmem_rdata)
         }
         is(s_d_clint){
             ConnectDmem2Clint()
