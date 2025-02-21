@@ -21,8 +21,6 @@ class XbarIO extends Bundle{
 class Xbar extends Module {
     val io = IO(new XbarIO)
 
-    val ready = Wire(Bool())
-
     //imem reg
     val imem_arready = RegInit(false.B)
     val imem_rdata = RegInit(0.U)
@@ -58,13 +56,13 @@ class Xbar extends Module {
     val dmem_bresp = RegInit(0.U)
     val dmem_bvalid = RegInit(false.B)
     val dmem_bid = RegInit(0.U)
-    io.dmem.arready := Mux(ready, dmem_arready, 0.U)
+    io.dmem.arready := dmem_arready
     io.dmem.rdata := dmem_rdata
     io.dmem.rresp := dmem_rresp
     io.dmem.rvalid := dmem_rvalid
     io.dmem.rlast := dmem_rlast
     io.dmem.rid := dmem_rid
-    io.dmem.awready := Mux(ready, dmem_awready, 0.U)
+    io.dmem.awready := dmem_awready
     io.dmem.wready := dmem_wready
     io.dmem.bresp := dmem_bresp
     io.dmem.bvalid := dmem_bvalid
@@ -157,9 +155,9 @@ class Xbar extends Module {
     val isclint_raddr = (io.dmem.araddr >= "h0200_0000".U(32.W) && io.dmem.araddr <= "h0200_ffff".U(32.W))
     val isclint_waddr = (io.dmem.awaddr >= "h0200_0000".U(32.W) && io.dmem.awaddr <= "h0200_ffff".U(32.W))
 
-    val isimem_req = io.imem.arvalid
-    val isdmem_req_r = io.dmem.arvalid
-    val isdmem_req_w = io.dmem.awvalid & io.dmem.wvalid
+    val isimem_req = io.imem.arvalid & imem_arready
+    val isdmem_req_r = io.dmem.arvalid & dmem_arready
+    val isdmem_req_w = io.dmem.awvalid & dmem_awready & io.dmem.wvalid & dmem_wready
     val isdmem_req = (isdmem_req_r & !isclint_raddr) | (isdmem_req_w & !isclint_waddr)
     val isclint_req = (isdmem_req_r & isclint_raddr) | (isdmem_req_w & isclint_waddr)
 
@@ -275,19 +273,17 @@ class Xbar extends Module {
     }
 
     def ConnectDmem2Soc(): Unit = {
-        when(n_state === s_soc_d_1){
-            dmem_arready := io.soc.arready
-            dmem_rdata := io.soc.rdata
-            dmem_rresp := io.soc.rresp
-            dmem_rvalid := io.soc.rvalid
-            dmem_rlast := io.soc.rlast
-            dmem_rid := io.soc.rid
-            dmem_awready := io.soc.awready
-            dmem_wready := io.soc.wready
-            dmem_bresp := io.soc.bresp
-            dmem_bvalid := io.soc.bvalid
-            dmem_bid := io.soc.bid
-        }
+        dmem_arready := io.soc.arready
+        dmem_rdata := io.soc.rdata
+        dmem_rresp := io.soc.rresp
+        dmem_rvalid := io.soc.rvalid
+        dmem_rlast := io.soc.rlast
+        dmem_rid := io.soc.rid
+        dmem_awready := io.soc.awready
+        dmem_wready := io.soc.wready
+        dmem_bresp := io.soc.bresp
+        dmem_bvalid := io.soc.bvalid
+        dmem_bid := io.soc.bid
 
         soc_araddr := io.dmem.araddr
         soc_arvalid := io.dmem.arvalid
@@ -310,19 +306,17 @@ class Xbar extends Module {
     }
 
     def ConnectDmem2Clint(): Unit = {
-        when(n_state === s_soc_d_1){
-            dmem_arready := io.clint.arready
-            dmem_rdata := io.clint.rdata
-            dmem_rresp := io.clint.rresp
-            dmem_rvalid := io.clint.rvalid
-            dmem_rlast := io.clint.rlast
-            dmem_rid := io.clint.rid
-            dmem_awready := io.clint.awready
-            dmem_wready := io.clint.wready
-            dmem_bresp := io.clint.bresp
-            dmem_bvalid := io.clint.bvalid
-            dmem_bid := io.clint.bid
-        }
+        dmem_arready := io.clint.arready
+        dmem_rdata := io.clint.rdata
+        dmem_rresp := io.clint.rresp
+        dmem_rvalid := io.clint.rvalid
+        dmem_rlast := io.clint.rlast
+        dmem_rid := io.clint.rid
+        dmem_awready := io.clint.awready
+        dmem_wready := io.clint.wready
+        dmem_bresp := io.clint.bresp
+        dmem_bvalid := io.clint.bvalid
+        dmem_bid := io.clint.bid
 
         clint_araddr := io.dmem.araddr
         clint_arvalid := io.dmem.arvalid
@@ -413,9 +407,5 @@ class Xbar extends Module {
         clint_wlast := true.B
         clint_bready := false.B
     }
-    val c_state_r1 = RegInit(s_IDLE)
-    c_state_r1 := c_state
-    ready := (n_state === s_soc_d_0 && c_state === s_soc_d_0 && c_state_r1 === s_soc_d_0)
-    dontTouch(ready)
-    dontTouch(c_state_r1)
+
 }
