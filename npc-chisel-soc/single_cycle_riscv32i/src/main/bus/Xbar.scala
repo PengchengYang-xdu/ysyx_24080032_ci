@@ -555,9 +555,6 @@ class Xbar extends Module {
                 soc_awaddr := dmem_awaddr
             }
         }
-        is(s_d_clint){
-            ConnectDmem2Clint()
-        }
     }
 
     when(io.soc.arvalid & io.soc.arready){
