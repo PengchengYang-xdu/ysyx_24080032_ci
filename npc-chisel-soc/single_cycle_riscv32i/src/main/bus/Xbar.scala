@@ -434,6 +434,9 @@ class XbarIO extends Bundle{
 class Xbar extends Module {
     val io = IO(new XbarIO)
 
+    val imem_rdate = RegInit(0.U)
+    val dmem_rdate = RegInit(0.U)
+
     //soc reg
     val soc_araddr = RegInit(0.U)
     val soc_arvalid = RegInit(false.B)
@@ -539,6 +542,7 @@ class Xbar extends Module {
                 soc_arlen := imem_arlen
                 soc_arsize := imem_arsize
             }
+            imem_rdata := Mux(io.soc.rvalid & soc_rready, io.soc.rdata, imem_rdata)
         }
         is(s_d_soc){
             ConnectDmem2Soc()
@@ -554,6 +558,7 @@ class Xbar extends Module {
                 soc_awvalid := true.B
                 soc_awaddr := dmem_awaddr
             }
+            dmem_rdata := Mux(io.soc.rvalid & soc_rready, io.soc.rdata, dmem_rdata)
         }
         is(s_d_clint){
             ConnectDmem2Clint()
