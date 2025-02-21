@@ -434,8 +434,8 @@ class XbarIO extends Bundle{
 class Xbar extends Module {
     val io = IO(new XbarIO)
 
-    val imem_rdata = RegInit(0.U)
     val dmem_rdata = RegInit(0.U)
+    dontTouch(dmem_rdata)
 
     //soc reg
     val soc_araddr = RegInit(0.U)
@@ -542,7 +542,6 @@ class Xbar extends Module {
                 soc_arlen := imem_arlen
                 soc_arsize := imem_arsize
             }
-            imem_rdata := Mux(io.soc.rvalid & soc_rready, io.soc.rdata, imem_rdata)
         }
         is(s_d_soc){
             ConnectDmem2Soc()
