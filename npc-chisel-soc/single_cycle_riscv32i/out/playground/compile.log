@@ -1,8 +1,32 @@
-[0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar_new.scala:10:7: XbarIO is already defined as class XbarIO[0m
-[0m[[0m[31merror[0m] [0m[0mclass XbarIO extends Bundle{[0m
-[0m[[0m[31merror[0m] [0m[0m      ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar_new.scala:21:7: Xbar is already defined as class Xbar[0m
-[0m[[0m[31merror[0m] [0m[0mclass Xbar extends Module {[0m
-[0m[[0m[31merror[0m] [0m[0m      ^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:708:9: not found: value clint_araddr[0m
+[0m[[0m[31merror[0m] [0m[0m        clint_araddr := 0.U[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:709:9: not found: value clint_arvalid[0m
+[0m[[0m[31merror[0m] [0m[0m        clint_arvalid := false.B[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:710:9: not found: value clint_arid[0m
+[0m[[0m[31merror[0m] [0m[0m        clint_arid := 0.U[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:711:9: not found: value clint_arlen[0m
+[0m[[0m[31merror[0m] [0m[0m        clint_arlen := 0.U[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:712:9: not found: value clint_arsize[0m
+[0m[[0m[31merror[0m] [0m[0m        clint_arsize := 0.U[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:713:9: not found: value clint_arburst[0m
+[0m[[0m[31merror[0m] [0m[0m        clint_arburst := 0.U[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:714:9: not found: value clint_rready[0m
+[0m[[0m[31merror[0m] [0m[0m        clint_rready := false.B[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:715:9: not found: value clint_awaddr[0m
+[0m[[0m[31merror[0m] [0m[0m        clint_awaddr := 0.U[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:716:9: not found: value clint_awvalid[0m
+[0m[[0m[31merror[0m] [0m[0m        clint_awvalid := false.B[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:717:9: not found: value clint_awid[0m
+[0m[[0m[31merror[0m] [0m[0m        clint_awid := 0.U[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m18 errors found[0m
