@@ -1,2 +1,14 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:545:13: not found: value imem_rdata[0m
+[0m[[0m[31merror[0m] [0m[0m            imem_rdata := Mux(io.soc.rvalid & soc_rready, io.soc.rdata, imem_rdata)[0m
+[0m[[0m[31merror[0m] [0m[0m            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:545:73: not found: value imem_rdata[0m
+[0m[[0m[31merror[0m] [0m[0m            imem_rdata := Mux(io.soc.rvalid & soc_rready, io.soc.rdata, imem_rdata)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:561:13: not found: value dmem_rdata[0m
+[0m[[0m[31merror[0m] [0m[0m            dmem_rdata := Mux(io.soc.rvalid & soc_rready, io.soc.rdata, dmem_rdata)[0m
+[0m[[0m[31merror[0m] [0m[0m            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:561:73: not found: value dmem_rdata[0m
+[0m[[0m[31merror[0m] [0m[0m            dmem_rdata := Mux(io.soc.rvalid & soc_rready, io.soc.rdata, dmem_rdata)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                        ^[0m
+[0m[[0m[31merror[0m] [0m[0mfour errors found[0m
