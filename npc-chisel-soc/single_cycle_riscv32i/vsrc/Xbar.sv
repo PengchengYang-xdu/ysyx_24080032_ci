@@ -55,721 +55,402 @@
   `endif // not def ENABLE_INITIAL_MEM_
 `endif // not def SYNTHESIS
 
-module Xbar(	// @[src/main/bus/Xbar.scala:21:7]
-  input         clock,	// @[src/main/bus/Xbar.scala:21:7]
-                reset,	// @[src/main/bus/Xbar.scala:21:7]
-  input  [31:0] io_imem_araddr,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_imem_arvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_imem_arready,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [3:0]  io_imem_arid,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [7:0]  io_imem_arlen,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [2:0]  io_imem_arsize,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [1:0]  io_imem_arburst,	// @[src/main/bus/Xbar.scala:22:16]
-  output [31:0] io_imem_rdata,	// @[src/main/bus/Xbar.scala:22:16]
-  output [1:0]  io_imem_rresp,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_imem_rvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_imem_rready,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [31:0] io_imem_awaddr,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_imem_awvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [3:0]  io_imem_awid,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [7:0]  io_imem_awlen,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [2:0]  io_imem_awsize,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [1:0]  io_imem_awburst,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [31:0] io_imem_wdata,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [3:0]  io_imem_wstrb,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_imem_wvalid,	// @[src/main/bus/Xbar.scala:22:16]
-                io_imem_wlast,	// @[src/main/bus/Xbar.scala:22:16]
-                io_imem_bready,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [31:0] io_dmem_araddr,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_dmem_arvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_dmem_arready,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [2:0]  io_dmem_arsize,	// @[src/main/bus/Xbar.scala:22:16]
-  output [31:0] io_dmem_rdata,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_dmem_rvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_dmem_rready,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [31:0] io_dmem_awaddr,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_dmem_awvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_dmem_awready,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [2:0]  io_dmem_awsize,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [31:0] io_dmem_wdata,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [3:0]  io_dmem_wstrb,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_dmem_wvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_dmem_wready,	// @[src/main/bus/Xbar.scala:22:16]
-                io_dmem_bvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_dmem_bready,	// @[src/main/bus/Xbar.scala:22:16]
-  output [31:0] io_soc_araddr,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_soc_arvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_soc_arready,	// @[src/main/bus/Xbar.scala:22:16]
-  output [3:0]  io_soc_arid,	// @[src/main/bus/Xbar.scala:22:16]
-  output [7:0]  io_soc_arlen,	// @[src/main/bus/Xbar.scala:22:16]
-  output [2:0]  io_soc_arsize,	// @[src/main/bus/Xbar.scala:22:16]
-  output [1:0]  io_soc_arburst,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [31:0] io_soc_rdata,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [1:0]  io_soc_rresp,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_soc_rvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_soc_rready,	// @[src/main/bus/Xbar.scala:22:16]
-  output [31:0] io_soc_awaddr,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_soc_awvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_soc_awready,	// @[src/main/bus/Xbar.scala:22:16]
-  output [3:0]  io_soc_awid,	// @[src/main/bus/Xbar.scala:22:16]
-  output [7:0]  io_soc_awlen,	// @[src/main/bus/Xbar.scala:22:16]
-  output [2:0]  io_soc_awsize,	// @[src/main/bus/Xbar.scala:22:16]
-  output [1:0]  io_soc_awburst,	// @[src/main/bus/Xbar.scala:22:16]
-  output [31:0] io_soc_wdata,	// @[src/main/bus/Xbar.scala:22:16]
-  output [3:0]  io_soc_wstrb,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_soc_wvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_soc_wready,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_soc_wlast,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_soc_bvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_soc_bready,	// @[src/main/bus/Xbar.scala:22:16]
-  output [31:0] io_clint_araddr,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_clint_arvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_clint_arready,	// @[src/main/bus/Xbar.scala:22:16]
-  output [3:0]  io_clint_arid,	// @[src/main/bus/Xbar.scala:22:16]
-  output [7:0]  io_clint_arlen,	// @[src/main/bus/Xbar.scala:22:16]
-  output [2:0]  io_clint_arsize,	// @[src/main/bus/Xbar.scala:22:16]
-  output [1:0]  io_clint_arburst,	// @[src/main/bus/Xbar.scala:22:16]
-  input  [31:0] io_clint_rdata,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_clint_rvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_clint_rready,	// @[src/main/bus/Xbar.scala:22:16]
-  output [31:0] io_clint_awaddr,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_clint_awvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_clint_awready,	// @[src/main/bus/Xbar.scala:22:16]
-  output [3:0]  io_clint_awid,	// @[src/main/bus/Xbar.scala:22:16]
-  output [7:0]  io_clint_awlen,	// @[src/main/bus/Xbar.scala:22:16]
-  output [2:0]  io_clint_awsize,	// @[src/main/bus/Xbar.scala:22:16]
-  output [1:0]  io_clint_awburst,	// @[src/main/bus/Xbar.scala:22:16]
-  output [31:0] io_clint_wdata,	// @[src/main/bus/Xbar.scala:22:16]
-  output [3:0]  io_clint_wstrb,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_clint_wvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  input         io_clint_wready,	// @[src/main/bus/Xbar.scala:22:16]
-                io_clint_bvalid,	// @[src/main/bus/Xbar.scala:22:16]
-  output        io_clint_bready	// @[src/main/bus/Xbar.scala:22:16]
+module Xbar(	// @[src/main/bus/Xbar.scala:434:7]
+  input         clock,	// @[src/main/bus/Xbar.scala:434:7]
+                reset,	// @[src/main/bus/Xbar.scala:434:7]
+  input  [31:0] io_imem_araddr,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_imem_arvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_imem_arready,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [3:0]  io_imem_arid,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [7:0]  io_imem_arlen,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [2:0]  io_imem_arsize,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [1:0]  io_imem_arburst,	// @[src/main/bus/Xbar.scala:435:16]
+  output [31:0] io_imem_rdata,	// @[src/main/bus/Xbar.scala:435:16]
+  output [1:0]  io_imem_rresp,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_imem_rvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_imem_rready,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [31:0] io_imem_awaddr,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_imem_awvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [3:0]  io_imem_awid,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [7:0]  io_imem_awlen,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [2:0]  io_imem_awsize,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [1:0]  io_imem_awburst,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [31:0] io_imem_wdata,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [3:0]  io_imem_wstrb,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_imem_wvalid,	// @[src/main/bus/Xbar.scala:435:16]
+                io_imem_wlast,	// @[src/main/bus/Xbar.scala:435:16]
+                io_imem_bready,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [31:0] io_dmem_araddr,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_dmem_arvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_dmem_arready,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [2:0]  io_dmem_arsize,	// @[src/main/bus/Xbar.scala:435:16]
+  output [31:0] io_dmem_rdata,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_dmem_rvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_dmem_rready,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [31:0] io_dmem_awaddr,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_dmem_awvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_dmem_awready,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [2:0]  io_dmem_awsize,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [31:0] io_dmem_wdata,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [3:0]  io_dmem_wstrb,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_dmem_wvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_dmem_wready,	// @[src/main/bus/Xbar.scala:435:16]
+                io_dmem_bvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_dmem_bready,	// @[src/main/bus/Xbar.scala:435:16]
+  output [31:0] io_soc_araddr,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_soc_arvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_soc_arready,	// @[src/main/bus/Xbar.scala:435:16]
+  output [3:0]  io_soc_arid,	// @[src/main/bus/Xbar.scala:435:16]
+  output [7:0]  io_soc_arlen,	// @[src/main/bus/Xbar.scala:435:16]
+  output [2:0]  io_soc_arsize,	// @[src/main/bus/Xbar.scala:435:16]
+  output [1:0]  io_soc_arburst,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [31:0] io_soc_rdata,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [1:0]  io_soc_rresp,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_soc_rvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_soc_rready,	// @[src/main/bus/Xbar.scala:435:16]
+  output [31:0] io_soc_awaddr,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_soc_awvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_soc_awready,	// @[src/main/bus/Xbar.scala:435:16]
+  output [3:0]  io_soc_awid,	// @[src/main/bus/Xbar.scala:435:16]
+  output [7:0]  io_soc_awlen,	// @[src/main/bus/Xbar.scala:435:16]
+  output [2:0]  io_soc_awsize,	// @[src/main/bus/Xbar.scala:435:16]
+  output [1:0]  io_soc_awburst,	// @[src/main/bus/Xbar.scala:435:16]
+  output [31:0] io_soc_wdata,	// @[src/main/bus/Xbar.scala:435:16]
+  output [3:0]  io_soc_wstrb,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_soc_wvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_soc_wready,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_soc_wlast,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_soc_bvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_soc_bready,	// @[src/main/bus/Xbar.scala:435:16]
+  output [31:0] io_clint_araddr,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_clint_arvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_clint_arready,	// @[src/main/bus/Xbar.scala:435:16]
+  output [2:0]  io_clint_arsize,	// @[src/main/bus/Xbar.scala:435:16]
+  input  [31:0] io_clint_rdata,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_clint_rvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_clint_rready,	// @[src/main/bus/Xbar.scala:435:16]
+  output [31:0] io_clint_awaddr,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_clint_awvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_clint_awready,	// @[src/main/bus/Xbar.scala:435:16]
+  output [2:0]  io_clint_awsize,	// @[src/main/bus/Xbar.scala:435:16]
+  output [31:0] io_clint_wdata,	// @[src/main/bus/Xbar.scala:435:16]
+  output [3:0]  io_clint_wstrb,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_clint_wvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  input         io_clint_wready,	// @[src/main/bus/Xbar.scala:435:16]
+                io_clint_bvalid,	// @[src/main/bus/Xbar.scala:435:16]
+  output        io_clint_bready	// @[src/main/bus/Xbar.scala:435:16]
 );
 
-  reg         imem_arready;	// @[src/main/bus/Xbar.scala:25:31]
-  reg  [31:0] imem_rdata;	// @[src/main/bus/Xbar.scala:26:29]
-  reg  [1:0]  imem_rresp;	// @[src/main/bus/Xbar.scala:27:29]
-  reg         imem_rvalid;	// @[src/main/bus/Xbar.scala:28:30]
-  reg         dmem_arready;	// @[src/main/bus/Xbar.scala:48:31]
-  reg  [31:0] dmem_rdata;	// @[src/main/bus/Xbar.scala:49:29]
-  reg         dmem_rvalid;	// @[src/main/bus/Xbar.scala:51:30]
-  reg         dmem_awready;	// @[src/main/bus/Xbar.scala:54:31]
-  reg         dmem_wready;	// @[src/main/bus/Xbar.scala:55:30]
-  reg         dmem_bvalid;	// @[src/main/bus/Xbar.scala:57:30]
-  reg  [31:0] soc_araddr;	// @[src/main/bus/Xbar.scala:75:29]
-  reg         soc_arvalid;	// @[src/main/bus/Xbar.scala:76:30]
-  reg  [3:0]  soc_arid;	// @[src/main/bus/Xbar.scala:77:27]
-  reg  [7:0]  soc_arlen;	// @[src/main/bus/Xbar.scala:78:28]
-  reg  [2:0]  soc_arsize;	// @[src/main/bus/Xbar.scala:79:29]
-  reg  [1:0]  soc_arburst;	// @[src/main/bus/Xbar.scala:80:30]
-  reg         soc_rready;	// @[src/main/bus/Xbar.scala:81:29]
-  reg  [31:0] soc_awaddr;	// @[src/main/bus/Xbar.scala:82:29]
-  reg         soc_awvalid;	// @[src/main/bus/Xbar.scala:83:30]
-  reg  [3:0]  soc_awid;	// @[src/main/bus/Xbar.scala:84:27]
-  reg  [7:0]  soc_awlen;	// @[src/main/bus/Xbar.scala:85:28]
-  reg  [2:0]  soc_awsize;	// @[src/main/bus/Xbar.scala:86:29]
-  reg  [1:0]  soc_awburst;	// @[src/main/bus/Xbar.scala:87:30]
-  reg  [31:0] soc_wdata;	// @[src/main/bus/Xbar.scala:88:28]
-  reg  [3:0]  soc_wstrb;	// @[src/main/bus/Xbar.scala:89:28]
-  reg         soc_wvalid;	// @[src/main/bus/Xbar.scala:90:29]
-  reg         soc_wlast;	// @[src/main/bus/Xbar.scala:91:28]
-  reg         soc_bready;	// @[src/main/bus/Xbar.scala:92:29]
-  reg  [31:0] clint_araddr;	// @[src/main/bus/Xbar.scala:112:31]
-  reg         clint_arvalid;	// @[src/main/bus/Xbar.scala:113:32]
-  reg  [3:0]  clint_arid;	// @[src/main/bus/Xbar.scala:114:29]
-  reg  [7:0]  clint_arlen;	// @[src/main/bus/Xbar.scala:115:30]
-  reg  [2:0]  clint_arsize;	// @[src/main/bus/Xbar.scala:116:31]
-  reg  [1:0]  clint_arburst;	// @[src/main/bus/Xbar.scala:117:32]
-  reg         clint_rready;	// @[src/main/bus/Xbar.scala:118:31]
-  reg  [31:0] clint_awaddr;	// @[src/main/bus/Xbar.scala:119:31]
-  reg         clint_awvalid;	// @[src/main/bus/Xbar.scala:120:32]
-  reg  [3:0]  clint_awid;	// @[src/main/bus/Xbar.scala:121:29]
-  reg  [7:0]  clint_awlen;	// @[src/main/bus/Xbar.scala:122:30]
-  reg  [2:0]  clint_awsize;	// @[src/main/bus/Xbar.scala:123:31]
-  reg  [1:0]  clint_awburst;	// @[src/main/bus/Xbar.scala:124:32]
-  reg  [31:0] clint_wdata;	// @[src/main/bus/Xbar.scala:125:30]
-  reg  [3:0]  clint_wstrb;	// @[src/main/bus/Xbar.scala:126:30]
-  reg         clint_wvalid;	// @[src/main/bus/Xbar.scala:127:31]
-  reg         clint_bready;	// @[src/main/bus/Xbar.scala:129:31]
-  reg  [2:0]  c_state;	// @[src/main/bus/Xbar.scala:151:26]
-  reg  [2:0]  casez_tmp;	// @[src/main/bus/Xbar.scala:173:42]
-  wire        isclint_raddr = (|(io_dmem_araddr[31:25])) & io_dmem_araddr < 32'h2010000;	// @[src/main/bus/Xbar.scala:155:{41,65,83}]
-  wire        isclint_waddr = (|(io_dmem_awaddr[31:25])) & io_dmem_awaddr < 32'h2010000;	// @[src/main/bus/Xbar.scala:155:83, :156:{41,65,83}]
-  wire        isdmem_req_r = io_dmem_arvalid & dmem_arready;	// @[src/main/bus/Xbar.scala:48:31, :159:40]
-  wire        isdmem_req_w =
-    io_dmem_awvalid & dmem_awready & io_dmem_wvalid & dmem_wready;	// @[src/main/bus/Xbar.scala:54:31, :55:30, :160:72]
-  wire        soc_i_done0 = io_soc_rvalid & soc_rready;	// @[src/main/bus/Xbar.scala:81:29, :164:37]
-  wire        _clint_done1_T = dmem_rvalid & io_dmem_rready;	// @[src/main/bus/Xbar.scala:51:30, :168:36]
-  wire        _clint_done1_T_1 = dmem_bvalid & io_dmem_bready;	// @[src/main/bus/Xbar.scala:57:30, :168:69]
-  always_comb begin	// @[src/main/bus/Xbar.scala:173:42]
-    casez (c_state)	// @[src/main/bus/Xbar.scala:151:26, :173:42]
-      3'b000:
+  reg  [31:0] soc_araddr;	// @[src/main/bus/Xbar.scala:438:29]
+  reg         soc_arvalid;	// @[src/main/bus/Xbar.scala:439:30]
+  reg  [3:0]  soc_arid;	// @[src/main/bus/Xbar.scala:440:27]
+  reg  [7:0]  soc_arlen;	// @[src/main/bus/Xbar.scala:441:28]
+  reg  [2:0]  soc_arsize;	// @[src/main/bus/Xbar.scala:442:29]
+  reg  [1:0]  soc_arburst;	// @[src/main/bus/Xbar.scala:443:30]
+  reg         soc_rready;	// @[src/main/bus/Xbar.scala:444:29]
+  reg  [31:0] soc_awaddr;	// @[src/main/bus/Xbar.scala:445:29]
+  reg         soc_awvalid;	// @[src/main/bus/Xbar.scala:446:30]
+  reg  [3:0]  soc_awid;	// @[src/main/bus/Xbar.scala:447:27]
+  reg  [7:0]  soc_awlen;	// @[src/main/bus/Xbar.scala:448:28]
+  reg  [2:0]  soc_awsize;	// @[src/main/bus/Xbar.scala:449:29]
+  reg  [1:0]  soc_awburst;	// @[src/main/bus/Xbar.scala:450:30]
+  reg  [31:0] soc_wdata;	// @[src/main/bus/Xbar.scala:451:28]
+  reg  [3:0]  soc_wstrb;	// @[src/main/bus/Xbar.scala:452:28]
+  reg         soc_wvalid;	// @[src/main/bus/Xbar.scala:453:29]
+  reg         soc_wlast;	// @[src/main/bus/Xbar.scala:454:28]
+  reg         soc_bready;	// @[src/main/bus/Xbar.scala:455:29]
+  reg         soc_rvalid_r;	// @[src/main/bus/Xbar.scala:474:31]
+  reg         soc_bvalid_r;	// @[src/main/bus/Xbar.scala:476:31]
+  reg         clint_rvalid_r;	// @[src/main/bus/Xbar.scala:478:33]
+  reg         clint_bvalid_r;	// @[src/main/bus/Xbar.scala:480:33]
+  reg  [7:0]  burstCnt;	// @[src/main/bus/Xbar.scala:483:37]
+  reg  [1:0]  c_state;	// @[src/main/bus/Xbar.scala:486:26]
+  reg  [1:0]  casez_tmp;	// @[src/main/bus/Xbar.scala:505:42]
+  wire        isclint_raddr = (|(io_dmem_araddr[31:25])) & io_dmem_araddr < 32'h2010000;	// @[src/main/bus/Xbar.scala:490:{41,65,83}]
+  wire        isclint_waddr = (|(io_dmem_awaddr[31:25])) & io_dmem_awaddr < 32'h2010000;	// @[src/main/bus/Xbar.scala:490:83, :491:{41,65,83}]
+  always_comb begin	// @[src/main/bus/Xbar.scala:505:42]
+    casez (c_state)	// @[src/main/bus/Xbar.scala:486:26, :505:42]
+      2'b00:
         casez_tmp =
-          io_imem_arvalid & imem_arready
-            ? 3'h1
-            : isdmem_req_r & ~isclint_raddr | isdmem_req_w & ~isclint_waddr
-                ? 3'h3
-                : isdmem_req_r & isclint_raddr | isdmem_req_w & isclint_waddr
-                    ? 3'h5
-                    : 3'h0;	// @[src/main/bus/Xbar.scala:25:31, :151:26, :155:65, :156:65, :158:38, :159:40, :160:72, :161:{36,38,54,70,72}, :162:{37,54,70}, :173:42, src/main/scala/chisel3/util/Mux.scala:126:16]
-      3'b001:
-        casez_tmp = soc_i_done0 ? 3'h2 : 3'h1;	// @[src/main/bus/Xbar.scala:164:37, :173:42, :179:29, src/main/scala/chisel3/util/Mux.scala:126:16]
-      3'b010:
-        casez_tmp = {1'h0, ~(imem_rvalid & io_imem_rready), 1'h0};	// @[src/main/bus/Xbar.scala:26:29, :28:30, :167:35, :173:42, :180:29]
-      3'b011:
-        casez_tmp = soc_i_done0 | io_soc_bvalid & soc_bready ? 3'h4 : 3'h3;	// @[src/main/bus/Xbar.scala:92:29, :164:37, :165:{52,69}, :173:42, :181:29, src/main/scala/chisel3/util/Mux.scala:126:16]
-      3'b100:
-        casez_tmp = {~(_clint_done1_T | _clint_done1_T_1), 2'h0};	// @[src/main/bus/Xbar.scala:22:16, :168:{36,54,69}, :173:42, :182:29]
-      3'b101:
+          io_imem_arvalid
+            ? 2'h1
+            : io_dmem_arvalid & ~isclint_raddr | io_dmem_awvalid & ~isclint_waddr
+                ? 2'h2
+                : {2{io_dmem_arvalid & isclint_raddr | io_dmem_awvalid & isclint_waddr}};	// @[src/main/bus/Xbar.scala:490:65, :491:65, :496:{40,42,58,74,76}, :497:{42,59,75}, :505:42, src/main/scala/chisel3/util/Mux.scala:126:16]
+      2'b01:
         casez_tmp =
-          io_clint_rvalid & clint_rready | io_clint_bvalid & clint_bready ? 3'h6 : 3'h5;	// @[src/main/bus/Xbar.scala:118:31, :129:31, :166:{40,56,75}, :173:42, :183:29, src/main/scala/chisel3/util/Mux.scala:126:16]
-      3'b110:
-        casez_tmp = _clint_done1_T | _clint_done1_T_1 ? 3'h0 : 3'h6;	// @[src/main/bus/Xbar.scala:151:26, :168:{36,69}, :169:54, :173:42, :183:29, :184:29]
+          ~io_soc_rvalid & soc_rvalid_r & soc_rready & ~(|burstCnt)
+            ? {1'h0, io_imem_arvalid}
+            : 2'h1;	// @[src/main/bus/Xbar.scala:438:29, :444:29, :474:31, :483:37, :499:{22,65,76}, :505:42, :511:{27,43}, src/main/scala/chisel3/util/Mux.scala:126:16]
+      2'b10:
+        casez_tmp =
+          {~(~io_soc_rvalid & soc_rvalid_r & soc_rready | soc_bvalid_r & soc_bready),
+           1'h0};	// @[src/main/bus/Xbar.scala:438:29, :444:29, :455:29, :474:31, :476:31, :499:22, :500:{53,67,83}, :505:42, :512:27]
       default:
-        casez_tmp = 3'h0;	// @[src/main/bus/Xbar.scala:151:26, :173:42]
-    endcase	// @[src/main/bus/Xbar.scala:151:26, :173:42]
+        casez_tmp =
+          ~io_clint_rvalid & clint_rvalid_r | ~io_clint_bvalid & clint_bvalid_r
+            ? 2'h0
+            : 2'h3;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :478:33, :480:33, :501:{25,42,60,63,80}, :505:42, :513:27, :528:20, :621:21, :628:21, :703:21, :710:21, src/main/scala/chisel3/util/Mux.scala:126:16]
+    endcase	// @[src/main/bus/Xbar.scala:486:26, :505:42]
   end // always_comb
-  wire [2:0]  n_state = casez_tmp;	// @[src/main/bus/Xbar.scala:152:30, :173:42]
-  reg  [1:0]  casez_tmp_0;	// @[src/main/bus/Xbar.scala:187:20, :344:20]
-  always_comb begin	// @[src/main/bus/Xbar.scala:25:31, :26:29, :27:29, :187:20, :244:20, :245:20, :342:22, :344:20]
-    casez (n_state)	// @[src/main/bus/Xbar.scala:25:31, :26:29, :27:29, :152:30, :187:20, :244:20, :245:20, :342:22, :344:20]
-      3'b000:
-        casez_tmp_0 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :25:31, :26:29, :27:29, :187:20, :244:20, :245:20, :342:22, :344:20]
-      3'b001:
-        casez_tmp_0 = io_soc_rresp;	// @[src/main/bus/Xbar.scala:25:31, :26:29, :27:29, :187:20, :244:20, :245:20, :342:22, :344:20]
-      3'b010:
-        casez_tmp_0 = io_soc_rresp;	// @[src/main/bus/Xbar.scala:25:31, :26:29, :27:29, :187:20, :244:20, :245:20, :342:22, :344:20]
-      3'b011:
-        casez_tmp_0 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :25:31, :26:29, :27:29, :187:20, :244:20, :245:20, :342:22, :344:20]
-      3'b100:
-        casez_tmp_0 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :25:31, :26:29, :27:29, :187:20, :244:20, :245:20, :342:22, :344:20]
-      3'b101:
-        casez_tmp_0 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :25:31, :26:29, :27:29, :187:20, :244:20, :245:20, :342:22, :344:20]
-      3'b110:
-        casez_tmp_0 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :25:31, :26:29, :27:29, :187:20, :244:20, :245:20, :342:22, :344:20]
+  wire [1:0]  n_state = casez_tmp;	// @[src/main/bus/Xbar.scala:487:30, :505:42]
+  reg  [31:0] imem_araddr;	// @[src/main/bus/Xbar.scala:521:32]
+  reg  [1:0]  imem_arburst;	// @[src/main/bus/Xbar.scala:522:33]
+  reg  [7:0]  imem_arlen;	// @[src/main/bus/Xbar.scala:523:31]
+  reg  [2:0]  imem_arsize;	// @[src/main/bus/Xbar.scala:524:32]
+  reg  [31:0] dmem_araddr;	// @[src/main/bus/Xbar.scala:525:32]
+  reg  [31:0] dmem_awaddr;	// @[src/main/bus/Xbar.scala:526:32]
+  wire        _GEN = n_state == 2'h0;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :487:30, :528:20, :621:21, :628:21, :703:21, :710:21]
+  wire        _GEN_0 = n_state == 2'h1;	// @[src/main/bus/Xbar.scala:487:30, :528:20, src/main/scala/chisel3/util/Mux.scala:126:16]
+  wire        _GEN_1 = _GEN | ~_GEN_0;	// @[src/main/bus/Xbar.scala:528:20, :571:25, :670:25, :672:23]
+  wire        _GEN_2 = soc_arvalid & io_soc_arready;	// @[src/main/bus/Xbar.scala:439:30, :533:33]
+  wire        _GEN_3 = soc_arvalid & ~io_soc_arready;	// @[src/main/bus/Xbar.scala:439:30, :535:{39,41}]
+  wire        _GEN_4 = _GEN_2 | ~_GEN_3;	// @[src/main/bus/Xbar.scala:533:{33,50}, :535:{39,57}, :583:20]
+  wire        _GEN_5 = n_state == 2'h2;	// @[src/main/bus/Xbar.scala:487:30, :528:20, src/main/scala/chisel3/util/Mux.scala:126:16]
+  reg  [2:0]  casez_tmp_0;	// @[src/main/bus/Xbar.scala:528:20, :702:20]
+  always_comb begin	// @[src/main/bus/Xbar.scala:528:20, :533:50, :620:20, :702:20]
+    casez (n_state)	// @[src/main/bus/Xbar.scala:487:30, :528:20, :533:50, :620:20, :702:20]
+      2'b00:
+        casez_tmp_0 = 3'h0;	// @[src/main/bus/Xbar.scala:528:20, :533:50, :620:20, :702:20, :723:25]
+      2'b01:
+        casez_tmp_0 = _GEN_4 ? io_imem_arsize : imem_arsize;	// @[src/main/bus/Xbar.scala:524:32, :528:20, :533:50, :535:57, :583:20, :587:20, :620:20, :702:20]
+      2'b10:
+        casez_tmp_0 = io_dmem_arsize;	// @[src/main/bus/Xbar.scala:528:20, :533:50, :620:20, :702:20]
       default:
-        casez_tmp_0 = imem_rresp;	// @[src/main/bus/Xbar.scala:25:31, :26:29, :27:29, :187:20, :244:20, :245:20, :342:22, :344:20]
-    endcase	// @[src/main/bus/Xbar.scala:25:31, :26:29, :27:29, :152:30, :187:20, :244:20, :245:20, :342:22, :344:20]
+        casez_tmp_0 = 3'h0;	// @[src/main/bus/Xbar.scala:528:20, :533:50, :620:20, :702:20, :723:25]
+    endcase	// @[src/main/bus/Xbar.scala:487:30, :528:20, :533:50, :620:20, :702:20]
   end // always_comb
-  reg  [31:0] casez_tmp_1;	// @[src/main/bus/Xbar.scala:187:20, :370:20]
-  always_comb begin	// @[src/main/bus/Xbar.scala:26:29, :48:31, :75:29, :187:20, :244:20, :255:20, :276:22, :288:20, :309:22, :370:20]
-    casez (n_state)	// @[src/main/bus/Xbar.scala:26:29, :48:31, :75:29, :152:30, :187:20, :244:20, :255:20, :276:22, :288:20, :309:22, :370:20]
-      3'b000:
-        casez_tmp_1 = 32'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :75:29, :187:20, :244:20, :255:20, :276:22, :288:20, :309:22, :370:20, :391:22]
-      3'b001:
-        casez_tmp_1 = io_imem_araddr;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :75:29, :187:20, :244:20, :255:20, :276:22, :288:20, :309:22, :370:20]
-      3'b010:
-        casez_tmp_1 = io_imem_araddr;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :75:29, :187:20, :244:20, :255:20, :276:22, :288:20, :309:22, :370:20]
-      3'b011:
-        casez_tmp_1 = io_dmem_araddr;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :75:29, :187:20, :244:20, :255:20, :276:22, :288:20, :309:22, :370:20]
-      3'b100:
-        casez_tmp_1 = io_dmem_araddr;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :75:29, :187:20, :244:20, :255:20, :276:22, :288:20, :309:22, :370:20]
-      3'b101:
-        casez_tmp_1 = 32'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :75:29, :187:20, :244:20, :255:20, :276:22, :288:20, :309:22, :370:20, :391:22]
-      3'b110:
-        casez_tmp_1 = 32'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :75:29, :187:20, :244:20, :255:20, :276:22, :288:20, :309:22, :370:20, :391:22]
+  reg  [2:0]  casez_tmp_1;	// @[src/main/bus/Xbar.scala:528:20, :709:20]
+  always_comb begin	// @[src/main/bus/Xbar.scala:528:20, :594:20, :627:20, :709:20]
+    casez (n_state)	// @[src/main/bus/Xbar.scala:487:30, :528:20, :594:20, :627:20, :709:20]
+      2'b00:
+        casez_tmp_1 = 3'h0;	// @[src/main/bus/Xbar.scala:528:20, :594:20, :627:20, :709:20, :723:25]
+      2'b01:
+        casez_tmp_1 = io_imem_awsize;	// @[src/main/bus/Xbar.scala:528:20, :594:20, :627:20, :709:20]
+      2'b10:
+        casez_tmp_1 = io_dmem_awsize;	// @[src/main/bus/Xbar.scala:528:20, :594:20, :627:20, :709:20]
       default:
-        casez_tmp_1 = soc_araddr;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :75:29, :187:20, :244:20, :255:20, :276:22, :288:20, :309:22, :370:20]
-    endcase	// @[src/main/bus/Xbar.scala:26:29, :48:31, :75:29, :152:30, :187:20, :244:20, :255:20, :276:22, :288:20, :309:22, :370:20]
+        casez_tmp_1 = 3'h0;	// @[src/main/bus/Xbar.scala:528:20, :594:20, :627:20, :709:20, :723:25]
+    endcase	// @[src/main/bus/Xbar.scala:487:30, :528:20, :594:20, :627:20, :709:20]
   end // always_comb
-  reg  [3:0]  casez_tmp_2;	// @[src/main/bus/Xbar.scala:187:20, :372:18]
-  always_comb begin	// @[src/main/bus/Xbar.scala:26:29, :77:27, :187:20, :244:20, :257:18, :290:18, :372:18]
-    casez (n_state)	// @[src/main/bus/Xbar.scala:26:29, :77:27, :152:30, :187:20, :244:20, :257:18, :290:18, :372:18]
-      3'b000:
-        casez_tmp_2 = 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :26:29, :77:27, :187:20, :244:20, :257:18, :290:18, :372:18]
-      3'b001:
-        casez_tmp_2 = io_imem_arid;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :187:20, :244:20, :257:18, :290:18, :372:18]
-      3'b010:
-        casez_tmp_2 = io_imem_arid;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :187:20, :244:20, :257:18, :290:18, :372:18]
-      3'b011:
-        casez_tmp_2 = 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :26:29, :77:27, :187:20, :244:20, :257:18, :290:18, :372:18]
-      3'b100:
-        casez_tmp_2 = 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :26:29, :77:27, :187:20, :244:20, :257:18, :290:18, :372:18]
-      3'b101:
-        casez_tmp_2 = 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :26:29, :77:27, :187:20, :244:20, :257:18, :290:18, :372:18]
-      3'b110:
-        casez_tmp_2 = 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :26:29, :77:27, :187:20, :244:20, :257:18, :290:18, :372:18]
+  reg  [31:0] casez_tmp_2;	// @[src/main/bus/Xbar.scala:528:20, :711:19]
+  always_comb begin	// @[src/main/bus/Xbar.scala:528:20, :596:19, :629:19, :711:19]
+    casez (n_state)	// @[src/main/bus/Xbar.scala:487:30, :528:20, :596:19, :629:19, :711:19]
+      2'b00:
+        casez_tmp_2 = 32'h0;	// @[src/main/bus/Xbar.scala:528:20, :596:19, :629:19, :711:19, :719:25]
+      2'b01:
+        casez_tmp_2 = io_imem_wdata;	// @[src/main/bus/Xbar.scala:528:20, :596:19, :629:19, :711:19]
+      2'b10:
+        casez_tmp_2 = io_dmem_wdata;	// @[src/main/bus/Xbar.scala:528:20, :596:19, :629:19, :711:19]
       default:
-        casez_tmp_2 = soc_arid;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :187:20, :244:20, :257:18, :290:18, :372:18]
-    endcase	// @[src/main/bus/Xbar.scala:26:29, :77:27, :152:30, :187:20, :244:20, :257:18, :290:18, :372:18]
+        casez_tmp_2 = 32'h0;	// @[src/main/bus/Xbar.scala:528:20, :596:19, :629:19, :711:19, :719:25]
+    endcase	// @[src/main/bus/Xbar.scala:487:30, :528:20, :596:19, :629:19, :711:19]
   end // always_comb
-  reg  [7:0]  casez_tmp_3;	// @[src/main/bus/Xbar.scala:187:20, :373:19]
-  always_comb begin	// @[src/main/bus/Xbar.scala:26:29, :77:27, :78:28, :187:20, :244:20, :258:19, :290:18, :291:19, :372:18, :373:19]
-    casez (n_state)	// @[src/main/bus/Xbar.scala:26:29, :77:27, :78:28, :152:30, :187:20, :244:20, :258:19, :290:18, :291:19, :372:18, :373:19]
-      3'b000:
-        casez_tmp_3 = 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :78:28, :187:20, :244:20, :258:19, :290:18, :291:19, :372:18, :373:19]
-      3'b001:
-        casez_tmp_3 = io_imem_arlen;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :78:28, :187:20, :244:20, :258:19, :290:18, :291:19, :372:18, :373:19]
-      3'b010:
-        casez_tmp_3 = io_imem_arlen;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :78:28, :187:20, :244:20, :258:19, :290:18, :291:19, :372:18, :373:19]
-      3'b011:
-        casez_tmp_3 = 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :78:28, :187:20, :244:20, :258:19, :290:18, :291:19, :372:18, :373:19]
-      3'b100:
-        casez_tmp_3 = 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :78:28, :187:20, :244:20, :258:19, :290:18, :291:19, :372:18, :373:19]
-      3'b101:
-        casez_tmp_3 = 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :78:28, :187:20, :244:20, :258:19, :290:18, :291:19, :372:18, :373:19]
-      3'b110:
-        casez_tmp_3 = 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :78:28, :187:20, :244:20, :258:19, :290:18, :291:19, :372:18, :373:19]
+  reg  [3:0]  casez_tmp_3;	// @[src/main/bus/Xbar.scala:528:20, :712:19]
+  always_comb begin	// @[src/main/bus/Xbar.scala:528:20, :597:19, :630:19, :712:19]
+    casez (n_state)	// @[src/main/bus/Xbar.scala:487:30, :528:20, :597:19, :630:19, :712:19]
+      2'b00:
+        casez_tmp_3 = 4'h0;	// @[src/main/bus/Xbar.scala:434:7, :528:20, :597:19, :630:19, :712:19]
+      2'b01:
+        casez_tmp_3 = io_imem_wstrb;	// @[src/main/bus/Xbar.scala:528:20, :597:19, :630:19, :712:19]
+      2'b10:
+        casez_tmp_3 = io_dmem_wstrb;	// @[src/main/bus/Xbar.scala:528:20, :597:19, :630:19, :712:19]
       default:
-        casez_tmp_3 = soc_arlen;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :78:28, :187:20, :244:20, :258:19, :290:18, :291:19, :372:18, :373:19]
-    endcase	// @[src/main/bus/Xbar.scala:26:29, :77:27, :78:28, :152:30, :187:20, :244:20, :258:19, :290:18, :291:19, :372:18, :373:19]
+        casez_tmp_3 = 4'h0;	// @[src/main/bus/Xbar.scala:434:7, :528:20, :597:19, :630:19, :712:19]
+    endcase	// @[src/main/bus/Xbar.scala:487:30, :528:20, :597:19, :630:19, :712:19]
   end // always_comb
-  reg  [2:0]  casez_tmp_4;	// @[src/main/bus/Xbar.scala:187:20, :374:20]
-  always_comb begin	// @[src/main/bus/Xbar.scala:26:29, :48:31, :79:29, :187:20, :244:20, :259:20, :276:22, :292:20, :309:22, :374:20]
-    casez (n_state)	// @[src/main/bus/Xbar.scala:26:29, :48:31, :79:29, :152:30, :187:20, :244:20, :259:20, :276:22, :292:20, :309:22, :374:20]
-      3'b000:
-        casez_tmp_4 = 3'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :79:29, :151:26, :187:20, :244:20, :259:20, :276:22, :292:20, :309:22, :374:20]
-      3'b001:
-        casez_tmp_4 = io_imem_arsize;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :79:29, :187:20, :244:20, :259:20, :276:22, :292:20, :309:22, :374:20]
-      3'b010:
-        casez_tmp_4 = io_imem_arsize;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :79:29, :187:20, :244:20, :259:20, :276:22, :292:20, :309:22, :374:20]
-      3'b011:
-        casez_tmp_4 = io_dmem_arsize;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :79:29, :187:20, :244:20, :259:20, :276:22, :292:20, :309:22, :374:20]
-      3'b100:
-        casez_tmp_4 = io_dmem_arsize;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :79:29, :187:20, :244:20, :259:20, :276:22, :292:20, :309:22, :374:20]
-      3'b101:
-        casez_tmp_4 = 3'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :79:29, :151:26, :187:20, :244:20, :259:20, :276:22, :292:20, :309:22, :374:20]
-      3'b110:
-        casez_tmp_4 = 3'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :79:29, :151:26, :187:20, :244:20, :259:20, :276:22, :292:20, :309:22, :374:20]
+  reg  [31:0] casez_tmp_4;	// @[src/main/bus/Xbar.scala:528:20, :698:20]
+  always_comb begin	// @[src/main/bus/Xbar.scala:528:20, :533:50, :545:50, :698:20]
+    casez (n_state)	// @[src/main/bus/Xbar.scala:487:30, :528:20, :533:50, :545:50, :698:20]
+      2'b00:
+        casez_tmp_4 = 32'h0;	// @[src/main/bus/Xbar.scala:528:20, :533:50, :545:50, :698:20, :719:25]
+      2'b01:
+        casez_tmp_4 = _GEN_4 ? io_imem_araddr : imem_araddr;	// @[src/main/bus/Xbar.scala:521:32, :528:20, :533:50, :535:57, :545:50, :583:20, :698:20]
+      2'b10:
+        casez_tmp_4 = _GEN_4 ? io_dmem_araddr : dmem_araddr;	// @[src/main/bus/Xbar.scala:525:32, :528:20, :533:50, :535:57, :545:50, :547:57, :583:20, :616:20, :698:20]
       default:
-        casez_tmp_4 = soc_arsize;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :79:29, :187:20, :244:20, :259:20, :276:22, :292:20, :309:22, :374:20]
-    endcase	// @[src/main/bus/Xbar.scala:26:29, :48:31, :79:29, :152:30, :187:20, :244:20, :259:20, :276:22, :292:20, :309:22, :374:20]
+        casez_tmp_4 = 32'h0;	// @[src/main/bus/Xbar.scala:528:20, :533:50, :545:50, :698:20, :719:25]
+    endcase	// @[src/main/bus/Xbar.scala:487:30, :528:20, :533:50, :545:50, :698:20]
   end // always_comb
-  reg  [1:0]  casez_tmp_5;	// @[src/main/bus/Xbar.scala:187:20, :375:21]
-  always_comb begin	// @[src/main/bus/Xbar.scala:26:29, :77:27, :80:30, :187:20, :244:20, :260:21, :290:18, :293:21, :372:18, :375:21]
-    casez (n_state)	// @[src/main/bus/Xbar.scala:26:29, :77:27, :80:30, :152:30, :187:20, :244:20, :260:21, :290:18, :293:21, :372:18, :375:21]
-      3'b000:
-        casez_tmp_5 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :80:30, :187:20, :244:20, :260:21, :290:18, :293:21, :372:18, :375:21]
-      3'b001:
-        casez_tmp_5 = io_imem_arburst;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :80:30, :187:20, :244:20, :260:21, :290:18, :293:21, :372:18, :375:21]
-      3'b010:
-        casez_tmp_5 = io_imem_arburst;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :80:30, :187:20, :244:20, :260:21, :290:18, :293:21, :372:18, :375:21]
-      3'b011:
-        casez_tmp_5 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :80:30, :187:20, :244:20, :260:21, :290:18, :293:21, :372:18, :375:21]
-      3'b100:
-        casez_tmp_5 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :80:30, :187:20, :244:20, :260:21, :290:18, :293:21, :372:18, :375:21]
-      3'b101:
-        casez_tmp_5 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :80:30, :187:20, :244:20, :260:21, :290:18, :293:21, :372:18, :375:21]
-      3'b110:
-        casez_tmp_5 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :80:30, :187:20, :244:20, :260:21, :290:18, :293:21, :372:18, :375:21]
+  wire        _GEN_6 = soc_awvalid & io_soc_awready;	// @[src/main/bus/Xbar.scala:446:30, :551:33]
+  wire        _GEN_7 = soc_awvalid & ~io_soc_awready;	// @[src/main/bus/Xbar.scala:446:30, :553:{39,41}]
+  reg  [31:0] casez_tmp_5;	// @[src/main/bus/Xbar.scala:528:20, :705:20]
+  always_comb begin	// @[src/main/bus/Xbar.scala:528:20, :551:50, :590:20, :705:20]
+    casez (n_state)	// @[src/main/bus/Xbar.scala:487:30, :528:20, :551:50, :590:20, :705:20]
+      2'b00:
+        casez_tmp_5 = 32'h0;	// @[src/main/bus/Xbar.scala:528:20, :551:50, :590:20, :705:20, :719:25]
+      2'b01:
+        casez_tmp_5 = io_imem_awaddr;	// @[src/main/bus/Xbar.scala:528:20, :551:50, :590:20, :705:20]
+      2'b10:
+        casez_tmp_5 = _GEN_6 | ~_GEN_7 ? io_dmem_awaddr : dmem_awaddr;	// @[src/main/bus/Xbar.scala:526:32, :528:20, :551:{33,50}, :553:{39,57}, :590:20, :623:20, :705:20]
       default:
-        casez_tmp_5 = soc_arburst;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :80:30, :187:20, :244:20, :260:21, :290:18, :293:21, :372:18, :375:21]
-    endcase	// @[src/main/bus/Xbar.scala:26:29, :77:27, :80:30, :152:30, :187:20, :244:20, :260:21, :290:18, :293:21, :372:18, :375:21]
+        casez_tmp_5 = 32'h0;	// @[src/main/bus/Xbar.scala:528:20, :551:50, :590:20, :705:20, :719:25]
+    endcase	// @[src/main/bus/Xbar.scala:487:30, :528:20, :551:50, :590:20, :705:20]
   end // always_comb
-  reg  [31:0] casez_tmp_6;	// @[src/main/bus/Xbar.scala:187:20, :377:20]
-  always_comb begin	// @[src/main/bus/Xbar.scala:26:29, :48:31, :82:29, :187:20, :244:20, :262:20, :276:22, :295:20, :309:22, :377:20]
-    casez (n_state)	// @[src/main/bus/Xbar.scala:26:29, :48:31, :82:29, :152:30, :187:20, :244:20, :262:20, :276:22, :295:20, :309:22, :377:20]
-      3'b000:
-        casez_tmp_6 = 32'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :82:29, :187:20, :244:20, :262:20, :276:22, :295:20, :309:22, :377:20, :391:22]
-      3'b001:
-        casez_tmp_6 = io_imem_awaddr;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :82:29, :187:20, :244:20, :262:20, :276:22, :295:20, :309:22, :377:20]
-      3'b010:
-        casez_tmp_6 = io_imem_awaddr;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :82:29, :187:20, :244:20, :262:20, :276:22, :295:20, :309:22, :377:20]
-      3'b011:
-        casez_tmp_6 = io_dmem_awaddr;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :82:29, :187:20, :244:20, :262:20, :276:22, :295:20, :309:22, :377:20]
-      3'b100:
-        casez_tmp_6 = io_dmem_awaddr;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :82:29, :187:20, :244:20, :262:20, :276:22, :295:20, :309:22, :377:20]
-      3'b101:
-        casez_tmp_6 = 32'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :82:29, :187:20, :244:20, :262:20, :276:22, :295:20, :309:22, :377:20, :391:22]
-      3'b110:
-        casez_tmp_6 = 32'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :82:29, :187:20, :244:20, :262:20, :276:22, :295:20, :309:22, :377:20, :391:22]
-      default:
-        casez_tmp_6 = soc_awaddr;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :82:29, :187:20, :244:20, :262:20, :276:22, :295:20, :309:22, :377:20]
-    endcase	// @[src/main/bus/Xbar.scala:26:29, :48:31, :82:29, :152:30, :187:20, :244:20, :262:20, :276:22, :295:20, :309:22, :377:20]
-  end // always_comb
-  reg  [3:0]  casez_tmp_7;	// @[src/main/bus/Xbar.scala:187:20, :379:18]
-  always_comb begin	// @[src/main/bus/Xbar.scala:26:29, :77:27, :84:27, :187:20, :244:20, :264:18, :290:18, :297:18, :372:18, :379:18]
-    casez (n_state)	// @[src/main/bus/Xbar.scala:26:29, :77:27, :84:27, :152:30, :187:20, :244:20, :264:18, :290:18, :297:18, :372:18, :379:18]
-      3'b000:
-        casez_tmp_7 = 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :26:29, :77:27, :84:27, :187:20, :244:20, :264:18, :290:18, :297:18, :372:18, :379:18]
-      3'b001:
-        casez_tmp_7 = io_imem_awid;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :84:27, :187:20, :244:20, :264:18, :290:18, :297:18, :372:18, :379:18]
-      3'b010:
-        casez_tmp_7 = io_imem_awid;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :84:27, :187:20, :244:20, :264:18, :290:18, :297:18, :372:18, :379:18]
-      3'b011:
-        casez_tmp_7 = 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :26:29, :77:27, :84:27, :187:20, :244:20, :264:18, :290:18, :297:18, :372:18, :379:18]
-      3'b100:
-        casez_tmp_7 = 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :26:29, :77:27, :84:27, :187:20, :244:20, :264:18, :290:18, :297:18, :372:18, :379:18]
-      3'b101:
-        casez_tmp_7 = 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :26:29, :77:27, :84:27, :187:20, :244:20, :264:18, :290:18, :297:18, :372:18, :379:18]
-      3'b110:
-        casez_tmp_7 = 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :26:29, :77:27, :84:27, :187:20, :244:20, :264:18, :290:18, :297:18, :372:18, :379:18]
-      default:
-        casez_tmp_7 = soc_awid;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :84:27, :187:20, :244:20, :264:18, :290:18, :297:18, :372:18, :379:18]
-    endcase	// @[src/main/bus/Xbar.scala:26:29, :77:27, :84:27, :152:30, :187:20, :244:20, :264:18, :290:18, :297:18, :372:18, :379:18]
-  end // always_comb
-  reg  [7:0]  casez_tmp_8;	// @[src/main/bus/Xbar.scala:187:20, :380:19]
-  always_comb begin	// @[src/main/bus/Xbar.scala:26:29, :77:27, :85:28, :187:20, :244:20, :265:19, :290:18, :298:19, :372:18, :380:19]
-    casez (n_state)	// @[src/main/bus/Xbar.scala:26:29, :77:27, :85:28, :152:30, :187:20, :244:20, :265:19, :290:18, :298:19, :372:18, :380:19]
-      3'b000:
-        casez_tmp_8 = 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :85:28, :187:20, :244:20, :265:19, :290:18, :298:19, :372:18, :380:19]
-      3'b001:
-        casez_tmp_8 = io_imem_awlen;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :85:28, :187:20, :244:20, :265:19, :290:18, :298:19, :372:18, :380:19]
-      3'b010:
-        casez_tmp_8 = io_imem_awlen;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :85:28, :187:20, :244:20, :265:19, :290:18, :298:19, :372:18, :380:19]
-      3'b011:
-        casez_tmp_8 = 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :85:28, :187:20, :244:20, :265:19, :290:18, :298:19, :372:18, :380:19]
-      3'b100:
-        casez_tmp_8 = 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :85:28, :187:20, :244:20, :265:19, :290:18, :298:19, :372:18, :380:19]
-      3'b101:
-        casez_tmp_8 = 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :85:28, :187:20, :244:20, :265:19, :290:18, :298:19, :372:18, :380:19]
-      3'b110:
-        casez_tmp_8 = 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :85:28, :187:20, :244:20, :265:19, :290:18, :298:19, :372:18, :380:19]
-      default:
-        casez_tmp_8 = soc_awlen;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :85:28, :187:20, :244:20, :265:19, :290:18, :298:19, :372:18, :380:19]
-    endcase	// @[src/main/bus/Xbar.scala:26:29, :77:27, :85:28, :152:30, :187:20, :244:20, :265:19, :290:18, :298:19, :372:18, :380:19]
-  end // always_comb
-  reg  [2:0]  casez_tmp_9;	// @[src/main/bus/Xbar.scala:187:20, :381:20]
-  always_comb begin	// @[src/main/bus/Xbar.scala:26:29, :48:31, :86:29, :187:20, :244:20, :266:20, :276:22, :299:20, :309:22, :381:20]
-    casez (n_state)	// @[src/main/bus/Xbar.scala:26:29, :48:31, :86:29, :152:30, :187:20, :244:20, :266:20, :276:22, :299:20, :309:22, :381:20]
-      3'b000:
-        casez_tmp_9 = 3'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :86:29, :151:26, :187:20, :244:20, :266:20, :276:22, :299:20, :309:22, :381:20]
-      3'b001:
-        casez_tmp_9 = io_imem_awsize;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :86:29, :187:20, :244:20, :266:20, :276:22, :299:20, :309:22, :381:20]
-      3'b010:
-        casez_tmp_9 = io_imem_awsize;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :86:29, :187:20, :244:20, :266:20, :276:22, :299:20, :309:22, :381:20]
-      3'b011:
-        casez_tmp_9 = io_dmem_awsize;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :86:29, :187:20, :244:20, :266:20, :276:22, :299:20, :309:22, :381:20]
-      3'b100:
-        casez_tmp_9 = io_dmem_awsize;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :86:29, :187:20, :244:20, :266:20, :276:22, :299:20, :309:22, :381:20]
-      3'b101:
-        casez_tmp_9 = 3'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :86:29, :151:26, :187:20, :244:20, :266:20, :276:22, :299:20, :309:22, :381:20]
-      3'b110:
-        casez_tmp_9 = 3'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :86:29, :151:26, :187:20, :244:20, :266:20, :276:22, :299:20, :309:22, :381:20]
-      default:
-        casez_tmp_9 = soc_awsize;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :86:29, :187:20, :244:20, :266:20, :276:22, :299:20, :309:22, :381:20]
-    endcase	// @[src/main/bus/Xbar.scala:26:29, :48:31, :86:29, :152:30, :187:20, :244:20, :266:20, :276:22, :299:20, :309:22, :381:20]
-  end // always_comb
-  reg  [1:0]  casez_tmp_10;	// @[src/main/bus/Xbar.scala:187:20, :382:21]
-  always_comb begin	// @[src/main/bus/Xbar.scala:26:29, :77:27, :87:30, :187:20, :244:20, :267:21, :290:18, :300:21, :372:18, :382:21]
-    casez (n_state)	// @[src/main/bus/Xbar.scala:26:29, :77:27, :87:30, :152:30, :187:20, :244:20, :267:21, :290:18, :300:21, :372:18, :382:21]
-      3'b000:
-        casez_tmp_10 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :87:30, :187:20, :244:20, :267:21, :290:18, :300:21, :372:18, :382:21]
-      3'b001:
-        casez_tmp_10 = io_imem_awburst;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :87:30, :187:20, :244:20, :267:21, :290:18, :300:21, :372:18, :382:21]
-      3'b010:
-        casez_tmp_10 = io_imem_awburst;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :87:30, :187:20, :244:20, :267:21, :290:18, :300:21, :372:18, :382:21]
-      3'b011:
-        casez_tmp_10 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :87:30, :187:20, :244:20, :267:21, :290:18, :300:21, :372:18, :382:21]
-      3'b100:
-        casez_tmp_10 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :87:30, :187:20, :244:20, :267:21, :290:18, :300:21, :372:18, :382:21]
-      3'b101:
-        casez_tmp_10 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :87:30, :187:20, :244:20, :267:21, :290:18, :300:21, :372:18, :382:21]
-      3'b110:
-        casez_tmp_10 = 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :26:29, :77:27, :87:30, :187:20, :244:20, :267:21, :290:18, :300:21, :372:18, :382:21]
-      default:
-        casez_tmp_10 = soc_awburst;	// @[src/main/bus/Xbar.scala:26:29, :77:27, :87:30, :187:20, :244:20, :267:21, :290:18, :300:21, :372:18, :382:21]
-    endcase	// @[src/main/bus/Xbar.scala:26:29, :77:27, :87:30, :152:30, :187:20, :244:20, :267:21, :290:18, :300:21, :372:18, :382:21]
-  end // always_comb
-  reg  [31:0] casez_tmp_11;	// @[src/main/bus/Xbar.scala:187:20, :383:19]
-  always_comb begin	// @[src/main/bus/Xbar.scala:26:29, :48:31, :88:28, :187:20, :244:20, :268:19, :276:22, :301:19, :309:22, :383:19]
-    casez (n_state)	// @[src/main/bus/Xbar.scala:26:29, :48:31, :88:28, :152:30, :187:20, :244:20, :268:19, :276:22, :301:19, :309:22, :383:19]
-      3'b000:
-        casez_tmp_11 = 32'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :88:28, :187:20, :244:20, :268:19, :276:22, :301:19, :309:22, :383:19, :391:22]
-      3'b001:
-        casez_tmp_11 = io_imem_wdata;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :88:28, :187:20, :244:20, :268:19, :276:22, :301:19, :309:22, :383:19]
-      3'b010:
-        casez_tmp_11 = io_imem_wdata;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :88:28, :187:20, :244:20, :268:19, :276:22, :301:19, :309:22, :383:19]
-      3'b011:
-        casez_tmp_11 = io_dmem_wdata;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :88:28, :187:20, :244:20, :268:19, :276:22, :301:19, :309:22, :383:19]
-      3'b100:
-        casez_tmp_11 = io_dmem_wdata;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :88:28, :187:20, :244:20, :268:19, :276:22, :301:19, :309:22, :383:19]
-      3'b101:
-        casez_tmp_11 = 32'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :88:28, :187:20, :244:20, :268:19, :276:22, :301:19, :309:22, :383:19, :391:22]
-      3'b110:
-        casez_tmp_11 = 32'h0;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :88:28, :187:20, :244:20, :268:19, :276:22, :301:19, :309:22, :383:19, :391:22]
-      default:
-        casez_tmp_11 = soc_wdata;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :88:28, :187:20, :244:20, :268:19, :276:22, :301:19, :309:22, :383:19]
-    endcase	// @[src/main/bus/Xbar.scala:26:29, :48:31, :88:28, :152:30, :187:20, :244:20, :268:19, :276:22, :301:19, :309:22, :383:19]
-  end // always_comb
-  reg  [3:0]  casez_tmp_12;	// @[src/main/bus/Xbar.scala:187:20, :384:19]
-  always_comb begin	// @[src/main/bus/Xbar.scala:26:29, :48:31, :89:28, :187:20, :244:20, :269:19, :276:22, :302:19, :309:22, :384:19]
-    casez (n_state)	// @[src/main/bus/Xbar.scala:26:29, :48:31, :89:28, :152:30, :187:20, :244:20, :269:19, :276:22, :302:19, :309:22, :384:19]
-      3'b000:
-        casez_tmp_12 = 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :26:29, :48:31, :89:28, :187:20, :244:20, :269:19, :276:22, :302:19, :309:22, :384:19]
-      3'b001:
-        casez_tmp_12 = io_imem_wstrb;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :89:28, :187:20, :244:20, :269:19, :276:22, :302:19, :309:22, :384:19]
-      3'b010:
-        casez_tmp_12 = io_imem_wstrb;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :89:28, :187:20, :244:20, :269:19, :276:22, :302:19, :309:22, :384:19]
-      3'b011:
-        casez_tmp_12 = io_dmem_wstrb;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :89:28, :187:20, :244:20, :269:19, :276:22, :302:19, :309:22, :384:19]
-      3'b100:
-        casez_tmp_12 = io_dmem_wstrb;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :89:28, :187:20, :244:20, :269:19, :276:22, :302:19, :309:22, :384:19]
-      3'b101:
-        casez_tmp_12 = 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :26:29, :48:31, :89:28, :187:20, :244:20, :269:19, :276:22, :302:19, :309:22, :384:19]
-      3'b110:
-        casez_tmp_12 = 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :26:29, :48:31, :89:28, :187:20, :244:20, :269:19, :276:22, :302:19, :309:22, :384:19]
-      default:
-        casez_tmp_12 = soc_wstrb;	// @[src/main/bus/Xbar.scala:26:29, :48:31, :89:28, :187:20, :244:20, :269:19, :276:22, :302:19, :309:22, :384:19]
-    endcase	// @[src/main/bus/Xbar.scala:26:29, :48:31, :89:28, :152:30, :187:20, :244:20, :269:19, :276:22, :302:19, :309:22, :384:19]
-  end // always_comb
-  wire        _GEN = n_state == 3'h0;	// @[src/main/bus/Xbar.scala:151:26, :152:30, :187:20]
-  wire        _GEN_0 = n_state == 3'h1;	// @[src/main/bus/Xbar.scala:152:30, :187:20, src/main/scala/chisel3/util/Mux.scala:126:16]
-  wire        _GEN_1 = n_state == 3'h2;	// @[src/main/bus/Xbar.scala:152:30, :179:29, :187:20]
-  wire        _GEN_2 = _GEN_0 | _GEN_1;	// @[src/main/bus/Xbar.scala:26:29, :187:20, :244:20]
-  wire        _GEN_3 = n_state == 3'h3;	// @[src/main/bus/Xbar.scala:152:30, :187:20, src/main/scala/chisel3/util/Mux.scala:126:16]
-  wire        _GEN_4 = n_state == 3'h4;	// @[src/main/bus/Xbar.scala:152:30, :181:29, :187:20]
-  wire        _GEN_5 = n_state == 3'h5;	// @[src/main/bus/Xbar.scala:152:30, :187:20, src/main/scala/chisel3/util/Mux.scala:126:16]
-  wire        _GEN_6 = n_state == 3'h6;	// @[src/main/bus/Xbar.scala:152:30, :183:29, :187:20]
-  wire        _GEN_7 = _GEN_5 | _GEN_6;	// @[src/main/bus/Xbar.scala:48:31, :187:20, :309:22]
-  wire        _GEN_8 = _GEN_3 | _GEN_4;	// @[src/main/bus/Xbar.scala:187:20, :276:22]
-  wire        _GEN_9 = _GEN | _GEN_2;	// @[src/main/bus/Xbar.scala:26:29, :187:20, :244:20, :356:22]
-  wire        _GEN_10 = _GEN | _GEN_0 | _GEN_1 | _GEN_8;	// @[src/main/bus/Xbar.scala:187:20, :276:22, :391:22]
-  wire        _GEN_11 = _GEN_4 | _GEN_7;	// @[src/main/bus/Xbar.scala:25:31, :48:31, :187:20, :309:22, :342:22]
-  wire        _GEN_12 = _GEN_3 | _GEN_11;	// @[src/main/bus/Xbar.scala:25:31, :187:20, :342:22]
-  always @(posedge clock) begin	// @[src/main/bus/Xbar.scala:21:7]
-    if (reset) begin	// @[src/main/bus/Xbar.scala:21:7]
-      imem_arready <= 1'h1;	// @[src/main/bus/Xbar.scala:22:16, :25:31]
-      imem_rdata <= 32'h0;	// @[src/main/bus/Xbar.scala:26:29, :187:20, :391:22]
-      imem_rresp <= 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :27:29]
-      imem_rvalid <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :28:30]
-      dmem_arready <= 1'h1;	// @[src/main/bus/Xbar.scala:22:16, :48:31]
-      dmem_rdata <= 32'h0;	// @[src/main/bus/Xbar.scala:49:29, :187:20, :391:22]
-      dmem_rvalid <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :51:30]
-      dmem_awready <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :54:31]
-      dmem_wready <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :55:30]
-      dmem_bvalid <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :57:30]
-      soc_araddr <= 32'h0;	// @[src/main/bus/Xbar.scala:75:29, :187:20, :391:22]
-      soc_arvalid <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :76:30]
-      soc_arid <= 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :77:27]
-      soc_arlen <= 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :78:28]
-      soc_arsize <= 3'h0;	// @[src/main/bus/Xbar.scala:79:29, :151:26]
-      soc_arburst <= 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :80:30]
-      soc_rready <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :81:29]
-      soc_awaddr <= 32'h0;	// @[src/main/bus/Xbar.scala:82:29, :187:20, :391:22]
-      soc_awvalid <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :83:30]
-      soc_awid <= 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :84:27]
-      soc_awlen <= 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :85:28]
-      soc_awsize <= 3'h0;	// @[src/main/bus/Xbar.scala:86:29, :151:26]
-      soc_awburst <= 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :87:30]
-      soc_wdata <= 32'h0;	// @[src/main/bus/Xbar.scala:88:28, :187:20, :391:22]
-      soc_wstrb <= 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :89:28]
-      soc_wvalid <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :90:29]
-      soc_wlast <= 1'h1;	// @[src/main/bus/Xbar.scala:22:16, :91:28]
-      soc_bready <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :92:29]
-      clint_araddr <= 32'h0;	// @[src/main/bus/Xbar.scala:112:31, :187:20, :391:22]
-      clint_arvalid <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :113:32]
-      clint_arid <= 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :114:29]
-      clint_arlen <= 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :115:30]
-      clint_arsize <= 3'h0;	// @[src/main/bus/Xbar.scala:116:31, :151:26]
-      clint_arburst <= 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :117:32]
-      clint_rready <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :118:31]
-      clint_awaddr <= 32'h0;	// @[src/main/bus/Xbar.scala:119:31, :187:20, :391:22]
-      clint_awvalid <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :120:32]
-      clint_awid <= 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :121:29]
-      clint_awlen <= 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :122:30]
-      clint_awsize <= 3'h0;	// @[src/main/bus/Xbar.scala:123:31, :151:26]
-      clint_awburst <= 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :124:32]
-      clint_wdata <= 32'h0;	// @[src/main/bus/Xbar.scala:125:30, :187:20, :391:22]
-      clint_wstrb <= 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :126:30]
-      clint_wvalid <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :127:31]
-      clint_bready <= 1'h0;	// @[src/main/bus/Xbar.scala:26:29, :129:31]
-      c_state <= 3'h0;	// @[src/main/bus/Xbar.scala:151:26]
+  wire        _GEN_8 = _GEN | _GEN_0;	// @[src/main/bus/Xbar.scala:528:20, :684:25]
+  wire        _GEN_9 = _GEN | _GEN_0 | _GEN_5;	// @[src/main/bus/Xbar.scala:528:20, :719:25]
+  wire        _GEN_10 = _GEN_9 | ~(&n_state);	// @[src/main/bus/Xbar.scala:487:30, :528:20, :637:25, :684:25, :719:25]
+  always @(posedge clock) begin	// @[src/main/bus/Xbar.scala:434:7]
+    if (reset) begin	// @[src/main/bus/Xbar.scala:434:7]
+      soc_araddr <= 32'h0;	// @[src/main/bus/Xbar.scala:438:29, :719:25]
+      soc_arvalid <= 1'h0;	// @[src/main/bus/Xbar.scala:438:29, :439:30]
+      soc_arid <= 4'h0;	// @[src/main/bus/Xbar.scala:434:7, :440:27]
+      soc_arlen <= 8'h0;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :441:28, :528:20, :619:19, :626:19, :701:19, :708:19]
+      soc_arsize <= 3'h0;	// @[src/main/bus/Xbar.scala:442:29, :723:25]
+      soc_arburst <= 2'h0;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :443:30, :528:20, :621:21, :628:21, :703:21, :710:21]
+      soc_rready <= 1'h0;	// @[src/main/bus/Xbar.scala:438:29, :444:29]
+      soc_awaddr <= 32'h0;	// @[src/main/bus/Xbar.scala:445:29, :719:25]
+      soc_awvalid <= 1'h0;	// @[src/main/bus/Xbar.scala:438:29, :446:30]
+      soc_awid <= 4'h0;	// @[src/main/bus/Xbar.scala:434:7, :447:27]
+      soc_awlen <= 8'h0;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :448:28, :528:20, :619:19, :626:19, :701:19, :708:19]
+      soc_awsize <= 3'h0;	// @[src/main/bus/Xbar.scala:449:29, :723:25]
+      soc_awburst <= 2'h0;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :450:30, :528:20, :621:21, :628:21, :703:21, :710:21]
+      soc_wdata <= 32'h0;	// @[src/main/bus/Xbar.scala:451:28, :719:25]
+      soc_wstrb <= 4'h0;	// @[src/main/bus/Xbar.scala:434:7, :452:28]
+      soc_wvalid <= 1'h0;	// @[src/main/bus/Xbar.scala:438:29, :453:29]
+      soc_wlast <= 1'h1;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :454:28, :528:20, :632:19, :714:19]
+      soc_bready <= 1'h0;	// @[src/main/bus/Xbar.scala:438:29, :455:29]
+      burstCnt <= 8'h0;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :483:37, :528:20, :619:19, :626:19, :701:19, :708:19]
+      c_state <= 2'h0;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :486:26, :528:20, :621:21, :628:21, :703:21, :710:21]
     end
-    else begin	// @[src/main/bus/Xbar.scala:21:7]
-      imem_arready <= _GEN | (_GEN_2 ? io_soc_arready : _GEN_12 | imem_arready);	// @[src/main/bus/Xbar.scala:25:31, :26:29, :187:20, :243:22, :244:20, :342:22]
-      if (_GEN | ~_GEN_2) begin	// @[src/main/bus/Xbar.scala:26:29, :187:20, :244:20]
-      end
-      else	// @[src/main/bus/Xbar.scala:26:29, :187:20]
-        imem_rdata <= io_soc_rdata;	// @[src/main/bus/Xbar.scala:26:29]
-      imem_rresp <= casez_tmp_0;	// @[src/main/bus/Xbar.scala:27:29, :187:20, :344:20]
-      imem_rvalid <= ~_GEN & (_GEN_2 ? io_soc_rvalid : ~_GEN_12 & imem_rvalid);	// @[src/main/bus/Xbar.scala:25:31, :26:29, :28:30, :187:20, :244:20, :246:21, :342:22, :345:21]
-      dmem_arready <=
-        _GEN_9 | (_GEN_8 ? io_soc_arready : _GEN_7 ? io_clint_arready : dmem_arready);	// @[src/main/bus/Xbar.scala:48:31, :187:20, :276:22, :309:22, :356:22]
-      if (~_GEN_9) begin	// @[src/main/bus/Xbar.scala:187:20, :356:22, :359:21]
-        if (_GEN_8)	// @[src/main/bus/Xbar.scala:187:20, :276:22]
-          dmem_rdata <= io_soc_rdata;	// @[src/main/bus/Xbar.scala:49:29]
-        else if (_GEN_7)	// @[src/main/bus/Xbar.scala:48:31, :187:20, :309:22]
-          dmem_rdata <= io_clint_rdata;	// @[src/main/bus/Xbar.scala:49:29]
-      end
-      dmem_rvalid <=
-        ~_GEN_9 & (_GEN_8 ? io_soc_rvalid : _GEN_7 ? io_clint_rvalid : dmem_rvalid);	// @[src/main/bus/Xbar.scala:48:31, :51:30, :187:20, :276:22, :279:21, :309:22, :312:21, :356:22, :359:21]
-      dmem_awready <=
-        _GEN_9 | (_GEN_8 ? io_soc_awready : _GEN_7 ? io_clint_awready : dmem_awready);	// @[src/main/bus/Xbar.scala:48:31, :54:31, :187:20, :276:22, :282:22, :309:22, :315:22, :356:22, :362:22]
-      dmem_wready <=
-        _GEN_9 | (_GEN_8 ? io_soc_wready : _GEN_7 ? io_clint_wready : dmem_wready);	// @[src/main/bus/Xbar.scala:48:31, :55:30, :187:20, :276:22, :283:21, :309:22, :316:21, :356:22, :363:21]
-      dmem_bvalid <=
-        ~_GEN_9 & (_GEN_8 ? io_soc_bvalid : _GEN_7 ? io_clint_bvalid : dmem_bvalid);	// @[src/main/bus/Xbar.scala:48:31, :57:30, :187:20, :276:22, :285:21, :309:22, :318:21, :356:22, :359:21, :365:21]
-      soc_araddr <= casez_tmp_1;	// @[src/main/bus/Xbar.scala:75:29, :187:20, :370:20]
+    else begin	// @[src/main/bus/Xbar.scala:434:7]
+      soc_araddr <= casez_tmp_4;	// @[src/main/bus/Xbar.scala:438:29, :528:20, :698:20]
       soc_arvalid <=
         ~_GEN
         & (_GEN_0
-             ? io_imem_arvalid
-             : ~_GEN_1 & (_GEN_3 ? io_dmem_arvalid : ~_GEN_11 & soc_arvalid));	// @[src/main/bus/Xbar.scala:25:31, :76:30, :187:20, :203:25, :218:25, :256:21, :289:21, :342:22, :345:21, :371:21]
-      soc_arid <= casez_tmp_2;	// @[src/main/bus/Xbar.scala:77:27, :187:20, :372:18]
-      soc_arlen <= casez_tmp_3;	// @[src/main/bus/Xbar.scala:78:28, :187:20, :373:19]
-      soc_arsize <= casez_tmp_4;	// @[src/main/bus/Xbar.scala:79:29, :187:20, :374:20]
-      soc_arburst <= casez_tmp_5;	// @[src/main/bus/Xbar.scala:80:30, :187:20, :375:21]
-      soc_rready <=
-        ~_GEN
-        & (_GEN_0
-             ? io_imem_rready
-             : ~_GEN_1 & (_GEN_3 ? io_dmem_rready : ~_GEN_11 & soc_rready));	// @[src/main/bus/Xbar.scala:25:31, :76:30, :81:29, :187:20, :203:25, :204:24, :218:25, :219:24, :261:20, :294:20, :342:22, :345:21, :371:21, :376:20]
-      soc_awaddr <= casez_tmp_6;	// @[src/main/bus/Xbar.scala:82:29, :187:20, :377:20]
+             ? ~_GEN_2 & (_GEN_3 | io_imem_arvalid)
+             : _GEN_5 & ~_GEN_2 & (_GEN_3 | io_dmem_arvalid));	// @[src/main/bus/Xbar.scala:439:30, :528:20, :533:{33,50}, :534:29, :535:{39,57}, :536:29, :545:50, :547:57, :548:29, :584:21, :617:21, :673:24, :699:21]
+      soc_arid <= _GEN_1 ? 4'h0 : io_imem_arid;	// @[src/main/bus/Xbar.scala:434:7, :440:27, :528:20, :672:23, :700:18]
+      soc_arlen <= _GEN_1 ? 8'h0 : _GEN_4 ? io_imem_arlen : imem_arlen;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :441:28, :523:31, :528:20, :533:50, :535:57, :583:20, :586:19, :619:19, :626:19, :672:23, :701:19, :708:19]
+      soc_arsize <= casez_tmp_0;	// @[src/main/bus/Xbar.scala:442:29, :528:20, :702:20]
+      soc_arburst <= _GEN_1 ? 2'h0 : _GEN_4 ? io_imem_arburst : imem_arburst;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :443:30, :522:33, :528:20, :533:50, :535:57, :583:20, :588:21, :621:21, :628:21, :672:23, :703:21, :710:21]
+      soc_rready <= ~_GEN & (_GEN_0 ? io_imem_rready : _GEN_5 & io_dmem_rready);	// @[src/main/bus/Xbar.scala:444:29, :528:20, :589:20, :622:20, :673:24, :704:20]
+      soc_awaddr <= casez_tmp_5;	// @[src/main/bus/Xbar.scala:445:29, :528:20, :705:20]
       soc_awvalid <=
         ~_GEN
-        & (_GEN_0
-             ? io_imem_awvalid
-             : ~_GEN_1 & (_GEN_3 ? io_dmem_awvalid : ~_GEN_11 & soc_awvalid));	// @[src/main/bus/Xbar.scala:25:31, :76:30, :83:30, :187:20, :203:25, :205:25, :218:25, :220:25, :263:21, :296:21, :342:22, :345:21, :371:21, :378:21]
-      soc_awid <= casez_tmp_7;	// @[src/main/bus/Xbar.scala:84:27, :187:20, :379:18]
-      soc_awlen <= casez_tmp_8;	// @[src/main/bus/Xbar.scala:85:28, :187:20, :380:19]
-      soc_awsize <= casez_tmp_9;	// @[src/main/bus/Xbar.scala:86:29, :187:20, :381:20]
-      soc_awburst <= casez_tmp_10;	// @[src/main/bus/Xbar.scala:87:30, :187:20, :382:21]
-      soc_wdata <= casez_tmp_11;	// @[src/main/bus/Xbar.scala:88:28, :187:20, :383:19]
-      soc_wstrb <= casez_tmp_12;	// @[src/main/bus/Xbar.scala:89:28, :187:20, :384:19]
-      soc_wvalid <=
-        ~_GEN
-        & (_GEN_0
-             ? io_imem_wvalid
-             : ~_GEN_1 & (_GEN_3 ? io_dmem_wvalid : ~_GEN_11 & soc_wvalid));	// @[src/main/bus/Xbar.scala:25:31, :76:30, :90:29, :187:20, :203:25, :206:24, :218:25, :221:24, :270:20, :303:20, :342:22, :345:21, :371:21, :385:20]
-      soc_wlast <= _GEN | (_GEN_2 ? io_imem_wlast : _GEN_8 | _GEN_7 | soc_wlast);	// @[src/main/bus/Xbar.scala:26:29, :48:31, :91:28, :187:20, :244:20, :271:19, :276:22, :304:19, :309:22, :386:19]
-      soc_bready <=
-        ~_GEN
-        & (_GEN_0
-             ? io_imem_bready
-             : ~_GEN_1 & (_GEN_3 ? io_dmem_bready : ~_GEN_11 & soc_bready));	// @[src/main/bus/Xbar.scala:25:31, :76:30, :92:29, :187:20, :203:25, :207:24, :218:25, :222:24, :272:20, :305:20, :342:22, :345:21, :371:21, :387:20]
-      if (_GEN_10) begin	// @[src/main/bus/Xbar.scala:187:20, :391:22]
-        clint_araddr <= 32'h0;	// @[src/main/bus/Xbar.scala:112:31, :187:20, :391:22]
-        clint_arsize <= 3'h0;	// @[src/main/bus/Xbar.scala:116:31, :151:26]
-        clint_awaddr <= 32'h0;	// @[src/main/bus/Xbar.scala:119:31, :187:20, :391:22]
-        clint_awsize <= 3'h0;	// @[src/main/bus/Xbar.scala:123:31, :151:26]
-        clint_wdata <= 32'h0;	// @[src/main/bus/Xbar.scala:125:30, :187:20, :391:22]
-        clint_wstrb <= 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :126:30]
-      end
-      else if (_GEN_7) begin	// @[src/main/bus/Xbar.scala:48:31, :187:20, :309:22]
-        clint_araddr <= io_dmem_araddr;	// @[src/main/bus/Xbar.scala:112:31]
-        clint_arsize <= io_dmem_arsize;	// @[src/main/bus/Xbar.scala:116:31]
-        clint_awaddr <= io_dmem_awaddr;	// @[src/main/bus/Xbar.scala:119:31]
-        clint_awsize <= io_dmem_awsize;	// @[src/main/bus/Xbar.scala:123:31]
-        clint_wdata <= io_dmem_wdata;	// @[src/main/bus/Xbar.scala:125:30]
-        clint_wstrb <= io_dmem_wstrb;	// @[src/main/bus/Xbar.scala:126:30]
-      end
-      clint_arvalid <= ~_GEN_10 & (_GEN_5 ? io_dmem_arvalid : ~_GEN_6 & clint_arvalid);	// @[src/main/bus/Xbar.scala:113:32, :187:20, :233:27, :322:23, :391:22, :392:23]
-      if (_GEN_10 | _GEN_7) begin	// @[src/main/bus/Xbar.scala:48:31, :114:29, :187:20, :309:22, :323:20, :391:22, :393:20]
-        clint_arid <= 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :114:29]
-        clint_arlen <= 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :115:30]
-        clint_arburst <= 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :117:32]
-        clint_awid <= 4'h0;	// @[src/main/bus/Xbar.scala:21:7, :121:29]
-        clint_awlen <= 8'h0;	// @[src/main/bus/Xbar.scala:22:16, :122:30]
-        clint_awburst <= 2'h0;	// @[src/main/bus/Xbar.scala:22:16, :124:32]
-      end
-      clint_rready <= ~_GEN_10 & (_GEN_5 ? io_dmem_rready : ~_GEN_6 & clint_rready);	// @[src/main/bus/Xbar.scala:113:32, :118:31, :187:20, :233:27, :234:26, :327:22, :391:22, :392:23, :397:22]
-      clint_awvalid <= ~_GEN_10 & (_GEN_5 ? io_dmem_awvalid : ~_GEN_6 & clint_awvalid);	// @[src/main/bus/Xbar.scala:113:32, :120:32, :187:20, :233:27, :235:27, :329:23, :391:22, :392:23, :399:23]
-      clint_wvalid <= ~_GEN_10 & (_GEN_5 ? io_dmem_wvalid : ~_GEN_6 & clint_wvalid);	// @[src/main/bus/Xbar.scala:113:32, :127:31, :187:20, :233:27, :236:26, :336:22, :391:22, :392:23, :406:22]
-      clint_bready <= ~_GEN_10 & (_GEN_5 ? io_dmem_bready : ~_GEN_6 & clint_bready);	// @[src/main/bus/Xbar.scala:113:32, :129:31, :187:20, :233:27, :237:26, :338:22, :391:22, :392:23, :408:22]
-      c_state <= n_state;	// @[src/main/bus/Xbar.scala:151:26, :152:30]
+        & (_GEN_0 ? io_imem_awvalid : _GEN_5 & ~_GEN_6 & (_GEN_7 | io_dmem_awvalid));	// @[src/main/bus/Xbar.scala:446:30, :528:20, :551:{33,50}, :552:29, :553:{39,57}, :554:29, :591:21, :624:21, :673:24, :706:21]
+      soc_awid <= _GEN_1 ? 4'h0 : io_imem_awid;	// @[src/main/bus/Xbar.scala:434:7, :447:27, :528:20, :672:23, :707:18]
+      soc_awlen <= _GEN_1 ? 8'h0 : io_imem_awlen;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :448:28, :528:20, :619:19, :626:19, :672:23, :701:19, :708:19]
+      soc_awsize <= casez_tmp_1;	// @[src/main/bus/Xbar.scala:449:29, :528:20, :709:20]
+      soc_awburst <= _GEN_1 ? 2'h0 : io_imem_awburst;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :450:30, :528:20, :621:21, :628:21, :672:23, :703:21, :710:21]
+      soc_wdata <= casez_tmp_2;	// @[src/main/bus/Xbar.scala:451:28, :528:20, :711:19]
+      soc_wstrb <= casez_tmp_3;	// @[src/main/bus/Xbar.scala:452:28, :528:20, :712:19]
+      soc_wvalid <= ~_GEN & (_GEN_0 ? io_imem_wvalid : _GEN_5 & io_dmem_wvalid);	// @[src/main/bus/Xbar.scala:453:29, :528:20, :598:20, :631:20, :673:24, :713:20]
+      soc_wlast <= _GEN | ~_GEN_0 | io_imem_wlast;	// @[src/main/bus/Xbar.scala:454:28, :528:20, :571:25, :670:25, :714:19]
+      soc_bready <= ~_GEN & (_GEN_0 ? io_imem_bready : _GEN_5 & io_dmem_bready);	// @[src/main/bus/Xbar.scala:455:29, :528:20, :600:20, :633:20, :673:24, :715:20]
+      if (_GEN_2)	// @[src/main/bus/Xbar.scala:533:33]
+        burstCnt <= soc_arlen + 8'h1;	// @[src/main/bus/Xbar.scala:441:28, :483:37, :564:34]
+      else if ((|burstCnt) & soc_rready & io_soc_rvalid)	// @[src/main/bus/Xbar.scala:444:29, :483:37, :499:76, :565:49]
+        burstCnt <= burstCnt - 8'h1;	// @[src/main/bus/Xbar.scala:483:37, :566:30]
+      c_state <= n_state;	// @[src/main/bus/Xbar.scala:486:26, :487:30]
     end
+    soc_rvalid_r <= io_soc_rvalid;	// @[src/main/bus/Xbar.scala:474:31]
+    soc_bvalid_r <= io_soc_bvalid;	// @[src/main/bus/Xbar.scala:476:31]
+    clint_rvalid_r <= io_clint_rvalid;	// @[src/main/bus/Xbar.scala:478:33]
+    clint_bvalid_r <= io_clint_bvalid;	// @[src/main/bus/Xbar.scala:480:33]
+    if (io_imem_arvalid) begin	// @[src/main/bus/Xbar.scala:435:16]
+      imem_araddr <= io_imem_araddr;	// @[src/main/bus/Xbar.scala:521:32]
+      imem_arburst <= io_imem_arburst;	// @[src/main/bus/Xbar.scala:522:33]
+      imem_arlen <= io_imem_arlen;	// @[src/main/bus/Xbar.scala:523:31]
+      imem_arsize <= io_imem_arsize;	// @[src/main/bus/Xbar.scala:524:32]
+    end
+    if (io_dmem_arvalid)	// @[src/main/bus/Xbar.scala:435:16]
+      dmem_araddr <= io_dmem_araddr;	// @[src/main/bus/Xbar.scala:525:32]
+    if (io_dmem_awvalid)	// @[src/main/bus/Xbar.scala:435:16]
+      dmem_awaddr <= io_dmem_awaddr;	// @[src/main/bus/Xbar.scala:526:32]
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_REG_	// @[src/main/bus/Xbar.scala:21:7]
-    `ifdef FIRRTL_BEFORE_INITIAL	// @[src/main/bus/Xbar.scala:21:7]
-      `FIRRTL_BEFORE_INITIAL	// @[src/main/bus/Xbar.scala:21:7]
+  `ifdef ENABLE_INITIAL_REG_	// @[src/main/bus/Xbar.scala:434:7]
+    `ifdef FIRRTL_BEFORE_INITIAL	// @[src/main/bus/Xbar.scala:434:7]
+      `FIRRTL_BEFORE_INITIAL	// @[src/main/bus/Xbar.scala:434:7]
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:11];	// @[src/main/bus/Xbar.scala:21:7]
-    initial begin	// @[src/main/bus/Xbar.scala:21:7]
-      `ifdef INIT_RANDOM_PROLOG_	// @[src/main/bus/Xbar.scala:21:7]
-        `INIT_RANDOM_PROLOG_	// @[src/main/bus/Xbar.scala:21:7]
+    logic [31:0] _RANDOM[0:8];	// @[src/main/bus/Xbar.scala:434:7]
+    initial begin	// @[src/main/bus/Xbar.scala:434:7]
+      `ifdef INIT_RANDOM_PROLOG_	// @[src/main/bus/Xbar.scala:434:7]
+        `INIT_RANDOM_PROLOG_	// @[src/main/bus/Xbar.scala:434:7]
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// @[src/main/bus/Xbar.scala:21:7]
-        for (logic [3:0] i = 4'h0; i < 4'hC; i += 4'h1) begin
-          _RANDOM[i] = `RANDOM;	// @[src/main/bus/Xbar.scala:21:7]
-        end	// @[src/main/bus/Xbar.scala:21:7]
-        imem_arready = _RANDOM[4'h0][0];	// @[src/main/bus/Xbar.scala:21:7, :25:31]
-        imem_rdata = {_RANDOM[4'h0][31:1], _RANDOM[4'h1][0]};	// @[src/main/bus/Xbar.scala:21:7, :25:31, :26:29]
-        imem_rresp = _RANDOM[4'h1][2:1];	// @[src/main/bus/Xbar.scala:21:7, :26:29, :27:29]
-        imem_rvalid = _RANDOM[4'h1][3];	// @[src/main/bus/Xbar.scala:21:7, :26:29, :28:30]
-        dmem_arready = _RANDOM[4'h1][18];	// @[src/main/bus/Xbar.scala:21:7, :26:29, :48:31]
-        dmem_rdata = {_RANDOM[4'h1][31:19], _RANDOM[4'h2][18:0]};	// @[src/main/bus/Xbar.scala:21:7, :26:29, :49:29]
-        dmem_rvalid = _RANDOM[4'h2][21];	// @[src/main/bus/Xbar.scala:21:7, :49:29, :51:30]
-        dmem_awready = _RANDOM[4'h2][27];	// @[src/main/bus/Xbar.scala:21:7, :49:29, :54:31]
-        dmem_wready = _RANDOM[4'h2][28];	// @[src/main/bus/Xbar.scala:21:7, :49:29, :55:30]
-        dmem_bvalid = _RANDOM[4'h2][31];	// @[src/main/bus/Xbar.scala:21:7, :49:29, :57:30]
-        soc_araddr = {_RANDOM[4'h3][31:4], _RANDOM[4'h4][3:0]};	// @[src/main/bus/Xbar.scala:21:7, :75:29]
-        soc_arvalid = _RANDOM[4'h4][4];	// @[src/main/bus/Xbar.scala:21:7, :75:29, :76:30]
-        soc_arid = _RANDOM[4'h4][8:5];	// @[src/main/bus/Xbar.scala:21:7, :75:29, :77:27]
-        soc_arlen = _RANDOM[4'h4][16:9];	// @[src/main/bus/Xbar.scala:21:7, :75:29, :78:28]
-        soc_arsize = _RANDOM[4'h4][19:17];	// @[src/main/bus/Xbar.scala:21:7, :75:29, :79:29]
-        soc_arburst = _RANDOM[4'h4][21:20];	// @[src/main/bus/Xbar.scala:21:7, :75:29, :80:30]
-        soc_rready = _RANDOM[4'h4][22];	// @[src/main/bus/Xbar.scala:21:7, :75:29, :81:29]
-        soc_awaddr = {_RANDOM[4'h4][31:23], _RANDOM[4'h5][22:0]};	// @[src/main/bus/Xbar.scala:21:7, :75:29, :82:29]
-        soc_awvalid = _RANDOM[4'h5][23];	// @[src/main/bus/Xbar.scala:21:7, :82:29, :83:30]
-        soc_awid = _RANDOM[4'h5][27:24];	// @[src/main/bus/Xbar.scala:21:7, :82:29, :84:27]
-        soc_awlen = {_RANDOM[4'h5][31:28], _RANDOM[4'h6][3:0]};	// @[src/main/bus/Xbar.scala:21:7, :82:29, :85:28]
-        soc_awsize = _RANDOM[4'h6][6:4];	// @[src/main/bus/Xbar.scala:21:7, :85:28, :86:29]
-        soc_awburst = _RANDOM[4'h6][8:7];	// @[src/main/bus/Xbar.scala:21:7, :85:28, :87:30]
-        soc_wdata = {_RANDOM[4'h6][31:9], _RANDOM[4'h7][8:0]};	// @[src/main/bus/Xbar.scala:21:7, :85:28, :88:28]
-        soc_wstrb = _RANDOM[4'h7][12:9];	// @[src/main/bus/Xbar.scala:21:7, :88:28, :89:28]
-        soc_wvalid = _RANDOM[4'h7][13];	// @[src/main/bus/Xbar.scala:21:7, :88:28, :90:29]
-        soc_wlast = _RANDOM[4'h7][14];	// @[src/main/bus/Xbar.scala:21:7, :88:28, :91:28]
-        soc_bready = _RANDOM[4'h7][15];	// @[src/main/bus/Xbar.scala:21:7, :88:28, :92:29]
-        clint_araddr = {_RANDOM[4'h7][31:16], _RANDOM[4'h8][15:0]};	// @[src/main/bus/Xbar.scala:21:7, :88:28, :112:31]
-        clint_arvalid = _RANDOM[4'h8][16];	// @[src/main/bus/Xbar.scala:21:7, :112:31, :113:32]
-        clint_arid = _RANDOM[4'h8][20:17];	// @[src/main/bus/Xbar.scala:21:7, :112:31, :114:29]
-        clint_arlen = _RANDOM[4'h8][28:21];	// @[src/main/bus/Xbar.scala:21:7, :112:31, :115:30]
-        clint_arsize = _RANDOM[4'h8][31:29];	// @[src/main/bus/Xbar.scala:21:7, :112:31, :116:31]
-        clint_arburst = _RANDOM[4'h9][1:0];	// @[src/main/bus/Xbar.scala:21:7, :117:32]
-        clint_rready = _RANDOM[4'h9][2];	// @[src/main/bus/Xbar.scala:21:7, :117:32, :118:31]
-        clint_awaddr = {_RANDOM[4'h9][31:3], _RANDOM[4'hA][2:0]};	// @[src/main/bus/Xbar.scala:21:7, :117:32, :119:31]
-        clint_awvalid = _RANDOM[4'hA][3];	// @[src/main/bus/Xbar.scala:21:7, :119:31, :120:32]
-        clint_awid = _RANDOM[4'hA][7:4];	// @[src/main/bus/Xbar.scala:21:7, :119:31, :121:29]
-        clint_awlen = _RANDOM[4'hA][15:8];	// @[src/main/bus/Xbar.scala:21:7, :119:31, :122:30]
-        clint_awsize = _RANDOM[4'hA][18:16];	// @[src/main/bus/Xbar.scala:21:7, :119:31, :123:31]
-        clint_awburst = _RANDOM[4'hA][20:19];	// @[src/main/bus/Xbar.scala:21:7, :119:31, :124:32]
-        clint_wdata = {_RANDOM[4'hA][31:21], _RANDOM[4'hB][20:0]};	// @[src/main/bus/Xbar.scala:21:7, :119:31, :125:30]
-        clint_wstrb = _RANDOM[4'hB][24:21];	// @[src/main/bus/Xbar.scala:21:7, :125:30, :126:30]
-        clint_wvalid = _RANDOM[4'hB][25];	// @[src/main/bus/Xbar.scala:21:7, :125:30, :127:31]
-        clint_bready = _RANDOM[4'hB][27];	// @[src/main/bus/Xbar.scala:21:7, :125:30, :129:31]
-        c_state = _RANDOM[4'hB][30:28];	// @[src/main/bus/Xbar.scala:21:7, :125:30, :151:26]
+      `ifdef RANDOMIZE_REG_INIT	// @[src/main/bus/Xbar.scala:434:7]
+        for (logic [3:0] i = 4'h0; i < 4'h9; i += 4'h1) begin
+          _RANDOM[i] = `RANDOM;	// @[src/main/bus/Xbar.scala:434:7]
+        end	// @[src/main/bus/Xbar.scala:434:7]
+        soc_araddr = _RANDOM[4'h0];	// @[src/main/bus/Xbar.scala:434:7, :438:29]
+        soc_arvalid = _RANDOM[4'h1][0];	// @[src/main/bus/Xbar.scala:434:7, :439:30]
+        soc_arid = _RANDOM[4'h1][4:1];	// @[src/main/bus/Xbar.scala:434:7, :439:30, :440:27]
+        soc_arlen = _RANDOM[4'h1][12:5];	// @[src/main/bus/Xbar.scala:434:7, :439:30, :441:28]
+        soc_arsize = _RANDOM[4'h1][15:13];	// @[src/main/bus/Xbar.scala:434:7, :439:30, :442:29]
+        soc_arburst = _RANDOM[4'h1][17:16];	// @[src/main/bus/Xbar.scala:434:7, :439:30, :443:30]
+        soc_rready = _RANDOM[4'h1][18];	// @[src/main/bus/Xbar.scala:434:7, :439:30, :444:29]
+        soc_awaddr = {_RANDOM[4'h1][31:19], _RANDOM[4'h2][18:0]};	// @[src/main/bus/Xbar.scala:434:7, :439:30, :445:29]
+        soc_awvalid = _RANDOM[4'h2][19];	// @[src/main/bus/Xbar.scala:434:7, :445:29, :446:30]
+        soc_awid = _RANDOM[4'h2][23:20];	// @[src/main/bus/Xbar.scala:434:7, :445:29, :447:27]
+        soc_awlen = _RANDOM[4'h2][31:24];	// @[src/main/bus/Xbar.scala:434:7, :445:29, :448:28]
+        soc_awsize = _RANDOM[4'h3][2:0];	// @[src/main/bus/Xbar.scala:434:7, :449:29]
+        soc_awburst = _RANDOM[4'h3][4:3];	// @[src/main/bus/Xbar.scala:434:7, :449:29, :450:30]
+        soc_wdata = {_RANDOM[4'h3][31:5], _RANDOM[4'h4][4:0]};	// @[src/main/bus/Xbar.scala:434:7, :449:29, :451:28]
+        soc_wstrb = _RANDOM[4'h4][8:5];	// @[src/main/bus/Xbar.scala:434:7, :451:28, :452:28]
+        soc_wvalid = _RANDOM[4'h4][9];	// @[src/main/bus/Xbar.scala:434:7, :451:28, :453:29]
+        soc_wlast = _RANDOM[4'h4][10];	// @[src/main/bus/Xbar.scala:434:7, :451:28, :454:28]
+        soc_bready = _RANDOM[4'h4][11];	// @[src/main/bus/Xbar.scala:434:7, :451:28, :455:29]
+        soc_rvalid_r = _RANDOM[4'h4][12];	// @[src/main/bus/Xbar.scala:434:7, :451:28, :474:31]
+        soc_bvalid_r = _RANDOM[4'h4][14];	// @[src/main/bus/Xbar.scala:434:7, :451:28, :476:31]
+        clint_rvalid_r = _RANDOM[4'h4][16];	// @[src/main/bus/Xbar.scala:434:7, :451:28, :478:33]
+        clint_bvalid_r = _RANDOM[4'h4][18];	// @[src/main/bus/Xbar.scala:434:7, :451:28, :480:33]
+        burstCnt = _RANDOM[4'h4][27:20];	// @[src/main/bus/Xbar.scala:434:7, :451:28, :483:37]
+        c_state = _RANDOM[4'h4][29:28];	// @[src/main/bus/Xbar.scala:434:7, :451:28, :486:26]
+        imem_araddr = {_RANDOM[4'h4][31:30], _RANDOM[4'h5][29:0]};	// @[src/main/bus/Xbar.scala:434:7, :451:28, :521:32]
+        imem_arburst = _RANDOM[4'h5][31:30];	// @[src/main/bus/Xbar.scala:434:7, :521:32, :522:33]
+        imem_arlen = _RANDOM[4'h6][7:0];	// @[src/main/bus/Xbar.scala:434:7, :523:31]
+        imem_arsize = _RANDOM[4'h6][10:8];	// @[src/main/bus/Xbar.scala:434:7, :523:31, :524:32]
+        dmem_araddr = {_RANDOM[4'h6][31:11], _RANDOM[4'h7][10:0]};	// @[src/main/bus/Xbar.scala:434:7, :523:31, :525:32]
+        dmem_awaddr = {_RANDOM[4'h7][31:11], _RANDOM[4'h8][10:0]};	// @[src/main/bus/Xbar.scala:434:7, :525:32, :526:32]
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/bus/Xbar.scala:21:7]
-      `FIRRTL_AFTER_INITIAL	// @[src/main/bus/Xbar.scala:21:7]
+    `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/bus/Xbar.scala:434:7]
+      `FIRRTL_AFTER_INITIAL	// @[src/main/bus/Xbar.scala:434:7]
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_imem_arready = imem_arready;	// @[src/main/bus/Xbar.scala:21:7, :25:31]
-  assign io_imem_rdata = imem_rdata;	// @[src/main/bus/Xbar.scala:21:7, :26:29]
-  assign io_imem_rresp = imem_rresp;	// @[src/main/bus/Xbar.scala:21:7, :27:29]
-  assign io_imem_rvalid = imem_rvalid;	// @[src/main/bus/Xbar.scala:21:7, :28:30]
-  assign io_dmem_arready = dmem_arready;	// @[src/main/bus/Xbar.scala:21:7, :48:31]
-  assign io_dmem_rdata = dmem_rdata;	// @[src/main/bus/Xbar.scala:21:7, :49:29]
-  assign io_dmem_rvalid = dmem_rvalid;	// @[src/main/bus/Xbar.scala:21:7, :51:30]
-  assign io_dmem_awready = dmem_awready;	// @[src/main/bus/Xbar.scala:21:7, :54:31]
-  assign io_dmem_wready = dmem_wready;	// @[src/main/bus/Xbar.scala:21:7, :55:30]
-  assign io_dmem_bvalid = dmem_bvalid;	// @[src/main/bus/Xbar.scala:21:7, :57:30]
-  assign io_soc_araddr = soc_araddr;	// @[src/main/bus/Xbar.scala:21:7, :75:29]
-  assign io_soc_arvalid = soc_arvalid;	// @[src/main/bus/Xbar.scala:21:7, :76:30]
-  assign io_soc_arid = soc_arid;	// @[src/main/bus/Xbar.scala:21:7, :77:27]
-  assign io_soc_arlen = soc_arlen;	// @[src/main/bus/Xbar.scala:21:7, :78:28]
-  assign io_soc_arsize = soc_arsize;	// @[src/main/bus/Xbar.scala:21:7, :79:29]
-  assign io_soc_arburst = soc_arburst;	// @[src/main/bus/Xbar.scala:21:7, :80:30]
-  assign io_soc_rready = soc_rready;	// @[src/main/bus/Xbar.scala:21:7, :81:29]
-  assign io_soc_awaddr = soc_awaddr;	// @[src/main/bus/Xbar.scala:21:7, :82:29]
-  assign io_soc_awvalid = soc_awvalid;	// @[src/main/bus/Xbar.scala:21:7, :83:30]
-  assign io_soc_awid = soc_awid;	// @[src/main/bus/Xbar.scala:21:7, :84:27]
-  assign io_soc_awlen = soc_awlen;	// @[src/main/bus/Xbar.scala:21:7, :85:28]
-  assign io_soc_awsize = soc_awsize;	// @[src/main/bus/Xbar.scala:21:7, :86:29]
-  assign io_soc_awburst = soc_awburst;	// @[src/main/bus/Xbar.scala:21:7, :87:30]
-  assign io_soc_wdata = soc_wdata;	// @[src/main/bus/Xbar.scala:21:7, :88:28]
-  assign io_soc_wstrb = soc_wstrb;	// @[src/main/bus/Xbar.scala:21:7, :89:28]
-  assign io_soc_wvalid = soc_wvalid;	// @[src/main/bus/Xbar.scala:21:7, :90:29]
-  assign io_soc_wlast = soc_wlast;	// @[src/main/bus/Xbar.scala:21:7, :91:28]
-  assign io_soc_bready = soc_bready;	// @[src/main/bus/Xbar.scala:21:7, :92:29]
-  assign io_clint_araddr = clint_araddr;	// @[src/main/bus/Xbar.scala:21:7, :112:31]
-  assign io_clint_arvalid = clint_arvalid;	// @[src/main/bus/Xbar.scala:21:7, :113:32]
-  assign io_clint_arid = clint_arid;	// @[src/main/bus/Xbar.scala:21:7, :114:29]
-  assign io_clint_arlen = clint_arlen;	// @[src/main/bus/Xbar.scala:21:7, :115:30]
-  assign io_clint_arsize = clint_arsize;	// @[src/main/bus/Xbar.scala:21:7, :116:31]
-  assign io_clint_arburst = clint_arburst;	// @[src/main/bus/Xbar.scala:21:7, :117:32]
-  assign io_clint_rready = clint_rready;	// @[src/main/bus/Xbar.scala:21:7, :118:31]
-  assign io_clint_awaddr = clint_awaddr;	// @[src/main/bus/Xbar.scala:21:7, :119:31]
-  assign io_clint_awvalid = clint_awvalid;	// @[src/main/bus/Xbar.scala:21:7, :120:32]
-  assign io_clint_awid = clint_awid;	// @[src/main/bus/Xbar.scala:21:7, :121:29]
-  assign io_clint_awlen = clint_awlen;	// @[src/main/bus/Xbar.scala:21:7, :122:30]
-  assign io_clint_awsize = clint_awsize;	// @[src/main/bus/Xbar.scala:21:7, :123:31]
-  assign io_clint_awburst = clint_awburst;	// @[src/main/bus/Xbar.scala:21:7, :124:32]
-  assign io_clint_wdata = clint_wdata;	// @[src/main/bus/Xbar.scala:21:7, :125:30]
-  assign io_clint_wstrb = clint_wstrb;	// @[src/main/bus/Xbar.scala:21:7, :126:30]
-  assign io_clint_wvalid = clint_wvalid;	// @[src/main/bus/Xbar.scala:21:7, :127:31]
-  assign io_clint_bready = clint_bready;	// @[src/main/bus/Xbar.scala:21:7, :129:31]
+  assign io_imem_arready = _GEN | ~_GEN_0 | io_soc_arready;	// @[src/main/bus/Xbar.scala:434:7, :528:20, :571:25, :670:25]
+  assign io_imem_rdata = io_soc_rdata;	// @[src/main/bus/Xbar.scala:434:7]
+  assign io_imem_rresp = _GEN_1 ? 2'h0 : io_soc_rresp;	// @[src/main/bus/Xbar.scala:434:7, :435:16, :528:20, :621:21, :628:21, :672:23, :703:21, :710:21]
+  assign io_imem_rvalid = ~_GEN & _GEN_0 & io_soc_rvalid;	// @[src/main/bus/Xbar.scala:434:7, :528:20, :673:24]
+  assign io_dmem_arready =
+    _GEN_8 | (_GEN_5 ? io_soc_arready : ~(&n_state) | io_clint_arready);	// @[src/main/bus/Xbar.scala:434:7, :487:30, :528:20, :604:25, :637:25, :684:25]
+  assign io_dmem_rdata = _GEN_5 ? io_soc_rdata : io_clint_rdata;	// @[src/main/bus/Xbar.scala:434:7, :528:20, :605:23]
+  assign io_dmem_rvalid =
+    ~_GEN_8 & (_GEN_5 ? io_soc_rvalid : (&n_state) & io_clint_rvalid);	// @[src/main/bus/Xbar.scala:434:7, :487:30, :528:20, :607:24, :640:24, :684:25, :687:24]
+  assign io_dmem_awready =
+    _GEN_8 | (_GEN_5 ? io_soc_awready : ~(&n_state) | io_clint_awready);	// @[src/main/bus/Xbar.scala:434:7, :487:30, :528:20, :610:25, :637:25, :643:25, :684:25, :690:25]
+  assign io_dmem_wready =
+    _GEN_8 | (_GEN_5 ? io_soc_wready : ~(&n_state) | io_clint_wready);	// @[src/main/bus/Xbar.scala:434:7, :487:30, :528:20, :611:24, :637:25, :644:24, :684:25, :691:24]
+  assign io_dmem_bvalid =
+    ~_GEN_8 & (_GEN_5 ? io_soc_bvalid : (&n_state) & io_clint_bvalid);	// @[src/main/bus/Xbar.scala:434:7, :487:30, :528:20, :613:24, :646:24, :684:25, :687:24, :693:24]
+  assign io_soc_araddr = soc_araddr;	// @[src/main/bus/Xbar.scala:434:7, :438:29]
+  assign io_soc_arvalid = soc_arvalid;	// @[src/main/bus/Xbar.scala:434:7, :439:30]
+  assign io_soc_arid = soc_arid;	// @[src/main/bus/Xbar.scala:434:7, :440:27]
+  assign io_soc_arlen = soc_arlen;	// @[src/main/bus/Xbar.scala:434:7, :441:28]
+  assign io_soc_arsize = soc_arsize;	// @[src/main/bus/Xbar.scala:434:7, :442:29]
+  assign io_soc_arburst = soc_arburst;	// @[src/main/bus/Xbar.scala:434:7, :443:30]
+  assign io_soc_rready = soc_rready;	// @[src/main/bus/Xbar.scala:434:7, :444:29]
+  assign io_soc_awaddr = soc_awaddr;	// @[src/main/bus/Xbar.scala:434:7, :445:29]
+  assign io_soc_awvalid = soc_awvalid;	// @[src/main/bus/Xbar.scala:434:7, :446:30]
+  assign io_soc_awid = soc_awid;	// @[src/main/bus/Xbar.scala:434:7, :447:27]
+  assign io_soc_awlen = soc_awlen;	// @[src/main/bus/Xbar.scala:434:7, :448:28]
+  assign io_soc_awsize = soc_awsize;	// @[src/main/bus/Xbar.scala:434:7, :449:29]
+  assign io_soc_awburst = soc_awburst;	// @[src/main/bus/Xbar.scala:434:7, :450:30]
+  assign io_soc_wdata = soc_wdata;	// @[src/main/bus/Xbar.scala:434:7, :451:28]
+  assign io_soc_wstrb = soc_wstrb;	// @[src/main/bus/Xbar.scala:434:7, :452:28]
+  assign io_soc_wvalid = soc_wvalid;	// @[src/main/bus/Xbar.scala:434:7, :453:29]
+  assign io_soc_wlast = soc_wlast;	// @[src/main/bus/Xbar.scala:434:7, :454:28]
+  assign io_soc_bready = soc_bready;	// @[src/main/bus/Xbar.scala:434:7, :455:29]
+  assign io_clint_araddr = _GEN_10 ? 32'h0 : io_dmem_araddr;	// @[src/main/bus/Xbar.scala:434:7, :528:20, :719:25]
+  assign io_clint_arvalid = ~_GEN_9 & (&n_state) & io_dmem_arvalid;	// @[src/main/bus/Xbar.scala:434:7, :487:30, :528:20, :719:25, :720:26]
+  assign io_clint_arsize = _GEN_10 ? 3'h0 : io_dmem_arsize;	// @[src/main/bus/Xbar.scala:434:7, :528:20, :719:25, :723:25]
+  assign io_clint_rready = ~_GEN_9 & (&n_state) & io_dmem_rready;	// @[src/main/bus/Xbar.scala:434:7, :487:30, :528:20, :719:25, :720:26, :725:25]
+  assign io_clint_awaddr = _GEN_10 ? 32'h0 : io_dmem_awaddr;	// @[src/main/bus/Xbar.scala:434:7, :528:20, :719:25, :726:25]
+  assign io_clint_awvalid = ~_GEN_9 & (&n_state) & io_dmem_awvalid;	// @[src/main/bus/Xbar.scala:434:7, :487:30, :528:20, :719:25, :720:26, :727:26]
+  assign io_clint_awsize = _GEN_10 ? 3'h0 : io_dmem_awsize;	// @[src/main/bus/Xbar.scala:434:7, :528:20, :719:25, :723:25, :730:25]
+  assign io_clint_wdata = _GEN_10 ? 32'h0 : io_dmem_wdata;	// @[src/main/bus/Xbar.scala:434:7, :528:20, :719:25, :732:24]
+  assign io_clint_wstrb = _GEN_10 ? 4'h0 : io_dmem_wstrb;	// @[src/main/bus/Xbar.scala:434:7, :528:20, :719:25, :733:24]
+  assign io_clint_wvalid = ~_GEN_9 & (&n_state) & io_dmem_wvalid;	// @[src/main/bus/Xbar.scala:434:7, :487:30, :528:20, :719:25, :720:26, :734:25]
+  assign io_clint_bready = ~_GEN_9 & (&n_state) & io_dmem_bready;	// @[src/main/bus/Xbar.scala:434:7, :487:30, :528:20, :719:25, :720:26, :736:25]
 endmodule
 
