@@ -44,6 +44,7 @@ class VysyxSoCFull__Syms final : public VerilatedSyms {
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi42apb;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi42apb__unnamedblk1;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi42apb__unnamedblk2;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__axi4delay_delayer;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi4frag;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi4frag__deq_q;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi4frag__deq_q_1;
@@ -69,6 +70,12 @@ class VysyxSoCFull__Syms final : public VerilatedSyms {
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi4xbar_1__unnamedblk1;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi4xbar_1__unnamedblk2;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi4xbar_1__unnamedblk3;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__axi4xbar__awIn_0;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__axi4xbar__awIn_0__ram_ext;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__axi4xbar__awIn_0__unnamedblk1;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__axi4xbar__unnamedblk1;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__axi4xbar__unnamedblk2;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__axi4xbar__unnamedblk3;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi4yank;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi4yank__Queue1_BundleMap;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi4yank__Queue1_BundleMap_1;
@@ -202,9 +209,13 @@ class VysyxSoCFull__Syms final : public VerilatedSyms {
     VerilatedScope __Vscope_ysyxSoCFull__asic__lpsram__mpsram__u0;
     VerilatedScope __Vscope_ysyxSoCFull__asic__lpsram__mpsram__u0__MR;
     VerilatedScope __Vscope_ysyxSoCFull__asic__lpsram__mpsram__u0__MW;
-    VerilatedScope __Vscope_ysyxSoCFull__asic__lsdram_apb;
-    VerilatedScope __Vscope_ysyxSoCFull__asic__lsdram_apb__msdram;
-    VerilatedScope __Vscope_ysyxSoCFull__asic__lsdram_apb__msdram__u_sdram_ctrl;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__lsdram_axi;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__lsdram_axi__msdram;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__lsdram_axi__msdram__u_sdram_axi;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__lsdram_axi__msdram__u_sdram_axi__u_axi;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__lsdram_axi__msdram__u_sdram_axi__u_axi__u_requests;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__lsdram_axi__msdram__u_sdram_axi__u_axi__u_response;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__lsdram_axi__msdram__u_sdram_axi__u_core;
     VerilatedScope __Vscope_ysyxSoCFull__asic__lspi;
     VerilatedScope __Vscope_ysyxSoCFull__asic__lspi__mspi;
     VerilatedScope __Vscope_ysyxSoCFull__asic__lspi__mspi__u0_spi_top;

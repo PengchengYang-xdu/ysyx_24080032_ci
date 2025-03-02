@@ -103,14 +103,14 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__11(VysyxSoCFull___
     VysyxSoCFull__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VysyxSoCFull___024root___nba_sequent__TOP__11\n"); );
     // Init
-    IData/*31:0*/ __Vtask_flash_read__2__data;
-    __Vtask_flash_read__2__data = 0;
+    IData/*31:0*/ __Vtask_flash_read__5__data;
+    __Vtask_flash_read__5__data = 0;
     // Body
     if (vlSelf->ysyxSoCFull__DOT__flash__DOT__ren) {
         if (VL_LIKELY((3U == (IData)(vlSelf->ysyxSoCFull__DOT__flash__DOT__cmd)))) {
-            VysyxSoCFull___024unit____Vdpiimwrap_flash_read_TOP____024unit(vlSelf->ysyxSoCFull__DOT__flash__DOT__raddr, __Vtask_flash_read__2__data);
+            VysyxSoCFull___024unit____Vdpiimwrap_flash_read_TOP____024unit(vlSelf->ysyxSoCFull__DOT__flash__DOT__raddr, __Vtask_flash_read__5__data);
             vlSelf->ysyxSoCFull__DOT__flash__DOT__flash_cmd_i__DOT__data 
-                = __Vtask_flash_read__2__data;
+                = __Vtask_flash_read__5__data;
         } else {
             VL_FWRITEF(0x80000002U,"Assertion failed: Unsupport command `%xh`, only support `03h` read command\n",
                        8,vlSelf->ysyxSoCFull__DOT__flash__DOT__cmd);
@@ -135,10 +135,10 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_sequent__TOP__11(VysyxSoCFull___
 
 void VysyxSoCFull___024root____Vdpiimwrap_ysyxSoCFull__DOT__psram__DOT__psramChiselHelper__DOT__psram_read_TOP(IData/*31:0*/ addr, IData/*31:0*/ &rdata);
 
-VL_INLINE_OPT void VysyxSoCFull___024root___nba_comb__TOP__6(VysyxSoCFull___024root* vlSelf) {
+VL_INLINE_OPT void VysyxSoCFull___024root___nba_comb__TOP__7(VysyxSoCFull___024root* vlSelf) {
     if (false && vlSelf) {}  // Prevent unused
     VysyxSoCFull__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
-    VL_DEBUG_IF(VL_DBG_MSGF("+    VysyxSoCFull___024root___nba_comb__TOP__6\n"); );
+    VL_DEBUG_IF(VL_DBG_MSGF("+    VysyxSoCFull___024root___nba_comb__TOP__7\n"); );
     // Body
     vlSelf->ysyxSoCFull__DOT__psram__DOT___n_state_T_5 
         = (((IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT___n_state_T_7) 
@@ -225,9 +225,9 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_comb__TOP__6(VysyxSoCFull___024r
     vlSelf->ysyxSoCFull__DOT__psram__DOT__psramChiselHelper__DOT__rdata = 0U;
     if (((0xebU == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd)) 
          & (4U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__n_state)))) {
-        VysyxSoCFull___024root____Vdpiimwrap_ysyxSoCFull__DOT__psram__DOT__psramChiselHelper__DOT__psram_read_TOP(vlSelf->ysyxSoCFull__DOT__psram__DOT__addr, vlSelf->__Vtask_ysyxSoCFull__DOT__psram__DOT__psramChiselHelper__DOT__psram_read__3__rdata);
+        VysyxSoCFull___024root____Vdpiimwrap_ysyxSoCFull__DOT__psram__DOT__psramChiselHelper__DOT__psram_read_TOP(vlSelf->ysyxSoCFull__DOT__psram__DOT__addr, vlSelf->__Vtask_ysyxSoCFull__DOT__psram__DOT__psramChiselHelper__DOT__psram_read__6__rdata);
         vlSelf->ysyxSoCFull__DOT__psram__DOT__psramChiselHelper__DOT__rdata 
-            = vlSelf->__Vtask_ysyxSoCFull__DOT__psram__DOT__psramChiselHelper__DOT__psram_read__3__rdata;
+            = vlSelf->__Vtask_ysyxSoCFull__DOT__psram__DOT__psramChiselHelper__DOT__psram_read__6__rdata;
     } else if (VL_UNLIKELY(((((4U == (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__n_state)) 
                               | (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT____Vcellinp__psramChiselHelper__wen)) 
                              & (0xebU != (IData)(vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd))) 
@@ -235,10 +235,10 @@ VL_INLINE_OPT void VysyxSoCFull___024root___nba_comb__TOP__6(VysyxSoCFull___024r
         VL_FWRITEF(0x80000002U,"Assertion failed: Unsupport command `%xh`, only support `EBh`, `38h`, `35h` commands\n",
                    8,vlSelf->ysyxSoCFull__DOT__psram__DOT__cmd);
         if (0x80000002U) { VL_FFLUSH_I(0x80000002U); }
-        VL_WRITEF("[%0t] %%Error: ysyxSoCFull.v:6491: Assertion failed in %NysyxSoCFull.psram.psramChiselHelper\n",
+        VL_WRITEF("[%0t] %%Error: ysyxSoCFull.v:7829: Assertion failed in %NysyxSoCFull.psram.psramChiselHelper\n",
                   64,VL_TIME_UNITED_Q(1000),-9,vlSymsp->name());
         Verilated::runFlushCallbacks();
-        VL_STOP_MT("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v", 6491, "");
+        VL_STOP_MT("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v", 7829, "");
     }
     vlSelf->ysyxSoCFull__DOT__psram__DOT__di_buf__DOT__out_en 
         = vlSelf->ysyxSoCFull__DOT__psram__DOT____Vcellinp__di_buf__out_en;
