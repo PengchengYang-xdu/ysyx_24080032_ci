@@ -1,1 +1,0 @@
-playground.runMain Elaborate --split-verilog --target-dir ./vsrc
