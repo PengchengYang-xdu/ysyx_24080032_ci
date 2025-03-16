@@ -11,9 +11,9 @@
                     },
                     "attributes": {}
                 },
-                "version": "2.13.12",
+                "version": "2.13.15",
                 "configuration": {
-                    "value": "default(compile)"
+                    "value": ""
                 },
                 "minimizedExclusions": {
                     "data": "coursier.core.MinimizedExclusions.ExcludeNone"
@@ -31,7 +31,11 @@
                     }
                 },
                 "optional": false,
-                "transitive": true
+                "transitive": true,
+                "overrides": [],
+                "boms": [],
+                "bomDependencies": [],
+                "overridesMap": []
             },
             "cross": {
                 "$type": "mill.scalalib.CrossVersion.Constant",
@@ -41,6 +45,6 @@
             "force": true
         }
     ],
-    "valueHash": -981587458,
-    "inputsHash": -835027147
+    "valueHash": -656582576,
+    "inputsHash": -1007152015
 }

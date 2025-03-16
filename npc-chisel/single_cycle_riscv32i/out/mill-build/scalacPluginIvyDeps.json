@@ -1,45 +1,7 @@
 {
     "value": [
-        {
-            "dep": {
-                "module": {
-                    "organization": {
-                        "value": "com.lihaoyi"
-                    },
-                    "name": {
-                        "value": "scalac-mill-moduledefs-plugin"
-                    },
-                    "attributes": {}
-                },
-                "version": "0.10.9",
-                "configuration": {
-                    "value": "default(compile)"
-                },
-                "minimizedExclusions": {
-                    "data": "coursier.core.MinimizedExclusions.ExcludeNone"
-                },
-                "publication": {
-                    "name": "",
-                    "type": {
-                        "value": ""
-                    },
-                    "ext": {
-                        "value": ""
-                    },
-                    "classifier": {
-                        "value": ""
-                    }
-                },
-                "optional": false,
-                "transitive": true
-            },
-            "cross": {
-                "$type": "mill.scalalib.CrossVersion.Full",
-                "platformed": false
-            },
-            "force": false
-        }
+        "com.lihaoyi:::scalac-mill-moduledefs-plugin:0.11.2"
     ],
-    "valueHash": 546207106,
-    "inputsHash": 746785567
+    "valueHash": -797788945,
+    "inputsHash": -276028404
 }

@@ -1,0 +1,93 @@
+{
+  "playground.runMain": {
+    "playground.runClasspath": {
+      "playground.transitiveLocalClasspath": {},
+      "playground.resolvedRunIvyDeps": {
+        "playground.platformSuffix": {},
+        "playground.transitiveCoursierProjects": {
+          "playground.compileIvyDeps": {},
+          "playground.mandatoryIvyDeps": {
+            "playground.mandatoryIvyDeps.super.JavaModule": {}
+          },
+          "playground.ivyDeps": {},
+          "playground.bomIvyDeps": {},
+          "playground.depManagement": {},
+          "playground.runIvyDeps": {}
+        },
+        "playground.artifactTypes": {}
+      },
+      "playground.runClasspath.super.RunModule": {},
+      "playground.localClasspath": {
+        "playground.localCompileClasspath": {
+          "playground.unmanagedClasspath": {},
+          "playground.compileResources": {}
+        },
+        "playground.localRunClasspath": {
+          "playground.resources": {},
+          "playground.localRunClasspath.super.RunModule": {}
+        }
+      }
+    },
+    "playground.finalMainClassOpt": {
+      "mill.scalalib.ZincWorkerModule.worker": {
+        "mill.scalalib.ZincWorkerModule.classpath": {},
+        "mill.scalalib.ZincWorkerModule.zincLogDebug": {}
+      },
+      "playground.mainClass": {},
+      "playground.finalMainClassOpt.super.RunModule": {
+        "playground.allLocalMainClasses": {}
+      },
+      "playground.compile": {
+        "playground.compileClasspath": {
+          "playground.transitiveCompileClasspath": {},
+          "playground.resolvedIvyDeps": {}
+        },
+        "playground.mandatoryJavacOptions": {},
+        "playground.zincIncrementalCompilation": {},
+        "playground.scalaCompilerClasspath": {
+          "playground.scalaLibraryIvyDeps": {}
+        },
+        "playground.upstreamCompileOutput": {},
+        "playground.scalaVersion": {},
+        "playground.zincAuxiliaryClassFileExtensions": {
+          "playground.zincAuxiliaryClassFileExtensions.super.JavaModule": {}
+        },
+        "playground.zincReportCachedProblems": {},
+        "playground.scalaOrganization": {},
+        "playground.allSourceFiles": {
+          "playground.allSources": {
+            "playground.sources": {
+              "playground.sources.super.SbtModule": {}
+            },
+            "playground.generatedSources": {}
+          }
+        },
+        "playground.allScalacOptions": {
+          "playground.enablePluginScalacOptions.super.ScalaModule": {},
+          "playground.mandatoryScalacOptions": {},
+          "playground.scalacOptions": {}
+        },
+        "playground.javacOptions": {},
+        "playground.scalacPluginClasspath": {
+          "playground.scalacPluginIvyDeps": {}
+        }
+      }
+    },
+    "playground.runUseArgsFile": {
+      "playground.runUseArgsFile.super.RunModule": {}
+    },
+    "mill.scalalib.ZincWorkerModule.javaHome": {
+      "mill.scalalib.ZincWorkerModule.jvmId": {},
+      "mill.scalalib.ZincWorkerModule.jvmIndexVersion": {}
+    },
+    "playground.forkWorkingDir": {
+      "playground.forkWorkingDir.super.RunModule": {}
+    },
+    "playground.forkArgs": {
+      "playground.forkArgs.super.RunModule": {}
+    },
+    "playground.forkEnv": {
+      "playground.forkEnv.super.RunModule": {}
+    }
+  }
+}
