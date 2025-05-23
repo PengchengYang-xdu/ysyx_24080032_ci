@@ -24,6 +24,7 @@
         "SSH_CONNECTION": "10.1.33.170 10624 10.2.255.13 6000",
         "AM_HOME": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/abstract-machine",
         "LC_MEASUREMENT": "zh_CN.UTF-8",
+        "OLDPWD": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench",
         "XDG_SESSION_TYPE": "tty",
         "NVBOARD_HOME": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/nvboard",
         "LESSOPEN": "| /usr/bin/lesspipe %s",
@@ -89,6 +90,6 @@
         "MODEL_TECH": "/home/yangpengcheng/questasim/bin",
         "_CE_CONDA": ""
     },
-    "valueHash": 1823253475,
-    "inputsHash": 308842235
+    "valueHash": -839108951,
+    "inputsHash": 300547644
 }
