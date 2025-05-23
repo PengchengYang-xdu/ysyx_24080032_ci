@@ -164,13 +164,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         }
         is(s_i_1){
             ConnectIn2Out()
-            out_araddr := addr_align + req_offset
+            out_araddr := addr_align + (c.U << 2)
             out_arvalid := false.B
             out_rready := true.B
         }
         is(s_i_2){
             ConnectIn2Out()
-            out_araddr := addr_align + req_offset
+            out_araddr := addr_align + (c.U << 2)
             out_rready := false.B
         }
     }
