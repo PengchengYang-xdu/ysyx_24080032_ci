@@ -90,6 +90,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val m = log2(block_size).toInt
     val n = log2(sets).toInt
     val w = math.ceil(log2(ways)).toInt
+    val c = block_size / 4
     val index_width = n
     val offset_width = m
     val tag_width = 32 - m - n
@@ -158,7 +159,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         }
         is(s_i_0){
             ConnectIn2Out()
-            out_araddr := addr_align + req_offset
+            out_araddr := addr_align + (c.U << 2)
             out_arvalid := ~hit0
         }
         is(s_i_1){
