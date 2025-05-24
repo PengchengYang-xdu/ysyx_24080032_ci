@@ -161,18 +161,18 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         }
         is(s_i_0){
             ConnectIn2Out()
-            out_araddr := Mux(issdram_raddr, Mux(c.U === 1.U, io.in.araddr, addr_align), io.in.araddr)
+            out_araddr := Mux(issdram_raddr, Mux(c.U === 1.U, io.in.araddr, addr_align + (c.U - 1.U - count) << 2), io.in.araddr)
             out_arvalid := ~hit0
         }
         is(s_i_1){
             ConnectIn2Out()
-            out_araddr := Mux(issdram_raddr, Mux(c.U === 1.U, io.in.araddr, addr_align), io.in.araddr)
+            out_araddr := Mux(issdram_raddr, Mux(c.U === 1.U, io.in.araddr, addr_align + (c.U - 1.U - count) << 2), io.in.araddr)
             out_arvalid := false.B
             out_rready := true.B
         }
         is(s_i_2){
             ConnectIn2Out()
-            out_araddr := Mux(issdram_raddr, Mux(c.U === 1.U, io.in.araddr, addr_align), io.in.araddr)
+            out_araddr := Mux(issdram_raddr, Mux(c.U === 1.U, io.in.araddr, addr_align + (c.U - 1.U - count) << 2), io.in.araddr)
             out_rready := false.B
         }
     }
@@ -243,9 +243,9 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     }
 
 
-    when(c_state === s_i_0){
+    when(c_state === s_i_0 && n_state === s_i_1){
         count := Mux(issdram_raddr, (c.U - 1.U), c.U)
-    }.elsewhen(count =/= 0.U && (c_state === s_i_1 && (io.out.rvalid & out_rready))){
+    }.elsewhen(count =/= 0.U && (c_state === s_i_1 && n_state === s_i_0 && (io.out.rvalid & out_rready))){
         count := count - 1.U
     }
 
