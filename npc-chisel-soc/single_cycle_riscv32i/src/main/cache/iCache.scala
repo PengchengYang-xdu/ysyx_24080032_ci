@@ -242,9 +242,9 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     }
 
 
-    when(n_state === s_i_1){
+    when(c_state === s_i_0){
         count := Mux(issdram_raddr, (c.U - 1.U), c.U)
-    }.elsewhen(count =/= 0.U && (n_state === s_i_1 && (io.out.rvalid & out_rready))){
+    }.elsewhen(count =/= 0.U && (c_state === s_i_1 && (io.out.rvalid & out_rready))){
         count := count - 1.U
     }
 
