@@ -91,6 +91,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val n = log2(sets).toInt
     val w = math.ceil(log2(ways)).toInt
     val c = block_size / 4
+    val count = RegInit(c.U(4.W))
     val index_width = n
     val offset_width = m
     val tag_width = 32 - m - n
@@ -143,7 +144,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         s_IDLE           ->  Mux(isifu_rreq, s_icache_lookup, s_IDLE),
         s_icache_lookup  ->  Mux(hit0, s_IDLE, s_i_0),
         s_i_0            ->  Mux(io.out.arready & out_arvalid, s_i_1, s_i_0),
-        s_i_1            ->  Mux(io.out.rvalid & out_rready, s_i_2, s_i_1),
+        s_i_1            ->  Mux((io.out.rvalid & out_rready) && (c.U === 1.U || count === 0.U), s_i_2, s_i_1),
         s_i_2            ->  Mux(in_rvalid & io.in.rready, s_IDLE, s_i_2)
     ))
 
@@ -238,6 +239,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
                     set(randomIndex).data(req_offset >> 2) := icache_wdata
             }
         }
+    }
+
+
+    when(n_state === s_i_1){
+        count := Mux(issdram_raddr, (c.U - 1.U), c.U)
+    }.elsewhen(count =/= 0.U && (n_state === s_i_1 && (io.out.rvalid & out_rready))){
+        count := count - 1.U
     }
 
 /*-----------------------function-----------------------*/
