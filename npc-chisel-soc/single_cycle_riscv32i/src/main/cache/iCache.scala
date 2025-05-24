@@ -138,6 +138,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val icache_wdata = RegInit(0.U(32.W))
     icache_wdata := Mux(n_state === s_i_2, io.out.rdata, icache_wdata)
 
+
+
+
+
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
@@ -157,23 +161,30 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         is(s_icache_lookup){
             in_arready := false.B
             in_rvalid := ways_hit
-            in_rdata := icache(req_index).set(ways_hit_num).data(req_offset >> 2)
         }
         is(s_i_0){
             ConnectIn2Out()
             out_araddr := Mux(issdram_raddr, Mux(c.U === 1.U, io.in.araddr, addr_align + ((c.U - 1.U - count) << 2)), io.in.araddr)
             out_arvalid := ~hit0
+            out_rready := false.B
+            in_rvalid := hit0
+            in_arready := false.B
         }
         is(s_i_1){
             ConnectIn2Out()
             out_araddr := Mux(issdram_raddr, Mux(c.U === 1.U, io.in.araddr, addr_align + ((c.U - 1.U - count) << 2)), io.in.araddr)
             out_arvalid := false.B
             out_rready := true.B
+            in_rvalid := false.B
+            in_arready := false.B
         }
         is(s_i_2){
             ConnectIn2Out()
             out_araddr := Mux(issdram_raddr, Mux(c.U === 1.U, io.in.araddr, addr_align + ((c.U - 1.U - count) << 2)), io.in.araddr)
+            out_arvalid := false.B
             out_rready := false.B
+            in_rvalid := true.B
+            in_arready := false.B
         }
     }
 
@@ -194,6 +205,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             emptyIndex := i.U
         }
     }
+
+    in_rdata := Mux(n_state === s_icache_lookup && hit0, icache(req_index).set(ways_hit_num).data(req_offset >> 2), 
+    Mux(n_state === s_i_2, icache(req_index).set(emptyIndex).data(req_offset >> 2).data, in_rdata))
+
 
     //命中的时候更新LRU矩阵
     if(replacementPolicy == "LRU"){
@@ -290,10 +305,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     }
 
     def ConnectIn2Out(): Unit = {
-        in_arready := io.out.arready
-        in_rdata := io.out.rdata
+        // in_arready := io.out.arready
+        // in_rdata := io.out.rdata
         in_rresp := io.out.rresp
-        in_rvalid := io.out.rvalid
+        // in_rvalid := io.out.rvalid
         in_rlast := io.out.rlast
         in_rid := io.out.rid
         in_awready := io.out.awready
@@ -303,12 +318,12 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         in_bid := io.out.bid
 
         // out_araddr := io.in.araddr
-        out_arvalid := io.in.arvalid
+        // out_arvalid := io.in.arvalid
         out_arid := io.in.arid
         out_arlen := io.in.arlen
         out_arsize := io.in.arsize
         out_arburst := io.in.arburst
-        out_rready := io.in.rready
+        // out_rready := io.in.rready
         out_awaddr := io.in.awaddr
         out_awvalid := io.in.awvalid
         out_awid := io.in.awid
