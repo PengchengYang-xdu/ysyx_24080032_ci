@@ -138,8 +138,9 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
 
     val icache_wdata_index = c.U - count - 1.U
     val icache_wdata = RegInit(VecInit(Seq.fill(c)(0.U(32.W))))
-    icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0)) := Mux((n_state === s_i_2 || n_state === s_i_0) && c_state === s_i_1, io.out.rdata, icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0)))
-
+    icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0)) := Mux(out_arlen === 0.U,
+        Mux((n_state === s_i_2 || n_state === s_i_0) && c_state === s_i_1, io.out.rdata, icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0))),
+        Mux(out_rready && io.out.rvalid, io.out.rdata, icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0))))
 
 
 
@@ -271,7 +272,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
 
     when(n_state === s_icache_lookup){
         count := c.U
-    }.elsewhen(count =/= 0.U && (c_state === s_i_0 && n_state === s_i_1)){
+    }.elsewhen(count =/= 0.U && ((out_arlen === 0.U && c_state === s_i_0 && n_state === s_i_1) || (out_arlen === 0.U && out_rready && io.out.rvalid))){
         count := count - 1.U
     }
 
