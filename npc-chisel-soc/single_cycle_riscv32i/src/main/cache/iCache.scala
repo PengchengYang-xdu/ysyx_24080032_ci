@@ -135,8 +135,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
 
     val hit0 = RegEnable(ways_hit, n_state === s_icache_lookup)
 
+
+    val icache_wdata_index = c.U - 1.U - count
     val icache_wdata = RegInit(VecInit(Seq.fill(c)(0.U(32.W))))
-    icache_wdata(c.U - count - 1.U) := Mux((n_state === s_i_2 || n_state === s_i_0) && c_state === s_i_1, io.out.rdata, icache_wdata(c.U - count - 1.U))
+    icache_wdata(icache_wdata_index) := Mux((n_state === s_i_2 || n_state === s_i_0) && c_state === s_i_1, io.out.rdata, icache_wdata(icache_wdata_index))
 
 
 
@@ -224,7 +226,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             // 如果有空闲块，填充
             set(emptyIndex).valid := true.B
             set(emptyIndex).tag := req_tag
-            set(emptyIndex).data(req_offset >> 2) := icache_wdata
+            set(emptyIndex).data := icache_wdata
             //填充的时候更新LRU矩阵
             if(replacementPolicy == "LRU"){
                 updateLRU(icache(req_index), emptyIndex)
@@ -238,21 +240,21 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
                     val lruIndex = getLRUIndex(icache(req_index), ways_width)
                     set(lruIndex).valid := true.B
                     set(lruIndex).tag := req_tag
-                    set(lruIndex).data(req_offset >> 2) := icache_wdata
+                    set(lruIndex).data := icache_wdata
                     //替换的时候更新LRU矩阵
                     updateLRU(icache(req_index), lruIndex)
                 case "FIFO" =>
                     val fifoIndex = icache(req_index).fifoPtr
                     set(fifoIndex).valid := true.B
                     set(fifoIndex).tag := req_tag
-                    set(fifoIndex).data(req_offset >> 2) := icache_wdata
+                    set(fifoIndex).data := icache_wdata
                     //替换的时候更新FIFO指针
                     icache(req_index).fifoPtr := (fifoIndex + 1.U) % ways.U
                 case "RANDOM" =>
                     val randomIndex = scala.util.Random.nextInt(ways)
                     set(randomIndex).valid := true.B
                     set(randomIndex).tag := req_tag
-                    set(randomIndex).data(req_offset >> 2) := icache_wdata
+                    set(randomIndex).data := icache_wdata
             }
         }
     }
