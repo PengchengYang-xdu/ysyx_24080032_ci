@@ -260,7 +260,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     }
 
 
-    when(c_state === s_icache_lookup){
+    when(n_state === s_icache_lookup){
         count := c.U
     }.elsewhen(count =/= 0.U && (c_state === s_i_0 && n_state === s_i_1)){
         count := count - 1.U
