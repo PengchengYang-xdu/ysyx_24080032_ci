@@ -45,6 +45,8 @@ class VysyxSoCFull__Syms final : public VerilatedSyms {
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi42apb__unnamedblk1;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi42apb__unnamedblk2;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi4delay_delayer;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__axi4delay_delayer__unnamedblk1;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__axi4delay_delayer__unnamedblk2;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi4frag;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi4frag__deq_q;
     VerilatedScope __Vscope_ysyxSoCFull__asic__axi4frag__deq_q_1;
