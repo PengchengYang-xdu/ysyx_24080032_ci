@@ -91,7 +91,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val n = log2(sets).toInt
     val w = math.ceil(log2(ways)).toInt
     val c = block_size / 4
-    val count = RegInit(c.U(4.W))
+    val count = RegInit(c.U(log2Ceil(c + 1).W))
     val index_width = n
     val offset_width = m
     val tag_width = 32 - m - n
