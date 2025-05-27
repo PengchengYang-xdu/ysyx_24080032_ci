@@ -208,8 +208,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         }
     }
 
-    in_rdata := Mux(issdram_raddr, Mux(n_state === s_icache_lookup && hit0, icache(req_index).set(ways_hit_num).data(req_offset >> 2), 
-    Mux(n_state === s_i_2, icache(req_index).set(emptyIndex).data(req_offset >> 2), in_rdata)), Mux(n_state === s_i_2, io.out.rdata, in_rdata))
+    in_rdata := Mux(issdram_raddr,
+    Mux(n_state === s_icache_lookup && hit0,
+        icache(req_index).set(ways_hit_num).data(req_offset >> 2),
+        Mux(io.out.rvalid & out_rready && ((c.U - 1.U - count) == req_offset >> 2),
+            io.out.rdata,
+            in_rdata)),
+    Mux(n_state === s_i_2, io.out.rdata, in_rdata))
 
 
     //命中的时候更新LRU矩阵
