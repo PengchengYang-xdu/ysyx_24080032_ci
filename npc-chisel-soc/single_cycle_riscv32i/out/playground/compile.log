@@ -1,11 +1,2 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:139:50: overloaded method apply with alternatives:[0m
-[0m[[0m[31merror[0m] [0m[0m  (x: BigInt,y: BigInt)chisel3.UInt <and>[0m
-[0m[[0m[31merror[0m] [0m[0m  (x: Int,y: Int)chisel3.UInt <and>[0m
-[0m[[0m[31merror[0m] [0m[0m  (x: chisel3.UInt)chisel3.Bool <and>[0m
-[0m[[0m[31merror[0m] [0m[0m  (x: Int)chisel3.Bool <and>[0m
-[0m[[0m[31merror[0m] [0m[0m  (x: BigInt)chisel3.Bool[0m
-[0m[[0m[31merror[0m] [0m[0m cannot be applied to ()[0m
-[0m[[0m[31merror[0m] [0m[0m    val icache_wdata_index = (c.U - count - 1.U).asUInt()(log2Ceil(c)-1, 0)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                 ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
