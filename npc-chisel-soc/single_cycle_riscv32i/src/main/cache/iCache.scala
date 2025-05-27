@@ -171,6 +171,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             out_rready := false.B
             in_rvalid := hit0
             in_arready := false.B
+
+            out_arburst := Mux(issdram_raddr, "b01".U, out_arburst)
+            out_arlen := Mux(is_sdram, c.U - 1.U, out_arlen)
+            out_arsize := Mux(is_sdram, "b10".U, out_arsize)
         }
         is(s_i_1){
             ConnectIn2Out()
@@ -327,9 +331,9 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         // out_araddr := io.in.araddr
         // out_arvalid := io.in.arvalid
         out_arid := io.in.arid
-        out_arlen := io.in.arlen
-        out_arsize := io.in.arsize
-        out_arburst := io.in.arburst
+        // out_arlen := io.in.arlen
+        // out_arsize := io.in.arsize
+        // out_arburst := io.in.arburst
         // out_rready := io.in.rready
         out_awaddr := io.in.awaddr
         out_awvalid := io.in.awvalid
