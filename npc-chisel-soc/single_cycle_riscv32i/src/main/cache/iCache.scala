@@ -135,8 +135,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
 
     val hit0 = RegEnable(ways_hit, n_state === s_icache_lookup)
 
-    val icache_wdata = RegInit(0.U(32.W))
-    icache_wdata := Mux(n_state === s_i_2, io.out.rdata, icache_wdata)
+    val icache_wdata = RegInit(VecInit(Seq.fill(c)(0.U(32.W))))
+    icache_wdata(c.U - count - 1.U) := Mux((n_state === s_i_2 || n_state === s_i_0) && c_state === s_i_1, io.out.rdata, icache_wdata(c.U - count - 1.U))
 
 
 
@@ -217,7 +217,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         }
     }
 
-    when(n_state === s_i_0 && c_state === s_i_1 && issdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
+    when(c_state === s_i_2 && issdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
         val set = icache(req_index).set
 
         when(hasEmpty === true.B) {
@@ -259,7 +259,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
 
 
     when(c_state === s_icache_lookup){
-        count := c.U
+        count := Mux(issdram_raddr, (c.U - 1.U), c.U)
     }.elsewhen(count =/= 0.U && (c_state === s_i_0 && n_state === s_i_1)){
         count := count - 1.U
     }
