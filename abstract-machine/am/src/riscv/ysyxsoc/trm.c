@@ -76,9 +76,8 @@ void show_id(){
 /*added by ypc begin 2024.11.27*/
 
 void _trm_init() {
-    init_uart(10);
-    putch('_');
-    // show_id();//not supported in difftest because mvendorid and marchid are not supported in nemu as a ref
+    init_uart(1);
+    show_id();//not supported in difftest because mvendorid and marchid are not supported in nemu as a ref
     // int ret = main("train");
     int ret = main(mainargs);
     halt(ret);
