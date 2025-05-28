@@ -42,7 +42,8 @@ class Core extends Module {
     io.imem <> icache.io.out
     icache.io.in <> ifu.io.imem
 
-    StageConnect(idu.fencei_io_vr.is_fencei_io, icache.fencei_io_vr.is_fencei_io)
+    idu.fencei_io_vr.is_fencei_io <> icache.fencei_io_vr.is_fencei_io
+    // StageConnect(idu.fencei_io_vr.is_fencei_io, icache.fencei_io_vr.is_fencei_io)
     
     // io.imem <> ifu.io.imem
 
