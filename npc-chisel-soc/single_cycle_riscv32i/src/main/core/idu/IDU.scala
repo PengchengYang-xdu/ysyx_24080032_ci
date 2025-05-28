@@ -222,7 +222,7 @@ class IDU extends Module {
     val in_ready = RegInit(false.B)
     val out_valid = RegInit(false.B)
     io_pipe.in.ready := in_ready
-    io_pipe.out.valid := out_valid
+    io_pipe.out.valid := Mux(is_fencei === 1.U, fencei_io_vr.is_fencei_io.ready, out_valid)
 
     val s_BeforePreFire :: s_AfterPreFire :: Nil = Enum(2)
     val c_state = RegInit(s_BeforePreFire)
@@ -244,7 +244,7 @@ class IDU extends Module {
         }
         is(s_AfterPreFire){
             in_ready := false.B
-            out_valid := Mux(is_fencei === 1.U, fencei_io_vr.is_fencei_io.ready, true.B)
+            out_valid := true.B
             is_fencei_valid := Mux(is_fencei === 1.U, true.B, false.B)
         }
     }
