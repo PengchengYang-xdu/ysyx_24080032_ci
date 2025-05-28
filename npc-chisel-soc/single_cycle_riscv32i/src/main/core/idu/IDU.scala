@@ -231,7 +231,7 @@ class IDU extends Module {
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
         s_BeforePreFire  ->  Mux(io_pipe.in.fire, s_AfterPreFire, s_BeforePreFire),
-        s_AfterPreFire   ->  Mux(Mux(is_fencei, fencei_io_vr.is_fencei_io.fire, io_pipe.out.fire), s_BeforePreFire, s_AfterPreFire)
+        s_AfterPreFire   ->  Mux(Mux(is_fencei === 1.U, fencei_io_vr.is_fencei_io.fire, io_pipe.out.fire), s_BeforePreFire, s_AfterPreFire)
     ))
 
     switch(n_state){//third phase
