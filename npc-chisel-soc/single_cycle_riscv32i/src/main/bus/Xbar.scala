@@ -480,12 +480,12 @@ class Xbar extends Module {
     val clint_bvalid_r = RegNext(io.clint.bvalid)
     val clint_bready_r = RegNext(io.clint.bready)
 
-    val burstCnt = RegInit(0.U(8.W))
+    val burstCnt = dontTouch(RegInit(0.U(8.W)))
 /*-----------------------FSM-----------------------*/
     val s_IDLE :: s_i_soc :: s_d_soc :: s_d_clint :: Nil = Enum(4)
     val c_state = RegInit(s_IDLE)
     val n_state = WireDefault(c_state)
-    // dontTouch(n_state)
+    dontTouch(n_state)
 
     val isclint_raddr = (io.dmem.araddr >= "h0200_0000".U(32.W) && io.dmem.araddr <= "h0200_ffff".U(32.W))
     val isclint_waddr = (io.dmem.awaddr >= "h0200_0000".U(32.W) && io.dmem.awaddr <= "h0200_ffff".U(32.W))
