@@ -41,6 +41,8 @@ class Core extends Module {
     val icache = Module(new iCache(8, 4, 1, "LRU"))
     io.imem <> icache.io.out
     icache.io.in <> ifu.io.imem
+
+    StageConnect(idu.fencei_io_vr.is_fencei_io, icache.fencei_io_vr.is_fencei_io)
     
     // io.imem <> ifu.io.imem
 
