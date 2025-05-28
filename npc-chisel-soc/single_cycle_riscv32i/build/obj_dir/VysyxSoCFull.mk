@@ -39,7 +39,6 @@ VM_USER_CFLAGS = \
 	-I/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/nvboard/usr/include \
 	-DTOP_NAME="VysyxSoCFull" \
 	-DNPCCONFIG_DUMPWAVE \
-	-DNPCCONFIG_DIFFTEST \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
