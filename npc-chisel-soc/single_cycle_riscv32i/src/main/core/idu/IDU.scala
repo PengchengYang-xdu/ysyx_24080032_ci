@@ -252,6 +252,6 @@ class IDU extends Module {
 
 
 
-    fencei_io_vr.is_fencei_io.bits.is_fencei := is_fencei
+    fencei_io_vr.is_fencei_io.bits.is_fencei := Mux(fencei_io_vr.is_fencei_io.fire, 0.U, is_fencei)
 }
 
