@@ -1,12 +1,2 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 3 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:45:35: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : chisel3.util.IrrevocableIO[npc.core.idu.FENCEI_IO][0m
-[0m[[0m[31merror[0m] [0m[0m required: chisel3.util.DecoupledIO[?][0m
-[0m[[0m[31merror[0m] [0m[0m    StageConnect(idu.fencei_io_vr.is_fencei_io, icache.fencei_io_vr.is_fencei_io)[0m
-[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:45:69: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : chisel3.util.IrrevocableIO[npc.core.idu.FENCEI_IO][0m
-[0m[[0m[31merror[0m] [0m[0m required: chisel3.util.DecoupledIO[?][0m
-[0m[[0m[31merror[0m] [0m[0m    StageConnect(idu.fencei_io_vr.is_fencei_io, icache.fencei_io_vr.is_fencei_io)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                    ^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
