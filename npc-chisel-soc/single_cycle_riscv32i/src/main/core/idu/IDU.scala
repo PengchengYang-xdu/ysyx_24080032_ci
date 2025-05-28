@@ -244,8 +244,8 @@ class IDU extends Module {
         }
         is(s_AfterPreFire){
             in_ready := false.B
-            out_valid := true.B
-            is_fencei_valid := true.B
+            out_valid := Mux(is_fencei === 1.U, false.B, true.B)
+            is_fencei_valid := Mux(is_fencei === 1.U, true.B, false.B)
         }
     }
 
@@ -254,6 +254,6 @@ class IDU extends Module {
 
 
 
-    is_fencei_reg := Mux(fencei_io_vr.is_fencei_io.fire, 0.U, is_fencei)
+    is_fencei_reg := Mux(fencei_io_vr.is_fencei_io.fire, 0.U, Mux(io_pipe.in.valid, is_fencei, is_fencei_reg))
 }
 
