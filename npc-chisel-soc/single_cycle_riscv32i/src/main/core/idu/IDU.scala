@@ -38,7 +38,7 @@ class FENCEI_IO extends Bundle{
 }
 
 class FENCEI_IO_VR extends Bundle{
-    val is_fencei_io = Decoupled(new FENCEI_IO)
+    val is_fencei_io = Irrevocable(new FENCEI_IO)
 }
 
 class IDUIO_pipe extends Bundle {

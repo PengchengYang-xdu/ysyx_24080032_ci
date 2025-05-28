@@ -1,2 +1,11 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:149:34: value is_fencei_io is not a member of chisel3.util.IrrevocableIO[npc.core.idu.FENCEI_IO_VR][0m
+[0m[[0m[31merror[0m] [0m[0m    val is_fencei = fencei_io_vr.is_fencei_io.valid && fencei_io_vr.is_fencei_io.bits.is_fencei[0m
+[0m[[0m[31merror[0m] [0m[0m                                 ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:149:69: value is_fencei_io is not a member of chisel3.util.IrrevocableIO[npc.core.idu.FENCEI_IO_VR][0m
+[0m[[0m[31merror[0m] [0m[0m    val is_fencei = fencei_io_vr.is_fencei_io.valid && fencei_io_vr.is_fencei_io.bits.is_fencei[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:169:18: value is_fencei_io is not a member of chisel3.util.IrrevocableIO[npc.core.idu.FENCEI_IO_VR][0m
+[0m[[0m[31merror[0m] [0m[0m    fencei_io_vr.is_fencei_io.ready := fencei_fsh[0m
+[0m[[0m[31merror[0m] [0m[0m                 ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
