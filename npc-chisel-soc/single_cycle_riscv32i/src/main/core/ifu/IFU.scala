@@ -52,7 +52,7 @@ class IFU extends Module {
 
 
     //delay
-    val delay = if (ENABLE_IFU_LFSR_DELAY) {
+    val delay = if (ENABLE_DELAY) {
         val lfsr = RegInit(IFU_DELAY)
         lfsr := Cat(lfsr(2,0), lfsr(0)^lfsr(1)^lfsr(2))
         val d = RegInit(lfsr)
