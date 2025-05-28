@@ -36,7 +36,7 @@ void ssbl(volatile char *src){
     while(dest < &_data_end)
         *dest++ = *src++;
     bss_clr();
-    // printf("bootloader done\n");
+    printf("bootloader done\n");
     _trm_init();
 }
 
