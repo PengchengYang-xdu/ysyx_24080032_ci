@@ -38,7 +38,7 @@ class Core extends Module {
     StageConnect(lsu.io_pipe.out, wbu.io_pipe.in)
     StageConnect(wbu.io_pipe.out, ifu.io_pipe.in)
 
-    val icache = Module(new iCache(8, 4, 1, "FIFO"))
+    val icache = Module(new iCache(8, 8, 1, "LRU"))
     io.imem <> icache.io.out
     icache.io.in <> ifu.io.imem
     
