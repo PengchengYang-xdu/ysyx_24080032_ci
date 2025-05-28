@@ -1,10 +1,10 @@
 
 30. Executing CHECK pass (checking for obvious problems).
 checking module CSR..
-Warning: Wire CSR.$abc$28755$and$/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/vsrc/CSR.sv:107$155_Y is used but has no driver.
-Warning: Wire CSR.$abc$28755$reduce_or$/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/vsrc/CSR.sv:103$152_Y is used but has no driver.
-Warning: Wire CSR.$auto$hilomap.cc:47:hilomap_worker$59474 is used but has no driver.
-Warning: Wire CSR.$auto$hilomap.cc:39:hilomap_worker$59472 is used but has no driver.
+Warning: Wire CSR.$abc$26565$and$/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/vsrc/CSR.sv:107$155_Y is used but has no driver.
+Warning: Wire CSR.$abc$26565$reduce_or$/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/vsrc/CSR.sv:103$152_Y is used but has no driver.
+Warning: Wire CSR.$auto$hilomap.cc:47:hilomap_worker$54127 is used but has no driver.
+Warning: Wire CSR.$auto$hilomap.cc:39:hilomap_worker$54125 is used but has no driver.
 Warning: Wire CSR.\csr_addr_process[2] is used but has no driver.
 Warning: Wire CSR.\csr_addr_process[1] is used but has no driver.
 Warning: Wire CSR.\csr_addr_process[0] is used but has no driver.
@@ -352,8 +352,8 @@ Warning: Wire GPR.\io_gpr_rs1_data [3] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [2] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [1] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [0] is used but has no driver.
-Warning: Wire GPR.$abc$30805$and$/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/vsrc/GPR.sv:81$160_Y is used but has no driver.
-Warning: Wire GPR.$auto$hilomap.cc:39:hilomap_worker$59480 is used but has no driver.
+Warning: Wire GPR.$abc$28627$and$/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/vsrc/GPR.sv:81$160_Y is used but has no driver.
+Warning: Wire GPR.$auto$hilomap.cc:39:hilomap_worker$54133 is used but has no driver.
 checking module IDU..
 Warning: Wire IDU.\io_pipe_out_valid is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_wb_sel [2] is used but has no driver.
@@ -946,8 +946,8 @@ Warning: Wire NPC.\io_slave_bid [1] is used but has no driver.
 Warning: Wire NPC.\io_slave_bid [0] is used but has no driver.
 Warning: Wire NPC.\io_slave_awready is used but has no driver.
 Warning: Wire NPC.\io_slave_arready is used but has no driver.
-Warning: Wire NPC.$auto$hilomap.cc:39:hilomap_worker$59488 is used but has no driver.
-Warning: Wire NPC.$auto$hilomap.cc:47:hilomap_worker$59486 is used but has no driver.
+Warning: Wire NPC.$auto$hilomap.cc:39:hilomap_worker$54141 is used but has no driver.
+Warning: Wire NPC.$auto$hilomap.cc:47:hilomap_worker$54139 is used but has no driver.
 checking module WBU..
 Warning: Wire WBU.\io_pipe_out_valid is used but has no driver.
 Warning: Wire WBU.\io_pipe_in_ready is used but has no driver.
