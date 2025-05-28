@@ -5,9 +5,10 @@ module Ebreak(
 );
 
 
+
 always @(*)begin
     if(inst == 32'h00100073)
-    ;
+;
 end
 
 endmodule
