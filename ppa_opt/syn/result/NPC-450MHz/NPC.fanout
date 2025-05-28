@@ -1,11 +1,11 @@
-Generate the report at 2025-05-28T20:00:15, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
-+-----------------------+-----------+--------+-------------+-------------+------+
-| Net / Pin             | MaxFanout | Fanout | FanoutSlack | LibCellPort | Note |
-+-----------------------+-----------+--------+-------------+-------------+------+
-| fanout_net_92         |           |        |             |             |      |
-| fanout_buf_92:Z       | NA        | 30     | NA          | BUF_X8/Z    |      |
-| fanout_net_83         |           |        |             |             |      |
-| fanout_buf_83:Z       | NA        | 30     | NA          | BUF_X8/Z    |      |
-| core/icache/_2543_    |           |        |             |             |      |
-| core/icache/_4860_:ZN | NA        | 2      | NA          | INV_X2/ZN   |      |
-+-----------------------+-----------+--------+-------------+-------------+------+
+Generate the report at 2025-05-28T20:01:57, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
++----------------------------+-----------+--------+-------------+-------------+------+
+| Net / Pin                  | MaxFanout | Fanout | FanoutSlack | LibCellPort | Note |
++----------------------------+-----------+--------+-------------+-------------+------+
+| fanout_net_152             |           |        |             |             |      |
+| fanout_buf_152:Z           | NA        | 30     | NA          | BUF_X8/Z    |      |
+| core/gpr/gpr_ext/_00680_   |           |        |             |             |      |
+| core/gpr/gpr_ext/_12590_:Z | NA        | 1      | NA          | BUF_X1/Z    |      |
+| core/gpr/gpr_ext/_00679_   |           |        |             |             |      |
+| core/gpr/gpr_ext/_12589_:Z | NA        | 1      | NA          | BUF_X1/Z    |      |
++----------------------------+-----------+--------+-------------+-------------+------+
