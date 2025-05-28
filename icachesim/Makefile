@@ -34,7 +34,7 @@ clean:
 batch_run:
 	rm -rf ./$(MD_FILE)
 	@echo "Running multiple cache configurations..."
-	$(MAKE) run BLOCK_SIZE=4 SETS=4 WAYS=3 POLICY=LRU
-	$(MAKE) run BLOCK_SIZE=4 SETS=16 WAYS=3 POLICY=LRU
-	$(MAKE) run BLOCK_SIZE=16 SETS=16 WAYS=3 POLICY=LRU
+	$(MAKE) run BLOCK_SIZE=8 SETS=4 WAYS=1 POLICY=LRU
+	$(MAKE) run BLOCK_SIZE=8 SETS=4 WAYS=1 POLICY=FIFO
+	$(MAKE) run BLOCK_SIZE=8 SETS=4 WAYS=1 POLICY=RANDOM
 	@echo "Results written to $(MD_FILE)"
