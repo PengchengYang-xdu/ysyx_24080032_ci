@@ -85,7 +85,7 @@ class IFU extends Module {
     val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: Nil = Enum(4)
     val c_state = RegInit(s_BeforeAXI_AR_Fire)
     val n_state = WireDefault(c_state)
-    dontTouch(n_state)
+    // dontTouch(n_state)
 
     val AXI_AR_fire = arvalid & io.imem.arready
     val AXI_R_fire = io.imem.rvalid & rready
@@ -168,7 +168,7 @@ class IFU extends Module {
 
     //main process
     val pc_next = Wire(UInt(WORD_LEN.W))
-    dontTouch(pc_next)
+    // dontTouch(pc_next)
     
     val reg_pc = withReset(reset.asAsyncReset){
         RegEnable(pc_next, START_ADDR, io_pipe.in.valid)

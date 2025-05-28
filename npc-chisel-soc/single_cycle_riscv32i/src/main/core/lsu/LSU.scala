@@ -100,7 +100,7 @@ class LSU extends Module {
     val s_BeforePreFire :: s_BeforeAXI_ARorAWW_Fire :: s_BeforeAXI_RorB_Fire :: s_AfterPreFire :: Nil = Enum(4)
     val c_state = RegInit(s_BeforePreFire)
     val n_state = WireDefault(c_state)
-    dontTouch(n_state)
+    // dontTouch(n_state)
 
     val AXI_ARorAWW_fire = (arvalid & io.dmem.arready) | ((awvalid & io.dmem.awready) & (wvalid & io.dmem.wready))
     val AXI_RorB_fire = (io.dmem.rvalid & rready) | (io.dmem.bvalid & bready)
