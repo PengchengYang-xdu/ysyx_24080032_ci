@@ -40,7 +40,7 @@
         "MODULESHOME": "/usr/share/modules",
         "VSCODE_GIT_ASKPASS_MAIN": "/home/yangpengcheng/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js",
         "XDG_SESSION_ID": "244",
-        "ALL": "string",
+        "ALL": "dummy",
         "LC_TIME": "zh_CN.UTF-8",
         "CONDA_EXE": "/home/yangpengcheng/miniconda3/bin/conda",
         "CONDA_DEFAULT_ENV": "base",
@@ -51,7 +51,7 @@
         "RISCV32": "/home/yangpengcheng/workspace/opt/riscv32",
         "LM_LICENSE_FILE": "/home/yangpengcheng/license.dat",
         "LC_ADDRESS": "zh_CN.UTF-8",
-        "MAKEFLAGS": "s -- ALL=string ARCH=riscv32e-ysyxsoc",
+        "MAKEFLAGS": "s -- ALL=dummy ARCH=riscv32e-ysyxsoc",
         "CUDA_HOME": "/usr/local/cuda-12.4",
         "CC": "riscv64-linux-gnu-gcc",
         "USER": "yangpengcheng",
@@ -91,6 +91,6 @@
         "MODEL_TECH": "/home/yangpengcheng/questasim/bin",
         "_CE_CONDA": ""
     },
-    "valueHash": 1175579794,
-    "inputsHash": 1955841791
+    "valueHash": 1774261664,
+    "inputsHash": -60897237
 }
