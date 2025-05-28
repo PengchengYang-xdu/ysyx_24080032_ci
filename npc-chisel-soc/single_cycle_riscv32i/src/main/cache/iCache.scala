@@ -27,6 +27,9 @@ class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int) exte
 class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementPolicy: String) extends Module{
     val io = IO(new iCacheIO)
 
+    val fencei_io_vr = IO(Flipped(new npc.core.idu.FENCEI_IO_VR))
+    dontTouch(fencei_io_vr)
+
     val in_arready = RegInit(true.B)
     val in_rdata = RegInit(0.U)
     val in_rresp = RegInit(0.U)
