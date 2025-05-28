@@ -464,87 +464,82 @@
 
 === csr_6x32 ===
 
-   Number of wires:               2607
-   Number of wire bits:           2871
+   Number of wires:               2601
+   Number of wire bits:           2865
    Number of public wires:         224
    Number of public wire bits:     488
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:               2479
-     AND2_X1                        12
-     AND2_X4                         2
-     AND3_X1                         1
+   Number of cells:               2473
+     AND2_X1                        10
+     AND2_X4                         1
      BUF_X1                        669
-     BUF_X2                          4
-     BUF_X4                         77
-     BUF_X8                         18
+     BUF_X4                         78
+     BUF_X8                         21
      DFF_X1                        192
-     INV_X1                         14
-     INV_X16                         1
-     INV_X2                          2
+     INV_X1                         12
+     INV_X16                         2
      INV_X32                         2
      INV_X4                          1
-     MUX2_X1                       783
-     MUX2_X2                       653
-     NAND2_X1                       14
-     NAND2_X2                        3
+     MUX2_X1                       804
+     MUX2_X2                       636
+     NAND2_X1                       18
+     NAND2_X2                        2
      NAND2_X4                        4
-     NAND3_X1                        2
      NAND3_X4                        3
-     NOR2_X1                        10
-     NOR2_X4                         5
+     NOR2_X1                        11
+     NOR2_X4                         4
      NOR3_X4                         3
-     OAI211_X2                       1
-     OAI21_X1                        2
-     OR3_X1                          1
 
-   Chip area for module '\csr_6x32': 4758.740000
+   Chip area for module '\csr_6x32': 4753.420000
 
 === gpr_32x32 ===
 
-   Number of wires:               7973
-   Number of wire bits:           8078
+   Number of wires:               7930
+   Number of wire bits:           8035
    Number of public wires:        1036
    Number of public wire bits:    1141
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:               7001
-     AND2_X1                       130
+   Number of cells:               6958
+     AND2_X1                        94
      AND2_X2                        16
-     AOI211_X2                      27
-     AOI211_X4                     216
-     AOI21_X1                       69
+     AOI211_X2                      43
+     AOI211_X4                     133
+     AOI21_X1                       66
      BUF_X1                       2160
      BUF_X16                         2
-     BUF_X2                          7
-     BUF_X32                         3
-     BUF_X4                        173
-     BUF_X8                         27
-     CLKBUF_X2                       3
+     BUF_X2                          9
+     BUF_X32                         7
+     BUF_X4                        163
+     BUF_X8                         35
+     CLKBUF_X2                       5
+     CLKBUF_X3                       1
      DFF_X1                       1024
-     INV_X1                         69
-     INV_X16                         1
-     INV_X2                          2
-     INV_X32                         3
-     MUX2_X1                      1961
-     MUX2_X2                         2
-     NAND2_X1                       66
-     NAND3_X1                      178
-     NOR2_X1                        95
-     NOR2_X4                         8
-     NOR3_X1                         4
-     OAI211_X2                     376
-     OAI21_X1                       30
-     OAI221_X1                       9
-     OR2_X1                        264
-     OR2_X2                          1
-     OR3_X1                         69
-     OR3_X2                          1
-     OR3_X4                          5
+     INV_X1                         72
+     INV_X2                          4
+     INV_X32                         4
+     MUX2_X1                      2055
+     MUX2_X2                        11
+     NAND2_X1                       95
+     NAND3_X1                      171
+     NAND3_X2                        1
+     NOR2_X1                        73
+     NOR2_X4                         1
+     NOR3_X1                         1
+     OAI211_X2                     396
+     OAI21_X1                       15
+     OAI221_X1                       5
+     OR2_X1                        225
+     OR2_X2                         13
+     OR2_X4                          1
+     OR3_X1                         47
+     OR3_X2                          7
+     OR3_X4                          3
 
-   Chip area for module '\gpr_32x32': 13165.670000
+   Chip area for module '\gpr_32x32': 13147.316000
 
 === iCache ===
 
@@ -627,26 +622,26 @@
        iCache                        1
      Xbar                            1
 
-   Number of wires:              24727
-   Number of wire bits:          28459
+   Number of wires:              24678
+   Number of wire bits:          28410
    Number of public wires:        3836
    Number of public wire bits:    7568
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:              22106
-     AND2_X1                       717
+   Number of cells:              22057
+     AND2_X1                       679
      AND2_X2                        52
-     AND2_X4                        58
-     AND3_X1                       396
+     AND2_X4                        57
+     AND3_X1                       395
      AND3_X2                         8
      AND3_X4                         9
      AND4_X1                       156
      AND4_X2                         4
      AND4_X4                         2
-     AOI211_X2                      66
-     AOI211_X4                     652
-     AOI21_X1                      484
+     AOI211_X2                      82
+     AOI211_X4                     569
+     AOI21_X1                      481
      AOI21_X2                       33
      AOI21_X4                        5
      AOI221_X1                       1
@@ -656,60 +651,60 @@
      AOI22_X2                        1
      BUF_X1                       7286
      BUF_X16                        10
-     BUF_X2                         81
-     BUF_X32                         5
-     BUF_X4                        512
-     BUF_X8                        101
+     BUF_X2                         79
+     BUF_X32                         9
+     BUF_X4                        503
+     BUF_X8                        112
      CLKBUF_X1                       8
-     CLKBUF_X2                     106
-     CLKBUF_X3                       3
+     CLKBUF_X2                     108
+     CLKBUF_X3                       4
      DFFRS_X1                        8
      DFFR_X1                       138
      DFFS_X1                         2
      DFF_X1                       2229
-     INV_X1                        644
+     INV_X1                        645
      INV_X16                         4
      INV_X2                         22
-     INV_X32                         7
+     INV_X32                         8
      INV_X4                          8
      INV_X8                          1
      LOGIC0_X1                       6
      LOGIC1_X1                       4
-     MUX2_X1                      3253
-     MUX2_X2                       657
-     NAND2_X1                      340
-     NAND2_X2                        7
+     MUX2_X1                      3368
+     MUX2_X2                       649
+     NAND2_X1                      373
+     NAND2_X2                        6
      NAND2_X4                        7
-     NAND3_X1                      518
-     NAND3_X2                        1
+     NAND3_X1                      509
+     NAND3_X2                        2
      NAND3_X4                        4
      NAND4_X1                      180
      NAND4_X4                        2
-     NOR2_X1                       511
+     NOR2_X1                       490
      NOR2_X2                        20
-     NOR2_X4                        39
-     NOR3_X1                       212
+     NOR2_X4                        31
+     NOR3_X1                       209
      NOR3_X2                         2
      NOR3_X4                         4
      NOR4_X1                        57
      NOR4_X2                         3
      NOR4_X4                         5
-     OAI211_X2                     728
+     OAI211_X2                     747
      OAI211_X4                       1
-     OAI21_X1                      456
+     OAI21_X1                      439
      OAI21_X2                       32
      OAI21_X4                        1
-     OAI221_X1                      48
+     OAI221_X1                      44
      OAI221_X2                       1
      OAI22_X1                       76
      OAI22_X2                        1
      OAI22_X4                        1
-     OR2_X1                        332
-     OR2_X2                          9
-     OR2_X4                          9
-     OR3_X1                        309
-     OR3_X2                          8
-     OR3_X4                          9
+     OR2_X1                        293
+     OR2_X2                         21
+     OR2_X4                         10
+     OR3_X1                        286
+     OR3_X2                         14
+     OR3_X4                          7
      OR4_X1                         13
      OR4_X2                          2
      OR4_X4                          6
@@ -717,5 +712,5 @@
      XOR2_X1                       100
      XOR2_X2                         6
 
-   Chip area for top module '\NPC': 36957.508000
+   Chip area for top module '\NPC': 36933.834000
 
