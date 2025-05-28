@@ -43,7 +43,7 @@ SECTIONS {
         _text_start = .;
         
         /*添加对齐padding优化程序布局*/
-        . = . + 4;
+        /* . = . + 4; */
 
         *(.text*)
         _text_end = .;
