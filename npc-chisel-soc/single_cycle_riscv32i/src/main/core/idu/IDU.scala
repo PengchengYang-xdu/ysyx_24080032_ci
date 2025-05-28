@@ -216,6 +216,8 @@ class IDU extends Module {
     //handshake between modules
     val is_fencei_valid = RegInit(false.B)
     fencei_io_vr.is_fencei_io.valid := is_fencei_valid
+    val is_fencei_reg = RegInit(0.U)
+    fencei_io_vr.is_fencei_io.bits.is_fencei := is_fencei_reg
 
     val in_ready = RegInit(false.B)
     val out_valid = RegInit(false.B)
@@ -252,6 +254,6 @@ class IDU extends Module {
 
 
 
-    fencei_io_vr.is_fencei_io.bits.is_fencei := Mux(fencei_io_vr.is_fencei_io.fire, 0.U, is_fencei)
+    is_fencei_reg := Mux(fencei_io_vr.is_fencei_io.fire, 0.U, is_fencei)
 }
 
