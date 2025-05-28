@@ -248,6 +248,6 @@ class IDU extends Module {
 
 
     fencei_io_vr.is_fencei_io.bits.is_fencei := is_fencei
-    fencei_io_vr.is_fencei_io.valid := out_valid
+    fencei_io_vr.is_fencei_io.valid := false.B
 }
 
