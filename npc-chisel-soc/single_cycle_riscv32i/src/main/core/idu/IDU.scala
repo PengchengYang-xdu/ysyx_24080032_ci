@@ -214,6 +214,9 @@ class IDU extends Module {
 
 
     //handshake between modules
+    val is_fencei_valid = RegInit(false.B)
+    fencei_io_vr.is_fencei_io.valid := is_fencei_valid
+
     val in_ready = RegInit(false.B)
     val out_valid = RegInit(false.B)
     io_pipe.in.ready := in_ready
@@ -228,17 +231,19 @@ class IDU extends Module {
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
         s_BeforePreFire  ->  Mux(io_pipe.in.fire, s_AfterPreFire, s_BeforePreFire),
-        s_AfterPreFire   ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
+        s_AfterPreFire   ->  Mux(Mux(is_fencei, fencei_io_vr.is_fencei_io.fire, io_pipe.out.fire), s_BeforePreFire, s_AfterPreFire)
     ))
 
     switch(n_state){//third phase
         is(s_BeforePreFire){
             in_ready := true.B
             out_valid := false.B
+            is_fencei_valid := false.B
         }
         is(s_AfterPreFire){
             in_ready := false.B
             out_valid := true.B
+            is_fencei_valid := true.B
         }
     }
 
@@ -248,6 +253,5 @@ class IDU extends Module {
 
 
     fencei_io_vr.is_fencei_io.bits.is_fencei := is_fencei
-    fencei_io_vr.is_fencei_io.valid := false.B
 }
 
