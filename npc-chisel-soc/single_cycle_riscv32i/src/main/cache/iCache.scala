@@ -29,6 +29,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
 
     val fencei_io_vr = IO(Flipped(new npc.core.idu.FENCEI_IO_VR))
     dontTouch(fencei_io_vr)
+    fencei_io_vr.is_fencei_io.ready := 1.U
 
     val in_arready = RegInit(true.B)
     val in_rdata = RegInit(0.U)
