@@ -49,8 +49,7 @@ TRUNC:
 sta: GEN_NPC COPY_FILE $(TIMING_RPT)
 $(TIMING_RPT): $(SCRIPT_DIR)/sta.tcl $(SDC_FILE) $(NETLIST_FIXED_V)
 	$(PRJ_PATH)/syn/bin/iEDA -script $^ $(DESIGN) 2>&1 | tee $(RESULT_DIR)/sta.log
-
-syn: sta TRUNC
+	@make TRUNC
 
 
 .PHONY: init syn fix-fanout sta clean
