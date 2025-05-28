@@ -167,11 +167,11 @@ module EXU(	// @[src/main/core/exu/EXU.scala:36:7]
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
   assign io_br_flg =
-    (io_pipe_in_bits_id2exe_exe_fun == 5'hB)
+    io_pipe_in_bits_id2exe_exe_fun == 5'hB
       ? _br_flg_T_3
       : io_pipe_in_bits_id2exe_exe_fun == 5'hC
           ? ~_br_flg_T_3
-          : (io_pipe_in_bits_id2exe_exe_fun == 5'hD)
+          : io_pipe_in_bits_id2exe_exe_fun == 5'hD
               ? $signed(io_pipe_in_bits_id2exe_op1_data) < $signed(io_pipe_in_bits_id2exe_op2_data)
               : io_pipe_in_bits_id2exe_exe_fun == 5'hE
                   ? $signed(io_pipe_in_bits_id2exe_op1_data) >= $signed(io_pipe_in_bits_id2exe_op2_data)
