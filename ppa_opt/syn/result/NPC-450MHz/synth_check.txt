@@ -1,10 +1,10 @@
 
-30. Executing CHECK pass (checking for obvious problems).
+31. Executing CHECK pass (checking for obvious problems).
 checking module CSR..
-Warning: Wire CSR.$abc$27181$and$./vsrc/CSR.sv:107$155_Y is used but has no driver.
-Warning: Wire CSR.$abc$27181$reduce_or$./vsrc/CSR.sv:103$152_Y is used but has no driver.
-Warning: Wire CSR.$auto$hilomap.cc:47:hilomap_worker$55836 is used but has no driver.
-Warning: Wire CSR.$auto$hilomap.cc:39:hilomap_worker$55834 is used but has no driver.
+Warning: Wire CSR.$abc$25172$and$./vsrc/CSR.sv:107$155_Y is used but has no driver.
+Warning: Wire CSR.$abc$25172$reduce_or$./vsrc/CSR.sv:103$152_Y is used but has no driver.
+Warning: Wire CSR.$auto$hilomap.cc:47:hilomap_worker$49819 is used but has no driver.
+Warning: Wire CSR.$auto$hilomap.cc:39:hilomap_worker$49817 is used but has no driver.
 Warning: Wire CSR.\csr_addr_process[2] is used but has no driver.
 Warning: Wire CSR.\csr_addr_process[1] is used but has no driver.
 Warning: Wire CSR.\csr_addr_process[0] is used but has no driver.
@@ -352,8 +352,8 @@ Warning: Wire GPR.\io_gpr_rs1_data [3] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [2] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [1] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [0] is used but has no driver.
-Warning: Wire GPR.$abc$29168$and$./vsrc/GPR.sv:81$160_Y is used but has no driver.
-Warning: Wire GPR.$auto$hilomap.cc:39:hilomap_worker$55842 is used but has no driver.
+Warning: Wire GPR.$abc$27234$and$./vsrc/GPR.sv:81$160_Y is used but has no driver.
+Warning: Wire GPR.$auto$hilomap.cc:39:hilomap_worker$49825 is used but has no driver.
 checking module IDU..
 Warning: Wire IDU.\io_pipe_out_valid is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_wb_sel [2] is used but has no driver.
@@ -948,8 +948,8 @@ Warning: Wire NPC.\io_slave_bid [1] is used but has no driver.
 Warning: Wire NPC.\io_slave_bid [0] is used but has no driver.
 Warning: Wire NPC.\io_slave_awready is used but has no driver.
 Warning: Wire NPC.\io_slave_arready is used but has no driver.
-Warning: Wire NPC.$auto$hilomap.cc:39:hilomap_worker$55850 is used but has no driver.
-Warning: Wire NPC.$auto$hilomap.cc:47:hilomap_worker$55848 is used but has no driver.
+Warning: Wire NPC.$auto$hilomap.cc:39:hilomap_worker$49833 is used but has no driver.
+Warning: Wire NPC.$auto$hilomap.cc:47:hilomap_worker$49831 is used but has no driver.
 checking module WBU..
 Warning: Wire WBU.\io_pipe_out_valid is used but has no driver.
 Warning: Wire WBU.\io_pipe_in_ready is used but has no driver.
@@ -1461,71 +1461,71 @@ Warning: Wire csr_6x32.\R0_data [3] is used but has no driver.
 Warning: Wire csr_6x32.\R0_data [2] is used but has no driver.
 Warning: Wire csr_6x32.\R0_data [1] is used but has no driver.
 Warning: Wire csr_6x32.\R0_data [0] is used but has no driver.
-checking module gpr_32x32..
-Warning: Wire gpr_32x32.\R1_data [31] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [30] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [29] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [28] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [27] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [26] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [25] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [24] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [23] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [22] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [21] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [20] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [19] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [18] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [17] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [16] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [15] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [14] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [13] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [12] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [11] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [10] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [9] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [8] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [7] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [6] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [5] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [4] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [3] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [2] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [1] is used but has no driver.
-Warning: Wire gpr_32x32.\R1_data [0] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [31] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [30] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [29] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [28] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [27] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [26] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [25] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [24] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [23] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [22] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [21] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [20] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [19] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [18] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [17] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [16] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [15] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [14] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [13] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [12] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [11] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [10] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [9] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [8] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [7] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [6] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [5] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [4] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [3] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [2] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [1] is used but has no driver.
-Warning: Wire gpr_32x32.\R0_data [0] is used but has no driver.
+checking module gpr_16x32..
+Warning: Wire gpr_16x32.\R1_data [31] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [30] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [29] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [28] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [27] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [26] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [25] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [24] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [23] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [22] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [21] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [20] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [19] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [18] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [17] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [16] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [15] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [14] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [13] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [12] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [11] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [10] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [9] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [8] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [7] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [6] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [5] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [4] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [3] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [2] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [1] is used but has no driver.
+Warning: Wire gpr_16x32.\R1_data [0] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [31] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [30] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [29] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [28] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [27] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [26] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [25] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [24] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [23] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [22] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [21] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [20] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [19] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [18] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [17] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [16] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [15] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [14] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [13] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [12] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [11] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [10] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [9] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [8] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [7] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [6] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [5] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [4] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [3] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [2] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [1] is used but has no driver.
+Warning: Wire gpr_16x32.\R0_data [0] is used but has no driver.
 checking module iCache..
 Warning: Wire iCache.\io_out_wvalid is used but has no driver.
 Warning: Wire iCache.\io_out_wstrb [3] is used but has no driver.
