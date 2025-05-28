@@ -52,9 +52,11 @@ class IFU extends Module {
 
 
     //delay
-    val lfsr = RegInit(IFU_DELAY)
-    lfsr := Cat(lfsr(2,0), lfsr(0)^lfsr(1)^lfsr(2))
-    val delay = RegInit(lfsr)
+    if(ENABLE_DELAY){
+        val lfsr = RegInit(IFU_DELAY)
+        lfsr := Cat(lfsr(2,0), lfsr(0)^lfsr(1)^lfsr(2))
+        val delay = RegInit(lfsr)
+    }
 
 
 
@@ -109,23 +111,31 @@ class IFU extends Module {
             rready := false.B
             arsize := 2.U
             //delay
-            delay := lfsr
+            if(ENABLE_DELAY){
+                delay := lfsr
+            }
         }
         is(s_BeforeAXI_AR_Fire){
             //between modules
             in_ready := false.B
             out_valid := io.imem.rvalid & (io.imem.rresp === 0.U)
             //AXI
-            when(delay === 0.U){
+            if(ENABLE_DELAY){
+                when(delay === 0.U){
+                    arvalid := true.B
+                    rready := false.B
+                    arsize := 2.U
+                }.otherwise{
+                    arvalid := false.B
+                    rready := false.B
+                    arsize := 2.U
+                    //delay
+                    delay := delay - 1.U
+                }
+            } else {
                 arvalid := true.B
                 rready := false.B
                 arsize := 2.U
-            }.otherwise{
-                arvalid := false.B
-                rready := false.B
-                arsize := 2.U
-                //delay
-                delay := delay - 1.U
             }
         }
         is(s_BeforeAXI_R_Fire){

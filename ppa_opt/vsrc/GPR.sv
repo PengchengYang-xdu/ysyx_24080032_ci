@@ -68,16 +68,16 @@ module GPR(	// @[src/main/core/GPR.scala:19:7]
 
   wire [31:0] _gpr_ext_R0_data;	// @[src/main/core/GPR.scala:22:18]
   wire [31:0] _gpr_ext_R1_data;	// @[src/main/core/GPR.scala:22:18]
-  gpr_16x32 gpr_ext (	// @[src/main/core/GPR.scala:22:18]
-    .R0_addr (io_gpr_rs2_addr[3:0]),	// @[src/main/core/GPR.scala:25:70]
+  gpr_32x32 gpr_ext (	// @[src/main/core/GPR.scala:22:18]
+    .R0_addr (io_gpr_rs2_addr),
     .R0_en   (1'h1),	// @[src/main/core/GPR.scala:19:7]
     .R0_clk  (clock),
     .R0_data (_gpr_ext_R0_data),
-    .R1_addr (io_gpr_rs1_addr[3:0]),	// @[src/main/core/GPR.scala:24:70]
+    .R1_addr (io_gpr_rs1_addr),
     .R1_en   (1'h1),	// @[src/main/core/GPR.scala:19:7]
     .R1_clk  (clock),
     .R1_data (_gpr_ext_R1_data),
-    .W0_addr (io_gpr_addr[3:0]),	// @[src/main/core/GPR.scala:28:12]
+    .W0_addr (io_gpr_addr),
     .W0_en   (io_gpr_wen == 2'h1 & (|io_gpr_addr)),	// @[src/main/core/GPR.scala:27:{21,31,46}]
     .W0_clk  (clock),
     .W0_data (io_gpr_wdata)
