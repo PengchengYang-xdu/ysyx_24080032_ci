@@ -69,7 +69,7 @@ class WBU extends Module {
     val s_BeforePreFire :: s_AfterPreFire :: Nil = Enum(2)
     val c_state = RegInit(s_BeforePreFire)
     val n_state = WireDefault(c_state)
-    // dontTouch(n_state)
+    dontTouch(n_state)
 
     c_state := n_state//first phase
 

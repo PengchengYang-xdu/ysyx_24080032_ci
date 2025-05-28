@@ -28,7 +28,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val io = IO(new iCacheIO)
 
     val fencei_io_vr = IO(Flipped(new npc.core.idu.FENCEI_IO_VR))
-    // dontTouch(fencei_io_vr)
+    dontTouch(fencei_io_vr)
 
     val in_arready = RegInit(true.B)
     val in_rdata = RegInit(0.U)
@@ -108,19 +108,19 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     req_tag := io.in.araddr(31, m + n)
     val addr_align = Wire(UInt(WORD_LEN.W))
     addr_align := io.in.araddr - req_offset
-    // dontTouch(req_index)
-    // dontTouch(req_offset)
-    // dontTouch(req_tag)
-    // dontTouch(addr_align)
+    dontTouch(req_index)
+    dontTouch(req_offset)
+    dontTouch(req_tag)
+    dontTouch(addr_align)
 
     val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways, ways_width)))))
-    // dontTouch(icache)
+    dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
     val s_IDLE :: s_icache_lookup :: s_i_0 :: s_i_1 :: s_i_2 :: s_fencei :: Nil = Enum(6)
     val c_state = RegInit(s_IDLE)
     val n_state = WireDefault(c_state)
-    // dontTouch(n_state)
+    dontTouch(n_state)
 
     val issdram_raddr = (io.in.araddr >= "ha000_0000".U(32.W) && io.in.araddr <= "hbfff_ffff".U(32.W))
     val isifu_rreq = io.in.arvalid & in_arready
