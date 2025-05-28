@@ -1,0 +1,11 @@
+Generate the report at 2025-05-28T19:26:41, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
++----------------------------+-----------+--------+-------------+-------------+------+
+| Net / Pin                  | MaxFanout | Fanout | FanoutSlack | LibCellPort | Note |
++----------------------------+-----------+--------+-------------+-------------+------+
+| fanout_net_152             |           |        |             |             |      |
+| fanout_buf_152:Z           | NA        | 30     | NA          | BUF_X8/Z    |      |
+| fanout_net_143             |           |        |             |             |      |
+| fanout_buf_143:Z           | NA        | 30     | NA          | BUF_X8/Z    |      |
+| core/_csr_io_csr_rdata[18] |           |        |             |             |      |
+| core/csr/csr_ext/_4478_:Z  | NA        | 1      | NA          | BUF_X1/Z    |      |
++----------------------------+-----------+--------+-------------+-------------+------+
