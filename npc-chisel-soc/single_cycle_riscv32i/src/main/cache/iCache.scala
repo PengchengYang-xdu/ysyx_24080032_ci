@@ -27,7 +27,7 @@ class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int) exte
 class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementPolicy: String) extends Module{
     val io = IO(new iCacheIO)
 
-    val fencei_io_vr = IO(Flipped(new npc.core.idu.FENCEI_IO_VR))
+    val fencei_io_vr = IO(Flipped(Irrevocable(new npc.core.idu.FENCEI_IO_VR)))
     dontTouch(fencei_io_vr)
 
     val in_arready = RegInit(true.B)
@@ -161,13 +161,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         s_fencei         ->  Mux(fencei_fsh, s_IDLE, s_fencei)
     ))
 
-    when(is_fencei){
+    when(is_fencei && ~fencei_fsh){
         fencei_counter := fencei_counter + 1.U
     }.otherwise{
         fencei_counter := 0.U
     }
     fencei_io_vr.is_fencei_io.ready := fencei_fsh
-    when(is_fencei && ~fencei_fsh){
+    when(is_fencei){
         icache(fencei_counter) := 0.U.asTypeOf(new iCacheSet(m, n, ways, ways_width))
     }
 
