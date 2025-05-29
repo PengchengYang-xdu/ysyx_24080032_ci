@@ -32,20 +32,23 @@ class Core extends Module {
     val lsu = Module(new LSU)
     val wbu = Module(new WBU)
 
-    StageConnect(ifu.io_pipe.out, idu.io_pipe.in)
-    StageConnect(idu.io_pipe.out, exu.io_pipe.in)
-    StageConnect(exu.io_pipe.out, lsu.io_pipe.in)
-    StageConnect(lsu.io_pipe.out, wbu.io_pipe.in)
-    StageConnect(wbu.io_pipe.out, ifu.io_pipe.in)
+    // StageConnect(ifu.io_pipe.out, idu.io_pipe.in)
+    // StageConnect(idu.io_pipe.out, exu.io_pipe.in)
+    // StageConnect(exu.io_pipe.out, lsu.io_pipe.in)
+    // StageConnect(lsu.io_pipe.out, wbu.io_pipe.in)
+    // StageConnect(wbu.io_pipe.out, ifu.io_pipe.in)
+
+    pipelineConnect(ifu.io_pipe.out, idu.io_pipe.in)
+    pipelineConnect(idu.io_pipe.out, exu.io_pipe.in)
+    pipelineConnect(exu.io_pipe.out, lsu.io_pipe.in)
+    pipelineConnect(lsu.io_pipe.out, wbu.io_pipe.in)
+    pipelineConnect(wbu.io_pipe.out, ifu.io_pipe.in)
 
     val icache = Module(new iCache(8, 4, 1, "LRU"))
     io.imem <> icache.io.out
     icache.io.in <> ifu.io.imem
 
     idu.fencei_io_vr.is_fencei_io <> icache.fencei_io_vr.is_fencei_io
-    // StageConnect(idu.fencei_io_vr.is_fencei_io, icache.fencei_io_vr.is_fencei_io)
-    
-    // io.imem <> ifu.io.imem
 
     ifu.io.br_flg := exu.io.br_flg
     ifu.io.jmp_flg := exu.io.jmp_flg
@@ -71,6 +74,31 @@ class Core extends Module {
     gpr.io.gpr_wdata := wbu.io.gpr_wdata
 
 }
+
+
+
+
+def pipelineConnect[T <: Data, T2 <: Data](prevOut: DecoupledIO[T], thisIn: DecoupledIO[T]) = {
+    prevOut.ready := thisIn.ready
+    thisIn.bits := RegEnable(prevOut.bits, prevOut.valid && thisIn.ready)
+    thisIn.valid := RegEnable(prevOut.valid, thisIn.ready);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 object StageConnect {
   def apply[T <: Data](left: DecoupledIO[T], right: DecoupledIO[T]) = {
