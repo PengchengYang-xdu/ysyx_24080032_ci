@@ -56,39 +56,39 @@
 `endif // not def SYNTHESIS
 
 // VCS coverage exclude_file
-module gpr_32x32(	// @[src/main/core/GPR.scala:22:18]
-  input  [4:0]  R0_addr,
+module gpr_16x32(	// @[src/main/core/GPR.scala:23:18]
+  input  [3:0]  R0_addr,
   input         R0_en,
                 R0_clk,
   output [31:0] R0_data,
-  input  [4:0]  R1_addr,
+  input  [3:0]  R1_addr,
   input         R1_en,
                 R1_clk,
   output [31:0] R1_data,
-  input  [4:0]  W0_addr,
+  input  [3:0]  W0_addr,
   input         W0_en,
                 W0_clk,
   input  [31:0] W0_data
 );
 
-  reg [31:0] Memory[0:31];	// @[src/main/core/GPR.scala:22:18]
-  always @(posedge W0_clk) begin	// @[src/main/core/GPR.scala:22:18]
-    if (W0_en & 1'h1)	// @[src/main/core/GPR.scala:22:18]
-      Memory[W0_addr] <= W0_data;	// @[src/main/core/GPR.scala:22:18]
+  reg [31:0] Memory[0:15];	// @[src/main/core/GPR.scala:23:18]
+  always @(posedge W0_clk) begin	// @[src/main/core/GPR.scala:23:18]
+    if (W0_en & 1'h1)	// @[src/main/core/GPR.scala:23:18]
+      Memory[W0_addr] <= W0_data;	// @[src/main/core/GPR.scala:23:18]
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_MEM_	// @[src/main/core/GPR.scala:22:18]
-    reg [31:0] _RANDOM_MEM;	// @[src/main/core/GPR.scala:22:18]
-    initial begin	// @[src/main/core/GPR.scala:22:18]
-      `INIT_RANDOM_PROLOG_	// @[src/main/core/GPR.scala:22:18]
-      `ifdef RANDOMIZE_MEM_INIT	// @[src/main/core/GPR.scala:22:18]
-        for (logic [5:0] i = 6'h0; i < 6'h20; i += 6'h1) begin
-          _RANDOM_MEM = `RANDOM;	// @[src/main/core/GPR.scala:22:18]
-          Memory[i[4:0]] = _RANDOM_MEM;	// @[src/main/core/GPR.scala:22:18]
-        end	// @[src/main/core/GPR.scala:22:18]
+  `ifdef ENABLE_INITIAL_MEM_	// @[src/main/core/GPR.scala:23:18]
+    reg [31:0] _RANDOM_MEM;	// @[src/main/core/GPR.scala:23:18]
+    initial begin	// @[src/main/core/GPR.scala:23:18]
+      `INIT_RANDOM_PROLOG_	// @[src/main/core/GPR.scala:23:18]
+      `ifdef RANDOMIZE_MEM_INIT	// @[src/main/core/GPR.scala:23:18]
+        for (logic [4:0] i = 5'h0; i < 5'h10; i += 5'h1) begin
+          _RANDOM_MEM = `RANDOM;	// @[src/main/core/GPR.scala:23:18]
+          Memory[i[3:0]] = _RANDOM_MEM;	// @[src/main/core/GPR.scala:23:18]
+        end	// @[src/main/core/GPR.scala:23:18]
       `endif // RANDOMIZE_MEM_INIT
     end // initial
   `endif // ENABLE_INITIAL_MEM_
-  assign R0_data = R0_en ? Memory[R0_addr] : 32'bx;	// @[src/main/core/GPR.scala:22:18]
-  assign R1_data = R1_en ? Memory[R1_addr] : 32'bx;	// @[src/main/core/GPR.scala:22:18]
+  assign R0_data = R0_en ? Memory[R0_addr] : 32'bx;	// @[src/main/core/GPR.scala:23:18]
+  assign R1_data = R1_en ? Memory[R1_addr] : 32'bx;	// @[src/main/core/GPR.scala:23:18]
 endmodule
 
