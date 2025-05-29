@@ -73,16 +73,19 @@ class Core extends Module {
     gpr.io.gpr_addr := wbu.io.gpr_addr
     gpr.io.gpr_wdata := wbu.io.gpr_wdata
 
+
+    def pipelineConnect[T <: Data, T2 <: Data](prevOut: DecoupledIO[T], thisIn: DecoupledIO[T]) = {
+        prevOut.ready := thisIn.ready
+        thisIn.bits := RegEnable(prevOut.bits, prevOut.valid && thisIn.ready)
+        thisIn.valid := RegEnable(prevOut.valid, thisIn.ready);
+    }
+
 }
 
 
 
 
-def pipelineConnect[T <: Data, T2 <: Data](prevOut: DecoupledIO[T], thisIn: DecoupledIO[T]) = {
-    prevOut.ready := thisIn.ready
-    thisIn.bits := RegEnable(prevOut.bits, prevOut.valid && thisIn.ready)
-    thisIn.valid := RegEnable(prevOut.valid, thisIn.ready);
-}
+
 
 
 
