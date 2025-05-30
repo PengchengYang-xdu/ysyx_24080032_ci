@@ -9,14 +9,8 @@ STDERR:
 src/main/core/Core.scala:29:21: error: sink "" not fully initialized in "Core"
     val ifu = Module(new IFU)
                     ^
-src/main/core/Core.scala:30:21: error: sink "" not fully initialized in "Core"
-    val idu = Module(new IDU)
-                    ^
-src/main/core/Core.scala:30:21: error: sink "" not fully initialized in "Core"
-    val idu = Module(new IDU)
-                    ^
-src/main/core/Core.scala:30:21: error: sink "" not fully initialized in "Core"
-    val idu = Module(new IDU)
+src/main/core/Core.scala:33:21: error: sink "" not fully initialized in "Core"
+    val wbu = Module(new WBU)
                     ^
 
 ------------------------------------------------------------------------------
