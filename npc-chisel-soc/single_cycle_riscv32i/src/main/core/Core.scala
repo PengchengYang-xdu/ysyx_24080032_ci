@@ -92,7 +92,7 @@ class Core extends Module {
     exu.io_hazard.flush_flg := is_ctrl_hazard
     //auto fetch logic begin
     ifu.io_pipe.in.valid := RegEnable(true.B, false.B, ifu.io_pipe.in.ready)
-    wbu.io.pipe.out.ready := true.B
+    wbu.io_pipe.out.ready := true.B
     //auto fetch logic end
 
 
