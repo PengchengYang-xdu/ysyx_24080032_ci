@@ -180,16 +180,16 @@ class IFU extends Module {
     dontTouch(pc_next)
     
     val reg_pc = withReset(reset.asAsyncReset){
-        RegEnable(pc_next, START_ADDR, io_pipe.in.valid)
+        RegEnable(pc_next, START_ADDR, true.B)
     }
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
     pc_next := MuxCase(pc_plus4, Seq(
-        io.br_flg           -> io.br_target,
-        io.jmp_flg          -> io.alu_out,
-        (io.imem.rdata === ECALL)    -> io.csr_mtvec,
-        (io.imem.rdata === MRET)     -> io.csr_mepc,
+        io.hazard.flush_flg && io.br_flg            -> io.br_target,
+        io.hazard.flush_flg && io.jmp_flg           -> io.alu_out,
+        (io.imem.rdata === ECALL)                   -> io.csr_mtvec,
+        (io.imem.rdata === MRET)                    -> io.csr_mepc,
     ))
     
     //connect
