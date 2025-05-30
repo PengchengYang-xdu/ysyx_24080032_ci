@@ -186,8 +186,8 @@ class IFU extends Module {
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
     pc_next := MuxCase(pc_plus4, Seq(
-        io.io_hazard.flush_flg && io.br_flg            -> io.br_target,
-        io.io_hazard.flush_flg && io.jmp_flg           -> io.alu_out,
+        io_hazard.flush_flg && io.br_flg               -> io.br_target,
+        io_hazard.flush_flg && io.jmp_flg              -> io.alu_out,
         (io.imem.rdata === ECALL)                      -> io.csr_mtvec,
         (io.imem.rdata === MRET)                       -> io.csr_mepc,
     ))
