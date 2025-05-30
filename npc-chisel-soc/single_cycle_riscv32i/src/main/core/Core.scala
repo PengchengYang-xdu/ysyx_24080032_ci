@@ -74,17 +74,17 @@ class Core extends Module {
     gpr.io.gpr_wdata := wbu.io.gpr_wdata
 
     //data hazard
-    val exu_raw = dataConflictWithStage(idu, exu.io_pipe.in.valid, exu.io_pipe.in.bits.id2exe_wb_addr, exu.io_pipe.in.bits.id2exe_rf_wen)
-    val lsu_raw = dataConflictWithStage(idu, lsu.io_pipe.in.valid, lsu.io_pipe.in.bits.exe2ls_wb_addr, lsu.io_pipe.in.bits.exe2ls_rf_wen)
-    val wbu_raw = dataConflictWithStage(idu, wbu.io_pipe.in.valid, wbu.io_pipe.in.bits.ls2wb_wb_addr, wbu.io_pipe.in.bits.ls2wb_rf_wen)
+    val exu_raw = dataConflictWithStage(idu, exu.io_pipe.in.valid, exu.io_pipe.in.bits.id2exe_wb_addr, exu.io_pipe.in.bits.id2exe_rf_wen === REN_S)
+    val lsu_raw = dataConflictWithStage(idu, lsu.io_pipe.in.valid, lsu.io_pipe.in.bits.exe2ls_wb_addr, lsu.io_pipe.in.bits.exe2ls_rf_wen === REN_S)
+    val wbu_raw = dataConflictWithStage(idu, wbu.io_pipe.in.valid, wbu.io_pipe.in.bits.ls2wb_wb_addr, wbu.io_pipe.in.bits.ls2wb_rf_wen === REN_S)
     val is_raw = exu_raw || lsu_raw || wbu_raw
-    idu.io_harzard.stall_flg := is_raw
+    idu.io_hazard.stall_flg := is_raw
 
     //control hazard
     val is_ctrl_hazard = ((exu.io.br_flg && exu.io.br_target =/= ifu.io_pipe.out.bits.if2id_reg_pc + 4.U) || (exu.io.jmp_flg && exu.io.alu_out =/= ifu.io_pipe.out.bits.if2id_reg_pc + 4.U)) && exu.io_pipe.out.valid
-    ifu.io_harzard.flush_flg := is_ctrl_hazard
-    idu.io_harzard.flush_flg := is_ctrl_hazard
-    exu.io_harzard.flush_flg := is_ctrl_hazard
+    ifu.io_hazard.flush_flg := is_ctrl_hazard
+    idu.io_hazard.flush_flg := is_ctrl_hazard
+    exu.io_hazard.flush_flg := is_ctrl_hazard
 
 
 

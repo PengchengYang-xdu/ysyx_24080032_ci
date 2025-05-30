@@ -251,13 +251,13 @@ class IDU extends Module {
 
     switch(n_state){//third phase
         is(s_BeforePreFire){
-            in_ready := Mux(idu.io_harzard.stall_flg, false.B, true.B)
+            in_ready := Mux(io_harzard.stall_flg, false.B, true.B)
             out_valid := false.B
             is_fencei_valid := false.B
         }
         is(s_AfterPreFire){
             in_ready := false.B
-            out_valid := Mux(idu.io_harzard.stall_flg, false.B, true.B)
+            out_valid := Mux(io_harzard.stall_flg, false.B, true.B)
             is_fencei_valid := is_fencei === 1.U
         }
     }
