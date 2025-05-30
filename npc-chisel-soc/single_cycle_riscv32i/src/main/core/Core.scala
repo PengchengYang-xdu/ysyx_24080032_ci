@@ -43,13 +43,17 @@ class Core extends Module {
     pipelineConnect(exu.io_pipe.out, lsu.io_pipe.in)
     pipelineConnect(lsu.io_pipe.out, wbu.io_pipe.in)
 
-    StageConnect(wbu.io_pipe.out, ifu.io_pipe.in)
+    // StageConnect(wbu.io_pipe.out, ifu.io_pipe.in)
 
     val icache = Module(new iCache(8, 4, 1, "LRU"))
     io.imem <> icache.io.out
     icache.io.in <> ifu.io.imem
 
     idu.fencei_io_vr.is_fencei_io <> icache.fencei_io_vr.is_fencei_io
+
+
+
+
 
     ifu.io.br_flg := exu.io.br_flg
     ifu.io.jmp_flg := exu.io.jmp_flg
@@ -86,6 +90,9 @@ class Core extends Module {
     ifu.io_hazard.flush_flg := is_ctrl_hazard
     idu.io_hazard.flush_flg := is_ctrl_hazard
     exu.io_hazard.flush_flg := is_ctrl_hazard
+    //auto fetch logic begin
+    ifu.io_pipe.in.valid := RegEnable(true.B, false.B, ifu.io_pipe.in.ready)
+    //auto fetch logic end
 
 
 
