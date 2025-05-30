@@ -40,6 +40,9 @@ class IFU extends Module {
     val io_pipe = IO(new IFUIO_pipe)
 
     dontTouch(io_pipe)
+    val auto_valid = RegInit(false.B)
+    auto_valid := Mux(n_state === s_IDLE && io_hazard.flush_flg, true.B, RegEnable(true.B, false.B, ifu.io_pipe.in.ready))
+    ifu.io_pipe.in.valid := auto_valid
 
 
     val io_hazard = IO(new IFUIO_HAZARD)
@@ -106,7 +109,7 @@ class IFU extends Module {
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
         s_BeforePreFire       ->  Mux(io_pipe.in.fire, s_BeforeAXI_AR_Fire, s_BeforePreFire),
         s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, s_BeforeAXI_R_Fire, s_BeforeAXI_AR_Fire),
-        s_BeforeAXI_R_Fire    ->  Mux(AXI_R_fire, s_AfterPreFire, s_BeforeAXI_R_Fire),
+        s_BeforeAXI_R_Fire    ->  Mux(AXI_R_fire, s_AfterPreFire, Mux(io_hazard.flush_flg, s_BeforePreFire, s_BeforeAXI_R_Fire)),
         s_AfterPreFire        ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
     ))
 
