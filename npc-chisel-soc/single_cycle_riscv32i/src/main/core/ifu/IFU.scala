@@ -40,10 +40,6 @@ class IFU extends Module {
     val io_pipe = IO(new IFUIO_pipe)
 
     dontTouch(io_pipe)
-    val auto_valid = RegInit(false.B)
-    auto_valid := Mux(n_state === s_IDLE && io_hazard.flush_flg, true.B, RegEnable(true.B, false.B, ifu.io_pipe.in.ready))
-    ifu.io_pipe.in.valid := auto_valid
-
 
     val io_hazard = IO(new IFUIO_HAZARD)
 
@@ -205,5 +201,21 @@ class IFU extends Module {
 
     io.csr_reg_pc := reg_pc
     
+
+
+
+
+
+
+
+
+
+
+
+
+    //auto fetch logic
+    val auto_valid = RegInit(false.B)
+    auto_valid := Mux(n_state === s_IDLE && io_hazard.flush_flg, true.B, RegEnable(true.B, false.B, ifu.io_pipe.in.ready))
+    ifu.io_pipe.in.valid := auto_valid
 }
 
