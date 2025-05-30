@@ -1,2 +1,39 @@
-[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 6 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:77:124: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : chisel3.UInt[0m
+[0m[[0m[31merror[0m] [0m[0m required: chisel3.Bool[0m
+[0m[[0m[31merror[0m] [0m[0m    val exu_raw = dataConflictWithStage(idu, exu.io_pipe.in.valid, exu.io_pipe.in.bits.id2exe_wb_addr, exu.io_pipe.in.bits.id2exe_rf_wen)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:78:124: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : chisel3.UInt[0m
+[0m[[0m[31merror[0m] [0m[0m required: chisel3.Bool[0m
+[0m[[0m[31merror[0m] [0m[0m    val lsu_raw = dataConflictWithStage(idu, lsu.io_pipe.in.valid, lsu.io_pipe.in.bits.exe2ls_wb_addr, lsu.io_pipe.in.bits.exe2ls_rf_wen)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:79:123: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : chisel3.UInt[0m
+[0m[[0m[31merror[0m] [0m[0m required: chisel3.Bool[0m
+[0m[[0m[31merror[0m] [0m[0m    val wbu_raw = dataConflictWithStage(idu, wbu.io_pipe.in.valid, wbu.io_pipe.in.bits.ls2wb_wb_addr, wbu.io_pipe.in.bits.ls2wb_rf_wen)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                                                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:81:9: value io_harzard is not a member of npc.core.idu.IDU[0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean io_hazard?[0m
+[0m[[0m[31merror[0m] [0m[0m    idu.io_harzard.stall_flg := is_raw[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:85:9: value io_harzard is not a member of npc.core.ifu.IFU[0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean io_hazard?[0m
+[0m[[0m[31merror[0m] [0m[0m    ifu.io_harzard.flush_flg := is_ctrl_hazard[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:86:9: value io_harzard is not a member of npc.core.idu.IDU[0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean io_hazard?[0m
+[0m[[0m[31merror[0m] [0m[0m    idu.io_harzard.flush_flg := is_ctrl_hazard[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:87:9: value io_harzard is not a member of npc.core.exu.EXU[0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean io_hazard?[0m
+[0m[[0m[31merror[0m] [0m[0m    exu.io_harzard.flush_flg := is_ctrl_hazard[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:254:29: not found: value idu[0m
+[0m[[0m[31merror[0m] [0m[0m            in_ready := Mux(idu.io_harzard.stall_flg, false.B, true.B)[0m
+[0m[[0m[31merror[0m] [0m[0m                            ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:260:30: not found: value idu[0m
+[0m[[0m[31merror[0m] [0m[0m            out_valid := Mux(idu.io_harzard.stall_flg, false.B, true.B)[0m
+[0m[[0m[31merror[0m] [0m[0m                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m9 errors found[0m
