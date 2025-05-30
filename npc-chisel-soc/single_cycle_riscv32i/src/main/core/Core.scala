@@ -96,14 +96,14 @@ class Core extends Module {
     idu.io_hazard.flush_flg := is_ctrl_hazard
     exu.io_hazard.flush_flg := is_ctrl_hazard
     //auto fetch logic begin
-    wbu.io_pipe.out.ready := true.B
+    // wbu.io_pipe.out.ready := true.B
 
-    val auto_valid = RegInit(false.B)
-    auto_valid := Mux(ifu.io_hazard.flush_flg, true.B, RegEnable(true.B, false.B, ifu.io_pipe.in.ready))
-    ifu.io_pipe.in.valid := auto_valid
-    //auto fetch logic end
-    when(idu.io_hazard.flush_flg){idu.io_pipe.in.valid := false.B}
-    when(exu.io_hazard.flush_flg){exu.io_pipe.in.valid := false.B}
+    // val auto_valid = RegInit(false.B)
+    // auto_valid := Mux(ifu.io_hazard.flush_flg, true.B, RegEnable(true.B, false.B, ifu.io_pipe.in.ready))
+    // ifu.io_pipe.in.valid := auto_valid
+    // //auto fetch logic end
+    // when(idu.io_hazard.flush_flg){idu.io_pipe.in.valid := false.B}
+    // when(exu.io_hazard.flush_flg){exu.io_pipe.in.valid := false.B}
 
 
 

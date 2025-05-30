@@ -41,6 +41,7 @@ class IFU extends Module {
 
     dontTouch(io_pipe)
 
+
     val io_hazard = IO(new IFUIO_HAZARD)
 
 
@@ -92,7 +93,7 @@ class IFU extends Module {
     io.imem.arsize := arsize
 
 
-    val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: s_Waitflush :: Nil = Enum(5)
+    val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: Nil = Enum(4)
     val c_state = RegInit(s_BeforeAXI_AR_Fire)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -105,9 +106,8 @@ class IFU extends Module {
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
         s_BeforePreFire       ->  Mux(io_pipe.in.fire, s_BeforeAXI_AR_Fire, s_BeforePreFire),
         s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, s_BeforeAXI_R_Fire, s_BeforeAXI_AR_Fire),
-        s_BeforeAXI_R_Fire    ->  Mux(AXI_R_fire, s_AfterPreFire, Mux(io_hazard.flush_flg, s_Waitflush, s_BeforeAXI_R_Fire)),
-        s_AfterPreFire        ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
-        s_Waitflush           ->  Mux(AXI_R_fire, s_BeforePreFire, s_Waitflush)
+        s_BeforeAXI_R_Fire    ->  Mux(AXI_R_fire, s_AfterPreFire, s_BeforeAXI_R_Fire),
+        s_AfterPreFire        ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
     ))
 
     switch(n_state){//third phase
@@ -165,15 +165,6 @@ class IFU extends Module {
             rready := false.B
             arsize := 2.U
         }
-        is(s_Waitflush){
-            //between modules
-            in_ready := false.B
-            out_valid := false.B
-            //AXI
-            arvalid := false.B
-            rready := true.B
-            arsize := 2.U
-        }
     }
 
 
@@ -191,7 +182,7 @@ class IFU extends Module {
     dontTouch(pc_next)
     
     val reg_pc = withReset(reset.asAsyncReset){
-        RegEnable(pc_next, START_ADDR, io_pipe.in.valid && io_pipe.in.ready)
+        RegEnable(pc_next, START_ADDR, io_pipe.in.valid)
     }
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
@@ -210,14 +201,6 @@ class IFU extends Module {
     io_pipe.out.bits.if2id_inst := io.imem.rdata
 
     io.csr_reg_pc := reg_pc
-    
-
-
-
-
-
-
-
     
 }
 
