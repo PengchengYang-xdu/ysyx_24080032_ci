@@ -39,6 +39,8 @@ class IFU extends Module {
     val io = IO(new IFUIO)
     val io_pipe = IO(new IFUIO_pipe)
 
+    dontTouch(io_pipe)
+
 
     val io_hazard = IO(new IFUIO_HAZARD)
 
