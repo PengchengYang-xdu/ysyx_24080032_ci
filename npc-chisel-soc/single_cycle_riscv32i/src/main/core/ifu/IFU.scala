@@ -41,7 +41,6 @@ class IFU extends Module {
 
 
     val io_hazard = IO(new IFUIO_HAZARD)
-    dontTouch(io_pipe)
 
 
     //disable AW W B and something in AR R
@@ -103,7 +102,7 @@ class IFU extends Module {
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire       ->  Mux(true.B, s_BeforeAXI_AR_Fire, s_BeforePreFire),
+        s_BeforePreFire       ->  Mux(io_pipe.in.fire, s_BeforeAXI_AR_Fire, s_BeforePreFire),
         s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, s_BeforeAXI_R_Fire, s_BeforeAXI_AR_Fire),
         s_BeforeAXI_R_Fire    ->  Mux(AXI_R_fire, s_AfterPreFire, s_BeforeAXI_R_Fire),
         s_AfterPreFire        ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
@@ -181,16 +180,16 @@ class IFU extends Module {
     dontTouch(pc_next)
     
     val reg_pc = withReset(reset.asAsyncReset){
-        RegEnable(pc_next, START_ADDR, true.B)
+        RegEnable(pc_next, START_ADDR, io_pipe.in.valid)
     }
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
     pc_next := MuxCase(pc_plus4, Seq(
-        (io_hazard.flush_flg && io.br_flg)               -> io.br_target,
-        (io_hazard.flush_flg && io.jmp_flg)              -> io.alu_out,
-        (io.imem.rdata === ECALL)                        -> io.csr_mtvec,
-        (io.imem.rdata === MRET)                         -> io.csr_mepc,
+        io.br_flg           -> io.br_target,
+        io.jmp_flg          -> io.alu_out,
+        (io.imem.rdata === ECALL)    -> io.csr_mtvec,
+        (io.imem.rdata === MRET)     -> io.csr_mepc,
     ))
     
     //connect
