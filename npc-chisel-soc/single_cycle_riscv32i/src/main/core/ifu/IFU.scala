@@ -215,7 +215,7 @@ class IFU extends Module {
 
     //auto fetch logic
     val auto_valid = RegInit(false.B)
-    auto_valid := Mux(n_state === s_BeforePreFire && io_hazard.flush_flg, true.B, RegEnable(true.B, false.B, ifu.io_pipe.in.ready))
+    auto_valid := Mux(n_state === s_BeforePreFire && io_hazard.flush_flg, true.B, RegEnable(true.B, false.B, io_pipe.in.ready))
     ifu.io_pipe.in.valid := auto_valid
 }
 
