@@ -101,9 +101,9 @@ class Core extends Module {
     val auto_valid = RegInit(false.B)
     auto_valid := Mux(ifu.io_hazard.flush_flg, true.B, RegEnable(true.B, false.B, ifu.io_pipe.in.ready))
     ifu.io_pipe.in.valid := auto_valid
-    
     //auto fetch logic end
-
+    when(idu.io_hazard.flush_flg){idu.io_pipe.in.valid := false.B}
+    when(exu.io_hazard.flush_flg){exu.io_pipe.in.valid := false.B}
 
 
 
