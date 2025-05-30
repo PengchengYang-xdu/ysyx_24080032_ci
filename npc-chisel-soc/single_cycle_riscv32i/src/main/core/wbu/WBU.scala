@@ -29,6 +29,7 @@ class WBU extends Module {
     val io_pipe = IO(new WBUIO_pipe)
 
     dontTouch(io_pipe)
+    io_pipe.out.ready := true.B
 
 
 

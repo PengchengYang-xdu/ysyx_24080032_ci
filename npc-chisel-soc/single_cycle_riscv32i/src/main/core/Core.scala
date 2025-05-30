@@ -83,16 +83,21 @@ class Core extends Module {
     val lsu_raw = dataConflictWithStage(idu, lsu.io_pipe.in.valid, lsu.io_pipe.in.bits.exe2ls_wb_addr, lsu.io_pipe.in.bits.exe2ls_rf_wen === REN_S)
     val wbu_raw = dataConflictWithStage(idu, wbu.io_pipe.in.valid, wbu.io_pipe.in.bits.ls2wb_wb_addr, wbu.io_pipe.in.bits.ls2wb_rf_wen === REN_S)
     val is_raw = exu_raw || lsu_raw || wbu_raw
+    dontTouch(exu_raw)
+    dontTouch(lsu_raw)
+    dontTouch(wbu_raw)
+    dontTouch(is_raw)
     idu.io_hazard.stall_flg := is_raw
 
     //control hazard
     val is_ctrl_hazard = ((exu.io.br_flg && exu.io.br_target =/= ifu.io_pipe.out.bits.if2id_reg_pc + 4.U) || (exu.io.jmp_flg && exu.io.alu_out =/= ifu.io_pipe.out.bits.if2id_reg_pc + 4.U)) && exu.io_pipe.out.valid
+    dontTouch(is_ctrl_hazard)
     ifu.io_hazard.flush_flg := is_ctrl_hazard
     idu.io_hazard.flush_flg := is_ctrl_hazard
     exu.io_hazard.flush_flg := is_ctrl_hazard
     //auto fetch logic begin
-    ifu.io_pipe.in.valid := RegEnable(true.B, false.B, ifu.io_pipe.in.ready)
-    wbu.io_pipe.out.ready := true.B
+    
+    
     //auto fetch logic end
 
 
