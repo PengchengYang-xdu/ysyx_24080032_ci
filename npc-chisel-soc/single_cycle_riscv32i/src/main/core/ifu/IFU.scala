@@ -41,6 +41,7 @@ class IFU extends Module {
 
 
     val io_hazard = IO(new IFUIO_HAZARD)
+    dontTouch(io_pipe)
 
 
     //disable AW W B and something in AR R
