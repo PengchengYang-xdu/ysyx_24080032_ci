@@ -1,8 +1,2 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 6 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:254:29: not found: value io_harzard[0m
-[0m[[0m[31merror[0m] [0m[0m            in_ready := Mux(io_harzard.stall_flg, false.B, true.B)[0m
-[0m[[0m[31merror[0m] [0m[0m                            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:260:30: not found: value io_harzard[0m
-[0m[[0m[31merror[0m] [0m[0m            out_valid := Mux(io_harzard.stall_flg, false.B, true.B)[0m
-[0m[[0m[31merror[0m] [0m[0m                             ^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
