@@ -7,6 +7,11 @@ import npc.common.Instructions._
 import npc.core.wbu._
 import npc.bus.axi._
 
+class IFUIO_HAZARD extends Bundle {
+    val flush_flg = Input(Bool())
+}
+
+
 class IFUIO extends Bundle {
     val imem = Flipped(new AXI4WithoutClk)
 
@@ -33,6 +38,10 @@ class IFUIO_pipe extends Bundle {
 class IFU extends Module {
     val io = IO(new IFUIO)
     val io_pipe = IO(new IFUIO_pipe)
+
+
+    val io_hazard = IO(new IFUIO_HAZARD)
+
 
     //disable AW W B and something in AR R
     io.imem.arid := 0.U
