@@ -515,10 +515,7 @@ class Xbar extends Module {
         s_d_clint  ->  Mux(clint_d_done, s_IDLE, s_d_clint)
     ))
 
-    DefaultImem()
-    DefaultDmem()
-    DefaultSoc()
-    DefaultClint()
+    
 
     val imem_araddr = RegEnable(io.imem.araddr, io.imem.arvalid)//由valid控制, 如果没有产生这个信号, 那么从设备接收到的addr是无效的, 是上次的垃圾信号, 不能作为握手
     val imem_arburst = RegEnable(io.imem.arburst, io.imem.arvalid)
@@ -529,6 +526,10 @@ class Xbar extends Module {
 
     switch(n_state){//third phase
         is(s_IDLE){
+            DefaultImem()
+            DefaultDmem()
+            DefaultSoc()
+            DefaultClint()
         }
         is(s_i_soc){
             ConnectImem2Soc()
