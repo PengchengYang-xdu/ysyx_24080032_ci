@@ -532,6 +532,8 @@ class Xbar extends Module {
         }
         is(s_i_soc){
             ConnectImem2Soc()
+            io.imem.arready := false.B
+
             when(io.soc.arvalid & io.soc.arready){
                 soc_arvalid := false.B
             }.elsewhen(io.soc.arvalid & ~io.soc.arready){
@@ -544,6 +546,8 @@ class Xbar extends Module {
         }
         is(s_d_soc){
             ConnectDmem2Soc()
+            io.dmem.arready := false.B
+
             when(io.soc.arvalid & io.soc.arready){
                 soc_arvalid := false.B
             }.elsewhen(io.soc.arvalid & ~io.soc.arready){
@@ -559,6 +563,8 @@ class Xbar extends Module {
         }
         is(s_d_clint){
             ConnectDmem2Clint()
+            io.dmem.arready := false.B
+
         }
     }
 
@@ -570,7 +576,7 @@ class Xbar extends Module {
 
 /*-----------------------function-----------------------*/
     def ConnectImem2Soc(): Unit = {
-        io.imem.arready := io.soc.arready
+        // io.imem.arready := io.soc.arready
         io.imem.rdata := io.soc.rdata
         io.imem.rresp := io.soc.rresp
         io.imem.rvalid := io.soc.rvalid
@@ -603,7 +609,7 @@ class Xbar extends Module {
     }
 
     def ConnectDmem2Soc(): Unit = {
-        io.dmem.arready := io.soc.arready
+        // io.dmem.arready := io.soc.arready
         io.dmem.rdata := io.soc.rdata
         io.dmem.rresp := io.soc.rresp
         io.dmem.rvalid := io.soc.rvalid
@@ -636,7 +642,7 @@ class Xbar extends Module {
     }
 
     def ConnectDmem2Clint(): Unit = {
-        io.dmem.arready := io.clint.arready
+        // io.dmem.arready := io.clint.arready
         io.dmem.rdata := io.clint.rdata
         io.dmem.rresp := io.clint.rresp
         io.dmem.rvalid := io.clint.rvalid

@@ -89,6 +89,9 @@ class Core extends Module {
     dontTouch(is_raw)
     idu.io_hazard.stall_flg := is_raw
 
+    //Struc hazard
+    /*fix in xbar*/
+
     //control hazard
     val is_ctrl_hazard = ((exu.io.br_flg && exu.io.br_target =/= ifu.io_pipe.out.bits.if2id_reg_pc + 4.U) || (exu.io.jmp_flg && exu.io.alu_out =/= ifu.io_pipe.out.bits.if2id_reg_pc + 4.U)) && exu.io_pipe.out.valid
     dontTouch(is_ctrl_hazard)
