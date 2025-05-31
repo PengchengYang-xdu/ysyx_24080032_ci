@@ -104,9 +104,10 @@ class Core extends Module {
     // //auto fetch logic end
     // when(idu.io_hazard.flush_flg){idu.io_pipe.in.valid := false.B}
     // when(exu.io_hazard.flush_flg){exu.io_pipe.in.valid := false.B}
-    
+
     wbu.io_pipe.out.ready := true.B
-    ifu.io_pipe.in.valid := RegNext(ifu.io_pipe.in.ready)
+    ready_r := RegNext(ifu.io_pipe.in.ready)
+    ifu.io_pipe.in.valid := ifu.io_pipe.in.ready & ready_r
 
 
 
