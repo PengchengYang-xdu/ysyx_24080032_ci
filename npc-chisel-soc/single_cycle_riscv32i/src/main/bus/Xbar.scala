@@ -481,6 +481,8 @@ class Xbar extends Module {
     val clint_bready_r = RegNext(io.clint.bready)
 
     val burstCnt = dontTouch(RegInit(0.U(8.W)))
+
+    val ing_w_or_r = RegInit(false.B)
 /*-----------------------FSM-----------------------*/
     val s_IDLE :: s_i_soc :: s_d_soc :: s_d_clint :: Nil = Enum(4)
     val c_state = RegInit(s_IDLE)
@@ -529,40 +531,39 @@ class Xbar extends Module {
 
     switch(n_state){//third phase
         is(s_IDLE){
+            ing_w_or_r := false.B
         }
         is(s_i_soc){
             ConnectImem2Soc()
             when(io.soc.arvalid & io.soc.arready){
                 soc_arvalid := false.B
-                io.imem.arready := false.B
-                io.imem.awready := false.B
-                io.dmem.arready := false.B
-                io.dmem.awready := false.B
+                ing_w_or_r := true.B
             }.elsewhen(io.soc.arvalid & ~io.soc.arready){
                 soc_arvalid := true.B
                 soc_araddr := imem_araddr
                 soc_arburst := imem_arburst
                 soc_arlen := imem_arlen
                 soc_arsize := imem_arsize
+                ing_w_or_r := false.B
             }
         }
         is(s_d_soc){
             ConnectDmem2Soc()
             when(io.soc.arvalid & io.soc.arready){
                 soc_arvalid := false.B
-                io.imem.arready := false.B
-                io.imem.awready := false.B
-                io.dmem.arready := false.B
-                io.dmem.awready := false.B
+                ing_w_or_r := true.B
             }.elsewhen(io.soc.arvalid & ~io.soc.arready){
                 soc_arvalid := true.B
                 soc_araddr := dmem_araddr
+                ing_w_or_r := false.B
             }
             when(io.soc.awvalid & io.soc.awready){
                 soc_awvalid := false.B
+                ing_w_or_r := true.B
             }.elsewhen(io.soc.awvalid & ~io.soc.awready){
                 soc_awvalid := true.B
                 soc_awaddr := dmem_awaddr
+                ing_w_or_r := false.B
             }
         }
         is(s_d_clint){
@@ -578,13 +579,13 @@ class Xbar extends Module {
 
 /*-----------------------function-----------------------*/
     def ConnectImem2Soc(): Unit = {
-        // io.imem.arready := io.soc.arready
+        io.imem.arready := io.soc.arready & ~ing_w_or_r
         io.imem.rdata := io.soc.rdata
         io.imem.rresp := io.soc.rresp
         io.imem.rvalid := io.soc.rvalid
         io.imem.rlast := io.soc.rlast
         io.imem.rid := io.soc.rid
-        // io.imem.awready := io.soc.awready
+        io.imem.awready := io.soc.awready & ~ing_w_or_r
         io.imem.wready := io.soc.wready
         io.imem.bresp := io.soc.bresp
         io.imem.bvalid := io.soc.bvalid
@@ -611,13 +612,13 @@ class Xbar extends Module {
     }
 
     def ConnectDmem2Soc(): Unit = {
-        // io.dmem.arready := io.soc.arready
+        io.dmem.arready := io.soc.arready & ~ing_w_or_r
         io.dmem.rdata := io.soc.rdata
         io.dmem.rresp := io.soc.rresp
         io.dmem.rvalid := io.soc.rvalid
         io.dmem.rlast := io.soc.rlast
         io.dmem.rid := io.soc.rid
-        // io.dmem.awready := io.soc.awready
+        io.dmem.awready := io.soc.awready & ~ing_w_or_r
         io.dmem.wready := io.soc.wready
         io.dmem.bresp := io.soc.bresp
         io.dmem.bvalid := io.soc.bvalid
