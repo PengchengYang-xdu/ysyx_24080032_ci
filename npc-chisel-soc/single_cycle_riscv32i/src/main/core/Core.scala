@@ -43,7 +43,7 @@ class Core extends Module {
     pipelineConnect(exu.io_pipe.out, lsu.io_pipe.in)
     pipelineConnect(lsu.io_pipe.out, wbu.io_pipe.in)
 
-    StageConnect(wbu.io_pipe.out, ifu.io_pipe.in)
+    // StageConnect(wbu.io_pipe.out, ifu.io_pipe.in)
 
     val icache = Module(new iCache(8, 4, 1, "LRU"))
     io.imem <> icache.io.out
@@ -106,7 +106,7 @@ class Core extends Module {
     // when(exu.io_hazard.flush_flg){exu.io_pipe.in.valid := false.B}
 
     ifu.io_pipe.in.valid := RegNext(ifu.io_pipe.in.ready)
-    
+
 
 
 
