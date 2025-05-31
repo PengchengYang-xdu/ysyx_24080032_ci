@@ -434,6 +434,8 @@ class XbarIO extends Bundle{
 class Xbar extends Module {
     val io = IO(new XbarIO)
 
+    //imem arready awready    dmem arready awready regs
+
     //soc reg
     val soc_araddr = RegInit(0.U)
     val soc_arvalid = RegInit(false.B)
@@ -529,14 +531,19 @@ class Xbar extends Module {
     val dmem_araddr = RegEnable(io.dmem.araddr, io.dmem.arvalid)
     val dmem_awaddr = RegEnable(io.dmem.awaddr, io.dmem.awvalid)
 
+    val dmem_arready = Mux(n_state === s_i_soc, false.B, true.B)
+    val dmem_awready = Mux(n_state === s_i_soc, false.B, true.B)
+    val imem_arready = Mux(n_state === s_d_soc, false.B, true.B)
+    val imem_awready = Mux(n_state === s_d_soc, false.B, false.B)
+
     switch(n_state){//third phase
         is(s_IDLE){
             ing_w_or_r := false.B
         }
         is(s_i_soc){
             ConnectImem2Soc()
-            io.dmem.arready := false.B
-            io.dmem.awready := false.B
+            io.dmem.arready := RegNext(dmem_arready)
+            io.dmem.awready := RegNext(dmem_awready)
 
             when(io.soc.arvalid & io.soc.arready){
                 soc_arvalid := false.B
@@ -552,8 +559,8 @@ class Xbar extends Module {
         }
         is(s_d_soc){
             ConnectDmem2Soc()
-            io.imem.arready := false.B
-            io.imem.awready := false.B
+            io.imem.arready := RegNext(imem_arready)
+            io.imem.awready := RegNext(imem_awready)
 
             when(io.soc.arvalid & io.soc.arready){
                 soc_arvalid := false.B
