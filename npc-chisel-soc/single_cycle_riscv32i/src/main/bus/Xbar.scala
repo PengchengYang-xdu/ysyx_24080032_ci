@@ -535,6 +535,8 @@ class Xbar extends Module {
         }
         is(s_i_soc){
             ConnectImem2Soc()
+            io.dmem.arread := false.B
+            io.dmem.awread := false.B
             when(io.soc.arvalid & io.soc.arready){
                 soc_arvalid := false.B
                 ing_w_or_r := true.B
@@ -549,6 +551,8 @@ class Xbar extends Module {
         }
         is(s_d_soc){
             ConnectDmem2Soc()
+            io.imem.arread := false.B
+            io.imem.awread := false.B
             when(io.soc.arvalid & io.soc.arready){
                 soc_arvalid := false.B
                 ing_w_or_r := true.B
