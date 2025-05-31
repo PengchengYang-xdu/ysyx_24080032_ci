@@ -529,10 +529,6 @@ class Xbar extends Module {
 
     switch(n_state){//third phase
         is(s_IDLE){
-            io.imem.arready := true.B
-            io.imem.awready := false.B
-            io.dmem.arready := true.B
-            io.dmem.awready := true.B
         }
         is(s_i_soc){
             ConnectImem2Soc()
@@ -681,7 +677,7 @@ class Xbar extends Module {
     }
 
     def DefaultImem(): Unit = {
-        io.imem.arready := false.B
+        io.imem.arready := true.B
         io.imem.rdata := DontCare
         io.imem.rresp := 0.U
         io.imem.rvalid := false.B
@@ -695,13 +691,13 @@ class Xbar extends Module {
     }
 
     def DefaultDmem(): Unit = {
-        io.dmem.arready := false.B
+        io.dmem.arready := true.B
         io.dmem.rdata := DontCare
         io.dmem.rresp := 0.U
         io.dmem.rvalid := false.B
         io.dmem.rlast := true.B
         io.dmem.rid := 0.U
-        io.dmem.awready := false.B
+        io.dmem.awready := true.B
         io.dmem.wready := true.B
         io.dmem.bresp := 0.U
         io.dmem.bvalid := false.B
