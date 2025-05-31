@@ -105,6 +105,8 @@ class Core extends Module {
     // when(idu.io_hazard.flush_flg){idu.io_pipe.in.valid := false.B}
     // when(exu.io_hazard.flush_flg){exu.io_pipe.in.valid := false.B}
 
+    ifu.io_pipe.in.valid := RegNext(ifu.io_pipe.in.ready)
+    
 
 
 
