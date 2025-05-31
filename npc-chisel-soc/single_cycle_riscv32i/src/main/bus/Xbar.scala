@@ -434,8 +434,6 @@ class XbarIO extends Bundle{
 class Xbar extends Module {
     val io = IO(new XbarIO)
 
-    //imem arready awready    dmem arready awready regs
-
     //soc reg
     val soc_araddr = RegInit(0.U)
     val soc_arvalid = RegInit(false.B)
@@ -531,19 +529,12 @@ class Xbar extends Module {
     val dmem_araddr = RegEnable(io.dmem.araddr, io.dmem.arvalid)
     val dmem_awaddr = RegEnable(io.dmem.awaddr, io.dmem.awvalid)
 
-    val dmem_arready = Mux(n_state === s_i_soc, false.B, true.B)
-    val dmem_awready = Mux(n_state === s_i_soc, false.B, true.B)
-    val imem_arready = Mux(n_state === s_d_soc, false.B, true.B)
-    val imem_awready = Mux(n_state === s_d_soc, false.B, false.B)
-
     switch(n_state){//third phase
         is(s_IDLE){
             ing_w_or_r := false.B
         }
         is(s_i_soc){
             ConnectImem2Soc()
-            io.dmem.arready := RegNext(dmem_arready)
-            io.dmem.awready := RegNext(dmem_awready)
 
             when(io.soc.arvalid & io.soc.arready){
                 soc_arvalid := false.B
@@ -559,8 +550,6 @@ class Xbar extends Module {
         }
         is(s_d_soc){
             ConnectDmem2Soc()
-            io.imem.arready := RegNext(imem_arready)
-            io.imem.awready := RegNext(imem_awready)
 
             when(io.soc.arvalid & io.soc.arready){
                 soc_arvalid := false.B
@@ -589,6 +578,12 @@ class Xbar extends Module {
     }.elsewhen(burstCnt =/= 0.U & io.soc.rready & io.soc.rvalid){
         burstCnt := burstCnt - 1.U
     }
+
+    io.dmem.arready := Mux(c_state === s_i_soc, false.B, true.B)
+    io.dmem.awready := Mux(c_state === s_i_soc, false.B, true.B)
+    io.imem.arready := Mux(c_state === s_d_soc, false.B, true.B)
+    io.imem.awready := Mux(c_state === s_d_soc, false.B, true.B)
+
 
 /*-----------------------function-----------------------*/
     def ConnectImem2Soc(): Unit = {
@@ -691,13 +686,13 @@ class Xbar extends Module {
     }
 
     def DefaultImem(): Unit = {
-        io.imem.arready := true.B
+        // io.imem.arready := true.B
         io.imem.rdata := DontCare
         io.imem.rresp := 0.U
         io.imem.rvalid := false.B
         io.imem.rlast := true.B
         io.imem.rid := 0.U
-        io.imem.awready := false.B
+        // io.imem.awready := false.B
         io.imem.wready := false.B
         io.imem.bresp := 0.U
         io.imem.bvalid := false.B
@@ -705,13 +700,13 @@ class Xbar extends Module {
     }
 
     def DefaultDmem(): Unit = {
-        io.dmem.arready := true.B
+        // io.dmem.arready := true.B
         io.dmem.rdata := DontCare
         io.dmem.rresp := 0.U
         io.dmem.rvalid := false.B
         io.dmem.rlast := true.B
         io.dmem.rid := 0.U
-        io.dmem.awready := true.B
+        // io.dmem.awready := true.B
         io.dmem.wready := true.B
         io.dmem.bresp := 0.U
         io.dmem.bvalid := false.B
