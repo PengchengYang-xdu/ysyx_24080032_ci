@@ -1,2 +1,18 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:538:21: value arread is not a member of npc.bus.axi.AXI4WithoutClk[0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean arready? or perhaps awready, rready, or bready? or...?[0m
+[0m[[0m[31merror[0m] [0m[0m            io.dmem.arread := false.B[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:539:21: value awread is not a member of npc.bus.axi.AXI4WithoutClk[0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean awready? or perhaps arready, wready, or bready? or...?[0m
+[0m[[0m[31merror[0m] [0m[0m            io.dmem.awread := false.B[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:554:21: value arread is not a member of npc.bus.axi.AXI4WithoutClk[0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean arready? or perhaps awready, rready, or bready? or...?[0m
+[0m[[0m[31merror[0m] [0m[0m            io.imem.arread := false.B[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala:555:21: value awread is not a member of npc.bus.axi.AXI4WithoutClk[0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean awready? or perhaps arready, wready, or bready? or...?[0m
+[0m[[0m[31merror[0m] [0m[0m            io.imem.awread := false.B[0m
+[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mfour errors found[0m
