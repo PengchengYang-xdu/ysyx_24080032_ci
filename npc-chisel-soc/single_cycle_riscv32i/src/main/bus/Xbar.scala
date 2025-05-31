@@ -483,6 +483,7 @@ class Xbar extends Module {
     val burstCnt = dontTouch(RegInit(0.U(8.W)))
 
     val ing_w_or_r = RegInit(false.B)
+    dontTouch(ing_w_or_r)
 /*-----------------------FSM-----------------------*/
     val s_IDLE :: s_i_soc :: s_d_soc :: s_d_clint :: Nil = Enum(4)
     val c_state = RegInit(s_IDLE)
