@@ -578,13 +578,13 @@ class Xbar extends Module {
 
 /*-----------------------function-----------------------*/
     def ConnectImem2Soc(): Unit = {
-        io.imem.arready := io.soc.arready
+        // io.imem.arready := io.soc.arready
         io.imem.rdata := io.soc.rdata
         io.imem.rresp := io.soc.rresp
         io.imem.rvalid := io.soc.rvalid
         io.imem.rlast := io.soc.rlast
         io.imem.rid := io.soc.rid
-        io.imem.awready := io.soc.awready
+        // io.imem.awready := io.soc.awready
         io.imem.wready := io.soc.wready
         io.imem.bresp := io.soc.bresp
         io.imem.bvalid := io.soc.bvalid
@@ -611,13 +611,13 @@ class Xbar extends Module {
     }
 
     def ConnectDmem2Soc(): Unit = {
-        io.dmem.arready := io.soc.arready
+        // io.dmem.arready := io.soc.arready
         io.dmem.rdata := io.soc.rdata
         io.dmem.rresp := io.soc.rresp
         io.dmem.rvalid := io.soc.rvalid
         io.dmem.rlast := io.soc.rlast
         io.dmem.rid := io.soc.rid
-        io.dmem.awready := io.soc.awready
+        // io.dmem.awready := io.soc.awready
         io.dmem.wready := io.soc.wready
         io.dmem.bresp := io.soc.bresp
         io.dmem.bvalid := io.soc.bvalid
