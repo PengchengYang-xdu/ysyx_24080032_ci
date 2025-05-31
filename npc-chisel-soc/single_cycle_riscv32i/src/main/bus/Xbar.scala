@@ -515,7 +515,10 @@ class Xbar extends Module {
         s_d_clint  ->  Mux(clint_d_done, s_IDLE, s_d_clint)
     ))
 
-    
+    DefaultImem()
+    DefaultDmem()
+    DefaultSoc()
+    DefaultClint()
 
     val imem_araddr = RegEnable(io.imem.araddr, io.imem.arvalid)//由valid控制, 如果没有产生这个信号, 那么从设备接收到的addr是无效的, 是上次的垃圾信号, 不能作为握手
     val imem_arburst = RegEnable(io.imem.arburst, io.imem.arvalid)
@@ -526,10 +529,10 @@ class Xbar extends Module {
 
     switch(n_state){//third phase
         is(s_IDLE){
-            DefaultImem()
-            DefaultDmem()
-            DefaultSoc()
-            DefaultClint()
+            io.imem.arready := true.B
+            io.imem.awready := false.B
+            io.dmem.arready := true.B
+            io.dmem.awready := true.B
         }
         is(s_i_soc){
             ConnectImem2Soc()
@@ -678,7 +681,7 @@ class Xbar extends Module {
     }
 
     def DefaultImem(): Unit = {
-        io.imem.arready := true.B
+        io.imem.arready := false.B
         io.imem.rdata := DontCare
         io.imem.rresp := 0.U
         io.imem.rvalid := false.B
@@ -692,13 +695,13 @@ class Xbar extends Module {
     }
 
     def DefaultDmem(): Unit = {
-        io.dmem.arready := true.B
+        io.dmem.arready := false.B
         io.dmem.rdata := DontCare
         io.dmem.rresp := 0.U
         io.dmem.rvalid := false.B
         io.dmem.rlast := true.B
         io.dmem.rid := 0.U
-        io.dmem.awready := true.B
+        io.dmem.awready := false.B
         io.dmem.wready := true.B
         io.dmem.bresp := 0.U
         io.dmem.bvalid := false.B
