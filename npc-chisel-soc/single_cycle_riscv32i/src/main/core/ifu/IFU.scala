@@ -101,10 +101,13 @@ class IFU extends Module {
     val AXI_AR_fire = arvalid & io.imem.arready
     val AXI_R_fire = io.imem.rvalid & rready
 
+    // val start = io_pipe.in.fire//this is the multi cycle version, change it auto fetch to fit 5 pipelines
+    val start = io.imem.arready && ~io_hazard.flush_flg && io_pipe.in.valid
+
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire       ->  Mux(io_pipe.in.fire, s_BeforeAXI_AR_Fire, s_BeforePreFire),
+        s_BeforePreFire       ->  Mux(start, s_BeforeAXI_AR_Fire, s_BeforePreFire),
         s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, s_BeforeAXI_R_Fire, s_BeforeAXI_AR_Fire),
         s_BeforeAXI_R_Fire    ->  Mux(AXI_R_fire, s_AfterPreFire, s_BeforeAXI_R_Fire),
         s_AfterPreFire        ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
