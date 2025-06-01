@@ -62,6 +62,11 @@ class IFU extends Module {
     io.imem.bready := false.B
 
 
+    val flag = RegInit(false.B)
+    dontTouch(flag)
+    flag := Mux(io_hazard.flush_flg, true.B, Mux(io_pipe.in.ready & io_pipe.in.valid, false.B, flag))
+
+
     //delay
     val lfsr = RegInit(IFU_DELAY)
     lfsr := Cat(lfsr(2,0), lfsr(0)^lfsr(1)^lfsr(2))
@@ -201,8 +206,8 @@ class IFU extends Module {
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
     pc_next := MuxCase(pc_plus4, Seq(
-        io.br_flg           -> io.br_target,
-        io.jmp_flg          -> io.alu_out,
+        io.br_flg && flag            -> io.br_target,
+        io.jmp_flg && flag           -> io.alu_out,
         (io.imem.rdata === ECALL)    -> io.csr_mtvec,
         (io.imem.rdata === MRET)     -> io.csr_mepc,
     ))
