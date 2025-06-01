@@ -586,7 +586,7 @@ class Xbar extends Module {
 
     io.imem.arready := Mux(c_state === s_IDLE, true.B, false.B)
     io.imem.awready := Mux(c_state === s_IDLE, false.B, false.B)
-    // io.imem.wready  := Mux(c_state === s_IDLE, false.B, false.B)
+    io.imem.wready  := Mux(c_state === s_IDLE, false.B, false.B)
 
 
 /*-----------------------function-----------------------*/
@@ -598,7 +598,7 @@ class Xbar extends Module {
         io.imem.rlast := io.soc.rlast
         io.imem.rid := io.soc.rid
         // io.imem.awready := io.soc.awready & ~ing_w_or_r
-        io.imem.wready := io.soc.wready
+        // io.imem.wready := io.soc.wready
         io.imem.bresp := io.soc.bresp
         io.imem.bvalid := io.soc.bvalid
         io.imem.bid := io.soc.bid
