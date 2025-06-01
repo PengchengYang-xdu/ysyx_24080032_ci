@@ -618,7 +618,7 @@ class Xbar extends Module {
         soc_awburst := io.imem.awburst
         soc_wdata := io.imem.wdata
         soc_wstrb := io.imem.wstrb
-        soc_wvalid := io.imem.wvalid
+        soc_wvalid := io.imem.wvalid & ing_w_or_r
         soc_wlast := io.imem.wlast
         soc_bready := io.imem.bready
     }
@@ -651,7 +651,7 @@ class Xbar extends Module {
         soc_awburst := io.dmem.awburst
         soc_wdata := io.dmem.wdata
         soc_wstrb := io.dmem.wstrb
-        soc_wvalid := io.dmem.wvalid
+        soc_wvalid := io.dmem.wvalid & ing_w_or_r
         soc_wlast := io.dmem.wlast
         soc_bready := io.dmem.bready
     }
