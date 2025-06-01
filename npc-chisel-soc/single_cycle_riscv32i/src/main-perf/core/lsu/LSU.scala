@@ -131,46 +131,14 @@ class LSU extends Module {
             arsize := 2.U
             awsize := 2.U
             //delay
-            if(ENABLE_DELAY){
-                delay := lfsr
-            }
+            delay := lfsr
         }
         is(s_BeforeAXI_ARorAWW_Fire){
             //between modules
             in_ready := false.B
             out_valid := false.B
             //AXI
-            if(ENABLE_DELAY){
-                when(delay === 0.U){
-                    arvalid := Mux(isL, true.B, false.B)
-                    arsize := MuxLookup(io_pipe.in.bits.exe2ls_mem_op, 2.U)(Seq(
-                        MEM_OP_1S  ->  0.U,
-                        MEM_OP_1U  ->  0.U,
-                        MEM_OP_2S  ->  1.U,
-                        MEM_OP_2U  ->  1.U,
-                        MEM_OP_4   ->  2.U
-                    ))
-                    rready := false.B
-                    awvalid := Mux(isS, true.B, false.B)
-                    awsize := MuxLookup(io_pipe.in.bits.exe2ls_mem_op, 2.U)(Seq(
-                        MEM_OP_1S  ->  0.U,
-                        MEM_OP_2S  ->  1.U,
-                        MEM_OP_4   ->  2.U
-                    ))
-                    wvalid := Mux(isS, true.B, false.B)
-                    bready := false.B
-                }.otherwise{
-                    arvalid := false.B
-                    rready := false.B
-                    awvalid := false.B
-                    wvalid := false.B
-                    bready := false.B
-                    arsize := 2.U
-                    awsize := 2.U
-                    //delay
-                    delay := delay - 1.U
-                }
-            } else {
+            when(delay === 0.U){
                 arvalid := Mux(isL, true.B, false.B)
                 arsize := MuxLookup(io_pipe.in.bits.exe2ls_mem_op, 2.U)(Seq(
                     MEM_OP_1S  ->  0.U,
@@ -188,6 +156,16 @@ class LSU extends Module {
                 ))
                 wvalid := Mux(isS, true.B, false.B)
                 bready := false.B
+            }.otherwise{
+                arvalid := false.B
+                rready := false.B
+                awvalid := false.B
+                wvalid := false.B
+                bready := false.B
+                arsize := 2.U
+                awsize := 2.U
+                //delay
+                delay := delay - 1.U
             }
         }
         is(s_BeforeAXI_RorB_Fire){
