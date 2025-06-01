@@ -4,7 +4,6 @@ import chisel3._
 import chisel3.util._
 
 object Config{
-    val ENABLE_DELAY      = false
     val IFU_DELAY         = 0.U(4.W)
     val LSU_DELAY         = 0.U(4.W)
 
@@ -118,9 +117,4 @@ object Config{
     val IS_FENCEI_LEN = 1
     val IS_FENCEI   = 1.U(IS_FENCEI_LEN.W)
     val NO_FENCEI   = 0.U(IS_FENCEI_LEN.W)
-
-    val RS1_IS_READ = true.B
-    val RS1_NO_READ = false.B
-    val RS2_IS_READ = true.B
-    val RS2_NO_READ = false.B
 }

@@ -7,6 +7,11 @@ import npc.common.Instructions._
 import npc.core.wbu._
 import npc.bus.axi._
 
+class IFUIO_HAZARD extends Bundle {
+    val flush_flg = Input(Bool())
+}
+
+
 class IFUIO extends Bundle {
     val imem = Flipped(new AXI4WithoutClk)
 
@@ -33,6 +38,12 @@ class IFUIO_pipe extends Bundle {
 class IFU extends Module {
     val io = IO(new IFUIO)
     val io_pipe = IO(new IFUIO_pipe)
+
+    dontTouch(io_pipe)
+
+
+    val io_hazard = IO(new IFUIO_HAZARD)
+
 
     //disable AW W B and something in AR R
     io.imem.arid := 0.U
@@ -82,7 +93,7 @@ class IFU extends Module {
     io.imem.arsize := arsize
 
 
-    val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: Nil = Enum(4)
+    val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: s_Flush :: Nil = Enum(4)
     val c_state = RegInit(s_BeforeAXI_AR_Fire)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -90,14 +101,18 @@ class IFU extends Module {
     val AXI_AR_fire = arvalid & io.imem.arready
     val AXI_R_fire = io.imem.rvalid & rready
 
+    // val start = io_pipe.in.fire//this is the multi cycle version, change it auto fetch to fit 5 pipelines
+    val start = io.imem.arready && ~io_hazard.flush_flg && io_pipe.in.valid
+
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire       ->  Mux(io_pipe.in.fire, s_BeforeAXI_AR_Fire, s_BeforePreFire),
+        s_BeforePreFire       ->  Mux(start, s_BeforeAXI_AR_Fire, s_BeforePreFire),
         s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, s_BeforeAXI_R_Fire, s_BeforeAXI_AR_Fire),
-        s_BeforeAXI_R_Fire    ->  Mux(AXI_R_fire, s_AfterPreFire, s_BeforeAXI_R_Fire),
-        s_AfterPreFire        ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
-    ))
+        s_BeforeAXI_R_Fire    ->  Mux(AXI_R_fire, s_AfterPreFire, Mux(io_hazard.flush_flg, s_Flush, s_BeforeAXI_R_Fire)),
+        s_AfterPreFire        ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
+        s_Flush               ->  Mux(AXI_R_fire, s_BeforePreFire, s_Flush)
+    ))//发起的请求必须等取到这次取指之后，再冲刷
 
     switch(n_state){//third phase
         is(s_BeforePreFire){
@@ -109,23 +124,31 @@ class IFU extends Module {
             rready := false.B
             arsize := 2.U
             //delay
-            delay := lfsr
+            if(ENABLE_DELAY){
+                delay := lfsr
+            }
         }
         is(s_BeforeAXI_AR_Fire){
             //between modules
             in_ready := false.B
             out_valid := io.imem.rvalid & (io.imem.rresp === 0.U)
             //AXI
-            when(delay === 0.U){
+            if(ENABLE_DELAY){
+                when(delay === 0.U){
+                    arvalid := true.B
+                    rready := false.B
+                    arsize := 2.U
+                }.otherwise{
+                    arvalid := false.B
+                    rready := false.B
+                    arsize := 2.U
+                    //delay
+                    delay := delay - 1.U
+                }
+            } else {
                 arvalid := true.B
                 rready := false.B
                 arsize := 2.U
-            }.otherwise{
-                arvalid := false.B
-                rready := false.B
-                arsize := 2.U
-                //delay
-                delay := delay - 1.U
             }
         }
         is(s_BeforeAXI_R_Fire){
@@ -144,6 +167,15 @@ class IFU extends Module {
             //AXI
             arvalid := false.B
             rready := false.B
+            arsize := 2.U
+        }
+        is(s_Flush){
+            //between modules
+            in_ready := false.B
+            out_valid := false.B
+            //AXI
+            arvalid := false.B
+            rready := true.B
             arsize := 2.U
         }
     }
@@ -165,22 +197,21 @@ class IFU extends Module {
     val reg_pc = withReset(reset.asAsyncReset){
         RegEnable(pc_next, START_ADDR, io_pipe.in.valid)
     }
-    val inst = io.imem.rdata
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
     pc_next := MuxCase(pc_plus4, Seq(
         io.br_flg           -> io.br_target,
         io.jmp_flg          -> io.alu_out,
-        (inst === ECALL)    -> io.csr_mtvec,
-        (inst === MRET)     -> io.csr_mepc,
+        (io.imem.rdata === ECALL)    -> io.csr_mtvec,
+        (io.imem.rdata === MRET)     -> io.csr_mepc,
     ))
     
     //connect
     araddr := reg_pc
 
     io_pipe.out.bits.if2id_reg_pc := reg_pc
-    io_pipe.out.bits.if2id_inst := inst
+    io_pipe.out.bits.if2id_inst := io.imem.rdata
 
     io.csr_reg_pc := reg_pc
     
