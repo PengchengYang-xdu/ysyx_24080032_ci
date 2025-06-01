@@ -568,6 +568,14 @@ class Xbar extends Module {
                 soc_awaddr := dmem_awaddr
                 ing_w_or_r := false.B
             }
+
+            when(io.soc.wvalid & io.soc.wready){
+                soc_wvalid := false.B
+                ing_w_or_r := false.B
+            }.elsewhen(io.soc.wvalid & ~io.soc.wready){
+                soc_wvalid := true.B
+                ing_w_or_r := false.B
+            }
         }
         is(s_d_clint){
             ConnectDmem2Clint()
