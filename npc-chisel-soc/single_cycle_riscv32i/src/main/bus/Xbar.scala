@@ -582,7 +582,7 @@ class Xbar extends Module {
 
     io.dmem.arready := Mux(c_state === s_IDLE, true.B, Mux(c_state === s_d_soc, io.soc.arready, false.B))
     io.dmem.awready := Mux(c_state === s_IDLE, true.B, Mux(c_state === s_d_soc, io.soc.awready, false.B))
-    io.dmem.wready  := Mux(c_state === s_IDLE, true.B, Mux(c_state === s_d_soc, io.soc.wready, false.B))
+    io.dmem.wready  := Mux(c_state === s_IDLE, false.B, Mux(c_state === s_d_soc, io.soc.wready, false.B))
 
     io.imem.arready := Mux(c_state === s_IDLE, true.B, Mux(c_state === s_i_soc, io.soc.arready, false.B))
     io.imem.awready := Mux(c_state === s_IDLE, false.B, Mux(c_state === s_i_soc, io.soc.awready, false.B))
