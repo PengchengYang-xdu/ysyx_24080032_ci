@@ -93,7 +93,7 @@ class IFU extends Module {
     io.imem.arsize := arsize
 
 
-    val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: s_Flush :: Nil = Enum(4)
+    val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: s_Flush :: Nil = Enum(5)
     val c_state = RegInit(s_BeforeAXI_AR_Fire)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
