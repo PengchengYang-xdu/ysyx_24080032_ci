@@ -70,8 +70,8 @@ void init_difftest(char *ref_so_file, long img_size) {
 bool static checkregs(struct CPU_state *ref_r){
   bool flag = true;
   int i;
-  if(ref_r -> pc != PC) flag = false;
-  for(i = 0;i < 16;i++){
+  if(ref_r -> pc != DIFF_PC) flag = false;
+  for(i = 0;i < REAL_REGNUM;i++){
     if(ref_r -> gpr[i] != gpr[i])
       flag = false;
   }
@@ -81,8 +81,8 @@ bool static checkregs(struct CPU_state *ref_r){
   }
   if(flag == false){
     printf("ref - pc = 0x%x\n",ref_r -> pc);
-    printf("cpu - pc = 0x%x\n",PC);
-    for(i = 0;i < 16;i++){
+    printf("cpu - pc = 0x%x\n",DIFF_PC);
+    for(i = 0;i < REAL_REGNUM;i++){
         printf("ref - %3s = %-#11x", regs[i], ref_r -> gpr[i]);
         printf("       ");
         printf("cpu - %3s = %-#11x", regs[i], gpr[i]);
