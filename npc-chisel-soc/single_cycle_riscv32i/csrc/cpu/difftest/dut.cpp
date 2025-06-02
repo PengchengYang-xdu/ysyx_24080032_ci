@@ -110,8 +110,8 @@ void difftest_step() {
 
   CPU_state ref_r;
   ref_difftest_exec(1);
-  ref_pre_pc = ref_r.pc;
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
+  ref_pre_pc = ref_r.pc;
 
   is_skip_diff = ref_difftest_skip();
   
