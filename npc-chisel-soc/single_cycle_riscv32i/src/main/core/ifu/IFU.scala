@@ -136,7 +136,7 @@ class IFU extends Module {
         is(s_BeforeAXI_AR_Fire){
             //between modules
             in_ready := false.B
-            out_valid := io.imem.rvalid & (io.imem.rresp === 0.U)
+            out_valid := false.B
             //AXI
             if(ENABLE_DELAY){
                 when(delay === 0.U){
@@ -159,7 +159,7 @@ class IFU extends Module {
         is(s_BeforeAXI_R_Fire){
             //between modules
             in_ready := false.B
-            out_valid := io.imem.rvalid & (io.imem.rresp === 0.U)
+            out_valid := false.B
             //AXI
             arvalid := false.B
             rready := true.B
@@ -168,7 +168,7 @@ class IFU extends Module {
         is(s_AfterPreFire){
             //between modules
             in_ready := false.B
-            out_valid := io.imem.rvalid & (io.imem.rresp === 0.U)
+            out_valid := true.B
             //AXI
             arvalid := false.B
             rready := false.B
