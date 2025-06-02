@@ -14,7 +14,7 @@ class LSUIO extends Bundle {
 }
 
 class LSUIO_pipe_out extends Bundle{
-    val ls2wb_reg_pc = Output(UInt(ADDR_LEN.W))
+    val ls2wb_reg_pc = Output(UInt(WORD_LEN.W))
 
     val ls2wb_wb_addr = Output(UInt(ADDR_LEN.W))
     val ls2wb_rf_wen = Output(UInt(REN_LEN.W))
