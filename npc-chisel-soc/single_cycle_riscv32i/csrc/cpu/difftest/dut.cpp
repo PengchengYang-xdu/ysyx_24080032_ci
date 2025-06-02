@@ -5,6 +5,8 @@
 #include <utils.h>
 #include <debug.h>
 
+word_t ref_pre_pc = 0x30000000;
+
 struct CPU_state {
   word_t gpr[REGNUM];
   word_t pc;
@@ -102,8 +104,6 @@ bool static checkregs(struct CPU_state *ref_r){
   }
   return flag;
 }
-
-word_t ref_pre_pc = 0x30000000;
 
 void difftest_step() {
   if(ref_difftest_memcpy == NULL) return;
