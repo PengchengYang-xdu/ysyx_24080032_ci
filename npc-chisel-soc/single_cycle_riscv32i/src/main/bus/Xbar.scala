@@ -497,8 +497,8 @@ class Xbar extends Module {
     val isdmem_req_w = io.dmem.awvalid === true.B
     val isdmem_req_soc = (isdmem_req_r & !isclint_raddr) | (isdmem_req_w & !isclint_waddr)
     val isdmem_req_clint = (isdmem_req_r & isclint_raddr) | (isdmem_req_w & isclint_waddr)
-    // val isimem_req_soc = Mux(io.imem.arvalid === true.B, Mux(isdmem_req_r || isdmem_req_w, false.B, true.B), false.B)
-    val isimem_req_soc = io.imem.arvalid === true.B
+    val isimem_req_soc = Mux(io.imem.arvalid === true.B, Mux(isdmem_req_r || isdmem_req_w, false.B, true.B), false.B)
+    // val isimem_req_soc = io.imem.arvalid === true.B
 
 
 
