@@ -70,7 +70,7 @@ void init_difftest(char *ref_so_file, long img_size) {
 bool static checkregs(struct CPU_state *ref_r){
   bool flag = true;
   int i;
-  if(ref_r -> pc != DIFF_PC) flag = false;
+  if(ref_pre_pc != DIFF_PC) flag = false;
   for(i = 0;i < REAL_REGNUM;i++){
     if(ref_r -> gpr[i] != gpr[i])
       flag = false;
@@ -103,10 +103,13 @@ bool static checkregs(struct CPU_state *ref_r){
   return flag;
 }
 
+word_t ref_pre_pc = 0x30000000;
+
 void difftest_step() {
   if(ref_difftest_memcpy == NULL) return;
 
   CPU_state ref_r;
+  ref_pre_pc = ref_r.pc;
   ref_difftest_exec(1);
   ref_difftest_regcpy(&ref_r, DIFFTEST_TO_DUT);
 
