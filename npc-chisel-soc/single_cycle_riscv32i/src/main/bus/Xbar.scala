@@ -497,7 +497,8 @@ class Xbar extends Module {
     val isdmem_req_w = io.dmem.awvalid === true.B
     val isdmem_req_soc = (isdmem_req_r & !isclint_raddr) | (isdmem_req_w & !isclint_waddr)
     val isdmem_req_clint = (isdmem_req_r & isclint_raddr) | (isdmem_req_w & isclint_waddr)
-    val isimem_req_soc = Mux(io.imem.arvalid === true.B, Mux(isdmem_req_r || isdmem_req_w, false.B, true.B), false.B)
+    // val isimem_req_soc = Mux(io.imem.arvalid === true.B, Mux(isdmem_req_r || isdmem_req_w, false.B, true.B), false.B)
+    val isimem_req_soc = io.imem.arvalid === true.B
 
 
 
@@ -584,7 +585,7 @@ class Xbar extends Module {
     io.dmem.awready := Mux(c_state === s_IDLE, true.B, Mux(c_state === s_d_soc, io.soc.awready, false.B))
     io.dmem.wready  := Mux(c_state === s_IDLE, false.B, Mux(c_state === s_d_soc, io.soc.wready, false.B))
 
-    io.imem.arready := Mux(c_state === s_IDLE, true.B, Mux(c_state === s_i_soc, io.soc.arready, false.B))
+    io.imem.arready := Mux(c_state === s_IDLE, ~(io.dmem.arvalid | io.dmem.awvalid), Mux(c_state === s_i_soc, io.soc.arready, false.B))
     io.imem.awready := Mux(c_state === s_IDLE, false.B, Mux(c_state === s_i_soc, io.soc.awready, false.B))
     io.imem.wready  := Mux(c_state === s_IDLE, false.B, Mux(c_state === s_i_soc, io.soc.wready, false.B))
 
