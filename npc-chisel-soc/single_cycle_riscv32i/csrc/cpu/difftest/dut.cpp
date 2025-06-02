@@ -5,6 +5,8 @@
 #include <utils.h>
 #include <debug.h>
 
+int one_inst_working = 0;
+
 word_t ref_pre_pc = 0x30000000;
 word_t comp_pc = 0x30000000;
 int first_diff = 0;
