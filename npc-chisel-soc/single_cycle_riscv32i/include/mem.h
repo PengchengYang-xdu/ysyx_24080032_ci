@@ -11,7 +11,7 @@
 
 // #define RESET_VECTOR 0x80000000
 #define RESET_VECTOR 0x20000000
-#define REGNUM 32
+#define REGNUM 16
 
 extern uint32_t gpr[REGNUM];
 extern uint32_t csr[4];
