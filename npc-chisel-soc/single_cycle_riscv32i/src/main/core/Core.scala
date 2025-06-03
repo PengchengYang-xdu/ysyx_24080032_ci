@@ -79,15 +79,18 @@ class Core extends Module {
     gpr.io.gpr_wdata := wbu.io.gpr_wdata
 
     //data hazard
-    val exu_raw = dataConflictWithStage(idu, exu.io_pipe.in.valid, exu.io_pipe.in.bits.id2exe_wb_addr, exu.io_pipe.in.bits.id2exe_rf_wen === REN_S)
-    val lsu_raw = dataConflictWithStage(idu, lsu.io_pipe.in.valid, lsu.io_pipe.in.bits.exe2ls_wb_addr, lsu.io_pipe.in.bits.exe2ls_rf_wen === REN_S)
-    val wbu_raw = dataConflictWithStage(idu, wbu.io_pipe.in.valid, wbu.io_pipe.in.bits.ls2wb_wb_addr, wbu.io_pipe.in.bits.ls2wb_rf_wen === REN_S)
+    val exu_is_working = ~exu.io_pipe.in.ready
+    val lsu_is_working = ~lsu.io_pipe.in.ready
+    val wbu_is_working = ~wbu.io_pipe.in.ready
+    val exu_raw = dataConflictWithStage(idu, exu_is_working, exu.io_pipe.in.bits.id2exe_wb_addr, exu.io_pipe.in.bits.id2exe_rf_wen === REN_S)
+    val lsu_raw = dataConflictWithStage(idu, lsu_is_working, lsu.io_pipe.in.bits.exe2ls_wb_addr, lsu.io_pipe.in.bits.exe2ls_rf_wen === REN_S)
+    val wbu_raw = dataConflictWithStage(idu, wbu_is_working, wbu.io_pipe.in.bits.ls2wb_wb_addr, wbu.io_pipe.in.bits.ls2wb_rf_wen === REN_S)
     val is_raw = exu_raw || lsu_raw || wbu_raw
     dontTouch(exu_raw)
     dontTouch(lsu_raw)
     dontTouch(wbu_raw)
     dontTouch(is_raw)
-    idu.io_hazard.stall_flg := is_raw | ~exu.io_pipe.in.ready | ~lsu.io_pipe.in.ready | ~wbu.io_pipe.in.ready
+    idu.io_hazard.stall_flg := is_raw
 
     //Struc hazard
     /*fix in xbar*/
@@ -131,15 +134,15 @@ class Core extends Module {
     }
 
     def dataConflict(rs: UInt, rd: UInt) = (rs === rd)
-    def dataConflictWithStage(stage_left: IDU, stage_right_valid: Bool, rd: UInt, is_w: Bool) = {
+    def dataConflictWithStage(stage_left: IDU, stage_right_is_working: Bool, rd: UInt, is_w: Bool) = {
         val rs1 = stage_left.io.gpr_rs1_addr
         val rs2 = stage_left.io.gpr_rs2_addr
-        val is_working = stage_left.io_pipe.in.valid && stage_right_valid
+        val is_working = stage_right_is_working
         val rs1_is_zero = rs1 === 0.U
         val rs2_is_zero = rs2 === 0.U
         val rs1_is_read = stage_left.io.gpr_rs1_is_read
         val rs2_is_read = stage_left.io.gpr_rs2_is_read
-        ((rs1_is_read && ~rs1_is_zero && dataConflict(rs1, rd)) || (rs2_is_read && ~rs2_is_zero && dataConflict(rs2, rd))) && stage_right_valid && is_w
+        ((rs1_is_read && ~rs1_is_zero && dataConflict(rs1, rd)) || (rs2_is_read && ~rs2_is_zero && dataConflict(rs2, rd))) && is_working && is_w && stage_left.io_pipe.in.valid
     }
 
 }
