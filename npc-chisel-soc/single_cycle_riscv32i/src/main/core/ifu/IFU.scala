@@ -106,6 +106,11 @@ class IFU extends Module {
     val AXI_AR_fire = arvalid & io.imem.arready
     val AXI_R_fire = io.imem.rvalid & rready
 
+    //flush states
+    val R_while_flush = AXI_R_fire & io_hazard.flush_flg
+    val flush_before_R = io_hazard.flush_flg
+    val fetch_normal = AXI_R_fire & ~io_hazard.flush_flg
+
     // val start = io_pipe.in.fire//this is the multi cycle version, change it auto fetch to fit 5 pipelines
     val start = io.imem.arready && ~io_hazard.flush_flg && io_pipe.in.valid
 
@@ -114,7 +119,7 @@ class IFU extends Module {
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
         s_BeforePreFire       ->  Mux(start, s_BeforeAXI_AR_Fire, s_BeforePreFire),
         s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, s_BeforeAXI_R_Fire, s_BeforeAXI_AR_Fire),
-        s_BeforeAXI_R_Fire    ->  Mux(AXI_R_fire, s_AfterPreFire, Mux(io_hazard.flush_flg, s_Flush, s_BeforeAXI_R_Fire)),
+        s_BeforeAXI_R_Fire    ->  Mux(fetch_normal, s_AfterPreFire, Mux(flush_before_R, s_Flush, Mux(R_while_flush, s_BeforePreFire, s_BeforeAXI_R_Fire))),
         s_AfterPreFire        ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
         s_Flush               ->  Mux(AXI_R_fire, s_BeforePreFire, s_Flush)
     ))//发起的请求必须等取到这次取指之后，再冲刷
