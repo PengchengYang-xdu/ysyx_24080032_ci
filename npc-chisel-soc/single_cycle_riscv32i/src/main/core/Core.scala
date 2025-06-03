@@ -79,9 +79,9 @@ class Core extends Module {
     gpr.io.gpr_wdata := wbu.io.gpr_wdata
 
     //data hazard
-    val exu_is_working = ~exu.io_pipe.in.ready
-    val lsu_is_working = ~lsu.io_pipe.in.ready
-    val wbu_is_working = ~wbu.io_pipe.in.ready
+    val exu_is_working = ~exu.io_pipe.in.ready | exu.io_pipe.in.valid
+    val lsu_is_working = ~lsu.io_pipe.in.ready | lsu.io_pipe.in.valid
+    val wbu_is_working = ~wbu.io_pipe.in.ready | wbu.io_pipe.in.valid
     dontTouch(exu_is_working)
     dontTouch(lsu_is_working)
     dontTouch(wbu_is_working)
