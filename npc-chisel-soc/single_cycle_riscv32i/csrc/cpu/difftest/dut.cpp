@@ -76,10 +76,9 @@ void init_difftest(char *ref_so_file, long img_size) {
 bool static checkregs(struct CPU_state *ref_r){
   bool flag = true;
   int i;
-//   if(first_diff == 0)
-//     if(comp_pc != DIFF_PC) flag = false;
-//   else;
-  if(ref_r->pc != DIFF_PC) flag = false;
+  if(first_diff == 0)
+    if(ref_r->pc != DIFF_PC) flag = false;
+  else;
 
   for(i = 0;i < REAL_REGNUM;i++){
     if(ref_r -> gpr[i] != gpr[i])
