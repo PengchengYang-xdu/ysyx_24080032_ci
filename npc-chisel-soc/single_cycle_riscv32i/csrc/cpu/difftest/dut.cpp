@@ -132,8 +132,7 @@ void difftest_step() {
     int i;
     //get dut reg into CPU_state struct
     CPU_state dut_r;
-    dut_r.pc = DIFF_PC;
-    ref_pre_pc = dut_r.pc;
+    dut_r.pc = ref_r.pc;
     for(i = 0;i < REAL_REGNUM;i++)
       dut_r.gpr[i] = gpr[i];
     for(i = 0;i < 4;i++)
