@@ -87,7 +87,7 @@ class Core extends Module {
     dontTouch(lsu_raw)
     dontTouch(wbu_raw)
     dontTouch(is_raw)
-    idu.io_hazard.stall_flg := is_raw
+    idu.io_hazard.stall_flg := is_raw | ~exu.io_pipe.in.ready | ~lsu.io_pipe.in.ready | ~wbu.io_pipe.in.ready
 
     //Struc hazard
     /*fix in xbar*/
