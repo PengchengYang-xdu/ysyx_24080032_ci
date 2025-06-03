@@ -108,7 +108,7 @@ class IFU extends Module {
 
     //flush states
     val R_while_flush = AXI_R_fire & io_hazard.flush_flg
-    val flush_before_R = io_hazard.flush_flg
+    val flush_before_R = ~AXI_R_fire & io_hazard.flush_flg
     val fetch_normal = AXI_R_fire & ~io_hazard.flush_flg
 
     // val start = io_pipe.in.fire//this is the multi cycle version, change it auto fetch to fit 5 pipelines
