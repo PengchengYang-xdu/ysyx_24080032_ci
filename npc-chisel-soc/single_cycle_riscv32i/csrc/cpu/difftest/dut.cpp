@@ -77,7 +77,7 @@ bool static checkregs(struct CPU_state *ref_r){
   bool flag = true;
   int i;
   if(first_diff == 0)
-    if(ref_r->pc != DIFF_PC) flag = false;
+    if(comp_pc != DIFF_PC) flag = false;
   else;
 
   for(i = 0;i < REAL_REGNUM;i++){
@@ -89,7 +89,7 @@ bool static checkregs(struct CPU_state *ref_r){
       flag = false;
   }
   if(flag == false){
-    printf("ref - pc = 0x%x\n",ref_r->pc);
+    printf("ref - pc = 0x%x\n",comp_pc);
     printf("cpu - pc = 0x%x\n",DIFF_PC);
     for(i = 0;i < REAL_REGNUM;i++){
         printf("ref - %3s = %-#11x", regs[i], ref_r -> gpr[i]);
@@ -133,6 +133,7 @@ void difftest_step() {
     //get dut reg into CPU_state struct
     CPU_state dut_r;
     dut_r.pc = DIFF_PC;
+    comp_pc = DIFF_PC;
     for(i = 0;i < REAL_REGNUM;i++)
       dut_r.gpr[i] = gpr[i];
     for(i = 0;i < 4;i++)
