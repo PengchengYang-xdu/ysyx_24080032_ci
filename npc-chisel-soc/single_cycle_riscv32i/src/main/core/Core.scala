@@ -82,6 +82,9 @@ class Core extends Module {
     val exu_is_working = ~exu.io_pipe.in.ready
     val lsu_is_working = ~lsu.io_pipe.in.ready
     val wbu_is_working = ~wbu.io_pipe.in.ready
+    dontTouch(exu_is_working)
+    dontTouch(lsu_is_working)
+    dontTouch(wbu_is_working)
     val exu_raw = dataConflictWithStage(idu, exu_is_working, exu.io_pipe.in.bits.id2exe_wb_addr, exu.io_pipe.in.bits.id2exe_rf_wen === REN_S)
     val lsu_raw = dataConflictWithStage(idu, lsu_is_working, lsu.io_pipe.in.bits.exe2ls_wb_addr, lsu.io_pipe.in.bits.exe2ls_rf_wen === REN_S)
     val wbu_raw = dataConflictWithStage(idu, wbu_is_working, wbu.io_pipe.in.bits.ls2wb_wb_addr, wbu.io_pipe.in.bits.ls2wb_rf_wen === REN_S)
