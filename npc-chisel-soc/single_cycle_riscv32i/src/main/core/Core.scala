@@ -139,7 +139,7 @@ class Core extends Module {
         val rs2_is_zero = rs2 === 0.U
         val rs1_is_read = stage_left.io.gpr_rs1_is_read
         val rs2_is_read = stage_left.io.gpr_rs2_is_read
-        ((rs1_is_read && ~rs1_is_zero && dataConflict(rs1, rd)) || (rs2_is_read && ~rs2_is_zero && dataConflict(rs2, rd))) && is_working && is_w
+        ((rs1_is_read && ~rs1_is_zero && dataConflict(rs1, rd)) || (rs2_is_read && ~rs2_is_zero && dataConflict(rs2, rd))) && stage_right_valid && is_w
     }
 
 }
