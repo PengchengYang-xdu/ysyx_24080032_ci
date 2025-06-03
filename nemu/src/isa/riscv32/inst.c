@@ -165,6 +165,8 @@ static int decode_exec(Decode *s) {
 
 int isa_exec_once(Decode *s) {
   s->isa.inst.val = inst_fetch(&s->snpc, 4);
+  if(s->pc >= 0xa0000000 && s->pc <= 0xbfffffff)
+    printf("pc=%x   inst=%x\n", s->pc, s->isa.inst.val);
   IFDEF(CONFIG_ITRACE, itrace_init(s->pc, s->isa.inst.val));
   return decode_exec(s);
 }
