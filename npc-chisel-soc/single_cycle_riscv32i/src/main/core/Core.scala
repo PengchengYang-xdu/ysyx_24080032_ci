@@ -94,7 +94,7 @@ class Core extends Module {
     dontTouch(wbu_raw)
     dontTouch(is_raw)
     val stall_flg = RegInit(false.B)
-    stall_flg = Mux(exu_raw, exu_raw_working, Mux(lsu_raw, lsu_raw_working, Mux(wbu_raw, wbu_raw_working, false.B)))
+    stall_flg := Mux(exu_raw, exu_raw_working, Mux(lsu_raw, lsu_raw_working, Mux(wbu_raw, wbu_raw_working, false.B)))
     dontTouch(stall_flg)
 
     idu.io_hazard.stall_flg := is_raw | stall_flg
