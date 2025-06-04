@@ -93,14 +93,11 @@ class Core extends Module {
     dontTouch(lsu_raw)
     dontTouch(wbu_raw)
     dontTouch(is_raw)
-    val exu_raw_working = exu_raw | exu_is_working
-    val lsu_raw_working = lsu_raw | lsu_is_working
-    val wbu_raw_working = wbu_raw | wbu_is_working
-    dontTouch(exu_raw_working)
-    dontTouch(lsu_raw_working)
-    dontTouch(wbu_raw_working)
+    val stall_flg = RegInit(false.B)
+    stall_flg = Mux(exu_raw, exu_raw_working, Mux(lsu_raw, lsu_raw_working, Mux(wbu_raw, wbu_raw_working, false.B)))
+    dontTouch(stall_flg)
 
-    idu.io_hazard.stall_flg := Mux(exu_raw, exu_raw_working, Mux(lsu_raw, lsu_raw_working, Mux(wbu_raw, wbu_raw_working, false.B)))
+    idu.io_hazard.stall_flg := is_raw | stall_flg
 
     //Struc hazard
     /*fix in xbar*/
