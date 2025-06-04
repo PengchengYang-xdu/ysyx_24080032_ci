@@ -82,9 +82,21 @@ class Core extends Module {
     val exu_is_working = ~exu.io_pipe.in.ready | exu.io_pipe.in.valid
     val lsu_is_working = ~lsu.io_pipe.in.ready | lsu.io_pipe.in.valid
     val wbu_is_working = ~wbu.io_pipe.in.ready | wbu.io_pipe.in.valid
+    val exu_is_working_r = RegNext(exu_is_working)
+    val lsu_is_working_r = RegNext(lsu_is_working)
+    val wbu_is_working_r = RegNext(wbu_is_working)
+    val exu_end_flg = exu_is_working_r & ~exu_is_working
+    val lsu_end_flg = lsu_is_working_r & ~lsu_is_working
+    val wbu_end_flg = wbu_is_working_r & ~wbu_is_working
     dontTouch(exu_is_working)
     dontTouch(lsu_is_working)
     dontTouch(wbu_is_working)
+    dontTouch(exu_is_working_r)
+    dontTouch(lsu_is_working_r)
+    dontTouch(wbu_is_working_r)
+    dontTouch(exu_end_flg)
+    dontTouch(lsu_end_flg)
+    dontTouch(wbu_end_flg)
     val exu_raw = dataConflictWithStage(idu, exu_is_working, exu.io_pipe.in.bits.id2exe_wb_addr, exu.io_pipe.in.bits.id2exe_rf_wen === REN_S)
     val lsu_raw = dataConflictWithStage(idu, lsu_is_working, lsu.io_pipe.in.bits.exe2ls_wb_addr, lsu.io_pipe.in.bits.exe2ls_rf_wen === REN_S)
     val wbu_raw = dataConflictWithStage(idu, wbu_is_working, wbu.io_pipe.in.bits.ls2wb_wb_addr, wbu.io_pipe.in.bits.ls2wb_rf_wen === REN_S)
@@ -94,7 +106,9 @@ class Core extends Module {
     dontTouch(wbu_raw)
     dontTouch(is_raw)
     val stall_flg = RegInit(false.B)
-    stall_flg := Mux(exu_raw, exu_is_working, Mux(lsu_raw, lsu_is_working, Mux(wbu_raw, wbu_is_working, false.B)))
+    stall_flg := Mux(exu_raw, true.B, Mux(exu_end_flg, false.B,
+    Mux(lsu_raw, true.B, Mux(lsu_end_flg, false.B,
+    Mux(wbu_raw, true.B, Mux(wbu_end_flg, false.B, stall_flg))))))
     dontTouch(stall_flg)
 
     idu.io_hazard.stall_flg := is_raw | stall_flg
