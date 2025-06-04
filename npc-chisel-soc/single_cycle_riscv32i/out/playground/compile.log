@@ -1,11 +1,2 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:97:31: not found: value exu_raw_working[0m
-[0m[[0m[31merror[0m] [0m[0m    stall_flg := Mux(exu_raw, exu_raw_working, Mux(lsu_raw, lsu_raw_working, Mux(wbu_raw, wbu_raw_working, false.B)))[0m
-[0m[[0m[31merror[0m] [0m[0m                              ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:97:61: not found: value lsu_raw_working[0m
-[0m[[0m[31merror[0m] [0m[0m    stall_flg := Mux(exu_raw, exu_raw_working, Mux(lsu_raw, lsu_raw_working, Mux(wbu_raw, wbu_raw_working, false.B)))[0m
-[0m[[0m[31merror[0m] [0m[0m                                                            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:97:91: not found: value wbu_raw_working[0m
-[0m[[0m[31merror[0m] [0m[0m    stall_flg := Mux(exu_raw, exu_raw_working, Mux(lsu_raw, lsu_raw_working, Mux(wbu_raw, wbu_raw_working, false.B)))[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                          ^[0m
-[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
