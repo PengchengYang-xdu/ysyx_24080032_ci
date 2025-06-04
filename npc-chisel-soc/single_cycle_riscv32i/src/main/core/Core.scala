@@ -110,7 +110,7 @@ class Core extends Module {
     // Mux(lsu_raw, true.B, Mux(lsu_end_flg, false.B,
     // Mux(exu_raw, true.B, Mux(exu_end_flg, false.B, stall_flg))))))
     // dontTouch(stall_flg)
-    stall_flg := Mux(is_raw, true.B, Mux(wbu_end_flg, false.B))
+    stall_flg := Mux(is_raw, true.B, Mux(wbu_end_flg, false.B, stall_flg))
     idu.io_hazard.stall_flg := is_raw | stall_flg
 
     //Struc hazard
