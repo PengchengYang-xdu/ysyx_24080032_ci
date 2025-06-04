@@ -93,7 +93,8 @@ class Core extends Module {
     dontTouch(lsu_raw)
     dontTouch(wbu_raw)
     dontTouch(is_raw)
-    idu.io_hazard.stall_flg := is_raw
+    val is_raw_r = RegNext(is_raw)
+    idu.io_hazard.stall_flg := is_raw_r
 
     //Struc hazard
     /*fix in xbar*/
