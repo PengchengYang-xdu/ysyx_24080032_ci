@@ -100,7 +100,7 @@ class Core extends Module {
     dontTouch(lsu_raw_working)
     dontTouch(wbu_raw_working)
 
-    idu.io_hazard.stall_flg := Mux(exu_raw, exu_raw_working, Mux(lsu_raw, lsu_raw_working, Mux(wbu_raw, wbu_raw_working)), false.B)
+    idu.io_hazard.stall_flg := Mux(exu_raw, exu_raw_working, Mux(lsu_raw, lsu_raw_working, Mux(wbu_raw, wbu_raw_working, false.B)))
 
     //Struc hazard
     /*fix in xbar*/
