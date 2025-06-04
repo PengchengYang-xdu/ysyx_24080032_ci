@@ -14,6 +14,8 @@ class LSUIO extends Bundle {
 }
 
 class LSUIO_pipe_out extends Bundle{
+    val ls2wb_reg_pc = Output(UInt(WORD_LEN.W))
+
     val ls2wb_wb_addr = Output(UInt(ADDR_LEN.W))
     val ls2wb_rf_wen = Output(UInt(REN_LEN.W))
     val ls2wb_wb_data = Output(UInt(WORD_LEN.W))
@@ -301,6 +303,8 @@ class LSU extends Module {
     io_pipe.out.bits.ls2wb_wb_addr := io_pipe.in.bits.exe2ls_wb_addr//gpr write channel
     io_pipe.out.bits.ls2wb_rf_wen := io_pipe.in.bits.exe2ls_rf_wen
     io_pipe.out.bits.ls2wb_wb_data := wb_data
+
+    io_pipe.out.bits.ls2wb_reg_pc := io_pipe.in.bits.exe2ls_reg_pc
 
 
 

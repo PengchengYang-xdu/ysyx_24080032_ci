@@ -62,6 +62,11 @@ class IFU extends Module {
     io.imem.bready := false.B
 
 
+    val flag = RegInit(false.B)
+    dontTouch(flag)
+    flag := Mux(io_hazard.flush_flg, true.B, Mux(io_pipe.in.ready & io_pipe.in.valid, false.B, flag))
+
+
     //delay
     val lfsr = RegInit(IFU_DELAY)
     lfsr := Cat(lfsr(2,0), lfsr(0)^lfsr(1)^lfsr(2))
@@ -93,7 +98,7 @@ class IFU extends Module {
     io.imem.arsize := arsize
 
 
-    val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: Nil = Enum(4)
+    val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: s_Flush :: Nil = Enum(5)
     val c_state = RegInit(s_BeforeAXI_AR_Fire)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -101,14 +106,23 @@ class IFU extends Module {
     val AXI_AR_fire = arvalid & io.imem.arready
     val AXI_R_fire = io.imem.rvalid & rready
 
+    //flush states
+    val R_while_flush = AXI_R_fire & io_hazard.flush_flg
+    val flush_before_R = ~AXI_R_fire & io_hazard.flush_flg
+    val fetch_normal = AXI_R_fire & ~io_hazard.flush_flg
+
+    // val start = io_pipe.in.fire//this is the multi cycle version, change it auto fetch to fit 5 pipelines
+    val start = io.imem.arready && ~io_hazard.flush_flg && io_pipe.in.valid
+
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire       ->  Mux(io_pipe.in.fire, s_BeforeAXI_AR_Fire, s_BeforePreFire),
+        s_BeforePreFire       ->  Mux(start, s_BeforeAXI_AR_Fire, s_BeforePreFire),
         s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, s_BeforeAXI_R_Fire, s_BeforeAXI_AR_Fire),
-        s_BeforeAXI_R_Fire    ->  Mux(AXI_R_fire, s_AfterPreFire, s_BeforeAXI_R_Fire),
-        s_AfterPreFire        ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
-    ))
+        s_BeforeAXI_R_Fire    ->  Mux(fetch_normal, s_AfterPreFire, Mux(flush_before_R, s_Flush, Mux(R_while_flush, s_BeforePreFire, s_BeforeAXI_R_Fire))),
+        s_AfterPreFire        ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
+        s_Flush               ->  Mux(AXI_R_fire, s_BeforePreFire, s_Flush)
+    ))//发起的请求必须等取到这次取指之后，再冲刷
 
     switch(n_state){//third phase
         is(s_BeforePreFire){
@@ -127,7 +141,7 @@ class IFU extends Module {
         is(s_BeforeAXI_AR_Fire){
             //between modules
             in_ready := false.B
-            out_valid := io.imem.rvalid & (io.imem.rresp === 0.U)
+            out_valid := false.B
             //AXI
             if(ENABLE_DELAY){
                 when(delay === 0.U){
@@ -150,7 +164,7 @@ class IFU extends Module {
         is(s_BeforeAXI_R_Fire){
             //between modules
             in_ready := false.B
-            out_valid := io.imem.rvalid & (io.imem.rresp === 0.U)
+            out_valid := false.B
             //AXI
             arvalid := false.B
             rready := true.B
@@ -159,10 +173,19 @@ class IFU extends Module {
         is(s_AfterPreFire){
             //between modules
             in_ready := false.B
-            out_valid := io.imem.rvalid & (io.imem.rresp === 0.U)
+            out_valid := true.B
             //AXI
             arvalid := false.B
             rready := false.B
+            arsize := 2.U
+        }
+        is(s_Flush){
+            //between modules
+            in_ready := false.B
+            out_valid := false.B
+            //AXI
+            arvalid := false.B
+            rready := true.B
             arsize := 2.U
         }
     }
@@ -188,8 +211,8 @@ class IFU extends Module {
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
     pc_next := MuxCase(pc_plus4, Seq(
-        io.br_flg           -> io.br_target,
-        io.jmp_flg          -> io.alu_out,
+        (io.br_flg && flag)          -> io.br_target,
+        (io.jmp_flg && flag)         -> io.alu_out,
         (io.imem.rdata === ECALL)    -> io.csr_mtvec,
         (io.imem.rdata === MRET)     -> io.csr_mepc,
     ))

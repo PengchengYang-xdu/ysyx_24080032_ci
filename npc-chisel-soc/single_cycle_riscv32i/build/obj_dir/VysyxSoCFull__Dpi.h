@@ -18,17 +18,17 @@ extern "C" {
     // DPI IMPORTS
     // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/perip/flash/flash.v:84:30
     extern void flash_read(int addr, int* data);
-    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:8168:30
+    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:8170:30
     extern void mrom_read(int raddr, int* rdata);
     // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/vsrc/Ebreak.sv:7:30
     extern void npc_trap();
-    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:8189:30
+    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:8191:30
     extern void psram_read(int addr, int* rdata);
-    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:8190:30
+    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:8192:30
     extern void psram_write(int addr, int wdata, char wstrb);
-    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:8244:30
+    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:8246:30
     extern void sdram_read(int id, int bank_addr, int row_addr, int col_addr, int* rdata);
-    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:8245:30
+    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:8247:30
     extern void sdram_write(int id, int bank_addr, int row_addr, int col_addr, int wdata, char wstrb);
 
 #ifdef __cplusplus
