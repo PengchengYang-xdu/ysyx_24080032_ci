@@ -117,10 +117,10 @@ class Core extends Module {
     dontTouch(rs2_raw)
 
     val stall_cnt = RegInit(0.U)
-    stall_cnt := Mux(is_raw, Mux((rs1_raw & ~rs2_raw) || (~rs1_raw & rs2_raw), 1.U, 2.U), Mux(wbu_end_flg_r && stall_cnt =/= 0.U, stall_cnt - 1.U, stall_cnt))
+    stall_cnt := Mux(is_raw, Mux((rs1_raw & ~rs2_raw) || (~rs1_raw & rs2_raw), 1.U, 2.U), Mux(wbu_end_flg && stall_cnt =/= 0.U, stall_cnt - 1.U, stall_cnt))
 
     val stall_flg = RegInit(false.B)
-    stall_flg := Mux(is_raw, true.B, Mux(wbu_end_flg_r && stall_cnt === 0.U, false.B, stall_flg))
+    stall_flg := Mux(is_raw, true.B, Mux(stall_cnt === 0.U, false.B, stall_flg))
     idu.io_hazard.stall_flg := is_raw | stall_flg
 
     //Struc hazard
