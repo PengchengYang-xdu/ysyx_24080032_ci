@@ -23,7 +23,6 @@
         "SSH_CONNECTION": "10.1.33.170 10624 10.2.255.13 6000",
         "AM_HOME": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/abstract-machine",
         "LC_MEASUREMENT": "zh_CN.UTF-8",
-        "OLDPWD": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench",
         "XDG_SESSION_TYPE": "tty",
         "NVBOARD_HOME": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/nvboard",
         "LESSOPEN": "| /usr/bin/lesspipe %s",
@@ -69,9 +68,9 @@
         "BROWSER": "/home/yangpengcheng/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh",
         "MFLAGS": "-w",
         "MAKELEVEL": "1",
-        "MAKE_TERMERR": "/dev/pts/31",
+        "MAKE_TERMERR": "/dev/pts/47",
         "_": "/bin/make",
-        "MAKE_TERMOUT": "/dev/pts/31",
+        "MAKE_TERMOUT": "/dev/pts/47",
         "PULP_RISCV_GCC_TOOLCHAIN": "/home/yangpengcheng/workspace/opt/riscv_pulp",
         "CLK_FREQ_MHZ": "100",
         "TERM_PROGRAM_VERSION": "1.85.2",
@@ -83,11 +82,11 @@
         "VSCODE_GIT_IPC_HANDLE": "/run/user/1013/vscode-git-92b70a4621.sock",
         "CCACHE_DIR": "/home/yangpengcheng/.ccache",
         "CONDA_PROMPT_MODIFIER": "(base) ",
-        "VSCODE_IPC_HOOK_CLI": "/run/user/1013/vscode-ipc-b7dd1aa1-5c13-4d3f-8ce7-7ce20449edd1.sock",
+        "VSCODE_IPC_HOOK_CLI": "/run/user/1013/vscode-ipc-58883a1e-7c18-43ca-aad7-e7df7ddced08.sock",
         "RISCV64": "/home/yangpengcheng/workspace/opt/riscv",
         "MODEL_TECH": "/home/yangpengcheng/questasim/bin",
         "_CE_CONDA": ""
     },
-    "valueHash": -1093658769,
-    "inputsHash": -1819208457
+    "valueHash": 1376921463,
+    "inputsHash": 1060102049
 }
