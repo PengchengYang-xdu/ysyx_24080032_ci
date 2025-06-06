@@ -120,7 +120,7 @@ class IFU extends Module {
         s_BeforePreFire       ->  Mux(start, s_BeforeAXI_AR_Fire, s_BeforePreFire),
         s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, s_BeforeAXI_R_Fire, s_BeforeAXI_AR_Fire),
         s_BeforeAXI_R_Fire    ->  Mux(fetch_normal, s_AfterPreFire, Mux(flush_before_R, s_Flush, Mux(R_while_flush, s_BeforePreFire, s_BeforeAXI_R_Fire))),
-        s_AfterPreFire        ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
+        s_AfterPreFire        ->  Mux(io_hazard.flush_flg | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
         s_Flush               ->  Mux(AXI_R_fire, s_BeforePreFire, s_Flush)
     ))//发起的请求必须等取到这次取指之后，再冲刷
 
@@ -173,7 +173,7 @@ class IFU extends Module {
         is(s_AfterPreFire){
             //between modules
             in_ready := false.B
-            out_valid := true.B
+            out_valid := true.B & ~io_hazard.flush_flg
             //AXI
             arvalid := false.B
             rready := false.B
