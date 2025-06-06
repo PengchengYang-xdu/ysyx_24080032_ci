@@ -86,7 +86,7 @@ class IFU extends Module {
     val in_ready = RegInit(false.B)
     val out_valid = RegInit(false.B)
     io_pipe.in.ready := in_ready
-    io_pipe.out.valid := out_valid
+    io_pipe.out.valid := out_valid & ~io_hazard.flush_flg
 
     val araddr = Wire(UInt(WORD_LEN.W))
     val arvalid = RegInit(false.B)
@@ -173,7 +173,7 @@ class IFU extends Module {
         is(s_AfterPreFire){
             //between modules
             in_ready := false.B
-            out_valid := true.B & ~io_hazard.flush_flg
+            out_valid := true.B
             //AXI
             arvalid := false.B
             rready := false.B
