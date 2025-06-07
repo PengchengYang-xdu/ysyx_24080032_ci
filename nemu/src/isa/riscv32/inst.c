@@ -161,7 +161,7 @@ static int decode_exec(Decode *s) {
   // printf("pc = %x\n", s->pc);
 
 
-  if(s->isa.inst.val == 0x0037c583){
+  if(s->isa.inst.val == 0xff030313){
     printf("read addr = %x + %x,,,,,,,read data = %x\n", src1, imm, Mr(src1 + imm, 1));
   }
 
