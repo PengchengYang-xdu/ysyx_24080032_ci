@@ -22,53 +22,55 @@ void bss_clr(){
         *dest++ = 0;
 }
 
-// void fsbl(){
-//     volatile char *src = &_fsbl_end;
-//     volatile char *dest = &_ssbl_start;
-//     while(dest < &_ssbl_end)
-//         *dest++ = *src++;
-//     // printf("fsbl done\n");
-//     ssbl(src);
-// }
-
-// void ssbl(volatile char *src){
-//     volatile char *dest = &_text_start;
-//     while(dest < &_data_end)
-//         *dest++ = *src++;
-//     bss_clr();
-//     // printf("bootloader done\n");
-//     _trm_init();
-// }
-
-
-
-
-
-
+//1字节搬移
 
 void fsbl(){
-    // 以 4 字节单位搬移
-    uint32_t *src = (uint32_t *)&_fsbl_end;
-    uint32_t *dest = (uint32_t *)&_ssbl_start;
-
-    while ((char *)dest < &_ssbl_end)
+    volatile char *src = &_fsbl_end;
+    volatile char *dest = &_ssbl_start;
+    while(dest < &_ssbl_end)
         *dest++ = *src++;
-
     // printf("fsbl done\n");
-    ssbl((volatile char *)src);
+    ssbl(src);
 }
 
 void ssbl(volatile char *src){
-    uint32_t *psrc = (uint32_t *)src;
-    uint32_t *dest = (uint32_t *)&_text_start;
-
-    while ((char *)dest < &_data_end)
-        *dest++ = *psrc++;
-
+    volatile char *dest = &_text_start;
+    while(dest < &_data_end)
+        *dest++ = *src++;
     bss_clr();
     // printf("bootloader done\n");
     _trm_init();
 }
+
+
+
+
+
+//4字节搬移
+
+// void fsbl(){
+//     // 以 4 字节单位搬移
+//     uint32_t *src = (uint32_t *)&_fsbl_end;
+//     uint32_t *dest = (uint32_t *)&_ssbl_start;
+
+//     while ((char *)dest < &_ssbl_end)
+//         *dest++ = *src++;
+
+//     // printf("fsbl done\n");
+//     ssbl((volatile char *)src);
+// }
+
+// void ssbl(volatile char *src){
+//     uint32_t *psrc = (uint32_t *)src;
+//     uint32_t *dest = (uint32_t *)&_text_start;
+
+//     while ((char *)dest < &_data_end)
+//         *dest++ = *psrc++;
+
+//     bss_clr();
+//     // printf("bootloader done\n");
+//     _trm_init();
+// }
 
 
 
