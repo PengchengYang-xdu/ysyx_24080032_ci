@@ -22,23 +22,29 @@ void bss_clr(){
         *dest++ = 0;
 }
 
-void fsbl(){
-    volatile char *src = &_fsbl_end;
-    volatile char *dest = &_ssbl_start;
-    while(dest < &_ssbl_end)
-        *dest++ = *src++;
-    // printf("fsbl done\n");
-    ssbl(src);
-}
+// void fsbl(){
+//     volatile char *src = &_fsbl_end;
+//     volatile char *dest = &_ssbl_start;
+//     while(dest < &_ssbl_end)
+//         *dest++ = *src++;
+//     // printf("fsbl done\n");
+//     ssbl(src);
+// }
 
-void ssbl(volatile char *src){
-    volatile char *dest = &_text_start;
-    while(dest < &_data_end)
-        *dest++ = *src++;
-    bss_clr();
-    // printf("bootloader done\n");
-    _trm_init();
-}
+// void ssbl(volatile char *src){
+//     volatile char *dest = &_text_start;
+//     while(dest < &_data_end)
+//         *dest++ = *src++;
+//     bss_clr();
+//     // printf("bootloader done\n");
+//     _trm_init();
+// }
+
+
+
+
+
+
 
 // void fsbl(){
 //     // 以 4 字节单位搬移
@@ -63,3 +69,46 @@ void ssbl(volatile char *src){
 //     // printf("bootloader done\n");
 //     _trm_init();
 // }
+
+
+
+
+
+
+void fsbl() {
+    // 4 字节为单位搬运 .ssbl 段
+    uint32_t *src = (uint32_t *)&_fsbl_end;
+    uint32_t *dest = (uint32_t *)&_ssbl_start;
+
+    // 计算按 4 字节搬移的结束位置
+    while ((char *)dest + 4 <= &_ssbl_end)
+        *dest++ = *src++;
+
+    // 处理剩余不足 4 字节的部分
+    char *csrc = (char *)src;
+    char *cdest = (char *)dest;
+    while (cdest < &_ssbl_end)
+        *cdest++ = *csrc++;
+
+    // 启动 ssbl 逻辑
+    ssbl((volatile char *)cdest);
+}
+
+void ssbl(volatile char *src) {
+    // 4 字节为单位搬运 .text/.rodata/.data 段
+    uint32_t *psrc = (uint32_t *)src;
+    uint32_t *dest = (uint32_t *)&_text_start;
+
+    while ((char *)dest + 4 <= &_data_end)
+        *dest++ = *psrc++;
+
+    // 处理剩余不足 4 字节的部分
+    char *csrc = (char *)psrc;
+    char *cdest = (char *)dest;
+    while (cdest < &_data_end)
+        *cdest++ = *csrc++;
+
+    bss_clr();
+
+    _trm_init();
+}
