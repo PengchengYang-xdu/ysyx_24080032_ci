@@ -12,7 +12,7 @@
 *
 * See the Mulan PSL v2 for more details.
 ***************************************************************************************/
-#define CONFIG_TARGET_SHARE
+// #define CONFIG_TARGET_SHARE
 #include <ysyxsoc.h>
 #include "../ysyxsoc/include/ysyxsoc_mem.h"
 #include <memory/host.h>
