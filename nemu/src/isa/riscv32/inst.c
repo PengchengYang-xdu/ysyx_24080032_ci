@@ -160,6 +160,12 @@ static int decode_exec(Decode *s) {
   R(0) = 0; // reset $zero to 0
   // printf("pc = %x\n", s->pc);
 
+
+  if(s->isa.inst.val == 0x0037c583){
+    printf("read addr = %x + %x,,,,,,,read data = %x\n", src1, imm, Mr(src1 + imm, 1));
+  }
+
+
   return 0;
 }
 
