@@ -68,9 +68,9 @@
         "BROWSER": "/home/yangpengcheng/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh",
         "MFLAGS": "-w",
         "MAKELEVEL": "1",
-        "MAKE_TERMERR": "/dev/pts/42",
+        "MAKE_TERMERR": "/dev/pts/58",
         "_": "/bin/make",
-        "MAKE_TERMOUT": "/dev/pts/42",
+        "MAKE_TERMOUT": "/dev/pts/58",
         "PULP_RISCV_GCC_TOOLCHAIN": "/home/yangpengcheng/workspace/opt/riscv_pulp",
         "CLK_FREQ_MHZ": "100",
         "TERM_PROGRAM_VERSION": "1.85.2",
@@ -82,11 +82,11 @@
         "VSCODE_GIT_IPC_HANDLE": "/run/user/1013/vscode-git-92b70a4621.sock",
         "CCACHE_DIR": "/home/yangpengcheng/.ccache",
         "CONDA_PROMPT_MODIFIER": "(base) ",
-        "VSCODE_IPC_HOOK_CLI": "/run/user/1013/vscode-ipc-5da88227-36f9-45b2-9383-2e50ef828cac.sock",
+        "VSCODE_IPC_HOOK_CLI": "/run/user/1013/vscode-ipc-6830d2c0-acc2-4e10-9499-dadd10f4721d.sock",
         "RISCV64": "/home/yangpengcheng/workspace/opt/riscv",
         "MODEL_TECH": "/home/yangpengcheng/questasim/bin",
         "_CE_CONDA": ""
     },
-    "valueHash": -1850667487,
-    "inputsHash": -2001207588
+    "valueHash": -1618829101,
+    "inputsHash": 495979863
 }
