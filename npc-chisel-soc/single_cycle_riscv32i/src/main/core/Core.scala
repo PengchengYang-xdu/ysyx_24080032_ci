@@ -161,7 +161,15 @@ class Core extends Module {
     when(rs1_resolved) {rs1_raw_valid := false.B}
     when(rs2_resolved) {rs2_raw_valid := false.B}
 
-    idu.io_hazard.stall_flg := rs1_raw_valid | rs2_raw_valid
+    idu.io_hazard.stall_flg := rs1_raw_valid | rs2_raw_valid | is_raw
+
+
+
+
+
+
+
+
 
     // val stall_cnt = RegInit(0.U)
     // stall_cnt := Mux(is_raw, Mux((rs1_raw & ~rs2_raw) || (~rs1_raw & rs2_raw) || (rs1_raw & rs2_raw & (idu.io.gpr_rs1_addr === idu.io.gpr_rs2_addr)), 1.U, 2.U), Mux(wbu_end_flg && stall_cnt =/= 0.U, stall_cnt - 1.U, stall_cnt))
@@ -170,8 +178,44 @@ class Core extends Module {
     // stall_flg := Mux(is_raw, true.B, Mux(stall_cnt === 0.U, false.B, stall_flg))
     // idu.io_hazard.stall_flg := is_raw | stall_flg
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //Struc hazard
     /*fix in xbar*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //control hazard
     val exu_out_valid_rise = exu.io_pipe.out.valid & ~RegNext(exu.io_pipe.out.valid)
@@ -196,6 +240,25 @@ class Core extends Module {
 
     when(idu.io_hazard.flush_flg){idu.io_pipe.in.valid := false.B}
     when(exu.io_hazard.flush_flg){exu.io_pipe.in.valid := false.B}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
