@@ -83,6 +83,7 @@ module IFU(	// @[src/main/core/ifu/IFU.scala:38:7]
   reg         flag;	// @[src/main/core/ifu/IFU.scala:65:23]
   reg         in_ready;	// @[src/main/core/ifu/IFU.scala:86:27]
   reg         out_valid;	// @[src/main/core/ifu/IFU.scala:87:28]
+  wire        io_pipe_out_valid_0 = out_valid & ~io_hazard_flush_flg;	// @[src/main/core/ifu/IFU.scala:87:28, :89:{36,38}]
   reg         arvalid;	// @[src/main/core/ifu/IFU.scala:92:26]
   reg         rready;	// @[src/main/core/ifu/IFU.scala:93:25]
   reg  [2:0]  c_state;	// @[src/main/core/ifu/IFU.scala:102:26]
@@ -91,7 +92,7 @@ module IFU(	// @[src/main/core/ifu/IFU.scala:38:7]
     c_state == 3'h4
       ? {~AXI_R_fire, 2'h0}
       : c_state == 3'h3
-          ? (io_pipe_out_ready & out_valid ? 3'h0 : 3'h3)
+          ? (io_hazard_flush_flg | io_pipe_out_ready & io_pipe_out_valid_0 ? 3'h0 : 3'h3)
           : c_state == 3'h2
               ? (AXI_R_fire & ~io_hazard_flush_flg
                    ? 3'h3
@@ -102,7 +103,7 @@ module IFU(	// @[src/main/core/ifu/IFU.scala:38:7]
                   ? (arvalid & io_imem_arready ? 3'h2 : 3'h1)
                   : {2'h0,
                      c_state == 3'h0 & io_imem_arready & ~io_hazard_flush_flg
-                       & io_pipe_in_valid};	// @[src/main/core/ifu/IFU.scala:38:7, :87:28, :92:26, :102:26, :103:30, :106:31, :107:37, :110:36, :111:{26,38}, :112:{35,37}, :119:51, :120:38, :121:38, :122:{38,72,101}, :123:38, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+                       & io_pipe_in_valid};	// @[src/main/core/ifu/IFU.scala:38:7, :89:{36,38}, :92:26, :102:26, :103:30, :106:31, :107:37, :110:36, :111:{26,38}, :112:35, :119:51, :120:38, :121:38, :122:{38,72,101}, :123:{38,59}, :124:38, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   reg  [31:0] reg_pc;	// @[src/main/core/ifu/IFU.scala:208:18]
   wire [31:0] pc_next =
     io_br_flg & flag
@@ -175,7 +176,7 @@ module IFU(	// @[src/main/core/ifu/IFU.scala:38:7]
   assign io_imem_rready = rready;	// @[src/main/core/ifu/IFU.scala:38:7, :93:25]
   assign io_csr_reg_pc = reg_pc;	// @[src/main/core/ifu/IFU.scala:38:7, :208:18]
   assign io_pipe_in_ready = in_ready;	// @[src/main/core/ifu/IFU.scala:38:7, :86:27]
-  assign io_pipe_out_valid = out_valid;	// @[src/main/core/ifu/IFU.scala:38:7, :87:28]
+  assign io_pipe_out_valid = io_pipe_out_valid_0;	// @[src/main/core/ifu/IFU.scala:38:7, :89:36]
   assign io_pipe_out_bits_if2id_reg_pc = reg_pc;	// @[src/main/core/ifu/IFU.scala:38:7, :208:18]
   assign io_pipe_out_bits_if2id_inst = io_imem_rdata;	// @[src/main/core/ifu/IFU.scala:38:7]
 endmodule
