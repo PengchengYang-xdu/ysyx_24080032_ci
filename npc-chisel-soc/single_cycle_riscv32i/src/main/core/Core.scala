@@ -144,7 +144,7 @@ class Core extends Module {
         rs1_raw_from_wbu := wbu_raw_rs1
     }
     when(rs2_raw){
-        rs1_raw_rd := MuxCase(0.U, Seq(
+        rs2_raw_rd := MuxCase(0.U, Seq(
             exu_raw_rs2 -> exu.io_pipe.in.bits.id2exe_wb_addr,
             lsu_raw_rs2 -> lsu.io_pipe.in.bits.exe2ls_wb_addr,
             wbu_raw_rs2 -> wbu.io_pipe.in.bits.ls2wb_wb_addr,
