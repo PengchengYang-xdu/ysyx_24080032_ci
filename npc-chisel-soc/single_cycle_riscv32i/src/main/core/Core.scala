@@ -174,25 +174,6 @@ class Core extends Module {
 
 
 
-    // val stall_cnt = RegInit(0.U)
-    // stall_cnt := Mux(is_raw, Mux((rs1_raw & ~rs2_raw) || (~rs1_raw & rs2_raw) || (rs1_raw & rs2_raw & (idu.io.gpr_rs1_addr === idu.io.gpr_rs2_addr)), 1.U, 2.U), Mux(wbu_end_flg && stall_cnt =/= 0.U, stall_cnt - 1.U, stall_cnt))
-
-    // val stall_flg = RegInit(false.B)
-    // stall_flg := Mux(is_raw, true.B, Mux(stall_cnt === 0.U, false.B, stall_flg))
-    // idu.io_hazard.stall_flg := is_raw | stall_flg
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
