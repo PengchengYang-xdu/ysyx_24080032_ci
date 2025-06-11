@@ -7,7 +7,7 @@ Read LEF file : syn/scripts/../nangate45/lef/NangateOpenCellLibrary.macro.mod.le
 [Data config set] verilog = syn/result/NPC-450MHz/NPC.netlist.syn.v
 Read Verilog file success : syn/result/NPC-450MHz/NPC.netlist.syn.v
 WARNING: Logging before InitGoogleLogging() is written to STDERR
-I20250529 11:20:27.893210 2522632 VerilogParserRustC.cc:41] load verilog file syn/result/NPC-450MHz/NPC.netlist.syn.v
+I20250610 18:01:49.636396 3730201 VerilogParserRustC.cc:41] load verilog file syn/result/NPC-450MHz/NPC.netlist.syn.v
 r str syn/result/NPC-450MHz/NPC.netlist.syn.v
 flatten module NPC  start
 flatten module Clint inst clint
@@ -44,6 +44,10 @@ Processed 17000 pins...
 Processed 18000 pins...
 Processed 19000 pins...
 Processed 20000 pins...
+Processed 21000 pins...
+Processed 22000 pins...
+Processed 23000 pins...
+Processed 24000 pins...
 Processed 1000 nets...
 Processed 2000 nets...
 Processed 3000 nets...
@@ -64,6 +68,10 @@ Processed 17000 nets...
 Processed 18000 nets...
 Processed 19000 nets...
 Processed 20000 nets...
+Processed 21000 nets...
+Processed 22000 nets...
+Processed 23000 nets...
+Processed 24000 nets...
 Processed 1000 components...
 Processed 2000 components...
 Processed 3000 components...
@@ -83,247 +91,97 @@ Processed 16000 components...
 Processed 17000 components...
 Processed 18000 components...
 Processed 19000 components...
-I20250529 11:20:30.480523 2522632 Sta.cc:298] load lib start
-I20250529 11:20:30.485829 2522672 LibParserRustC.cc:1269] load liberty file syn/scripts/../nangate45/lib/merged.lib
+Processed 20000 components...
+Processed 21000 components...
+Processed 22000 components...
+I20250610 18:01:52.938794 3730201 Sta.cc:298] load lib start
+I20250610 18:01:52.944532 3731186 LibParserRustC.cc:1269] load liberty file syn/scripts/../nangate45/lib/merged.lib
 rust read lib file syn/scripts/../nangate45/lib/merged.lib
-I20250529 11:20:31.199394 2522672 LibParserRustC.cc:1278] load liberty file syn/scripts/../nangate45/lib/merged.lib success.
-I20250529 11:20:31.200153 2522632 Sta.cc:317] load lib end
-I20250529 11:20:31.208925 2522717 LibParserRustC.cc:1289] link liberty file syn/scripts/../nangate45/lib/merged.lib start.
-I20250529 11:20:31.951742 2522717 LibParserRustC.cc:1295] link liberty file syn/scripts/../nangate45/lib/merged.lib success.
-I20250529 11:20:31.952586 2522632 TimingIDBAdapter.cc:738] core area width -0um height -0um
-I20250529 11:20:33.634955 2522632 Sta.cc:172] read sdc syn/sdc/NPC.sdc start 
-I20250529 11:20:33.636093 2522632 CmdCreateClock.cc:116] create clock core_clock for pin/port: clock
-I20250529 11:20:33.636122 2522632 Sta.cc:185] read sdc end
-I20250529 11:20:33.636143 2522632 StaBuildGraph.cc:310] build graph start
-I20250529 11:20:35.625710 2522632 StaBuildGraph.cc:327] build graph end
-I20250529 11:20:35.720732 2522632 Sta.cc:2287] update timing start
-I20250529 11:20:35.754153 2522632 StaApplySdc.cc:694] apply sdc start
-I20250529 11:20:35.754245 2522632 StaApplySdc.cc:725] apply sdc end
-I20250529 11:20:35.759882 2522632 StaClockPropagation.cc:320] ideal clock propagation start
-I20250529 11:20:35.759938 2522632 StaClockPropagation.cc:203] clock propagate end to vertex clint/_1454_:CK
-I20250529 11:20:35.781049 2522632 StaClockPropagation.cc:416] ideal clock propagation end
-I20250529 11:20:35.781085 2522632 StaCheck.cc:129] found loop fwd start
-I20250529 11:20:35.818387 2522632 StaCheck.cc:148] found loop fwd end
-I20250529 11:20:35.818418 2522632 StaCheck.cc:150] found loop bwd start
-I20250529 11:20:35.858239 2522632 StaCheck.cc:172] found loop bwd end
-I20250529 11:20:35.858286 2522632 StaSlewPropagation.cc:266] slew propagation start
-E20250529 11:20:35.861639 2522853 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250529 11:20:35.861660 2522858 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250529 11:20:35.861609 2522843 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250529 11:20:35.861624 2522846 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250529 11:20:35.861619 2522844 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250529 11:20:35.861613 2522891 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250529 11:20:35.861690 2522848 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250529 11:20:35.861609 2522842 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250529 11:20:35.861611 2522852 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250529 11:20:35.861693 2522853 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.365616; max_val = 60.73
-I20250529 11:20:36.133920 2522632 StaSlewPropagation.cc:305] slew propagation end
-I20250529 11:20:36.133975 2522632 StaDelayPropagation.cc:268] delay propagation start
-I20250529 11:20:36.306107 2522632 StaDelayPropagation.cc:309] delay propagation end
-I20250529 11:20:36.306183 2522632 StaClockPropagation.cc:322] propagated(kNormal) clock propagation start
-I20250529 11:20:36.306213 2522632 StaClockPropagation.cc:418] propagated(kNormal) clock propagation end
-I20250529 11:20:36.306250 2522632 StaApplySdc.cc:694] apply sdc start
-I20250529 11:20:36.306272 2522632 StaApplySdc.cc:725] apply sdc end
-I20250529 11:20:36.306291 2522632 StaClockPropagation.cc:324] propagated(kGenerated) clock propagation start
-I20250529 11:20:36.306308 2522632 StaClockPropagation.cc:420] propagated(kGenerated) clock propagation end
-I20250529 11:20:36.306326 2522632 StaApplySdc.cc:694] apply sdc start
-I20250529 11:20:36.306344 2522632 StaApplySdc.cc:725] apply sdc end
-I20250529 11:20:36.353525 2522632 StaBuildPropTag.cc:325] build propagation tag start
-I20250529 11:20:36.353602 2522632 StaDataPropagation.cc:589] data fwd propagation start
-I20250529 11:20:36.359376 2522948 StaDataPropagation.cc:529] Thread 139200458376768 date fwd propagate found start vertex.xbar/_4030_:CK
-I20250529 11:20:36.359458 2522953 StaDataPropagation.cc:529] Thread 139200416413248 date fwd propagate found start vertex.xbar/_4033_:CK
-I20250529 11:20:36.359409 2522950 StaDataPropagation.cc:529] Thread 139200441591360 date fwd propagate found start vertex.xbar/_4031_:CK
-I20250529 11:20:36.359349 2522946 StaDataPropagation.cc:529] Thread 139200114275904 date fwd propagate found start vertex.xbar/_4025_:CK
-I20250529 11:20:36.359364 2522945 StaDataPropagation.cc:529] Thread 139200105883200 date fwd propagate found start vertex.xbar/_4029_:CK
-I20250529 11:20:36.359454 2522954 StaDataPropagation.cc:529] Thread 139200408020544 date fwd propagate found start vertex.xbar/_4034_:CK
-I20250529 11:20:36.359338 2522943 StaDataPropagation.cc:529] Thread 139200089097792 date fwd propagate found start vertex.xbar/_4028_:CK
-I20250529 11:20:36.359447 2522952 StaDataPropagation.cc:529] Thread 139200424805952 date fwd propagate found start vertex.xbar/_4032_:CK
-I20250529 11:20:36.359354 2522992 StaDataPropagation.cc:529] Thread 139200055526976 date fwd propagate found start vertex.xbar/_4026_:CK
-I20250529 11:20:36.359335 2522944 StaDataPropagation.cc:529] Thread 139200097490496 date fwd propagate found start vertex.xbar/_4027_:CK
-I20250529 11:20:36.504518 2522632 StaDataPropagation.cc:632] data fwd propagation end
-I20250529 11:20:36.504601 2522632 StaDataPropagation.cc:589] data fwd propagation start
-I20250529 11:20:36.544591 2522632 StaDataPropagation.cc:632] data fwd propagation end
-I20250529 11:20:36.544644 2522632 StaAnalyze.cc:539] analyze timing path start
-E20250529 11:20:36.544664 2522632 StaAnalyze.cc:324] The output port io_master_araddr[3] is not constrained
-E20250529 11:20:36.544678 2522632 StaAnalyze.cc:324] The output port io_master_araddr[3] is not constrained
-E20250529 11:20:36.544689 2522632 StaAnalyze.cc:324] The output port io_master_araddr[2] is not constrained
-E20250529 11:20:36.544698 2522632 StaAnalyze.cc:324] The output port io_master_araddr[2] is not constrained
-E20250529 11:20:36.544709 2522632 StaAnalyze.cc:324] The output port io_master_araddr[1] is not constrained
-E20250529 11:20:36.544719 2522632 StaAnalyze.cc:324] The output port io_master_araddr[1] is not constrained
-E20250529 11:20:36.544729 2522632 StaAnalyze.cc:324] The output port io_master_araddr[0] is not constrained
-E20250529 11:20:36.544739 2522632 StaAnalyze.cc:324] The output port io_master_araddr[0] is not constrained
-E20250529 11:20:36.544749 2522632 StaAnalyze.cc:324] The output port io_master_araddr[4] is not constrained
-E20250529 11:20:36.544759 2522632 StaAnalyze.cc:324] The output port io_master_araddr[4] is not constrained
-I20250529 11:20:36.658674 2522632 StaAnalyze.cc:577] analyze timing path end
-I20250529 11:20:36.658725 2522632 StaApplySdc.cc:694] apply sdc start
-I20250529 11:20:36.658737 2522632 StaApplySdc.cc:725] apply sdc end
-I20250529 11:20:36.658747 2522632 StaDataPropagation.cc:635] data bwd propagation start
-I20250529 11:20:36.662367 2523056 StaDataPropagation.cc:171] Thread 139200097490496 data bwd propagate found end vertex.clint/_1482_:D
-I20250529 11:20:36.662415 2523069 StaDataPropagation.cc:171] Thread 139200382842432 data bwd propagate found end vertex.clint/_1460_:D
-I20250529 11:20:36.662360 2523055 StaDataPropagation.cc:171] Thread 139200089097792 data bwd propagate found end vertex.clint/_1483_:D
-I20250529 11:20:36.662369 2523059 StaDataPropagation.cc:171] Thread 139200466769472 data bwd propagate found end vertex.clint/_1485_:D
-I20250529 11:20:36.662391 2523061 StaDataPropagation.cc:171] Thread 139200449984064 data bwd propagate found end vertex.clint/_1455_:D
-I20250529 11:20:36.662407 2523060 StaDataPropagation.cc:171] Thread 139200458376768 data bwd propagate found end vertex.clint/_1486_:D
-I20250529 11:20:36.662431 2523070 StaDataPropagation.cc:171] Thread 139200374449728 data bwd propagate found end vertex.clint/_1464_:D
-I20250529 11:20:36.662398 2523064 StaDataPropagation.cc:171] Thread 139200424805952 data bwd propagate found end vertex.clint/_1456_:D
-I20250529 11:20:36.662442 2523066 StaDataPropagation.cc:171] Thread 139200408020544 data bwd propagate found end vertex.clint/_1457_:D
-I20250529 11:20:36.662377 2523057 StaDataPropagation.cc:171] Thread 139200105883200 data bwd propagate found end vertex.clint/_1484_:D
-I20250529 11:20:36.662982 2523081 StaDataPropagation.cc:60] the endpoint vertex clint/_1454_:SN has negative slack
-I20250529 11:20:36.664623 2523083 StaDataPropagation.cc:60] the endpoint vertex core/ifu/_1514_:D has negative slack
-I20250529 11:20:36.664655 2523068 StaDataPropagation.cc:60] the endpoint vertex core/ifu/_1516_:D has negative slack
-I20250529 11:20:36.664685 2523096 StaDataPropagation.cc:60] the endpoint vertex core/ifu/_1533_:D has negative slack
-I20250529 11:20:36.664649 2523061 StaDataPropagation.cc:60] the endpoint vertex core/ifu/_1518_:D has negative slack
-I20250529 11:20:36.664693 2523073 StaDataPropagation.cc:60] the endpoint vertex core/ifu/_1527_:D has negative slack
-I20250529 11:20:36.664778 2523075 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6543_:D has negative slack
-I20250529 11:20:36.664894 2523076 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6565_:D has negative slack
-I20250529 11:20:36.664883 2523065 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6559_:D has negative slack
-I20250529 11:20:36.664848 2523062 StaDataPropagation.cc:60] the endpoint vertex core/ifu/_1506_:D has negative slack
-I20250529 11:20:36.664989 2523063 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6682_:D has negative slack
-I20250529 11:20:36.665012 2523078 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6566_:D has negative slack
-I20250529 11:20:36.665041 2523061 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6580_:D has negative slack
-I20250529 11:20:36.664958 2523081 StaDataPropagation.cc:60] the endpoint vertex core/ifu/_1510_:D has negative slack
-I20250529 11:20:36.664880 2523095 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6643_:D has negative slack
-I20250529 11:20:36.664835 2523101 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4661_:D has negative slack
-I20250529 11:20:36.664930 2523072 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6654_:D has negative slack
-I20250529 11:20:36.665174 2523076 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6725_:D has negative slack
-I20250529 11:20:36.665194 2523072 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6590_:D has negative slack
-I20250529 11:20:36.665041 2523068 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6610_:D has negative slack
-I20250529 11:20:36.665122 2523079 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6615_:D has negative slack
-I20250529 11:20:36.664918 2523082 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6658_:D has negative slack
-I20250529 11:20:36.665072 2523065 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6623_:D has negative slack
-I20250529 11:20:36.665304 2523076 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6789_:D has negative slack
-I20250529 11:20:36.665318 2523082 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6594_:D has negative slack
-I20250529 11:20:36.665148 2523086 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6585_:D has negative slack
-I20250529 11:20:36.665225 2523095 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6611_:D has negative slack
-I20250529 11:20:36.665060 2523083 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6704_:D has negative slack
-I20250529 11:20:36.665370 2523072 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6718_:D has negative slack
-I20250529 11:20:36.665386 2523061 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6772_:D has negative slack
-I20250529 11:20:36.664887 2523067 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6556_:D has negative slack
-I20250529 11:20:36.664723 2523096 StaDataPropagation.cc:60] the endpoint vertex core/ifu/_1533_:D has negative slack
-I20250529 11:20:36.664942 2523059 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6561_:D has negative slack
-I20250529 11:20:36.665153 2523063 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6778_:D has negative slack
-I20250529 11:20:36.665475 2523081 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6572_:D has negative slack
-I20250529 11:20:36.665494 2523082 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6722_:D has negative slack
-I20250529 11:20:36.665277 2523075 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6383_:D has negative slack
-I20250529 11:20:36.665263 2523099 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6538_:D has negative slack
-I20250529 11:20:36.665066 2523064 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6705_:D has negative slack
-I20250529 11:20:36.665597 2523075 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6383_:D has negative slack
-I20250529 11:20:36.665268 2523103 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6453_:D has negative slack
-I20250529 11:20:36.665540 2523067 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6588_:D has negative slack
-I20250529 11:20:36.665349 2523079 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6711_:D has negative slack
-I20250529 11:20:36.664968 2523069 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6582_:D has negative slack
-I20250529 11:20:36.665632 2523076 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6853_:D has negative slack
-I20250529 11:20:36.665423 2523065 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6719_:D has negative slack
-I20250529 11:20:36.665108 2523060 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6727_:D has negative slack
-I20250529 11:20:36.665716 2523103 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6389_:D has negative slack
-I20250529 11:20:36.665405 2523078 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6694_:D has negative slack
-I20250529 11:20:36.665027 2523073 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6557_:D has negative slack
-I20250529 11:20:36.665661 2523068 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6834_:D has negative slack
-I20250529 11:20:36.665012 2523058 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6680_:D has negative slack
-I20250529 11:20:36.665549 2523059 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6593_:D has negative slack
-I20250529 11:20:36.665823 2523065 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6783_:D has negative slack
-I20250529 11:20:36.665442 2523095 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6675_:D has negative slack
-I20250529 11:20:36.665463 2523061 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6740_:D has negative slack
-I20250529 11:20:36.665758 2523076 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6885_:D has negative slack
-I20250529 11:20:36.665776 2523060 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6823_:D has negative slack
-I20250529 11:20:36.665704 2523079 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6711_:D has negative slack
-I20250529 11:20:36.664983 2523056 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6596_:D has negative slack
-I20250529 11:20:36.665691 2523102 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6477_:D has negative slack
-I20250529 11:20:36.665956 2523068 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6482_:D has negative slack
-I20250529 11:20:36.665974 2523102 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6477_:D has negative slack
-I20250529 11:20:36.665798 2523073 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6557_:D has negative slack
-I20250529 11:20:36.665529 2523084 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6443_:D has negative slack
-I20250529 11:20:36.665758 2523067 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6684_:D has negative slack
-I20250529 11:20:36.665880 2523058 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6808_:D has negative slack
-I20250529 11:20:36.665872 2523091 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6446_:D has negative slack
-I20250529 11:20:36.665741 2523064 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6769_:D has negative slack
-I20250529 11:20:36.666149 2523096 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6851_:D has negative slack
-I20250529 11:20:36.665614 2523063 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6394_:D has negative slack
-I20250529 11:20:36.665575 2523062 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6600_:D has negative slack
-I20250529 11:20:36.665988 2523078 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6470_:D has negative slack
-I20250529 11:20:36.665508 2523066 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6377_:D has negative slack
-I20250529 11:20:36.665931 2523082 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6882_:D has negative slack
-I20250529 11:20:36.665871 2523083 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6864_:D has negative slack
-I20250529 11:20:36.666127 2523058 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6776_:D has negative slack
-I20250529 11:20:36.665921 2523103 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6869_:D has negative slack
-I20250529 11:20:36.666033 2523056 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6692_:D has negative slack
-I20250529 11:20:36.666105 2523079 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6455_:D has negative slack
-I20250529 11:20:36.666272 2523082 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6498_:D has negative slack
-I20250529 11:20:36.665910 2523081 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6380_:D has negative slack
-I20250529 11:20:36.666307 2523062 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6696_:D has negative slack
-I20250529 11:20:36.666257 2523084 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6827_:D has negative slack
-I20250529 11:20:36.666222 2523095 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6419_:D has negative slack
-I20250529 11:20:36.666322 2523056 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6724_:D has negative slack
-I20250529 11:20:36.666085 2523060 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6407_:D has negative slack
-I20250529 11:20:36.666025 2523098 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6395_:D has negative slack
-I20250529 11:20:36.666290 2523083 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6480_:D has negative slack
-I20250529 11:20:36.666064 2523059 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6753_:D has negative slack
-I20250529 11:20:36.666242 2523067 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6780_:D has negative slack
-I20250529 11:20:36.666175 2523102 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4789_:D has negative slack
-I20250529 11:20:36.666322 2523063 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6842_:D has negative slack
-I20250529 11:20:36.666437 2523084 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6475_:D has negative slack
-I20250529 11:20:36.666401 2523078 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6854_:D has negative slack
-I20250529 11:20:36.666198 2523061 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6484_:D has negative slack
-I20250529 11:20:36.666472 2523062 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6728_:D has negative slack
-I20250529 11:20:36.666421 2523059 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6753_:D has negative slack
-I20250529 11:20:36.666489 2523056 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6756_:D has negative slack
-I20250529 11:20:36.665843 2523072 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6878_:D has negative slack
-I20250529 11:20:36.666347 2523058 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6456_:D has negative slack
-I20250529 11:20:36.666383 2523064 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6417_:D has negative slack
-I20250529 11:20:36.666451 2523081 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6508_:D has negative slack
-I20250529 11:20:36.666527 2523065 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4839_:D has negative slack
-I20250529 11:20:36.666567 2523060 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6887_:D has negative slack
-I20250529 11:20:36.666554 2523062 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6440_:D has negative slack
-I20250529 11:20:36.666637 2523099 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6506_:D has negative slack
-I20250529 11:20:36.666596 2523066 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4785_:D has negative slack
-I20250529 11:20:36.666685 2523062 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6376_:D has negative slack
-I20250529 11:20:36.666615 2523058 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6392_:D has negative slack
-I20250529 11:20:36.666517 2523098 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6427_:D has negative slack
-I20250529 11:20:36.666721 2523083 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4696_:D has negative slack
-I20250529 11:20:36.666676 2523084 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4787_:D has negative slack
-I20250529 11:20:36.666656 2523067 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6524_:D has negative slack
-I20250529 11:20:36.666770 2523099 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6826_:D has negative slack
-I20250529 11:20:36.666739 2523062 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6408_:D has negative slack
-I20250529 11:20:36.666791 2523060 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4783_:D has negative slack
-I20250529 11:20:36.666358 2523069 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6486_:D has negative slack
-I20250529 11:20:36.666860 2523059 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6849_:D has negative slack
-I20250529 11:20:36.666878 2523062 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6504_:D has negative slack
-I20250529 11:20:36.666921 2523067 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6492_:D has negative slack
-I20250529 11:20:36.666904 2523060 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4815_:D has negative slack
-I20250529 11:20:36.666843 2523086 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4769_:D has negative slack
-I20250529 11:20:36.666940 2523085 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4678_:D has negative slack
-I20250529 11:20:36.666967 2523058 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6488_:D has negative slack
-I20250529 11:20:36.666834 2523100 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4676_:D has negative slack
-I20250529 11:20:36.666998 2523064 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4761_:D has negative slack
-I20250529 11:20:36.667013 2523059 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6497_:D has negative slack
-I20250529 11:20:36.667061 2523069 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4798_:D has negative slack
-I20250529 11:20:36.667094 2523060 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4719_:D has negative slack
-I20250529 11:20:36.667094 2523081 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4788_:D has negative slack
-I20250529 11:20:36.667179 2523060 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4847_:D has negative slack
-I20250529 11:20:36.667151 2523086 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4801_:D has negative slack
-I20250529 11:20:36.667229 2523069 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4830_:D has negative slack
-I20250529 11:20:36.667243 2523073 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6397_:D has negative slack
-I20250529 11:20:36.667299 2523099 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4786_:D has negative slack
-I20250529 11:20:36.667331 2523091 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4694_:D has negative slack
-I20250529 11:20:36.667376 2523081 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4724_:D has negative slack
-I20250529 11:20:36.667508 2523086 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4833_:D has negative slack
-I20250529 11:20:36.667681 2523073 StaDataPropagation.cc:60] the endpoint vertex core/gpr/gpr_ext/_6877_:D has negative slack
-I20250529 11:20:36.668097 2523073 StaDataPropagation.cc:60] the endpoint vertex core/csr/csr_ext/_4709_:D has negative slack
-I20250529 11:20:36.669196 2523086 StaDataPropagation.cc:60] the endpoint vertex core/lsu/_2444_:D has negative slack
-I20250529 11:20:36.669242 2523101 StaDataPropagation.cc:60] the endpoint vertex core/lsu/_2447_:D has negative slack
-I20250529 11:20:36.669270 2523092 StaDataPropagation.cc:60] the endpoint vertex core/lsu/_2452_:D has negative slack
-I20250529 11:20:36.669302 2523085 StaDataPropagation.cc:60] the endpoint vertex core/lsu/_2456_:D has negative slack
-I20250529 11:20:36.669332 2523092 StaDataPropagation.cc:60] the endpoint vertex core/lsu/_2468_:D has negative slack
-I20250529 11:20:36.669391 2523071 StaDataPropagation.cc:60] the endpoint vertex core/lsu/_2461_:D has negative slack
-I20250529 11:20:36.672387 2523059 StaDataPropagation.cc:60] the endpoint vertex core/lsu/_2472_:D has negative slack
-I20250529 11:20:36.674850 2523059 StaDataPropagation.cc:60] the endpoint vertex core/lsu/_2421_:D has negative slack
-I20250529 11:20:36.675140 2523073 StaDataPropagation.cc:60] the endpoint vertex core/lsu/_2426_:D has negative slack
-I20250529 11:20:36.675743 2523056 StaDataPropagation.cc:60] the endpoint vertex core/lsu/_2428_:D has negative slack
-I20250529 11:20:36.676331 2523059 StaDataPropagation.cc:60] the endpoint vertex core/lsu/_2419_:D has negative slack
-I20250529 11:20:36.677101 2523100 StaDataPropagation.cc:60] the endpoint vertex core/lsu/_2414_:D has negative slack
-I20250529 11:20:36.677475 2523097 StaDataPropagation.cc:60] the endpoint vertex core/lsu/_2407_:D has negative slack
-I20250529 11:20:36.705442 2522632 StaDataPropagation.cc:670] data bwd propagation end
-I20250529 11:20:36.705488 2522632 Sta.cc:2316] update timing end
+I20250610 18:01:53.767175 3731186 LibParserRustC.cc:1278] load liberty file syn/scripts/../nangate45/lib/merged.lib success.
+I20250610 18:01:53.768074 3730201 Sta.cc:317] load lib end
+I20250610 18:01:53.780627 3731421 LibParserRustC.cc:1289] link liberty file syn/scripts/../nangate45/lib/merged.lib start.
+I20250610 18:01:54.553282 3731421 LibParserRustC.cc:1295] link liberty file syn/scripts/../nangate45/lib/merged.lib success.
+I20250610 18:01:54.554119 3730201 TimingIDBAdapter.cc:738] core area width -0um height -0um
+I20250610 18:01:56.691794 3730201 Sta.cc:172] read sdc syn/sdc/NPC.sdc start 
+I20250610 18:01:56.705937 3730201 CmdCreateClock.cc:116] create clock core_clock for pin/port: clock
+I20250610 18:01:56.705976 3730201 Sta.cc:185] read sdc end
+I20250610 18:01:56.706000 3730201 StaBuildGraph.cc:310] build graph start
+I20250610 18:01:59.055310 3730201 StaBuildGraph.cc:327] build graph end
+I20250610 18:01:59.168710 3730201 Sta.cc:2287] update timing start
+I20250610 18:01:59.208618 3730201 StaApplySdc.cc:694] apply sdc start
+I20250610 18:01:59.208722 3730201 StaApplySdc.cc:725] apply sdc end
+I20250610 18:01:59.214309 3730201 StaClockPropagation.cc:320] ideal clock propagation start
+I20250610 18:01:59.214380 3730201 StaClockPropagation.cc:203] clock propagate end to vertex clint/_1454_:CK
+I20250610 18:01:59.242760 3730201 StaClockPropagation.cc:416] ideal clock propagation end
+I20250610 18:01:59.242805 3730201 StaCheck.cc:129] found loop fwd start
+I20250610 18:01:59.287355 3730201 StaCheck.cc:148] found loop fwd end
+I20250610 18:01:59.287392 3730201 StaCheck.cc:150] found loop bwd start
+I20250610 18:01:59.335860 3730201 StaCheck.cc:172] found loop bwd end
+I20250610 18:01:59.335906 3730201 StaSlewPropagation.cc:266] slew propagation start
+E20250610 18:01:59.339340 3732943 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250610 18:01:59.339355 3732927 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250610 18:01:59.339289 3732925 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250610 18:01:59.339325 3732935 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250610 18:01:59.339282 3732929 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250610 18:01:59.339402 3732928 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250610 18:01:59.339336 3732940 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250610 18:01:59.339286 3732926 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250610 18:01:59.339381 3732934 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250610 18:01:59.339286 3732924 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+I20250610 18:01:59.787575 3730201 StaSlewPropagation.cc:305] slew propagation end
+I20250610 18:01:59.787621 3730201 StaDelayPropagation.cc:268] delay propagation start
+I20250610 18:02:00.066015 3730201 StaDelayPropagation.cc:309] delay propagation end
+I20250610 18:02:00.066071 3730201 StaClockPropagation.cc:322] propagated(kNormal) clock propagation start
+I20250610 18:02:00.066093 3730201 StaClockPropagation.cc:418] propagated(kNormal) clock propagation end
+I20250610 18:02:00.066107 3730201 StaApplySdc.cc:694] apply sdc start
+I20250610 18:02:00.066121 3730201 StaApplySdc.cc:725] apply sdc end
+I20250610 18:02:00.066135 3730201 StaClockPropagation.cc:324] propagated(kGenerated) clock propagation start
+I20250610 18:02:00.066147 3730201 StaClockPropagation.cc:420] propagated(kGenerated) clock propagation end
+I20250610 18:02:00.066161 3730201 StaApplySdc.cc:694] apply sdc start
+I20250610 18:02:00.066174 3730201 StaApplySdc.cc:725] apply sdc end
+I20250610 18:02:00.099296 3730201 StaBuildPropTag.cc:325] build propagation tag start
+I20250610 18:02:00.099351 3730201 StaDataPropagation.cc:589] data fwd propagation start
+I20250610 18:02:00.103260 3733182 StaDataPropagation.cc:529] Thread 123756350596672 date fwd propagate found start vertex.xbar/_4024_:CK
+I20250610 18:02:00.103221 3733180 StaDataPropagation.cc:529] Thread 123756006495808 date fwd propagate found start vertex.xbar/_4020_:CK
+I20250610 18:02:00.103245 3733183 StaDataPropagation.cc:529] Thread 123756342203968 date fwd propagate found start vertex.xbar/_4025_:CK
+I20250610 18:02:00.103210 3733177 StaDataPropagation.cc:529] Thread 123755981317696 date fwd propagate found start vertex.xbar/_4023_:CK
+I20250610 18:02:00.103251 3733184 StaDataPropagation.cc:529] Thread 123756333811264 date fwd propagate found start vertex.xbar/_4026_:CK
+I20250610 18:02:00.103230 3733181 StaDataPropagation.cc:529] Thread 123756358989376 date fwd propagate found start vertex.xbar/_4019_:CK
+I20250610 18:02:00.103271 3733185 StaDataPropagation.cc:529] Thread 123756325418560 date fwd propagate found start vertex.xbar/_4027_:CK
+I20250610 18:02:00.103226 3733178 StaDataPropagation.cc:529] Thread 123755989710400 date fwd propagate found start vertex.xbar/_4021_:CK
+I20250610 18:02:00.103271 3733187 StaDataPropagation.cc:529] Thread 123756308633152 date fwd propagate found start vertex.xbar/_4028_:CK
+I20250610 18:02:00.103219 3733179 StaDataPropagation.cc:529] Thread 123755998103104 date fwd propagate found start vertex.xbar/_4022_:CK
+I20250610 18:02:00.368409 3730201 StaDataPropagation.cc:632] data fwd propagation end
+I20250610 18:02:00.368463 3730201 StaDataPropagation.cc:589] data fwd propagation start
+I20250610 18:02:00.395256 3730201 StaDataPropagation.cc:632] data fwd propagation end
+I20250610 18:02:00.395316 3730201 StaAnalyze.cc:539] analyze timing path start
+E20250610 18:02:00.395346 3730201 StaAnalyze.cc:324] The output port io_master_araddr[4] is not constrained
+E20250610 18:02:00.395370 3730201 StaAnalyze.cc:324] The output port io_master_araddr[4] is not constrained
+E20250610 18:02:00.395390 3730201 StaAnalyze.cc:324] The output port io_master_araddr[3] is not constrained
+E20250610 18:02:00.395407 3730201 StaAnalyze.cc:324] The output port io_master_araddr[3] is not constrained
+E20250610 18:02:00.395426 3730201 StaAnalyze.cc:324] The output port io_master_araddr[2] is not constrained
+E20250610 18:02:00.395443 3730201 StaAnalyze.cc:324] The output port io_master_araddr[2] is not constrained
+E20250610 18:02:00.395462 3730201 StaAnalyze.cc:324] The output port io_master_araddr[1] is not constrained
+E20250610 18:02:00.395479 3730201 StaAnalyze.cc:324] The output port io_master_araddr[1] is not constrained
+E20250610 18:02:00.395498 3730201 StaAnalyze.cc:324] The output port io_master_araddr[0] is not constrained
+E20250610 18:02:00.395515 3730201 StaAnalyze.cc:324] The output port io_master_araddr[0] is not constrained
+I20250610 18:02:00.551468 3730201 StaAnalyze.cc:577] analyze timing path end
+I20250610 18:02:00.551518 3730201 StaApplySdc.cc:694] apply sdc start
+I20250610 18:02:00.551533 3730201 StaApplySdc.cc:725] apply sdc end
+I20250610 18:02:00.551544 3730201 StaDataPropagation.cc:635] data bwd propagation start
+I20250610 18:02:00.555157 3733385 StaDataPropagation.cc:171] Thread 123755998103104 data bwd propagate found end vertex.clint/_1484_:D
+I20250610 18:02:00.555151 3733384 StaDataPropagation.cc:171] Thread 123755989710400 data bwd propagate found end vertex.clint/_1483_:D
+I20250610 18:02:00.555202 3733392 StaDataPropagation.cc:171] Thread 123756317025856 data bwd propagate found end vertex.clint/_1457_:D
+I20250610 18:02:00.555172 3733388 StaDataPropagation.cc:171] Thread 123756350596672 data bwd propagate found end vertex.clint/_1455_:D
+I20250610 18:02:00.555197 3733393 StaDataPropagation.cc:171] Thread 123756308633152 data bwd propagate found end vertex.clint/_1459_:D
+I20250610 18:02:00.555151 3733383 StaDataPropagation.cc:171] Thread 123755981317696 data bwd propagate found end vertex.clint/_1482_:D
+I20250610 18:02:00.555171 3733387 StaDataPropagation.cc:171] Thread 123756358989376 data bwd propagate found end vertex.clint/_1486_:D
+I20250610 18:02:00.555197 3733390 StaDataPropagation.cc:171] Thread 123756333811264 data bwd propagate found end vertex.clint/_1456_:D
+I20250610 18:02:00.555207 3733394 StaDataPropagation.cc:171] Thread 123756300240448 data bwd propagate found end vertex.clint/_1460_:D
+I20250610 18:02:00.555155 3733386 StaDataPropagation.cc:171] Thread 123756006495808 data bwd propagate found end vertex.clint/_1485_:D
+I20250610 18:02:00.555900 3733407 StaDataPropagation.cc:60] the endpoint vertex clint/_1455_:SN has negative slack
+I20250610 18:02:00.595929 3730201 StaDataPropagation.cc:670] data bwd propagation end
+I20250610 18:02:00.595970 3730201 Sta.cc:2316] update timing end
 [1;31m
   _____       _ _     _____        _         
  |_   _|     (_) |   |  __ \      | |        
@@ -342,8 +200,8 @@ I20250529 11:20:36.705488 2522632 Sta.cc:2316] update timing end
  |_|    |_/_/\_\ |_|  \__,_|_| |_|\___/ \__,_|\__| 
                                                    
 [0m
-I20250529 11:20:36.747726 2522632 FixFanout.cpp:55] [Result: ] Find 35 Net with fanout violation.
-I20250529 11:20:36.747769 2522632 FixFanout.cpp:56] [Result: ] Insert 94 Buffers.
+I20250610 18:02:00.645290 3730201 FixFanout.cpp:55] [Result: ] Find 34 Net with fanout violation.
+I20250610 18:02:00.645334 3730201 FixFanout.cpp:56] [Result: ] Insert 93 Buffers.
 iNO fixfanout run successfully.
-I20250529 11:20:36.747972 2522632 verilog_write.cpp:55] start write verilog file syn/result/NPC-450MHz/NPC.netlist.fixed.v
-I20250529 11:20:36.943715 2522632 verilog_write.cpp:73] finish write verilog file syn/result/NPC-450MHz/NPC.netlist.fixed.v
+I20250610 18:02:00.645550 3730201 verilog_write.cpp:55] start write verilog file syn/result/NPC-450MHz/NPC.netlist.fixed.v
+I20250610 18:02:00.849241 3730201 verilog_write.cpp:73] finish write verilog file syn/result/NPC-450MHz/NPC.netlist.fixed.v

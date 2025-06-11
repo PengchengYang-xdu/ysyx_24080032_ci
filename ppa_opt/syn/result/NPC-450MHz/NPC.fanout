@@ -1,11 +1,11 @@
-Generate the report at 2025-05-29T11:20:44, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-06-10T18:02:09, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 +---------------------------+-----------+--------+-------------+-------------+------+
 | Net / Pin                 | MaxFanout | Fanout | FanoutSlack | LibCellPort | Note |
 +---------------------------+-----------+--------+-------------+-------------+------+
-| fanout_net_94             |           |        |             |             |      |
-| fanout_buf_94:Z           | NA        | 30     | NA          | BUF_X8/Z    |      |
-| core/csr/csr_ext/_1707_   |           |        |             |             |      |
-| core/csr/csr_ext/_3740_:Z | NA        | 1      | NA          | MUX2_X2/Z   |      |
-| core/icache/_2498_        |           |        |             |             |      |
-| core/icache/_4815_:ZN     | NA        | 1      | NA          | AOI22_X2/ZN |      |
+| fanout_net_93             |           |        |             |             |      |
+| fanout_buf_93:Z           | NA        | 30     | NA          | BUF_X8/Z    |      |
+| core/gpr/gpr_ext/_0888_   |           |        |             |             |      |
+| core/gpr/gpr_ext/_5954_:Z | NA        | 3      | NA          | BUF_X1/Z    |      |
+| core/csr/csr_ext/_0371_   |           |        |             |             |      |
+| core/csr/csr_ext/_4281_:Z | NA        | 4      | NA          | BUF_X1/Z    |      |
 +---------------------------+-----------+--------+-------------+-------------+------+
