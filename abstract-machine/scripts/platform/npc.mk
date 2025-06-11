@@ -8,7 +8,7 @@ AM_SRCS := riscv/npc/start.S \
            platform/dummy/vme.c \
            platform/dummy/mpe.c
 
-CFLAGS    += -fdata-sections -ffunction-sections
+CFLAGS    += -fdata-sections -ffunction-sections -fPIE
 LDFLAGS   += -T $(AM_HOME)/scripts/linkernpc.ld \
 						 --defsym=_pmem_start=0x80000000 --defsym=_entry_offset=0x0 \
 						 --defsym=_sram_start=0x0f000000 --defsym=_sram_size=0x2000 
