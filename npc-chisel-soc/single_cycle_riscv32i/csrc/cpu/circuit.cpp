@@ -431,18 +431,9 @@ void cpu_exec(uint64_t n){
         //     close_wave(88);
         //     assert(0);
         // }
-
-
-
-        // if(pre_pc != now_pc){
-        //     trace_and_difftest();
-        // }
-        if(DIFFVALID){
+        if(pre_pc != now_pc){
             trace_and_difftest();
         }
-
-
-
         n--;
     }
 }
