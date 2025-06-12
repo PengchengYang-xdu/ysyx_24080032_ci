@@ -21,7 +21,7 @@ class IDUIO extends Bundle {
     val gpr_rs1_is_read = Output(Bool())
     val gpr_rs2_is_read = Output(Bool())
 
-    val csr_raddr = Output(UInt(CSR_ADDR.W))
+    val csr_raddr = Output(UInt(CSR_ADDR_LEN.W))
 
     val is_mret = Output(Bool())
 }
