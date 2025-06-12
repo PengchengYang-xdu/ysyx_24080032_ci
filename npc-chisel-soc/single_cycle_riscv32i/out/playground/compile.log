@@ -1,1 +1,6 @@
-[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:202:22: value id2exe_csr_raddr is not a member of npc.core.idu.IDUIO_pipe_out[0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean id2exe_csr_addr?[0m
+[0m[[0m[31merror[0m] [0m[0m    io_pipe.out.bits.id2exe_csr_raddr := csr_raddr[0m
+[0m[[0m[31merror[0m] [0m[0m                     ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m

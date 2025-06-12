@@ -21,6 +21,8 @@ class IDUIO extends Bundle {
     val gpr_rs1_is_read = Output(Bool())
     val gpr_rs2_is_read = Output(Bool())
 
+    val csr_raddr = Output(UInt(CSR_ADDR.W))
+
     val is_mret = Output(Bool())
 }
 
@@ -175,6 +177,7 @@ class IDU extends Module {
 
     val csr_addr = Mux(csr_cmd === CSR_E, 0x342.U(CSR_ADDR_LEN.W), inst(31,20))
     val csr_raddr = inst(31,20)
+    io.csr_raddr := csr_raddr
 
 
 
@@ -199,7 +202,6 @@ class IDU extends Module {
     io_pipe.out.bits.id2exe_imm_u_shifted := imm_u_shifted
     io_pipe.out.bits.id2exe_imm_z_uext := imm_z_uext
     io_pipe.out.bits.id2exe_csr_addr := csr_addr
-    io_pipe.out.bits.id2exe_csr_raddr := csr_raddr
     io_pipe.out.bits.id2exe_csr_cmd := csr_cmd
     io_pipe.out.bits.id2exe_mem_wen := mem_wen
     io_pipe.out.bits.id2exe_mem_op := mem_op
