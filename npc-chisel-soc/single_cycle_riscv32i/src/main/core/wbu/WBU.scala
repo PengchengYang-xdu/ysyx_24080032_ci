@@ -6,6 +6,11 @@ import npc.common.Config._
 import npc.common.Instructions._
 import npc.core.lsu._
 
+
+class WBUIO_HAZARD extends Bundle {
+    val flush_flg = Input(Bool())
+}
+
 class WBUIO extends Bundle {
     val gpr_wen = Output(UInt(REN_LEN.W))
     val gpr_addr = Output(UInt(ADDR_LEN.W))
@@ -37,18 +42,18 @@ class WBU extends Module {
 
 
 
-
+    val io_hazard = IO(new WBUIO_HAZARD)
 
 
 
     //main process
     //connect
-    io.gpr_wen := io_pipe.in.bits.ls2wb_rf_wen
+    io.gpr_wen := io_pipe.in.bits.ls2wb_rf_wen && io_pipe.in.valid && ~io_hazard.flush_flg
     io.gpr_addr := io_pipe.in.bits.ls2wb_wb_addr
     io.gpr_wdata := io_pipe.in.bits.ls2wb_wb_data
 
     io.csr_addr := io_pipe.in.bits.ls2wb_csr_addr
-    io.csr_cmd := io_pipe.in.bits.ls2wb_csr_cmd
+    io.csr_cmd := io_pipe.in.bits.ls2wb_csr_cmd && io_pipe.in.valid && ~io_hazard.flush_flg
     io.csr_wdata := io_pipe.in.bits.ls2wb_csr_wdata
 
 
@@ -104,6 +109,6 @@ class WBU extends Module {
     //irq
     io.is_irq := io_pipe.in.bits.ls2wb_is_irq
     io.irq_num := io_pipe.in.bits.ls2wb_irq_num
-    io.irq_valid := io_pipe.in.valid//接下来补齐lsu wbu的flush flg
+    io.irq_valid := io_pipe.in.valid && ~io_hazard.flush_flg//接下来补齐lsu wbu的flush flg
 }
 

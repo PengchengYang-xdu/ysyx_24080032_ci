@@ -37,6 +37,9 @@ class Core extends Module {
     // StageConnect(exu.io_pipe.out, lsu.io_pipe.in)
     // StageConnect(lsu.io_pipe.out, wbu.io_pipe.in)
     // StageConnect(wbu.io_pipe.out, ifu.io_pipe.in)
+    wbu.io_pipe.out.ready := true.B
+    val ready_r = RegNext(ifu.io_pipe.in.ready)
+    ifu.io_pipe.in.valid := RegEnable(true.B, ifu.io_pipe.in.valid, ifu.io_pipe.in.ready & ready_r)
 
     pipelineConnect(ifu.io_pipe.out, idu.io_pipe.in)
     pipelineConnect(idu.io_pipe.out, exu.io_pipe.in)
@@ -246,9 +249,13 @@ class Core extends Module {
     ifu.io_hazard.flush_flg := is_ctrl_hazard
     idu.io_hazard.flush_flg := is_ctrl_hazard
     exu.io_hazard.flush_flg := is_ctrl_hazard
+    lsu.io_hazard.flush_flg := is_ctrl_hazard
+    wbu.io_hazard.flush_flg := is_ctrl_hazard
 
     when(idu.io_hazard.flush_flg){idu.io_pipe.in.valid := false.B}
     when(exu.io_hazard.flush_flg){exu.io_pipe.in.valid := false.B}
+    when(lsu.io_hazard.flush_flg){lsu.io_pipe.in.valid := false.B}
+    when(wbu.io_hazard.flush_flg){wbu.io_pipe.in.valid := false.B}
 
 
 
@@ -266,9 +273,7 @@ class Core extends Module {
 
 
 
-    wbu.io_pipe.out.ready := true.B
-    val ready_r = RegNext(ifu.io_pipe.in.ready)
-    ifu.io_pipe.in.valid := RegEnable(true.B, ifu.io_pipe.in.valid, ifu.io_pipe.in.ready & ready_r)
+
 
 
 

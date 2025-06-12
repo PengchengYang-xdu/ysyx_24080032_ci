@@ -7,6 +7,11 @@ import npc.common.Instructions._
 import npc.core.exu._
 import npc.bus.axi._
 
+class LSUIO_HAZARD extends Bundle {
+    val flush_flg = Input(Bool())
+}
+
+
 class LSUIO extends Bundle {
     val dmem = Flipped(new AXI4WithoutClk)
 
@@ -37,6 +42,8 @@ class LSUIO_pipe extends Bundle {
 class LSU extends Module {
     val io = IO(new LSUIO)
     val io_pipe = IO(new LSUIO_pipe)
+
+    val io_hazard = IO(new LSUIO_HAZARD)
 
     //disable something in AR R AW W B
     io.dmem.arid := 0.U
