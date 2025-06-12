@@ -111,6 +111,6 @@ class WBU extends Module {
     //irq
     io.is_irq := io_pipe.in.bits.ls2wb_is_irq
     io.irq_num := io_pipe.in.bits.ls2wb_irq_num
-    io.irq_valid := io_pipe.in.valid && ~io_hazard.flush_flg//接下来补齐lsu wbu的flush flg
+    io.irq_valid := io_pipe.in.valid && ~io_hazard.flush_flg
 }
 
