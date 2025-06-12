@@ -48,13 +48,13 @@ class WBU extends Module {
 
     //main process
     //connect
-    // io.gpr_wen := Mux(io_pipe.in.valid && ~io_hazard.flush_flg, io_pipe.in.bits.ls2wb_rf_wen, 0.U)
-    io.gpr_wen := io_pipe.in.bits.ls2wb_rf_wen
+    io.gpr_wen := Mux(io_pipe.in.valid && ~io_hazard.flush_flg, io_pipe.in.bits.ls2wb_rf_wen, 0.U)
+    // io.gpr_wen := io_pipe.in.bits.ls2wb_rf_wen
     io.gpr_addr := io_pipe.in.bits.ls2wb_wb_addr
     io.gpr_wdata := io_pipe.in.bits.ls2wb_wb_data
 
-    // io.csr_cmd := Mux(io_pipe.in.valid && ~io_hazard.flush_flg, io_pipe.in.bits.ls2wb_csr_cmd, 0.U)
-    io.csr_cmd := io_pipe.in.bits.ls2wb_csr_cmd
+    io.csr_cmd := Mux(io_pipe.in.valid && ~io_hazard.flush_flg, io_pipe.in.bits.ls2wb_csr_cmd, 0.U)
+    // io.csr_cmd := io_pipe.in.bits.ls2wb_csr_cmd
     io.csr_addr := io_pipe.in.bits.ls2wb_csr_addr
     io.csr_wdata := io_pipe.in.bits.ls2wb_csr_wdata
 
