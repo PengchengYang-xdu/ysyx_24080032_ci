@@ -252,7 +252,7 @@ class Core extends Module {
 
     //control hazard
     //先只实现ecall的异常处理, 只会产生在idu阶段
-    val is_irq = RegNext(wbu.io.irq_valid && wbu.io.is_irq)
+    val is_irq = wbu.io.irq_valid && wbu.io.is_irq
     dontTouch(is_irq)
     csr.io.csr_is_irq := is_irq
     csr.io.csr_reg_pc := wbu.io_pipe.in.bits.ls2wb_reg_pc//pipe line irq
