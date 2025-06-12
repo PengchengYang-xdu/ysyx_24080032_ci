@@ -82,6 +82,7 @@ class Core extends Module {
     io.dmem <> lsu.io.dmem
     lsu.io.csr_rdata := csr.io.csr_rdata
 
+    csr.io.csr_raddr := idu.io.csr_raddr
     csr.io.csr_wdata := wbu.io.csr_wdata
     csr.io.csr_addr := wbu.io.csr_addr
     csr.io.csr_cmd := wbu.io.csr_cmd
