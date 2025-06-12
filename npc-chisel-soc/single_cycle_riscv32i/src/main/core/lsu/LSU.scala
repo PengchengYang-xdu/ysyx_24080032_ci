@@ -14,8 +14,6 @@ class LSUIO_HAZARD extends Bundle {
 
 class LSUIO extends Bundle {
     val dmem = Flipped(new AXI4WithoutClk)
-
-    val csr_rdata = Input(UInt(WORD_LEN.W))
 }
 
 class LSUIO_pipe_out extends Bundle{
@@ -32,6 +30,9 @@ class LSUIO_pipe_out extends Bundle{
     //irq
     val ls2wb_is_irq = Output(Bool())
     val ls2wb_irq_num = Output(UInt(IRQ_NUM_WIDTH.W))
+
+    //csr
+    val ls2wb_csr_rdata = Output(UInt(WORD_LEN.W))
 }
 
 class LSUIO_pipe extends Bundle {
@@ -278,15 +279,15 @@ class LSU extends Module {
     val dmem_rdata_processed = WireDefault(0.U(WORD_LEN.W))
     val csr_wdata =  MuxCase(0.U(WORD_LEN.W), Seq(
         (io_pipe.in.bits.exe2ls_csr_cmd === CSR_W) -> io_pipe.in.bits.exe2ls_op1_data,
-        (io_pipe.in.bits.exe2ls_csr_cmd === CSR_S) -> (io.csr_rdata | io_pipe.in.bits.exe2ls_op1_data),
-        (io_pipe.in.bits.exe2ls_csr_cmd === CSR_C) -> (io.csr_rdata & ~io_pipe.in.bits.exe2ls_op1_data),
+        (io_pipe.in.bits.exe2ls_csr_cmd === CSR_S) -> (io_pipe.in.bits.ls2wb_csr_rdata | io_pipe.in.bits.exe2ls_op1_data),
+        (io_pipe.in.bits.exe2ls_csr_cmd === CSR_C) -> (io_pipe.in.bits.ls2wb_csr_rdata & ~io_pipe.in.bits.exe2ls_op1_data),
         (io_pipe.in.bits.exe2ls_csr_cmd === CSR_E) -> 11.U(WORD_LEN.W)
     ))
 
     val wb_data = MuxCase(io_pipe.in.bits.exe2ls_alu_out, Seq(
         (io_pipe.in.bits.exe2ls_wb_sel === WB_MEM) -> dmem_rdata_processed,
         (io_pipe.in.bits.exe2ls_wb_sel === WB_PC)  -> (io_pipe.in.bits.exe2ls_reg_pc + 4.U(WORD_LEN.W)),
-        (io_pipe.in.bits.exe2ls_wb_sel === WB_CSR) -> io.csr_rdata
+        (io_pipe.in.bits.exe2ls_wb_sel === WB_CSR) -> io_pipe.in.bits.ls2wb_csr_rdata
     ))
 
     switch(io_pipe.in.bits.exe2ls_mem_op) {
