@@ -140,7 +140,7 @@ module IFU(	// @[src/main/core/ifu/IFU.scala:38:7]
   always @(posedge clock or posedge reset) begin	// @[src/main/core/ifu/IFU.scala:38:7]
     if (reset)	// @[src/main/core/ifu/IFU.scala:38:7]
       reg_pc <= 32'h30000000;	// @[src/main/core/ifu/IFU.scala:208:18]
-    else if (io_pipe_in_valid)	// @[src/main/core/ifu/IFU.scala:40:21]
+    else if (io_pipe_in_valid & in_ready)	// @[src/main/core/ifu/IFU.scala:86:27, :208:57]
       reg_pc <= pc_next;	// @[src/main/core/ifu/IFU.scala:204:23, :208:18]
   end // always @(posedge, posedge)
   `ifdef ENABLE_INITIAL_REG_	// @[src/main/core/ifu/IFU.scala:38:7]
