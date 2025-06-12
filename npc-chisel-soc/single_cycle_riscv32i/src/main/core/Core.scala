@@ -255,12 +255,14 @@ class Core extends Module {
     val exu_out_valid_rise = exu.io_pipe.out.valid & ~RegNext(exu.io_pipe.out.valid)
     val is_ctrl_hazard = ((exu.io.br_flg && exu.io.br_target =/= ifu.io_pipe.out.bits.if2id_reg_pc) || (exu.io.jmp_flg && exu.io.alu_out =/= ifu.io_pipe.out.bits.if2id_reg_pc)) && exu_out_valid_rise
     dontTouch(is_ctrl_hazard)
-    ifu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
-    idu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
-    exu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
-    lsu.io_hazard.flush_flg := is_irq
-    wbu.io_hazard.flush_flg := is_irq
+    ifu.io_hazard.flush_flg := is_ctrl_hazard
+    idu.io_hazard.flush_flg := is_ctrl_hazard
+    exu.io_hazard.flush_flg := is_ctrl_hazard
+    lsu.io_hazard.flush_flg := false.B
+    wbu.io_hazard.flush_flg := false.B
 
+
+    when(ifu.io_hazard.flush_flg){ifu.io_pipe.in.valid := false.B}
     when(idu.io_hazard.flush_flg){idu.io_pipe.in.valid := false.B}
     when(exu.io_hazard.flush_flg){exu.io_pipe.in.valid := false.B}
     when(lsu.io_hazard.flush_flg){lsu.io_pipe.in.valid := false.B}
