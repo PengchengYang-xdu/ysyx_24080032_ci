@@ -6,6 +6,12 @@ import npc.common.Config._
 import npc.common.Instructions._
 import npc.core.idu._
 
+
+class EXUIO_HAZARD extends Bundle {
+    val flush_flg = Input(Bool())
+}
+
+
 class EXUIO extends Bundle {
     val br_flg = Output(Bool())
     val jmp_flg = Output(Bool())
@@ -26,6 +32,10 @@ class EXUIO_pipe_out extends Bundle{
     val exe2ls_imm_z_uext = Output(UInt(WORD_LEN.W))
     val exe2ls_mem_wen = Output(UInt(MEN_LEN.W))
     val exe2ls_mem_op = Output(UInt(MEM_OP.W))
+
+    //irq
+    val exe2ls_is_irq = Output(Bool())
+    val exe2ls_irq_num = Output(UInt(IRQ_NUM_WIDTH.W))
 }
 
 class EXUIO_pipe extends Bundle {
@@ -36,6 +46,10 @@ class EXUIO_pipe extends Bundle {
 class EXU extends Module {
     val io = IO(new EXUIO)
     val io_pipe = IO(new EXUIO_pipe)
+
+
+    val io_hazard = IO(new EXUIO_HAZARD)
+
 
 
 
@@ -147,5 +161,12 @@ class EXU extends Module {
             out_valid := true.B
         }
     }
+
+
+
+
+    //irq
+    io_pipe.out.bits.exe2ls_is_irq := io_pipe.in.bits.id2exe_is_irq
+    io_pipe.out.bits.exe2ls_irq_num  := io_pipe.in.bits.id2exe_irq_num
 }
 

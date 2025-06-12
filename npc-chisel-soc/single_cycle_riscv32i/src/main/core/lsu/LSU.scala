@@ -14,6 +14,8 @@ class LSUIO extends Bundle {
 }
 
 class LSUIO_pipe_out extends Bundle{
+    val ls2wb_reg_pc = Output(UInt(WORD_LEN.W))
+
     val ls2wb_wb_addr = Output(UInt(ADDR_LEN.W))
     val ls2wb_rf_wen = Output(UInt(REN_LEN.W))
     val ls2wb_wb_data = Output(UInt(WORD_LEN.W))
@@ -21,6 +23,10 @@ class LSUIO_pipe_out extends Bundle{
     val ls2wb_csr_wdata = Output(UInt(WORD_LEN.W))
     val ls2wb_csr_addr = Output(UInt(CSR_ADDR_LEN.W))
     val ls2wb_csr_cmd = Output(UInt(CSR_LEN.W))
+
+    //irq
+    val ls2wb_is_irq = Output(Bool())
+    val ls2wb_irq_num = Output(UInt(IRQ_NUM_WIDTH.W))
 }
 
 class LSUIO_pipe extends Bundle {
@@ -131,14 +137,46 @@ class LSU extends Module {
             arsize := 2.U
             awsize := 2.U
             //delay
-            delay := lfsr
+            if(ENABLE_DELAY){
+                delay := lfsr
+            }
         }
         is(s_BeforeAXI_ARorAWW_Fire){
             //between modules
             in_ready := false.B
             out_valid := false.B
             //AXI
-            when(delay === 0.U){
+            if(ENABLE_DELAY){
+                when(delay === 0.U){
+                    arvalid := Mux(isL, true.B, false.B)
+                    arsize := MuxLookup(io_pipe.in.bits.exe2ls_mem_op, 2.U)(Seq(
+                        MEM_OP_1S  ->  0.U,
+                        MEM_OP_1U  ->  0.U,
+                        MEM_OP_2S  ->  1.U,
+                        MEM_OP_2U  ->  1.U,
+                        MEM_OP_4   ->  2.U
+                    ))
+                    rready := false.B
+                    awvalid := Mux(isS, true.B, false.B)
+                    awsize := MuxLookup(io_pipe.in.bits.exe2ls_mem_op, 2.U)(Seq(
+                        MEM_OP_1S  ->  0.U,
+                        MEM_OP_2S  ->  1.U,
+                        MEM_OP_4   ->  2.U
+                    ))
+                    wvalid := Mux(isS, true.B, false.B)
+                    bready := false.B
+                }.otherwise{
+                    arvalid := false.B
+                    rready := false.B
+                    awvalid := false.B
+                    wvalid := false.B
+                    bready := false.B
+                    arsize := 2.U
+                    awsize := 2.U
+                    //delay
+                    delay := delay - 1.U
+                }
+            } else {
                 arvalid := Mux(isL, true.B, false.B)
                 arsize := MuxLookup(io_pipe.in.bits.exe2ls_mem_op, 2.U)(Seq(
                     MEM_OP_1S  ->  0.U,
@@ -156,16 +194,6 @@ class LSU extends Module {
                 ))
                 wvalid := Mux(isS, true.B, false.B)
                 bready := false.B
-            }.otherwise{
-                arvalid := false.B
-                rready := false.B
-                awvalid := false.B
-                wvalid := false.B
-                bready := false.B
-                arsize := 2.U
-                awsize := 2.U
-                //delay
-                delay := delay - 1.U
             }
         }
         is(s_BeforeAXI_RorB_Fire){
@@ -280,8 +308,17 @@ class LSU extends Module {
     io_pipe.out.bits.ls2wb_rf_wen := io_pipe.in.bits.exe2ls_rf_wen
     io_pipe.out.bits.ls2wb_wb_data := wb_data
 
+    io_pipe.out.bits.ls2wb_reg_pc := io_pipe.in.bits.exe2ls_reg_pc
 
 
 
+
+
+
+    //irq
+    val is_laf = io.dmem.rvalid && io.dmem.rresp =/= 0.U
+    val is_saf = io.dmem.bvalid && io.dmem.bresp =/= 0.U
+    io_pipe.out.bits.ls2wb_is_irq := is_laf | is_saf | io_pipe.in.bits.exe2ls_is_irq
+    io_pipe.out.bits.ls2wb_irq_num := Mux(is_laf, IRQ_NUM_LAF, Mux(is_saf, IRQ_NUM_SAF, io_pipe.in.bits.exe2ls_irq_num))
 }
 
