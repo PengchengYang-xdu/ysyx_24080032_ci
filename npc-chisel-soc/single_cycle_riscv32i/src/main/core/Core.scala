@@ -72,7 +72,7 @@ class Core extends Module {
     ifu.io.alu_out := exu.io.alu_out
     ifu.io.csr_mtvec := csr.io.csr_mtvec
     ifu.io.csr_mepc := csr.io.csr_mepc
-    csr.io.csr_reg_pc := ifu.io.csr_reg_pc//modified by ypc
+    // csr.io.csr_reg_pc := ifu.io.csr_reg_pc//modified by ypc
     
     idu.io.gpr_rs1_data := gpr.io.gpr_rs1_data
     idu.io.gpr_rs2_data := gpr.io.gpr_rs2_data
@@ -254,6 +254,9 @@ class Core extends Module {
     //先只实现ecall的异常处理, 只会产生在idu阶段
     val is_irq = RegNext(wbu.io.irq_valid && wbu.io.is_irq)
     dontTouch(is_irq)
+    csr.io.csr_is_irq := is_irq
+    csr.io.csr_reg_pc := wbu.io_pipe.in.bits.ls2wb_reg_pc//pipe line irq
+    csr.io.csr_irq_num := wbu.io.irq_num
 
     val exu_out_valid_rise = exu.io_pipe.out.valid & ~RegNext(exu.io_pipe.out.valid)
     val is_ctrl_hazard = ((exu.io.br_flg && exu.io.br_target =/= ifu.io_pipe.out.bits.if2id_reg_pc) || (exu.io.jmp_flg && exu.io.alu_out =/= ifu.io_pipe.out.bits.if2id_reg_pc)) && exu_out_valid_rise
