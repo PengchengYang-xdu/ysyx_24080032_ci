@@ -249,13 +249,13 @@ class Core extends Module {
     ifu.io_hazard.flush_flg := is_ctrl_hazard
     idu.io_hazard.flush_flg := is_ctrl_hazard
     exu.io_hazard.flush_flg := is_ctrl_hazard
-    // lsu.io_hazard.flush_flg := is_ctrl_hazard
-    // wbu.io_hazard.flush_flg := is_ctrl_hazard
+    lsu.io_hazard.flush_flg := false.B
+    wbu.io_hazard.flush_flg := false.B
 
     when(idu.io_hazard.flush_flg){idu.io_pipe.in.valid := false.B}
     when(exu.io_hazard.flush_flg){exu.io_pipe.in.valid := false.B}
-    // when(lsu.io_hazard.flush_flg){lsu.io_pipe.in.valid := false.B}
-    // when(wbu.io_hazard.flush_flg){wbu.io_pipe.in.valid := false.B}
+    when(lsu.io_hazard.flush_flg){lsu.io_pipe.in.valid := false.B}
+    when(wbu.io_hazard.flush_flg){wbu.io_pipe.in.valid := false.B}
 
 
 
