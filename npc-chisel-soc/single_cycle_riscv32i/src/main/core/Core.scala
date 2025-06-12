@@ -102,8 +102,7 @@ class Core extends Module {
 
 
 
-    //irq process
-    val is_irq = wbu.io.irq_valid && wbu.io.is_irq
+
 
 
 
@@ -252,9 +251,15 @@ class Core extends Module {
 
 
     //control hazard
+    val idu_out_valid_rise = idu.io_pipe.out.valid & ~RegNext(idu.io_pipe.out.valid)
+    val is_irq = idu.io_pipe.out.bits.id2exe_is_irq && idu_out_valid_rise
+    dontTouch(is_irq)
+
     val exu_out_valid_rise = exu.io_pipe.out.valid & ~RegNext(exu.io_pipe.out.valid)
     val is_ctrl_hazard = ((exu.io.br_flg && exu.io.br_target =/= ifu.io_pipe.out.bits.if2id_reg_pc) || (exu.io.jmp_flg && exu.io.alu_out =/= ifu.io_pipe.out.bits.if2id_reg_pc)) && exu_out_valid_rise
     dontTouch(is_ctrl_hazard)
+
+
     ifu.io_hazard.flush_flg := is_ctrl_hazard
     idu.io_hazard.flush_flg := is_ctrl_hazard
     exu.io_hazard.flush_flg := is_ctrl_hazard
