@@ -268,7 +268,7 @@ class Core extends Module {
 
     wbu.io_pipe.out.ready := true.B
     val ready_r = RegNext(ifu.io_pipe.in.ready)
-    ifu.io_pipe.in.valid := ifu.io_pipe.in.ready & ready_r
+    ifu.io_pipe.in.valid := RegEnable(true.B, ifu.io_pipe.in.valid, ifu.io_pipe.in.ready & ready_r)
 
 
 
