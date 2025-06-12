@@ -221,9 +221,9 @@ class IFU extends Module {
     ))
     
     //connect
-    araddr := reg_pc
+    araddr := Mux(is_mret_rise, pc_next, reg_pc)
 
-    io_pipe.out.bits.if2id_reg_pc := Mux(is_mret_rise, pc_next, reg_pc)
+    io_pipe.out.bits.if2id_reg_pc := reg_pc
     io_pipe.out.bits.if2id_inst := io.imem.rdata
 }
 
