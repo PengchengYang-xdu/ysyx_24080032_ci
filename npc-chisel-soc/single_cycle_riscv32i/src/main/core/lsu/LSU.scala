@@ -85,7 +85,7 @@ class LSU extends Module {
     val in_ready = RegInit(false.B)
     val out_valid = RegInit(false.B)
     io_pipe.in.ready := in_ready
-    io_pipe.out.valid := out_valid
+    io_pipe.out.valid := out_valid & ~io_hazard.flush_flg
 
     val araddr = RegInit(0.U)
     val arvalid = RegInit(false.B)
@@ -110,7 +110,7 @@ class LSU extends Module {
     io.dmem.wvalid  := wvalid
     io.dmem.bready  := bready
 
-    val s_BeforePreFire :: s_BeforeAXI_ARorAWW_Fire :: s_BeforeAXI_RorB_Fire :: s_AfterPreFire :: Nil = Enum(4)
+    val s_BeforePreFire :: s_BeforeAXI_ARorAWW_Fire :: s_BeforeAXI_RorB_Fire :: s_AfterPreFire :: s_Flush :: Nil = Enum(5)
     val c_state = RegInit(s_BeforePreFire)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -118,13 +118,19 @@ class LSU extends Module {
     val AXI_ARorAWW_fire = (arvalid & io.dmem.arready) | ((awvalid & io.dmem.awready) & (wvalid & io.dmem.wready))
     val AXI_RorB_fire = (io.dmem.rvalid & rready) | (io.dmem.bvalid & bready)
 
+    //flush states
+    val RB_while_flush = AXI_RorB_fire & io_hazard.flush_flg
+    val flush_before_RB = ~AXI_RorB_fire & io_hazard.flush_flg
+    val fetch_normal = AXI_RorB_fire & ~io_hazard.flush_flg
+
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire             ->  Mux(io_pipe.in.fire, Mux(notLS, s_AfterPreFire, s_BeforeAXI_ARorAWW_Fire), s_BeforePreFire),
+        s_BeforePreFire             ->  Mux(io_pipe.in.fire & ~io_hazard.flush_flg, Mux(notLS, s_AfterPreFire, s_BeforeAXI_ARorAWW_Fire), s_BeforePreFire),
         s_BeforeAXI_ARorAWW_Fire    ->  Mux(AXI_ARorAWW_fire, s_BeforeAXI_RorB_Fire, s_BeforeAXI_ARorAWW_Fire),
-        s_BeforeAXI_RorB_Fire       ->  Mux(AXI_RorB_fire, s_AfterPreFire, s_BeforeAXI_RorB_Fire),
-        s_AfterPreFire              ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
+        s_BeforeAXI_RorB_Fire       ->  Mux(fetch_normal, s_AfterPreFire, Mux(flush_before_RB, s_Flush, Mux(RB_while_flush, s_BeforePreFire, s_BeforeAXI_RorB_Fire))),
+        s_AfterPreFire              ->  Mux(io_hazard.flush_flg | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
+        s_Flush                     ->  Mux(AXI_RorB_fire, s_BeforePreFire, s_Flush)
     ))
 
     val dmem_rdata = RegInit(0.U)//保存一下读出的数据
@@ -236,6 +242,19 @@ class LSU extends Module {
             awvalid := false.B
             wvalid := false.B
             bready := false.B
+            arsize := 2.U
+            awsize := 2.U
+        }
+        is(s_Flush){
+            //between modules
+            in_ready := false.B
+            out_valid := false.B
+            //AXI
+            arvalid := false.B
+            rready := true.B
+            awvalid := false.B
+            wvalid := false.B
+            bready := true.B
             arsize := 2.U
             awsize := 2.U
         }
