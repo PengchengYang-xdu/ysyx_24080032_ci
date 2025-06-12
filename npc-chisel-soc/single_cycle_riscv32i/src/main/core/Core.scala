@@ -251,8 +251,8 @@ class Core extends Module {
 
 
     //control hazard
-    val idu_out_valid_rise = idu.io_pipe.out.valid & ~RegNext(idu.io_pipe.out.valid)
-    val is_irq = idu.io_pipe.out.bits.id2exe_is_irq && idu_out_valid_rise
+    //先只实现ecall的异常处理, 只会产生在idu阶段
+    val is_irq = RegNext(wbu.io.irq_valid && wbu.io.is_irq)
     dontTouch(is_irq)
 
     val exu_out_valid_rise = exu.io_pipe.out.valid & ~RegNext(exu.io_pipe.out.valid)
@@ -260,11 +260,11 @@ class Core extends Module {
     dontTouch(is_ctrl_hazard)
 
 
-    ifu.io_hazard.flush_flg := is_ctrl_hazard
-    idu.io_hazard.flush_flg := is_ctrl_hazard
-    exu.io_hazard.flush_flg := is_ctrl_hazard
-    lsu.io_hazard.flush_flg := false.B
-    wbu.io_hazard.flush_flg := false.B
+    ifu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
+    idu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
+    exu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
+    lsu.io_hazard.flush_flg := is_irq
+    wbu.io_hazard.flush_flg := is_irq
 
 
     when(ifu.io_hazard.flush_flg){ifu.io_pipe.in.valid := false.B}
