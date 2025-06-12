@@ -1,2 +1,10 @@
-[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 3 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/wbu/WBU.scala:51:48: value && is not a member of chisel3.UInt[0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean &, +&, or -&? or perhaps do_&?[0m
+[0m[[0m[31merror[0m] [0m[0m    io.gpr_wen := io_pipe.in.bits.ls2wb_rf_wen && io_pipe.in.valid && ~io_hazard.flush_flg[0m
+[0m[[0m[31merror[0m] [0m[0m                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/wbu/WBU.scala:56:49: value && is not a member of chisel3.UInt[0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean &, +&, or -&? or perhaps do_&?[0m
+[0m[[0m[31merror[0m] [0m[0m    io.csr_cmd := io_pipe.in.bits.ls2wb_csr_cmd && io_pipe.in.valid && ~io_hazard.flush_flg[0m
+[0m[[0m[31merror[0m] [0m[0m                                                ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
