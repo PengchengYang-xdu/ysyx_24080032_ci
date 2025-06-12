@@ -103,13 +103,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val ways_width = w
 
     val req_index = Wire(UInt(index_width.W))
-    req_index := araddr_reg(m + n - 1, m)
+    req_index := io.in.araddr(m + n - 1, m)
     val req_offset = Wire(UInt(offset_width.W))
-    req_offset := araddr_reg(m - 1, 0)
+    req_offset := io.in.araddr(m - 1, 0)
     val req_tag = Wire(UInt(tag_width.W))
-    req_tag := araddr_reg(31, m + n)
+    req_tag := io.in.araddr(31, m + n)
     val addr_align = Wire(UInt(WORD_LEN.W))
-    addr_align := araddr_reg - req_offset
+    addr_align := io.in.araddr - req_offset
     dontTouch(req_index)
     dontTouch(req_offset)
     dontTouch(req_tag)
