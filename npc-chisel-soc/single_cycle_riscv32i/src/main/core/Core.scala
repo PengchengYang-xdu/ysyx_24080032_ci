@@ -84,7 +84,7 @@ class Core extends Module {
 
     csr.io.csr_wdata := wbu.io.csr_wdata
     csr.io.csr_addr := wbu.io.csr_addr
-    csr.io.csr_cmd := wbu.io.csr_cmd
+    csr.io.csr_cmd := RegNext(wbu.io.csr_cmd)
     gpr.io.gpr_wen := wbu.io.gpr_wen
     gpr.io.gpr_addr := wbu.io.gpr_addr
     gpr.io.gpr_wdata := wbu.io.gpr_wdata
