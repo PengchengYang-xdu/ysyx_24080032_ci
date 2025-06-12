@@ -80,7 +80,6 @@ class Core extends Module {
     gpr.io.gpr_rs2_addr := idu.io.gpr_rs2_addr
 
     io.dmem <> lsu.io.dmem
-    lsu.io.csr_rdata := csr.io.csr_rdata
 
     csr.io.csr_raddr := idu.io.csr_raddr
     idu.io.csr_rdata := csr.io.csr_rdata
