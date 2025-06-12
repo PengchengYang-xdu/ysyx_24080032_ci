@@ -87,7 +87,7 @@ class IFU extends Module {
     val in_ready = RegInit(false.B)
     val out_valid = RegInit(false.B)
     io_pipe.in.ready := in_ready
-    io_pipe.out.valid := out_valid & ~io_hazard.flush_flg
+    io_pipe.out.valid := out_valid & ~io_hazard.flush_flg & ~io.is_mret
 
     val araddr = Wire(UInt(WORD_LEN.W))
     val arvalid = RegInit(false.B)
@@ -108,9 +108,9 @@ class IFU extends Module {
     val AXI_R_fire = io.imem.rvalid & rready
 
     //flush states
-    val R_while_flush = AXI_R_fire & io_hazard.flush_flg
-    val flush_before_R = ~AXI_R_fire & io_hazard.flush_flg
-    val fetch_normal = AXI_R_fire & ~io_hazard.flush_flg
+    val R_while_flush = AXI_R_fire & (io_hazard.flush_flg | io.is_mret)
+    val flush_before_R = ~AXI_R_fire & (io_hazard.flush_flg | io.is_mret)
+    val fetch_normal = AXI_R_fire & ~io_hazard.flush_flg & ~io.is_mret
 
     // val start = io_pipe.in.fire//this is the multi cycle version, change it auto fetch to fit 5 pipelines
     val start = io.imem.arready && ~io_hazard.flush_flg && io_pipe.in.valid
@@ -121,7 +121,7 @@ class IFU extends Module {
         s_BeforePreFire       ->  Mux(start, s_BeforeAXI_AR_Fire, s_BeforePreFire),
         s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, s_BeforeAXI_R_Fire, s_BeforeAXI_AR_Fire),
         s_BeforeAXI_R_Fire    ->  Mux(fetch_normal, s_AfterPreFire, Mux(flush_before_R, s_Flush, Mux(R_while_flush, s_BeforePreFire, s_BeforeAXI_R_Fire))),
-        s_AfterPreFire        ->  Mux(io_hazard.flush_flg | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
+        s_AfterPreFire        ->  Mux(io_hazard.flush_flg | io.is_mret | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
         s_Flush               ->  Mux(AXI_R_fire, s_BeforePreFire, s_Flush)
     ))//发起的请求必须等取到这次取指之后，再冲刷
 
@@ -215,13 +215,13 @@ class IFU extends Module {
         (io.br_flg && flag)          -> io.br_target,
         (io.jmp_flg && flag)         -> io.alu_out,
         (flag)                       -> io.csr_mtvec,
-        (io.is_mret)                    -> io.csr_mepc,
+        (io.is_mret)                 -> io.csr_mepc,
     ))
     
     //connect
     araddr := reg_pc
 
-    io_pipe.out.bits.if2id_reg_pc := reg_pc
+    io_pipe.out.bits.if2id_reg_pc := Mux(io.is_mret, pc_next, reg_pc)
     io_pipe.out.bits.if2id_inst := io.imem.rdata
 }
 
