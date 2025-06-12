@@ -46,7 +46,15 @@ class Core extends Module {
     pipelineConnect(exu.io_pipe.out, lsu.io_pipe.in)
     pipelineConnect(lsu.io_pipe.out, wbu.io_pipe.in)
 
-    // StageConnect(wbu.io_pipe.out, ifu.io_pipe.in)
+
+
+
+
+
+
+
+
+
 
     val icache = Module(new iCache(8, 4, 1, "LRU"))
     io.imem <> icache.io.out
@@ -94,7 +102,8 @@ class Core extends Module {
 
 
 
-
+    //irq process
+    val is_irq = wbu.io.irq_valid && wbu.io.is_irq
 
 
 
@@ -246,11 +255,11 @@ class Core extends Module {
     val exu_out_valid_rise = exu.io_pipe.out.valid & ~RegNext(exu.io_pipe.out.valid)
     val is_ctrl_hazard = ((exu.io.br_flg && exu.io.br_target =/= ifu.io_pipe.out.bits.if2id_reg_pc) || (exu.io.jmp_flg && exu.io.alu_out =/= ifu.io_pipe.out.bits.if2id_reg_pc)) && exu_out_valid_rise
     dontTouch(is_ctrl_hazard)
-    ifu.io_hazard.flush_flg := is_ctrl_hazard
-    idu.io_hazard.flush_flg := is_ctrl_hazard
-    exu.io_hazard.flush_flg := is_ctrl_hazard
-    lsu.io_hazard.flush_flg := false.B
-    wbu.io_hazard.flush_flg := false.B
+    ifu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
+    idu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
+    exu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
+    lsu.io_hazard.flush_flg := is_irq
+    wbu.io_hazard.flush_flg := is_irq
 
     when(idu.io_hazard.flush_flg){idu.io_pipe.in.valid := false.B}
     when(exu.io_hazard.flush_flg){exu.io_pipe.in.valid := false.B}
