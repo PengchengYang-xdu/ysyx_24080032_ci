@@ -25,7 +25,7 @@
         "SSH_CONNECTION": "10.1.33.170 10624 10.2.255.13 6000",
         "AM_HOME": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/abstract-machine",
         "LC_MEASUREMENT": "zh_CN.UTF-8",
-        "OLDPWD": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench",
+        "OLDPWD": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/am-kernels/tests",
         "XDG_SESSION_TYPE": "x11",
         "NVBOARD_HOME": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/nvboard",
         "LESSOPEN": "| /usr/bin/lesspipe %s",
@@ -44,7 +44,6 @@
         "MODULESHOME": "/usr/share/modules",
         "VSCODE_GIT_ASKPASS_MAIN": "/home/yangpengcheng/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js",
         "XDG_SESSION_ID": "244",
-        "ALL": "string",
         "LC_TIME": "zh_CN.UTF-8",
         "CONDA_EXE": "/home/yangpengcheng/miniconda3/bin/conda",
         "VNCDESKTOP": "ubuntu-4029:2 (yangpengcheng)",
@@ -58,7 +57,7 @@
         "LM_LICENSE_FILE": "/home/yangpengcheng/license.dat",
         "SSH_AGENT_PID": "2920363",
         "LC_ADDRESS": "zh_CN.UTF-8",
-        "MAKEFLAGS": "s -- ALL=string ARCH=riscv32e-ysyxsoc",
+        "MAKEFLAGS": "w -- ARCH=riscv32e-ysyxsoc",
         "CUDA_HOME": "/usr/local/cuda-12.4",
         "CC": "riscv64-linux-gnu-gcc",
         "USER": "yangpengcheng",
@@ -81,8 +80,8 @@
         "SPIKE": "/home/yangpengcheng/workspace/opt/spike",
         "SHLVL": "2",
         "BROWSER": "/home/yangpengcheng/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/helpers/browser.sh",
-        "MFLAGS": "-s",
-        "MAKELEVEL": "3",
+        "MFLAGS": "-w",
+        "MAKELEVEL": "2",
         "MAKE_TERMERR": "/dev/pts/62",
         "_": "/usr/bin/make",
         "MAKE_TERMOUT": "/dev/pts/62",
@@ -107,6 +106,6 @@
         "MODEL_TECH": "/home/yangpengcheng/questasim/bin",
         "DESKTOP_SESSION": "xfce"
     },
-    "valueHash": 953901412,
-    "inputsHash": 1525936141
+    "valueHash": 953802690,
+    "inputsHash": 1637683326
 }
