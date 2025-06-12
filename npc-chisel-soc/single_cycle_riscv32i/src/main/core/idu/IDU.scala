@@ -20,6 +20,8 @@ class IDUIO extends Bundle {
     val gpr_rs2_data = Input(UInt(WORD_LEN.W))
     val gpr_rs1_is_read = Output(Bool())
     val gpr_rs2_is_read = Output(Bool())
+
+    val is_mret = Output(Bool())
 }
 
 class IDUIO_pipe_out extends Bundle{
@@ -274,5 +276,6 @@ class IDU extends Module {
     //irq
     io_pipe.out.bits.id2exe_is_irq := Mux(csr_cmd === CSR_E, true.B, false.B)
     io_pipe.out.bits.id2exe_irq_num := Mux(csr_cmd === CSR_E, IRQ_NUM_ECALL, 0.U)
+    is_mret := csr_cmd === CSR_M
 }
 
