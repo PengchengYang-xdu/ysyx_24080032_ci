@@ -42,11 +42,11 @@ class CSR extends Module {
 
     io.csr_rdata := csr(csr_addr_process)
 
-    when(io.csr_cmd > 0.U && io.csr_is_irq){//modified by ypc
+    when(io.csr_is_irq){//modified by ypc
         csr(CSR_MEPC_ADDR) := io.csr_reg_pc
         csr(CSR_MCAUSE_ADDR) := io.csr_irq_num
     }
-    when(~io.csr_is_irq){
+    when(io.csr_cmd > 0.U && ~io.csr_is_irq){
         csr(csr_addr_process) := io.csr_wdata
     }
 
