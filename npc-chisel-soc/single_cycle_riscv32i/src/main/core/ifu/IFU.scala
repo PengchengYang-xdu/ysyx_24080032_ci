@@ -22,6 +22,8 @@ class IFUIO extends Bundle {
 
     val csr_mtvec = Input(UInt(WORD_LEN.W))
     val csr_mepc = Input(UInt(WORD_LEN.W))
+
+    val is_mret = Input(Bool())
 }
 
 class IFUIO_pipe_out extends Bundle{
@@ -212,8 +214,8 @@ class IFU extends Module {
     pc_next := MuxCase(pc_plus4, Seq(
         (io.br_flg && flag)          -> io.br_target,
         (io.jmp_flg && flag)         -> io.alu_out,
-        (io.imem.rdata === ECALL)    -> io.csr_mtvec,
-        (io.imem.rdata === MRET)     -> io.csr_mepc,
+        (flag)                       -> io.csr_mtvec,
+        (is_mret)                    -> io.csr_mepc,
     ))
     
     //connect
