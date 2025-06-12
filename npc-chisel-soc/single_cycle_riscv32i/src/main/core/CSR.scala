@@ -15,6 +15,9 @@ class CSRIO extends Bundle {
     val csr_cmd = Input(UInt(CSR_LEN.W))
 
     val csr_reg_pc = Input(UInt(WORD_LEN.W))
+    val csr_irq_num = Input(UInt(IRQ_NUM_WIDTH.W))
+
+    val csr_is_irq = Input(Bool())
 }
 
 class CSR extends Module {
@@ -40,10 +43,12 @@ class CSR extends Module {
     io.csr_rdata := csr(csr_addr_process)
 
     when(io.csr_cmd > 0.U){
-        when(io.csr_cmd === CSR_E){//modified by ypc
+        when(csr_is_irq){//modified by ypc
             csr(CSR_MEPC_ADDR) := io.csr_reg_pc
+            csr(CSR_MCAUSE_ADDR) := io.csr_irq_num
+        }.otherwise{
+            csr(csr_addr_process) := io.csr_wdata
         }
-        csr(csr_addr_process) := io.csr_wdata
     }
 
     csr(CSR_MSTATUS_ADDR) := 0x1800.U //mstatus

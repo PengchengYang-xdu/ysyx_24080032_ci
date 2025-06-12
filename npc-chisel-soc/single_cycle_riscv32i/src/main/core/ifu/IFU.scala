@@ -22,7 +22,6 @@ class IFUIO extends Bundle {
 
     val csr_mtvec = Input(UInt(WORD_LEN.W))
     val csr_mepc = Input(UInt(WORD_LEN.W))
-    val csr_reg_pc = Output(UInt(WORD_LEN.W))
 }
 
 class IFUIO_pipe_out extends Bundle{
@@ -222,7 +221,5 @@ class IFU extends Module {
 
     io_pipe.out.bits.if2id_reg_pc := reg_pc
     io_pipe.out.bits.if2id_inst := io.imem.rdata
-
-    io.csr_reg_pc := reg_pc
 }
 
