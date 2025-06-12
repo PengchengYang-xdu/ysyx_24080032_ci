@@ -276,6 +276,6 @@ class IDU extends Module {
     //irq
     io_pipe.out.bits.id2exe_is_irq := Mux(csr_cmd === CSR_E, true.B, false.B)
     io_pipe.out.bits.id2exe_irq_num := Mux(csr_cmd === CSR_E, IRQ_NUM_ECALL, 0.U)
-    is_mret := csr_cmd === CSR_M
+    io.is_mret := csr_cmd === CSR_M
 }
 
