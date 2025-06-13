@@ -217,7 +217,7 @@ class IFU extends Module {
         (io.br_flg && flag)          -> io.br_target,
         (io.jmp_flg && flag)         -> io.alu_out,
         (flag)                       -> io.csr_mtvec,
-        (is_mret)                    -> io.csr_mepc,
+        (io。is_mret)                -> io.csr_mepc,
     ))
     
     //connect
