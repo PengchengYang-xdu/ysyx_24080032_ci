@@ -41,11 +41,13 @@ ForkShareMemory::~ForkShareMemory() {
 void ForkShareMemory::shwait() {
   while (true) {
     if (info->flag) {
+      FORK_PRINTF("Child %d info->flag is true. notgood: %d\n", getpid(), info->notgood);
       if (info->notgood)
         break;
       else
         exit(0);
     } else {
+      FORK_PRINTF("Child %d info->flag is false. is_p_dead: %d\n", getpid(), info->is_p_dead);
       if(info->is_p_dead){
         exit(0);
       }else{
@@ -53,6 +55,7 @@ void ForkShareMemory::shwait() {
       }
     }
   }
+  FORK_PRINTF("Child %d exited shwait loop.\n", getpid());
 }
 
 void LightSSS::signal_handler(int signum){
@@ -99,6 +102,7 @@ int LightSSS::do_fork() {
   }
   // fork a new checkpoint process and block it
   if ((pid = fork()) < 0) {
+    printf("[%d]Error: could not fork process!\n", getpid());
     return FORK_ERROR;
   }
   // the original process
