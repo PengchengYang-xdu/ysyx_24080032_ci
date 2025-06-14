@@ -12,9 +12,7 @@ deigned by ypc
 #include <debug.h>
 #include "../monitor/sdb/sdb.h"
 
-#ifdef NPCCONFIG_LIGHTSSS
-    #include <lightsss.h> // 确保路径正确
-#endif
+#include <lightsss.h> // 确保路径正确
 
 word_t pre_pc, now_pc;
 
