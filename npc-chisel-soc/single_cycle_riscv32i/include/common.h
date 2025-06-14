@@ -9,6 +9,7 @@
 
 #include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef int32_t sword_t;
 typedef uint32_t word_t;
