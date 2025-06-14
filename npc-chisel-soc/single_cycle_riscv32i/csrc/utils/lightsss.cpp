@@ -1,5 +1,6 @@
 #include "lightsss.h"
 #include <unistd.h>
+#include <stdio.h>
 
 pid_t LightSSS::p_pid = -1;
 std::deque<pid_t> LightSSS::pidSlot = {};
