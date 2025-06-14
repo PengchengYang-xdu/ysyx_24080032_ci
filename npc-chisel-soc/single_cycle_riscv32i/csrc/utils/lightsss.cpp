@@ -116,9 +116,6 @@ int LightSSS::do_fork() {
   // for the fork child
   waitProcess = 1;
   printf("Child %d: Entering shwait()...\n", getpid());
-  char filename[256];
-  snprintf(filename, sizeof(filename), "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build/ysyxsoc_child_%d.fst", getpid());
-  init_wave(filename); // <-- 子进程在这里初始化自己的波形文件
   forkshm.shwait();
   printf("Child %d: Exited shwait(). Checking oldest status...\n", getpid());
   //checkpoint process wakes up
