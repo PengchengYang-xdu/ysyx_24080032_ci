@@ -92,6 +92,7 @@ void LightSSS::signal_handler_abort(int signum){
 }
 
 int LightSSS::do_fork() {
+  if(getpid() != p_pid) return 0;
   //kill the oldest blocked checkpoint process
   if (slotCnt == SLOT_SIZE) {
     pid_t temp = pidSlot.back();

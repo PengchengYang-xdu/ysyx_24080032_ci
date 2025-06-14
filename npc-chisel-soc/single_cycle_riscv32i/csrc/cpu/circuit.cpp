@@ -379,7 +379,7 @@ void single_cycle(){
     #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
     #ifdef NPCCONFIG_LIGHTSSS
         if(lightsss.is_child() && dump_flag){
-            printf("child dump0\n");
+            printf("child dump1\n");
             dump_wave();
         }
     #else
