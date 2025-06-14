@@ -86,9 +86,6 @@ extern const char *emu_path;
 extern int signal_num;
 void sig_handler(int signo);
 
-typedef uint64_t rtlreg_t;
-typedef uint64_t vaddr_t;
-typedef uint16_t ioaddr_t;
 
 extern bool sim_verbose;
 
