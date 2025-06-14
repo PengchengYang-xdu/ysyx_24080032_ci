@@ -1,6 +1,7 @@
 #include <lightsss.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <circuit.h>
 
 pid_t LightSSS::p_pid = -1;
 std::deque<pid_t> LightSSS::pidSlot = {};
@@ -123,6 +124,10 @@ int LightSSS::do_fork() {
     exit(0);
     return FORK_ERROR;
   }
+  
+  dump_wave();
+  close_wave(999);
+
   exit(0);
   return FORK_CHILD;
 }
