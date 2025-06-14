@@ -331,7 +331,7 @@ static void save2csv(const char *filename){
 
 
 
-#define FORK_INTERVAL 10000 // 示例：每 10,000 个周期 fork 一次
+#define FORK_INTERVAL 100 // 示例：每 10,000 个周期 fork 一次
 
 LightSSS lightsss;
 uint64_t light_cycle_num = 0;
