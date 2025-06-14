@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdio.h>
 
 typedef int32_t sword_t;
 typedef uint32_t word_t;
