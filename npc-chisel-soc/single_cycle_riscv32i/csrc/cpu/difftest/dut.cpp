@@ -5,6 +5,8 @@
 #include <utils.h>
 #include <debug.h>
 
+#include <lightsss.h> // 确保路径正确
+
 extern uint64_t light_cycle_num;
 extern LightSSS lightsss;
 

@@ -9,6 +9,8 @@ deigned by ypc
 #include <utils.h>
 #include <device.h>
 
+#include <lightsss.h> // 确保路径正确
+
 extern bool is_skip_diff;
 static uint64_t timer = 0;
 
