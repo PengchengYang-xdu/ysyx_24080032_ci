@@ -13,6 +13,7 @@ deigned by ypc
 #include "../monitor/sdb/sdb.h"
 
 #include <lightsss.h> // 确保路径正确
+int child_first_in = 0;
 
 word_t pre_pc, now_pc;
 
@@ -360,8 +361,10 @@ void single_cycle(){
     #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
     #ifdef NPCCONFIG_LIGHTSSS
         if(lightsss.is_child() && dump_flag){
-            // init_wave("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build/ysyxsoc_child.fst");
-            printf("im in\n");
+            if(child_first_in == 0){
+                child_first_in = 1;
+                init_wave("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build/ysyxsoc_child.fst");
+            }
             dump_wave();
             printf("dump wave 0\n");
         }
