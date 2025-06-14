@@ -1,4 +1,4 @@
-#include "lightsss.h"
+#include <lightsss.h>
 #include <unistd.h>
 #include <stdio.h>
 
