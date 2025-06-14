@@ -5,6 +5,9 @@
 #include <utils.h>
 #include <debug.h>
 
+extern uint64_t light_cycle_num;
+extern LightSSS lightsss;
+
 int one_inst_working = 0;
 
 word_t ref_pre_pc = 0x30000000;
@@ -149,9 +152,12 @@ void difftest_step() {
 	itrace_init(PC, INSTR);
 	display_inst();
 	#endif
-    #ifdef NPCCONFIG_DUMPWAVE
+    #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
 	dump_wave();
 	close_wave(2);
+    #ifdef NPCCONFIG_LIGHTSSS
+        lightsss.wakeup_child(light_cycle_num);
+    #endif
 	#endif
     exit(-1);
   }
