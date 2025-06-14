@@ -100,6 +100,7 @@ int LightSSS::do_fork() {
     int status = 0;
     waitpid(temp, NULL, 0);
     slotCnt--;
+    char old_filename[256];
   }
   // fork a new checkpoint process and block it
   if ((pid = fork()) < 0) {
