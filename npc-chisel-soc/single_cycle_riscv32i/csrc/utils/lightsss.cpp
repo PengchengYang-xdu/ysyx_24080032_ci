@@ -99,7 +99,6 @@ int LightSSS::do_fork() {
   }
   // fork a new checkpoint process and block it
   if ((pid = fork()) < 0) {
-    eprintf("[%d]Error: could not fork process!\n", getpid());
     return FORK_ERROR;
   }
   // the original process

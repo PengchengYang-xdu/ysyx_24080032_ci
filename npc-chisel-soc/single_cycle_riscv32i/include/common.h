@@ -40,18 +40,7 @@ typedef uint32_t paddr_t;
 #define SDRAM_SIZE 0x1fffffff
 #define SDRAM_BASE 0xa0000000
 
-int eprintf(const char *fmt, ...) {
-    va_list args;
-    va_start(args, fmt);
-    int ret = fprintf(stderr, fmt, args); // 打印到标准错误输出
-    va_end(args);
-    return ret;
-}
 
-#define Info(...)           \
-  do {                      \
-      eprintf(__VA_ARGS__); \
-  } while (0)
 
 
 #endif

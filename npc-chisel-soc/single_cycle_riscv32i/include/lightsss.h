@@ -99,7 +99,6 @@ public:
 
 #define FORK_PRINTF(format, args...)                       \
   do {                                                     \
-    Info("[FORK_INFO pid(%d)] " format, getpid(), ##args); \
     fflush(stdout);                                        \
   } while (0);
 
