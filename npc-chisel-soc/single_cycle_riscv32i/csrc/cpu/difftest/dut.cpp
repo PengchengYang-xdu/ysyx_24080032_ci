@@ -154,19 +154,8 @@ void difftest_step() {
 	itrace_init(PC, INSTR);
 	display_inst();
 	#endif
-    #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
-    #ifdef NPCCONFIG_LIGHTSSS
-        if(lightsss.is_child()){
-            dump_wave();
-	        close_wave(2);
-        }else{
-            lightsss.wakeup_child(light_cycle_num);
-        }
-    #else
-        dump_wave();
-	    close_wave(2);
-    #endif
-	#endif
+    dump_wave();
+	close_wave(2);
     exit(-1);
   }
 }
