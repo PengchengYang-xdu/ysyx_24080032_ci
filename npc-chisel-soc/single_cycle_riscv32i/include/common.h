@@ -37,4 +37,13 @@ typedef uint32_t paddr_t;
 #define SDRAM_SIZE 0x1fffffff
 #define SDRAM_BASE 0xa0000000
 
+
+#define Info(...)           \
+  do {                      \
+    if (sim_verbose) {      \
+      eprintf(__VA_ARGS__); \
+    }                       \
+  } while (0)
+
+
 #endif
