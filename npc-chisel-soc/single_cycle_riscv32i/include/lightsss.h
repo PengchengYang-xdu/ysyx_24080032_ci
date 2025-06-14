@@ -28,13 +28,14 @@
 #include <unistd.h>
 
 
-#define SLOT_SIZE 2
+#define SLOT_SIZE 3
 #define FAIT_EXIT    exit(EXIT_FAILURE);
 #define WAIT_INTERVAL 5
 
 typedef struct shinfo {
   bool flag;
   bool notgood;
+  bool is_p_dead;
   uint64_t endCycles;
   pid_t oldest;
 } shinfo;
