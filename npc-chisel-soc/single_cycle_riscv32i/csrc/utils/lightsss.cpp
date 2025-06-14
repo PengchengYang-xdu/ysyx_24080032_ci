@@ -125,9 +125,6 @@ int LightSSS::do_fork() {
     exit(0);
     return FORK_ERROR;
   }
-  
-  dump_wave();
-  close_wave(999);
 
   exit(0);
   return FORK_CHILD;
