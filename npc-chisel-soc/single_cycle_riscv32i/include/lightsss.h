@@ -17,6 +17,7 @@
 #ifndef __LIGHTSSS_H
 #define __LIGHTSSS_H
 
+#include "common.h"
 #include <deque>
 #include <list>
 #include <signal.h>
