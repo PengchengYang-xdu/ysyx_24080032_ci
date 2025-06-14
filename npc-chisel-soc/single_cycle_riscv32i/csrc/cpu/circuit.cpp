@@ -411,7 +411,6 @@ void assert_fail_msg() {
     #endif
 //   isa_reg_display();
     statistic();
-    assert(0);
 }
 
 
