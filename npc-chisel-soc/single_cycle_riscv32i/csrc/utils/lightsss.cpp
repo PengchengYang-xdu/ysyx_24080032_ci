@@ -113,13 +113,17 @@ int LightSSS::do_fork() {
   }
   // for the fork child
   waitProcess = 1;
+  printf("Child %d: Entering shwait()...\n", getpid());
   forkshm.shwait();
+  printf("Child %d: Exited shwait(). Checking oldest status...\n", getpid());
   //checkpoint process wakes up
   //start wave dumping
   if (forkshm.info->oldest != getpid()) {
     printf("Error, non-oldest process should not live. Parent Process should kill the process manually.\n");
+    exit(0);
     return FORK_ERROR;
   }
+  exit(0);
   return FORK_CHILD;
 }
 
