@@ -20,6 +20,9 @@ int main(int argc, char *argv[]) {
     #ifdef NPCCONFIG_DUMPWAVE
     init_wave("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build/ysyxsoc_father.fst");
     #endif
+    #ifdef NPCCONFIG_LIGHTSSS
+    init_wave("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build/ysyxsoc_child.fst");    
+    #endif
     Verilated::commandArgs(argc, argv);
     reset(10);
     sdb_mainloop();
