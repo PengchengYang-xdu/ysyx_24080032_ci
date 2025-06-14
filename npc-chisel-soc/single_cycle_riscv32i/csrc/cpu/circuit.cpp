@@ -464,14 +464,7 @@ void cpu_exec(uint64_t n){
         // 假设 light_cycle_num 是一个全局变量，在 single_cycle 中递增
         if (light_cycle_num % FORK_INTERVAL == 0) {
             int fork_ret = lightsss.do_fork();
-            if (fork_ret == FORK_CHILD) {
-                // 这是子进程。它不应该继续主模拟循环。
-                // 而是应该等待信号来转储波形。
-                // lightsss.shwait() 函数会处理这个等待过程。
-                FORK_PRINTF("Child process %d waiting...\n", getpid());
-                // 子进程在完成转储或被杀死后退出
-                exit(0);
-            } else if (fork_ret == FORK_ERROR) {
+            if (fork_ret == FORK_ERROR) {
                 // 处理 fork 错误
                 printf("LightSSS fork error!\n");
                 assert(0);
