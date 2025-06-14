@@ -98,16 +98,6 @@ int eprintf(const char *fmt, ...);
     }                       \
   } while (0)
 
-#define Assert(cond, ...)           \
-  do {                              \
-    if (!(cond)) {                  \
-      fflush(stdout);               \
-      fprintf(stderr, "\33[1;31m"); \
-      fprintf(stderr, __VA_ARGS__); \
-      fprintf(stderr, "\33[0m\n");  \
-      assert(cond);                 \
-    }                               \
-  } while (0)
 
 
 #define fprintf_with_pid(stream, ...)   \
