@@ -45,7 +45,7 @@ void ForkShareMemory::shwait() {
       else
         exit(0);
     } else {
-      if(info->is_p_dead){
+      if(forkshm.info->is_p_dead){
         exit(0);
       }else{
         sleep(WAIT_INTERVAL);
