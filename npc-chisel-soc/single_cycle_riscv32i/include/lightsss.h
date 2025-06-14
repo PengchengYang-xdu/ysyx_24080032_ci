@@ -58,8 +58,8 @@ class LightSSS {
   int slotCnt = 0;
   int waitProcess = 0;
   // front() is the newest. back() is the oldest.
-  std::deque<pid_t> pidSlot = {};
-  ForkShareMemory forkshm;
+  static std::deque<pid_t> pidSlot = {};
+  static ForkShareMemory forkshm;
 
 public:
   LightSSS() {
