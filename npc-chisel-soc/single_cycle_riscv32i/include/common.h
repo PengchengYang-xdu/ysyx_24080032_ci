@@ -10,7 +10,6 @@
 #include <assert.h>
 #include <stdlib.h>
 
-#include "config.h"
 #include <cassert>
 #include <cerrno>
 #include <cinttypes>
@@ -50,6 +49,23 @@ typedef uint32_t paddr_t;
 #define SDRAM_BASE 0xa0000000
 
 
+
+#define SLOT_SIZE 2
+
+// exit when error when fork
+#define FAIT_EXIT    exit(EXIT_FAILURE);
+
+// process sleep time
+#define WAIT_INTERVAL 5
+
+// time to save a snapshot
+#define SNAPSHOT_INTERVAL 60 // unit: second
+
+// if error, let simulator print debug info
+#define ENABLE_SIMULATOR_DEBUG_INFO
+
+// how many cycles child processes step forward when reaching error point
+#define STEP_FORWARD_CYCLES 100
 
 
 #define ANSI_COLOR_RED     "\x1b[31m"
