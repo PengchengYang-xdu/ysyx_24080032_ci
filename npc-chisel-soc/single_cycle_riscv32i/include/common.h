@@ -112,7 +112,6 @@ int eprintf(const char *fmt, ...);
     }                               \
   } while (0)
 
-#define panic(...) Assert(0, __VA_ARGS__)
 
 #define fprintf_with_pid(stream, ...)   \
   do {                                  \
@@ -148,5 +147,3 @@ extern "C" void xs_assert_v2(const char *filename, long long line);
 #endif // __COMMON_H
 
 
-
-#endif
