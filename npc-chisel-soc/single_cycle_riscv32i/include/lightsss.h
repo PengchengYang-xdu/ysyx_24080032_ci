@@ -17,7 +17,6 @@
 #ifndef __LIGHTSSS_H
 #define __LIGHTSSS_H
 
-#include "common.h"
 #include <deque>
 #include <list>
 #include <signal.h>
@@ -26,6 +25,11 @@
 #include <sys/shm.h>
 #include <sys/wait.h>
 #include <unistd.h>
+
+
+#define SLOT_SIZE 2
+#define FAIT_EXIT    exit(EXIT_FAILURE);
+#define WAIT_INTERVAL 5
 
 typedef struct shinfo {
   bool flag;

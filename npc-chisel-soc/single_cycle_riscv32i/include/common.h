@@ -10,17 +10,6 @@
 #include <assert.h>
 #include <stdlib.h>
 
-#include <cassert>
-#include <cerrno>
-#include <cinttypes>
-#include <cstdarg>
-#include <cstdint>
-#include <cstdio>
-#include <cstdlib>
-#include <cstring>
-#include <sys/time.h>
-#include <unistd.h>
-
 typedef int32_t sword_t;
 typedef uint32_t word_t;
 typedef uint32_t vaddr_t;
@@ -47,90 +36,4 @@ typedef uint32_t paddr_t;
 
 #define SDRAM_SIZE 0x1fffffff
 #define SDRAM_BASE 0xa0000000
-
-
-
-#define SLOT_SIZE 2
-
-// exit when error when fork
-#define FAIT_EXIT    exit(EXIT_FAILURE);
-
-// process sleep time
-#define WAIT_INTERVAL 5
-
-// time to save a snapshot
-#define SNAPSHOT_INTERVAL 60 // unit: second
-
-// if error, let simulator print debug info
-#define ENABLE_SIMULATOR_DEBUG_INFO
-
-// how many cycles child processes step forward when reaching error point
-#define STEP_FORWARD_CYCLES 100
-
-
-#define ANSI_COLOR_RED     "\x1b[31m"
-#define ANSI_COLOR_GREEN   "\x1b[32m"
-#define ANSI_COLOR_YELLOW  "\x1b[33m"
-#define ANSI_COLOR_BLUE    "\x1b[34m"
-#define ANSI_COLOR_MAGENTA "\x1b[35m"
-#define ANSI_COLOR_CYAN    "\x1b[36m"
-#define ANSI_COLOR_RESET   "\x1b[0m"
-
-#ifdef WITH_DRAMSIM3
-#include "cosimulation.h"
-#endif
-
-extern int assert_count;
-extern const char *emu_path;
-
-extern int signal_num;
-void sig_handler(int signo);
-
-
-extern bool sim_verbose;
-
-int eprintf(const char *fmt, ...);
-
-#define Info(...)           \
-  do {                      \
-    if (sim_verbose) {      \
-      eprintf(__VA_ARGS__); \
-    }                       \
-  } while (0)
-
-
-
-#define fprintf_with_pid(stream, ...)   \
-  do {                                  \
-    fprintf(stream, "(%d) ", getpid()); \
-    fprintf(stream, __VA_ARGS__);       \
-  } while (0)
-
-#define printf_with_pid(...)               \
-  do {                                     \
-    fprintf_with_pid(stdout, __VA_ARGS__); \
-  } while (0)
-
-#define TODO() panic("please implement me")
-
-// Initialize common functions, such as buffering, assertions, siganl handlers.
-void common_init(const char *program_name);
-
-// Some designs may raise assertions during the reset stage.
-// Use common_init_without_assertion with common_enable_assert to manually control assertions.
-void common_init_without_assertion(const char *program_name);
-void common_enable_assert();
-
-// Enable external log system
-typedef int (*eprintf_handle_t)(const char *fmt, va_list ap);
-extern "C" void common_enable_log(eprintf_handle_t h);
-
-void common_finish();
-
-uint32_t uptime(void);
-
-extern "C" void xs_assert(long long line);
-extern "C" void xs_assert_v2(const char *filename, long long line);
-#endif // __COMMON_H
-
 
