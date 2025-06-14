@@ -105,7 +105,7 @@ int LightSSS::do_fork() {
     unlink(old_filename);
     snprintf(old_filename, sizeof(old_filename), "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build/ysyxsoc_child_%d.fst.hier", temp);
     unlink(old_filename);
-    printf("has remove pid %d\n", temp)
+    printf("has remove pid %d\n", temp);
   }
   // fork a new checkpoint process and block it
   if ((pid = fork()) < 0) {
