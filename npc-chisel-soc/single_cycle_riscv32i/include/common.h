@@ -40,9 +40,7 @@ typedef uint32_t paddr_t;
 
 #define Info(...)           \
   do {                      \
-    if (sim_verbose) {      \
       eprintf(__VA_ARGS__); \
-    }                       \
   } while (0)
 
 
