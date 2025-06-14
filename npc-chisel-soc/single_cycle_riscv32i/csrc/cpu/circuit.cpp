@@ -359,8 +359,10 @@ void single_cycle(){
     }
     #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
     #ifdef NPCCONFIG_LIGHTSSS
-        if(lightsss.is_child())
+        if(lightsss.is_child() && dump_flag){
+            printf("child dump0\n");
             dump_wave();
+        }
     #else
         if(dump_flag)
             dump_wave();
@@ -376,8 +378,10 @@ void single_cycle(){
     top->eval();
     #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
     #ifdef NPCCONFIG_LIGHTSSS
-        if(lightsss.is_child())
+        if(lightsss.is_child() && dump_flag){
+            printf("child dump0\n");
             dump_wave();
+        }
     #else
         if(dump_flag)
             dump_wave();
