@@ -461,7 +461,7 @@ void cpu_exec(uint64_t n){
 
         #ifdef NPCCONFIG_LIGHTSSS
         // 假设 light_cycle_num 是一个全局变量，在 single_cycle 中递增
-        if (light_cycle_num % FORK_INTERVAL == 0 && !lightsss.is_child) {
+        if (light_cycle_num % FORK_INTERVAL == 0 && !lightsss.is_child()) {
             int fork_ret = lightsss.do_fork();
             if (fork_ret == FORK_ERROR) {
                 // 处理 fork 错误
