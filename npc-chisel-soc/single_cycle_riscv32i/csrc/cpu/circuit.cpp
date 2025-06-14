@@ -361,7 +361,6 @@ void single_cycle(){
     #ifdef NPCCONFIG_LIGHTSSS
         if(lightsss.is_child() && dump_flag){
             init_wave("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build/ysyxsoc_child.fst");
-            printf("child dump0\n");
             dump_wave();
         }
     #else
@@ -380,7 +379,6 @@ void single_cycle(){
     #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
     #ifdef NPCCONFIG_LIGHTSSS
         if(lightsss.is_child() && dump_flag){
-            printf("child dump1\n");
             dump_wave();
         }
     #else
@@ -461,7 +459,6 @@ void cpu_exec(uint64_t n){
 
 
         #ifdef NPCCONFIG_LIGHTSSS
-        // 假设 light_cycle_num 是一个全局变量，在 single_cycle 中递增
         if (light_cycle_num % FORK_INTERVAL == 0 && !lightsss.is_child()) {
             int fork_ret = lightsss.do_fork();
             if (fork_ret == FORK_ERROR) {
@@ -506,6 +503,13 @@ extern "C" void npc_trap(){
     #ifdef NPCCONFIG_DUMPWAVE
         dump_wave();
         close_wave(1);
+    #else
+        if(lightsss.is_child()){
+            dump_wave();
+            close_wave(1);
+        }else{
+            lightsss.wakeup_child(light_cycle_num);
+        }
     #endif
     #endif
     bool success;
@@ -515,9 +519,6 @@ extern "C" void npc_trap(){
     }
     else{
         printf("\033[1;31mHIT BAD TRAP\033[0m at pc = 0x%x\nexit code = %d\n",PC, code);
-        #ifdef NPCCONFIG_LIGHTSSS
-        lightsss.wakeup_child(light_cycle_num);
-        #endif
     }
     
     #ifdef NPCCONFIG_ITRACE
