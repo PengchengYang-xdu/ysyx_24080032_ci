@@ -508,9 +508,7 @@ void cpu_exec(uint64_t n){
 
 extern "C" void npc_trap(){
     #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
-    #ifdef NPCCONFIG_LIGHTSSS
-
-    #else
+    #ifdef NPCCONFIG_DUMPWAVE
         dump_wave();
         close_wave(1);
     #endif
