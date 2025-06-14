@@ -332,7 +332,7 @@ static void save2csv(const char *filename){
 
 
 
-#define FORK_INTERVAL 100 // 示例：每 10,000 个周期 fork 一次
+#define FORK_INTERVAL 5000 // 示例：每 10,000 个周期 fork 一次
 
 LightSSS lightsss;
 uint64_t light_cycle_num = 0;
@@ -366,7 +366,7 @@ void single_cycle(){
                 init_wave("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build/ysyxsoc_child.fst");
             }
             dump_wave();
-            printf("dump wave 0\n");
+            // printf("dump wave 0\n");
         }
     #else
         if(dump_flag)
@@ -385,7 +385,7 @@ void single_cycle(){
     #ifdef NPCCONFIG_LIGHTSSS
         if(lightsss.is_child() && dump_flag){
             dump_wave();
-            printf("dump wave 1\n");
+            // printf("dump wave 1\n");
         }
     #else
         if(dump_flag)

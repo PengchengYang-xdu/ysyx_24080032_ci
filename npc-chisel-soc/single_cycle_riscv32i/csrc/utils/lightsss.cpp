@@ -42,13 +42,13 @@ ForkShareMemory::~ForkShareMemory() {
 void ForkShareMemory::shwait() {
   while (true) {
     if (info->flag) {
-      printf("Child %d info->flag is true. notgood: %d\n", getpid(), info->notgood);
+    //   printf("Child %d info->flag is true. notgood: %d\n", getpid(), info->notgood);
       if (info->notgood)
         break;
       else
         exit(0);
     } else {
-      printf("Child %d info->flag is false. is_p_dead: %d\n", getpid(), info->is_p_dead);
+    //   printf("Child %d info->flag is false. is_p_dead: %d\n", getpid(), info->is_p_dead);
       if(info->is_p_dead){
         exit(0);
       }else{
@@ -56,7 +56,7 @@ void ForkShareMemory::shwait() {
       }
     }
   }
-  printf("Child %d exited shwait loop.\n", getpid());
+//   printf("Child %d exited shwait loop.\n", getpid());
 }
 
 void LightSSS::signal_handler(int signum){
@@ -67,7 +67,7 @@ void LightSSS::signal_handler(int signum){
 void LightSSS::signal_handler_abort(int signum){
     if(p_pid != getpid()) return;
     if(pidSlot.empty()) return;
-    printf("handler abort signum: %d, pidSlot size: %ld\n", signum, pidSlot.size());
+    // printf("handler abort signum: %d, pidSlot size: %ld\n", signum, pidSlot.size());
     forkshm.info->endCycles = -1;
     forkshm.info->oldest = pidSlot.back();
 
@@ -105,7 +105,7 @@ int LightSSS::do_fork() {
   }
   // fork a new checkpoint process and block it
   if ((pid = fork()) < 0) {
-    printf("[%d]Error: could not fork process!\n", getpid());
+    // printf("[%d]Error: could not fork process!\n", getpid());
     return FORK_ERROR;
   }
   // the original process
@@ -116,13 +116,13 @@ int LightSSS::do_fork() {
   }
   // for the fork child
   waitProcess = 1;
-  printf("Child %d: Entering shwait()...\n", getpid());
+//   printf("Child %d: Entering shwait()...\n", getpid());
   forkshm.shwait();
-  printf("Child %d: Exited shwait(). Checking oldest status...\n", getpid());
+//   printf("Child %d: Exited shwait(). Checking oldest status...\n", getpid());
   //checkpoint process wakes up
   //start wave dumping
   if (forkshm.info->oldest != getpid()) {
-    printf("Error, non-oldest process should not live. Parent Process should kill the process manually.\n");
+    // printf("Error, non-oldest process should not live. Parent Process should kill the process manually.\n");
     exit(0);
     return FORK_ERROR;
   }
@@ -156,7 +156,7 @@ bool LightSSS::is_child() {
 }
 
 int LightSSS::do_clear() {
-  printf("clear processes...\n");
+//   printf("clear processes...\n");
   while (!pidSlot.empty()) {
     pid_t temp = pidSlot.back();
     pidSlot.pop_back();
