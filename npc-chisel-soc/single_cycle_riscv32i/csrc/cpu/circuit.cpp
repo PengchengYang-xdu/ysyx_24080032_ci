@@ -512,6 +512,7 @@ extern "C" void npc_trap(){
         dump_wave();
         close_wave(1);
     #endif
+    #endif
     bool success;
     int code = isa_reg_str2val("a0",&success);
     if(code == 0){
