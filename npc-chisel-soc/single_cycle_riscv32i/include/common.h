@@ -37,3 +37,4 @@ typedef uint32_t paddr_t;
 #define SDRAM_SIZE 0x1fffffff
 #define SDRAM_BASE 0xa0000000
 
+#endif
