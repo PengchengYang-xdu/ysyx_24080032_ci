@@ -7,6 +7,8 @@ deigned by ypc
 #include <mem.h>
 #include <utils.h>
 
+extern LightSSS lightsss;
+
 void init_monitor(int, char *[]);
 void sdb_mainloop();
 
@@ -18,4 +20,7 @@ int main(int argc, char *argv[]) {
     reset(10);
     sdb_mainloop();
     close_wave(0);
+    #ifdef NPCCONFIG_LIGHTSSS
+        lightsss.do_clear(); // 在正常退出时清理子进程
+    #endif
 }

@@ -12,6 +12,10 @@ deigned by ypc
 #include <debug.h>
 #include "../monitor/sdb/sdb.h"
 
+#ifdef NPCCONFIG_LIGHTSSS
+    #include <lightsss.h> // 确保路径正确
+#endif
+
 word_t pre_pc, now_pc;
 
 /*temp val*/
@@ -325,6 +329,21 @@ static void save2csv(const char *filename){
     fclose(file);
 }
 
+
+
+
+
+#define FORK_INTERVAL 10000 // 示例：每 10,000 个周期 fork 一次
+#define SLOT_SIZE     10    // 示例：保留 10 个子进程（检查点）
+
+LightSSS lightsss;
+uint64_t light_cycle_num = 0;
+
+
+
+
+
+
 VysyxSoCFull *top = init_top();
 
 static uint8_t opcode;
@@ -341,9 +360,14 @@ void single_cycle(){
     if(DUMP_FLAG){
         dump_flag = 1;
     }
-    #ifdef NPCCONFIG_DUMPWAVE
-    if(dump_flag)
-        dump_wave();
+    #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
+    #ifdef NPCCONFIG_LIGHTSSS
+        if(!lightsss.is_child())
+            dump_wave();
+    #else
+        if(dump_flag)
+            dump_wave();
+    #endif
     #endif
 
     #ifdef NPCCONFIG_ITRACE
@@ -353,9 +377,18 @@ void single_cycle(){
 
     top->clock = 1;
     top->eval();
-    #ifdef NPCCONFIG_DUMPWAVE
-    if(dump_flag)
-        dump_wave();
+    #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
+    #ifdef NPCCONFIG_LIGHTSSS
+        if(!lightsss.is_child())
+            dump_wave();
+    #else
+        if(dump_flag)
+            dump_wave();
+    #endif
+    #endif
+
+    #ifdef NPCCONFIG_LIGHTSSS
+    light_cycle_num++;
     #endif
 }
 
@@ -377,6 +410,7 @@ void assert_fail_msg() {
     #endif
 //   isa_reg_display();
     statistic();
+    assert(0);
 }
 
 
@@ -422,6 +456,34 @@ void cpu_exec(uint64_t n){
     while(n > 0){
         pre_pc = PC;
         exec_once();
+
+
+
+        #ifdef NPCCONFIG_LIGHTSSS
+        // 假设 light_cycle_num 是一个全局变量，在 single_cycle 中递增
+        if (light_cycle_num % FORK_INTERVAL == 0) {
+            int fork_ret = lightsss.do_fork();
+            if (fork_ret == FORK_CHILD) {
+                // 这是子进程。它不应该继续主模拟循环。
+                // 而是应该等待信号来转储波形。
+                // lightsss.shwait() 函数会处理这个等待过程。
+                FORK_PRINTF("Child process %d waiting...\n", getpid());
+                // 子进程在完成转储或被杀死后退出
+                exit(0);
+            } else if (fork_ret == FORK_ERROR) {
+                // 处理 fork 错误
+                printf("LightSSS fork error!\n");
+                assert(0);
+            }
+            // 如果 fork_ret 是 FORK_OK，说明是父进程，继续执行
+        }
+        #endif
+
+
+
+
+
+
         now_pc = PC;
         
         get_reg();
@@ -448,16 +510,21 @@ void cpu_exec(uint64_t n){
 }
 
 extern "C" void npc_trap(){
-    #ifdef NPCCONFIG_DUMPWAVE
+    #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
     dump_wave();
     close_wave(1);
     #endif
     bool success;
     int code = isa_reg_str2val("a0",&success);
-    if(code == 0)
+    if(code == 0){
         printf("\033[1;32mHIT GOOD TRAP\033[0m at pc = 0x%x\n", PC);
-    else
+    }
+    else{
         printf("\033[1;31mHIT BAD TRAP\033[0m at pc = 0x%x\nexit code = %d\n",PC, code);
+        #ifdef NPCCONFIG_LIGHTSSS
+        lightsss.wakeup_child(light_cycle_num);
+        #endif
+    }
     
     #ifdef NPCCONFIG_ITRACE
     itrace_init(PC, INSTR);

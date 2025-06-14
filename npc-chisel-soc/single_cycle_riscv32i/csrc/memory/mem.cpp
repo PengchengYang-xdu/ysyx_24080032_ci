@@ -14,8 +14,8 @@ static uint64_t timer = 0;
 
 
 
-
-
+extern uint64_t light_cycle_num;
+extern LightSSS lightsss;
 
 
 
@@ -287,9 +287,12 @@ extern "C" void paddr_write(int addr, int data, char wmask) {
         }
     }
     out_of_bound(addr);
-    #ifdef NPCCONFIG_DUMPWAVE
+    #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
 	dump_wave();
 	close_wave(4);
+    #ifdef NPCCONFIG_LIGHTSSS
+        lightsss.wakeup_child(light_cycle_num);
+    #endif
 	#endif
 }
 
