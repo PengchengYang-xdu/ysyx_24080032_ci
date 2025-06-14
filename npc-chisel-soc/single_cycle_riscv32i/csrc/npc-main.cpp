@@ -17,7 +17,9 @@ void sdb_mainloop();
 int main(int argc, char *argv[]) {
     get_time();
     init_monitor(argc, argv);
-    // init_wave("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build/ysyxsoc_father.fst");
+    #ifdef NPCCONFIG_DUMPWAVE
+    init_wave("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build/ysyxsoc_father.fst");
+    #endif
     Verilated::commandArgs(argc, argv);
     reset(10);
     sdb_mainloop();

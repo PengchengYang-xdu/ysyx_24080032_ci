@@ -156,7 +156,12 @@ void difftest_step() {
 	#endif
     #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
     #ifdef NPCCONFIG_LIGHTSSS
-        lightsss.wakeup_child(light_cycle_num);
+        if(lightsss.is_child()){
+            dump_wave();
+	        close_wave(2);
+        }else{
+            lightsss.wakeup_child(light_cycle_num);
+        }
     #else
         dump_wave();
 	    close_wave(2);
