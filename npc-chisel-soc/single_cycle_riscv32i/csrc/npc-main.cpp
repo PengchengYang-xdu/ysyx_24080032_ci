@@ -7,6 +7,8 @@ deigned by ypc
 #include <mem.h>
 #include <utils.h>
 
+#include <lightsss.h> // 确保路径正确
+
 extern LightSSS lightsss;
 
 void init_monitor(int, char *[]);
