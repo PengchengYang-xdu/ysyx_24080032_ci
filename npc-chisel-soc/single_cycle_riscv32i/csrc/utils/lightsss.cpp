@@ -41,13 +41,13 @@ ForkShareMemory::~ForkShareMemory() {
 void ForkShareMemory::shwait() {
   while (true) {
     if (info->flag) {
-      FORK_PRINTF("Child %d info->flag is true. notgood: %d\n", getpid(), info->notgood);
+      printf("Child %d info->flag is true. notgood: %d\n", getpid(), info->notgood);
       if (info->notgood)
         break;
       else
         exit(0);
     } else {
-      FORK_PRINTF("Child %d info->flag is false. is_p_dead: %d\n", getpid(), info->is_p_dead);
+      printf("Child %d info->flag is false. is_p_dead: %d\n", getpid(), info->is_p_dead);
       if(info->is_p_dead){
         exit(0);
       }else{
@@ -55,7 +55,7 @@ void ForkShareMemory::shwait() {
       }
     }
   }
-  FORK_PRINTF("Child %d exited shwait loop.\n", getpid());
+  printf("Child %d exited shwait loop.\n", getpid());
 }
 
 void LightSSS::signal_handler(int signum){
@@ -66,7 +66,7 @@ void LightSSS::signal_handler(int signum){
 void LightSSS::signal_handler_abort(int signum){
     if(p_pid != getpid()) return;
     if(pidSlot.empty()) return;
-    FORK_PRINTF("handler abort signum: %d, pidSlot size: %ld\n", signum, pidSlot.size());
+    printf("handler abort signum: %d, pidSlot size: %ld\n", signum, pidSlot.size());
     forkshm.info->endCycles = -1;
     forkshm.info->oldest = pidSlot.back();
 
@@ -117,7 +117,7 @@ int LightSSS::do_fork() {
   //checkpoint process wakes up
   //start wave dumping
   if (forkshm.info->oldest != getpid()) {
-    FORK_PRINTF("Error, non-oldest process should not live. Parent Process should kill the process manually.\n")
+    printf("Error, non-oldest process should not live. Parent Process should kill the process manually.\n")
     return FORK_ERROR;
   }
   return FORK_CHILD;
@@ -150,7 +150,7 @@ bool LightSSS::is_child() {
 }
 
 int LightSSS::do_clear() {
-  FORK_PRINTF("clear processes...\n")
+  printf("clear processes...\n")
   while (!pidSlot.empty()) {
     pid_t temp = pidSlot.back();
     pidSlot.pop_back();
