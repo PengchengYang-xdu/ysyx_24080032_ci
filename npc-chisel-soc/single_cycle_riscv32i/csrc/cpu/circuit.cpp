@@ -361,6 +361,7 @@ void single_cycle(){
     #ifdef NPCCONFIG_LIGHTSSS
         if(lightsss.is_child() && dump_flag){
             // init_wave("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/build/ysyxsoc_child.fst");
+            printf("im in\n");
             dump_wave();
             printf("dump wave 0\n");
         }
