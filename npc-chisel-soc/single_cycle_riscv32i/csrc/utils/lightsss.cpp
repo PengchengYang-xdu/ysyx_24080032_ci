@@ -117,7 +117,7 @@ int LightSSS::do_fork() {
   //checkpoint process wakes up
   //start wave dumping
   if (forkshm.info->oldest != getpid()) {
-    printf("Error, non-oldest process should not live. Parent Process should kill the process manually.\n")
+    printf("Error, non-oldest process should not live. Parent Process should kill the process manually.\n");
     return FORK_ERROR;
   }
   return FORK_CHILD;
@@ -150,7 +150,7 @@ bool LightSSS::is_child() {
 }
 
 int LightSSS::do_clear() {
-  printf("clear processes...\n")
+  printf("clear processes...\n");
   while (!pidSlot.empty()) {
     pid_t temp = pidSlot.back();
     pidSlot.pop_back();
