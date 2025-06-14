@@ -159,7 +159,6 @@ void difftest_step() {
         if(lightsss.is_child()){
             dump_wave();
 	        close_wave(2);
-            exit(-1);
         }else{
             lightsss.wakeup_child(light_cycle_num);
         }
