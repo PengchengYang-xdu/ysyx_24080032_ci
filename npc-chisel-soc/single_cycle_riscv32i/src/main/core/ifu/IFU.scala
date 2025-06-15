@@ -63,11 +63,12 @@ class IFU extends Module {
     io.imem.bready := false.B
 
 
+    val is_mret_rise = io.is_mret & ~RegNext(io.is_mret)
+
+
     val flag = RegInit(false.B)
     dontTouch(flag)
-    flag := Mux(io_hazard.flush_flg, true.B, Mux(io_pipe.in.ready & io_pipe.in.valid, false.B, flag))
-
-    val is_mret_rise = io.is_mret & ~RegNext(io.is_mret)
+    flag := Mux(io_hazard.flush_flg | is_mret_rise, true.B, Mux(io_pipe.in.ready & io_pipe.in.valid, false.B, flag))
 
 
     //delay
@@ -214,10 +215,10 @@ class IFU extends Module {
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
     pc_next := MuxCase(pc_plus4, Seq(
-        (io.br_flg && flag)          -> io.br_target,
-        (io.jmp_flg && flag)         -> io.alu_out,
-        (flag)                       -> io.csr_mtvec,
-        (io.is_mret)                 -> io.csr_mepc,
+        (io.br_flg && flag   )          -> io.br_target,
+        (io.jmp_flg && flag  )          -> io.alu_out,
+        (flag                )          -> io.csr_mtvec,
+        (io.is_mret && flag  )          -> io.csr_mepc,
     ))
     
     //connect
