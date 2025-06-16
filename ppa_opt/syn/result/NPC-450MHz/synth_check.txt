@@ -1,13 +1,16 @@
 
 30. Executing CHECK pass (checking for obvious problems).
 checking module CSR..
-Warning: Wire CSR.$abc$27101$and$./vsrc/CSR.sv:107$145_Y is used but has no driver.
-Warning: Wire CSR.$abc$27101$reduce_or$./vsrc/CSR.sv:103$142_Y is used but has no driver.
-Warning: Wire CSR.$auto$hilomap.cc:47:hilomap_worker$54463 is used but has no driver.
-Warning: Wire CSR.$auto$hilomap.cc:39:hilomap_worker$54461 is used but has no driver.
-Warning: Wire CSR.\csr_addr_process[2] is used but has no driver.
-Warning: Wire CSR.\csr_addr_process[1] is used but has no driver.
-Warning: Wire CSR.\csr_addr_process[0] is used but has no driver.
+Warning: Wire CSR.\_GEN is used but has no driver.
+Warning: Wire CSR.$abc$27572$and$./vsrc/CSR.sv:113$192_Y is used but has no driver.
+Warning: Wire CSR.$abc$27572$ternary$./vsrc/CSR.sv:112$185_Y[2] is used but has no driver.
+Warning: Wire CSR.$abc$27572$ternary$./vsrc/CSR.sv:112$185_Y[1] is used but has no driver.
+Warning: Wire CSR.$abc$27572$ternary$./vsrc/CSR.sv:112$185_Y[0] is used but has no driver.
+Warning: Wire CSR.$auto$hilomap.cc:47:hilomap_worker$55723 is used but has no driver.
+Warning: Wire CSR.$auto$hilomap.cc:39:hilomap_worker$55721 is used but has no driver.
+Warning: Wire CSR.$abc$27572$ternary$./vsrc/CSR.sv:81$176_Y[2] is used but has no driver.
+Warning: Wire CSR.$abc$27572$ternary$./vsrc/CSR.sv:81$176_Y[1] is used but has no driver.
+Warning: Wire CSR.$abc$27572$ternary$./vsrc/CSR.sv:81$176_Y[0] is used but has no driver.
 checking module Clint..
 Warning: Wire Clint.\axi4_wready is used but has no driver.
 Warning: Wire Clint.\axi4_rvalid is used but has no driver.
@@ -60,8 +63,8 @@ Warning: Wire Clint.\axi4_bid [0] is used but has no driver.
 Warning: Wire Clint.\axi4_awready is used but has no driver.
 Warning: Wire Clint.\axi4_arready is used but has no driver.
 checking module Core..
-Warning: Wire Core.$auto$hilomap.cc:39:hilomap_worker$54469 is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_valid_r is used but has no driver.
+Warning: Wire Core.$auto$hilomap.cc:39:hilomap_worker$55729 is used but has no driver.
+Warning: Wire Core.\_GEN is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_wb_data[31] is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_wb_data[30] is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_wb_data[29] is used but has no driver.
@@ -101,38 +104,11 @@ Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_wb_addr[1] is used but has no dr
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_wb_addr[0] is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_rf_wen[1] is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_rf_wen[0] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[31] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[30] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[29] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[28] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[27] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[26] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[25] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[24] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[23] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[22] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[21] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[20] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[19] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[18] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[17] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[16] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[15] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[14] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[13] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[12] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[11] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[10] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[9] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[8] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[7] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[6] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[5] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[4] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[3] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[2] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[1] is used but has no driver.
-Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[0] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_is_irq is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_irq_num[3] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_irq_num[2] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_irq_num[1] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_irq_num[0] is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_csr_wdata[31] is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_csr_wdata[30] is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_csr_wdata[29] is used but has no driver.
@@ -180,7 +156,7 @@ Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_csr_addr[3] is used but has no d
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_csr_addr[2] is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_csr_addr[1] is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_csr_addr[0] is used but has no driver.
-Warning: Wire Core.\lsu_io_pipe_in_valid_r is used but has no driver.
+Warning: Wire Core.\_GEN_0 is used but has no driver.
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_wb_sel[2] is used but has no driver.
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_wb_sel[1] is used but has no driver.
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_wb_sel[0] is used but has no driver.
@@ -292,6 +268,43 @@ Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_mem_wen[0] is used but has no d
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_mem_op[2] is used but has no driver.
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_mem_op[1] is used but has no driver.
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_mem_op[0] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_is_irq is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_irq_num[3] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_irq_num[2] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_irq_num[1] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_irq_num[0] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[31] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[30] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[29] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[28] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[27] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[26] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[25] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[24] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[23] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[22] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[21] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[20] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[19] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[18] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[17] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[16] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[15] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[14] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[13] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[12] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[11] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[10] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[9] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[8] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[7] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[6] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[5] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[4] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[3] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[2] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[1] is used but has no driver.
+Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_rdata[0] is used but has no driver.
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_cmd[2] is used but has no driver.
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_cmd[1] is used but has no driver.
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_csr_cmd[0] is used but has no driver.
@@ -339,9 +352,9 @@ Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_alu_out[3] is used but has no d
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_alu_out[2] is used but has no driver.
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_alu_out[1] is used but has no driver.
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_alu_out[0] is used but has no driver.
-Warning: Wire Core.$abc$27544$and$./vsrc/Core.sv:463$661_Y is used but has no driver.
-Warning: Wire Core.\is_ctrl_hazard is used but has no driver.
-Warning: Wire Core.\_GEN_0 is used but has no driver.
+Warning: Wire Core.\_GEN_2 is used but has no driver.
+Warning: Wire Core.\_exu_io_hazard_flush_flg_T is used but has no driver.
+Warning: Wire Core.\_GEN_3 is used but has no driver.
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_reg_pc[31] is used but has no driver.
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_reg_pc[30] is used but has no driver.
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_reg_pc[29] is used but has no driver.
@@ -406,8 +419,8 @@ Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[3] is used but has no drive
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[2] is used but has no driver.
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[1] is used but has no driver.
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[0] is used but has no driver.
-Warning: Wire Core.$abc$27544$or$./vsrc/Core.sv:502$663_Y is used but has no driver.
-Warning: Wire Core.\_GEN is used but has no driver.
+Warning: Wire Core.$abc$28051$or$./vsrc/Core.sv:569$727_Y is used but has no driver.
+Warning: Wire Core.\_GEN_1 is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_wb_sel[2] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_wb_sel[1] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_wb_sel[0] is used but has no driver.
@@ -551,6 +564,11 @@ Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_mem_wen[0] is used but has no d
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_mem_op[2] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_mem_op[1] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_mem_op[0] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_is_irq is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_irq_num[3] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_irq_num[2] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_irq_num[1] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_irq_num[0] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_imm_b_sext[31] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_imm_b_sext[30] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_imm_b_sext[29] is used but has no driver.
@@ -588,6 +606,38 @@ Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_exe_fun[3] is used but has no d
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_exe_fun[2] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_exe_fun[1] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_exe_fun[0] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[31] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[30] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[29] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[28] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[27] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[26] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[25] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[24] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[23] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[22] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[21] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[20] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[19] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[18] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[17] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[16] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[15] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[14] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[13] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[12] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[11] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[10] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[9] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[8] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[7] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[6] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[5] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[4] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[3] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[2] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[1] is used but has no driver.
+Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_rdata[0] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_cmd[2] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_cmd[1] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_cmd[0] is used but has no driver.
@@ -603,6 +653,39 @@ Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_addr[3] is used but has no 
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_addr[2] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_addr[1] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_csr_addr[0] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[31] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[30] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[29] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[28] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[27] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[26] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[25] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[24] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[23] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[22] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[21] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[20] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[19] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[18] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[17] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[16] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[15] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[14] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[13] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[12] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[11] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[10] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[9] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[8] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[7] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[6] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[5] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[4] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[3] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[2] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[1] is used but has no driver.
+Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_reg_pc[0] is used but has no driver.
+Warning: Wire Core.\is_irq is used but has no driver.
 checking module EXU..
 Warning: Wire EXU.\io_pipe_out_valid is used but has no driver.
 Warning: Wire EXU.\io_pipe_out_bits_exe2ls_wb_sel [2] is used but has no driver.
@@ -716,6 +799,43 @@ Warning: Wire EXU.\io_pipe_out_bits_exe2ls_mem_wen [0] is used but has no driver
 Warning: Wire EXU.\io_pipe_out_bits_exe2ls_mem_op [2] is used but has no driver.
 Warning: Wire EXU.\io_pipe_out_bits_exe2ls_mem_op [1] is used but has no driver.
 Warning: Wire EXU.\io_pipe_out_bits_exe2ls_mem_op [0] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_is_irq is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_irq_num [3] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_irq_num [2] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_irq_num [1] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_irq_num [0] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [31] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [30] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [29] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [28] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [27] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [26] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [25] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [24] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [23] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [22] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [21] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [20] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [19] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [18] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [17] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [16] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [15] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [14] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [13] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [12] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [11] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [10] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [9] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [8] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [7] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [6] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [5] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [4] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [3] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [2] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [1] is used but has no driver.
+Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_rdata [0] is used but has no driver.
 Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_cmd [2] is used but has no driver.
 Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_cmd [1] is used but has no driver.
 Warning: Wire EXU.\io_pipe_out_bits_exe2ls_csr_cmd [0] is used but has no driver.
@@ -895,8 +1015,8 @@ Warning: Wire GPR.\io_gpr_rs1_data [3] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [2] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [1] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [0] is used but has no driver.
-Warning: Wire GPR.$abc$30005$and$./vsrc/GPR.sv:81$150_Y is used but has no driver.
-Warning: Wire GPR.$auto$hilomap.cc:39:hilomap_worker$54471 is used but has no driver.
+Warning: Wire GPR.$abc$30528$and$./vsrc/GPR.sv:81$197_Y is used but has no driver.
+Warning: Wire GPR.$auto$hilomap.cc:39:hilomap_worker$55731 is used but has no driver.
 checking module IDU..
 Warning: Wire IDU.\io_pipe_out_valid is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_wb_sel [2] is used but has no driver.
@@ -1042,6 +1162,11 @@ Warning: Wire IDU.\io_pipe_out_bits_id2exe_mem_wen [0] is used but has no driver
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_mem_op [2] is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_mem_op [1] is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_mem_op [0] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_is_irq is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_irq_num [3] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_irq_num [2] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_irq_num [1] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_irq_num [0] is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_imm_b_sext [31] is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_imm_b_sext [30] is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_imm_b_sext [29] is used but has no driver.
@@ -1079,6 +1204,38 @@ Warning: Wire IDU.\io_pipe_out_bits_id2exe_exe_fun [3] is used but has no driver
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_exe_fun [2] is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_exe_fun [1] is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_exe_fun [0] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [31] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [30] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [29] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [28] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [27] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [26] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [25] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [24] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [23] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [22] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [21] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [20] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [19] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [18] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [17] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [16] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [15] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [14] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [13] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [12] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [11] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [10] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [9] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [8] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [7] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [6] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [5] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [4] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [3] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [2] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [1] is used but has no driver.
+Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_rdata [0] is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_cmd [2] is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_cmd [1] is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_cmd [0] is used but has no driver.
@@ -1095,6 +1252,7 @@ Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_addr [2] is used but has no drive
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_addr [1] is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_csr_addr [0] is used but has no driver.
 Warning: Wire IDU.\io_pipe_in_ready is used but has no driver.
+Warning: Wire IDU.\io_is_mret is used but has no driver.
 Warning: Wire IDU.\io_gpr_rs2_is_read is used but has no driver.
 Warning: Wire IDU.\io_gpr_rs2_addr [4] is used but has no driver.
 Warning: Wire IDU.\io_gpr_rs2_addr [3] is used but has no driver.
@@ -1107,6 +1265,18 @@ Warning: Wire IDU.\io_gpr_rs1_addr [3] is used but has no driver.
 Warning: Wire IDU.\io_gpr_rs1_addr [2] is used but has no driver.
 Warning: Wire IDU.\io_gpr_rs1_addr [1] is used but has no driver.
 Warning: Wire IDU.\io_gpr_rs1_addr [0] is used but has no driver.
+Warning: Wire IDU.\io_csr_raddr [11] is used but has no driver.
+Warning: Wire IDU.\io_csr_raddr [10] is used but has no driver.
+Warning: Wire IDU.\io_csr_raddr [9] is used but has no driver.
+Warning: Wire IDU.\io_csr_raddr [8] is used but has no driver.
+Warning: Wire IDU.\io_csr_raddr [7] is used but has no driver.
+Warning: Wire IDU.\io_csr_raddr [6] is used but has no driver.
+Warning: Wire IDU.\io_csr_raddr [5] is used but has no driver.
+Warning: Wire IDU.\io_csr_raddr [4] is used but has no driver.
+Warning: Wire IDU.\io_csr_raddr [3] is used but has no driver.
+Warning: Wire IDU.\io_csr_raddr [2] is used but has no driver.
+Warning: Wire IDU.\io_csr_raddr [1] is used but has no driver.
+Warning: Wire IDU.\io_csr_raddr [0] is used but has no driver.
 Warning: Wire IDU.\fencei_io_vr_is_fencei_io_valid is used but has no driver.
 Warning: Wire IDU.\fencei_io_vr_is_fencei_io_bits_is_fencei is used but has no driver.
 checking module IFU..
@@ -1210,38 +1380,6 @@ Warning: Wire IFU.\io_imem_araddr [3] is used but has no driver.
 Warning: Wire IFU.\io_imem_araddr [2] is used but has no driver.
 Warning: Wire IFU.\io_imem_araddr [1] is used but has no driver.
 Warning: Wire IFU.\io_imem_araddr [0] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [31] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [30] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [29] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [28] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [27] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [26] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [25] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [24] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [23] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [22] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [21] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [20] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [19] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [18] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [17] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [16] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [15] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [14] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [13] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [12] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [11] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [10] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [9] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [8] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [7] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [6] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [5] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [4] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [3] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [2] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [1] is used but has no driver.
-Warning: Wire IFU.\io_csr_reg_pc [0] is used but has no driver.
 checking module LSU..
 Warning: Wire LSU.\io_pipe_out_valid is used but has no driver.
 Warning: Wire LSU.\io_pipe_out_bits_ls2wb_wb_data [31] is used but has no driver.
@@ -1315,6 +1453,11 @@ Warning: Wire LSU.\io_pipe_out_bits_ls2wb_reg_pc [3] is used but has no driver.
 Warning: Wire LSU.\io_pipe_out_bits_ls2wb_reg_pc [2] is used but has no driver.
 Warning: Wire LSU.\io_pipe_out_bits_ls2wb_reg_pc [1] is used but has no driver.
 Warning: Wire LSU.\io_pipe_out_bits_ls2wb_reg_pc [0] is used but has no driver.
+Warning: Wire LSU.\io_pipe_out_bits_ls2wb_is_irq is used but has no driver.
+Warning: Wire LSU.\io_pipe_out_bits_ls2wb_irq_num [3] is used but has no driver.
+Warning: Wire LSU.\io_pipe_out_bits_ls2wb_irq_num [2] is used but has no driver.
+Warning: Wire LSU.\io_pipe_out_bits_ls2wb_irq_num [1] is used but has no driver.
+Warning: Wire LSU.\io_pipe_out_bits_ls2wb_irq_num [0] is used but has no driver.
 Warning: Wire LSU.\io_pipe_out_bits_ls2wb_csr_wdata [31] is used but has no driver.
 Warning: Wire LSU.\io_pipe_out_bits_ls2wb_csr_wdata [30] is used but has no driver.
 Warning: Wire LSU.\io_pipe_out_bits_ls2wb_csr_wdata [29] is used but has no driver.
@@ -1525,11 +1668,17 @@ Warning: Wire NPC.\io_slave_bid [1] is used but has no driver.
 Warning: Wire NPC.\io_slave_bid [0] is used but has no driver.
 Warning: Wire NPC.\io_slave_awready is used but has no driver.
 Warning: Wire NPC.\io_slave_arready is used but has no driver.
-Warning: Wire NPC.$auto$hilomap.cc:39:hilomap_worker$54479 is used but has no driver.
-Warning: Wire NPC.$auto$hilomap.cc:47:hilomap_worker$54477 is used but has no driver.
+Warning: Wire NPC.$auto$hilomap.cc:39:hilomap_worker$55739 is used but has no driver.
+Warning: Wire NPC.$auto$hilomap.cc:47:hilomap_worker$55737 is used but has no driver.
 checking module WBU..
 Warning: Wire WBU.\io_pipe_out_valid is used but has no driver.
 Warning: Wire WBU.\io_pipe_in_ready is used but has no driver.
+Warning: Wire WBU.\io_is_irq is used but has no driver.
+Warning: Wire WBU.\io_irq_valid is used but has no driver.
+Warning: Wire WBU.\io_irq_num [3] is used but has no driver.
+Warning: Wire WBU.\io_irq_num [2] is used but has no driver.
+Warning: Wire WBU.\io_irq_num [1] is used but has no driver.
+Warning: Wire WBU.\io_irq_num [0] is used but has no driver.
 Warning: Wire WBU.\io_gpr_wen [1] is used but has no driver.
 Warning: Wire WBU.\io_gpr_wen [0] is used but has no driver.
 Warning: Wire WBU.\io_gpr_wdata [31] is used but has no driver.
@@ -1793,6 +1942,8 @@ Warning: Wire Xbar.\io_imem_rdata [0] is used but has no driver.
 Warning: Wire Xbar.\io_imem_arready is used but has no driver.
 Warning: Wire Xbar.\io_dmem_wready is used but has no driver.
 Warning: Wire Xbar.\io_dmem_rvalid is used but has no driver.
+Warning: Wire Xbar.\io_dmem_rresp [1] is used but has no driver.
+Warning: Wire Xbar.\io_dmem_rresp [0] is used but has no driver.
 Warning: Wire Xbar.\io_dmem_rdata [31] is used but has no driver.
 Warning: Wire Xbar.\io_dmem_rdata [30] is used but has no driver.
 Warning: Wire Xbar.\io_dmem_rdata [29] is used but has no driver.
@@ -1826,6 +1977,8 @@ Warning: Wire Xbar.\io_dmem_rdata [2] is used but has no driver.
 Warning: Wire Xbar.\io_dmem_rdata [1] is used but has no driver.
 Warning: Wire Xbar.\io_dmem_rdata [0] is used but has no driver.
 Warning: Wire Xbar.\io_dmem_bvalid is used but has no driver.
+Warning: Wire Xbar.\io_dmem_bresp [1] is used but has no driver.
+Warning: Wire Xbar.\io_dmem_bresp [0] is used but has no driver.
 Warning: Wire Xbar.\io_dmem_awready is used but has no driver.
 Warning: Wire Xbar.\io_dmem_arready is used but has no driver.
 Warning: Wire Xbar.\io_clint_wvalid is used but has no driver.
@@ -2277,4 +2430,4 @@ Warning: Wire iCache.\io_in_rdata [1] is used but has no driver.
 Warning: Wire iCache.\io_in_rdata [0] is used but has no driver.
 Warning: Wire iCache.\io_in_arready is used but has no driver.
 Warning: Wire iCache.\fencei_io_vr_is_fencei_io_ready is used but has no driver.
-found and reported 2263 problems.
+found and reported 2416 problems.

@@ -39,6 +39,7 @@ VM_USER_CFLAGS = \
 	-I/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/nvboard/usr/include \
 	-DTOP_NAME="VysyxSoCFull" \
 	-DNPCCONFIG_DIFFTEST \
+	-DNPCCONFIG_LIGHTSSS \
 
 # User LDLIBS (from -LDFLAGS on Verilator command line)
 VM_USER_LDLIBS = \
@@ -68,6 +69,7 @@ VM_USER_CLASSES = \
 	disasm \
 	ftrace \
 	itrace \
+	lightsss \
 	log \
 	mtrace \
 	timer \
@@ -117,6 +119,8 @@ disasm.o: /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cyc
 ftrace.o: /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/csrc/utils/ftrace.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 itrace.o: /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/csrc/utils/itrace.cpp
+	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
+lightsss.o: /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/csrc/utils/lightsss.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
 log.o: /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/csrc/utils/log.cpp
 	$(OBJCACHE) $(CXX) $(CXXFLAGS) $(CPPFLAGS) $(OPT_FAST) -c -o $@ $<
