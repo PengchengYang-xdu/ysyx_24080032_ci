@@ -6,8 +6,8 @@ Warning: Wire CSR.$abc$27572$and$./vsrc/CSR.sv:113$192_Y is used but has no driv
 Warning: Wire CSR.$abc$27572$ternary$./vsrc/CSR.sv:112$185_Y[2] is used but has no driver.
 Warning: Wire CSR.$abc$27572$ternary$./vsrc/CSR.sv:112$185_Y[1] is used but has no driver.
 Warning: Wire CSR.$abc$27572$ternary$./vsrc/CSR.sv:112$185_Y[0] is used but has no driver.
-Warning: Wire CSR.$auto$hilomap.cc:47:hilomap_worker$55723 is used but has no driver.
-Warning: Wire CSR.$auto$hilomap.cc:39:hilomap_worker$55721 is used but has no driver.
+Warning: Wire CSR.$auto$hilomap.cc:47:hilomap_worker$57442 is used but has no driver.
+Warning: Wire CSR.$auto$hilomap.cc:39:hilomap_worker$57440 is used but has no driver.
 Warning: Wire CSR.$abc$27572$ternary$./vsrc/CSR.sv:81$176_Y[2] is used but has no driver.
 Warning: Wire CSR.$abc$27572$ternary$./vsrc/CSR.sv:81$176_Y[1] is used but has no driver.
 Warning: Wire CSR.$abc$27572$ternary$./vsrc/CSR.sv:81$176_Y[0] is used but has no driver.
@@ -63,7 +63,7 @@ Warning: Wire Clint.\axi4_bid [0] is used but has no driver.
 Warning: Wire Clint.\axi4_awready is used but has no driver.
 Warning: Wire Clint.\axi4_arready is used but has no driver.
 checking module Core..
-Warning: Wire Core.$auto$hilomap.cc:39:hilomap_worker$55729 is used but has no driver.
+Warning: Wire Core.$auto$hilomap.cc:39:hilomap_worker$57448 is used but has no driver.
 Warning: Wire Core.\_GEN is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_wb_data[31] is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_wb_data[30] is used but has no driver.
@@ -1016,7 +1016,7 @@ Warning: Wire GPR.\io_gpr_rs1_data [2] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [1] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [0] is used but has no driver.
 Warning: Wire GPR.$abc$30528$and$./vsrc/GPR.sv:81$197_Y is used but has no driver.
-Warning: Wire GPR.$auto$hilomap.cc:39:hilomap_worker$55731 is used but has no driver.
+Warning: Wire GPR.$auto$hilomap.cc:39:hilomap_worker$57450 is used but has no driver.
 checking module IDU..
 Warning: Wire IDU.\io_pipe_out_valid is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_wb_sel [2] is used but has no driver.
@@ -1668,8 +1668,8 @@ Warning: Wire NPC.\io_slave_bid [1] is used but has no driver.
 Warning: Wire NPC.\io_slave_bid [0] is used but has no driver.
 Warning: Wire NPC.\io_slave_awready is used but has no driver.
 Warning: Wire NPC.\io_slave_arready is used but has no driver.
-Warning: Wire NPC.$auto$hilomap.cc:39:hilomap_worker$55739 is used but has no driver.
-Warning: Wire NPC.$auto$hilomap.cc:47:hilomap_worker$55737 is used but has no driver.
+Warning: Wire NPC.$auto$hilomap.cc:39:hilomap_worker$57458 is used but has no driver.
+Warning: Wire NPC.$auto$hilomap.cc:47:hilomap_worker$57456 is used but has no driver.
 checking module WBU..
 Warning: Wire WBU.\io_pipe_out_valid is used but has no driver.
 Warning: Wire WBU.\io_pipe_in_ready is used but has no driver.
