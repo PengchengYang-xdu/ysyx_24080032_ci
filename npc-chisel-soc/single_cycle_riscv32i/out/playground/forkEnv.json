@@ -44,7 +44,7 @@
         "MODULESHOME": "/usr/share/modules",
         "VSCODE_GIT_ASKPASS_MAIN": "/home/yangpengcheng/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js",
         "XDG_SESSION_ID": "244",
-        "ALL": "string",
+        "ALL": "dummy",
         "LC_TIME": "zh_CN.UTF-8",
         "CONDA_EXE": "/home/yangpengcheng/miniconda3/bin/conda",
         "VNCDESKTOP": "ubuntu-4029:2 (yangpengcheng)",
@@ -58,7 +58,7 @@
         "LM_LICENSE_FILE": "/home/yangpengcheng/license.dat",
         "SSH_AGENT_PID": "2920363",
         "LC_ADDRESS": "zh_CN.UTF-8",
-        "MAKEFLAGS": "s -- ALL=string ARCH=riscv32e-ysyxsoc",
+        "MAKEFLAGS": "s -- ALL=dummy ARCH=riscv32e-ysyxsoc",
         "CUDA_HOME": "/usr/local/cuda-12.4",
         "CC": "riscv64-linux-gnu-gcc",
         "USER": "yangpengcheng",
@@ -106,6 +106,6 @@
         "MODEL_TECH": "/home/yangpengcheng/questasim/bin",
         "DESKTOP_SESSION": "xfce"
     },
-    "valueHash": -1303747344,
-    "inputsHash": 695757028
+    "valueHash": 1943757693,
+    "inputsHash": -427434489
 }
