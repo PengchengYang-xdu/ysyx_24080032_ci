@@ -7,18 +7,6 @@ import npc.common.Config._
 import npc.common.Instructions._
 import npc.bus.axi._
 
-trait ReplacementPolicy extends Bundle
-
-class LRU(val ways: Int) extends ReplacementPolicy {
-  val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
-}
-class FIFO(val ways_width: Int) extends ReplacementPolicy {
-  val fifoPtr = UInt(ways_width.W)
-}
-class RANDOM extends ReplacementPolicy {
-  // maybe nothing needed
-}
-
 class iCacheIO extends Bundle {
     val in = new AXI4WithoutClk
     val out = Flipped(new AXI4WithoutClk)
@@ -32,10 +20,10 @@ class iCacheBlock(val m: Int, val n: Int) extends Bundle{
 
 class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int, val replacementPolicy: String) extends Bundle{
     val set = Vec(ways, new iCacheBlock(m, n))
-    val repl = replacementPolicy match {
-        case "LRU"    => new LRU(ways)
-        case "FIFO"   => new FIFO(ways_width)
-        case "RANDOM" => new RANDOM
+    replacementPolicy match {
+        case "LRU"    => val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
+        case "FIFO"   => val fifoPtr = UInt(ways_width.W)
+        case "RANDOM" => 
     }
 }
 
@@ -271,7 +259,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             if(replacementPolicy == "LRU"){
                 updateLRU(icache(req_index), emptyIndex)
             } else if(replacementPolicy == "FIFO"){
-                icache(req_index).repl := (emptyIndex + 1.U) % ways.U
+                icache(req_index).fifoPtr := (emptyIndex + 1.U) % ways.U
             }
         } .otherwise{
             // 如果没有空闲块，替换逻辑
@@ -284,12 +272,12 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
                     //替换的时候更新LRU矩阵
                     updateLRU(icache(req_index), lruIndex)
                 case "FIFO" =>
-                    val fifoIndex = icache(req_index).repl
+                    val fifoIndex = icache(req_index).fifoPtr
                     set(fifoIndex).valid := true.B
                     set(fifoIndex).tag := req_tag
                     set(fifoIndex).data := icache_wdata
                     //替换的时候更新FIFO指针
-                    icache(req_index).repl := (fifoIndex + 1.U) % ways.U
+                    icache(req_index).fifoPtr := (fifoIndex + 1.U) % ways.U
                 case "RANDOM" =>
                     val randomIndex = scala.util.Random.nextInt(ways)
                     set(randomIndex).valid := true.B
@@ -380,7 +368,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     }
 
    def updateLRU(set: iCacheSet, ways_hit_num: UInt): Unit = {
-       val lruMatrix = set.repl
+       val lruMatrix = set.lruMatrix
        for(j <- 0 until ways) {
            when(j.U =/= ways_hit_num){
                lruMatrix(ways_hit_num)(j) := 1.U
@@ -394,7 +382,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
    def getLRUIndex(set: iCacheSet, ways_width: Int): UInt = {
        val LRUIndex = Wire(UInt(ways_width.W))
        LRUIndex := 0.U
-       val lruMatrix = set.repl
+       val lruMatrix = set.lruMatrix
        for(i <- 0 until ways){
             val isZeroRow = (0 until ways).map(j => lruMatrix(i)(j) === 0.U).reduce(_ && _)
             when(isZeroRow){
