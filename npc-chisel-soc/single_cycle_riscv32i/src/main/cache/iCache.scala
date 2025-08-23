@@ -7,6 +7,17 @@ import npc.common.Config._
 import npc.common.Instructions._
 import npc.bus.axi._
 
+trait ReplacementPolicy extends Bundle
+class LRU(val ways: Int) extends ReplacementPolicy {
+  val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
+}
+class FIFO(val ways_width: Int) extends ReplacementPolicy {
+  val fifoPtr = UInt(ways_width.W)
+}
+class RANDOM extends ReplacementPolicy {
+  // maybe nothing needed
+}
+
 class iCacheIO extends Bundle {
     val in = new AXI4WithoutClk
     val out = Flipped(new AXI4WithoutClk)
@@ -20,8 +31,11 @@ class iCacheBlock(val m: Int, val n: Int) extends Bundle{
 
 class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int) extends Bundle{
     val set = Vec(ways, new iCacheBlock(m, n))
-    val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
-    val fifoPtr = UInt(ways_width.W)
+    val repl = policy match {
+    case "LRU"    => new LRU(ways)
+    case "FIFO"   => new FIFO(ways_width)
+    case "RANDOM" => new RANDOM
+  }
 }
 
 class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementPolicy: String) extends Module{
