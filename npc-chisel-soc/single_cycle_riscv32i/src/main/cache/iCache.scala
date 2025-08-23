@@ -18,7 +18,7 @@ class iCacheBlock(val m: Int, val n: Int) extends Bundle{
     val data = Vec((2 << (m - 1)) / 4, UInt(WORD_LEN.W))
 }
 
-class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int, val replacementPolicy: String) extends Bundle{
+class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int) extends Bundle{
     val set = Vec(ways, new iCacheBlock(m, n))
     lazy val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
     lazy val fifoPtr = UInt(ways_width.W)
