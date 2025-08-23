@@ -56,7 +56,7 @@ class Core extends Module {
 
 
 
-    val icache = Module(new iCache(16, 4, 8, "FIFO"))
+    val icache = Module(new iCache(16, 4, 8, "LRU"))
     io.imem <> icache.io.out
     icache.io.in <> ifu.io.imem
 
