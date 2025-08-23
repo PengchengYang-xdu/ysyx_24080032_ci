@@ -18,10 +18,13 @@ class iCacheBlock(val m: Int, val n: Int) extends Bundle{
     val data = Vec((2 << (m - 1)) / 4, UInt(WORD_LEN.W))
 }
 
-class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int) extends Bundle{
+class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int, val replacementPolicy: String) extends Bundle{
     val set = Vec(ways, new iCacheBlock(m, n))
-    lazy val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
-    lazy val fifoPtr = UInt(ways_width.W)
+    if(replacementPolicy == "LRU"){
+        val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
+    } else if(replacementPolicy == "FIFO"){
+        val fifoPtr = UInt(ways_width.W)
+    }
 }
 
 class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementPolicy: String) extends Module{
@@ -113,7 +116,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     dontTouch(req_tag)
     dontTouch(addr_align)
 
-    val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways, ways_width)))))
+    val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways, ways_width, replacementPolicy)))))
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
@@ -168,7 +171,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     }
     fencei_io_vr.is_fencei_io.ready := fencei_fsh
     when(is_fencei){
-        icache(fencei_counter) := 0.U.asTypeOf(new iCacheSet(m, n, ways, ways_width))
+        icache(fencei_counter) := 0.U.asTypeOf(new iCacheSet(m, n, ways, ways_width, replacementPolicy))
     }
 
     switch(n_state){//third phase
