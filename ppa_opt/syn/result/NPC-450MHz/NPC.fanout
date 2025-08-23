@@ -1,11 +1,11 @@
-Generate the report at 2025-08-23T17:59:46, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-08-23T18:07:23, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 +---------------------------+-----------+--------+-------------+-------------+------+
 | Net / Pin                 | MaxFanout | Fanout | FanoutSlack | LibCellPort | Note |
 +---------------------------+-----------+--------+-------------+-------------+------+
 | fanout_net_94             |           |        |             |             |      |
 | fanout_buf_94:Z           | NA        | 30     | NA          | BUF_X8/Z    |      |
-| clint/_0099_              |           |        |             |             |      |
-| clint/_1442_:Z            | NA        | 1      | NA          | BUF_X1/Z    |      |
-| core/gpr/gpr_ext/_0468_   |           |        |             |             |      |
-| core/gpr/gpr_ext/_5539_:Z | NA        | 1      | NA          | BUF_X1/Z    |      |
+| core/gpr/gpr_ext/_0213_   |           |        |             |             |      |
+| core/gpr/gpr_ext/_5493_:Z | NA        | 1      | NA          | BUF_X1/Z    |      |
+| core/csr/csr_ext/_1901_   |           |        |             |             |      |
+| core/csr/csr_ext/_4143_:Z | NA        | 10     | NA          | CLKBUF_X3/Z |      |
 +---------------------------+-----------+--------+-------------+-------------+------+
