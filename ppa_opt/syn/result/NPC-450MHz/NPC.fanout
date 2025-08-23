@@ -1,11 +1,11 @@
-Generate the report at 2025-08-23T18:21:54, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-08-23T18:26:47, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 +------------------------+-----------+--------+-------------+--------------+------+
 | Net / Pin              | MaxFanout | Fanout | FanoutSlack | LibCellPort  | Note |
 +------------------------+-----------+--------+-------------+--------------+------+
-| fanout_net_312         |           |        |             |              |      |
-| fanout_buf_312:Z       | NA        | 30     | NA          | BUF_X8/Z     |      |
-| core/icache/_28866_    |           |        |             |              |      |
-| core/icache/_59945_:ZN | NA        | 1      | NA          | OAI211_X2/ZN |      |
-| core/_2782_            |           |        |             |              |      |
-| core/_4522_:ZN         | NA        | 4      | NA          | INV_X1/ZN    |      |
+| fanout_net_307         |           |        |             |              |      |
+| fanout_buf_307:Z       | NA        | 30     | NA          | BUF_X8/Z     |      |
+| core/icache/_20097_    |           |        |             |              |      |
+| core/icache/_50327_:ZN | NA        | 3      | NA          | AND3_X4/ZN   |      |
+| core/icache/_32136_    |           |        |             |              |      |
+| core/icache/_64203_:ZN | NA        | 1      | NA          | AOI211_X4/ZN |      |
 +------------------------+-----------+--------+-------------+--------------+------+
