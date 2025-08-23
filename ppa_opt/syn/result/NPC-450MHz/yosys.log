@@ -4745,16 +4745,16 @@ Optimizing module iCache.
 
 24. Executing ABC pass (technology mapping using ABC).
 
-24.1. Extracting gate netlist of module `\CSR' to `/tmp/yosys-abc-4LCBCT/input.blif'..
+24.1. Extracting gate netlist of module `\CSR' to `/tmp/yosys-abc-ckWVk1/input.blif'..
 Extracted 77 gates and 105 wires to a netlist network with 28 inputs and 8 outputs.
 
 24.1.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-4LCBCT/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-4LCBCT/abc.script".
+Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-ckWVk1/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-ckWVk1/abc.script".
 ABC: 
-ABC: + read_blif /tmp/yosys-abc-4LCBCT/input.blif 
+ABC: + read_blif /tmp/yosys-abc-ckWVk1/input.blif 
 ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
-ABC: Parsing finished successfully.  Parsing time =     0.08 sec
+ABC: Parsing finished successfully.  Parsing time =     0.07 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_2048x39" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x34" without logic function.
@@ -4823,7 +4823,7 @@ ABC: + dnsize
 ABC: + buffer -p 
 ABC: + upsize 
 ABC: + 
-ABC: + write_blif /tmp/yosys-abc-4LCBCT/output.blif 
+ABC: + write_blif /tmp/yosys-abc-ckWVk1/output.blif 
 
 24.1.2. Re-integrating ABC results.
 ABC RESULTS:           AND2_X1 cells:        4
@@ -4851,14 +4851,14 @@ ABC RESULTS:           input signals:       28
 ABC RESULTS:          output signals:        8
 Removing temp directory.
 
-24.2. Extracting gate netlist of module `\Clint' to `/tmp/yosys-abc-fe6o2c/input.blif'..
+24.2. Extracting gate netlist of module `\Clint' to `/tmp/yosys-abc-xRJ9zT/input.blif'..
 Extracted 403 gates and 559 wires to a netlist network with 156 inputs and 121 outputs.
 
 24.2.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-fe6o2c/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-fe6o2c/abc.script".
+Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-xRJ9zT/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-xRJ9zT/abc.script".
 ABC: 
-ABC: + read_blif /tmp/yosys-abc-fe6o2c/input.blif 
+ABC: + read_blif /tmp/yosys-abc-xRJ9zT/input.blif 
 ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
 ABC: Parsing finished successfully.  Parsing time =     0.08 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
@@ -4929,7 +4929,7 @@ ABC: + dnsize
 ABC: + buffer -p 
 ABC: + upsize 
 ABC: + 
-ABC: + write_blif /tmp/yosys-abc-fe6o2c/output.blif 
+ABC: + write_blif /tmp/yosys-abc-xRJ9zT/output.blif 
 
 24.2.2. Re-integrating ABC results.
 ABC RESULTS:           AND2_X1 cells:       38
@@ -4961,14 +4961,14 @@ ABC RESULTS:           input signals:      156
 ABC RESULTS:          output signals:      121
 Removing temp directory.
 
-24.3. Extracting gate netlist of module `\Core' to `/tmp/yosys-abc-Yn7ycn/input.blif'..
+24.3. Extracting gate netlist of module `\Core' to `/tmp/yosys-abc-AiHiHL/input.blif'..
 Extracted 929 gates and 2274 wires to a netlist network with 1345 inputs and 642 outputs.
 
 24.3.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-Yn7ycn/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-Yn7ycn/abc.script".
+Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-AiHiHL/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-AiHiHL/abc.script".
 ABC: 
-ABC: + read_blif /tmp/yosys-abc-Yn7ycn/input.blif 
+ABC: + read_blif /tmp/yosys-abc-AiHiHL/input.blif 
 ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
 ABC: Parsing finished successfully.  Parsing time =     0.08 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
@@ -5039,7 +5039,7 @@ ABC: + dnsize
 ABC: + buffer -p 
 ABC: + upsize 
 ABC: + 
-ABC: + write_blif /tmp/yosys-abc-Yn7ycn/output.blif 
+ABC: + write_blif /tmp/yosys-abc-AiHiHL/output.blif 
 
 24.3.2. Re-integrating ABC results.
 ABC RESULTS:           AND2_X1 cells:        5
@@ -5089,16 +5089,16 @@ ABC RESULTS:           input signals:     1345
 ABC RESULTS:          output signals:      642
 Removing temp directory.
 
-24.4. Extracting gate netlist of module `\EXU' to `/tmp/yosys-abc-q9LWZX/input.blif'..
+24.4. Extracting gate netlist of module `\EXU' to `/tmp/yosys-abc-xvtUnK/input.blif'..
 Extracted 1538 gates and 1680 wires to a netlist network with 142 inputs and 69 outputs.
 
 24.4.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-q9LWZX/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-q9LWZX/abc.script".
+Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-xvtUnK/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-xvtUnK/abc.script".
 ABC: 
-ABC: + read_blif /tmp/yosys-abc-q9LWZX/input.blif 
+ABC: + read_blif /tmp/yosys-abc-xvtUnK/input.blif 
 ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
-ABC: Parsing finished successfully.  Parsing time =     0.08 sec
+ABC: Parsing finished successfully.  Parsing time =     0.07 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_2048x39" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x34" without logic function.
@@ -5167,7 +5167,7 @@ ABC: + dnsize
 ABC: + buffer -p 
 ABC: + upsize 
 ABC: + 
-ABC: + write_blif /tmp/yosys-abc-q9LWZX/output.blif 
+ABC: + write_blif /tmp/yosys-abc-xvtUnK/output.blif 
 
 24.4.2. Re-integrating ABC results.
 ABC RESULTS:           AND2_X1 cells:      155
@@ -5232,108 +5232,14 @@ ABC RESULTS:           input signals:      142
 ABC RESULTS:          output signals:       69
 Removing temp directory.
 
-24.5. Extracting gate netlist of module `\GPR' to `/tmp/yosys-abc-lExJTN/input.blif'..
+24.5. Extracting gate netlist of module `\GPR' to `/tmp/yosys-abc-xs9dho/input.blif'..
 Extracted 142 gates and 223 wires to a netlist network with 81 inputs and 65 outputs.
 
 24.5.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-lExJTN/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-lExJTN/abc.script".
+Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-xs9dho/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-xs9dho/abc.script".
 ABC: 
-ABC: + read_blif /tmp/yosys-abc-lExJTN/input.blif 
-ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
-ABC: Parsing finished successfully.  Parsing time =     0.08 sec
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_2048x39" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x34" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x95" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x96" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_32x64" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_512x64" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x15" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x21" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x32" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x7" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x96" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "ANTENNA_X1" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X1" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X2" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X4" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X8" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATE_X1" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATE_X2" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATE_X4" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATE_X8" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFRS_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFRS_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFR_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFR_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFS_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFS_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFF_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFF_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLH_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLH_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLL_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLL_X2".
-ABC: Scl_LibertyReadGenlib() skipped cell "FILLCELL_X2" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped cell "FILLCELL_X4" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped cell "FILLCELL_X8" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped cell "FILLCELL_X32" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped cell "LOGIC0_X1" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped cell "LOGIC1_X1" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFRS_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFRS_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFR_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFR_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFS_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFS_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFF_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFF_X2".
-ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X1".
-ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X2".
-ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X4".
-ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X8".
-ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X16".
-ABC: Scl_LibertyReadGenlib() skipped three-state cell "TINV_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "TLAT_X1".
-ABC: Library "nangate45_merged" from "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib" has 88 cells (47 skipped: 21 seq; 6 tri-state; 20 no func; 7 dont_use).  Time =     0.13 sec
-ABC: Memory =    8.88 MB. Time =     0.13 sec
-ABC: Warning: Detected 2 multi-output gates (for example, "FA_X1").
-ABC: + strash 
-ABC: + ifraig 
-ABC: + retime -D -D 2222.222222222222 -M 6 
-ABC: + strash 
-ABC: + dch -f 
-ABC: + map -p -M 1 -D 2222.222222222222 -f 
-ABC: + topo 
-ABC: + dnsize 
-ABC: + buffer -p 
-ABC: + upsize 
-ABC: + 
-ABC: + write_blif /tmp/yosys-abc-lExJTN/output.blif 
-
-24.5.2. Re-integrating ABC results.
-ABC RESULTS:           AND2_X1 cells:       64
-ABC RESULTS:         AOI211_X4 cells:        1
-ABC RESULTS:            BUF_X4 cells:        6
-ABC RESULTS:            INV_X1 cells:        1
-ABC RESULTS:           NOR2_X1 cells:        1
-ABC RESULTS:           NOR3_X1 cells:        1
-ABC RESULTS:            OR2_X4 cells:        2
-ABC RESULTS:            OR4_X4 cells:        2
-ABC RESULTS:        internal signals:       77
-ABC RESULTS:           input signals:       81
-ABC RESULTS:          output signals:       65
-Removing temp directory.
-
-24.6. Extracting gate netlist of module `\IDU' to `/tmp/yosys-abc-O9xTQ2/input.blif'..
-Extracted 893 gates and 1148 wires to a netlist network with 255 inputs and 166 outputs.
-
-24.6.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-O9xTQ2/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-O9xTQ2/abc.script".
-ABC: 
-ABC: + read_blif /tmp/yosys-abc-O9xTQ2/input.blif 
+ABC: + read_blif /tmp/yosys-abc-xs9dho/input.blif 
 ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
 ABC: Parsing finished successfully.  Parsing time =     0.08 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
@@ -5404,7 +5310,101 @@ ABC: + dnsize
 ABC: + buffer -p 
 ABC: + upsize 
 ABC: + 
-ABC: + write_blif /tmp/yosys-abc-O9xTQ2/output.blif 
+ABC: + write_blif /tmp/yosys-abc-xs9dho/output.blif 
+
+24.5.2. Re-integrating ABC results.
+ABC RESULTS:           AND2_X1 cells:       64
+ABC RESULTS:         AOI211_X4 cells:        1
+ABC RESULTS:            BUF_X4 cells:        6
+ABC RESULTS:            INV_X1 cells:        1
+ABC RESULTS:           NOR2_X1 cells:        1
+ABC RESULTS:           NOR3_X1 cells:        1
+ABC RESULTS:            OR2_X4 cells:        2
+ABC RESULTS:            OR4_X4 cells:        2
+ABC RESULTS:        internal signals:       77
+ABC RESULTS:           input signals:       81
+ABC RESULTS:          output signals:       65
+Removing temp directory.
+
+24.6. Extracting gate netlist of module `\IDU' to `/tmp/yosys-abc-37d9E2/input.blif'..
+Extracted 893 gates and 1148 wires to a netlist network with 255 inputs and 166 outputs.
+
+24.6.1. Executing ABC.
+Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-37d9E2/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-37d9E2/abc.script".
+ABC: 
+ABC: + read_blif /tmp/yosys-abc-37d9E2/input.blif 
+ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
+ABC: Parsing finished successfully.  Parsing time =     0.07 sec
+ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_2048x39" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x34" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x95" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x96" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_32x64" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_512x64" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x15" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x21" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x32" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x7" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x96" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "ANTENNA_X1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X8" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATE_X1" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATE_X2" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATE_X4" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATE_X8" without logic function.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFRS_X1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFRS_X2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFR_X1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFR_X2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFS_X1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFS_X2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFF_X1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFF_X2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLH_X1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLH_X2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLL_X1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLL_X2".
+ABC: Scl_LibertyReadGenlib() skipped cell "FILLCELL_X2" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "FILLCELL_X4" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "FILLCELL_X8" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "FILLCELL_X32" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "LOGIC0_X1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped cell "LOGIC1_X1" due to dont_use attribute.
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFRS_X1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFRS_X2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFR_X1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFR_X2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFS_X1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFS_X2".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFF_X1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFF_X2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X1".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X2".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X4".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X8".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X16".
+ABC: Scl_LibertyReadGenlib() skipped three-state cell "TINV_X1".
+ABC: Scl_LibertyReadGenlib() skipped sequential cell "TLAT_X1".
+ABC: Library "nangate45_merged" from "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib" has 88 cells (47 skipped: 21 seq; 6 tri-state; 20 no func; 7 dont_use).  Time =     0.11 sec
+ABC: Memory =    8.88 MB. Time =     0.11 sec
+ABC: Warning: Detected 2 multi-output gates (for example, "FA_X1").
+ABC: + strash 
+ABC: + ifraig 
+ABC: + retime -D -D 2222.222222222222 -M 6 
+ABC: + strash 
+ABC: + dch -f 
+ABC: + map -p -M 1 -D 2222.222222222222 -f 
+ABC: + topo 
+ABC: + dnsize 
+ABC: + buffer -p 
+ABC: + upsize 
+ABC: + 
+ABC: + write_blif /tmp/yosys-abc-37d9E2/output.blif 
 
 24.6.2. Re-integrating ABC results.
 ABC RESULTS:           AND2_X1 cells:       81
@@ -5456,16 +5456,16 @@ ABC RESULTS:           input signals:      255
 ABC RESULTS:          output signals:      166
 Removing temp directory.
 
-24.7. Extracting gate netlist of module `\IFU' to `/tmp/yosys-abc-tVoYKO/input.blif'..
+24.7. Extracting gate netlist of module `\IFU' to `/tmp/yosys-abc-3Emtdy/input.blif'..
 Extracted 318 gates and 500 wires to a netlist network with 182 inputs and 42 outputs.
 
 24.7.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-tVoYKO/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-tVoYKO/abc.script".
+Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-3Emtdy/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-3Emtdy/abc.script".
 ABC: 
-ABC: + read_blif /tmp/yosys-abc-tVoYKO/input.blif 
+ABC: + read_blif /tmp/yosys-abc-3Emtdy/input.blif 
 ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
-ABC: Parsing finished successfully.  Parsing time =     0.08 sec
+ABC: Parsing finished successfully.  Parsing time =     0.07 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_2048x39" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x34" without logic function.
@@ -5534,7 +5534,7 @@ ABC: + dnsize
 ABC: + buffer -p 
 ABC: + upsize 
 ABC: + 
-ABC: + write_blif /tmp/yosys-abc-tVoYKO/output.blif 
+ABC: + write_blif /tmp/yosys-abc-3Emtdy/output.blif 
 
 24.7.2. Re-integrating ABC results.
 ABC RESULTS:           AND2_X1 cells:       32
@@ -5571,16 +5571,16 @@ ABC RESULTS:           input signals:      182
 ABC RESULTS:          output signals:       42
 Removing temp directory.
 
-24.8. Extracting gate netlist of module `\LSU' to `/tmp/yosys-abc-ZECFZg/input.blif'..
+24.8. Extracting gate netlist of module `\LSU' to `/tmp/yosys-abc-iTVF7S/input.blif'..
 Extracted 901 gates and 1205 wires to a netlist network with 304 inputs and 184 outputs.
 
 24.8.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-ZECFZg/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-ZECFZg/abc.script".
+Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-iTVF7S/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-iTVF7S/abc.script".
 ABC: 
-ABC: + read_blif /tmp/yosys-abc-ZECFZg/input.blif 
+ABC: + read_blif /tmp/yosys-abc-iTVF7S/input.blif 
 ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
-ABC: Parsing finished successfully.  Parsing time =     0.08 sec
+ABC: Parsing finished successfully.  Parsing time =     0.07 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_2048x39" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x34" without logic function.
@@ -5635,8 +5635,8 @@ ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X8".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X16".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "TINV_X1".
 ABC: Scl_LibertyReadGenlib() skipped sequential cell "TLAT_X1".
-ABC: Library "nangate45_merged" from "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib" has 88 cells (47 skipped: 21 seq; 6 tri-state; 20 no func; 7 dont_use).  Time =     0.12 sec
-ABC: Memory =    8.88 MB. Time =     0.12 sec
+ABC: Library "nangate45_merged" from "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib" has 88 cells (47 skipped: 21 seq; 6 tri-state; 20 no func; 7 dont_use).  Time =     0.11 sec
+ABC: Memory =    8.88 MB. Time =     0.11 sec
 ABC: Warning: Detected 2 multi-output gates (for example, "FA_X1").
 ABC: + strash 
 ABC: + ifraig 
@@ -5649,7 +5649,7 @@ ABC: + dnsize
 ABC: + buffer -p 
 ABC: + upsize 
 ABC: + 
-ABC: + write_blif /tmp/yosys-abc-ZECFZg/output.blif 
+ABC: + write_blif /tmp/yosys-abc-iTVF7S/output.blif 
 
 24.8.2. Re-integrating ABC results.
 ABC RESULTS:           AND2_X1 cells:       72
@@ -5694,19 +5694,19 @@ ABC RESULTS:           input signals:      304
 ABC RESULTS:          output signals:      184
 Removing temp directory.
 
-24.9. Extracting gate netlist of module `\NPC' to `/tmp/yosys-abc-ygwlzp/input.blif'..
+24.9. Extracting gate netlist of module `\NPC' to `/tmp/yosys-abc-p8sXcI/input.blif'..
 Extracted 0 gates and 0 wires to a netlist network with 0 inputs and 0 outputs.
 Don't call ABC as there is nothing to map.
 Removing temp directory.
 
-24.10. Extracting gate netlist of module `\WBU' to `/tmp/yosys-abc-4PuaDu/input.blif'..
+24.10. Extracting gate netlist of module `\WBU' to `/tmp/yosys-abc-zqoail/input.blif'..
 Extracted 21 gates and 33 wires to a netlist network with 12 inputs and 9 outputs.
 
 24.10.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-4PuaDu/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-4PuaDu/abc.script".
+Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-zqoail/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-zqoail/abc.script".
 ABC: 
-ABC: + read_blif /tmp/yosys-abc-4PuaDu/input.blif 
+ABC: + read_blif /tmp/yosys-abc-zqoail/input.blif 
 ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
 ABC: Parsing finished successfully.  Parsing time =     0.08 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
@@ -5777,7 +5777,7 @@ ABC: + dnsize
 ABC: + buffer -p 
 ABC: + upsize 
 ABC: + 
-ABC: + write_blif /tmp/yosys-abc-4PuaDu/output.blif 
+ABC: + write_blif /tmp/yosys-abc-zqoail/output.blif 
 
 24.10.2. Re-integrating ABC results.
 ABC RESULTS:           AND3_X4 cells:        1
@@ -5794,16 +5794,16 @@ ABC RESULTS:           input signals:       12
 ABC RESULTS:          output signals:        9
 Removing temp directory.
 
-24.11. Extracting gate netlist of module `\Xbar' to `/tmp/yosys-abc-TWWxpj/input.blif'..
+24.11. Extracting gate netlist of module `\Xbar' to `/tmp/yosys-abc-BUzahJ/input.blif'..
 Extracted 866 gates and 1339 wires to a netlist network with 473 inputs and 413 outputs.
 
 24.11.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-TWWxpj/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-TWWxpj/abc.script".
+Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-BUzahJ/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-BUzahJ/abc.script".
 ABC: 
-ABC: + read_blif /tmp/yosys-abc-TWWxpj/input.blif 
+ABC: + read_blif /tmp/yosys-abc-BUzahJ/input.blif 
 ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
-ABC: Parsing finished successfully.  Parsing time =     0.08 sec
+ABC: Parsing finished successfully.  Parsing time =     0.07 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_2048x39" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x34" without logic function.
@@ -5858,8 +5858,8 @@ ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X8".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X16".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "TINV_X1".
 ABC: Scl_LibertyReadGenlib() skipped sequential cell "TLAT_X1".
-ABC: Library "nangate45_merged" from "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib" has 88 cells (47 skipped: 21 seq; 6 tri-state; 20 no func; 7 dont_use).  Time =     0.12 sec
-ABC: Memory =    8.88 MB. Time =     0.12 sec
+ABC: Library "nangate45_merged" from "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib" has 88 cells (47 skipped: 21 seq; 6 tri-state; 20 no func; 7 dont_use).  Time =     0.11 sec
+ABC: Memory =    8.88 MB. Time =     0.11 sec
 ABC: Warning: Detected 2 multi-output gates (for example, "FA_X1").
 ABC: + strash 
 ABC: + ifraig 
@@ -5872,7 +5872,7 @@ ABC: + dnsize
 ABC: + buffer -p 
 ABC: + upsize 
 ABC: + 
-ABC: + write_blif /tmp/yosys-abc-TWWxpj/output.blif 
+ABC: + write_blif /tmp/yosys-abc-BUzahJ/output.blif 
 
 24.11.2. Re-integrating ABC results.
 ABC RESULTS:           AND2_X1 cells:        8
@@ -5917,16 +5917,16 @@ ABC RESULTS:           input signals:      473
 ABC RESULTS:          output signals:      413
 Removing temp directory.
 
-24.12. Extracting gate netlist of module `\csr_6x32' to `/tmp/yosys-abc-llk3tx/input.blif'..
+24.12. Extracting gate netlist of module `\csr_6x32' to `/tmp/yosys-abc-aIpWDn/input.blif'..
 Extracted 1728 gates and 2145 wires to a netlist network with 417 inputs and 288 outputs.
 
 24.12.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-llk3tx/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-llk3tx/abc.script".
+Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-aIpWDn/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-aIpWDn/abc.script".
 ABC: 
-ABC: + read_blif /tmp/yosys-abc-llk3tx/input.blif 
+ABC: + read_blif /tmp/yosys-abc-aIpWDn/input.blif 
 ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
-ABC: Parsing finished successfully.  Parsing time =     0.08 sec
+ABC: Parsing finished successfully.  Parsing time =     0.07 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_2048x39" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x34" without logic function.
@@ -5981,8 +5981,8 @@ ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X8".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X16".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "TINV_X1".
 ABC: Scl_LibertyReadGenlib() skipped sequential cell "TLAT_X1".
-ABC: Library "nangate45_merged" from "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib" has 88 cells (47 skipped: 21 seq; 6 tri-state; 20 no func; 7 dont_use).  Time =     0.12 sec
-ABC: Memory =    8.88 MB. Time =     0.12 sec
+ABC: Library "nangate45_merged" from "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib" has 88 cells (47 skipped: 21 seq; 6 tri-state; 20 no func; 7 dont_use).  Time =     0.10 sec
+ABC: Memory =    8.88 MB. Time =     0.10 sec
 ABC: Warning: Detected 2 multi-output gates (for example, "FA_X1").
 ABC: + strash 
 ABC: + ifraig 
@@ -5995,7 +5995,7 @@ ABC: + dnsize
 ABC: + buffer -p 
 ABC: + upsize 
 ABC: + 
-ABC: + write_blif /tmp/yosys-abc-llk3tx/output.blif 
+ABC: + write_blif /tmp/yosys-abc-aIpWDn/output.blif 
 
 24.12.2. Re-integrating ABC results.
 ABC RESULTS:           AND2_X1 cells:        9
@@ -6035,14 +6035,14 @@ ABC RESULTS:           input signals:      417
 ABC RESULTS:          output signals:      288
 Removing temp directory.
 
-24.13. Extracting gate netlist of module `\gpr_16x32' to `/tmp/yosys-abc-CCm7kO/input.blif'..
+24.13. Extracting gate netlist of module `\gpr_16x32' to `/tmp/yosys-abc-Rj36AK/input.blif'..
 Extracted 1528 gates and 2085 wires to a netlist network with 557 inputs and 576 outputs.
 
 24.13.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-CCm7kO/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-CCm7kO/abc.script".
+Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-Rj36AK/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-Rj36AK/abc.script".
 ABC: 
-ABC: + read_blif /tmp/yosys-abc-CCm7kO/input.blif 
+ABC: + read_blif /tmp/yosys-abc-Rj36AK/input.blif 
 ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
 ABC: Parsing finished successfully.  Parsing time =     0.08 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
@@ -6113,7 +6113,7 @@ ABC: + dnsize
 ABC: + buffer -p 
 ABC: + upsize 
 ABC: + 
-ABC: + write_blif /tmp/yosys-abc-CCm7kO/output.blif 
+ABC: + write_blif /tmp/yosys-abc-Rj36AK/output.blif 
 
 24.13.2. Re-integrating ABC results.
 ABC RESULTS:           AND2_X1 cells:       21
@@ -6143,16 +6143,16 @@ ABC RESULTS:           input signals:      557
 ABC RESULTS:          output signals:      576
 Removing temp directory.
 
-24.14. Extracting gate netlist of module `\iCache' to `/tmp/yosys-abc-TlLFta/input.blif'..
+24.14. Extracting gate netlist of module `\iCache' to `/tmp/yosys-abc-5gBQ9P/input.blif'..
 Extracted 2511 gates and 3194 wires to a netlist network with 683 inputs and 607 outputs.
 
 24.14.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-TlLFta/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-TlLFta/abc.script".
+Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-5gBQ9P/abc.script 2>&1
+ABC: ABC command line: "source /tmp/yosys-abc-5gBQ9P/abc.script".
 ABC: 
-ABC: + read_blif /tmp/yosys-abc-TlLFta/input.blif 
+ABC: + read_blif /tmp/yosys-abc-5gBQ9P/input.blif 
 ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
-ABC: Parsing finished successfully.  Parsing time =     0.08 sec
+ABC: Parsing finished successfully.  Parsing time =     0.07 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_2048x39" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x34" without logic function.
@@ -6221,7 +6221,7 @@ ABC: + dnsize
 ABC: + buffer -p 
 ABC: + upsize 
 ABC: + 
-ABC: + write_blif /tmp/yosys-abc-TlLFta/output.blif 
+ABC: + write_blif /tmp/yosys-abc-5gBQ9P/output.blif 
 
 24.14.2. Re-integrating ABC results.
 ABC RESULTS:           AND2_X1 cells:       23
@@ -18027,7 +18027,7 @@ Dumping module `\gpr_16x32'.
 Dumping module `\iCache'.
 
 Warnings: 2425 unique messages, 2490 total
-End of script. Logfile hash: 3dca0a7252
-CPU: user 21.72s system 0.26s, MEM: 84.00 MB total, 69.36 MB resident
+End of script. Logfile hash: 79ec7db3ff
+CPU: user 20.67s system 0.26s, MEM: 84.00 MB total, 70.00 MB resident
 Yosys 0.9 (git sha1 1979e0b)
-Time spent: 18% 27x opt_clean (4 sec), 16% 2x write_verilog (3 sec), ...
+Time spent: 19% 27x opt_clean (4 sec), 16% 2x write_verilog (3 sec), ...
