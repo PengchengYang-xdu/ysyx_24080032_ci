@@ -7,6 +7,13 @@ import npc.common.Config._
 import npc.common.Instructions._
 import npc.bus.axi._
 
+val policy = replacementPolicy.toUpperCase match {
+    case "LRU" => "LRU"
+    case "FIFO" => "FIFO"
+    case "RANDOM" => "RANDOM"
+    case _ => throw new Exception("Unknown replacement policy!")
+}
+
 trait ReplacementPolicy extends Bundle
 class LRU(val ways: Int) extends ReplacementPolicy {
   val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
@@ -222,13 +229,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             in_rvalid := true.B
             in_arready := false.B
         }
-    }
-
-    val policy = replacementPolicy.toUpperCase match {
-        case "LRU" => "LRU"
-        case "FIFO" => "FIFO"
-        case "RANDOM" => "RANDOM"
-        case _ => throw new Exception("Unknown replacement policy!")
     }
 
     //检查空闲的cache块
