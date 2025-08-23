@@ -225,7 +225,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         }
     }
 
-    val policy = replacementPolicy.toUpperCase match {
+    val policy = replacementPolicy match {
         case "LRU" => "LRU"
         case "FIFO" => "FIFO"
         case "RANDOM" => "RANDOM"
@@ -271,7 +271,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             if(replacementPolicy == "LRU"){
                 updateLRU(icache(req_index), emptyIndex)
             } else if(replacementPolicy == "FIFO"){
-                icache(req_index).fifoPtr := (emptyIndex + 1.U) % ways.U
+                icache(req_index).repl := (emptyIndex + 1.U) % ways.U
             }
         } .otherwise{
             // 如果没有空闲块，替换逻辑
@@ -284,12 +284,12 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
                     //替换的时候更新LRU矩阵
                     updateLRU(icache(req_index), lruIndex)
                 case "FIFO" =>
-                    val fifoIndex = icache(req_index).fifoPtr
+                    val fifoIndex = icache(req_index).repl
                     set(fifoIndex).valid := true.B
                     set(fifoIndex).tag := req_tag
                     set(fifoIndex).data := icache_wdata
                     //替换的时候更新FIFO指针
-                    icache(req_index).fifoPtr := (fifoIndex + 1.U) % ways.U
+                    icache(req_index).repl := (fifoIndex + 1.U) % ways.U
                 case "RANDOM" =>
                     val randomIndex = scala.util.Random.nextInt(ways)
                     set(randomIndex).valid := true.B
@@ -380,7 +380,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     }
 
    def updateLRU(set: iCacheSet, ways_hit_num: UInt): Unit = {
-       val lruMatrix = set.lruMatrix
+       val lruMatrix = set.repl
        for(j <- 0 until ways) {
            when(j.U =/= ways_hit_num){
                lruMatrix(ways_hit_num)(j) := 1.U
@@ -394,7 +394,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
    def getLRUIndex(set: iCacheSet, ways_width: Int): UInt = {
        val LRUIndex = Wire(UInt(ways_width.W))
        LRUIndex := 0.U
-       val lruMatrix = set.lruMatrix
+       val lruMatrix = set.repl
        for(i <- 0 until ways){
             val isZeroRow = (0 until ways).map(j => lruMatrix(i)(j) === 0.U).reduce(_ && _)
             when(isZeroRow){
