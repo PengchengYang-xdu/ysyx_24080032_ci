@@ -7,14 +7,8 @@ import npc.common.Config._
 import npc.common.Instructions._
 import npc.bus.axi._
 
-val policy = replacementPolicy.toUpperCase match {
-    case "LRU" => "LRU"
-    case "FIFO" => "FIFO"
-    case "RANDOM" => "RANDOM"
-    case _ => throw new Exception("Unknown replacement policy!")
-}
-
 trait ReplacementPolicy extends Bundle
+
 class LRU(val ways: Int) extends ReplacementPolicy {
   val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
 }
@@ -36,13 +30,13 @@ class iCacheBlock(val m: Int, val n: Int) extends Bundle{
     val data = Vec((2 << (m - 1)) / 4, UInt(WORD_LEN.W))
 }
 
-class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int) extends Bundle{
+class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int, val replacementPolicy: String) extends Bundle{
     val set = Vec(ways, new iCacheBlock(m, n))
-    val repl = policy match {
-    case "LRU"    => new LRU(ways)
-    case "FIFO"   => new FIFO(ways_width)
-    case "RANDOM" => new RANDOM
-  }
+    val repl = replacementPolicy match {
+        case "LRU"    => new LRU(ways)
+        case "FIFO"   => new FIFO(ways_width)
+        case "RANDOM" => new RANDOM
+    }
 }
 
 class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementPolicy: String) extends Module{
@@ -134,7 +128,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     dontTouch(req_tag)
     dontTouch(addr_align)
 
-    val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways, ways_width)))))
+    val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways, ways_width, replacementPolicy)))))
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
@@ -189,7 +183,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     }
     fencei_io_vr.is_fencei_io.ready := fencei_fsh
     when(is_fencei){
-        icache(fencei_counter) := 0.U.asTypeOf(new iCacheSet(m, n, ways, ways_width))
+        icache(fencei_counter) := 0.U.asTypeOf(new iCacheSet(m, n, ways, ways_width, replacementPolicy))
     }
 
     switch(n_state){//third phase
@@ -229,6 +223,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             in_rvalid := true.B
             in_arready := false.B
         }
+    }
+
+    val policy = replacementPolicy.toUpperCase match {
+        case "LRU" => "LRU"
+        case "FIFO" => "FIFO"
+        case "RANDOM" => "RANDOM"
+        case _ => throw new Exception("Unknown replacement policy!")
     }
 
     //检查空闲的cache块
