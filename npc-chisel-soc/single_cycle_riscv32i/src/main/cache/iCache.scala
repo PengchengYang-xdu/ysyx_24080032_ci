@@ -20,9 +20,9 @@ class iCacheBlock(val m: Int, val n: Int) extends Bundle{
 
 class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int) extends Bundle{
     val set = Vec(ways, new iCacheBlock(m, n))
-    lazy val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
+    val lruMatrix = Vec(ways, Vec(ways, UInt(1.W)))
     dontTouch(lruMatrix)
-    lazy val fifoPtr = UInt(ways_width.W)
+    val fifoPtr = UInt(ways_width.W)
     dontTouch(fifoPtr)
 }
 
