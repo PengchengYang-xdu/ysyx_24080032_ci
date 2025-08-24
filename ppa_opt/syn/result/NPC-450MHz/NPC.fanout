@@ -1,0 +1,11 @@
+Generate the report at 2025-08-24T13:11:57, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
++----------------------------+-----------+--------+-------------+-------------+------+
+| Net / Pin                  | MaxFanout | Fanout | FanoutSlack | LibCellPort | Note |
++----------------------------+-----------+--------+-------------+-------------+------+
+| fanout_net_83              |           |        |             |             |      |
+| fanout_buf_83:Z            | NA        | 30     | NA          | BUF_X8/Z    |      |
+| core/gpr/gpr_ext/_3264_    |           |        |             |             |      |
+| core/gpr/gpr_ext/_6225_:ZN | NA        | 1      | NA          | OAI21_X2/ZN |      |
+| core/csr/csr_ext/_2420_    |           |        |             |             |      |
+| core/csr/csr_ext/_5696_:ZN | NA        | 1      | NA          | AND2_X1/ZN  |      |
++----------------------------+-----------+--------+-------------+-------------+------+
