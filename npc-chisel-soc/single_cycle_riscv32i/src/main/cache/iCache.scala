@@ -141,17 +141,17 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
 
     val icache_wdata_index = c.U - count - 1.U
     val icache_wdata = RegInit(VecInit(Seq.fill(c)(0.U(32.W))))
-    icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0)) := Mux(out_arlen === 0.U,
-        Mux((n_state === s_i_2 || n_state === s_i_0) && c_state === s_i_1, io.out.rdata, icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0))),
-        Mux(out_rready && io.out.rvalid, io.out.rdata, icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0))))
+    // icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0)) := Mux(out_arlen === 0.U,
+    //     Mux((n_state === s_i_2 || n_state === s_i_0) && c_state === s_i_1, io.out.rdata, icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0))),
+    //     Mux(out_rready && io.out.rvalid, io.out.rdata, icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0))))
 
-    // when (out_arlen === 0.U) {
-    //     when ((n_state === s_i_2 || n_state === s_i_0) && c_state === s_i_1) {
-    //         icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0)) := io.out.rdata
-    //     }
-    // } .elsewhen (out_rready && io.out.rvalid) {
-    //     icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0)) := io.out.rdata
-    // }
+    when (out_arlen === 0.U) {
+        when ((n_state === s_i_2 || n_state === s_i_0) && c_state === s_i_1) {
+            icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0)) := io.out.rdata
+        }
+    } .elsewhen (out_rready && io.out.rvalid) {
+        icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0)) := io.out.rdata
+    }
 
 
 
