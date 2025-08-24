@@ -1,3 +1,4 @@
+// `define CLINT_DELAY_ON
 `define CLINT_DELAY 0
 
 module Clint(
@@ -56,6 +57,7 @@ always @(posedge clk or posedge rst) begin
         mtime <= mtime + 1;
 end
 
+`ifdef CLINT_DELAY_ON
 /*-----------------------------delay process-----------------------------*/
 reg [3:0] lfsr;
 always @(posedge clk or posedge rst) begin
@@ -69,7 +71,7 @@ end
 
 reg [3:0] r_delay_unit;
 reg [3:0] w_delay_unit;
-
+`endif
 
 /*-----------------------------read channel-----------------------------*/
 //state machine
@@ -110,7 +112,9 @@ always @(posedge clk or posedge rst) begin
         axi4_rdata <= 32'b0;
         axi4_rresp <= 2'b0;
         axi4_rvalid <= 1'b0;
+        `ifdef CLINT_DELAY_ON
         r_delay_unit <= lfsr;
+        `endif
     end
     else begin
         case(nr_state)
@@ -119,12 +123,16 @@ always @(posedge clk or posedge rst) begin
                 // axi4_rdata <= 32'b0;//axi4_rdata has to hold after sr_BeforeAXI_R_Fire state
                 axi4_rresp <= 2'b0;
                 axi4_rvalid <= 1'b0;
+                `ifdef CLINT_DELAY_ON
                 r_delay_unit <= lfsr;
+                `endif
             end
             sr_BeforeAXI_R_Fire: begin
                 axi4_arready <= 1'b0;
+                `ifdef CLINT_DELAY_ON
                 r_delay_unit <= r_delay_unit - 1;
                 if(r_delay_unit == 0) begin
+                `endif
                     if(axi4_araddr == ADDR) begin
                         axi4_rdata <= mtime[31:0];
                         axi4_rvalid <= 1'b1;
@@ -140,18 +148,22 @@ always @(posedge clk or posedge rst) begin
                         axi4_rvalid <= 1'b0;
                         axi4_rresp <= 2'b1;
                     end
+                `ifdef CLINT_DELAY_ON
                 end
                 else begin
                     axi4_rdata <= 32'b0;
                     axi4_rvalid <= 1'b0;
                 end
+                `endif
             end
             default: begin
                 axi4_arready <= 1'b1;
                 axi4_rdata <= 32'b0;
                 axi4_rresp <= 2'b0;
                 axi4_rvalid <= 1'b0;
+                `ifdef CLINT_DELAY_ON
                 r_delay_unit <= lfsr;
+                `endif
             end 
         endcase
     end
