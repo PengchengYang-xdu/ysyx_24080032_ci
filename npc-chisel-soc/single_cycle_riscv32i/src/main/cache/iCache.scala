@@ -168,7 +168,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     }
     fencei_io_vr.is_fencei_io.ready := fencei_fsh
     when(is_fencei){
-        icache(fencei_counter) := 0.U.asTypeOf(new iCacheSet(m, n, ways, ways_width))
+        for(i <- 0 until ways)
+        icache(fencei_counter).set(i).valid := false.B
     }
 
     switch(n_state){//third phase
@@ -208,13 +209,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             in_rvalid := true.B
             in_arready := false.B
         }
-    }
-
-    val policy = replacementPolicy match {
-        case "LRU" => "LRU"
-        case "FIFO" => "FIFO"
-        case "RANDOM" => "RANDOM"
-        case _ => throw new Exception("Unknown replacement policy!")
     }
 
     //检查空闲的cache块
@@ -260,7 +254,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             }
         } .otherwise{
             // 如果没有空闲块，替换逻辑
-            policy match {
+            replacementPolicy match {
                 case "LRU" =>
                     val lruIndex = getLRUIndex(icache(req_index), ways_width)
                     set(lruIndex).valid := true.B

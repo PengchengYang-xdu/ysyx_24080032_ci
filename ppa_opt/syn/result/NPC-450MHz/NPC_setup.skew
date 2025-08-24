@@ -1,4 +1,4 @@
-Generate the report at 2025-08-23T18:26:47, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-08-23T18:39:13, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 Clock: core_clock
 +-----------------------------+---------+-------+------+
 | Clock Pin                   | Latency | Skew  |      |
@@ -6,7 +6,7 @@ Clock: core_clock
 | core/lsu/_2770_:CK (DFF_X1) | 0.000   |       | rp-+ |
 | xbar/_4264_:CK (DFF_X1)     | 0.000   | 0.000 | rp-+ |
 | core/lsu/_2770_:CK (DFF_X1) | 0.000   |       | rp-+ |
-| xbar/_4260_:CK (DFF_X1)     | 0.000   | 0.000 | rp-+ |
+| xbar/_4262_:CK (DFF_X1)     | 0.000   | 0.000 | rp-+ |
 | core/lsu/_2770_:CK (DFF_X1) | 0.000   |       | rp-+ |
 | xbar/_4256_:CK (DFF_X1)     | 0.000   | 0.000 | rp-+ |
 +-----------------------------+---------+-------+------+
@@ -14,13 +14,13 @@ Clock: core_clock
 | Point                        | Fanout | Capacitance | Resistance | Transition | Incr  | Path   |
 +------------------------------+--------+-------------+------------+------------+-------+--------+
 | clock core_clock (rise edge) |        |             |            | 0          | 0     |        |
-| clock (port)                 |        | 7.072       | 0.000      | 0.000      | 0.000 | 0.000r |
-| clock (net)                  | 7442   |             |            |            |       |        |
+| clock (port)                 |        | 2.432       | 0.000      | 0.000      | 0.000 | 0.000r |
+| clock (net)                  | 2557   |             |            |            |       |        |
 | core/lsu/_2770_:CK (DFF_X1)  |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
 |                              |        |             |            |            |       |        |
 | clock core_clock (rise edge) |        |             |            | 2.222      | 2.222 |        |
-| clock (port)                 |        | 7.072       | 0.000      | 0.000      | 0.000 | 0.000r |
-| clock (net)                  | 7442   |             |            |            |       |        |
+| clock (port)                 |        | 2.432       | 0.000      | 0.000      | 0.000 | 0.000r |
+| clock (net)                  | 2557   |             |            |            |       |        |
 | xbar/_4264_:CK (DFF_X1)      |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
 |                              |        |             |            |            |       |        |
 | startpoint clock latency     |        |             |            |            | 0.000 |        |
@@ -32,14 +32,14 @@ Clock: core_clock
 | Point                        | Fanout | Capacitance | Resistance | Transition | Incr  | Path   |
 +------------------------------+--------+-------------+------------+------------+-------+--------+
 | clock core_clock (rise edge) |        |             |            | 0          | 0     |        |
-| clock (port)                 |        | 7.072       | 0.000      | 0.000      | 0.000 | 0.000r |
-| clock (net)                  | 7442   |             |            |            |       |        |
+| clock (port)                 |        | 2.432       | 0.000      | 0.000      | 0.000 | 0.000r |
+| clock (net)                  | 2557   |             |            |            |       |        |
 | core/lsu/_2770_:CK (DFF_X1)  |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
 |                              |        |             |            |            |       |        |
 | clock core_clock (rise edge) |        |             |            | 2.222      | 2.222 |        |
-| clock (port)                 |        | 7.072       | 0.000      | 0.000      | 0.000 | 0.000r |
-| clock (net)                  | 7442   |             |            |            |       |        |
-| xbar/_4260_:CK (DFF_X1)      |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
+| clock (port)                 |        | 2.432       | 0.000      | 0.000      | 0.000 | 0.000r |
+| clock (net)                  | 2557   |             |            |            |       |        |
+| xbar/_4262_:CK (DFF_X1)      |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
 |                              |        |             |            |            |       |        |
 | startpoint clock latency     |        |             |            |            | 0.000 |        |
 | endpoint clock latency       |        |             |            |            | 0.000 |        |
@@ -50,13 +50,13 @@ Clock: core_clock
 | Point                        | Fanout | Capacitance | Resistance | Transition | Incr  | Path   |
 +------------------------------+--------+-------------+------------+------------+-------+--------+
 | clock core_clock (rise edge) |        |             |            | 0          | 0     |        |
-| clock (port)                 |        | 7.072       | 0.000      | 0.000      | 0.000 | 0.000r |
-| clock (net)                  | 7442   |             |            |            |       |        |
+| clock (port)                 |        | 2.432       | 0.000      | 0.000      | 0.000 | 0.000r |
+| clock (net)                  | 2557   |             |            |            |       |        |
 | core/lsu/_2770_:CK (DFF_X1)  |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
 |                              |        |             |            |            |       |        |
 | clock core_clock (rise edge) |        |             |            | 2.222      | 2.222 |        |
-| clock (port)                 |        | 7.072       | 0.000      | 0.000      | 0.000 | 0.000r |
-| clock (net)                  | 7442   |             |            |            |       |        |
+| clock (port)                 |        | 2.432       | 0.000      | 0.000      | 0.000 | 0.000r |
+| clock (net)                  | 2557   |             |            |            |       |        |
 | xbar/_4256_:CK (DFF_X1)      |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
 |                              |        |             |            |            |       |        |
 | startpoint clock latency     |        |             |            |            | 0.000 |        |
