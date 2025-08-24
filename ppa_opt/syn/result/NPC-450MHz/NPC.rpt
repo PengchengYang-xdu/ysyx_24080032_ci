@@ -1,4 +1,4 @@
-Generate the report at 2025-08-24T13:11:56, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-08-24T13:14:04, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 +-------------------+-------------+------------+------------+---------------+-------+--------+-----------+
 | Endpoint          | Clock Group | Delay Type | Path Delay | Path Required | CPPR  | Slack  | Freq(MHz) |
 +-------------------+-------------+------------+------------+---------------+-------+--------+-----------+
@@ -7,7 +7,7 @@ Generate the report at 2025-08-24T13:11:56, GitVersion: aa25008b3778a76ae1975c83
 | core/ifu/_1461_:D | core_clock  | max        | 1.506f     | 2.183         | 0.000 | 0.677  | 647.342   |
 | clint/_1576_:SN   | core_clock  | min        | 0.159r     | 0.200         | 0.000 | -0.042 | NA        |
 | clint/_1572_:SN   | core_clock  | min        | 0.159r     | 0.200         | 0.000 | -0.042 | NA        |
-| clint/_1575_:SN   | core_clock  | min        | 0.160r     | 0.200         | 0.000 | -0.041 | NA        |
+| clint/_1579_:SN   | core_clock  | min        | 0.160r     | 0.200         | 0.000 | -0.041 | NA        |
 +-------------------+-------------+------------+------------+---------------+-------+--------+-----------+
 +------------+------------+--------+
 | Clock      | Delay Type | TNS    |
@@ -687,14 +687,14 @@ Generate the report at 2025-08-24T13:11:56, GitVersion: aa25008b3778a76ae1975c83
 | clint/_1566_:A (BUF_X1)       |        | 0.001       | 0.000      | 0.007      |             | 0.000  | 0.130r          |
 | clint/_1566_:Z (BUF_X1)       |        | 0.004       | 0.000      | 0.014      |             | 0.030  | 0.160r          |
 | clint/_0835_ (net)            | 2      |             |            |            | 0.000       |        |                 |
-| clint/_1575_:SN (DFFRS_X1)    |        | 0.002       | 0.000      | 0.014      |             | 0.000  | 0.160r          |
+| clint/_1579_:SN (DFFRS_X1)    |        | 0.002       | 0.000      | 0.014      |             | 0.000  | 0.160r          |
 |                               |        |             |            |            |             |        |                 |
 | clock (port)                  |        | 2.432       | 0.000      | 0.000      |             | 0.000  | 0.000r          |
 | clock (clock net)             | 2557   |             |            |            | NA          |        |                 |
-| clint/_1575_:CK (DFFRS_X1)    |        | 0.001       | 0.000      | 0.000      |             | 0.000  | 0.000r          |
+| clint/_1579_:CK (DFFRS_X1)    |        | 0.001       | 0.000      | 0.000      |             | 0.000  | 0.000r          |
 | clock core_clock (rise edge)  |        |             |            |            |             | 0      | 0               |
 | clock network delay (ideal)   |        |             |            |            |             | 0.000  | 0.000           |
-| clint/_1575_:CK (DFFRS_X1)    |        |             |            |            |             |        | 0.000r          |
+| clint/_1579_:CK (DFFRS_X1)    |        |             |            |            |             |        | 0.000r          |
 | library removal time          |        |             |            |            |             | 0.200  | 0.200           |
 | clock reconvergence pessimism |        |             |            |            |             | -0.000 | 0.200           |
 |                               |        |             |            |            |             |        |                 |

@@ -1,11 +1,11 @@
-Generate the report at 2025-08-24T13:11:57, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-08-24T13:14:05, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 +----------------------------+-----------+--------+-------------+-------------+------+
 | Net / Pin                  | MaxFanout | Fanout | FanoutSlack | LibCellPort | Note |
 +----------------------------+-----------+--------+-------------+-------------+------+
-| fanout_net_83              |           |        |             |             |      |
-| fanout_buf_83:Z            | NA        | 30     | NA          | BUF_X8/Z    |      |
-| core/gpr/gpr_ext/_3264_    |           |        |             |             |      |
-| core/gpr/gpr_ext/_6225_:ZN | NA        | 1      | NA          | OAI21_X2/ZN |      |
-| core/csr/csr_ext/_2420_    |           |        |             |             |      |
-| core/csr/csr_ext/_5696_:ZN | NA        | 1      | NA          | AND2_X1/ZN  |      |
+| fanout_net_84              |           |        |             |             |      |
+| fanout_buf_84:Z            | NA        | 30     | NA          | BUF_X8/Z    |      |
+| core/gpr/gpr_ext/_1033_    |           |        |             |             |      |
+| core/gpr/gpr_ext/_6266_:ZN | NA        | 1      | NA          | NAND2_X1/ZN |      |
+| core/csr/csr_ext/_2434_    |           |        |             |             |      |
+| core/csr/csr_ext/_5712_:ZN | NA        | 1      | NA          | AOI21_X1/ZN |      |
 +----------------------------+-----------+--------+-------------+-------------+------+

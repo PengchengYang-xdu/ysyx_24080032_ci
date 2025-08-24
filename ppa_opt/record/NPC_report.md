@@ -1,5 +1,5 @@
 ### Report: NPC.rpt (first 11 lines)
-Generate the report at 2025-08-24T13:11:56, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-08-24T13:14:04, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 +-------------------+-------------+------------+------------+---------------+-------+--------+-----------+
 | Endpoint          | Clock Group | Delay Type | Path Delay | Path Required | CPPR  | Slack  | Freq(MHz) |
 +-------------------+-------------+------------+------------+---------------+-------+--------+-----------+
@@ -8,7 +8,7 @@ Generate the report at 2025-08-24T13:11:56, GitVersion: aa25008b3778a76ae1975c83
 | core/ifu/_1461_:D | core_clock  | max        | 1.506f     | 2.183         | 0.000 | 0.677  | 647.342   |
 | clint/_1576_:SN   | core_clock  | min        | 0.159r     | 0.200         | 0.000 | -0.042 | NA        |
 | clint/_1572_:SN   | core_clock  | min        | 0.159r     | 0.200         | 0.000 | -0.042 | NA        |
-| clint/_1575_:SN   | core_clock  | min        | 0.160r     | 0.200         | 0.000 | -0.041 | NA        |
+| clint/_1579_:SN   | core_clock  | min        | 0.160r     | 0.200         | 0.000 | -0.041 | NA        |
 +-------------------+-------------+------------+------------+---------------+-------+--------+-----------+
 
 ### Chip area info from synth_stat.txt
@@ -24,7 +24,7 @@ Generate the report at 2025-08-24T13:11:56, GitVersion: aa25008b3778a76ae1975c83
    Chip area for module '\WBU': 130.340000
    Chip area for module '\Xbar': 3249.456000
    Chip area for module '\csr_6x32': 5148.164000
-   Chip area for module '\gpr_16x32': 6464.864000
-   Chip area for module '\iCache': 6602.386000
-   Chip area for top module '\NPC': 36534.036000
+   Chip area for module '\gpr_16x32': 6408.738000
+   Chip area for module '\iCache': 6672.610000
+   Chip area for top module '\NPC': 36548.134000
 

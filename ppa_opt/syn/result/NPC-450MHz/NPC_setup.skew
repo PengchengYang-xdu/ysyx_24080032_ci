@@ -1,14 +1,14 @@
-Generate the report at 2025-08-24T13:11:57, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-08-24T13:14:05, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 Clock: core_clock
 +-----------------------------+---------+-------+------+
 | Clock Pin                   | Latency | Skew  |      |
 +-----------------------------+---------+-------+------+
 | core/lsu/_3012_:CK (DFF_X1) | 0.000   |       | rp-+ |
-| xbar/_4388_:CK (DFF_X1)     | 0.000   | 0.000 | rp-+ |
-| core/lsu/_3000_:CK (DFF_X1) | 0.000   |       | rp-+ |
+| xbar/_4391_:CK (DFF_X1)     | 0.000   | 0.000 | rp-+ |
+| core/lsu/_3012_:CK (DFF_X1) | 0.000   |       | rp-+ |
 | xbar/_4384_:CK (DFF_X1)     | 0.000   | 0.000 | rp-+ |
 | core/lsu/_3012_:CK (DFF_X1) | 0.000   |       | rp-+ |
-| xbar/_4373_:CK (DFF_X1)     | 0.000   | 0.000 | rp-+ |
+| xbar/_4371_:CK (DFF_X1)     | 0.000   | 0.000 | rp-+ |
 +-----------------------------+---------+-------+------+
 +------------------------------+--------+-------------+------------+------------+-------+--------+
 | Point                        | Fanout | Capacitance | Resistance | Transition | Incr  | Path   |
@@ -21,7 +21,7 @@ Clock: core_clock
 | clock core_clock (rise edge) |        |             |            | 2.222      | 2.222 |        |
 | clock (port)                 |        | 2.432       | 0.000      | 0.000      | 0.000 | 0.000r |
 | clock (net)                  | 2557   |             |            |            |       |        |
-| xbar/_4388_:CK (DFF_X1)      |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
+| xbar/_4391_:CK (DFF_X1)      |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
 |                              |        |             |            |            |       |        |
 | startpoint clock latency     |        |             |            |            | 0.000 |        |
 | endpoint clock latency       |        |             |            |            | 0.000 |        |
@@ -34,7 +34,7 @@ Clock: core_clock
 | clock core_clock (rise edge) |        |             |            | 0          | 0     |        |
 | clock (port)                 |        | 2.432       | 0.000      | 0.000      | 0.000 | 0.000r |
 | clock (net)                  | 2557   |             |            |            |       |        |
-| core/lsu/_3000_:CK (DFF_X1)  |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
+| core/lsu/_3012_:CK (DFF_X1)  |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
 |                              |        |             |            |            |       |        |
 | clock core_clock (rise edge) |        |             |            | 2.222      | 2.222 |        |
 | clock (port)                 |        | 2.432       | 0.000      | 0.000      | 0.000 | 0.000r |
@@ -57,7 +57,7 @@ Clock: core_clock
 | clock core_clock (rise edge) |        |             |            | 2.222      | 2.222 |        |
 | clock (port)                 |        | 2.432       | 0.000      | 0.000      | 0.000 | 0.000r |
 | clock (net)                  | 2557   |             |            |            |       |        |
-| xbar/_4373_:CK (DFF_X1)      |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
+| xbar/_4371_:CK (DFF_X1)      |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
 |                              |        |             |            |            |       |        |
 | startpoint clock latency     |        |             |            |            | 0.000 |        |
 | endpoint clock latency       |        |             |            |            | 0.000 |        |

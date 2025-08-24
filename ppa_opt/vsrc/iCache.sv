@@ -213,7 +213,7 @@ module iCache(	// @[src/main/cache/iCache.scala:27:7]
             ? (~issdram_raddr | count == 2'h0
                  ? 3'h4
                  : {2'h1, ~((|count) & ~(|out_arlen))})
-            : 3'h3;	// @[src/main/cache/iCache.scala:28:16, :59:28, :97:24, :125:63, :144:73, :145:{22,65}, :166:42, :170:{33,49,67,85,101,126,147,170,178}, :183:49]
+            : 3'h3;	// @[src/main/cache/iCache.scala:28:16, :59:28, :97:24, :125:63, :148:21, :149:{24,67}, :166:42, :170:{33,49,67,85,101,126,147,170,178}, :183:49]
       3'b100:
         casez_tmp_3 = {~(in_rvalid & io_in_rready), 2'h0};	// @[src/main/cache/iCache.scala:28:16, :36:28, :166:42, :171:{33,44}]
       3'b101:
@@ -226,50 +226,46 @@ module iCache(	// @[src/main/cache/iCache.scala:27:7]
   end // always_comb
   wire [2:0]  n_state = casez_tmp_3;	// @[src/main/cache/iCache.scala:122:30, :166:42]
   reg  [31:0] casez_tmp_4;	// @[src/main/cache/iCache.scala:187:20, :320:20]
-  always_comb begin	// @[src/main/cache/iCache.scala:56:29, :58:27, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
-    casez (n_state)	// @[src/main/cache/iCache.scala:56:29, :58:27, :122:30, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
+  always_comb begin	// @[src/main/cache/iCache.scala:56:29, :58:27, :149:45, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
+    casez (n_state)	// @[src/main/cache/iCache.scala:56:29, :58:27, :122:30, :149:45, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
       3'b000:
-        casez_tmp_4 = 32'h0;	// @[src/main/cache/iCache.scala:28:16, :56:29, :58:27, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
+        casez_tmp_4 = 32'h0;	// @[src/main/cache/iCache.scala:28:16, :56:29, :58:27, :149:45, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
       3'b001:
-        casez_tmp_4 = out_araddr;	// @[src/main/cache/iCache.scala:56:29, :58:27, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
+        casez_tmp_4 = out_araddr;	// @[src/main/cache/iCache.scala:56:29, :58:27, :149:45, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
       3'b010:
         casez_tmp_4 =
-          issdram_raddr ? addr_align + {28'h0, _out_araddr_T_1, 2'h0} : io_in_araddr;	// @[src/main/cache/iCache.scala:28:16, :56:29, :58:27, :109:26, :125:63, :142:34, :187:20, :198:{24,30,88}, :210:24, :218:24, :320:20, :355:18]
+          issdram_raddr ? addr_align + {28'h0, _out_araddr_T_1, 2'h0} : io_in_araddr;	// @[src/main/cache/iCache.scala:28:16, :56:29, :58:27, :109:26, :125:63, :142:34, :149:45, :187:20, :198:{24,30,88}, :210:24, :218:24, :320:20, :355:18]
       3'b011:
-        casez_tmp_4 = 32'h0;	// @[src/main/cache/iCache.scala:28:16, :56:29, :58:27, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
+        casez_tmp_4 = 32'h0;	// @[src/main/cache/iCache.scala:28:16, :56:29, :58:27, :149:45, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
       3'b100:
-        casez_tmp_4 = 32'h0;	// @[src/main/cache/iCache.scala:28:16, :56:29, :58:27, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
+        casez_tmp_4 = 32'h0;	// @[src/main/cache/iCache.scala:28:16, :56:29, :58:27, :149:45, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
       3'b101:
-        casez_tmp_4 = out_araddr;	// @[src/main/cache/iCache.scala:56:29, :58:27, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
+        casez_tmp_4 = out_araddr;	// @[src/main/cache/iCache.scala:56:29, :58:27, :149:45, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
       3'b110:
-        casez_tmp_4 = out_araddr;	// @[src/main/cache/iCache.scala:56:29, :58:27, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
+        casez_tmp_4 = out_araddr;	// @[src/main/cache/iCache.scala:56:29, :58:27, :149:45, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
       default:
-        casez_tmp_4 = out_araddr;	// @[src/main/cache/iCache.scala:56:29, :58:27, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
-    endcase	// @[src/main/cache/iCache.scala:56:29, :58:27, :122:30, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
+        casez_tmp_4 = out_araddr;	// @[src/main/cache/iCache.scala:56:29, :58:27, :149:45, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
+    endcase	// @[src/main/cache/iCache.scala:56:29, :58:27, :122:30, :149:45, :187:20, :198:24, :210:24, :218:24, :320:20, :355:18]
   end // always_comb
-  wire        _GEN = c_state == 3'h2;	// @[src/main/cache/iCache.scala:121:26, :145:43, :296:64]
+  wire        _GEN = c_state == 3'h2;	// @[src/main/cache/iCache.scala:121:26, :149:45, :296:64]
   wire        _icache_wdata_index_T_2 = _out_araddr_T_1[0] - 1'h1;	// @[src/main/cache/iCache.scala:142:{34,42}]
-  wire        _in_rdata_T_13 = n_state == 3'h4;	// @[src/main/cache/iCache.scala:122:30, :145:22]
-  wire        _icache_wdata_T_8 = out_rready & io_out_rvalid;	// @[src/main/cache/iCache.scala:62:29, :146:24]
-  wire        _GEN_0 =
-    (|out_arlen)
-      ? _icache_wdata_T_8
-      : (_in_rdata_T_13 | n_state == 3'h2) & c_state == 3'h3;	// @[src/main/cache/iCache.scala:59:28, :121:26, :122:30, :144:{62,73}, :145:{12,22,32,43,54,65}, :146:{12,24}]
-  wire        _GEN_1 = n_state == 3'h0;	// @[src/main/cache/iCache.scala:28:16, :122:30, :187:20]
-  wire        _GEN_2 = n_state == 3'h1;	// @[src/main/cache/iCache.scala:122:30, :139:44, :187:20]
-  wire        _GEN_3 = n_state == 3'h2;	// @[src/main/cache/iCache.scala:122:30, :145:43, :187:20]
-  wire        _GEN_4 = _GEN_3 & issdram_raddr;	// @[src/main/cache/iCache.scala:61:30, :125:63, :187:20, :204:{25,31}]
-  wire        _GEN_5 = n_state == 3'h3;	// @[src/main/cache/iCache.scala:122:30, :145:65, :187:20]
-  wire        _GEN_6 = n_state == 3'h4;	// @[src/main/cache/iCache.scala:122:30, :145:22, :187:20]
-  wire        _GEN_7 = _GEN_5 | _GEN_6;	// @[src/main/cache/iCache.scala:58:27, :187:20, :355:18]
-  wire        _GEN_8 = _GEN_3 | _GEN_7;	// @[src/main/cache/iCache.scala:58:27, :187:20, :355:18]
-  wire        _GEN_9 = _GEN_2 | ~_GEN_8;	// @[src/main/cache/iCache.scala:58:27, :187:20, :355:18]
-  wire        _GEN_10 = _GEN_1 | ~_GEN_9;	// @[src/main/cache/iCache.scala:58:27, :187:20, :322:18]
-  wire        _GEN_11 = c_state == 3'h4 & issdram_raddr;	// @[src/main/cache/iCache.scala:121:26, :125:63, :145:22, :253:{18,28}]
-  wire        _GEN_12 = _GEN_11 & req_index == 2'h0;	// @[src/main/cache/iCache.scala:28:16, :103:25, :181:20, :253:{28,45}, :256:35, :258:35]
-  wire        _GEN_13 = _GEN_11 & req_index == 2'h1;	// @[src/main/cache/iCache.scala:103:25, :181:20, :183:49, :253:{28,45}, :256:35, :258:35]
-  wire        _GEN_14 = _GEN_11 & req_index == 2'h2;	// @[src/main/cache/iCache.scala:97:24, :103:25, :181:20, :253:{28,45}, :256:35, :258:35]
-  wire        _GEN_15 = _GEN_11 & (&req_index);	// @[src/main/cache/iCache.scala:103:25, :181:20, :253:{28,45}, :256:35, :258:35]
+  wire        _GEN_0 = n_state == 3'h4;	// @[src/main/cache/iCache.scala:122:30, :149:24]
+  wire        _GEN_1 = n_state == 3'h2;	// @[src/main/cache/iCache.scala:122:30, :149:45]
+  wire        _GEN_2 = (_GEN_0 | _GEN_1) & c_state == 3'h3;	// @[src/main/cache/iCache.scala:121:26, :149:{24,34,45,56,67}]
+  wire        _GEN_3 = out_rready & io_out_rvalid;	// @[src/main/cache/iCache.scala:62:29, :152:29]
+  wire        _GEN_4 = n_state == 3'h0;	// @[src/main/cache/iCache.scala:28:16, :122:30, :187:20]
+  wire        _GEN_5 = n_state == 3'h1;	// @[src/main/cache/iCache.scala:122:30, :139:44, :187:20]
+  wire        _GEN_6 = _GEN_1 & issdram_raddr;	// @[src/main/cache/iCache.scala:61:30, :125:63, :149:45, :187:20, :204:{25,31}]
+  wire        _GEN_7 = n_state == 3'h3;	// @[src/main/cache/iCache.scala:122:30, :149:67, :187:20]
+  wire        _GEN_8 = _GEN_7 | _GEN_0;	// @[src/main/cache/iCache.scala:58:27, :149:24, :187:20, :355:18]
+  wire        _GEN_9 = _GEN_1 | _GEN_8;	// @[src/main/cache/iCache.scala:58:27, :149:45, :187:20, :355:18]
+  wire        _GEN_10 = _GEN_5 | ~_GEN_9;	// @[src/main/cache/iCache.scala:58:27, :187:20, :355:18]
+  wire        _GEN_11 = _GEN_4 | ~_GEN_10;	// @[src/main/cache/iCache.scala:58:27, :187:20, :322:18]
+  wire        _GEN_12 = c_state == 3'h4 & issdram_raddr;	// @[src/main/cache/iCache.scala:121:26, :125:63, :149:24, :253:{18,28}]
+  wire        _GEN_13 = _GEN_12 & req_index == 2'h0;	// @[src/main/cache/iCache.scala:28:16, :103:25, :181:20, :253:{28,45}, :256:35, :258:35]
+  wire        _GEN_14 = _GEN_12 & req_index == 2'h1;	// @[src/main/cache/iCache.scala:103:25, :181:20, :183:49, :253:{28,45}, :256:35, :258:35]
+  wire        _GEN_15 = _GEN_12 & req_index == 2'h2;	// @[src/main/cache/iCache.scala:97:24, :103:25, :181:20, :253:{28,45}, :256:35, :258:35]
+  wire        _GEN_16 = _GEN_12 & (&req_index);	// @[src/main/cache/iCache.scala:103:25, :181:20, :253:{28,45}, :256:35, :258:35]
   wire        ways_hit = casez_tmp_0 == req_tag & casez_tmp;	// @[src/main/cache/iCache.scala:107:23, :133:{44,56}]
   wire        _in_rdata_T = n_state == 3'h1;	// @[src/main/cache/iCache.scala:122:30, :139:44]
   always @(posedge clock) begin	// @[src/main/cache/iCache.scala:27:7]
@@ -322,39 +318,39 @@ module iCache(	// @[src/main/cache/iCache.scala:27:7]
       fencei_counter <= 2'h0;	// @[src/main/cache/iCache.scala:28:16, :159:33]
     end
     else begin	// @[src/main/cache/iCache.scala:27:7]
-      in_arready <= _GEN_1 | ~(_GEN_2 | _GEN_8) & in_arready;	// @[src/main/cache/iCache.scala:33:29, :58:27, :187:20, :193:24, :202:24, :214:24, :222:24, :306:20, :355:18]
+      in_arready <= _GEN_4 | ~(_GEN_5 | _GEN_9) & in_arready;	// @[src/main/cache/iCache.scala:33:29, :58:27, :187:20, :193:24, :202:24, :214:24, :222:24, :306:20, :355:18]
       if (issdram_raddr) begin	// @[src/main/cache/iCache.scala:125:63]
         if (_in_rdata_T & ways_hit)	// @[src/main/cache/iCache.scala:133:56, :139:44, :238:37]
           in_rdata <= req_offset[2] ? casez_tmp_2 : casez_tmp_1;	// @[src/main/cache/iCache.scala:34:27, :105:26, :133:44, :238:8, :239:61]
         else if (_in_rdata_T_3 & 2'h1 - count == {1'h0, req_offset[2]})	// @[src/main/cache/iCache.scala:28:16, :97:24, :105:26, :170:49, :183:49, :239:61, :240:{40,55,64}]
           in_rdata <= io_out_rdata;	// @[src/main/cache/iCache.scala:34:27]
       end
-      else if (_in_rdata_T_13)	// @[src/main/cache/iCache.scala:145:22]
+      else if (n_state == 3'h4)	// @[src/main/cache/iCache.scala:122:30, :149:24, :243:17]
         in_rdata <= io_out_rdata;	// @[src/main/cache/iCache.scala:34:27]
       in_rvalid <=
-        ~_GEN_1 & (_GEN_2 ? ways_hit : _GEN_3 ? hit0 : ~_GEN_5 & (_GEN_6 | in_rvalid));	// @[src/main/cache/iCache.scala:36:28, :133:56, :139:25, :187:20, :194:23, :201:23, :213:23, :221:23, :309:19, :325:21]
+        ~_GEN_4 & (_GEN_5 ? ways_hit : _GEN_1 ? hit0 : ~_GEN_7 & (_GEN_0 | in_rvalid));	// @[src/main/cache/iCache.scala:36:28, :133:56, :139:25, :149:{24,45}, :187:20, :194:23, :201:23, :213:23, :221:23, :309:19, :325:21]
       out_araddr <= casez_tmp_4;	// @[src/main/cache/iCache.scala:56:29, :187:20, :320:20]
       out_arvalid <=
-        ~_GEN_1 & (_GEN_2 ? out_arvalid : _GEN_3 ? ~hit0 : ~_GEN_7 & out_arvalid);	// @[src/main/cache/iCache.scala:57:30, :58:27, :139:25, :187:20, :199:{25,28}, :211:25, :219:25, :321:21, :325:21, :355:18]
-      if (_GEN_10)	// @[src/main/cache/iCache.scala:187:20, :322:18]
+        ~_GEN_4 & (_GEN_5 ? out_arvalid : _GEN_1 ? ~hit0 : ~_GEN_8 & out_arvalid);	// @[src/main/cache/iCache.scala:57:30, :58:27, :139:25, :149:45, :187:20, :199:{25,28}, :211:25, :219:25, :321:21, :325:21, :355:18]
+      if (_GEN_11)	// @[src/main/cache/iCache.scala:187:20, :322:18]
         out_arid <= 4'h0;	// @[src/main/cache/iCache.scala:28:16, :58:27]
-      if (_GEN_1) begin	// @[src/main/cache/iCache.scala:187:20]
+      if (_GEN_4) begin	// @[src/main/cache/iCache.scala:187:20]
         out_arlen <= 2'h0;	// @[src/main/cache/iCache.scala:28:16, :59:28]
         out_arsize <= 2'h0;	// @[src/main/cache/iCache.scala:28:16, :60:29]
       end
-      else if (_GEN_2 | ~_GEN_4) begin	// @[src/main/cache/iCache.scala:59:28, :60:29, :61:30, :187:20, :204:{25,31}]
+      else if (_GEN_5 | ~_GEN_6) begin	// @[src/main/cache/iCache.scala:59:28, :60:29, :61:30, :187:20, :204:{25,31}]
       end
       else begin	// @[src/main/cache/iCache.scala:60:29, :187:20]
         out_arlen <= 2'h1;	// @[src/main/cache/iCache.scala:59:28, :183:49]
         out_arsize <= 2'h2;	// @[src/main/cache/iCache.scala:60:29, :97:24]
       end
-      out_arburst <= ~_GEN_1 & (~_GEN_2 & _GEN_4 | out_arburst);	// @[src/main/cache/iCache.scala:61:30, :187:20, :204:{25,31}, :325:21]
+      out_arburst <= ~_GEN_4 & (~_GEN_5 & _GEN_6 | out_arburst);	// @[src/main/cache/iCache.scala:61:30, :187:20, :204:{25,31}, :325:21]
       out_rready <=
-        ~_GEN_1 & (_GEN_2 ? out_rready : ~_GEN_3 & (_GEN_5 | ~_GEN_6 & out_rready));	// @[src/main/cache/iCache.scala:62:29, :187:20, :200:24, :212:24, :220:24, :325:21, :326:20]
-      if (_GEN_10)	// @[src/main/cache/iCache.scala:187:20, :322:18, :327:20]
+        ~_GEN_4 & (_GEN_5 ? out_rready : ~_GEN_1 & (_GEN_7 | ~_GEN_0 & out_rready));	// @[src/main/cache/iCache.scala:62:29, :149:{24,45}, :187:20, :200:24, :212:24, :220:24, :325:21, :326:20]
+      if (_GEN_11)	// @[src/main/cache/iCache.scala:187:20, :322:18, :327:20]
         out_awaddr <= 32'h0;	// @[src/main/cache/iCache.scala:28:16, :63:29]
-      out_awvalid <= ~_GEN_1 & _GEN_9 & out_awvalid;	// @[src/main/cache/iCache.scala:58:27, :64:30, :187:20, :325:21, :328:21]
-      if (_GEN_10) begin	// @[src/main/cache/iCache.scala:187:20, :322:18, :334:19]
+      out_awvalid <= ~_GEN_4 & _GEN_10 & out_awvalid;	// @[src/main/cache/iCache.scala:58:27, :64:30, :187:20, :325:21, :328:21]
+      if (_GEN_11) begin	// @[src/main/cache/iCache.scala:187:20, :322:18, :334:19]
         out_awid <= 4'h0;	// @[src/main/cache/iCache.scala:28:16, :65:27]
         out_awlen <= 8'h0;	// @[src/main/cache/iCache.scala:28:16, :66:28]
         out_awsize <= 3'h0;	// @[src/main/cache/iCache.scala:28:16, :67:29]
@@ -362,51 +358,51 @@ module iCache(	// @[src/main/cache/iCache.scala:27:7]
         out_wdata <= 32'h0;	// @[src/main/cache/iCache.scala:28:16, :69:28]
         out_wstrb <= 4'h0;	// @[src/main/cache/iCache.scala:28:16, :70:28]
       end
-      out_wvalid <= ~_GEN_1 & _GEN_9 & out_wvalid;	// @[src/main/cache/iCache.scala:58:27, :71:29, :187:20, :325:21, :335:20]
-      out_wlast <= _GEN_1 | _GEN_9 & out_wlast;	// @[src/main/cache/iCache.scala:58:27, :72:28, :187:20, :336:19]
-      out_bready <= ~_GEN_1 & _GEN_9 & out_bready;	// @[src/main/cache/iCache.scala:58:27, :73:29, :187:20, :325:21, :337:20]
+      out_wvalid <= ~_GEN_4 & _GEN_10 & out_wvalid;	// @[src/main/cache/iCache.scala:58:27, :71:29, :187:20, :325:21, :335:20]
+      out_wlast <= _GEN_4 | _GEN_10 & out_wlast;	// @[src/main/cache/iCache.scala:58:27, :72:28, :187:20, :336:19]
+      out_bready <= ~_GEN_4 & _GEN_10 & out_bready;	// @[src/main/cache/iCache.scala:58:27, :73:29, :187:20, :325:21, :337:20]
       if (_in_rdata_T)	// @[src/main/cache/iCache.scala:139:44]
         count <= 2'h2;	// @[src/main/cache/iCache.scala:97:24]
       else if ((|count)
-               & (~(|out_arlen) & _GEN & _GEN_5 | (|out_arlen)
-                  & (_icache_wdata_T_8 | _GEN & _GEN_5)))	// @[src/main/cache/iCache.scala:59:28, :97:24, :144:73, :146:24, :170:170, :187:20, :296:{30,64,74,96,118,152,174}]
+               & (~(|out_arlen) & _GEN & _GEN_7 | (|out_arlen)
+                  & (_GEN_3 | _GEN & _GEN_7)))	// @[src/main/cache/iCache.scala:59:28, :97:24, :148:21, :152:29, :170:170, :187:20, :296:{30,64,74,96,118,152,174}]
         count <= count - 2'h1;	// @[src/main/cache/iCache.scala:97:24, :297:24]
       icache_0_set_0_valid <=
-        _GEN_12 | ~(is_fencei & fencei_counter == 2'h0) & icache_0_set_0_valid;	// @[src/main/cache/iCache.scala:28:16, :116:25, :159:33, :160:53, :181:20, :183:49, :253:45, :256:35]
-      if (_GEN_12) begin	// @[src/main/cache/iCache.scala:116:25, :181:20, :253:45, :256:35]
+        _GEN_13 | ~(is_fencei & fencei_counter == 2'h0) & icache_0_set_0_valid;	// @[src/main/cache/iCache.scala:28:16, :116:25, :159:33, :160:53, :181:20, :183:49, :253:45, :256:35]
+      if (_GEN_13) begin	// @[src/main/cache/iCache.scala:116:25, :181:20, :253:45, :256:35]
         icache_0_set_0_tag <= req_tag;	// @[src/main/cache/iCache.scala:107:23, :116:25]
         icache_0_set_0_data_0 <= icache_wdata_0;	// @[src/main/cache/iCache.scala:116:25, :143:31]
         icache_0_set_0_data_1 <= icache_wdata_1;	// @[src/main/cache/iCache.scala:116:25, :143:31]
       end
       icache_1_set_0_valid <=
-        _GEN_13 | ~(is_fencei & fencei_counter == 2'h1) & icache_1_set_0_valid;	// @[src/main/cache/iCache.scala:116:25, :159:33, :160:53, :181:20, :183:49, :253:45, :256:35]
-      if (_GEN_13) begin	// @[src/main/cache/iCache.scala:116:25, :181:20, :253:45, :256:35]
+        _GEN_14 | ~(is_fencei & fencei_counter == 2'h1) & icache_1_set_0_valid;	// @[src/main/cache/iCache.scala:116:25, :159:33, :160:53, :181:20, :183:49, :253:45, :256:35]
+      if (_GEN_14) begin	// @[src/main/cache/iCache.scala:116:25, :181:20, :253:45, :256:35]
         icache_1_set_0_tag <= req_tag;	// @[src/main/cache/iCache.scala:107:23, :116:25]
         icache_1_set_0_data_0 <= icache_wdata_0;	// @[src/main/cache/iCache.scala:116:25, :143:31]
         icache_1_set_0_data_1 <= icache_wdata_1;	// @[src/main/cache/iCache.scala:116:25, :143:31]
       end
       icache_2_set_0_valid <=
-        _GEN_14 | ~(is_fencei & fencei_counter == 2'h2) & icache_2_set_0_valid;	// @[src/main/cache/iCache.scala:97:24, :116:25, :159:33, :160:53, :181:20, :183:49, :253:45, :256:35]
-      if (_GEN_14) begin	// @[src/main/cache/iCache.scala:116:25, :181:20, :253:45, :256:35]
+        _GEN_15 | ~(is_fencei & fencei_counter == 2'h2) & icache_2_set_0_valid;	// @[src/main/cache/iCache.scala:97:24, :116:25, :159:33, :160:53, :181:20, :183:49, :253:45, :256:35]
+      if (_GEN_15) begin	// @[src/main/cache/iCache.scala:116:25, :181:20, :253:45, :256:35]
         icache_2_set_0_tag <= req_tag;	// @[src/main/cache/iCache.scala:107:23, :116:25]
         icache_2_set_0_data_0 <= icache_wdata_0;	// @[src/main/cache/iCache.scala:116:25, :143:31]
         icache_2_set_0_data_1 <= icache_wdata_1;	// @[src/main/cache/iCache.scala:116:25, :143:31]
       end
       icache_3_set_0_valid <=
-        _GEN_15 | ~(is_fencei & (&fencei_counter)) & icache_3_set_0_valid;	// @[src/main/cache/iCache.scala:116:25, :159:33, :160:53, :181:20, :183:49, :253:45, :256:35]
-      if (_GEN_15) begin	// @[src/main/cache/iCache.scala:116:25, :181:20, :253:45, :256:35]
+        _GEN_16 | ~(is_fencei & (&fencei_counter)) & icache_3_set_0_valid;	// @[src/main/cache/iCache.scala:116:25, :159:33, :160:53, :181:20, :183:49, :253:45, :256:35]
+      if (_GEN_16) begin	// @[src/main/cache/iCache.scala:116:25, :181:20, :253:45, :256:35]
         icache_3_set_0_tag <= req_tag;	// @[src/main/cache/iCache.scala:107:23, :116:25]
         icache_3_set_0_data_0 <= icache_wdata_0;	// @[src/main/cache/iCache.scala:116:25, :143:31]
         icache_3_set_0_data_1 <= icache_wdata_1;	// @[src/main/cache/iCache.scala:116:25, :143:31]
       end
       c_state <= n_state;	// @[src/main/cache/iCache.scala:121:26, :122:30]
-      if (_icache_wdata_index_T_2) begin	// @[src/main/cache/iCache.scala:142:42]
-      end
-      else if (_GEN_0)	// @[src/main/cache/iCache.scala:144:62, :145:12, :146:12]
+      if ((|out_arlen)
+            ? _GEN_3 & ~_icache_wdata_index_T_2
+            : _GEN_2 & ~_icache_wdata_index_T_2)	// @[src/main/cache/iCache.scala:59:28, :142:42, :143:31, :148:{21,30}, :149:{56,78}, :150:64, :152:{29,47}, :153:60]
         icache_wdata_0 <= io_out_rdata;	// @[src/main/cache/iCache.scala:143:31]
-      else if (_icache_wdata_index_T_2)	// @[src/main/cache/iCache.scala:142:42]
-        icache_wdata_0 <= icache_wdata_1;	// @[src/main/cache/iCache.scala:143:31]
-      if (_icache_wdata_index_T_2 & _GEN_0)	// @[src/main/cache/iCache.scala:142:42, :143:31, :144:{56,62}, :145:12, :146:12]
+      if ((|out_arlen)
+            ? _GEN_3 & _icache_wdata_index_T_2
+            : _GEN_2 & _icache_wdata_index_T_2)	// @[src/main/cache/iCache.scala:59:28, :142:42, :143:31, :148:{21,30}, :149:{56,78}, :150:64, :152:{29,47}, :153:60]
         icache_wdata_1 <= io_out_rdata;	// @[src/main/cache/iCache.scala:143:31]
       if (is_fencei & ~(&fencei_counter))	// @[src/main/cache/iCache.scala:159:33, :160:53, :161:37, :175:{20,23}]
         fencei_counter <= fencei_counter + 2'h1;	// @[src/main/cache/iCache.scala:159:33, :176:42, :183:49]
