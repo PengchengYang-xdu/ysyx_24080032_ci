@@ -22,10 +22,10 @@ void get_reg(){
   for(i = 0; i < REGNUM; i++)
     gpr[i] = VGPR[i];
 
-    csr[0] = VCSR0;
-    csr[1] = VCSR1;
-    csr[2] = VCSR2;
-    csr[3] = VCSR3;
+    csr[0] = VCSR[0];
+    csr[1] = VCSR[1];
+    csr[2] = VCSR[2];
+    csr[3] = VCSR[3];
 }
 
 void isa_reg_display() {
