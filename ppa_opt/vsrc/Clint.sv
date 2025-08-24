@@ -247,7 +247,9 @@ always @(posedge clk or posedge rst) begin
         axi4_wready <= 1'b0;
         axi4_bresp <= 2'b0;
         axi4_bvalid <= 1'b0;
+        `ifdef CLINT_DELAY_ON
         w_delay_unit <= lfsr;
+        `endif
     end
     else begin
         case(nw_state)
@@ -256,27 +258,35 @@ always @(posedge clk or posedge rst) begin
                 axi4_wready <= 1'b1;
                 axi4_bresp <= 2'b0;
                 axi4_bvalid <= 1'b0;
+                `ifdef CLINT_DELAY_ON
                 w_delay_unit <= lfsr;
+                `endif
             end
             s_BeforeAXI_B_Fire: begin
                 axi4_awready <= 1'b0;
                 axi4_wready <= 1'b0;
                 axi4_bresp <= 2'b0;
+                `ifdef CLINT_DELAY_ON
                 w_delay_unit <= w_delay_unit - 1;
                 if(w_delay_unit == 0) begin
+                `endif
                     // $error("Ilegal write in CLINT\n");
                     axi4_bvalid <= 1'b1;
+                `ifdef CLINT_DELAY_ON
                 end
                 else begin
                     axi4_bvalid <= 1'b0;
                 end
+                `endif
             end
             default: begin
                 axi4_awready <= 1'b1;
                 axi4_wready <= 1'b1;
                 axi4_bresp <= 2'b0;
                 axi4_bvalid <= 1'b0;
+                `ifdef CLINT_DELAY_ON
                 w_delay_unit <= lfsr;
+                `endif
             end 
         endcase
     end
