@@ -1,4 +1,3 @@
-gpr_16x32.sv
 GPR.sv
 CSR.sv
 IFU.sv

@@ -16,7 +16,7 @@ object Config{
 
     val BUBBLE        = "h00000013".U(WORD_LEN.W)  // [ADDI x0,x0,0] = BUBBLE
     val UNIMP         = "x_c0001073".U(WORD_LEN.W) // [CSRRW x0, cycle, x0]
-    val ADDR_LEN      = 5 // rs1,rs2,wb
+    val ADDR_LEN      = 4 // rs1,rs2,wb
     val CSR_ADDR_LEN  = 12
     val VLEN          = 128
     val LMUL_LEN      = 2
