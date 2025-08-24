@@ -1,16 +1,102 @@
 
 30. Executing CHECK pass (checking for obvious problems).
 checking module CSR..
-Warning: Wire CSR.\_GEN is used but has no driver.
-Warning: Wire CSR.$abc$27104$and$./vsrc/CSR.sv:113$192_Y is used but has no driver.
-Warning: Wire CSR.$abc$27104$ternary$./vsrc/CSR.sv:112$185_Y[2] is used but has no driver.
-Warning: Wire CSR.$abc$27104$ternary$./vsrc/CSR.sv:112$185_Y[1] is used but has no driver.
-Warning: Wire CSR.$abc$27104$ternary$./vsrc/CSR.sv:112$185_Y[0] is used but has no driver.
-Warning: Wire CSR.$auto$hilomap.cc:47:hilomap_worker$57293 is used but has no driver.
-Warning: Wire CSR.$auto$hilomap.cc:39:hilomap_worker$57291 is used but has no driver.
-Warning: Wire CSR.$abc$27104$ternary$./vsrc/CSR.sv:81$176_Y[2] is used but has no driver.
-Warning: Wire CSR.$abc$27104$ternary$./vsrc/CSR.sv:81$176_Y[1] is used but has no driver.
-Warning: Wire CSR.$abc$27104$ternary$./vsrc/CSR.sv:81$176_Y[0] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [31] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [30] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [29] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [28] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [27] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [26] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [25] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [24] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [23] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [22] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [21] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [20] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [19] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [18] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [17] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [16] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [15] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [14] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [13] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [12] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [11] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [10] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [9] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [8] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [7] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [6] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [5] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [4] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [3] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [2] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [1] is used but has no driver.
+Warning: Wire CSR.\io_csr_rdata [0] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [31] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [30] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [29] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [28] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [27] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [26] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [25] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [24] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [23] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [22] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [21] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [20] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [19] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [18] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [17] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [16] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [15] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [14] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [13] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [12] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [11] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [10] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [9] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [8] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [7] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [6] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [5] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [4] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [3] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [2] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [1] is used but has no driver.
+Warning: Wire CSR.\io_csr_mtvec [0] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [31] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [30] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [29] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [28] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [27] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [26] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [25] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [24] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [23] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [22] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [21] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [20] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [19] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [18] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [17] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [16] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [15] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [14] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [13] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [12] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [11] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [10] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [9] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [8] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [7] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [6] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [5] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [4] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [3] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [2] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [1] is used but has no driver.
+Warning: Wire CSR.\io_csr_mepc [0] is used but has no driver.
 checking module Clint..
 Warning: Wire Clint.\axi4_wready is used but has no driver.
 Warning: Wire Clint.\axi4_rvalid is used but has no driver.
@@ -63,7 +149,7 @@ Warning: Wire Clint.\axi4_bid [0] is used but has no driver.
 Warning: Wire Clint.\axi4_awready is used but has no driver.
 Warning: Wire Clint.\axi4_arready is used but has no driver.
 checking module Core..
-Warning: Wire Core.$auto$hilomap.cc:39:hilomap_worker$57299 is used but has no driver.
+Warning: Wire Core.$auto$hilomap.cc:39:hilomap_worker$51541 is used but has no driver.
 Warning: Wire Core.\_GEN is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_wb_data[31] is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_wb_data[30] is used but has no driver.
@@ -419,7 +505,7 @@ Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[3] is used but has no drive
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[2] is used but has no driver.
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[1] is used but has no driver.
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[0] is used but has no driver.
-Warning: Wire Core.$abc$27583$or$./vsrc/Core.sv:569$727_Y is used but has no driver.
+Warning: Wire Core.$abc$26095$or$./vsrc/Core.sv:570$744_Y is used but has no driver.
 Warning: Wire Core.\_GEN_1 is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_wb_sel[2] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_wb_sel[1] is used but has no driver.
@@ -1015,8 +1101,8 @@ Warning: Wire GPR.\io_gpr_rs1_data [3] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [2] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [1] is used but has no driver.
 Warning: Wire GPR.\io_gpr_rs1_data [0] is used but has no driver.
-Warning: Wire GPR.$abc$30060$and$./vsrc/GPR.sv:81$197_Y is used but has no driver.
-Warning: Wire GPR.$auto$hilomap.cc:39:hilomap_worker$57301 is used but has no driver.
+Warning: Wire GPR.$abc$28572$and$./vsrc/GPR.sv:81$214_Y is used but has no driver.
+Warning: Wire GPR.$auto$hilomap.cc:39:hilomap_worker$51543 is used but has no driver.
 checking module IDU..
 Warning: Wire IDU.\io_pipe_out_valid is used but has no driver.
 Warning: Wire IDU.\io_pipe_out_bits_id2exe_wb_sel [2] is used but has no driver.
@@ -1668,8 +1754,8 @@ Warning: Wire NPC.\io_slave_bid [1] is used but has no driver.
 Warning: Wire NPC.\io_slave_bid [0] is used but has no driver.
 Warning: Wire NPC.\io_slave_awready is used but has no driver.
 Warning: Wire NPC.\io_slave_arready is used but has no driver.
-Warning: Wire NPC.$auto$hilomap.cc:39:hilomap_worker$57309 is used but has no driver.
-Warning: Wire NPC.$auto$hilomap.cc:47:hilomap_worker$57307 is used but has no driver.
+Warning: Wire NPC.$auto$hilomap.cc:39:hilomap_worker$51551 is used but has no driver.
+Warning: Wire NPC.$auto$hilomap.cc:47:hilomap_worker$51549 is used but has no driver.
 checking module WBU..
 Warning: Wire WBU.\io_pipe_out_valid is used but has no driver.
 Warning: Wire WBU.\io_pipe_in_ready is used but has no driver.
@@ -2092,103 +2178,6 @@ Warning: Wire Xbar.\io_clint_araddr [3] is used but has no driver.
 Warning: Wire Xbar.\io_clint_araddr [2] is used but has no driver.
 Warning: Wire Xbar.\io_clint_araddr [1] is used but has no driver.
 Warning: Wire Xbar.\io_clint_araddr [0] is used but has no driver.
-checking module csr_6x32..
-Warning: Wire csr_6x32.\R2_data [31] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [30] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [29] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [28] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [27] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [26] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [25] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [24] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [23] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [22] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [21] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [20] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [19] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [18] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [17] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [16] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [15] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [14] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [13] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [12] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [11] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [10] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [9] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [8] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [7] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [6] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [5] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [4] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [3] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [2] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [1] is used but has no driver.
-Warning: Wire csr_6x32.\R2_data [0] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [31] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [30] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [29] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [28] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [27] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [26] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [25] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [24] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [23] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [22] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [21] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [20] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [19] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [18] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [17] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [16] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [15] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [14] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [13] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [12] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [11] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [10] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [9] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [8] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [7] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [6] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [5] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [4] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [3] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [2] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [1] is used but has no driver.
-Warning: Wire csr_6x32.\R1_data [0] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [31] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [30] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [29] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [28] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [27] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [26] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [25] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [24] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [23] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [22] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [21] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [20] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [19] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [18] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [17] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [16] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [15] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [14] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [13] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [12] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [11] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [10] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [9] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [8] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [7] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [6] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [5] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [4] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [3] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [2] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [1] is used but has no driver.
-Warning: Wire csr_6x32.\R0_data [0] is used but has no driver.
 checking module gpr_16x32..
 Warning: Wire gpr_16x32.\R1_data [31] is used but has no driver.
 Warning: Wire gpr_16x32.\R1_data [30] is used but has no driver.
@@ -2430,4 +2419,4 @@ Warning: Wire iCache.\io_in_rdata [1] is used but has no driver.
 Warning: Wire iCache.\io_in_rdata [0] is used but has no driver.
 Warning: Wire iCache.\io_in_arready is used but has no driver.
 Warning: Wire iCache.\fencei_io_vr_is_fencei_io_ready is used but has no driver.
-found and reported 2416 problems.
+found and reported 2406 problems.

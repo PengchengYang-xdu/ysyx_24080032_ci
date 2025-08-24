@@ -493,6 +493,7 @@ module Core(	// @[src/main/core/Core.scala:23:7]
   );
   CSR csr (	// @[src/main/core/Core.scala:27:21]
     .clock          (clock),
+    .reset          (reset),
     .io_csr_mtvec   (_csr_io_csr_mtvec),
     .io_csr_mepc    (_csr_io_csr_mepc),
     .io_csr_rdata   (_csr_io_csr_rdata),
