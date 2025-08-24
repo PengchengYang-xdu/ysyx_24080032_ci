@@ -1,11 +1,11 @@
 ### Report: NPC.rpt (first 11 lines)
-Generate the report at 2025-08-23T18:39:12, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-08-24T11:29:58, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 +-----------------+-------------+------------+------------+---------------+-------+--------+-----------+
 | Endpoint        | Clock Group | Delay Type | Path Delay | Path Required | CPPR  | Slack  | Freq(MHz) |
 +-----------------+-------------+------------+------------+---------------+-------+--------+-----------+
 | core/_6830_:D   | core_clock  | max        | 1.517f     | 2.183         | 0.000 | 0.666  | 642.557   |
-| core/_6825_:D   | core_clock  | max        | 1.525r     | 2.191         | 0.000 | 0.666  | 642.761   |
-| core/_6749_:D   | core_clock  | max        | 1.525r     | 2.191         | 0.000 | 0.666  | 642.761   |
+| core/_6818_:D   | core_clock  | max        | 1.525r     | 2.191         | 0.000 | 0.666  | 642.761   |
+| core/_6748_:D   | core_clock  | max        | 1.525r     | 2.191         | 0.000 | 0.666  | 642.761   |
 | clint/_1457_:SN | core_clock  | min        | 0.160r     | 0.200         | 0.000 | -0.041 | NA        |
 | clint/_1461_:SN | core_clock  | min        | 0.160r     | 0.200         | 0.000 | -0.041 | NA        |
 | clint/_1455_:SN | core_clock  | min        | 0.161r     | 0.200         | 0.000 | -0.040 | NA        |
@@ -24,7 +24,7 @@ Generate the report at 2025-08-23T18:39:12, GitVersion: aa25008b3778a76ae1975c83
    Chip area for module '\WBU': 121.030000
    Chip area for module '\Xbar': 3631.698000
    Chip area for module '\csr_6x32': 5360.964000
-   Chip area for module '\gpr_16x32': 6423.368000
-   Chip area for module '\iCache': 8034.530000
-   Chip area for top module '\NPC': 38594.206000
+   Chip area for module '\gpr_16x32': 6261.108000
+   Chip area for module '\iCache': 7568.498000
+   Chip area for top module '\NPC': 37965.914000
 
