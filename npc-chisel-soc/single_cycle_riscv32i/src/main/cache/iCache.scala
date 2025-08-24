@@ -168,8 +168,9 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     }
     fencei_io_vr.is_fencei_io.ready := fencei_fsh
     when(is_fencei){
-        for(i <- 0 until ways)
-        icache(fencei_counter).set(i).valid := false.B
+        for(i <- 0 until ways){
+            icache(fencei_counter).set(i).valid := false.B
+        }
     }
 
     switch(n_state){//third phase
