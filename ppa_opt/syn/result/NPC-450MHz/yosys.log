@@ -4745,74 +4745,180 @@ Optimizing module iCache.
 
 24. Executing ABC pass (technology mapping using ABC).
 
-24.1. Extracting gate netlist of module `\CSR' to `/tmp/yosys-abc-cdqDEd/input.blif'..
-Extracted 77 gates and 105 wires to a netlist network with 28 inputs and 8 outputs.
+Syntax error in command `abc -D 2222.222222222222 -liberty ./syn/scripts/../nangate45/lib/merged.lib -showtmp -area -script +strash;ifraig;retime,-D,{D},-M,6;strash;dch,-f;map,-p,-M,1,{D},-f;topo;dnsize;buffer,-p;upsize;':
 
-24.1.1. Executing ABC.
-Running ABC command: berkeley-abc -s -f /tmp/yosys-abc-cdqDEd/abc.script 2>&1
-ABC: ABC command line: "source /tmp/yosys-abc-cdqDEd/abc.script".
-ABC: 
-ABC: + read_blif /tmp/yosys-abc-cdqDEd/input.blif 
-ABC: + read_lib -w /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib 
-ABC: Parsing finished successfully.  Parsing time =     0.08 sec
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_1024x32" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_2048x39" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x34" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x95" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_256x96" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_32x64" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_512x64" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x15" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x21" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x32" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x7" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "fakeram45_64x96" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "ANTENNA_X1" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X1" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X2" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X4" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X8" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATE_X1" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATE_X2" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATE_X4" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATE_X8" without logic function.
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFRS_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFRS_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFR_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFR_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFS_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFFS_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFF_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DFF_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLH_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLH_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLL_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "DLL_X2".
-ABC: Scl_LibertyReadGenlib() skipped cell "FILLCELL_X2" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped cell "FILLCELL_X4" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped cell "FILLCELL_X8" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped cell "FILLCELL_X32" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped cell "LOGIC0_X1" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped cell "LOGIC1_X1" due to dont_use attribute.
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFRS_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFRS_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFR_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFR_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFS_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFFS_X2".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFF_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "SDFF_X2".
-ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X1".
-ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X2".
-ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X4".
-ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X8".
-ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X16".
-ABC: Scl_LibertyReadGenlib() skipped three-state cell "TINV_X1".
-ABC: Scl_LibertyReadGenlib() skipped sequential cell "TLAT_X1".
-ABC: Library "nangate45_merged" from "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/./syn/scripts/../nangate45/lib/merged.lib" has 88 cells (47 skipped: 21 seq; 6 tri-state; 20 no func; 7 dont_use).  Time =     0.12 sec
-ABC: Memory =    8.88 MB. Time =     0.12 sec
-ABC: Warning: Detected 2 multi-output gates (for example, "FA_X1").
-ABC: + source /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/-area +strash 
-ABC: ** cmd error: aborting 'source /tmp/yosys-abc-cdqDEd/abc.script'
-ABC: Cannot open file "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/-area".
-ERROR: Can't open ABC output file `/tmp/yosys-abc-cdqDEd/output.blif'.
+    abc [options] [selection]
+
+This pass uses the ABC tool [1] for technology mapping of yosys's internal gate
+library to a target architecture.
+
+    -exe <command>
+        use the specified command instead of "<yosys-bindir>/yosys-abc" to execute ABC.
+        This can e.g. be used to call a specific version of ABC or a wrapper.
+
+    -script <file>
+        use the specified ABC script file instead of the default script.
+
+        if <file> starts with a plus sign (+), then the rest of the filename
+        string is interpreted as the command string to be passed to ABC. The
+        leading plus sign is removed and all commas (,) in the string are
+        replaced with blanks before the string is passed to ABC.
+
+        if no -script parameter is given, the following scripts are used:
+
+        for -liberty without -constr:
+          strash; ifraig; scorr; dc2; dretime; retime {D}; strash; &get -n;
+               &dch -f; &nf {D}; &put
+
+        for -liberty with -constr:
+          strash; ifraig; scorr; dc2; dretime; retime {D}; strash; &get -n;
+               &dch -f; &nf {D}; &put; buffer; upsize {D}; dnsize {D};
+               stime -p
+
+        for -lut/-luts (only one LUT size):
+          strash; ifraig; scorr; dc2; dretime; retime {D}; strash; dch -f;
+               if; mfs2; lutpack {S}
+
+        for -lut/-luts (different LUT sizes):
+          strash; ifraig; scorr; dc2; dretime; retime {D}; strash; dch -f;
+               if; mfs2
+
+        for -sop:
+          strash; ifraig; scorr; dc2; dretime; retime {D}; strash; dch -f;
+               cover {I} {P}
+
+        otherwise:
+          strash; ifraig; scorr; dc2; dretime; retime {D}; strash; &get -n;
+               &dch -f; &nf {D}; &put
+
+    -fast
+        use different default scripts that are slightly faster (at the cost
+        of output quality):
+
+        for -liberty without -constr:
+          strash; dretime; retime {D}; map {D}
+
+        for -liberty with -constr:
+          strash; dretime; retime {D}; map {D}; buffer; upsize {D};
+               dnsize {D}; stime -p
+
+        for -lut/-luts:
+          strash; dretime; retime {D}; if
+
+        for -sop:
+          strash; dretime; retime {D}; cover -I {I} -P {P}
+
+        otherwise:
+          strash; dretime; retime {D}; map
+
+    -liberty <file>
+        generate netlists for the specified cell library (using the liberty
+        file format).
+
+    -constr <file>
+        pass this file with timing constraints to ABC. use with -liberty.
+
+        a constr file contains two lines:
+            set_driving_cell <cell_name>
+            set_load <floating_point_number>
+
+        the set_driving_cell statement defines which cell type is assumed to
+        drive the primary inputs and the set_load statement sets the load in
+        femtofarads for each primary output.
+
+    -D <picoseconds>
+        set delay target. the string {D} in the default scripts above is
+        replaced by this option when used, and an empty string otherwise.
+        this also replaces 'dretime' with 'dretime; retime -o {D}' in the
+        default scripts above.
+
+    -I <num>
+        maximum number of SOP inputs.
+        (replaces {I} in the default scripts above)
+
+    -P <num>
+        maximum number of SOP products.
+        (replaces {P} in the default scripts above)
+
+    -S <num>
+        maximum number of LUT inputs shared.
+        (replaces {S} in the default scripts above, default: -S 1)
+
+    -lut <width>
+        generate netlist using luts of (max) the specified width.
+
+    -lut <w1>:<w2>
+        generate netlist using luts of (max) the specified width <w2>. All
+        luts with width <= <w1> have constant cost. for luts larger than <w1>
+        the area cost doubles with each additional input bit. the delay cost
+        is still constant for all lut widths.
+
+    -luts <cost1>,<cost2>,<cost3>,<sizeN>:<cost4-N>,..
+        generate netlist using luts. Use the specified costs for luts with 1,
+        2, 3, .. inputs.
+
+    -sop
+        map to sum-of-product cells and inverters
+
+    -g type1,type2,...
+        Map to the specified list of gate types. Supported gates types are:
+        AND, NAND, OR, NOR, XOR, XNOR, ANDNOT, ORNOT, MUX, AOI3, OAI3, AOI4, OAI4.
+        (The NOT gate is always added to this list automatically.)
+
+        The following aliases can be used to reference common sets of gate types:
+          simple: AND OR XOR MUX
+          cmos2: NAND NOR
+          cmos3: NAND NOR AOI3 OAI3
+          cmos4: NAND NOR AOI3 OAI3 AOI4 OAI4
+          gates: AND NAND OR NOR XOR XNOR ANDNOT ORNOT
+          aig: AND NAND OR NOR ANDNOT ORNOT
+
+        Prefix a gate type with a '-' to remove it from the list. For example
+        the arguments 'AND,OR,XOR' and 'simple,-MUX' are equivalent.
+
+    -dff
+        also pass $_DFF_?_ and $_DFFE_??_ cells through ABC. modules with many
+        clock domains are automatically partitioned in clock domains and each
+        domain is passed through ABC independently.
+
+    -clk [!]<clock-signal-name>[,[!]<enable-signal-name>]
+        use only the specified clock domain. this is like -dff, but only FF
+        cells that belong to the specified clock domain are used.
+
+    -keepff
+        set the "keep" attribute on flip-flop output wires. (and thus preserve
+        them, for example for equivalence checking.)
+
+    -nocleanup
+        when this option is used, the temporary files created by this pass
+        are not removed. this is useful for debugging.
+
+    -showtmp
+        print the temp dir name in log. usually this is suppressed so that the
+        command output is identical across runs.
+
+    -markgroups
+        set a 'abcgroup' attribute on all objects created by ABC. The value of
+        this attribute is a unique integer for each ABC process started. This
+        is useful for debugging the partitioning of clock domains.
+
+    -dress
+        run the 'dress' command after all other ABC commands. This aims to
+        preserve naming by an equivalence check between the original and post-ABC
+        netlists (experimental).
+
+When neither -liberty nor -lut is used, the Yosys standard cell library is
+loaded into ABC before the ABC script is executed.
+
+Note that this is a logic optimization pass within Yosys that is calling ABC
+internally. This is not going to "run ABC on your design". It will instead run
+ABC on logic snippets extracted from your design. You will not get any useful
+output when passing an ABC script that writes a file. Instead write your full
+design as BLIF file with write_blif and the load that into ABC externally if
+you want to use ABC to convert your design into another format.
+
+[1] http://www.eecs.berkeley.edu/~alanmi/abc/
+
+ERROR: Command syntax error: Unknown option or option in arguments.
+> abc -D 2222.222222222222 -liberty ./syn/scripts/../nangate45/lib/merged.lib -showtmp -area -script +strash;ifraig;retime,-D,{D},-M,6;strash;dch,-f;map,-p,-M,1,{D},-f;topo;dnsize;buffer,-p;upsize;
+>                                                                                      ^
