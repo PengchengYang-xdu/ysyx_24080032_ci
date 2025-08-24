@@ -80,7 +80,7 @@ void close_wave(int i);
     0, \
     0 \
 })
-#define VCSR0 ((uint32_t[32]){ \
+#define VCSR ((uint32_t[32]){ \
     top->rootp->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__csr__DOT__mstatus, \
     top->rootp->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__csr__DOT__mtvec, \
     top->rootp->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__csr__DOT__mepc, \
