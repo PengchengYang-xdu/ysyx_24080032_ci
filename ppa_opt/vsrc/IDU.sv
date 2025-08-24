@@ -53,7 +53,7 @@
 module IDU(	// @[src/main/core/idu/IDU.scala:70:7]
   input         clock,	// @[src/main/core/idu/IDU.scala:70:7]
                 reset,	// @[src/main/core/idu/IDU.scala:70:7]
-  output [4:0]  io_gpr_rs1_addr,	// @[src/main/core/idu/IDU.scala:71:16]
+  output [3:0]  io_gpr_rs1_addr,	// @[src/main/core/idu/IDU.scala:71:16]
                 io_gpr_rs2_addr,	// @[src/main/core/idu/IDU.scala:71:16]
   input  [31:0] io_gpr_rs1_data,	// @[src/main/core/idu/IDU.scala:71:16]
                 io_gpr_rs2_data,	// @[src/main/core/idu/IDU.scala:71:16]
@@ -72,7 +72,7 @@ module IDU(	// @[src/main/core/idu/IDU.scala:70:7]
                 io_pipe_out_bits_id2exe_op1_data,	// @[src/main/core/idu/IDU.scala:72:21]
                 io_pipe_out_bits_id2exe_op2_data,	// @[src/main/core/idu/IDU.scala:72:21]
                 io_pipe_out_bits_id2exe_rs2_data,	// @[src/main/core/idu/IDU.scala:72:21]
-  output [4:0]  io_pipe_out_bits_id2exe_wb_addr,	// @[src/main/core/idu/IDU.scala:72:21]
+  output [3:0]  io_pipe_out_bits_id2exe_wb_addr,	// @[src/main/core/idu/IDU.scala:72:21]
   output [1:0]  io_pipe_out_bits_id2exe_rf_wen,	// @[src/main/core/idu/IDU.scala:72:21]
   output [4:0]  io_pipe_out_bits_id2exe_exe_fun,	// @[src/main/core/idu/IDU.scala:72:21]
   output [2:0]  io_pipe_out_bits_id2exe_wb_sel,	// @[src/main/core/idu/IDU.scala:72:21]
@@ -351,8 +351,8 @@ module IDU(	// @[src/main/core/idu/IDU.scala:70:7]
   Ebreak ebreak (	// @[src/main/core/idu/IDU.scala:222:29]
     .inst (inst_r)	// @[src/main/core/idu/IDU.scala:82:27]
   );
-  assign io_gpr_rs1_addr = inst_r[19:15];	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :92:24]
-  assign io_gpr_rs2_addr = inst_r[24:20];	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :93:24]
+  assign io_gpr_rs1_addr = inst_r[18:15];	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :92:24, :189:21]
+  assign io_gpr_rs2_addr = inst_r[23:20];	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :93:24, :190:21]
   assign io_gpr_rs1_is_read =
     _GEN_7 | ~_csignals_T_67
     & (_csignals_T_69 | ~_GEN_3
@@ -375,7 +375,7 @@ module IDU(	// @[src/main/core/idu/IDU.scala:70:7]
   assign io_pipe_out_bits_id2exe_op1_data = casez_tmp;	// @[src/main/core/idu/IDU.scala:70:7, src/main/scala/chisel3/util/Mux.scala:126:16]
   assign io_pipe_out_bits_id2exe_op2_data = casez_tmp_0;	// @[src/main/core/idu/IDU.scala:70:7, src/main/scala/chisel3/util/Mux.scala:126:16]
   assign io_pipe_out_bits_id2exe_rs2_data = io_gpr_rs2_data;	// @[src/main/core/idu/IDU.scala:70:7]
-  assign io_pipe_out_bits_id2exe_wb_addr = inst_r[11:7];	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :94:23]
+  assign io_pipe_out_bits_id2exe_wb_addr = inst_r[10:7];	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :94:23, :199:37]
   assign io_pipe_out_bits_id2exe_rf_wen =
     _csignals_T_1
       ? 2'h1
