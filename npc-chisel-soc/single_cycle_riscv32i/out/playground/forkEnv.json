@@ -53,7 +53,7 @@
         "CONDA_EXE": "/home/yangpengcheng/miniconda3/bin/conda",
         "VNCDESKTOP": "ubuntu-4029:2 (yangpengcheng)",
         "CONDA_DEFAULT_ENV": "base",
-        "CXX": "riscv64-linux-gnu-g++",
+        "CXX": "riscv64-unknown-linux-gnu-g++",
         "HOME": "/home/yangpengcheng",
         "COLORTERM": "truecolor",
         "XDG_DATA_DIRS": "/usr/local/share:/usr/share",
@@ -66,7 +66,7 @@
         "MAKEFLAGS": "s -- ALL=string ARCH=riscv32e-ysyxsoc",
         "ftp_proxy": "http://127.0.0.1:40325",
         "CUDA_HOME": "/usr/local/cuda-12.4",
-        "CC": "riscv64-linux-gnu-gcc",
+        "CC": "riscv64-unknown-linux-gnu-gcc",
         "USER": "yangpengcheng",
         "LC_PAPER": "zh_CN.UTF-8",
         "MANPATH": ":",
@@ -119,6 +119,6 @@
         "MODEL_TECH": "/home/yangpengcheng/questasim/bin",
         "DESKTOP_SESSION": "xfce"
     },
-    "valueHash": 1634630129,
-    "inputsHash": -1789127926
+    "valueHash": 804461335,
+    "inputsHash": -832090507
 }
