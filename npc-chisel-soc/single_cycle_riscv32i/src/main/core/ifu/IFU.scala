@@ -214,11 +214,17 @@ class IFU extends Module {
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
-    pc_next := MuxCase(pc_plus4, Seq(
-        (~io.is_mret && io.br_flg && flag   )          -> io.br_target,
-        (~io.is_mret && io.jmp_flg && flag  )          -> io.alu_out,
-        (~io.is_mret && flag )                         -> io.csr_mtvec,
-        (io.is_mret && flag  )                         -> io.csr_mepc,
+
+    val sel_br    = io.br_flg && flag && ~io.is_mret
+    val sel_jmp   = io.jmp_flg && flag && ~io.is_mret
+    val sel_trap  = flag && ~io.is_mret
+    val sel_mret  = flag && io.is_mret
+    pc_next := Mux1H(Seq(
+        sel_br   -> io.br_target,
+        sel_jmp  -> io.alu_out,
+        sel_trap -> io.csr_mtvec,
+        sel_mret -> io.csr_mepc,
+        (!sel_br && !sel_jmp && !sel_trap && !sel_mret) -> pc_plus4
     ))
     
     //connect
