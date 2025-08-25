@@ -45,8 +45,10 @@ GEN_NPC:
 TRUNC:
 	@bash ./trunc.sh $(RESULT_DIR) $(DESIGN) $(PRJ_PATH)
 
+CLEAN:
+	@rm -rf $(RESULT_DIR)
 
-ppa: GEN_NPC COPY_FILE $(TIMING_RPT)
+ppa: CLEAN GEN_NPC COPY_FILE $(TIMING_RPT)
 $(TIMING_RPT): $(SCRIPT_DIR)/sta.tcl $(SDC_FILE) $(NETLIST_FIXED_V)
 	$(PRJ_PATH)/syn/bin/iEDA -script $^ $(DESIGN) 2>&1 | tee $(RESULT_DIR)/sta.log
 	@make TRUNC
