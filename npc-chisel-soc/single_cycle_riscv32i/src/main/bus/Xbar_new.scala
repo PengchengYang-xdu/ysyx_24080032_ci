@@ -4,6 +4,7 @@ import chisel3._
 import chisel3.util._
 import npc.bus.axi._
 import npc.common.Config._
+import npc.bus.axi.AXI4Connector._
 
 /*              This is the SOC version                        */
 /*              combine Arbiter and Xbar together              */

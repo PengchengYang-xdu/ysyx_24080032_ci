@@ -1,2 +1,20 @@
-[0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 4 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/AXI.scala:146:1: expected class or object definition[0m
+[0m[[0m[31merror[0m] [0m[0mdef connectAR(slave: AXI4WithoutClk, master: AXI4WithoutClk): Unit = {[0m
+[0m[[0m[31merror[0m] [0m[0m^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/AXI.scala:156:1: expected class or object definition[0m
+[0m[[0m[31merror[0m] [0m[0mdef connectR(slave: AXI4WithoutClk, master: AXI4WithoutClk): Unit = {[0m
+[0m[[0m[31merror[0m] [0m[0m^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/AXI.scala:165:1: expected class or object definition[0m
+[0m[[0m[31merror[0m] [0m[0mdef connectAW(slave: AXI4WithoutClk, master: AXI4WithoutClk): Unit = {[0m
+[0m[[0m[31merror[0m] [0m[0m^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/AXI.scala:175:1: expected class or object definition[0m
+[0m[[0m[31merror[0m] [0m[0mdef connectW(slave: AXI4WithoutClk, master: AXI4WithoutClk): Unit = {[0m
+[0m[[0m[31merror[0m] [0m[0m^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/AXI.scala:183:1: expected class or object definition[0m
+[0m[[0m[31merror[0m] [0m[0mdef connectB(slave: AXI4WithoutClk, master: AXI4WithoutClk): Unit = {[0m
+[0m[[0m[31merror[0m] [0m[0m^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/AXI.scala:190:1: expected class or object definition[0m
+[0m[[0m[31merror[0m] [0m[0mdef connectAll(slave: AXI4WithoutClk, master: AXI4WithoutClk): Unit = {[0m
+[0m[[0m[31merror[0m] [0m[0m^[0m
+[0m[[0m[31merror[0m] [0m[0m6 errors found[0m
