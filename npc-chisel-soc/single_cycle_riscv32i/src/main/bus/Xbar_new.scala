@@ -44,9 +44,9 @@ class Xbar_new extends Module {
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
         s_IDLE       ->  MuxCase(s_IDLE, Seq(
-            isimem                    ->    s_i_soc,
-            isdmem && ~isclint        ->    s_d_soc,
-            isdmem && isclint         ->    s_d_clint
+            isimem                      ->    s_i_soc,
+            (isdmem && ~isclint)        ->    s_d_soc,
+            (isdmem && isclint)         ->    s_d_clint
         )),
         s_i_soc    ->  Mux(soc_i_done, Mux(io.imem.arvalid, s_i_soc, s_IDLE), s_i_soc),
         s_d_soc    ->  Mux(soc_d_done, s_IDLE, s_d_soc),
