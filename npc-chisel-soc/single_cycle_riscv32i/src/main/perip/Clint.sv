@@ -7,22 +7,22 @@ module Clint(
     //AR
     input [31:0] axi4_araddr,
     input axi4_arvalid,
-    output reg axi4_arready,
+    output axi4_arready,
     input [3:0] axi4_arid,
     input [7:0] axi4_arlen,
     input [2:0] axi4_arsize,
     input [1:0] axi4_arburst,
     //R
     output reg [31:0] axi4_rdata,
-    output reg [1:0] axi4_rresp,
-    output reg axi4_rvalid,
+    output [1:0] axi4_rresp,
+    output axi4_rvalid,
     input axi4_rready,
     output axi4_rlast,
     output [3:0] axi4_rid,
     //AW
     input [31:0] axi4_awaddr,
     input axi4_awvalid,
-    output reg axi4_awready,
+    output axi4_awready,
     input [3:0] axi4_awid,
     input [7:0] axi4_awlen,
     input [2:0] axi4_awsize,
@@ -31,11 +31,11 @@ module Clint(
     input [31:0] axi4_wdata,
     input [3:0] axi4_wstrb,
     input axi4_wvalid,
-    output reg axi4_wready,
+    output axi4_wready,
     input axi4_wlast,
     //B
-    output reg [1:0] axi4_bresp,
-    output reg axi4_bvalid,
+    output [1:0] axi4_bresp,
+    output axi4_bvalid,
     input axi4_bready,
     output [3:0] axi4_bid
 );
@@ -105,69 +105,87 @@ always@(*) begin
     endcase
 end
 
-//third phase
+
+assign axi4_arready = cr_state == sr_BeforeAXI_AR_Fire ? 1'b1 : 1'b0;
+assign axi4_rvalid = cr_state == sr_BeforeAXI_R_Fire ? 1'b1 : 1'b0;
+assign axi4_rresp = 0;
+
 always @(posedge clk or posedge rst) begin
     if(rst) begin
-        axi4_arready <= 1'b0;
-        axi4_rdata <= 32'b0;
-        axi4_rresp <= 2'b0;
-        axi4_rvalid <= 1'b0;
-        `ifdef CLINT_DELAY_ON
-        r_delay_unit <= lfsr;
-        `endif
+        axi4_rdata <= 'd0;
+    end
+    else if(axi4_araddr === ADDR) begin
+        axi4_rdata <= mtime[31:0];
     end
     else begin
-        case(nr_state)
-            sr_BeforeAXI_AR_Fire: begin
-                axi4_arready <= 1'b1;
-                // axi4_rdata <= 32'b0;//axi4_rdata has to hold after sr_BeforeAXI_R_Fire state
-                axi4_rresp <= 2'b0;
-                axi4_rvalid <= 1'b0;
-                `ifdef CLINT_DELAY_ON
-                r_delay_unit <= lfsr;
-                `endif
-            end
-            sr_BeforeAXI_R_Fire: begin
-                axi4_arready <= 1'b0;
-                `ifdef CLINT_DELAY_ON
-                r_delay_unit <= r_delay_unit - 1;
-                if(r_delay_unit == 0) begin
-                `endif
-                    if(axi4_araddr == ADDR) begin
-                        axi4_rdata <= mtime[31:0];
-                        axi4_rvalid <= 1'b1;
-                        axi4_rresp <= 2'b0;
-                    end
-                    else if(axi4_araddr == ADDR + 4) begin
-                        axi4_rdata <= mtime[63:32];
-                        axi4_rvalid <= 1'b1;
-                        axi4_rresp <= 2'b0;
-                    end
-                    else begin
-                        axi4_rdata <= 32'b0;
-                        axi4_rvalid <= 1'b0;
-                        axi4_rresp <= 2'b1;
-                    end
-                `ifdef CLINT_DELAY_ON
-                end
-                else begin
-                    axi4_rdata <= 32'b0;
-                    axi4_rvalid <= 1'b0;
-                end
-                `endif
-            end
-            default: begin
-                axi4_arready <= 1'b1;
-                axi4_rdata <= 32'b0;
-                axi4_rresp <= 2'b0;
-                axi4_rvalid <= 1'b0;
-                `ifdef CLINT_DELAY_ON
-                r_delay_unit <= lfsr;
-                `endif
-            end 
-        endcase
+        axi4_rdata <= mtime[63:32];
     end
 end
+
+
+// //third phase
+// always @(posedge clk or posedge rst) begin
+//     if(rst) begin
+//         axi4_arready <= 1'b0;
+//         axi4_rdata <= 32'b0;
+//         axi4_rresp <= 2'b0;
+//         axi4_rvalid <= 1'b0;
+//         `ifdef CLINT_DELAY_ON
+//         r_delay_unit <= lfsr;
+//         `endif
+//     end
+//     else begin
+//         case(nr_state)
+//             sr_BeforeAXI_AR_Fire: begin
+//                 axi4_arready <= 1'b1;
+//                 // axi4_rdata <= 32'b0;//axi4_rdata has to hold after sr_BeforeAXI_R_Fire state
+//                 axi4_rresp <= 2'b0;
+//                 axi4_rvalid <= 1'b0;
+//                 `ifdef CLINT_DELAY_ON
+//                 r_delay_unit <= lfsr;
+//                 `endif
+//             end
+//             sr_BeforeAXI_R_Fire: begin
+//                 axi4_arready <= 1'b0;
+//                 `ifdef CLINT_DELAY_ON
+//                 r_delay_unit <= r_delay_unit - 1;
+//                 if(r_delay_unit == 0) begin
+//                 `endif
+//                     if(axi4_araddr == ADDR) begin
+//                         axi4_rdata <= mtime[31:0];
+//                         axi4_rvalid <= 1'b1;
+//                         axi4_rresp <= 2'b0;
+//                     end
+//                     else if(axi4_araddr == ADDR + 4) begin
+//                         axi4_rdata <= mtime[63:32];
+//                         axi4_rvalid <= 1'b1;
+//                         axi4_rresp <= 2'b0;
+//                     end
+//                     else begin
+//                         axi4_rdata <= 32'b0;
+//                         axi4_rvalid <= 1'b0;
+//                         axi4_rresp <= 2'b1;
+//                     end
+//                 `ifdef CLINT_DELAY_ON
+//                 end
+//                 else begin
+//                     axi4_rdata <= 32'b0;
+//                     axi4_rvalid <= 1'b0;
+//                 end
+//                 `endif
+//             end
+//             default: begin
+//                 axi4_arready <= 1'b1;
+//                 axi4_rdata <= 32'b0;
+//                 axi4_rresp <= 2'b0;
+//                 axi4_rvalid <= 1'b0;
+//                 `ifdef CLINT_DELAY_ON
+//                 r_delay_unit <= lfsr;
+//                 `endif
+//             end 
+//         endcase
+//     end
+// end
 
 
 
