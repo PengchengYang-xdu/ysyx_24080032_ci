@@ -8,7 +8,7 @@ import npc.bus.axi.AXI4Connector._
 
 /*              This is the SOC version                        */
 /*              combine Arbiter and Xbar together              */
-class XbarIO extends Bundle{
+class XbarIO_new extends Bundle{
     //imem ---> xbar
     //dmem ---> xbar
     val imem = new AXI4WithoutClk
@@ -20,7 +20,7 @@ class XbarIO extends Bundle{
 }
 
 class Xbar_new extends Module {
-    val io = IO(new XbarIO)
+    val io = IO(new XbarIO_new)
 
 /*-----------------------FSM-----------------------*/
     val s_IDLE :: s_i_soc :: s_d_soc :: s_d_clint :: Nil = Enum(4)

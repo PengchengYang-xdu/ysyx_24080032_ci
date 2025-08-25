@@ -1,15 +1,5 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 4 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/NPC.scala:55:40: type Xbar_new is not a member of package npc.bus.xbar[0m
-[0m[[0m[31merror[0m] [0m[0m    val xbar = Module(new npc.bus.xbar.Xbar_new)[0m
-[0m[[0m[31merror[0m] [0m[0m                                       ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar_new.scala:48:39: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : (chisel3.Bool, chisel3.UInt)[0m
-[0m[[0m[31merror[0m] [0m[0m required: chisel3.Bool[0m
-[0m[[0m[31merror[0m] [0m[0m            isdmem && ~isclint        ->    s_d_soc,[0m
-[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar_new.scala:49:39: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : (chisel3.Bool, chisel3.UInt)[0m
-[0m[[0m[31merror[0m] [0m[0m required: chisel3.Bool[0m
-[0m[[0m[31merror[0m] [0m[0m            isdmem && isclint         ->    s_d_clint[0m
-[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
-[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar_new.scala:11:7: XbarIO is already defined as class XbarIO[0m
+[0m[[0m[31merror[0m] [0m[0mclass XbarIO extends Bundle{[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
