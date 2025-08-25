@@ -46,7 +46,7 @@ TRUNC:
 	@bash ./trunc.sh $(RESULT_DIR) $(DESIGN) $(PRJ_PATH)
 
 CLEAN:
-	@rm -rf $(RESULT_DIR)
+	@rm -rf $(PRJ_PATH)/syn/result/*
 
 ppa: CLEAN GEN_NPC COPY_FILE $(TIMING_RPT)
 $(TIMING_RPT): $(SCRIPT_DIR)/sta.tcl $(SDC_FILE) $(NETLIST_FIXED_V)
