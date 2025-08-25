@@ -54,7 +54,7 @@ class NPC extends Module {
     val core = Module(new Core)
     val xbar = Module(new npc.bus.xbar.Xbar)
     val clint = Module(new npc.perip.Clint)
-    
+
     //from chisel
     core.clock := clock
     core.reset := reset.asBool
