@@ -48,7 +48,7 @@
         "VSCODE_GIT_ASKPASS_MAIN": "/home/yangpengcheng/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/extensions/git/dist/askpass-main.js",
         "XDG_SESSION_ID": "244",
         "VCS_HOME": "/10T/yangpengcheng/EDA/synopsys/vcs-mx/O-2018.09-SP2",
-        "ALL": "dummy",
+        "ALL": "string",
         "LC_TIME": "zh_CN.UTF-8",
         "CONDA_EXE": "/home/yangpengcheng/miniconda3/bin/conda",
         "VNCDESKTOP": "ubuntu-4029:2 (yangpengcheng)",
@@ -63,7 +63,7 @@
         "LM_LICENSE_FILE": "/10T/yangpengcheng/EDA/synopsys/scl/2018.06/admin/license/Synopsys.dat",
         "SSH_AGENT_PID": "2920363",
         "LC_ADDRESS": "zh_CN.UTF-8",
-        "MAKEFLAGS": "s -- ALL=dummy ARCH=riscv32e-ysyxsoc",
+        "MAKEFLAGS": "s -- ALL=string ARCH=riscv32e-ysyxsoc",
         "ftp_proxy": "http://127.0.0.1:40325",
         "CUDA_HOME": "/usr/local/cuda-12.4",
         "CC": "riscv64-linux-gnu-gcc",
@@ -119,6 +119,6 @@
         "MODEL_TECH": "/home/yangpengcheng/questasim/bin",
         "DESKTOP_SESSION": "xfce"
     },
-    "valueHash": 1029880300,
-    "inputsHash": -865054534
+    "valueHash": 1634630129,
+    "inputsHash": -691693691
 }
