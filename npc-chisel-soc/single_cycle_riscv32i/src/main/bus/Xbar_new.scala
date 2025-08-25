@@ -1,4 +1,4 @@
-package npc.bus.xbar_new
+package npc.bus.xbar
  
 import chisel3._
 import chisel3.util._
@@ -19,7 +19,7 @@ class XbarIO extends Bundle{
     val clint = Flipped(new AXI4WithoutClk)
 }
 
-class Xbar extends Module {
+class Xbar_new extends Module {
     val io = IO(new XbarIO)
 
 /*-----------------------FSM-----------------------*/
