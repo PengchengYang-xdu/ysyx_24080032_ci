@@ -58,9 +58,9 @@ class LSU extends Module {
     val isL = ~notLS & (io_pipe.in.bits.exe2ls_mem_wen === MEN_X)
 
     //delay
-    val lfsr = RegInit(LSU_DELAY)
+    lazy val lfsr = RegInit(LSU_DELAY)
     lfsr := Cat(lfsr(2,0), lfsr(0)^lfsr(1)^lfsr(2))
-    val delay = RegInit(lfsr)
+    lazy val delay = RegInit(lfsr)
     
 
 
