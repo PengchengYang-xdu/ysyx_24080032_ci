@@ -72,9 +72,9 @@ class IFU extends Module {
 
 
     //delay
-    val lfsr = RegInit(IFU_DELAY)
+    lazy val lfsr = RegInit(IFU_DELAY)
     lfsr := Cat(lfsr(2,0), lfsr(0)^lfsr(1)^lfsr(2))
-    val delay = RegInit(lfsr)
+    lazy val delay = RegInit(lfsr)
 
 
 
