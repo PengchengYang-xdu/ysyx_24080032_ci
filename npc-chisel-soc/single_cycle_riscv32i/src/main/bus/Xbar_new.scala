@@ -75,7 +75,7 @@ class Xbar_new extends Module {
             connectAll(io.dmem, io.soc)
         }
         is(s_d_clint){
-            connectAll(io.imem, io.clint)
+            connectAll(io.dmem, io.clint)
         }
     }
 
