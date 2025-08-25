@@ -97,8 +97,8 @@ class EXU extends Module {
     val jmp_flg = (io_pipe.in.bits.id2exe_wb_sel === WB_PC)
 
     //connect
-    io.br_flg := br_flg && ~io_hazard.flush_flg
-    io.jmp_flg := jmp_flg && ~io_hazard.flush_flg
+    io.br_flg := br_flg
+    io.jmp_flg := jmp_flg
     io.br_target := br_target
     io.alu_out := alu_out
 
