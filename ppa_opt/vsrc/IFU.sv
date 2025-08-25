@@ -104,13 +104,13 @@ module IFU(	// @[src/main/core/ifu/IFU.scala:39:7]
                        & io_pipe_in_valid & ~is_mret_rise};	// @[src/main/core/ifu/IFU.scala:39:7, :66:35, :71:37, :93:{38,59,61}, :96:26, :106:26, :107:30, :110:31, :111:37, :114:36, :115:{26,38}, :116:58, :123:51, :124:38, :125:{38,55}, :126:{38,72,101}, :127:{38,74}, :128:38, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   reg  [31:0] reg_pc;	// @[src/main/core/ifu/IFU.scala:212:18]
   wire [31:0] pc_next =
-    io_br_flg & flag
+    ~io_is_mret & io_br_flg & flag
       ? io_br_target
-      : io_jmp_flg & flag
+      : ~io_is_mret & io_jmp_flg & flag
           ? io_alu_out
           : ~io_is_mret & flag
               ? io_csr_mtvec
-              : io_is_mret & flag ? io_csr_mepc : reg_pc + 32'h4;	// @[src/main/core/ifu/IFU.scala:69:23, :208:23, :212:18, :215:27, :218:20, :219:21, :220:{10,22}, :221:21, src/main/scala/chisel3/util/Mux.scala:126:16]
+              : io_is_mret & flag ? io_csr_mepc : reg_pc + 32'h4;	// @[src/main/core/ifu/IFU.scala:69:23, :208:23, :212:18, :215:27, :218:{10,35}, :219:36, :220:22, :221:21, src/main/scala/chisel3/util/Mux.scala:126:16]
   wire        _GEN = n_state == 3'h0;	// @[src/main/core/ifu/IFU.scala:107:30, :124:38, :131:20]
   wire        _GEN_0 = n_state == 3'h1;	// @[src/main/core/ifu/IFU.scala:106:26, :107:30, :131:20]
   wire        _GEN_1 = n_state == 3'h2;	// @[src/main/core/ifu/IFU.scala:107:30, :125:55, :131:20]
