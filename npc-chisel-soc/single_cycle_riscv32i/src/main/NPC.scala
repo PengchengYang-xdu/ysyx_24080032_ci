@@ -52,7 +52,7 @@ class NPC extends Module {
 
 
     val core = Module(new Core)
-    val xbar = Module(new npc.bus.xbar.Xbar)
+    val xbar = Module(new npc.bus.xbar.Xbar_new)
     val clint = Module(new npc.perip.Clint)
 
     //from chisel
