@@ -8,7 +8,7 @@ LSU.sv
 WBU.sv
 iCache.sv
 Core.sv
-Xbar.sv
+Xbar_new.sv
 NPC.sv
 ./Ebreak.sv
 ./Clint.sv
