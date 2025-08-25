@@ -1,5 +1,5 @@
 
-28. Executing CHECK pass (checking for obvious problems).
+29. Executing CHECK pass (checking for obvious problems).
 checking module CSR..
 Warning: Wire CSR.\io_csr_rdata [31] is used but has no driver.
 Warning: Wire CSR.\io_csr_rdata [30] is used but has no driver.
@@ -149,7 +149,7 @@ Warning: Wire Clint.\axi4_bid [0] is used but has no driver.
 Warning: Wire Clint.\axi4_awready is used but has no driver.
 Warning: Wire Clint.\axi4_arready is used but has no driver.
 checking module Core..
-Warning: Wire Core.$auto$hilomap.cc:39:hilomap_worker$54535 is used but has no driver.
+Warning: Wire Core.$auto$hilomap.cc:39:hilomap_worker$56014 is used but has no driver.
 Warning: Wire Core.\_GEN is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_wb_data[31] is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_wb_data[30] is used but has no driver.
@@ -503,7 +503,7 @@ Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[3] is used but has no drive
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[2] is used but has no driver.
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[1] is used but has no driver.
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[0] is used but has no driver.
-Warning: Wire Core.$abc$28025$or$./vsrc/Core.sv:564$737_Y is used but has no driver.
+Warning: Wire Core.$abc$29046$or$./vsrc/Core.sv:564$981_Y is used but has no driver.
 Warning: Wire Core.\_GEN_1 is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_wb_sel[2] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_wb_sel[1] is used but has no driver.
@@ -1744,8 +1744,6 @@ Warning: Wire NPC.\io_slave_bid [1] is used but has no driver.
 Warning: Wire NPC.\io_slave_bid [0] is used but has no driver.
 Warning: Wire NPC.\io_slave_awready is used but has no driver.
 Warning: Wire NPC.\io_slave_arready is used but has no driver.
-Warning: Wire NPC.$auto$hilomap.cc:39:hilomap_worker$54543 is used but has no driver.
-Warning: Wire NPC.$auto$hilomap.cc:47:hilomap_worker$54541 is used but has no driver.
 checking module WBU..
 Warning: Wire WBU.\io_pipe_out_valid is used but has no driver.
 Warning: Wire WBU.\io_pipe_in_ready is used but has no driver.
@@ -1840,333 +1838,362 @@ Warning: Wire WBU.\io_csr_addr [3] is used but has no driver.
 Warning: Wire WBU.\io_csr_addr [2] is used but has no driver.
 Warning: Wire WBU.\io_csr_addr [1] is used but has no driver.
 Warning: Wire WBU.\io_csr_addr [0] is used but has no driver.
-checking module Xbar..
-Warning: Wire Xbar.\io_soc_wvalid is used but has no driver.
-Warning: Wire Xbar.\io_soc_wstrb [3] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wstrb [2] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wstrb [1] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wstrb [0] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wlast is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [31] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [30] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [29] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [28] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [27] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [26] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [25] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [24] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [23] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [22] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [21] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [20] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [19] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [18] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [17] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [16] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [15] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [14] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [13] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [12] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [11] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [10] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [9] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [8] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [7] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [6] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [5] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [4] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [3] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [2] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [1] is used but has no driver.
-Warning: Wire Xbar.\io_soc_wdata [0] is used but has no driver.
-Warning: Wire Xbar.\io_soc_rready is used but has no driver.
-Warning: Wire Xbar.\io_soc_bready is used but has no driver.
-Warning: Wire Xbar.\io_soc_awvalid is used but has no driver.
-Warning: Wire Xbar.\io_soc_awsize [2] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awsize [1] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awsize [0] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awlen [7] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awlen [6] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awlen [5] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awlen [4] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awlen [3] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awlen [2] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awlen [1] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awlen [0] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awid [3] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awid [2] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awid [1] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awid [0] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awburst [1] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awburst [0] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [31] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [30] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [29] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [28] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [27] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [26] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [25] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [24] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [23] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [22] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [21] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [20] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [19] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [18] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [17] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [16] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [15] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [14] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [13] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [12] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [11] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [10] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [9] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [8] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [7] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [6] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [5] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [4] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [3] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [2] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [1] is used but has no driver.
-Warning: Wire Xbar.\io_soc_awaddr [0] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arvalid is used but has no driver.
-Warning: Wire Xbar.\io_soc_arsize [2] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arsize [1] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arsize [0] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arlen [7] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arlen [6] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arlen [5] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arlen [4] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arlen [3] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arlen [2] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arlen [1] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arlen [0] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arid [3] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arid [2] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arid [1] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arid [0] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arburst [1] is used but has no driver.
-Warning: Wire Xbar.\io_soc_arburst [0] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [31] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [30] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [29] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [28] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [27] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [26] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [25] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [24] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [23] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [22] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [21] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [20] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [19] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [18] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [17] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [16] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [15] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [14] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [13] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [12] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [11] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [10] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [9] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [8] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [7] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [6] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [5] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [4] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [3] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [2] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [1] is used but has no driver.
-Warning: Wire Xbar.\io_soc_araddr [0] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rvalid is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [31] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [30] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [29] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [28] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [27] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [26] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [25] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [24] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [23] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [22] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [21] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [20] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [19] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [18] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [17] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [16] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [15] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [14] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [13] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [12] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [11] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [10] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [9] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [8] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [7] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [6] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [5] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [4] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [3] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [2] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [1] is used but has no driver.
-Warning: Wire Xbar.\io_imem_rdata [0] is used but has no driver.
-Warning: Wire Xbar.\io_imem_arready is used but has no driver.
-Warning: Wire Xbar.\io_dmem_wready is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rvalid is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rresp [1] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rresp [0] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [31] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [30] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [29] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [28] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [27] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [26] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [25] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [24] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [23] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [22] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [21] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [20] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [19] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [18] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [17] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [16] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [15] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [14] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [13] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [12] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [11] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [10] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [9] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [8] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [7] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [6] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [5] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [4] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [3] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [2] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [1] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_rdata [0] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_bvalid is used but has no driver.
-Warning: Wire Xbar.\io_dmem_bresp [1] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_bresp [0] is used but has no driver.
-Warning: Wire Xbar.\io_dmem_awready is used but has no driver.
-Warning: Wire Xbar.\io_dmem_arready is used but has no driver.
-Warning: Wire Xbar.\io_clint_wvalid is used but has no driver.
-Warning: Wire Xbar.\io_clint_wstrb [3] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wstrb [2] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wstrb [1] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wstrb [0] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [31] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [30] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [29] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [28] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [27] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [26] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [25] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [24] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [23] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [22] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [21] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [20] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [19] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [18] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [17] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [16] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [15] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [14] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [13] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [12] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [11] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [10] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [9] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [8] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [7] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [6] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [5] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [4] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [3] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [2] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [1] is used but has no driver.
-Warning: Wire Xbar.\io_clint_wdata [0] is used but has no driver.
-Warning: Wire Xbar.\io_clint_rready is used but has no driver.
-Warning: Wire Xbar.\io_clint_bready is used but has no driver.
-Warning: Wire Xbar.\io_clint_awvalid is used but has no driver.
-Warning: Wire Xbar.\io_clint_awsize [2] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awsize [1] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awsize [0] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [31] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [30] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [29] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [28] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [27] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [26] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [25] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [24] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [23] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [22] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [21] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [20] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [19] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [18] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [17] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [16] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [15] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [14] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [13] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [12] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [11] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [10] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [9] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [8] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [7] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [6] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [5] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [4] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [3] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [2] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [1] is used but has no driver.
-Warning: Wire Xbar.\io_clint_awaddr [0] is used but has no driver.
-Warning: Wire Xbar.\io_clint_arvalid is used but has no driver.
-Warning: Wire Xbar.\io_clint_arsize [2] is used but has no driver.
-Warning: Wire Xbar.\io_clint_arsize [1] is used but has no driver.
-Warning: Wire Xbar.\io_clint_arsize [0] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [31] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [30] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [29] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [28] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [27] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [26] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [25] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [24] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [23] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [22] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [21] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [20] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [19] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [18] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [17] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [16] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [15] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [14] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [13] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [12] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [11] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [10] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [9] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [8] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [7] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [6] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [5] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [4] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [3] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [2] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [1] is used but has no driver.
-Warning: Wire Xbar.\io_clint_araddr [0] is used but has no driver.
+checking module Xbar_new..
+Warning: Wire Xbar_new.\io_soc_wvalid is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wstrb [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wstrb [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wstrb [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wstrb [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wlast is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [31] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [30] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [29] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [28] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [27] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [26] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [25] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [24] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [23] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [22] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [21] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [20] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [19] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [18] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [17] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [16] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [15] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [14] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [13] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [12] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [11] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [10] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [9] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [8] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [7] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [6] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [5] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [4] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_wdata [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_rready is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_bready is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awvalid is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awsize [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awsize [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awsize [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awlen [7] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awlen [6] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awlen [5] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awlen [4] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awlen [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awlen [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awlen [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awlen [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awid [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awid [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awid [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awid [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awburst [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awburst [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [31] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [30] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [29] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [28] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [27] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [26] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [25] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [24] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [23] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [22] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [21] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [20] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [19] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [18] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [17] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [16] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [15] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [14] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [13] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [12] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [11] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [10] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [9] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [8] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [7] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [6] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [5] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [4] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_awaddr [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arvalid is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arsize [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arsize [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arsize [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arlen [7] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arlen [6] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arlen [5] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arlen [4] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arlen [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arlen [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arlen [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arlen [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arid [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arid [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arid [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arid [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arburst [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_arburst [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [31] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [30] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [29] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [28] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [27] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [26] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [25] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [24] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [23] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [22] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [21] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [20] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [19] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [18] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [17] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [16] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [15] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [14] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [13] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [12] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [11] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [10] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [9] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [8] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [7] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [6] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [5] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [4] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_soc_araddr [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rvalid is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [31] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [30] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [29] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [28] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [27] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [26] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [25] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [24] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [23] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [22] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [21] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [20] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [19] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [18] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [17] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [16] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [15] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [14] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [13] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [12] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [11] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [10] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [9] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [8] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [7] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [6] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [5] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [4] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_rdata [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_imem_arready is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_wready is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rvalid is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rresp [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rresp [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [31] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [30] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [29] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [28] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [27] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [26] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [25] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [24] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [23] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [22] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [21] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [20] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [19] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [18] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [17] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [16] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [15] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [14] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [13] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [12] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [11] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [10] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [9] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [8] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [7] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [6] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [5] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [4] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_rdata [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_bvalid is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_bresp [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_bresp [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_awready is used but has no driver.
+Warning: Wire Xbar_new.\io_dmem_arready is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wvalid is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wstrb [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wstrb [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wstrb [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wstrb [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wlast is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [31] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [30] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [29] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [28] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [27] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [26] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [25] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [24] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [23] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [22] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [21] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [20] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [19] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [18] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [17] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [16] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [15] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [14] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [13] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [12] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [11] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [10] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [9] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [8] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [7] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [6] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [5] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [4] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_wdata [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_rready is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_bready is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awvalid is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awsize [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awsize [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awsize [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awlen [7] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awlen [6] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awlen [5] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awlen [4] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awlen [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awlen [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awlen [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awlen [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awid [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awid [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awid [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awid [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awburst [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awburst [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [31] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [30] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [29] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [28] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [27] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [26] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [25] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [24] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [23] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [22] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [21] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [20] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [19] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [18] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [17] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [16] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [15] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [14] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [13] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [12] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [11] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [10] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [9] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [8] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [7] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [6] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [5] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [4] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_awaddr [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arvalid is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arsize [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arsize [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arsize [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arlen [7] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arlen [6] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arlen [5] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arlen [4] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arlen [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arlen [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arlen [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arlen [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arid [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arid [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arid [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arid [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arburst [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_arburst [0] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [31] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [30] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [29] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [28] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [27] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [26] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [25] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [24] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [23] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [22] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [21] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [20] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [19] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [18] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [17] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [16] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [15] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [14] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [13] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [12] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [11] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [10] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [9] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [8] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [7] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [6] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [5] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [4] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [3] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [2] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [1] is used but has no driver.
+Warning: Wire Xbar_new.\io_clint_araddr [0] is used but has no driver.
 checking module iCache..
 Warning: Wire iCache.\io_out_wvalid is used but has no driver.
 Warning: Wire iCache.\io_out_wstrb [3] is used but has no driver.
@@ -2343,4 +2370,4 @@ Warning: Wire iCache.\io_in_rdata [1] is used but has no driver.
 Warning: Wire iCache.\io_in_rdata [0] is used but has no driver.
 Warning: Wire iCache.\io_in_arready is used but has no driver.
 Warning: Wire iCache.\fencei_io_vr_is_fencei_io_ready is used but has no driver.
-found and reported 2331 problems.
+found and reported 2358 problems.
