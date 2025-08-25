@@ -207,89 +207,89 @@ end
 
 
 
-/*-----------------------------read channel-----------------------------*/
-//state machine
-parameter s_BeforeAXI_AWW_Fire = 1'b0;
-parameter s_BeforeAXI_B_Fire = 1'b1;
-reg cw_state, nw_state;
-wire AXI_AWW_fire, AXI_B_fire;
-assign AXI_AWW_fire = (axi4_awvalid & axi4_awready) & (axi4_wvalid & axi4_wready);
-assign AXI_B_fire = axi4_bvalid & axi4_bready;
+// /*-----------------------------read channel-----------------------------*/
+// //state machine
+// parameter s_BeforeAXI_AWW_Fire = 1'b0;
+// parameter s_BeforeAXI_B_Fire = 1'b1;
+// reg cw_state, nw_state;
+// wire AXI_AWW_fire, AXI_B_fire;
+// assign AXI_AWW_fire = (axi4_awvalid & axi4_awready) & (axi4_wvalid & axi4_wready);
+// assign AXI_B_fire = axi4_bvalid & axi4_bready;
 
-//first phase
-always @(posedge clk or posedge rst)begin
-    if(rst)
-        cw_state <= s_BeforeAXI_AWW_Fire;
-    else
-        cw_state <= nw_state;
-end
+// //first phase
+// always @(posedge clk or posedge rst)begin
+//     if(rst)
+//         cw_state <= s_BeforeAXI_AWW_Fire;
+//     else
+//         cw_state <= nw_state;
+// end
 
-//second phase
-always@(*) begin
-    case(cw_state)
-        s_BeforeAXI_AWW_Fire: begin
-            nw_state = AXI_AWW_fire ? s_BeforeAXI_B_Fire : s_BeforeAXI_AWW_Fire;
-        end
-        s_BeforeAXI_B_Fire: begin
-            nw_state = AXI_B_fire ? s_BeforeAXI_AWW_Fire : s_BeforeAXI_B_Fire;
-        end
-        default: begin
-            nw_state = s_BeforeAXI_AWW_Fire;
-        end
-    endcase
-end
+// //second phase
+// always@(*) begin
+//     case(cw_state)
+//         s_BeforeAXI_AWW_Fire: begin
+//             nw_state = AXI_AWW_fire ? s_BeforeAXI_B_Fire : s_BeforeAXI_AWW_Fire;
+//         end
+//         s_BeforeAXI_B_Fire: begin
+//             nw_state = AXI_B_fire ? s_BeforeAXI_AWW_Fire : s_BeforeAXI_B_Fire;
+//         end
+//         default: begin
+//             nw_state = s_BeforeAXI_AWW_Fire;
+//         end
+//     endcase
+// end
 
-//third phase
-always @(posedge clk or posedge rst) begin
-    if(rst) begin
-        axi4_awready <= 1'b0;
-        axi4_wready <= 1'b0;
-        axi4_bresp <= 2'b0;
-        axi4_bvalid <= 1'b0;
-        `ifdef CLINT_DELAY_ON
-        w_delay_unit <= lfsr;
-        `endif
-    end
-    else begin
-        case(nw_state)
-            s_BeforeAXI_AWW_Fire: begin
-                axi4_awready <= 1'b1;
-                axi4_wready <= 1'b1;
-                axi4_bresp <= 2'b0;
-                axi4_bvalid <= 1'b0;
-                `ifdef CLINT_DELAY_ON
-                w_delay_unit <= lfsr;
-                `endif
-            end
-            s_BeforeAXI_B_Fire: begin
-                axi4_awready <= 1'b0;
-                axi4_wready <= 1'b0;
-                axi4_bresp <= 2'b0;
-                `ifdef CLINT_DELAY_ON
-                w_delay_unit <= w_delay_unit - 1;
-                if(w_delay_unit == 0) begin
-                `endif
-                    // $error("Ilegal write in CLINT\n");
-                    axi4_bvalid <= 1'b1;
-                `ifdef CLINT_DELAY_ON
-                end
-                else begin
-                    axi4_bvalid <= 1'b0;
-                end
-                `endif
-            end
-            default: begin
-                axi4_awready <= 1'b1;
-                axi4_wready <= 1'b1;
-                axi4_bresp <= 2'b0;
-                axi4_bvalid <= 1'b0;
-                `ifdef CLINT_DELAY_ON
-                w_delay_unit <= lfsr;
-                `endif
-            end 
-        endcase
-    end
-end
+// //third phase
+// always @(posedge clk or posedge rst) begin
+//     if(rst) begin
+//         axi4_awready <= 1'b0;
+//         axi4_wready <= 1'b0;
+//         axi4_bresp <= 2'b0;
+//         axi4_bvalid <= 1'b0;
+//         `ifdef CLINT_DELAY_ON
+//         w_delay_unit <= lfsr;
+//         `endif
+//     end
+//     else begin
+//         case(nw_state)
+//             s_BeforeAXI_AWW_Fire: begin
+//                 axi4_awready <= 1'b1;
+//                 axi4_wready <= 1'b1;
+//                 axi4_bresp <= 2'b0;
+//                 axi4_bvalid <= 1'b0;
+//                 `ifdef CLINT_DELAY_ON
+//                 w_delay_unit <= lfsr;
+//                 `endif
+//             end
+//             s_BeforeAXI_B_Fire: begin
+//                 axi4_awready <= 1'b0;
+//                 axi4_wready <= 1'b0;
+//                 axi4_bresp <= 2'b0;
+//                 `ifdef CLINT_DELAY_ON
+//                 w_delay_unit <= w_delay_unit - 1;
+//                 if(w_delay_unit == 0) begin
+//                 `endif
+//                     // $error("Ilegal write in CLINT\n");
+//                     axi4_bvalid <= 1'b1;
+//                 `ifdef CLINT_DELAY_ON
+//                 end
+//                 else begin
+//                     axi4_bvalid <= 1'b0;
+//                 end
+//                 `endif
+//             end
+//             default: begin
+//                 axi4_awready <= 1'b1;
+//                 axi4_wready <= 1'b1;
+//                 axi4_bresp <= 2'b0;
+//                 axi4_bvalid <= 1'b0;
+//                 `ifdef CLINT_DELAY_ON
+//                 w_delay_unit <= lfsr;
+//                 `endif
+//             end 
+//         endcase
+//     end
+// end
 
 
 
