@@ -258,8 +258,8 @@ class Core extends Module {
     val is_ctrl_hazard = ((exu.io.br_flg && exu.io.br_target =/= ifu.io_pipe.out.bits.if2id_reg_pc) || (exu.io.jmp_flg && exu.io.alu_out =/= ifu.io_pipe.out.bits.if2id_reg_pc)) && exu_out_valid_rise
     dontTouch(is_ctrl_hazard)
 
-    val is_ctrl_hazard_r =  = RegInit(false.B)
-    val is_irq_r =  = RegInit(false.B)
+    val is_ctrl_hazard_r = RegInit(false.B)
+    val is_irq_r = RegInit(false.B)
     is_ctrl_hazard_r := Mux(is_ctrl_hazard, true.B, Mux(ifu.io_pipe.in.ready & io_pipe.in.valid, false.B, is_ctrl_hazard_r))
     is_irq_r := Mux(is_irq, true.B, Mux(ifu.io_pipe.in.ready & io_pipe.in.valid, false.B, is_irq_r))
 
