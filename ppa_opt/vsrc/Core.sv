@@ -521,7 +521,8 @@ module Core(	// @[src/main/core/Core.scala:23:7]
     .io_pipe_out_valid             (_ifu_io_pipe_out_valid),
     .io_pipe_out_bits_if2id_reg_pc (_ifu_io_pipe_out_bits_if2id_reg_pc),
     .io_pipe_out_bits_if2id_inst   (_ifu_io_pipe_out_bits_if2id_inst),
-    .io_hazard_flush_flg           (_exu_io_hazard_flush_flg_T)	// @[src/main/core/Core.scala:269:47]
+    .io_hazard_flush_flg           (_exu_io_hazard_flush_flg_T),	// @[src/main/core/Core.scala:269:47]
+    .io_hazard_is_irq              (is_irq)	// @[src/main/core/Core.scala:256:25]
   );
   IDU idu (	// @[src/main/core/Core.scala:30:21]
     .clock                                    (clock),
