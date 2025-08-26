@@ -218,8 +218,8 @@ class IFU extends Module {
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
 
-    val sel_br    = flag && io.br_flg && ~io.is_mret && ~flag_irq
-    val sel_jmp   = flag && io.jmp_flg && ~io.is_mret && ~flag_irq
+    val sel_br    = flag && io.br_flg && ~io.is_mret
+    val sel_jmp   = flag && io.jmp_flg && ~io.is_mret
     val sel_trap  = flag && ~io.is_mret && (~io.br_flg && ~io.jmp_flg)
     val sel_mret  = flag && io.is_mret && (~io.br_flg && ~io.jmp_flg)
     pc_next := Mux1H(Seq(
