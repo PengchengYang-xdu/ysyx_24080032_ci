@@ -63,7 +63,7 @@ class Core extends Module {
     idu.fencei_io_vr.is_fencei_io <> icache.fencei_io_vr.is_fencei_io
 
 
-
+    ifu.io.is_mret := idu.io.is_mret
 
 
 

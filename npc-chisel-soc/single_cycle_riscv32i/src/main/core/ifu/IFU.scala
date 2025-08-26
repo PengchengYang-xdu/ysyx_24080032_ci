@@ -16,6 +16,7 @@ class IFUIO_HAZARD extends Bundle {
 
 class IFUIO extends Bundle {
     val imem = Flipped(new AXI4WithoutClk)
+    val is_mret = Input(Bool())
 }
 
 class IFUIO_pipe_out extends Bundle{
@@ -55,6 +56,7 @@ class IFU extends Module {
     io.imem.bready := false.B
 
 
+    val is_mret_rise = io.is_mret & ~RegNext(io.is_mret)
 
     //delay
     lazy val lfsr = RegInit(IFU_DELAY)
