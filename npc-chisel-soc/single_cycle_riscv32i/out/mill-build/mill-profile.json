@@ -1,9 +1,9 @@
 [
   {
     "label": "scriptSources",
-    "millis": 83,
-    "inputsHash": -2125729716,
-    "previousInputsHash": -1522191590
+    "millis": 84,
+    "inputsHash": 1221140548,
+    "previousInputsHash": -2125729716
   },
   {
     "label": "parseBuildFiles",
@@ -17,8 +17,8 @@
   {
     "label": "cliImports",
     "millis": 4,
-    "inputsHash": -142450641,
-    "previousInputsHash": -1280251122
+    "inputsHash": 785464926,
+    "previousInputsHash": -142450641
   },
   {
     "label": "runIvyDeps",
@@ -31,7 +31,7 @@
   },
   {
     "label": "scalaVersion",
-    "millis": 2,
+    "millis": 1,
     "cached": true,
     "inputsHash": 1629865426
   },
@@ -58,7 +58,7 @@
   },
   {
     "label": "scalaOrganization",
-    "millis": 1,
+    "millis": 2,
     "cached": true,
     "dependencies": [
       "scalaVersion"
@@ -77,7 +77,7 @@
   },
   {
     "label": "mandatoryIvyDeps",
-    "millis": 3,
+    "millis": 2,
     "cached": true,
     "dependencies": [
       "mandatoryIvyDeps.super.mill.scalalib.JavaModule.mandatoryIvyDeps",
@@ -120,18 +120,18 @@
   {
     "label": "compileResources",
     "millis": 5,
-    "inputsHash": 2124047215,
-    "previousInputsHash": -2129993033
+    "inputsHash": -649389647,
+    "previousInputsHash": 2124047215
   },
   {
     "label": "enclosingClasspath",
     "millis": 3,
-    "inputsHash": -642674316,
-    "previousInputsHash": 674178934
+    "inputsHash": 645380859,
+    "previousInputsHash": -642674316
   },
   {
     "label": "lineNumberPluginClasspath",
-    "millis": 3,
+    "millis": 2,
     "cached": true,
     "dependencies": [
       "parseBuildFiles"
@@ -161,8 +161,8 @@
   {
     "label": "resources.super.mill.scalalib.JavaModule.resources",
     "millis": 3,
-    "inputsHash": 889958323,
-    "previousInputsHash": -1790023712
+    "inputsHash": 83672788,
+    "previousInputsHash": 889958323
   },
   {
     "label": "resources",
@@ -183,12 +183,12 @@
   {
     "label": "mill.scalalib.ZincWorkerModule.zincLogDebug",
     "millis": 2,
-    "inputsHash": -721672761,
-    "previousInputsHash": 372849714
+    "inputsHash": -1424849300,
+    "previousInputsHash": -721672761
   },
   {
     "label": "mill.scalalib.ZincWorkerModule.worker",
-    "millis": 59,
+    "millis": 57,
     "cached": false,
     "dependencies": [
       "mill.scalalib.ZincWorkerModule.classpath",
@@ -204,9 +204,9 @@
   },
   {
     "label": "sources.super.mill.scalalib.JavaModule.sources",
-    "millis": 4,
-    "inputsHash": -199056877,
-    "previousInputsHash": -910444015
+    "millis": 3,
+    "inputsHash": 237508735,
+    "previousInputsHash": -199056877
   },
   {
     "label": "sources",
@@ -277,7 +277,7 @@
   },
   {
     "label": "resolvedIvyDeps",
-    "millis": 26,
+    "millis": 28,
     "cached": true,
     "dependencies": [
       "parseBuildFiles",
@@ -319,7 +319,7 @@
   },
   {
     "label": "scalacPluginIvyDeps",
-    "millis": 3,
+    "millis": 2,
     "cached": true,
     "inputsHash": 1629865426
   },
@@ -354,7 +354,7 @@
   },
   {
     "label": "allScalacOptions",
-    "millis": 2,
+    "millis": 1,
     "cached": true,
     "dependencies": [
       "mandatoryScalacOptions",
@@ -365,7 +365,7 @@
   },
   {
     "label": "scalaCompilerClasspath",
-    "millis": 3,
+    "millis": 2,
     "cached": true,
     "dependencies": [
       "parseBuildFiles",
@@ -391,7 +391,7 @@
   },
   {
     "label": "scalacPluginClasspath",
-    "millis": 3,
+    "millis": 4,
     "cached": true,
     "dependencies": [
       "scalacPluginClasspath.super.mill.scalalib.ScalaModule.scalacPluginClasspath",
@@ -401,13 +401,13 @@
   },
   {
     "label": "zincReportCachedProblems",
-    "millis": 4,
-    "inputsHash": 119768695,
-    "previousInputsHash": -902816669
+    "millis": 3,
+    "inputsHash": 398822622,
+    "previousInputsHash": 119768695
   },
   {
     "label": "compile",
-    "millis": 1,
+    "millis": 2,
     "cached": true,
     "dependencies": [
       "scalaVersion",
@@ -437,7 +437,7 @@
   },
   {
     "label": "runClasspath",
-    "millis": 2,
+    "millis": 3,
     "cached": true,
     "dependencies": [
       "resolvedRunIvyDeps",
@@ -457,7 +457,7 @@
   },
   {
     "label": "methodCodeHashSignatures",
-    "millis": 24,
+    "millis": 22,
     "cached": true,
     "dependencies": [
       "compile",
