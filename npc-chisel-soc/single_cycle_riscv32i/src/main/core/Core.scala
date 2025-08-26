@@ -263,11 +263,11 @@ class Core extends Module {
     is_ctrl_hazard_r := Mux(is_ctrl_hazard, true.B, Mux(ifu.io_pipe.in.ready & ifu.io_pipe.in.valid, false.B, is_ctrl_hazard_r))
     is_irq_r := Mux(is_irq, true.B, Mux(ifu.io_pipe.in.ready & ifu.io_pipe.in.valid, false.B, is_irq_r))
 
-    ifu.io_hazard.flush_flg := is_ctrl_hazard_r | is_irq_r
-    idu.io_hazard.flush_flg := is_ctrl_hazard_r | is_irq_r
-    exu.io_hazard.flush_flg := is_ctrl_hazard_r | is_irq_r
-    lsu.io_hazard.flush_flg := is_irq_r
-    wbu.io_hazard.flush_flg := is_irq_r
+    ifu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
+    idu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
+    exu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
+    lsu.io_hazard.flush_flg := is_irq
+    wbu.io_hazard.flush_flg := is_irq
 
     //ifu next pc process
     val sel_br = exu.io.br_flg

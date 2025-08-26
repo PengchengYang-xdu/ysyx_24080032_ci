@@ -100,7 +100,7 @@ class WBU extends Module {
         }
         is(s_AfterPreFire){
             in_ready := false.B
-            out_valid := true.B
+            out_valid := true.B & io_hazard.flush_flg
         }
     }
 
