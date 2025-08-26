@@ -9,6 +9,7 @@ import npc.bus.axi._
 
 class IFUIO_HAZARD extends Bundle {
     val flush_flg = Input(Bool())
+    val is_irq = Input(Bool())
 }
 
 
@@ -70,6 +71,8 @@ class IFU extends Module {
     dontTouch(flag)
     flag := Mux(io_hazard.flush_flg | is_mret_rise, true.B, Mux(io_pipe.in.ready & io_pipe.in.valid, false.B, flag))
 
+    val flag_irq = RegInit(false.B)
+    flag_irq = Mux(io_hazard.is_irq, true.B, flag_irq)
 
     //delay
     lazy val lfsr = RegInit(IFU_DELAY)
@@ -215,10 +218,10 @@ class IFU extends Module {
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
 
-    val sel_br    = io.br_flg && flag && ~io.is_mret
-    val sel_jmp   = io.jmp_flg && flag && ~io.is_mret
-    val sel_trap  = flag && ~io.is_mret && (~io.br_flg && ~io.jmp_flg)
-    val sel_mret  = flag && io.is_mret && (~io.br_flg && ~io.jmp_flg)
+    val sel_br    = flag && ~io.is_mret && ~flag_irq && io.br_flg
+    val sel_jmp   = flag && ~io.is_mret && ~flag_irq && io.jmp_flg
+    val sel_trap  = flag && ~io.is_mret &&  flag_irq && (~io.br_flg && ~io.jmp_flg)
+    val sel_mret  = flag &&  io.is_mret && ~flag_irq && (~io.br_flg && ~io.jmp_flg)
     pc_next := Mux1H(Seq(
         sel_br   -> io.br_target,
         sel_jmp  -> io.alu_out,
