@@ -265,7 +265,7 @@ class Core extends Module {
     val is_ctrl_hazard = ((exu.io.br_flg && exu.io.br_target =/= ifu.io_pipe.out.bits.if2id_reg_pc) || (exu.io.jmp_flg && exu.io.alu_out =/= ifu.io_pipe.out.bits.if2id_reg_pc)) && exu_out_valid_rise
     dontTouch(is_ctrl_hazard)
 
-    ifu.io_hazard.is_irq := is_irq
+
     ifu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
     idu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
     exu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
