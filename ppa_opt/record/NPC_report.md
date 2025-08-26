@@ -1,5 +1,5 @@
 ### Report: NPC.rpt (first 11 lines)
-Generate the report at 2025-08-26T21:07:51, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-08-26T21:10:27, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 +-------------------+-------------+------------+------------+---------------+-------+-------+-----------+
 | Endpoint          | Clock Group | Delay Type | Path Delay | Path Required | CPPR  | Slack | Freq(MHz) |
 +-------------------+-------------+------------+------------+---------------+-------+-------+-----------+
