@@ -65,7 +65,7 @@ class EXU extends Module {
 
 
 
-    val adder = io_pipe.in.bits.id2exe_op1_data + Mux(fun === ALU_SUB, 
+    val adder = io_pipe.in.bits.id2exe_op1_data + Mux(io_pipe.in.bits.id2exe_exe_fun === ALU_SUB, 
                                                      (~io_pipe.in.bits.id2exe_op2_data + 1.U), 
                                                      io_pipe.in.bits.id2exe_op2_data)
 
