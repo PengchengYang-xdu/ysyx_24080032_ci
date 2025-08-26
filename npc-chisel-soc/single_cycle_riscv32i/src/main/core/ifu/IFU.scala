@@ -9,22 +9,13 @@ import npc.bus.axi._
 
 class IFUIO_HAZARD extends Bundle {
     val flush_flg = Input(Bool())
-    val is_irq = Input(Bool())
+    val pc_plus4 = Output(UInt(WORD_LEN.W))
+    val pc_real_next = Input(UInt(WORD_LEN.W))
 }
 
 
 class IFUIO extends Bundle {
     val imem = Flipped(new AXI4WithoutClk)
-
-    val br_flg = Input(Bool())
-    val jmp_flg = Input(Bool())
-    val br_target = Input(UInt(WORD_LEN.W))
-    val alu_out = Input(UInt(WORD_LEN.W))
-
-    val csr_mtvec = Input(UInt(WORD_LEN.W))
-    val csr_mepc = Input(UInt(WORD_LEN.W))
-
-    val is_mret = Input(Bool())
 }
 
 class IFUIO_pipe_out extends Bundle{
@@ -64,15 +55,6 @@ class IFU extends Module {
     io.imem.bready := false.B
 
 
-    val is_mret_rise = io.is_mret & ~RegNext(io.is_mret)
-
-
-    val flag = RegInit(false.B)
-    dontTouch(flag)
-    flag := Mux(io_hazard.flush_flg | is_mret_rise, true.B, Mux(io_pipe.in.ready & io_pipe.in.valid, false.B, flag))
-
-    val flag_irq = RegInit(false.B)
-    flag_irq := Mux(io_hazard.is_irq, true.B, flag_irq)
 
     //delay
     lazy val lfsr = RegInit(IFU_DELAY)
@@ -216,19 +198,9 @@ class IFU extends Module {
     }
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
+    io_hazard.pc_plus4 := pc_plus4
 
-
-    val sel_br    = flag && io.br_flg && ~io.is_mret
-    val sel_jmp   = flag && io.jmp_flg && ~io.is_mret
-    val sel_trap  = flag && ~io.is_mret && (~io.br_flg && ~io.jmp_flg)
-    val sel_mret  = flag && io.is_mret && (~io.br_flg && ~io.jmp_flg)
-    pc_next := Mux1H(Seq(
-        sel_br   -> io.br_target,
-        sel_jmp  -> io.alu_out,
-        sel_trap -> io.csr_mtvec,
-        sel_mret -> io.csr_mepc,
-        (!sel_br && !sel_jmp && !sel_trap && !sel_mret) -> pc_plus4
-    ))
+    pc_next := io_hazard.pc_real_next
     
     //connect
     araddr := reg_pc
