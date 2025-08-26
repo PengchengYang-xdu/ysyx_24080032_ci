@@ -66,13 +66,7 @@ class Core extends Module {
 
 
 
-    ifu.io.br_flg := exu.io.br_flg
-    ifu.io.jmp_flg := exu.io.jmp_flg
-    ifu.io.br_target := exu.io.br_target
-    ifu.io.alu_out := exu.io.alu_out
-    ifu.io.csr_mtvec := csr.io.csr_mtvec
-    ifu.io.csr_mepc := csr.io.csr_mepc
-    // csr.io.csr_reg_pc := ifu.io.csr_reg_pc//modified by ypc
+
     
     idu.io.gpr_rs1_data := gpr.io.gpr_rs1_data
     idu.io.gpr_rs2_data := gpr.io.gpr_rs2_data
@@ -259,18 +253,31 @@ class Core extends Module {
     csr.io.csr_reg_pc := wbu.io_pipe.in.bits.ls2wb_reg_pc//pipe line irq
     csr.io.csr_irq_num := wbu.io.irq_num
 
-    ifu.io.is_mret := idu.io.is_mret
 
     val exu_out_valid_rise = exu.io_pipe.out.valid & ~RegNext(exu.io_pipe.out.valid)
     val is_ctrl_hazard = ((exu.io.br_flg && exu.io.br_target =/= ifu.io_pipe.out.bits.if2id_reg_pc) || (exu.io.jmp_flg && exu.io.alu_out =/= ifu.io_pipe.out.bits.if2id_reg_pc)) && exu_out_valid_rise
     dontTouch(is_ctrl_hazard)
 
-    ifu.io_hazard.is_irq := is_irq
+    val is_ctrl_hazard_r = RegNext(is_ctrl_hazard)
+    val is_irq_r = RegNext(is_irq)
+
     ifu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
     idu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
     exu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
     lsu.io_hazard.flush_flg := is_irq
     wbu.io_hazard.flush_flg := is_irq
+
+    //ifu next pc process
+    val sel_br = exu.io.br_flg
+    val sel_jmp = exu.io.jmp_flg
+    val sel_mret = idu.io.is_mret
+    val pc_next_normal = Mux1H(Seq(
+        sel_br   -> exu.io.br_target,
+        sel_jmp  -> exu.io.alu_out,
+        sel_mret -> csr.io.csr_mepc
+    ))
+    val pc_real_next = Mux(is_irq_r, csr.io.csr_mtvec, Mux(is_ctrl_hazard_r, pc_next_normal, ifu.io_hazard.pc_plus4))
+    ifu.io_hazard.pc_real_next := pc_real_next
 
 
     when(ifu.io_hazard.flush_flg){ifu.io_pipe.in.valid := false.B}
