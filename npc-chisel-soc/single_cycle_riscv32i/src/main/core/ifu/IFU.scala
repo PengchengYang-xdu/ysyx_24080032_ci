@@ -72,7 +72,7 @@ class IFU extends Module {
     flag := Mux(io_hazard.flush_flg | is_mret_rise, true.B, Mux(io_pipe.in.ready & io_pipe.in.valid, false.B, flag))
 
     val flag_irq = RegInit(false.B)
-    flag_irq = Mux(io_hazard.is_irq, true.B, flag_irq)
+    flag_irq := Mux(io_hazard.is_irq, true.B, flag_irq)
 
     //delay
     lazy val lfsr = RegInit(IFU_DELAY)
