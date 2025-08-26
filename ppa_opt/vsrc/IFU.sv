@@ -105,12 +105,12 @@ module IFU(	// @[src/main/core/ifu/IFU.scala:39:7]
   reg  [31:0] reg_pc;	// @[src/main/core/ifu/IFU.scala:212:18]
   wire        sel_br = io_br_flg & flag & ~io_is_mret;	// @[src/main/core/ifu/IFU.scala:69:23, :218:{39,42}]
   wire        sel_jmp = io_jmp_flg & flag & ~io_is_mret;	// @[src/main/core/ifu/IFU.scala:69:23, :218:42, :219:40]
-  wire        sel_trap = flag & ~io_is_mret;	// @[src/main/core/ifu/IFU.scala:69:23, :218:42, :220:26]
-  wire        sel_mret = flag & io_is_mret;	// @[src/main/core/ifu/IFU.scala:69:23, :221:26]
+  wire        sel_trap = flag & ~io_is_mret & ~io_br_flg & ~io_jmp_flg;	// @[src/main/core/ifu/IFU.scala:69:23, :218:42, :220:{41,45,59}]
+  wire        sel_mret = flag & io_is_mret & ~io_br_flg & ~io_jmp_flg;	// @[src/main/core/ifu/IFU.scala:69:23, :220:{45,59}, :221:40]
   wire [31:0] pc_next =
     (sel_br ? io_br_target : 32'h0) | (sel_jmp ? io_alu_out : 32'h0)
     | (sel_trap ? io_csr_mtvec : 32'h0) | (sel_mret ? io_csr_mepc : 32'h0)
-    | (sel_br | sel_jmp | sel_trap | sel_mret ? 32'h0 : reg_pc + 32'h4);	// @[src/main/core/ifu/IFU.scala:53:20, :208:23, :212:18, :215:27, :218:39, :219:40, :220:26, :221:26, src/main/scala/chisel3/util/Mux.scala:30:73]
+    | (sel_br | sel_jmp | sel_trap | sel_mret ? 32'h0 : reg_pc + 32'h4);	// @[src/main/core/ifu/IFU.scala:53:20, :208:23, :212:18, :215:27, :218:39, :219:40, :220:41, :221:40, src/main/scala/chisel3/util/Mux.scala:30:73]
   wire        _GEN = n_state == 3'h0;	// @[src/main/core/ifu/IFU.scala:107:30, :124:38, :131:20]
   wire        _GEN_0 = n_state == 3'h1;	// @[src/main/core/ifu/IFU.scala:106:26, :107:30, :131:20]
   wire        _GEN_1 = n_state == 3'h2;	// @[src/main/core/ifu/IFU.scala:107:30, :125:55, :131:20]
