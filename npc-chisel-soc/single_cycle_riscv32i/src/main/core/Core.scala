@@ -265,7 +265,7 @@ class Core extends Module {
 
     ifu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
     idu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
-    exu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
+    exu.io_hazard.flush_flg := is_irq
     lsu.io_hazard.flush_flg := is_irq
     wbu.io_hazard.flush_flg := is_irq
 
