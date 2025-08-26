@@ -1,8 +1,8 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:261:29: illegal start of simple expression[0m
-[0m[[0m[31merror[0m] [0m[0m    val is_ctrl_hazard_r =  = RegInit(false.B)[0m
-[0m[[0m[31merror[0m] [0m[0m                            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:262:21: illegal start of simple expression[0m
-[0m[[0m[31merror[0m] [0m[0m    val is_irq_r =  = RegInit(false.B)[0m
-[0m[[0m[31merror[0m] [0m[0m                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:263:80: not found: value io_pipe[0m
+[0m[[0m[31merror[0m] [0m[0m    is_ctrl_hazard_r := Mux(is_ctrl_hazard, true.B, Mux(ifu.io_pipe.in.ready & io_pipe.in.valid, false.B, is_ctrl_hazard_r))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:264:64: not found: value io_pipe[0m
+[0m[[0m[31merror[0m] [0m[0m    is_irq_r := Mux(is_irq, true.B, Mux(ifu.io_pipe.in.ready & io_pipe.in.valid, false.B, is_irq_r))[0m
+[0m[[0m[31merror[0m] [0m[0m                                                               ^[0m
 [0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
