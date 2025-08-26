@@ -260,8 +260,8 @@ class Core extends Module {
 
     val is_ctrl_hazard_r = RegInit(false.B)
     val is_irq_r = RegInit(false.B)
-    is_ctrl_hazard_r := Mux(is_ctrl_hazard, true.B, Mux(ifu.io_pipe.in.ready & io_pipe.in.valid, false.B, is_ctrl_hazard_r))
-    is_irq_r := Mux(is_irq, true.B, Mux(ifu.io_pipe.in.ready & io_pipe.in.valid, false.B, is_irq_r))
+    is_ctrl_hazard_r := Mux(is_ctrl_hazard, true.B, Mux(ifu.io_pipe.in.ready & ifu.io_pipe.in.valid, false.B, is_ctrl_hazard_r))
+    is_irq_r := Mux(is_irq, true.B, Mux(ifu.io_pipe.in.ready & ifu.io_pipe.in.valid, false.B, is_irq_r))
 
     ifu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
     idu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
