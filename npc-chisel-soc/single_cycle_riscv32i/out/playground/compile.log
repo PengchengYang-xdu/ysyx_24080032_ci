@@ -1,23 +1,2 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/ifu/IFU.scala:78:62: not found: value is_mret_rise[0m
-[0m[[0m[31merror[0m] [0m[0m    io_pipe.out.valid := out_valid & ~io_hazard.flush_flg & ~is_mret_rise[0m
-[0m[[0m[31merror[0m] [0m[0m                                                             ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/ifu/IFU.scala:99:61: not found: value is_mret_rise[0m
-[0m[[0m[31merror[0m] [0m[0m    val R_while_flush = AXI_R_fire & (io_hazard.flush_flg | is_mret_rise)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/ifu/IFU.scala:100:63: not found: value is_mret_rise[0m
-[0m[[0m[31merror[0m] [0m[0m    val flush_before_R = ~AXI_R_fire & (io_hazard.flush_flg | is_mret_rise)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                              ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/ifu/IFU.scala:101:61: not found: value is_mret_rise[0m
-[0m[[0m[31merror[0m] [0m[0m    val fetch_normal = AXI_R_fire & ~io_hazard.flush_flg & ~is_mret_rise[0m
-[0m[[0m[31merror[0m] [0m[0m                                                            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/ifu/IFU.scala:104:81: not found: value is_mret_rise[0m
-[0m[[0m[31merror[0m] [0m[0m    val start = io.imem.arready && ~io_hazard.flush_flg && io_pipe.in.valid && ~is_mret_rise[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/ifu/IFU.scala:110:56: not found: value is_mret_rise[0m
-[0m[[0m[31merror[0m] [0m[0m        s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, Mux(is_mret_rise, s_Flush, s_BeforeAXI_R_Fire), s_BeforeAXI_AR_Fire),[0m
-[0m[[0m[31merror[0m] [0m[0m                                                       ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/ifu/IFU.scala:112:61: not found: value is_mret_rise[0m
-[0m[[0m[31merror[0m] [0m[0m        s_AfterPreFire        ->  Mux(io_hazard.flush_flg | is_mret_rise | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),[0m
-[0m[[0m[31merror[0m] [0m[0m                                                            ^[0m
-[0m[[0m[31merror[0m] [0m[0m7 errors found[0m
+[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
