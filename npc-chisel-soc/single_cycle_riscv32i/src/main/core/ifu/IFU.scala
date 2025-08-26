@@ -217,8 +217,8 @@ class IFU extends Module {
 
     val sel_br    = io.br_flg && flag && ~io.is_mret
     val sel_jmp   = io.jmp_flg && flag && ~io.is_mret
-    val sel_trap  = flag && ~io.is_mret
-    val sel_mret  = flag && io.is_mret
+    val sel_trap  = flag && ~io.is_mret && (~io.br_flg && ~io.jmp_flg)
+    val sel_mret  = flag && io.is_mret && (~io.br_flg && ~io.jmp_flg)
     pc_next := Mux1H(Seq(
         sel_br   -> io.br_target,
         sel_jmp  -> io.alu_out,
