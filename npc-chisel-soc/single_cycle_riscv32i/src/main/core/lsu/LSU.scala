@@ -128,7 +128,7 @@ class LSU extends Module {
     ))
 
 
-    out_valid := Mux(n_state === s_AfterPreFire && fetch_normal, true.B, false.B)
+    out_valid := Mux(n_state === s_AfterPreFire && AXI_RorB_fire, true.B, false.B)
 
     switch(n_state){//third phase
         is(s_BeforePreFire){
