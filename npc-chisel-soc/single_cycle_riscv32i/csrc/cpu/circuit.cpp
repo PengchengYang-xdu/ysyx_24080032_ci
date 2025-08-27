@@ -457,6 +457,7 @@ static void exec_once(){
     single_cycle();
 }
 
+uint64_t n_rec = 0;
 void cpu_exec(uint64_t n){
     while(n > 0){
 
@@ -494,9 +495,17 @@ void cpu_exec(uint64_t n){
         // if(pre_pc != now_pc){
         //     trace_and_difftest();
         // }
+        #ifdef NPCCONFIG_DIFFTEST
         if(DIFFVALID){
             trace_and_difftest();
+            n_rec = n;
+            if(n_rec - n > 600){
+                dump_wave();
+                close_wave(999);
+                exit(-1);
+            }
         }
+        #endif
 
 
 
