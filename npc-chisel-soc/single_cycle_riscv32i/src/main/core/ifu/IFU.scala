@@ -74,17 +74,17 @@ class IFU extends Module {
 
     //面积优化 尽量少用寄存器 直接透传信号 组合逻辑
     //handshake between modules && handshake between Imem
+    val s_BeforePreFire :: s_WaitEnd :: s_WaitFlush :: Nil = Enum(3)
+    val c_state = RegInit(s_BeforePreFire)
+    val n_state = WireDefault(c_state)
+    dontTouch(n_state)
+
     val shoot = io.imem.rvalid && c_state =/= s_WaitFlush
     val fetch_done = shoot && io_pipe.out.ready//读取到指令 && 下一阶段准备好了接收 && 不是冲刷等待读取完毕的情况
     val fetch_trash = io.imem.rvalid//冲刷阶段只需要读取到指令就行 没必要传输 所以收到指令就可以冲刷了
 
     io_pipe.in.ready := ~io_pipe.in.valid || fetch_done
     io_pipe.out.valid := io_pipe.in.valid && shoot && ~io_hazard.flush_flg && ~is_mret_rise
-
-    val s_BeforePreFire :: s_WaitEnd :: s_WaitFlush :: Nil = Enum(3)
-    val c_state = RegInit(0.U)
-    val n_state = WireDefault(c_state)
-    dontTouch(n_state)
 
     // val start = io_pipe.in.fire//this is the multi cycle version, change it auto fetch to fit 5 pipelines
     val start = io.imem.arready && io_pipe.in.valid && ~io_hazard.flush_flg && ~is_mret_rise
