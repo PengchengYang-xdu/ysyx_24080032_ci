@@ -192,19 +192,19 @@ module iCache(	// @[src/main/cache/iCache.scala:27:7]
   reg  [1:0]  fencei_counter;	// @[src/main/cache/iCache.scala:148:33]
   wire        is_fencei =
     fencei_io_vr_is_fencei_io_valid & fencei_io_vr_is_fencei_io_bits_is_fencei;	// @[src/main/cache/iCache.scala:149:53]
-  wire        _in_rdata_T_3 = io_out_rvalid & out_rready;	// @[src/main/cache/iCache.scala:62:29, :159:49]
+  wire        _in_rdata_T_14 = io_out_rvalid & out_rready;	// @[src/main/cache/iCache.scala:62:29, :159:49]
   reg  [2:0]  casez_tmp_3;	// @[src/main/cache/iCache.scala:155:42]
   always_comb begin	// @[src/main/cache/iCache.scala:155:42]
     casez (c_state)	// @[src/main/cache/iCache.scala:121:26, :155:42]
       3'b000:
         casez_tmp_3 = io_in_arvalid & in_arready ? 3'h1 : is_fencei ? 3'h5 : 3'h0;	// @[src/main/cache/iCache.scala:28:16, :33:29, :126:36, :139:44, :149:53, :155:42, :156:{33,66}]
       3'b001:
-        casez_tmp_3 = {1'h0, ~hit0, 1'h0};	// @[src/main/cache/iCache.scala:28:16, :139:25, :155:42, :157:33]
+        casez_tmp_3 = hit0 ? {2'h0, ~io_in_rready} : 3'h2;	// @[src/main/cache/iCache.scala:28:16, :139:25, :145:43, :155:42, :157:{33,43}]
       3'b010:
         casez_tmp_3 = {2'h1, io_out_arready & out_arvalid};	// @[src/main/cache/iCache.scala:57:30, :155:42, :158:{33,49}, :172:49]
       3'b011:
         casez_tmp_3 =
-          _in_rdata_T_3
+          _in_rdata_T_14
             ? (~issdram_raddr | count == 2'h0
                  ? 3'h4
                  : {2'h1, ~((|count) & ~(|out_arlen))})
@@ -321,10 +321,10 @@ module iCache(	// @[src/main/cache/iCache.scala:27:7]
       if (issdram_raddr) begin	// @[src/main/cache/iCache.scala:125:63]
         if (_in_rdata_T & ways_hit)	// @[src/main/cache/iCache.scala:133:56, :139:44, :227:37]
           in_rdata <= req_offset[2] ? casez_tmp_2 : casez_tmp_1;	// @[src/main/cache/iCache.scala:34:27, :105:26, :133:44, :227:8, :228:61]
-        else if (_in_rdata_T_3 & 2'h1 - count == {1'h0, req_offset[2]})	// @[src/main/cache/iCache.scala:28:16, :97:24, :105:26, :159:49, :172:49, :228:61, :229:{40,55,64}]
+        else if (_in_rdata_T_14 & 2'h1 - count == {1'h0, req_offset[2]})	// @[src/main/cache/iCache.scala:28:16, :97:24, :105:26, :159:49, :172:49, :228:61, :229:{40,55,64}]
           in_rdata <= io_out_rdata;	// @[src/main/cache/iCache.scala:34:27]
       end
-      else if (_in_rdata_T_13)	// @[src/main/cache/iCache.scala:145:22]
+      else if (_in_rdata_T_13 & _in_rdata_T_14)	// @[src/main/cache/iCache.scala:145:22, :159:49, :232:27]
         in_rdata <= io_out_rdata;	// @[src/main/cache/iCache.scala:34:27]
       in_rvalid <=
         ~_GEN_1 & (_GEN_2 ? ways_hit : _GEN_3 ? hit0 : ~_GEN_5 & (_GEN_6 | in_rvalid));	// @[src/main/cache/iCache.scala:36:28, :133:56, :139:25, :176:20, :183:23, :190:23, :202:23, :210:23, :298:19, :314:21]

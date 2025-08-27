@@ -56,7 +56,7 @@ class IFU extends Module {
     io.imem.bready := false.B
 
 
-    val is_mret_rise = io_hazard.is_mret && ~RegNext(io_hazard.is_mret)
+    val is_mret_rise = io_hazard.is_mret & ~RegNext(io_hazard.is_mret)
 
     //delay
     lazy val lfsr = RegInit(IFU_DELAY)
@@ -64,6 +64,7 @@ class IFU extends Module {
     lazy val delay = RegInit(lfsr)
 
 
+    
 
 
 
@@ -72,30 +73,118 @@ class IFU extends Module {
 
 
 
-    //面积优化 尽量少用寄存器 直接透传信号 组合逻辑
     //handshake between modules && handshake between Imem
-    val s_BeforePreFire :: s_WaitEnd :: s_WaitFlush :: Nil = Enum(3)
-    val c_state = RegInit(s_BeforePreFire)
+    val in_ready = RegInit(false.B)
+    val out_valid = RegInit(false.B)
+    io_pipe.in.ready := in_ready
+    io_pipe.out.valid := out_valid & ~io_hazard.flush_flg & ~is_mret_rise
+
+    val araddr = Wire(UInt(WORD_LEN.W))
+    val arvalid = RegInit(false.B)
+    val rready = RegInit(false.B)
+    val arsize = RegInit(2.U)
+    io.imem.araddr := araddr
+    io.imem.arvalid := arvalid
+    io.imem.rready := rready
+    io.imem.arsize := arsize
+
+
+    val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: s_Flush :: Nil = Enum(5)
+    val c_state = RegInit(s_BeforeAXI_AR_Fire)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
 
-    val shoot = io.imem.rvalid && c_state =/= s_WaitFlush
-    val fetch_done = shoot && io_pipe.out.ready//读取到指令 && 下一阶段准备好了接收 && 不是冲刷等待读取完毕的情况
-    val fetch_trash = io.imem.rvalid//冲刷阶段只需要读取到指令就行 没必要传输 所以收到指令就可以冲刷了
+    val AXI_AR_fire = arvalid & io.imem.arready
+    val AXI_R_fire = io.imem.rvalid & rready
 
-    io_pipe.in.ready := ~io_pipe.in.valid || fetch_done
-    io_pipe.out.valid := io_pipe.in.valid && shoot && ~io_hazard.flush_flg && ~is_mret_rise
+    //flush states
+    val R_while_flush = AXI_R_fire & (io_hazard.flush_flg | is_mret_rise)
+    val flush_before_R = ~AXI_R_fire & (io_hazard.flush_flg | is_mret_rise)
+    val fetch_normal = AXI_R_fire & ~io_hazard.flush_flg & ~is_mret_rise
 
     // val start = io_pipe.in.fire//this is the multi cycle version, change it auto fetch to fit 5 pipelines
-    val start = io.imem.arready && io_pipe.in.valid && ~io_hazard.flush_flg && ~is_mret_rise
+    val start = io.imem.arready && ~io_hazard.flush_flg && io_pipe.in.valid && ~is_mret_rise
 
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire       ->  Mux(start, Mux(fetch_done, s_BeforePreFire, s_WaitEnd), s_BeforePreFire),
-        s_WaitEnd             ->  Mux(fetch_done, s_BeforePreFire, Mux(io_hazard.flush_flg || is_mret_rise, s_WaitFlush, s_WaitEnd)),
-        s_WaitFlush           ->  Mux(fetch_trash, s_BeforePreFire, s_WaitFlush)
+        s_BeforePreFire       ->  Mux(start, s_BeforeAXI_AR_Fire, s_BeforePreFire),
+        s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, Mux(is_mret_rise, s_Flush, s_BeforeAXI_R_Fire), s_BeforeAXI_AR_Fire),
+        s_BeforeAXI_R_Fire    ->  Mux(fetch_normal, s_AfterPreFire, Mux(flush_before_R, s_Flush, Mux(R_while_flush, s_BeforePreFire, s_BeforeAXI_R_Fire))),
+        s_AfterPreFire        ->  Mux(io_hazard.flush_flg | is_mret_rise | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
+        s_Flush               ->  Mux(AXI_R_fire, s_BeforePreFire, s_Flush)
     ))//发起的请求必须等取到这次取指之后，再冲刷
+
+    switch(n_state){//third phase
+        is(s_BeforePreFire){
+            //between modules
+            in_ready := true.B
+            out_valid := false.B
+            //AXI
+            arvalid := false.B
+            rready := false.B
+            arsize := 2.U
+            //delay
+            if(ENABLE_DELAY){
+                delay := lfsr
+            }
+        }
+        is(s_BeforeAXI_AR_Fire){
+            //between modules
+            in_ready := false.B
+            out_valid := false.B
+            //AXI
+            if(ENABLE_DELAY){
+                when(delay === 0.U){
+                    arvalid := true.B
+                    rready := false.B
+                    arsize := 2.U
+                }.otherwise{
+                    arvalid := false.B
+                    rready := false.B
+                    arsize := 2.U
+                    //delay
+                    delay := delay - 1.U
+                }
+            } else {
+                arvalid := true.B
+                rready := false.B
+                arsize := 2.U
+            }
+        }
+        is(s_BeforeAXI_R_Fire){
+            //between modules
+            in_ready := false.B
+            out_valid := false.B
+            //AXI
+            arvalid := false.B
+            rready := true.B
+            arsize := 2.U
+        }
+        is(s_AfterPreFire){
+            //between modules
+            in_ready := false.B
+            out_valid := true.B
+            //AXI
+            arvalid := false.B
+            rready := false.B
+            arsize := 2.U
+        }
+        is(s_Flush){
+            //between modules
+            in_ready := false.B
+            out_valid := false.B
+            //AXI
+            arvalid := false.B
+            rready := true.B
+            arsize := 2.U
+        }
+    }
+
+
+
+
+
 
 
 
@@ -107,7 +196,7 @@ class IFU extends Module {
     dontTouch(pc_next)
     
     val reg_pc = withReset(reset.asAsyncReset){
-        RegEnable(pc_next, START_ADDR, (io_pipe.in.valid & io_pipe.in.ready) || (io_hazard.flush_flg || is_mret_rise))
+        RegEnable(pc_next, START_ADDR, io_pipe.in.valid & io_pipe.in.ready)
     }
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
@@ -116,10 +205,7 @@ class IFU extends Module {
     pc_next := io_hazard.pc_real_next
     
     //connect
-    io.imem.araddr := reg_pc
-    io.imem.arsize := 2.U
-    io.imem.arvalid := start && c_state === s_BeforePreFire
-    io.imem.rready := fetch_done || c_state === s_WaitFlush
+    araddr := reg_pc
 
     io_pipe.out.bits.if2id_reg_pc := reg_pc
     io_pipe.out.bits.if2id_inst := io.imem.rdata
