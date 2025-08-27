@@ -199,7 +199,7 @@ module iCache(	// @[src/main/cache/iCache.scala:27:7]
       3'b000:
         casez_tmp_3 = io_in_arvalid & in_arready ? 3'h1 : is_fencei ? 3'h5 : 3'h0;	// @[src/main/cache/iCache.scala:28:16, :33:29, :126:36, :139:44, :149:53, :155:42, :156:{33,66}]
       3'b001:
-        casez_tmp_3 = hit0 ? {2'h0, ~io_in_rready} : 3'h2;	// @[src/main/cache/iCache.scala:28:16, :139:25, :145:43, :155:42, :157:{33,43}]
+        casez_tmp_3 = {1'h0, ~hit0, 1'h0};	// @[src/main/cache/iCache.scala:28:16, :139:25, :155:42, :157:33]
       3'b010:
         casez_tmp_3 = {2'h1, io_out_arready & out_arvalid};	// @[src/main/cache/iCache.scala:57:30, :155:42, :158:{33,49}, :172:49]
       3'b011:
