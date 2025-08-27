@@ -1,0 +1,11 @@
+Generate the report at 2025-08-27T12:41:33, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
++-----------------+-----------+--------+-------------+-------------+------+
+| Net / Pin       | MaxFanout | Fanout | FanoutSlack | LibCellPort | Note |
++-----------------+-----------+--------+-------------+-------------+------+
+| fanout_net_18   |           |        |             |             |      |
+| fanout_buf_18:Z | NA        | 30     | NA          | BUF_X8/Z    |      |
+| clint/_0563_    |           |        |             |             |      |
+| clint/_1179_:QN | NA        | 0      | NA          | DFFR_X1/QN  |      |
+| fanout_net_10   |           |        |             |             |      |
+| fanout_buf_10:Z | NA        | 30     | NA          | BUF_X8/Z    |      |
++-----------------+-----------+--------+-------------+-------------+------+
