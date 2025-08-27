@@ -88,7 +88,7 @@ class LSU extends Module {
     io.dmem.wvalid  := wvalid
     io.dmem.bready  := bready
 
-    val s_BeforePreFire :: s_BeforeAXI_ARorAWW_Fire :: s_BeforeAXI_RorB_Fire :: s_AfterPreFire :: s_Flush :: Nil = Enum(5)
+    val s_BeforePreFire :: s_BeforeAXI_ARorAWW_Fire :: s_BeforeAXI_RorB_Fire :: s_Flush :: Nil = Enum(4)
     val c_state = RegInit(s_BeforePreFire)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -104,10 +104,9 @@ class LSU extends Module {
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire             ->  Mux(io_pipe.in.fire & ~is_flush, Mux(notLS, s_AfterPreFire, s_BeforeAXI_ARorAWW_Fire), s_BeforePreFire),
+        s_BeforePreFire             ->  Mux(io_pipe.in.fire & ~is_flush, Mux(notLS, s_BeforePreFire, s_BeforeAXI_ARorAWW_Fire), s_BeforePreFire),
         s_BeforeAXI_ARorAWW_Fire    ->  Mux(AXI_ARorAWW_fire, s_BeforeAXI_RorB_Fire, s_BeforeAXI_ARorAWW_Fire),
-        s_BeforeAXI_RorB_Fire       ->  Mux(fetch_normal, s_AfterPreFire, Mux(flush_before_RB, s_Flush, Mux(RB_while_flush, s_BeforePreFire, s_BeforeAXI_RorB_Fire))),
-        s_AfterPreFire              ->  Mux(is_flush | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
+        s_BeforeAXI_RorB_Fire       ->  Mux(fetch_normal, s_BeforePreFire, Mux(flush_before_RB, s_Flush, Mux(RB_while_flush, s_BeforePreFire, s_BeforeAXI_RorB_Fire))),
         s_Flush                     ->  Mux(AXI_RorB_fire, s_BeforePreFire, s_Flush)
     ))
 
@@ -171,19 +170,6 @@ class LSU extends Module {
             awsize := awsize_func
             wvalid := false.B
             // bready := Mux(isS, true.B, false.B)
-        }
-        is(s_AfterPreFire){
-            //between modules
-            in_ready := false.B
-            // out_valid := true.B
-            //AXI
-            arvalid := false.B
-            // rready := false.B
-            awvalid := false.B
-            wvalid := false.B
-            // bready := false.B
-            arsize := 2.U
-            awsize := 2.U
         }
         is(s_Flush){
             //between modules
