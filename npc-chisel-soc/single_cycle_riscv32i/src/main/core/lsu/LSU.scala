@@ -61,7 +61,7 @@ class LSU extends Module {
 
     //handshake between modules
     val in_ready = RegInit(false.B)
-    val out_valid = RegInit(false.B)
+    val out_valid = WireDefault(false.B)
     io_pipe.in.ready := in_ready
     io_pipe.out.valid := out_valid & ~is_flush
 
@@ -127,11 +127,14 @@ class LSU extends Module {
         MEM_OP_4   ->  2.U
     ))
 
+
+    out_valid := Mux(n_state === s_AfterPreFire && fetch_normal)
+
     switch(n_state){//third phase
         is(s_BeforePreFire){
             //between modules
             in_ready := true.B
-            out_valid := false.B
+            // out_valid := false.B
             //AXI
             arvalid := false.B
             rready := false.B
@@ -144,7 +147,7 @@ class LSU extends Module {
         is(s_BeforeAXI_ARorAWW_Fire){
             //between modules
             in_ready := false.B
-            out_valid := false.B
+            // out_valid := false.B
             //AXI
             arvalid := Mux(isL, true.B, false.B)
             arsize := arsize_func
@@ -157,7 +160,7 @@ class LSU extends Module {
         is(s_BeforeAXI_RorB_Fire){
             //between modules
             in_ready := false.B
-            out_valid := false.B
+            // out_valid := false.B
             //AXI
             arvalid := false.B
             arsize := arsize_func
@@ -170,7 +173,7 @@ class LSU extends Module {
         is(s_AfterPreFire){
             //between modules
             in_ready := false.B
-            out_valid := true.B
+            // out_valid := true.B
             //AXI
             arvalid := false.B
             rready := false.B
@@ -183,7 +186,7 @@ class LSU extends Module {
         is(s_Flush){
             //between modules
             in_ready := false.B
-            out_valid := false.B
+            // out_valid := false.B
             //AXI
             arvalid := false.B
             rready := true.B
