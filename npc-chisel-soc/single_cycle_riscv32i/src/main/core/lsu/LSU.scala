@@ -128,7 +128,7 @@ class LSU extends Module {
     ))
 
 
-    out_valid := (AXI_RorB_fire || notLS)
+    out_valid := (AXI_RorB_fire || notLS) && n_state === s_AfterPreFire
     rready := (isL && c_state === s_BeforeAXI_RorB_Fire || c_state === s_Flush) && io_pipe.out.ready
     bready := (isS && c_state === s_BeforeAXI_RorB_Fire || c_state === s_Flush) && io_pipe.out.ready
 
