@@ -68,14 +68,14 @@ class LSU extends Module {
     val araddr = RegInit(0.U)
     val arvalid = RegInit(false.B)
     val arsize = RegInit(0.U)
-    val rready = RegInit(false.B)
+    val rready = WireDefault(false.B)
     val awaddr = RegInit(0.U)
     val awvalid = RegInit(false.B)
     val awsize = RegInit(0.U)
     val wdata = RegInit(0.U)
     val wstrb = RegInit(0.U)
     val wvalid = RegInit(false.B)
-    val bready = RegInit(false.B)
+    val bready = WireDefault(false.B)
     io.dmem.araddr  := araddr
     io.dmem.arvalid := arvalid
     io.dmem.arsize := arsize
@@ -128,7 +128,9 @@ class LSU extends Module {
     ))
 
 
-    out_valid := Mux(n_state === s_AfterPreFire && AXI_RorB_fire, true.B, false.B)
+    out_valid := (io.dmem.rvalid || io.dmem.bvalid || notLS)
+    rready := isL && c_state === s_BeforeAXI_RorB_Fire || c_state === s_Flush
+    bready := isS && c_state === s_BeforeAXI_RorB_Fire || c_state === s_Flush
 
     switch(n_state){//third phase
         is(s_BeforePreFire){
@@ -137,10 +139,10 @@ class LSU extends Module {
             // out_valid := false.B
             //AXI
             arvalid := false.B
-            rready := false.B
+            // rready := false.B
             awvalid := false.B
             wvalid := false.B
-            bready := false.B
+            // bready := false.B
             arsize := 2.U
             awsize := 2.U
         }
@@ -151,11 +153,11 @@ class LSU extends Module {
             //AXI
             arvalid := Mux(isL, true.B, false.B)
             arsize := arsize_func
-            rready := false.B
+            // rready := false.B
             awvalid := Mux(isS, true.B, false.B)
             awsize := awsize_func
             wvalid := Mux(isS, true.B, false.B)
-            bready := false.B
+            // bready := false.B
         }
         is(s_BeforeAXI_RorB_Fire){
             //between modules
@@ -164,11 +166,11 @@ class LSU extends Module {
             //AXI
             arvalid := false.B
             arsize := arsize_func
-            rready := Mux(isL, true.B, false.B)
+            // rready := Mux(isL, true.B, false.B)
             awvalid := false.B
             awsize := awsize_func
             wvalid := false.B
-            bready := Mux(isS, true.B, false.B)
+            // bready := Mux(isS, true.B, false.B)
         }
         is(s_AfterPreFire){
             //between modules
@@ -176,10 +178,10 @@ class LSU extends Module {
             // out_valid := true.B
             //AXI
             arvalid := false.B
-            rready := false.B
+            // rready := false.B
             awvalid := false.B
             wvalid := false.B
-            bready := false.B
+            // bready := false.B
             arsize := 2.U
             awsize := 2.U
         }
@@ -189,10 +191,10 @@ class LSU extends Module {
             // out_valid := false.B
             //AXI
             arvalid := false.B
-            rready := true.B
+            // rready := true.B
             awvalid := false.B
             wvalid := false.B
-            bready := true.B
+            // bready := true.B
             arsize := 2.U
             awsize := 2.U
         }
