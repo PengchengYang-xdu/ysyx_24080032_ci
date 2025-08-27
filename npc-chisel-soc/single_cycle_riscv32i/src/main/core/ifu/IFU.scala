@@ -82,11 +82,10 @@ class IFU extends Module {
     val araddr = Wire(UInt(WORD_LEN.W))
     val arvalid = RegInit(false.B)
     val rready = RegInit(false.B)
-    val arsize = RegInit(2.U)
     io.imem.araddr := araddr
     io.imem.arvalid := arvalid
     io.imem.rready := rready
-    io.imem.arsize := arsize
+    io.imem.arsize := 2.U
 
 
     val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: s_Flush :: Nil = Enum(5)
