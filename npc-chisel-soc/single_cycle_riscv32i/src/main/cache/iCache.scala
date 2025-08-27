@@ -154,7 +154,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
         s_IDLE           ->  Mux(isifu_rreq, s_icache_lookup, Mux(is_fencei, s_fencei, s_IDLE)),
-        s_icache_lookup  ->  Mux(hit0, s_IDLE, s_i_0),
+        s_icache_lookup  ->  Mux(hit0 && io.in.rready, s_IDLE, s_i_0),
         s_i_0            ->  Mux(io.out.arready & out_arvalid, s_i_1, s_i_0),
         s_i_1            ->  Mux((io.out.rvalid & out_rready), Mux(((c.U === 1.U || ~issdram_raddr) || (c.U =/= 1.U && count === 0.U)), s_i_2, Mux((c.U =/= 1.U && count =/= 0.U && out_arlen === 0.U), s_i_0, s_i_1)), s_i_1),
         s_i_2            ->  Mux(in_rvalid & io.in.rready, s_IDLE, s_i_2),
