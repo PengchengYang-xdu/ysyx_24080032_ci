@@ -56,7 +56,7 @@ class IFU extends Module {
     io.imem.bready := false.B
 
 
-    val is_mret_rise = io_hazard.is_mret & ~RegNext(io_hazard.is_mret)
+    val is_mret_rise = io_hazard.is_mret && ~RegNext(io_hazard.is_mret)
 
     //delay
     lazy val lfsr = RegInit(IFU_DELAY)
@@ -107,7 +107,7 @@ class IFU extends Module {
     dontTouch(pc_next)
     
     val reg_pc = withReset(reset.asAsyncReset){
-        RegEnable(pc_next, START_ADDR, io_pipe.in.valid & io_pipe.in.ready)
+        RegEnable(pc_next, START_ADDR, io_pipe.in.valid)
     }
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
