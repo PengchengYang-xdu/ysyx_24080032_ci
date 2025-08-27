@@ -98,7 +98,7 @@
         "PULP_RISCV_GCC_TOOLCHAIN": "/home/yangpengcheng/workspace/opt/riscv_pulp",
         "PWD": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i",
         "LC_NUMERIC\\tDEFAULT": "en_US.UTF-8",
-        "CLK_FREQ_MHZ": "500",
+        "CLK_FREQ_MHZ": "100",
         "NO_PROXY": "localhost,127.0.0.0/8,::1",
         "CONDA_PREFIX": "/home/yangpengcheng/miniconda3",
         "DISPLAY": ":4.0",
@@ -121,6 +121,6 @@
         "MODEL_TECH": "/home/yangpengcheng/questasim/bin",
         "DESKTOP_SESSION": "xfce"
     },
-    "valueHash": -1017594615,
-    "inputsHash": -1708224970
+    "valueHash": -107612815,
+    "inputsHash": -1016198347
 }
