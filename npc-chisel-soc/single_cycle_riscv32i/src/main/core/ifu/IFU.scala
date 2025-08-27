@@ -100,10 +100,57 @@ class IFU extends Module {
         s_Flush               ->  Mux(AXI_R_fire, s_BeforePreFire, s_Flush)
     ))//发起的请求必须等取到这次取指之后，再冲刷
 
-    in_ready := Mux(n_state === s_BeforePreFire, true.B, false.B)
-    out_valid := Mux(n_state === s_AfterPreFire, true.B, false.B)
-    arvalid := Mux(n_state === s_BeforeAXI_AR_Fire, true.B, false.B)
-    rready := Mux(n_state === s_BeforeAXI_R_Fire || n_state === s_Flush, true.B, false.B)
+    switch(n_state){//third phase
+        is(s_BeforePreFire){
+            //between modules
+            in_ready := true.B
+            out_valid := false.B
+            //AXI
+            arvalid := false.B
+            rready := false.B
+        }
+        is(s_BeforeAXI_AR_Fire){
+            //between modules
+            in_ready := false.B
+            out_valid := false.B
+            //AXI
+            arvalid := true.B
+            rready := false.B
+        }
+        is(s_BeforeAXI_R_Fire){
+            //between modules
+            in_ready := false.B
+            out_valid := false.B
+            //AXI
+            arvalid := false.B
+            rready := true.B
+        }
+        is(s_AfterPreFire){
+            //between modules
+            in_ready := false.B
+            out_valid := true.B
+            //AXI
+            arvalid := false.B
+            rready := false.B
+        }
+        is(s_Flush){
+            //between modules
+            in_ready := false.B
+            out_valid := false.B
+            //AXI
+            arvalid := false.B
+            rready := true.B
+        }
+    }
+
+
+
+
+
+
+
+
+
 
 
     //main process
