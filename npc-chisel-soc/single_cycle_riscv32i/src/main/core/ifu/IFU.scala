@@ -58,21 +58,6 @@ class IFU extends Module {
 
     val is_mret_rise = io_hazard.is_mret & ~RegNext(io_hazard.is_mret)
 
-    //delay
-    lazy val lfsr = RegInit(IFU_DELAY)
-    lfsr := Cat(lfsr(2,0), lfsr(0)^lfsr(1)^lfsr(2))
-    lazy val delay = RegInit(lfsr)
-
-
-    
-
-
-
-
-
-
-
-
     //handshake between modules && handshake between Imem
     val in_ready = RegInit(false.B)
     val out_valid = RegInit(false.B)
@@ -102,7 +87,7 @@ class IFU extends Module {
     val fetch_normal = AXI_R_fire & ~io_hazard.flush_flg & ~is_mret_rise
 
     // val start = io_pipe.in.fire//this is the multi cycle version, change it auto fetch to fit 5 pipelines
-    val start = io.imem.arready && ~io_hazard.flush_flg && io_pipe.in.valid && ~is_mret_rise
+    val start =  io_pipe.in.valid && io.imem.arready && ~io_hazard.flush_flg && ~is_mret_rise
 
     c_state := n_state//first phase
 
@@ -114,73 +99,10 @@ class IFU extends Module {
         s_Flush               ->  Mux(AXI_R_fire, s_BeforePreFire, s_Flush)
     ))//发起的请求必须等取到这次取指之后，再冲刷
 
-    switch(n_state){//third phase
-        is(s_BeforePreFire){
-            //between modules
-            in_ready := true.B
-            out_valid := false.B
-            //AXI
-            arvalid := false.B
-            rready := false.B
-            //delay
-            if(ENABLE_DELAY){
-                delay := lfsr
-            }
-        }
-        is(s_BeforeAXI_AR_Fire){
-            //between modules
-            in_ready := false.B
-            out_valid := false.B
-            //AXI
-            if(ENABLE_DELAY){
-                when(delay === 0.U){
-                    arvalid := true.B
-                    rready := false.B
-                }.otherwise{
-                    arvalid := false.B
-                    rready := false.B
-                    //delay
-                    delay := delay - 1.U
-                }
-            } else {
-                arvalid := true.B
-                rready := false.B
-            }
-        }
-        is(s_BeforeAXI_R_Fire){
-            //between modules
-            in_ready := false.B
-            out_valid := false.B
-            //AXI
-            arvalid := false.B
-            rready := true.B
-        }
-        is(s_AfterPreFire){
-            //between modules
-            in_ready := false.B
-            out_valid := true.B
-            //AXI
-            arvalid := false.B
-            rready := false.B
-        }
-        is(s_Flush){
-            //between modules
-            in_ready := false.B
-            out_valid := false.B
-            //AXI
-            arvalid := false.B
-            rready := true.B
-        }
-    }
-
-
-
-
-
-
-
-
-
+    in_ready := Mux(n_state === s_BeforePreFire, true.B, false.B)
+    out_valid := Mux(n_state === s_AfterPreFire, true.B, false.B)
+    arvalid := Mux(n_state === s_BeforeAXI_AR_Fire, true.B, false.B)
+    rready := Mux(n_state === s_BeforeAXI_R_Fire || n_state === s_Flush, true.B, false.B)
 
 
     //main process
