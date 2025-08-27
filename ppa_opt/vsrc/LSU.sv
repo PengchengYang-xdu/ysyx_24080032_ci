@@ -138,7 +138,6 @@ module LSU(	// @[src/main/core/lsu/LSU.scala:40:7]
                   : c_state == 3'h0 & in_ready & io_pipe_in_valid & ~io_hazard_flush_flg
                       ? {1'h0, &io_pipe_in_bits_exe2ls_mem_op, 1'h1}
                       : 3'h0;	// @[src/main/core/lsu/LSU.scala:40:7, :47:18, :53:19, :56:47, :58:56, :63:27, :66:{36,38}, :69:26, :73:26, :77:25, :92:26, :93:30, :96:{37,56,87}, :97:51, :100:40, :101:{27,42}, :102:38, :106:51, :107:{44,77}, :108:44, :109:{44,78,108}, :110:{44,54}, :111:44, src/main/scala/chisel3/util/Decoupled.scala:51:35]
-  reg  [31:0] dmem_rdata;	// @[src/main/core/lsu/LSU.scala:114:29]
   wire        _arsize_func_T_2 = io_pipe_in_bits_exe2ls_mem_op == 3'h4;	// @[src/main/core/lsu/LSU.scala:40:7, :117:68]
   wire        _awsize_func_T_2 = io_pipe_in_bits_exe2ls_mem_op == 3'h1;	// @[src/main/core/lsu/LSU.scala:40:7, :117:68]
   wire        _arsize_func_T_6 = io_pipe_in_bits_exe2ls_mem_op == 3'h5;	// @[src/main/core/lsu/LSU.scala:40:7, :117:68]
@@ -198,7 +197,7 @@ module LSU(	// @[src/main/core/lsu/LSU.scala:40:7]
   wire        _GEN = io_pipe_in_bits_exe2ls_mem_op == 3'h1;	// @[src/main/core/lsu/LSU.scala:40:7, :227:43]
   wire        _GEN_0 = io_pipe_in_bits_exe2ls_mem_op == 3'h2;	// @[src/main/core/lsu/LSU.scala:40:7, :227:43]
   wire [31:0] shift_rdata =
-    dmem_rdata >> {27'h0, io_pipe_in_bits_exe2ls_alu_out[1:0], 3'h0};	// @[src/main/core/lsu/LSU.scala:40:7, :114:29, :240:{34,68}]
+    io_dmem_rdata >> {27'h0, io_pipe_in_bits_exe2ls_alu_out[1:0], 3'h0};	// @[src/main/core/lsu/LSU.scala:40:7, :240:{37,71}]
   assign dmem_rdata_processed =
     (|io_pipe_in_bits_exe2ls_mem_op)
       ? (_GEN
@@ -208,7 +207,7 @@ module LSU(	// @[src/main/core/lsu/LSU.scala:40:7]
                : _arsize_func_T_2
                    ? {24'h0, shift_rdata[7:0]}
                    : _arsize_func_T_6 ? {16'h0, shift_rdata[15:0]} : 32'h0)
-      : {{24{shift_rdata[7]}}, shift_rdata[7:0]};	// @[src/main/core/lsu/LSU.scala:117:68, :213:43, :227:43, :240:34, :241:43, :243:{34,40,45,61,78}, :246:{34,40,45,61,79}, :249:34, :252:{34,40,67}, :255:{34,40,67}]
+      : {{24{shift_rdata[7]}}, shift_rdata[7:0]};	// @[src/main/core/lsu/LSU.scala:117:68, :213:43, :227:43, :240:37, :241:43, :243:{34,40,45,61,78}, :246:{34,40,45,61,79}, :249:34, :252:{34,40,67}, :255:{34,40,67}]
   wire        is_laf = io_dmem_rvalid & (|io_dmem_rresp);	// @[src/main/core/lsu/LSU.scala:280:{33,50}]
   wire        is_saf = io_dmem_bvalid & (|io_dmem_bresp);	// @[src/main/core/lsu/LSU.scala:281:{33,50}]
   wire        isS =
@@ -238,7 +237,6 @@ module LSU(	// @[src/main/core/lsu/LSU.scala:40:7]
       wvalid <= 1'h0;	// @[src/main/core/lsu/LSU.scala:47:18, :77:25]
       bready <= 1'h0;	// @[src/main/core/lsu/LSU.scala:47:18, :78:25]
       c_state <= 3'h0;	// @[src/main/core/lsu/LSU.scala:40:7, :92:26]
-      dmem_rdata <= 32'h0;	// @[src/main/core/lsu/LSU.scala:114:29, :213:43]
     end
     else begin	// @[src/main/core/lsu/LSU.scala:40:7]
       in_ready <= _GEN_1 | ~(_GEN_2 | _GEN_6) & in_ready;	// @[src/main/core/lsu/LSU.scala:63:27, :130:20, :133:22, :146:22, :159:22, :172:22, :185:22]
@@ -252,7 +250,7 @@ module LSU(	// @[src/main/core/lsu/LSU.scala:40:7]
       awsize <= casez_tmp_0;	// @[src/main/core/lsu/LSU.scala:74:25, :130:20, :142:20]
       wdata <=
         {31'h0, io_pipe_in_bits_exe2ls_rs2_data}
-        << {58'h0, io_pipe_in_bits_exe2ls_alu_out[1:0], 3'h0};	// @[src/main/core/lsu/LSU.scala:40:7, :68:25, :75:24, :240:68, :262:46]
+        << {58'h0, io_pipe_in_bits_exe2ls_alu_out[1:0], 3'h0};	// @[src/main/core/lsu/LSU.scala:40:7, :68:25, :75:24, :240:71, :262:46]
       if (|io_pipe_in_bits_exe2ls_mem_op) begin	// @[src/main/core/lsu/LSU.scala:117:68]
         if (_GEN)	// @[src/main/core/lsu/LSU.scala:227:43]
           wstrb <= {2'h0, 5'h3 << io_pipe_in_bits_exe2ls_alu_out[1:0]};	// @[src/main/core/lsu/LSU.scala:58:56, :76:24, :227:43, :232:{19,36,69}]
@@ -264,21 +262,19 @@ module LSU(	// @[src/main/core/lsu/LSU.scala:40:7]
       wvalid <= ~_GEN_1 & (_GEN_2 ? isS : ~_GEN_6 & wvalid);	// @[src/main/core/lsu/LSU.scala:57:22, :63:27, :69:26, :77:25, :130:20, :136:21, :139:20, :154:20, :159:22, :162:21, :167:20, :172:22, :175:21, :178:20, :185:22, :188:21, :191:20]
       bready <= ~_GEN_7 & (_GEN_3 ? isS : ~_GEN_4 & (_GEN_5 | bready));	// @[src/main/core/lsu/LSU.scala:57:22, :78:25, :130:20, :137:20, :140:20, :151:20, :155:20, :168:20, :176:20, :179:20, :192:20]
       c_state <= n_state;	// @[src/main/core/lsu/LSU.scala:92:26, :93:30]
-      if (n_state == 3'h3)	// @[src/main/core/lsu/LSU.scala:40:7, :93:30, :115:31]
-        dmem_rdata <= io_dmem_rdata;	// @[src/main/core/lsu/LSU.scala:114:29]
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// @[src/main/core/lsu/LSU.scala:40:7]
     `ifdef FIRRTL_BEFORE_INITIAL	// @[src/main/core/lsu/LSU.scala:40:7]
       `FIRRTL_BEFORE_INITIAL	// @[src/main/core/lsu/LSU.scala:40:7]
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:5];	// @[src/main/core/lsu/LSU.scala:40:7]
+    logic [31:0] _RANDOM[0:4];	// @[src/main/core/lsu/LSU.scala:40:7]
     initial begin	// @[src/main/core/lsu/LSU.scala:40:7]
       `ifdef INIT_RANDOM_PROLOG_	// @[src/main/core/lsu/LSU.scala:40:7]
         `INIT_RANDOM_PROLOG_	// @[src/main/core/lsu/LSU.scala:40:7]
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// @[src/main/core/lsu/LSU.scala:40:7]
-        for (logic [2:0] i = 3'h0; i < 3'h6; i += 3'h1) begin
+        for (logic [2:0] i = 3'h0; i < 3'h5; i += 3'h1) begin
           _RANDOM[i] = `RANDOM;	// @[src/main/core/lsu/LSU.scala:40:7]
         end	// @[src/main/core/lsu/LSU.scala:40:7]
         in_ready = _RANDOM[3'h0][0];	// @[src/main/core/lsu/LSU.scala:40:7, :63:27]
@@ -295,7 +291,6 @@ module LSU(	// @[src/main/core/lsu/LSU.scala:40:7]
         wvalid = _RANDOM[3'h4][15];	// @[src/main/core/lsu/LSU.scala:40:7, :75:24, :77:25]
         bready = _RANDOM[3'h4][16];	// @[src/main/core/lsu/LSU.scala:40:7, :75:24, :78:25]
         c_state = _RANDOM[3'h4][19:17];	// @[src/main/core/lsu/LSU.scala:40:7, :75:24, :92:26]
-        dmem_rdata = {_RANDOM[3'h4][31:20], _RANDOM[3'h5][19:0]};	// @[src/main/core/lsu/LSU.scala:40:7, :75:24, :114:29]
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/core/lsu/LSU.scala:40:7]
