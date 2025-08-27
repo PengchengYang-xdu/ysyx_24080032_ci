@@ -82,7 +82,7 @@ class IFU extends Module {
     io_pipe.out.valid := io_pipe.in.valid && shoot && ~io_hazard.flush_flg && ~is_mret_rise
 
     val s_BeforePreFire :: s_WaitEnd :: s_WaitFlush :: Nil = Enum(3)
-    val c_state = RegInit(s_BeforePreFire)
+    val c_state = RegInit(0.U)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
 
@@ -93,7 +93,7 @@ class IFU extends Module {
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
         s_BeforePreFire       ->  Mux(start, Mux(fetch_done, s_BeforePreFire, s_WaitEnd), s_BeforePreFire),
-        s_WaitEnd             ->  Mux(fetch_done, s_BeforePreFire, Mux(io_hazard.flush_flg, s_WaitFlush, s_WaitEnd)),
+        s_WaitEnd             ->  Mux(fetch_done, s_BeforePreFire, Mux(io_hazard.flush_flg || is_mret_rise, s_WaitFlush, s_WaitEnd)),
         s_WaitFlush           ->  Mux(fetch_trash, s_BeforePreFire, s_WaitFlush)
     ))//发起的请求必须等取到这次取指之后，再冲刷
 
