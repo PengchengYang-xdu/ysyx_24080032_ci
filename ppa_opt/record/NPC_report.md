@@ -1,5 +1,5 @@
 ### Report: NPC.rpt (first 11 lines)
-Generate the report at 2025-08-27T21:30:11, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-08-27T21:33:11, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 +------------------+-------------+------------+------------+---------------+-------+-------+-----------+
 | Endpoint         | Clock Group | Delay Type | Path Delay | Path Required | CPPR  | Slack | Freq(MHz) |
 +------------------+-------------+------------+------------+---------------+-------+-------+-----------+
@@ -16,13 +16,13 @@ Generate the report at 2025-08-27T21:30:11, GitVersion: aa25008b3778a76ae1975c83
    Chip area for module '\Clint': 1034.740000
    Chip area for module '\Core': 6458.214000
    Chip area for module '\EXU': 2405.438000
-   Chip area for module '\GPR': 6137.950000
+   Chip area for module '\GPR': 6358.198000
    Chip area for module '\IDU': 1502.634000
    Chip area for module '\IFU': 622.972000
-   Chip area for module '\LSU': 1888.068000
+   Chip area for module '\LSU': 1569.932000
    Chip area for module '\NPC': 40.964000
    Chip area for module '\WBU': 129.542000
    Chip area for module '\Xbar_new': 1535.884000
    Chip area for module '\iCache': 6690.432000
-   Chip area for top module '\NPC': 30029.804000
+   Chip area for top module '\NPC': 29931.916000
 
