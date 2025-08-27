@@ -60,7 +60,7 @@ class LSU extends Module {
     val is_flush = io_hazard.flush_flg
 
     //handshake between modules
-    val in_ready = WireDefault(false.B)
+    val in_ready = RegInit(false.B)
     val out_valid = WireDefault(false.B)
     io_pipe.in.ready := in_ready
     io_pipe.out.valid := out_valid & ~is_flush
@@ -104,9 +104,10 @@ class LSU extends Module {
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire             ->  Mux(io_pipe.in.fire & ~is_flush, Mux(notLS, s_BeforePreFire, s_BeforeAXI_ARorAWW_Fire), s_BeforePreFire),
+        s_BeforePreFire             ->  Mux(io_pipe.in.valid & ~is_flush, Mux(notLS, s_NotLS, Mux(io_pipe.in.ready, s_BeforeAXI_ARorAWW_Fire, s_BeforePreFire)), s_BeforePreFire),
         s_BeforeAXI_ARorAWW_Fire    ->  Mux(AXI_ARorAWW_fire, s_BeforeAXI_RorB_Fire, s_BeforeAXI_ARorAWW_Fire),
         s_BeforeAXI_RorB_Fire       ->  Mux(fetch_normal, s_BeforePreFire, Mux(flush_before_RB, s_Flush, Mux(RB_while_flush, s_BeforePreFire, s_BeforeAXI_RorB_Fire))),
+        s_NotLS                     ->  Mux(is_flush | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
         s_Flush                     ->  Mux(AXI_RorB_fire, s_BeforePreFire, s_Flush)
     ))
 
@@ -126,15 +127,15 @@ class LSU extends Module {
         MEM_OP_4   ->  2.U
     ))
 
-    in_ready := ~out_valid || io_pipe.out.ready
-    out_valid := AXI_RorB_fire || (notLS && io_pipe.in.valid)
+
+    out_valid := AXI_RorB_fire || (notLS && io_pipe.in.fire)
     rready := (isL && c_state === s_BeforeAXI_RorB_Fire || c_state === s_Flush) && io_pipe.out.ready
     bready := (isS && c_state === s_BeforeAXI_RorB_Fire || c_state === s_Flush) && io_pipe.out.ready
 
     switch(n_state){//third phase
         is(s_BeforePreFire){
             //between modules
-            // in_ready := true.B
+            in_ready := true.B
             // out_valid := false.B
             //AXI
             arvalid := false.B
@@ -147,7 +148,7 @@ class LSU extends Module {
         }
         is(s_BeforeAXI_ARorAWW_Fire){
             //between modules
-            // in_ready := false.B
+            in_ready := false.B
             // out_valid := false.B
             //AXI
             arvalid := Mux(isL, true.B, false.B)
@@ -160,7 +161,7 @@ class LSU extends Module {
         }
         is(s_BeforeAXI_RorB_Fire){
             //between modules
-            // in_ready := false.B
+            in_ready := false.B
             // out_valid := false.B
             //AXI
             arvalid := false.B
@@ -173,7 +174,7 @@ class LSU extends Module {
         }
         is(s_Flush){
             //between modules
-            // in_ready := false.B
+            in_ready := false.B
             // out_valid := false.B
             //AXI
             arvalid := false.B
