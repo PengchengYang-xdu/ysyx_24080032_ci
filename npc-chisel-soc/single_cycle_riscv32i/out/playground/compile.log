@@ -1,11 +1,2 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/lsu/LSU.scala:107:86: not found: value s_NotLS[0m
-[0m[[0m[31merror[0m] [0m[0m        s_BeforePreFire             ->  Mux(io_pipe.in.valid & ~is_flush, Mux(notLS, s_NotLS, Mux(io_pipe.in.ready, s_BeforeAXI_ARorAWW_Fire, s_BeforePreFire)), s_BeforePreFire),[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                     ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/lsu/LSU.scala:110:9: not found: value s_NotLS[0m
-[0m[[0m[31merror[0m] [0m[0m        s_NotLS                     ->  Mux(is_flush | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),[0m
-[0m[[0m[31merror[0m] [0m[0m        ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/lsu/LSU.scala:110:91: not found: value s_AfterPreFire[0m
-[0m[[0m[31merror[0m] [0m[0m        s_NotLS                     ->  Mux(is_flush | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                          ^[0m
-[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m

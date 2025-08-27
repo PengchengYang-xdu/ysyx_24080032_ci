@@ -88,7 +88,7 @@ class LSU extends Module {
     io.dmem.wvalid  := wvalid
     io.dmem.bready  := bready
 
-    val s_BeforePreFire :: s_BeforeAXI_ARorAWW_Fire :: s_BeforeAXI_RorB_Fire :: s_NotLS :: s_Flush :: Nil = Enum(4)
+    val s_BeforePreFire :: s_BeforeAXI_ARorAWW_Fire :: s_BeforeAXI_RorB_Fire :: s_NotLS :: s_Flush :: Nil = Enum(5)
     val c_state = RegInit(s_BeforePreFire)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
