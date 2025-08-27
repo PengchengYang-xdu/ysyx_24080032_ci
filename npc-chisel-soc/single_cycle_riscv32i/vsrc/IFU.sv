@@ -73,7 +73,8 @@ module IFU(	// @[src/main/core/ifu/IFU.scala:32:7]
 
   wire [31:0] pc_next = io_hazard_pc_real_next;	// @[src/main/core/ifu/IFU.scala:157:23]
   reg         is_mret_rise_REG;	// @[src/main/core/ifu/IFU.scala:59:52]
-  wire        is_flush = io_hazard_flush_flg | io_hazard_is_mret & ~is_mret_rise_REG;	// @[src/main/core/ifu/IFU.scala:59:{42,44,52}, :61:40]
+  wire        is_mret_rise = io_hazard_is_mret & ~is_mret_rise_REG;	// @[src/main/core/ifu/IFU.scala:59:{42,44,52}]
+  wire        is_flush = io_hazard_flush_flg | is_mret_rise;	// @[src/main/core/ifu/IFU.scala:59:42, :61:40]
   reg         in_ready;	// @[src/main/core/ifu/IFU.scala:63:27]
   reg         out_valid;	// @[src/main/core/ifu/IFU.scala:64:28]
   wire        io_pipe_out_valid_0 = out_valid & ~is_flush;	// @[src/main/core/ifu/IFU.scala:61:40, :64:28, :66:{36,38}]
@@ -93,9 +94,9 @@ module IFU(	// @[src/main/core/ifu/IFU.scala:32:7]
                        ? 3'h4
                        : {1'h0, ~(AXI_R_fire & is_flush), 1'h0})
               : c_state == 3'h1
-                  ? (arvalid & io_imem_arready ? (is_flush ? 3'h4 : 3'h2) : 3'h1)
+                  ? (arvalid & io_imem_arready ? (is_mret_rise ? 3'h4 : 3'h2) : 3'h1)
                   : {2'h0,
-                     c_state == 3'h0 & io_pipe_in_valid & io_imem_arready & ~is_flush};	// @[src/main/core/ifu/IFU.scala:32:7, :61:40, :66:{36,38}, :69:26, :78:26, :79:30, :82:31, :83:37, :86:36, :87:{26,38}, :88:35, :95:51, :96:38, :97:{38,55}, :98:{38,72,101}, :99:{38,48}, :100:38, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+                     c_state == 3'h0 & io_pipe_in_valid & io_imem_arready & ~is_flush};	// @[src/main/core/ifu/IFU.scala:32:7, :59:42, :61:40, :66:{36,38}, :69:26, :78:26, :79:30, :82:31, :83:37, :86:36, :87:{26,38}, :88:35, :95:51, :96:38, :97:{38,55}, :98:{38,72,101}, :99:{38,48}, :100:38, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   reg  [31:0] reg_pc;	// @[src/main/core/ifu/IFU.scala:161:18]
   wire        _GEN = n_state == 3'h0;	// @[src/main/core/ifu/IFU.scala:79:30, :96:38, :103:20]
   wire        _GEN_0 = n_state == 3'h1;	// @[src/main/core/ifu/IFU.scala:78:26, :79:30, :103:20]

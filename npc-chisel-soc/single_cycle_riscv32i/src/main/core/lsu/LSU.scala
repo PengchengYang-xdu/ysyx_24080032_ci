@@ -73,7 +73,7 @@ class LSU extends Module {
     val awvalid = RegInit(false.B)
     val awsize = RegInit(0.U)
     val wdata = RegInit(0.U)
-    val wstrb = WireDefault(0.U)
+    val wstrb = RegInit(0.U)
     val wvalid = RegInit(false.B)
     val bready = RegInit(false.B)
     io.dmem.araddr  := araddr
