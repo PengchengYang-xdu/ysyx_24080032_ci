@@ -58,11 +58,12 @@ class IFU extends Module {
 
     val is_mret_rise = io_hazard.is_mret & ~RegNext(io_hazard.is_mret)
 
+    val is_flush = io_hazard.flush_flg | is_mret_rise
     //handshake between modules && handshake between Imem
     val in_ready = RegInit(false.B)
     val out_valid = RegInit(false.B)
     io_pipe.in.ready := in_ready
-    io_pipe.out.valid := out_valid & ~io_hazard.flush_flg & ~is_mret_rise
+    io_pipe.out.valid := out_valid & ~is_flush
 
     val araddr = Wire(UInt(WORD_LEN.W))
     val arvalid = RegInit(false.B)
@@ -82,20 +83,20 @@ class IFU extends Module {
     val AXI_R_fire = io.imem.rvalid & rready
 
     //flush states
-    val R_while_flush = AXI_R_fire & (io_hazard.flush_flg | is_mret_rise)
-    val flush_before_R = ~AXI_R_fire & (io_hazard.flush_flg | is_mret_rise)
-    val fetch_normal = AXI_R_fire & ~io_hazard.flush_flg & ~is_mret_rise
+    val R_while_flush = AXI_R_fire & is_flush
+    val flush_before_R = ~AXI_R_fire & is_flush
+    val fetch_normal = AXI_R_fire & ~is_flush
 
     // val start = io_pipe.in.fire//this is the multi cycle version, change it auto fetch to fit 5 pipelines
-    val start =  io_pipe.in.valid && io.imem.arready && ~io_hazard.flush_flg && ~is_mret_rise
+    val start =  io_pipe.in.valid && io.imem.arready && ~is_flush
 
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
         s_BeforePreFire       ->  Mux(start, s_BeforeAXI_AR_Fire, s_BeforePreFire),
-        s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, Mux(is_mret_rise, s_Flush, s_BeforeAXI_R_Fire), s_BeforeAXI_AR_Fire),
+        s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, Mux(is_flush, s_Flush, s_BeforeAXI_R_Fire), s_BeforeAXI_AR_Fire),
         s_BeforeAXI_R_Fire    ->  Mux(fetch_normal, s_AfterPreFire, Mux(flush_before_R, s_Flush, Mux(R_while_flush, s_BeforePreFire, s_BeforeAXI_R_Fire))),
-        s_AfterPreFire        ->  Mux(io_hazard.flush_flg | is_mret_rise | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
+        s_AfterPreFire        ->  Mux(is_flush | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
         s_Flush               ->  Mux(AXI_R_fire, s_BeforePreFire, s_Flush)
     ))//发起的请求必须等取到这次取指之后，再冲刷
 
