@@ -229,7 +229,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         Mux(io.out.rvalid & out_rready && ((c.U - 1.U - count) === req_offset >> 2),
             io.out.rdata,
             in_rdata)),
-    Mux(n_state === s_i_2 , io.out.rdata, in_rdata))
+    Mux(n_state === s_i_2 && (io.out.rvalid & out_rready), io.out.rdata, in_rdata))
 
 
     //命中的时候更新LRU矩阵
