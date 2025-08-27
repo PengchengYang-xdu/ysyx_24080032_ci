@@ -126,7 +126,7 @@ class LSU extends Module {
         MEM_OP_4   ->  2.U
     ))
 
-    in_ready := ~io_pipe.in.valid || ((AXI_RorB_fire || notLS) && io_pipe.out.ready)
+    in_ready := ~out_valid || io_pipe.out.ready
     out_valid := AXI_RorB_fire || (notLS && io_pipe.in.valid)
     rready := (isL && c_state === s_BeforeAXI_RorB_Fire || c_state === s_Flush) && io_pipe.out.ready
     bready := (isS && c_state === s_BeforeAXI_RorB_Fire || c_state === s_Flush) && io_pipe.out.ready
