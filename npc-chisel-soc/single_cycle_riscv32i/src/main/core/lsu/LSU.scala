@@ -61,21 +61,21 @@ class LSU extends Module {
 
     //handshake between modules
     val in_ready = RegInit(false.B)
-    val out_valid = WireDefault(false.B)
+    val out_valid = RegInit(false.B)
     io_pipe.in.ready := in_ready
     io_pipe.out.valid := out_valid & ~is_flush
 
     val araddr = RegInit(0.U)
     val arvalid = RegInit(false.B)
     val arsize = RegInit(0.U)
-    val rready = WireDefault(false.B)
+    val rready = RegInit(false.B)
     val awaddr = RegInit(0.U)
     val awvalid = RegInit(false.B)
     val awsize = RegInit(0.U)
     val wdata = RegInit(0.U)
     val wstrb = RegInit(0.U)
     val wvalid = RegInit(false.B)
-    val bready = WireDefault(false.B)
+    val bready = RegInit(false.B)
     io.dmem.araddr  := araddr
     io.dmem.arvalid := arvalid
     io.dmem.arsize := arsize
@@ -88,7 +88,7 @@ class LSU extends Module {
     io.dmem.wvalid  := wvalid
     io.dmem.bready  := bready
 
-    val s_BeforePreFire :: s_BeforeAXI_ARorAWW_Fire :: s_BeforeAXI_RorB_Fire :: s_NotLS :: s_Flush :: Nil = Enum(5)
+    val s_BeforePreFire :: s_BeforeAXI_ARorAWW_Fire :: s_BeforeAXI_RorB_Fire :: s_AfterPreFire :: s_Flush :: Nil = Enum(5)
     val c_state = RegInit(s_BeforePreFire)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -104,15 +104,15 @@ class LSU extends Module {
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire             ->  Mux(io_pipe.in.valid & ~is_flush, Mux(notLS, s_NotLS, Mux(io_pipe.in.ready, s_BeforeAXI_ARorAWW_Fire, s_BeforePreFire)), s_BeforePreFire),
+        s_BeforePreFire             ->  Mux(io_pipe.in.fire & ~is_flush, Mux(notLS, s_AfterPreFire, s_BeforeAXI_ARorAWW_Fire), s_BeforePreFire),
         s_BeforeAXI_ARorAWW_Fire    ->  Mux(AXI_ARorAWW_fire, s_BeforeAXI_RorB_Fire, s_BeforeAXI_ARorAWW_Fire),
-        s_BeforeAXI_RorB_Fire       ->  Mux(fetch_normal, s_BeforePreFire, Mux(flush_before_RB, s_Flush, Mux(RB_while_flush, s_BeforePreFire, s_BeforeAXI_RorB_Fire))),
-        s_NotLS                     ->  Mux(is_flush | io_pipe.out.fire, s_BeforePreFire, s_NotLS),
+        s_BeforeAXI_RorB_Fire       ->  Mux(fetch_normal, s_AfterPreFire, Mux(flush_before_RB, s_Flush, Mux(RB_while_flush, s_BeforePreFire, s_BeforeAXI_RorB_Fire))),
+        s_AfterPreFire              ->  Mux(is_flush | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
         s_Flush                     ->  Mux(AXI_RorB_fire, s_BeforePreFire, s_Flush)
     ))
 
-    // val dmem_rdata = RegInit(0.U)//保存一下读出的数据
-    // dmem_rdata := Mux(n_state === s_AfterPreFire, io.dmem.rdata, dmem_rdata)
+    val dmem_rdata = RegInit(0.U)//保存一下读出的数据
+    dmem_rdata := Mux(n_state === s_AfterPreFire, io.dmem.rdata, dmem_rdata)
 
     val arsize_func = MuxLookup(io_pipe.in.bits.exe2ls_mem_op, 2.U)(Seq(
         MEM_OP_1S  ->  0.U,
@@ -127,74 +127,69 @@ class LSU extends Module {
         MEM_OP_4   ->  2.U
     ))
 
-
-    out_valid := AXI_RorB_fire || (notLS && io_pipe.in.fire)
-    rready := (isL && c_state === s_BeforeAXI_RorB_Fire || c_state === s_Flush) && io_pipe.out.ready
-    bready := (isS && c_state === s_BeforeAXI_RorB_Fire || c_state === s_Flush) && io_pipe.out.ready
-
     switch(n_state){//third phase
         is(s_BeforePreFire){
             //between modules
             in_ready := true.B
-            // out_valid := false.B
+            out_valid := false.B
             //AXI
             arvalid := false.B
-            // rready := false.B
+            rready := false.B
             awvalid := false.B
             wvalid := false.B
-            // bready := false.B
+            bready := false.B
             arsize := 2.U
             awsize := 2.U
         }
         is(s_BeforeAXI_ARorAWW_Fire){
             //between modules
             in_ready := false.B
-            // out_valid := false.B
+            out_valid := false.B
             //AXI
-            arvalid := Mux(isL, true.B, false.B)
+            arvalid := isL
             arsize := arsize_func
-            // rready := false.B
-            awvalid := Mux(isS, true.B, false.B)
+            rready := false.B
+            awvalid := isS
             awsize := awsize_func
-            wvalid := Mux(isS, true.B, false.B)
-            // bready := false.B
+            wvalid := isS
+            bready := false.B
         }
         is(s_BeforeAXI_RorB_Fire){
             //between modules
             in_ready := false.B
-            // out_valid := false.B
+            out_valid := false.B
             //AXI
             arvalid := false.B
             arsize := arsize_func
-            // rready := Mux(isL, true.B, false.B)
+            rready := isL
             awvalid := false.B
             awsize := awsize_func
             wvalid := false.B
-            // bready := Mux(isS, true.B, false.B)
+            bready := isS
         }
-        is(s_NotLS){
+        is(s_AfterPreFire){
             //between modules
             in_ready := false.B
-            // out_valid := false.B
+            out_valid := true.B
             //AXI
             arvalid := false.B
-            // rready := true.B
+            rready := false.B
             awvalid := false.B
             wvalid := false.B
-            // bready := true.B
+            bready := false.B
             arsize := 2.U
             awsize := 2.U
         }
         is(s_Flush){
             //between modules
             in_ready := false.B
-            // out_valid := false.B
+            out_valid := false.B
             //AXI
             arvalid := false.B
-            // rready := true.B
+            rready := true.B
             awvalid := false.B
             wvalid := false.B
-            // bready := true.B
+            bready := true.B
             arsize := 2.U
             awsize := 2.U
         }
@@ -242,7 +237,7 @@ class LSU extends Module {
     }
 
     //process wmask and read mode
-    val shift_rdata = io.dmem.rdata >> (io_pipe.in.bits.exe2ls_alu_out(1,0) << 3.U)
+    val shift_rdata = dmem_rdata >> (io_pipe.in.bits.exe2ls_alu_out(1,0) << 3.U)
     switch(io_pipe.in.bits.exe2ls_mem_op) {
         is(0.U) {//1s
             dmem_rdata_processed := Cat(Fill(24, shift_rdata(7)), shift_rdata(7,0))
