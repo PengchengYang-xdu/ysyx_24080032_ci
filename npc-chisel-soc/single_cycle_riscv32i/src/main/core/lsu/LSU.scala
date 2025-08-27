@@ -88,7 +88,7 @@ class LSU extends Module {
     io.dmem.wvalid  := wvalid
     io.dmem.bready  := bready
 
-    val s_BeforePreFire :: s_BeforeAXI_ARorAWW_Fire :: s_BeforeAXI_RorB_Fire :: s_Flush :: Nil = Enum(4)
+    val s_BeforePreFire :: s_BeforeAXI_ARorAWW_Fire :: s_BeforeAXI_RorB_Fire :: s_NotLS :: s_Flush :: Nil = Enum(4)
     val c_state = RegInit(s_BeforePreFire)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -107,7 +107,7 @@ class LSU extends Module {
         s_BeforePreFire             ->  Mux(io_pipe.in.valid & ~is_flush, Mux(notLS, s_NotLS, Mux(io_pipe.in.ready, s_BeforeAXI_ARorAWW_Fire, s_BeforePreFire)), s_BeforePreFire),
         s_BeforeAXI_ARorAWW_Fire    ->  Mux(AXI_ARorAWW_fire, s_BeforeAXI_RorB_Fire, s_BeforeAXI_ARorAWW_Fire),
         s_BeforeAXI_RorB_Fire       ->  Mux(fetch_normal, s_BeforePreFire, Mux(flush_before_RB, s_Flush, Mux(RB_while_flush, s_BeforePreFire, s_BeforeAXI_RorB_Fire))),
-        s_NotLS                     ->  Mux(is_flush | io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire),
+        s_NotLS                     ->  Mux(is_flush | io_pipe.out.fire, s_BeforePreFire, s_NotLS),
         s_Flush                     ->  Mux(AXI_RorB_fire, s_BeforePreFire, s_Flush)
     ))
 
@@ -171,6 +171,19 @@ class LSU extends Module {
             awsize := awsize_func
             wvalid := false.B
             // bready := Mux(isS, true.B, false.B)
+        }
+        is(s_NotLS){
+            //between modules
+            in_ready := false.B
+            // out_valid := false.B
+            //AXI
+            arvalid := false.B
+            // rready := true.B
+            awvalid := false.B
+            wvalid := false.B
+            // bready := true.B
+            arsize := 2.U
+            awsize := 2.U
         }
         is(s_Flush){
             //between modules
