@@ -257,6 +257,11 @@ class Core extends Module {
     val is_ctrl_hazard = ((exu.io.br_flg && exu.io.br_target =/= ifu.io_pipe.out.bits.if2id_reg_pc) || (exu.io.jmp_flg && exu.io.alu_out =/= ifu.io_pipe.out.bits.if2id_reg_pc)) && exu.io_pipe.out.valid
     dontTouch(is_ctrl_hazard)
 
+    val is_ctrl_hazard_r = RegInit(false.B)
+    val is_irq_r = RegInit(false.B)
+    is_ctrl_hazard_r := Mux(is_ctrl_hazard, true.B, Mux(ifu.io_pipe.in.ready & ifu.io_pipe.in.valid, false.B, is_ctrl_hazard_r))
+    is_irq_r := Mux(is_irq, true.B, Mux(ifu.io_pipe.in.ready & ifu.io_pipe.in.valid, false.B, is_irq_r))
+
     ifu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
     idu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
     exu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
@@ -272,7 +277,7 @@ class Core extends Module {
         sel_jmp  -> exu.io.alu_out,
         sel_mret -> csr.io.csr_mepc
     ))
-    val pc_real_next = Mux(is_irq, csr.io.csr_mtvec, Mux(is_ctrl_hazard, pc_next_normal, ifu.io_hazard.pc_plus4))
+    val pc_real_next = Mux(is_irq_r, csr.io.csr_mtvec, Mux(is_ctrl_hazard_r, pc_next_normal, ifu.io_hazard.pc_plus4))
     ifu.io_hazard.pc_real_next := pc_real_next
 
 
