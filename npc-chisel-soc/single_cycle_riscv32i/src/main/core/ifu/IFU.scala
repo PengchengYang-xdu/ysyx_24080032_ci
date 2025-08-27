@@ -11,12 +11,12 @@ class IFUIO_HAZARD extends Bundle {
     val flush_flg = Input(Bool())
     val pc_plus4 = Output(UInt(WORD_LEN.W))
     val pc_real_next = Input(UInt(WORD_LEN.W))
+    val is_mret = Input(Bool())
 }
 
 
 class IFUIO extends Bundle {
     val imem = Flipped(new AXI4WithoutClk)
-    val is_mret = Input(Bool())
 }
 
 class IFUIO_pipe_out extends Bundle{
@@ -56,7 +56,7 @@ class IFU extends Module {
     io.imem.bready := false.B
 
 
-    val is_mret_rise = io.is_mret & ~RegNext(io.is_mret)
+    val is_mret_rise = io_hazard.is_mret & ~RegNext(io_hazard.is_mret)
 
     //delay
     lazy val lfsr = RegInit(IFU_DELAY)

@@ -252,9 +252,8 @@ class Core extends Module {
     csr.io.csr_reg_pc := wbu.io_pipe.in.bits.ls2wb_reg_pc//pipe line irq
     csr.io.csr_irq_num := wbu.io.irq_num
 
-    ifu.io.is_mret := idu.io.is_mret
+    ifu.io_hazard.is_mret := idu.io.is_mret
 
-    val exu_out_valid_rise = exu.io_pipe.out.valid & ~RegNext(exu.io_pipe.out.valid)
     val is_ctrl_hazard = ((exu.io.br_flg && exu.io.br_target =/= ifu.io_pipe.out.bits.if2id_reg_pc) || (exu.io.jmp_flg && exu.io.alu_out =/= ifu.io_pipe.out.bits.if2id_reg_pc)) && exu.io_pipe.out.valid
     dontTouch(is_ctrl_hazard)
 
