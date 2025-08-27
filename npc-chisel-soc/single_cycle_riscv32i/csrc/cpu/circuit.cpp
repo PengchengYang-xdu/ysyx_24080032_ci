@@ -457,7 +457,6 @@ static void exec_once(){
     single_cycle();
 }
 
-uint64_t n_rec = 0;
 void cpu_exec(uint64_t n){
     while(n > 0){
 
@@ -497,24 +496,6 @@ void cpu_exec(uint64_t n){
         // }
         if(DIFFVALID){
             trace_and_difftest();
-            n_rec = n;
-        }
-
-        if(n_rec - n > 600){
-            #if defined(NPCCONFIG_DUMPWAVE) || defined(NPCCONFIG_LIGHTSSS)
-                #ifdef NPCCONFIG_LIGHTSSS
-                    if(lightsss.is_child()){
-                        dump_wave();
-	                    close_wave(2);
-                    }else{
-                        lightsss.wakeup_child(light_cycle_num);
-                    }
-                #else
-                    dump_wave();
-	                close_wave(2);
-                #endif
-	        #endif
-            exit(-1);
         }
 
 
