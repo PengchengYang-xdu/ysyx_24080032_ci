@@ -122,7 +122,6 @@ class IFU extends Module {
             //AXI
             arvalid := false.B
             rready := false.B
-            arsize := 2.U
             //delay
             if(ENABLE_DELAY){
                 delay := lfsr
@@ -137,18 +136,15 @@ class IFU extends Module {
                 when(delay === 0.U){
                     arvalid := true.B
                     rready := false.B
-                    arsize := 2.U
                 }.otherwise{
                     arvalid := false.B
                     rready := false.B
-                    arsize := 2.U
                     //delay
                     delay := delay - 1.U
                 }
             } else {
                 arvalid := true.B
                 rready := false.B
-                arsize := 2.U
             }
         }
         is(s_BeforeAXI_R_Fire){
@@ -158,7 +154,6 @@ class IFU extends Module {
             //AXI
             arvalid := false.B
             rready := true.B
-            arsize := 2.U
         }
         is(s_AfterPreFire){
             //between modules
@@ -167,7 +162,6 @@ class IFU extends Module {
             //AXI
             arvalid := false.B
             rready := false.B
-            arsize := 2.U
         }
         is(s_Flush){
             //between modules
@@ -176,7 +170,6 @@ class IFU extends Module {
             //AXI
             arvalid := false.B
             rready := true.B
-            arsize := 2.U
         }
     }
 
