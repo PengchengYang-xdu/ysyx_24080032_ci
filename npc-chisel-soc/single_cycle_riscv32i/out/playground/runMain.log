@@ -6,24 +6,6 @@ ExitCode:
 STDOUT:
 
 STDERR:
-src/main/perip/Perip.scala:29:7: error: sink "io_axi4_arready" not fully initialized in "Clint"
-class Clint extends Module {
-      ^
-src/main/perip/Perip.scala:29:7: error: sink "io_axi4_rdata" not fully initialized in "Clint"
-class Clint extends Module {
-      ^
-src/main/perip/Perip.scala:29:7: error: sink "io_axi4_rresp" not fully initialized in "Clint"
-class Clint extends Module {
-      ^
-src/main/perip/Perip.scala:29:7: error: sink "io_axi4_rvalid" not fully initialized in "Clint"
-class Clint extends Module {
-      ^
-src/main/perip/Perip.scala:29:7: error: sink "io_axi4_rlast" not fully initialized in "Clint"
-class Clint extends Module {
-      ^
-src/main/perip/Perip.scala:29:7: error: sink "io_axi4_rid" not fully initialized in "Clint"
-class Clint extends Module {
-      ^
 src/main/perip/Perip.scala:29:7: error: sink "io_axi4_awready" not fully initialized in "Clint"
 class Clint extends Module {
       ^
@@ -34,9 +16,6 @@ src/main/perip/Perip.scala:29:7: error: sink "io_axi4_bresp" not fully initializ
 class Clint extends Module {
       ^
 src/main/perip/Perip.scala:29:7: error: sink "io_axi4_bvalid" not fully initialized in "Clint"
-class Clint extends Module {
-      ^
-src/main/perip/Perip.scala:29:7: error: sink "io_axi4_bid" not fully initialized in "Clint"
 class Clint extends Module {
       ^
 
