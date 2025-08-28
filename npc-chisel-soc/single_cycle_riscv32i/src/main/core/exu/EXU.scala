@@ -61,6 +61,13 @@ class EXU extends Module {
 
 
 
+    val op1_data = MuxCase(0.U(WORD_LEN.W), Seq(
+        (io_pipe.in.bits.id2exe_op1_sel === OP1_RS1)  ->  io_pipe.in.bits.id2exe_rs1_data,
+        (io_pipe.in.bits.id2exe_op1_sel === OP1_PC)   ->  io_pipe.in.bits.id2exe_reg_pc
+        // (op1_sel === OP1_IMZ)  ->  imm_z_uext
+    ))
+
+    val op2_data = Mux(io_pipe.in.bits.id2exe_op2_sel === OP2_RS2, io_pipe.in.bits.id2exe_rs2_data, io_pipe.in.bits.id2exe_imm_sext)
 
 
 
@@ -72,30 +79,30 @@ class EXU extends Module {
 
     //main process
     val alu_out = MuxCase(0.U(WORD_LEN.W), Seq(
-        (io_pipe.in.bits.id2exe_exe_fun === ALU_ADD)   -> (io_pipe.in.bits.id2exe_op1_data + io_pipe.in.bits.id2exe_op2_data),
-        (io_pipe.in.bits.id2exe_exe_fun === ALU_SUB)   -> (io_pipe.in.bits.id2exe_op1_data - io_pipe.in.bits.id2exe_op2_data),
-        (io_pipe.in.bits.id2exe_exe_fun === ALU_AND)   -> (io_pipe.in.bits.id2exe_op1_data & io_pipe.in.bits.id2exe_op2_data),
-        (io_pipe.in.bits.id2exe_exe_fun === ALU_OR)    -> (io_pipe.in.bits.id2exe_op1_data | io_pipe.in.bits.id2exe_op2_data),
-        (io_pipe.in.bits.id2exe_exe_fun === ALU_XOR)   -> (io_pipe.in.bits.id2exe_op1_data ^ io_pipe.in.bits.id2exe_op2_data),
-        (io_pipe.in.bits.id2exe_exe_fun === ALU_SLL)   -> (io_pipe.in.bits.id2exe_op1_data << io_pipe.in.bits.id2exe_op2_data(4, 0))(31, 0),
-        (io_pipe.in.bits.id2exe_exe_fun === ALU_SRL)   -> (io_pipe.in.bits.id2exe_op1_data >> io_pipe.in.bits.id2exe_op2_data(4, 0)).asUInt,
-        (io_pipe.in.bits.id2exe_exe_fun === ALU_SRA)   -> (io_pipe.in.bits.id2exe_op1_data.asSInt >> io_pipe.in.bits.id2exe_op2_data(4, 0)).asUInt,
-        (io_pipe.in.bits.id2exe_exe_fun === ALU_SLT)   -> (io_pipe.in.bits.id2exe_op1_data.asSInt < io_pipe.in.bits.id2exe_op2_data.asSInt).asUInt,
-        (io_pipe.in.bits.id2exe_exe_fun === ALU_SLTU)  -> (io_pipe.in.bits.id2exe_op1_data < io_pipe.in.bits.id2exe_op2_data).asUInt,
-        (io_pipe.in.bits.id2exe_exe_fun === ALU_JALR)  -> ((io_pipe.in.bits.id2exe_op1_data + io_pipe.in.bits.id2exe_op2_data) & ~1.U(WORD_LEN.W)),
-        (io_pipe.in.bits.id2exe_exe_fun === ALU_COPY1) -> io_pipe.in.bits.id2exe_op1_data
+        (io_pipe.in.bits.id2exe_exe_fun === ALU_ADD)   -> (op1_data + op2_data),
+        (io_pipe.in.bits.id2exe_exe_fun === ALU_SUB)   -> (op1_data - op2_data),
+        (io_pipe.in.bits.id2exe_exe_fun === ALU_AND)   -> (op1_data & op2_data),
+        (io_pipe.in.bits.id2exe_exe_fun === ALU_OR)    -> (op1_data | op2_data),
+        (io_pipe.in.bits.id2exe_exe_fun === ALU_XOR)   -> (op1_data ^ op2_data),
+        (io_pipe.in.bits.id2exe_exe_fun === ALU_SLL)   -> (op1_data << op2_data(4, 0))(31, 0),
+        (io_pipe.in.bits.id2exe_exe_fun === ALU_SRL)   -> (op1_data >> op2_data(4, 0)).asUInt,
+        (io_pipe.in.bits.id2exe_exe_fun === ALU_SRA)   -> (op1_data.asSInt >> op2_data(4, 0)).asUInt,
+        (io_pipe.in.bits.id2exe_exe_fun === ALU_SLT)   -> (op1_data.asSInt < op2_data.asSInt).asUInt,
+        (io_pipe.in.bits.id2exe_exe_fun === ALU_SLTU)  -> (op1_data < op2_data).asUInt,
+        (io_pipe.in.bits.id2exe_exe_fun === ALU_JALR)  -> ((op1_data + op2_data) & ~1.U(WORD_LEN.W)),
+        (io_pipe.in.bits.id2exe_exe_fun === ALU_COPY1) -> op1_data
     ))
 
     val br_flg = MuxCase(false.B, Seq(
-        (io_pipe.in.bits.id2exe_exe_fun === BR_BEQ)    ->  (io_pipe.in.bits.id2exe_op1_data === io_pipe.in.bits.id2exe_op2_data),
-        (io_pipe.in.bits.id2exe_exe_fun === BR_BNE)    -> !(io_pipe.in.bits.id2exe_op1_data === io_pipe.in.bits.id2exe_op2_data),
-        (io_pipe.in.bits.id2exe_exe_fun === BR_BLT)    ->  (io_pipe.in.bits.id2exe_op1_data.asSInt < io_pipe.in.bits.id2exe_op2_data.asSInt),
-        (io_pipe.in.bits.id2exe_exe_fun === BR_BGE)    -> !(io_pipe.in.bits.id2exe_op1_data.asSInt < io_pipe.in.bits.id2exe_op2_data.asSInt),
-        (io_pipe.in.bits.id2exe_exe_fun === BR_BLTU)   ->  (io_pipe.in.bits.id2exe_op1_data < io_pipe.in.bits.id2exe_op2_data),
-        (io_pipe.in.bits.id2exe_exe_fun === BR_BGEU)   -> !(io_pipe.in.bits.id2exe_op1_data < io_pipe.in.bits.id2exe_op2_data)
+        (io_pipe.in.bits.id2exe_exe_fun === BR_BEQ)    ->  (op1_data === op2_data),
+        (io_pipe.in.bits.id2exe_exe_fun === BR_BNE)    -> !(op1_data === op2_data),
+        (io_pipe.in.bits.id2exe_exe_fun === BR_BLT)    ->  (op1_data.asSInt < op2_data.asSInt),
+        (io_pipe.in.bits.id2exe_exe_fun === BR_BGE)    -> !(op1_data.asSInt < op2_data.asSInt),
+        (io_pipe.in.bits.id2exe_exe_fun === BR_BLTU)   ->  (op1_data < op2_data),
+        (io_pipe.in.bits.id2exe_exe_fun === BR_BGEU)   -> !(op1_data < op2_data)
     ))
 
-    val br_target = io_pipe.in.bits.id2exe_reg_pc + io_pipe.in.bits.id2exe_imm_b_sext
+    val br_target = io_pipe.in.bits.id2exe_reg_pc + io_pipe.in.bits.id2exe_imm_sext
     val jmp_flg = (io_pipe.in.bits.id2exe_wb_sel === WB_PC)
 
     //connect
@@ -105,7 +112,7 @@ class EXU extends Module {
     io.alu_out := alu_out
 
     io_pipe.out.bits.exe2ls_reg_pc := io_pipe.in.bits.id2exe_reg_pc
-    io_pipe.out.bits.exe2ls_op1_data := io_pipe.in.bits.id2exe_op1_data
+    io_pipe.out.bits.exe2ls_op1_data := op1_data
     io_pipe.out.bits.exe2ls_rs2_data := io_pipe.in.bits.id2exe_rs2_data
     io_pipe.out.bits.exe2ls_wb_addr := io_pipe.in.bits.id2exe_wb_addr
     io_pipe.out.bits.exe2ls_alu_out := alu_out
