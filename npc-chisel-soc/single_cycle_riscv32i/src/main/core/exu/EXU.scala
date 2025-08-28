@@ -29,7 +29,7 @@ class EXUIO_pipe_out extends Bundle{
     val exe2ls_wb_sel = Output(UInt(WB_SEL_LEN.W))
     val exe2ls_csr_addr = Output(UInt(CSR_ADDR_LEN.W))
     val exe2ls_csr_cmd = Output(UInt(CSR_LEN.W))
-    val exe2ls_imm_z_uext = Output(UInt(WORD_LEN.W))
+    // val exe2ls_imm_z_uext = Output(UInt(WORD_LEN.W))
     val exe2ls_mem_wen = Output(UInt(MEN_LEN.W))
     val exe2ls_mem_op = Output(UInt(MEM_OP.W))
 
@@ -113,7 +113,7 @@ class EXU extends Module {
     io_pipe.out.bits.exe2ls_wb_sel := io_pipe.in.bits.id2exe_wb_sel
     io_pipe.out.bits.exe2ls_csr_addr := io_pipe.in.bits.id2exe_csr_addr
     io_pipe.out.bits.exe2ls_csr_cmd := io_pipe.in.bits.id2exe_csr_cmd
-    io_pipe.out.bits.exe2ls_imm_z_uext := io_pipe.in.bits.id2exe_imm_z_uext
+    // io_pipe.out.bits.exe2ls_imm_z_uext := io_pipe.in.bits.id2exe_imm_z_uext
     io_pipe.out.bits.exe2ls_mem_wen := io_pipe.in.bits.id2exe_mem_wen
     io_pipe.out.bits.exe2ls_mem_op := io_pipe.in.bits.id2exe_mem_op
 
