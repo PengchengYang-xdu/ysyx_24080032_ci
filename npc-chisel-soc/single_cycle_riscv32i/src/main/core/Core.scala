@@ -32,19 +32,19 @@ class Core extends Module {
     val lsu = Module(new LSU)
     val wbu = Module(new WBU)
 
-    // StageConnect(ifu.io_pipe.out, idu.io_pipe.in)
-    // StageConnect(idu.io_pipe.out, exu.io_pipe.in)
-    // StageConnect(exu.io_pipe.out, lsu.io_pipe.in)
-    // StageConnect(lsu.io_pipe.out, wbu.io_pipe.in)
+    StageConnect(ifu.io_pipe.out, idu.io_pipe.in)
+    StageConnect(idu.io_pipe.out, exu.io_pipe.in)
+    StageConnect(exu.io_pipe.out, lsu.io_pipe.in)
+    StageConnect(lsu.io_pipe.out, wbu.io_pipe.in)
     // StageConnect(wbu.io_pipe.out, ifu.io_pipe.in)
     wbu.io_pipe.out.ready := true.B
     val ready_r = RegNext(ifu.io_pipe.in.ready)
     ifu.io_pipe.in.valid := RegEnable(true.B, ifu.io_pipe.in.valid, ifu.io_pipe.in.ready & ready_r)
 
-    pipelineConnect(ifu.io_pipe.out, idu.io_pipe.in)
-    pipelineConnect(idu.io_pipe.out, exu.io_pipe.in)
-    pipelineConnect(exu.io_pipe.out, lsu.io_pipe.in)
-    pipelineConnect(lsu.io_pipe.out, wbu.io_pipe.in)
+    // pipelineConnect(ifu.io_pipe.out, idu.io_pipe.in)
+    // pipelineConnect(idu.io_pipe.out, exu.io_pipe.in)
+    // pipelineConnect(exu.io_pipe.out, lsu.io_pipe.in)
+    // pipelineConnect(lsu.io_pipe.out, wbu.io_pipe.in)
 
 
 
@@ -116,7 +116,91 @@ class Core extends Module {
 
 
 
+    //data hazard
+    val exu_is_working = ~exu.io_pipe.in.ready | exu.io_pipe.in.valid
+    val lsu_is_working = ~lsu.io_pipe.in.ready | lsu.io_pipe.in.valid
+    val wbu_is_working = ~wbu.io_pipe.in.ready | wbu.io_pipe.in.valid
+    val wbu_is_working_r = RegNext(wbu_is_working)
+    val wbu_end_flg = wbu_is_working_r & ~wbu_is_working
+    val wbu_end_flg_r = RegNext(wbu_end_flg)
+    dontTouch(exu_is_working)
+    dontTouch(lsu_is_working)
+    dontTouch(wbu_is_working)
+    dontTouch(wbu_is_working_r)
+    dontTouch(wbu_end_flg)
+    dontTouch(wbu_end_flg_r)
+    val exu_raw = dataConflictWithStage(idu, exu_is_working, exu.io_pipe.in.bits.id2exe_wb_addr, exu.io_pipe.in.bits.id2exe_rf_wen === REN_S)
+    val lsu_raw = dataConflictWithStage(idu, lsu_is_working, lsu.io_pipe.in.bits.exe2ls_wb_addr, lsu.io_pipe.in.bits.exe2ls_rf_wen === REN_S)
+    val wbu_raw = dataConflictWithStage(idu, wbu_is_working, wbu.io_pipe.in.bits.ls2wb_wb_addr, wbu.io_pipe.in.bits.ls2wb_rf_wen === REN_S)
+    val is_raw = exu_raw || lsu_raw || wbu_raw
+    val exu_raw_rs1 = exu_raw && dataConflict(idu.io.gpr_rs1_addr, exu.io_pipe.in.bits.id2exe_wb_addr)
+    val exu_raw_rs2 = exu_raw && dataConflict(idu.io.gpr_rs2_addr, exu.io_pipe.in.bits.id2exe_wb_addr)
+    val lsu_raw_rs1 = lsu_raw && dataConflict(idu.io.gpr_rs1_addr, lsu.io_pipe.in.bits.exe2ls_wb_addr)
+    val lsu_raw_rs2 = lsu_raw && dataConflict(idu.io.gpr_rs2_addr, lsu.io_pipe.in.bits.exe2ls_wb_addr)
+    val wbu_raw_rs1 = wbu_raw && dataConflict(idu.io.gpr_rs1_addr, wbu.io_pipe.in.bits.ls2wb_wb_addr)
+    val wbu_raw_rs2 = wbu_raw && dataConflict(idu.io.gpr_rs2_addr, wbu.io_pipe.in.bits.ls2wb_wb_addr)
+    val rs1_raw = exu_raw_rs1 || lsu_raw_rs1 || wbu_raw_rs1
+    val rs2_raw = exu_raw_rs2 || lsu_raw_rs2 || wbu_raw_rs2
+    dontTouch(exu_raw)
+    dontTouch(lsu_raw)
+    dontTouch(wbu_raw)
+    dontTouch(is_raw)
+    dontTouch(exu_raw_rs1)
+    dontTouch(exu_raw_rs2)
+    dontTouch(lsu_raw_rs1)
+    dontTouch(lsu_raw_rs2)
+    dontTouch(wbu_raw_rs1)
+    dontTouch(wbu_raw_rs2)
+    dontTouch(rs1_raw)
+    dontTouch(rs2_raw)
 
+    //记录发生raw的寄存器
+    val rs1_raw_valid = RegInit(false.B)
+    val rs2_raw_valid = RegInit(false.B)
+
+    val rs1_raw_rd = Reg(UInt(ADDR_LEN.W))
+    val rs2_raw_rd = Reg(UInt(ADDR_LEN.W))
+
+    // 记录来自哪段
+    val rs1_raw_from_exu = RegInit(false.B)
+    val rs1_raw_from_lsu = RegInit(false.B)
+    val rs1_raw_from_wbu = RegInit(false.B)
+
+    val rs2_raw_from_exu = RegInit(false.B)
+    val rs2_raw_from_lsu = RegInit(false.B)
+    val rs2_raw_from_wbu = RegInit(false.B)
+
+    when(rs1_raw){
+        rs1_raw_rd := MuxCase(0.U, Seq(
+            exu_raw_rs1 -> exu.io_pipe.in.bits.id2exe_wb_addr,
+            lsu_raw_rs1 -> lsu.io_pipe.in.bits.exe2ls_wb_addr,
+            wbu_raw_rs1 -> wbu.io_pipe.in.bits.ls2wb_wb_addr,
+        ))
+        rs1_raw_valid := true.B
+        rs1_raw_from_exu := exu_raw_rs1
+        rs1_raw_from_lsu := lsu_raw_rs1
+        rs1_raw_from_wbu := wbu_raw_rs1
+    }
+    when(rs2_raw){
+        rs2_raw_rd := MuxCase(0.U, Seq(
+            exu_raw_rs2 -> exu.io_pipe.in.bits.id2exe_wb_addr,
+            lsu_raw_rs2 -> lsu.io_pipe.in.bits.exe2ls_wb_addr,
+            wbu_raw_rs2 -> wbu.io_pipe.in.bits.ls2wb_wb_addr,
+        ))
+        rs2_raw_valid := true.B
+        rs2_raw_from_exu := exu_raw_rs2
+        rs2_raw_from_lsu := lsu_raw_rs2
+        rs2_raw_from_wbu := wbu_raw_rs2
+    }
+
+    val rs1_resolved = rs1_raw_valid && wbu_end_flg && wbu.io_pipe.in.bits.ls2wb_wb_addr === rs1_raw_rd
+    val rs2_resolved = rs2_raw_valid && wbu_end_flg && wbu.io_pipe.in.bits.ls2wb_wb_addr === rs2_raw_rd
+
+    val rs1_resolved_r = RegNext(rs1_resolved)
+    val rs2_resolved_r = RegNext(rs2_resolved)
+
+    when(rs1_resolved_r) {rs1_raw_valid := false.B}
+    when(rs2_resolved_r) {rs2_raw_valid := false.B}
 
     idu.io_hazard.stall_flg := false.B
 
