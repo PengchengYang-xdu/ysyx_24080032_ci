@@ -28,8 +28,8 @@ import npc.bus.axi._
 
 class Clint extends Module {
     val io = IO(new Bundle {
-        // val clk = Input(Clock())
-        // val rst = Input(Reset()) 
+        val clk = Input(Clock())
+        val rst = Input(Reset()) 
         val axi4 = new AXI4WithoutClk // 保持与外部接口一致
     })
 }
