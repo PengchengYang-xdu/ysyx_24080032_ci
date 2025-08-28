@@ -20,7 +20,7 @@
 // DPI TYPES for DPI Export callbacks (Internal use)
 
 // SYMS CLASS (contains all model state)
-class VysyxSoCFull__Syms final : public VerilatedSyms {
+class alignas(VL_CACHE_LINE_BYTES)VysyxSoCFull__Syms final : public VerilatedSyms {
   public:
     // INTERNAL STATE
     VysyxSoCFull* const __Vm_modelp;
@@ -181,10 +181,8 @@ class VysyxSoCFull__Syms final : public VerilatedSyms {
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__clint;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__csr;
-    VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__csr__csr_ext;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__exu;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__gpr;
-    VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__gpr__gpr_ext;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__icache;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__idu;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__idu__ebreak;
@@ -280,6 +278,6 @@ class VysyxSoCFull__Syms final : public VerilatedSyms {
 
     // METHODS
     const char* name() { return TOP.name(); }
-} VL_ATTR_ALIGNED(VL_CACHE_LINE_BYTES);
+};
 
 #endif  // guard

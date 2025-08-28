@@ -2,17 +2,11 @@
 // DESCRIPTION: Verilator output: Design implementation internals
 // See VysyxSoCFull.h for the primary calling header
 
-#include "verilated.h"
-#include "verilated_dpi.h"
-
+#include "VysyxSoCFull__pch.h"
 #include "VysyxSoCFull__Syms.h"
 #include "VysyxSoCFull___024root.h"
 
 // Parameter definitions for VysyxSoCFull___024root
-constexpr CData/*0:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__clint__DOT__sr_BeforeAXI_AR_Fire;
-constexpr CData/*0:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__clint__DOT__sr_BeforeAXI_R_Fire;
-constexpr CData/*0:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__clint__DOT__s_BeforeAXI_AWW_Fire;
-constexpr CData/*0:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__clint__DOT__s_BeforeAXI_B_Fire;
 constexpr CData/*2:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__luart__DOT__muart__DOT__Uregs__DOT__transmitter__DOT__s_idle;
 constexpr CData/*2:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__luart__DOT__muart__DOT__Uregs__DOT__transmitter__DOT__s_send_start;
 constexpr CData/*2:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__luart__DOT__muart__DOT__Uregs__DOT__transmitter__DOT__s_send_byte;
@@ -57,7 +51,6 @@ constexpr CData/*3:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__lsdr
 constexpr CData/*3:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__lsdram_axi__DOT__msdram__DOT__u_sdram_axi__DOT__u_core__DOT__STATE_PRECHARGE;
 constexpr CData/*3:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__lsdram_axi__DOT__msdram__DOT__u_sdram_axi__DOT__u_core__DOT__STATE_REFRESH;
 constexpr SData/*12:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__lsdram_axi__DOT__msdram__DOT__u_sdram_axi__DOT__u_core__DOT__MODE_REG;
-constexpr IData/*31:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__clint__DOT__ADDR;
 constexpr IData/*31:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__luart__DOT__muart__DOT__Uregs__DOT__transmitter__DOT__fifo_tx__DOT__fifo_width;
 constexpr IData/*31:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__luart__DOT__muart__DOT__Uregs__DOT__transmitter__DOT__fifo_tx__DOT__fifo_depth;
 constexpr IData/*31:0*/ VysyxSoCFull___024root::ysyxSoCFull__DOT__asic__DOT__luart__DOT__muart__DOT__Uregs__DOT__transmitter__DOT__fifo_tx__DOT__fifo_pointer_w;
@@ -138,7 +131,7 @@ VysyxSoCFull___024root::VysyxSoCFull___024root(VysyxSoCFull__Syms* symsp, const 
 }
 
 void VysyxSoCFull___024root::__Vconfigure(bool first) {
-    if (false && first) {}  // Prevent unused
+    (void)first;  // Prevent unused variable warning
 }
 
 VysyxSoCFull___024root::~VysyxSoCFull___024root() {

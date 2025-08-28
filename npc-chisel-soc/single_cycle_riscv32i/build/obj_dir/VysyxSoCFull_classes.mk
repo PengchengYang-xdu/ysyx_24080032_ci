@@ -49,6 +49,7 @@ VM_SUPPORT_FAST += \
 VM_SUPPORT_SLOW += \
 	VysyxSoCFull__Syms \
 	VysyxSoCFull__Trace__0__Slow \
+	VysyxSoCFull__TraceDecls__0__Slow \
 
 # Global classes, need linked once per executable, fast-path, compile with highest optimization
 VM_GLOBAL_FAST += \
