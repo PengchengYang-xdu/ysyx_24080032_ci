@@ -48,7 +48,7 @@ class CSR extends Module {
     when(io.csr_cmd === CSR_E) {
         mepc   := io.csr_reg_pc
         mcause := io.csr_irq_num
-    } .elsewhen(io.csr_cmd > 0.U && io.csr_cmd =/= CSR_E && io.csr_cmd =/= CSR_M && ~io.csr_is_irq) {
+    } .elsewhen(io.csr_cmd === CSR_S || io.csr_cmd === CSR_W && ~io.csr_is_irq) {
         switch(io.csr_addr) {
             is("h305".U) { mtvec := io.csr_wdata }
             is("h341".U) { mepc  := io.csr_wdata }
