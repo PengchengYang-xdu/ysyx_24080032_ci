@@ -130,7 +130,7 @@ module Core(	// @[src/main/core/Core.scala:23:7]
   wire        _exu_io_pipe_in_ready;	// @[src/main/core/Core.scala:31:21]
   wire        _exu_io_pipe_out_valid;	// @[src/main/core/Core.scala:31:21]
   wire [31:0] _exu_io_pipe_out_bits_exe2ls_reg_pc;	// @[src/main/core/Core.scala:31:21]
-  wire [31:0] _exu_io_pipe_out_bits_exe2ls_op1_data;	// @[src/main/core/Core.scala:31:21]
+  wire [31:0] _exu_io_pipe_out_bits_exe2ls_rs1_data;	// @[src/main/core/Core.scala:31:21]
   wire [31:0] _exu_io_pipe_out_bits_exe2ls_rs2_data;	// @[src/main/core/Core.scala:31:21]
   wire [3:0]  _exu_io_pipe_out_bits_exe2ls_wb_addr;	// @[src/main/core/Core.scala:31:21]
   wire [31:0] _exu_io_pipe_out_bits_exe2ls_alu_out;	// @[src/main/core/Core.scala:31:21]
@@ -207,7 +207,7 @@ module Core(	// @[src/main/core/Core.scala:23:7]
   reg  [31:0] exu_io_pipe_in_bits_r_id2exe_csr_rdata;	// @[src/main/core/Core.scala:336:33]
   reg         exu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:337:34]
   reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_reg_pc;	// @[src/main/core/Core.scala:336:33]
-  reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_op1_data;	// @[src/main/core/Core.scala:336:33]
+  reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_rs1_data;	// @[src/main/core/Core.scala:336:33]
   reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_rs2_data;	// @[src/main/core/Core.scala:336:33]
   reg  [3:0]  lsu_io_pipe_in_bits_r_exe2ls_wb_addr;	// @[src/main/core/Core.scala:336:33]
   reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_alu_out;	// @[src/main/core/Core.scala:336:33]
@@ -330,7 +330,7 @@ module Core(	// @[src/main/core/Core.scala:23:7]
       exu_io_pipe_in_valid_r <= _idu_io_pipe_out_valid;	// @[src/main/core/Core.scala:30:21, :337:34]
     if (_exu_io_pipe_out_valid & _lsu_io_pipe_in_ready) begin	// @[src/main/core/Core.scala:31:21, :32:21, :336:62]
       lsu_io_pipe_in_bits_r_exe2ls_reg_pc <= _exu_io_pipe_out_bits_exe2ls_reg_pc;	// @[src/main/core/Core.scala:31:21, :336:33]
-      lsu_io_pipe_in_bits_r_exe2ls_op1_data <= _exu_io_pipe_out_bits_exe2ls_op1_data;	// @[src/main/core/Core.scala:31:21, :336:33]
+      lsu_io_pipe_in_bits_r_exe2ls_rs1_data <= _exu_io_pipe_out_bits_exe2ls_rs1_data;	// @[src/main/core/Core.scala:31:21, :336:33]
       lsu_io_pipe_in_bits_r_exe2ls_rs2_data <= _exu_io_pipe_out_bits_exe2ls_rs2_data;	// @[src/main/core/Core.scala:31:21, :336:33]
       lsu_io_pipe_in_bits_r_exe2ls_wb_addr <= _exu_io_pipe_out_bits_exe2ls_wb_addr;	// @[src/main/core/Core.scala:31:21, :336:33]
       lsu_io_pipe_in_bits_r_exe2ls_alu_out <= _exu_io_pipe_out_bits_exe2ls_alu_out;	// @[src/main/core/Core.scala:31:21, :336:33]
@@ -440,7 +440,7 @@ module Core(	// @[src/main/core/Core.scala:23:7]
           {_RANDOM[5'h7][31:14], _RANDOM[5'h8][13:0]};	// @[src/main/core/Core.scala:23:7, :336:33]
         exu_io_pipe_in_valid_r = _RANDOM[5'h8][14];	// @[src/main/core/Core.scala:23:7, :336:33, :337:34]
         lsu_io_pipe_in_bits_r_exe2ls_reg_pc = {_RANDOM[5'h8][31:15], _RANDOM[5'h9][14:0]};	// @[src/main/core/Core.scala:23:7, :336:33]
-        lsu_io_pipe_in_bits_r_exe2ls_op1_data =
+        lsu_io_pipe_in_bits_r_exe2ls_rs1_data =
           {_RANDOM[5'h9][31:15], _RANDOM[5'hA][14:0]};	// @[src/main/core/Core.scala:23:7, :336:33]
         lsu_io_pipe_in_bits_r_exe2ls_rs2_data =
           {_RANDOM[5'hA][31:15], _RANDOM[5'hB][14:0]};	// @[src/main/core/Core.scala:23:7, :336:33]
@@ -616,7 +616,7 @@ module Core(	// @[src/main/core/Core.scala:23:7]
     .io_pipe_out_ready                 (_lsu_io_pipe_in_ready),	// @[src/main/core/Core.scala:32:21]
     .io_pipe_out_valid                 (_exu_io_pipe_out_valid),
     .io_pipe_out_bits_exe2ls_reg_pc    (_exu_io_pipe_out_bits_exe2ls_reg_pc),
-    .io_pipe_out_bits_exe2ls_op1_data  (_exu_io_pipe_out_bits_exe2ls_op1_data),
+    .io_pipe_out_bits_exe2ls_rs1_data  (_exu_io_pipe_out_bits_exe2ls_rs1_data),
     .io_pipe_out_bits_exe2ls_rs2_data  (_exu_io_pipe_out_bits_exe2ls_rs2_data),
     .io_pipe_out_bits_exe2ls_wb_addr   (_exu_io_pipe_out_bits_exe2ls_wb_addr),
     .io_pipe_out_bits_exe2ls_alu_out   (_exu_io_pipe_out_bits_exe2ls_alu_out),
@@ -656,7 +656,7 @@ module Core(	// @[src/main/core/Core.scala:23:7]
     .io_pipe_in_ready                 (_lsu_io_pipe_in_ready),
     .io_pipe_in_valid                 (_GEN_0),	// @[src/main/core/Core.scala:290:{34,56}, :337:22]
     .io_pipe_in_bits_exe2ls_reg_pc    (lsu_io_pipe_in_bits_r_exe2ls_reg_pc),	// @[src/main/core/Core.scala:336:33]
-    .io_pipe_in_bits_exe2ls_op1_data  (lsu_io_pipe_in_bits_r_exe2ls_op1_data),	// @[src/main/core/Core.scala:336:33]
+    .io_pipe_in_bits_exe2ls_rs1_data  (lsu_io_pipe_in_bits_r_exe2ls_rs1_data),	// @[src/main/core/Core.scala:336:33]
     .io_pipe_in_bits_exe2ls_rs2_data  (lsu_io_pipe_in_bits_r_exe2ls_rs2_data),	// @[src/main/core/Core.scala:336:33]
     .io_pipe_in_bits_exe2ls_wb_addr   (lsu_io_pipe_in_bits_r_exe2ls_wb_addr),	// @[src/main/core/Core.scala:336:33]
     .io_pipe_in_bits_exe2ls_alu_out   (lsu_io_pipe_in_bits_r_exe2ls_alu_out),	// @[src/main/core/Core.scala:336:33]

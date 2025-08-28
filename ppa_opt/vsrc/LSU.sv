@@ -75,7 +75,7 @@ module LSU(	// @[src/main/core/lsu/LSU.scala:40:7]
                 io_pipe_in_ready,	// @[src/main/core/lsu/LSU.scala:42:21]
   input         io_pipe_in_valid,	// @[src/main/core/lsu/LSU.scala:42:21]
   input  [31:0] io_pipe_in_bits_exe2ls_reg_pc,	// @[src/main/core/lsu/LSU.scala:42:21]
-                io_pipe_in_bits_exe2ls_op1_data,	// @[src/main/core/lsu/LSU.scala:42:21]
+                io_pipe_in_bits_exe2ls_rs1_data,	// @[src/main/core/lsu/LSU.scala:42:21]
                 io_pipe_in_bits_exe2ls_rs2_data,	// @[src/main/core/lsu/LSU.scala:42:21]
   input  [3:0]  io_pipe_in_bits_exe2ls_wb_addr,	// @[src/main/core/lsu/LSU.scala:42:21]
   input  [31:0] io_pipe_in_bits_exe2ls_alu_out,	// @[src/main/core/lsu/LSU.scala:42:21]
@@ -328,9 +328,9 @@ module LSU(	// @[src/main/core/lsu/LSU.scala:40:7]
               : io_pipe_in_bits_exe2ls_alu_out;	// @[src/main/core/lsu/LSU.scala:40:7, :222:40, :223:{40,86}, :224:40, :241:43, :243:34, src/main/scala/chisel3/util/Mux.scala:126:16]
   assign io_pipe_out_bits_ls2wb_csr_wdata =
     io_pipe_in_bits_exe2ls_csr_cmd == 3'h1
-      ? io_pipe_in_bits_exe2ls_op1_data
+      ? io_pipe_in_bits_exe2ls_rs1_data
       : io_pipe_in_bits_exe2ls_csr_cmd == 3'h2
-          ? io_pipe_in_bits_exe2ls_csr_rdata | io_pipe_in_bits_exe2ls_op1_data
+          ? io_pipe_in_bits_exe2ls_csr_rdata | io_pipe_in_bits_exe2ls_rs1_data
           : io_pipe_in_bits_exe2ls_csr_cmd == 3'h4 ? 32'hB : 32'h0;	// @[src/main/core/lsu/LSU.scala:40:7, :213:43, :215:41, :216:{41,89}, :218:41, src/main/scala/chisel3/util/Mux.scala:126:16]
   assign io_pipe_out_bits_ls2wb_csr_addr = io_pipe_in_bits_exe2ls_csr_addr;	// @[src/main/core/lsu/LSU.scala:40:7]
   assign io_pipe_out_bits_ls2wb_csr_cmd = io_pipe_in_bits_exe2ls_csr_cmd;	// @[src/main/core/lsu/LSU.scala:40:7]
