@@ -53,6 +53,8 @@ class EXU extends Module {
 
     val io_hazard = IO(new EXUIO_HAZARD)
 
+    val is_flush = io_hazard.flush_flg
+
 
 
 
@@ -140,7 +142,7 @@ class EXU extends Module {
     val in_ready = RegInit(false.B)
     val out_valid = RegInit(false.B)
     io_pipe.in.ready := in_ready
-    io_pipe.out.valid := out_valid
+    io_pipe.out.valid := out_valid & ~is_flush
 
     val s_BeforePreFire :: s_AfterPreFire :: Nil = Enum(2)
     val c_state = RegInit(s_BeforePreFire)
@@ -150,8 +152,8 @@ class EXU extends Module {
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire  ->  Mux(io_pipe.in.fire, s_AfterPreFire, s_BeforePreFire),
-        s_AfterPreFire   ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
+        s_BeforePreFire  ->  Mux(io_pipe.in.fire && ~isFlush, s_AfterPreFire, s_BeforePreFire),
+        s_AfterPreFire   ->  Mux(io_pipe.out.fire | isFlush, s_BeforePreFire, s_AfterPreFire)
     ))
 
     switch(n_state){//third phase
