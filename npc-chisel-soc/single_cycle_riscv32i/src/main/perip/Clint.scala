@@ -7,7 +7,7 @@ import npc.common.Instructions._
 import npc.bus.axi._
 
 
-class Clint(coreConfig: CoreConfig) extends Module{
+class Clint extends Module{
     val io = IO(new AXI4WithoutClk)
     io.rlast := true.B
     io.rid := 0.U

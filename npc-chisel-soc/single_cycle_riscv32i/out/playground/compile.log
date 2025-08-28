@@ -2,7 +2,4 @@
 [0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Clint.scala:10:25: not found: type CoreConfig[0m
 [0m[[0m[31merror[0m] [0m[0mclass Clint(coreConfig: CoreConfig) extends Module{[0m
 [0m[[0m[31merror[0m] [0m[0m                        ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Clint.scala:12:22: value U is not a member of Boolean[0m
-[0m[[0m[31merror[0m] [0m[0m    io.rlast := true.U[0m
-[0m[[0m[31merror[0m] [0m[0m                     ^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
