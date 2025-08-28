@@ -17,11 +17,20 @@ import npc.bus.axi._
 //     addPath("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Uart.sv")
 // }
 
-class Clint extends BlackBox with HasBlackBoxPath{
+// class Clint extends BlackBox with HasBlackBoxPath{
+//     val io = IO(new Bundle {
+//         val clk = Input(Clock())
+//         val rst = Input(Reset())
+//         val axi4 = new AXI4WithoutClk
+//   })
+//     addPath("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Clint.sv")
+// }
+
+class Clint extends Module {
     val io = IO(new Bundle {
-        val clk = Input(Clock())
-        val rst = Input(Reset())
-        val axi4 = new AXI4WithoutClk
-  })
-    addPath("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Clint.sv")
+        // val clk = Input(Clock())
+        // val rst = Input(Reset()) 
+        val axi4 = new AXI4WithoutClk // 保持与外部接口一致
+    })
 }
+
