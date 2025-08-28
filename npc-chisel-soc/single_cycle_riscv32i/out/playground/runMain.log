@@ -6,7 +6,7 @@ ExitCode:
 STDOUT:
 
 STDERR:
-src/main/core/Core.scala:23:7: error: detected combinational cycle in a FIRRTL module, sample path: Core.{exu_out_valid_rise <- ... <- exu.io_pipe_out_valid <- exu.io_hazard_flush_flg <- ... <- _exu_io_hazard_flush_flg_T <- ... <- is_ctrl_hazard <- ... <- exu_out_valid_rise}
+src/main/core/Core.scala:23:7: error: detected combinational cycle in a FIRRTL module, sample path: Core.{exu.io_pipe_out_valid <- exu.io_hazard_flush_flg <- ... <- _exu_io_hazard_flush_flg_T <- ... <- is_ctrl_hazard <- ... <- exu.io_pipe_out_valid}
 class Core extends Module {
       ^
 
