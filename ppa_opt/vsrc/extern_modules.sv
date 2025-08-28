@@ -52,5 +52,3 @@
 
 // external module Ebreak
 
-// external module Clint
-

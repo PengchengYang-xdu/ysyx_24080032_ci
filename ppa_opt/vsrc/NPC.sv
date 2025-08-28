@@ -114,14 +114,9 @@ module NPC(	// @[src/main/NPC.scala:15:7]
   output [3:0]  io_slave_bid	// @[src/main/NPC.scala:16:16]
 );
 
-  wire        _clint_axi4_arready;	// @[src/main/NPC.scala:56:23]
-  wire [31:0] _clint_axi4_rdata;	// @[src/main/NPC.scala:56:23]
-  wire [1:0]  _clint_axi4_rresp;	// @[src/main/NPC.scala:56:23]
-  wire        _clint_axi4_rvalid;	// @[src/main/NPC.scala:56:23]
-  wire        _clint_axi4_awready;	// @[src/main/NPC.scala:56:23]
-  wire        _clint_axi4_wready;	// @[src/main/NPC.scala:56:23]
-  wire [1:0]  _clint_axi4_bresp;	// @[src/main/NPC.scala:56:23]
-  wire        _clint_axi4_bvalid;	// @[src/main/NPC.scala:56:23]
+  wire        _clint_io_axi4_arready;	// @[src/main/NPC.scala:56:23]
+  wire [31:0] _clint_io_axi4_rdata;	// @[src/main/NPC.scala:56:23]
+  wire        _clint_io_axi4_rvalid;	// @[src/main/NPC.scala:56:23]
   wire        _xbar_io_imem_arready;	// @[src/main/NPC.scala:55:22]
   wire [31:0] _xbar_io_imem_rdata;	// @[src/main/NPC.scala:55:22]
   wire        _xbar_io_imem_rvalid;	// @[src/main/NPC.scala:55:22]
@@ -135,16 +130,7 @@ module NPC(	// @[src/main/NPC.scala:15:7]
   wire        _xbar_io_dmem_bvalid;	// @[src/main/NPC.scala:55:22]
   wire [31:0] _xbar_io_clint_araddr;	// @[src/main/NPC.scala:55:22]
   wire        _xbar_io_clint_arvalid;	// @[src/main/NPC.scala:55:22]
-  wire [2:0]  _xbar_io_clint_arsize;	// @[src/main/NPC.scala:55:22]
   wire        _xbar_io_clint_rready;	// @[src/main/NPC.scala:55:22]
-  wire [31:0] _xbar_io_clint_awaddr;	// @[src/main/NPC.scala:55:22]
-  wire        _xbar_io_clint_awvalid;	// @[src/main/NPC.scala:55:22]
-  wire [2:0]  _xbar_io_clint_awsize;	// @[src/main/NPC.scala:55:22]
-  wire [31:0] _xbar_io_clint_wdata;	// @[src/main/NPC.scala:55:22]
-  wire [3:0]  _xbar_io_clint_wstrb;	// @[src/main/NPC.scala:55:22]
-  wire        _xbar_io_clint_wvalid;	// @[src/main/NPC.scala:55:22]
-  wire        _xbar_io_clint_wlast;	// @[src/main/NPC.scala:55:22]
-  wire        _xbar_io_clint_bready;	// @[src/main/NPC.scala:55:22]
   wire [31:0] _core_io_imem_araddr;	// @[src/main/NPC.scala:54:22]
   wire        _core_io_imem_arvalid;	// @[src/main/NPC.scala:54:22]
   wire [3:0]  _core_io_imem_arid;	// @[src/main/NPC.scala:54:22]
@@ -290,68 +276,31 @@ module NPC(	// @[src/main/NPC.scala:15:7]
     .io_soc_bready    (io_master_bready),
     .io_clint_araddr  (_xbar_io_clint_araddr),
     .io_clint_arvalid (_xbar_io_clint_arvalid),
-    .io_clint_arready (_clint_axi4_arready),	// @[src/main/NPC.scala:56:23]
-    .io_clint_arsize  (_xbar_io_clint_arsize),
-    .io_clint_rdata   (_clint_axi4_rdata),	// @[src/main/NPC.scala:56:23]
-    .io_clint_rresp   (_clint_axi4_rresp),	// @[src/main/NPC.scala:56:23]
-    .io_clint_rvalid  (_clint_axi4_rvalid),	// @[src/main/NPC.scala:56:23]
-    .io_clint_rready  (_xbar_io_clint_rready),
-    .io_clint_awaddr  (_xbar_io_clint_awaddr),
-    .io_clint_awvalid (_xbar_io_clint_awvalid),
-    .io_clint_awready (_clint_axi4_awready),	// @[src/main/NPC.scala:56:23]
-    .io_clint_awsize  (_xbar_io_clint_awsize),
-    .io_clint_wdata   (_xbar_io_clint_wdata),
-    .io_clint_wstrb   (_xbar_io_clint_wstrb),
-    .io_clint_wvalid  (_xbar_io_clint_wvalid),
-    .io_clint_wready  (_clint_axi4_wready),	// @[src/main/NPC.scala:56:23]
-    .io_clint_wlast   (_xbar_io_clint_wlast),
-    .io_clint_bresp   (_clint_axi4_bresp),	// @[src/main/NPC.scala:56:23]
-    .io_clint_bvalid  (_clint_axi4_bvalid),	// @[src/main/NPC.scala:56:23]
-    .io_clint_bready  (_xbar_io_clint_bready)
+    .io_clint_arready (_clint_io_axi4_arready),	// @[src/main/NPC.scala:56:23]
+    .io_clint_rdata   (_clint_io_axi4_rdata),	// @[src/main/NPC.scala:56:23]
+    .io_clint_rvalid  (_clint_io_axi4_rvalid),	// @[src/main/NPC.scala:56:23]
+    .io_clint_rready  (_xbar_io_clint_rready)
   );
   Clint clint (	// @[src/main/NPC.scala:56:23]
-    .clk          (clock),
-    .rst          (reset),
-    .axi4_araddr  (_xbar_io_clint_araddr),	// @[src/main/NPC.scala:55:22]
-    .axi4_arvalid (_xbar_io_clint_arvalid),	// @[src/main/NPC.scala:55:22]
-    .axi4_arready (_clint_axi4_arready),
-    .axi4_arid    (4'h0),	// @[src/main/NPC.scala:54:22, :55:22, :56:23]
-    .axi4_arlen   (8'h0),	// @[src/main/NPC.scala:54:22, :55:22, :56:23]
-    .axi4_arsize  (_xbar_io_clint_arsize),	// @[src/main/NPC.scala:55:22]
-    .axi4_arburst (2'h0),	// @[src/main/NPC.scala:54:22, :55:22, :56:23]
-    .axi4_rdata   (_clint_axi4_rdata),
-    .axi4_rresp   (_clint_axi4_rresp),
-    .axi4_rvalid  (_clint_axi4_rvalid),
-    .axi4_rready  (_xbar_io_clint_rready),	// @[src/main/NPC.scala:55:22]
-    .axi4_rlast   (/* unused */),
-    .axi4_rid     (/* unused */),
-    .axi4_awaddr  (_xbar_io_clint_awaddr),	// @[src/main/NPC.scala:55:22]
-    .axi4_awvalid (_xbar_io_clint_awvalid),	// @[src/main/NPC.scala:55:22]
-    .axi4_awready (_clint_axi4_awready),
-    .axi4_awid    (4'h0),	// @[src/main/NPC.scala:54:22, :55:22, :56:23]
-    .axi4_awlen   (8'h0),	// @[src/main/NPC.scala:54:22, :55:22, :56:23]
-    .axi4_awsize  (_xbar_io_clint_awsize),	// @[src/main/NPC.scala:55:22]
-    .axi4_awburst (2'h0),	// @[src/main/NPC.scala:54:22, :55:22, :56:23]
-    .axi4_wdata   (_xbar_io_clint_wdata),	// @[src/main/NPC.scala:55:22]
-    .axi4_wstrb   (_xbar_io_clint_wstrb),	// @[src/main/NPC.scala:55:22]
-    .axi4_wvalid  (_xbar_io_clint_wvalid),	// @[src/main/NPC.scala:55:22]
-    .axi4_wready  (_clint_axi4_wready),
-    .axi4_wlast   (_xbar_io_clint_wlast),	// @[src/main/NPC.scala:55:22]
-    .axi4_bresp   (_clint_axi4_bresp),
-    .axi4_bvalid  (_clint_axi4_bvalid),
-    .axi4_bready  (_xbar_io_clint_bready),	// @[src/main/NPC.scala:55:22]
-    .axi4_bid     (/* unused */)
+    .clock           (clock),
+    .reset           (reset),
+    .io_axi4_araddr  (_xbar_io_clint_araddr),	// @[src/main/NPC.scala:55:22]
+    .io_axi4_arvalid (_xbar_io_clint_arvalid),	// @[src/main/NPC.scala:55:22]
+    .io_axi4_arready (_clint_io_axi4_arready),
+    .io_axi4_rdata   (_clint_io_axi4_rdata),
+    .io_axi4_rvalid  (_clint_io_axi4_rvalid),
+    .io_axi4_rready  (_xbar_io_clint_rready)	// @[src/main/NPC.scala:55:22]
   );
   assign io_slave_arready = 1'h0;	// @[src/main/NPC.scala:15:7, :18:22]
   assign io_slave_rdata = 32'h0;	// @[src/main/NPC.scala:15:7, :19:20]
-  assign io_slave_rresp = 2'h0;	// @[src/main/NPC.scala:15:7, :54:22, :55:22, :56:23]
+  assign io_slave_rresp = 2'h0;	// @[src/main/NPC.scala:15:7, :20:20]
   assign io_slave_rvalid = 1'h0;	// @[src/main/NPC.scala:15:7, :18:22]
   assign io_slave_rlast = 1'h1;	// @[src/main/NPC.scala:15:7, :24:20]
-  assign io_slave_rid = 4'h0;	// @[src/main/NPC.scala:15:7, :54:22, :55:22, :56:23]
+  assign io_slave_rid = 4'h0;	// @[src/main/NPC.scala:15:7, :21:18]
   assign io_slave_awready = 1'h0;	// @[src/main/NPC.scala:15:7, :18:22]
   assign io_slave_wready = 1'h0;	// @[src/main/NPC.scala:15:7, :18:22]
-  assign io_slave_bresp = 2'h0;	// @[src/main/NPC.scala:15:7, :54:22, :55:22, :56:23]
+  assign io_slave_bresp = 2'h0;	// @[src/main/NPC.scala:15:7, :20:20]
   assign io_slave_bvalid = 1'h0;	// @[src/main/NPC.scala:15:7, :18:22]
-  assign io_slave_bid = 4'h0;	// @[src/main/NPC.scala:15:7, :54:22, :55:22, :56:23]
+  assign io_slave_bid = 4'h0;	// @[src/main/NPC.scala:15:7, :21:18]
 endmodule
 
