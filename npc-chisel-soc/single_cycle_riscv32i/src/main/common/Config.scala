@@ -54,13 +54,18 @@ object Config{
     val OP1_X   = 2.U(OP1_LEN.W)
     val OP1_IMZ = 3.U(OP1_LEN.W)
   
-    val OP2_LEN = 3
+    val OP2_LEN = 2
     val OP2_X   = 0.U(OP2_LEN.W)
     val OP2_RS2 = 1.U(OP2_LEN.W)
-    val OP2_IMI = 2.U(OP2_LEN.W)
-    val OP2_IMS = 3.U(OP2_LEN.W)
-    val OP2_IMJ = 4.U(OP2_LEN.W)
-    val OP2_IMU = 5.U(OP2_LEN.W)
+    val OP2_IMM = 2.U(OP2_LEN.W)
+
+    val IMM_TYPE_LEN = 3
+    val IMM_TYPE_X   = 0.U(IMM_TYPE_LEN.W)
+    val IMM_TYPE_B = 1.U(IMM_TYPE_LEN.W)
+    val IMM_TYPE_I = 2.U(IMM_TYPE_LEN.W)
+    val IMM_TYPE_S = 3.U(IMM_TYPE_LEN.W)
+    val IMM_TYPE_J = 4.U(IMM_TYPE_LEN.W)
+    val IMM_TYPE_U = 5.U(IMM_TYPE_LEN.W)
   
     val MEN_LEN = 2
     val MEN_X   = 0.U(MEN_LEN.W)
