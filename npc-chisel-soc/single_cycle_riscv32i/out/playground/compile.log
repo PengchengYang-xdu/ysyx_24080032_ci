@@ -1,4 +1,32 @@
-[0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
 [0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Perip.scala:35:8: value rlast is not a member of chisel3.Bundle{val clk: chisel3.Clock; val rst: chisel3.Reset; val axi4: npc.bus.axi.AXI4WithoutClk}[0m
+[0m[[0m[31merror[0m] [0m[0m    io.rlast := true.B[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Perip.scala:36:8: value rid is not a member of chisel3.Bundle{val clk: chisel3.Clock; val rst: chisel3.Reset; val axi4: npc.bus.axi.AXI4WithoutClk}[0m
+[0m[[0m[31merror[0m] [0m[0m    io.rid := 0.U[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Perip.scala:37:8: value bid is not a member of chisel3.Bundle{val clk: chisel3.Clock; val rst: chisel3.Reset; val axi4: npc.bus.axi.AXI4WithoutClk}[0m
+[0m[[0m[31merror[0m] [0m[0m    io.bid := 0.U[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Perip.scala:42:26: value arvalid is not a member of chisel3.Bundle{val clk: chisel3.Clock; val rst: chisel3.Reset; val axi4: npc.bus.axi.AXI4WithoutClk}[0m
+[0m[[0m[31merror[0m] [0m[0m    val AXI_AR_fire = io.arvalid & io.arready[0m
+[0m[[0m[31merror[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Perip.scala:42:39: value arready is not a member of chisel3.Bundle{val clk: chisel3.Clock; val rst: chisel3.Reset; val axi4: npc.bus.axi.AXI4WithoutClk}[0m
+[0m[[0m[31merror[0m] [0m[0m    val AXI_AR_fire = io.arvalid & io.arready[0m
+[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Perip.scala:43:25: value rvalid is not a member of chisel3.Bundle{val clk: chisel3.Clock; val rst: chisel3.Reset; val axi4: npc.bus.axi.AXI4WithoutClk}[0m
+[0m[[0m[31merror[0m] [0m[0m    val AXI_R_fire = io.rvalid & io.rready[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Perip.scala:43:37: value rready is not a member of chisel3.Bundle{val clk: chisel3.Clock; val rst: chisel3.Reset; val axi4: npc.bus.axi.AXI4WithoutClk}[0m
+[0m[[0m[31merror[0m] [0m[0m    val AXI_R_fire = io.rvalid & io.rready[0m
+[0m[[0m[31merror[0m] [0m[0m                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Perip.scala:54:8: value arready is not a member of chisel3.Bundle{val clk: chisel3.Clock; val rst: chisel3.Reset; val axi4: npc.bus.axi.AXI4WithoutClk}[0m
+[0m[[0m[31merror[0m] [0m[0m    io.arready := c_state === sr_BeforeAXI_AR_Fire[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Perip.scala:55:8: value rvalid is not a member of chisel3.Bundle{val clk: chisel3.Clock; val rst: chisel3.Reset; val axi4: npc.bus.axi.AXI4WithoutClk}[0m
+[0m[[0m[31merror[0m] [0m[0m    io.rvalid := c_state === sr_BeforeAXI_R_Fire[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Perip.scala:56:8: value rresp is not a member of chisel3.Bundle{val clk: chisel3.Clock; val rst: chisel3.Reset; val axi4: npc.bus.axi.AXI4WithoutClk}[0m
+[0m[[0m[31merror[0m] [0m[0m    io.rresp := 0.U[0m
+[0m[[0m[31merror[0m] [0m[0m       ^[0m
+[0m[[0m[31merror[0m] [0m[0m12 errors found[0m
