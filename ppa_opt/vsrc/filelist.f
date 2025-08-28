@@ -9,6 +9,6 @@ WBU.sv
 iCache.sv
 Core.sv
 Xbar_new.sv
+Clint.sv
 NPC.sv
 ./Ebreak.sv
-./Clint.sv
