@@ -36,11 +36,11 @@ class IDUIO_pipe_out extends Bundle{
     val id2exe_rf_wen = Output(UInt(REN_LEN.W))
     val id2exe_exe_fun = Output(UInt(EXE_FUN_LEN.W))
     val id2exe_wb_sel = Output(UInt(WB_SEL_LEN.W))
-    val id2exe_imm_i_sext = Output(UInt(WORD_LEN.W))
-    val id2exe_imm_s_sext = Output(UInt(WORD_LEN.W))
+    // val id2exe_imm_i_sext = Output(UInt(WORD_LEN.W))
+    // val id2exe_imm_s_sext = Output(UInt(WORD_LEN.W))
     val id2exe_imm_b_sext = Output(UInt(WORD_LEN.W))
-    val id2exe_imm_u_shifted = Output(UInt(WORD_LEN.W))
-    val id2exe_imm_z_uext = Output(UInt(WORD_LEN.W))
+    // val id2exe_imm_u_shifted = Output(UInt(WORD_LEN.W))
+    // val id2exe_imm_z_uext = Output(UInt(WORD_LEN.W))
     val id2exe_csr_addr = Output(UInt(CSR_ADDR_LEN.W))
     val id2exe_csr_cmd = Output(UInt(CSR_LEN.W))
     val id2exe_mem_wen = Output(UInt(MEN_LEN.W))
@@ -151,11 +151,11 @@ class IDU extends Module {
             LUI      -> List(ALU_ADD  , OP1_X  , OP2_IMU, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ),
             AUIPC    -> List(ALU_ADD  , OP1_PC , OP2_IMU, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ),
             CSRRW    -> List(ALU_COPY1, OP1_RS1, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_W, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ),
-            CSRRWI   -> List(ALU_COPY1, OP1_IMZ, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_W, MEM_OP_X , NO_FENCEI,         RS1_NO_READ, RS2_NO_READ),
+            // CSRRWI   -> List(ALU_COPY1, OP1_IMZ, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_W, MEM_OP_X , NO_FENCEI,         RS1_NO_READ, RS2_NO_READ),
             CSRRS    -> List(ALU_COPY1, OP1_RS1, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_S, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ),
-            CSRRSI   -> List(ALU_COPY1, OP1_IMZ, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_S, MEM_OP_X , NO_FENCEI,         RS1_NO_READ, RS2_NO_READ),
-            CSRRC    -> List(ALU_COPY1, OP1_RS1, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_C, MEM_OP_X , NO_FENCEI,         RS1_IS_READ, RS2_NO_READ),
-            CSRRCI   -> List(ALU_COPY1, OP1_IMZ, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_C, MEM_OP_X , NO_FENCEI,         RS1_NO_READ, RS2_NO_READ),
+            // CSRRSI   -> List(ALU_COPY1, OP1_IMZ, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_S, MEM_OP_X , NO_FENCEI,         RS1_NO_READ, RS2_NO_READ),
+            // CSRRC    -> List(ALU_COPY1, OP1_RS1, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_C, MEM_OP_X , NO_FENCEI,         RS1_IS_READ, RS2_NO_READ),
+            // CSRRCI   -> List(ALU_COPY1, OP1_IMZ, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_C, MEM_OP_X , NO_FENCEI,         RS1_NO_READ, RS2_NO_READ),
             ECALL    -> List(ALU_X    , OP1_X  , OP2_X  , MEN_X, REN_X, WB_X  , CSR_E, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ),
             MRET     -> List(ALU_X    , OP1_X  , OP2_X  , MEN_X, REN_X, WB_X  , CSR_M, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ),//modified by ypc
             EBREAK   -> List(ALU_X    , OP1_X  , OP2_X  , MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ),
@@ -167,8 +167,8 @@ class IDU extends Module {
     
     val op1_data = MuxCase(0.U(WORD_LEN.W), Seq(
         (op1_sel === OP1_RS1)  ->  rs1_data,
-        (op1_sel === OP1_PC)   ->  reg_pc,
-        (op1_sel === OP1_IMZ)  ->  imm_z_uext
+        (op1_sel === OP1_PC)   ->  reg_pc
+        // (op1_sel === OP1_IMZ)  ->  imm_z_uext
     ))
 
     val op2_data = MuxCase(0.U(WORD_LEN.W), Seq(
@@ -200,11 +200,11 @@ class IDU extends Module {
     io_pipe.out.bits.id2exe_rf_wen := rf_wen
     io_pipe.out.bits.id2exe_exe_fun := exe_fun
     io_pipe.out.bits.id2exe_wb_sel := wb_sel
-    io_pipe.out.bits.id2exe_imm_i_sext := imm_i_sext
-    io_pipe.out.bits.id2exe_imm_s_sext := imm_s_sext
+    // io_pipe.out.bits.id2exe_imm_i_sext := imm_i_sext
+    // io_pipe.out.bits.id2exe_imm_s_sext := imm_s_sext
     io_pipe.out.bits.id2exe_imm_b_sext := imm_b_sext
-    io_pipe.out.bits.id2exe_imm_u_shifted := imm_u_shifted
-    io_pipe.out.bits.id2exe_imm_z_uext := imm_z_uext
+    // io_pipe.out.bits.id2exe_imm_u_shifted := imm_u_shifted
+    // io_pipe.out.bits.id2exe_imm_z_uext := imm_z_uext
     io_pipe.out.bits.id2exe_csr_addr := csr_addr
     io_pipe.out.bits.id2exe_csr_cmd := csr_cmd
     io_pipe.out.bits.id2exe_mem_wen := mem_wen
