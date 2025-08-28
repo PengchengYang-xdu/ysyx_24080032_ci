@@ -70,34 +70,33 @@ module CSR(	// @[src/main/core/CSR.scala:25:7]
   reg  [31:0] mepc;	// @[src/main/core/CSR.scala:30:24]
   reg  [31:0] mcause;	// @[src/main/core/CSR.scala:31:24]
   wire        _GEN = io_csr_cmd == 3'h4;	// @[src/main/core/CSR.scala:25:7, :48:21]
-  wire        _GEN_0 =
-    (|io_csr_cmd) & io_csr_cmd != 3'h4 & io_csr_cmd != 3'h6 & ~io_csr_is_irq;	// @[src/main/core/CSR.scala:25:7, :51:{28,48,72,82,85}]
+  wire        _GEN_0 = io_csr_cmd == 3'h2 | io_csr_cmd == 3'h1 & ~io_csr_is_irq;	// @[src/main/core/CSR.scala:25:7, :51:{28,38,52,62,65}]
   wire        _GEN_1 = io_csr_addr == 12'h305;	// @[src/main/core/CSR.scala:36:26, :52:29]
   wire        _GEN_2 = io_csr_addr == 12'h341;	// @[src/main/core/CSR.scala:36:26, :52:29]
   wire        _GEN_3 = io_csr_addr == 12'h342;	// @[src/main/core/CSR.scala:36:26, :52:29]
   always @(posedge clock) begin	// @[src/main/core/CSR.scala:25:7]
     if (reset)	// @[src/main/core/CSR.scala:25:7]
       mstatus <= 32'h1800;	// @[src/main/core/CSR.scala:28:28]
-    else if (_GEN | ~_GEN_0 | _GEN_1 | _GEN_2 | _GEN_3 | io_csr_addr != 12'h300) begin	// @[src/main/core/CSR.scala:28:28, :30:24, :36:26, :48:{21,32}, :51:{82,101}, :52:29]
+    else if (_GEN | ~_GEN_0 | _GEN_1 | _GEN_2 | _GEN_3 | io_csr_addr != 12'h300) begin	// @[src/main/core/CSR.scala:28:28, :30:24, :36:26, :48:{21,32}, :51:{38,81}, :52:29]
     end
-    else	// @[src/main/core/CSR.scala:28:28, :48:32, :51:101]
+    else	// @[src/main/core/CSR.scala:28:28, :48:32, :51:81]
       mstatus <= io_csr_wdata;	// @[src/main/core/CSR.scala:28:28]
-    if (_GEN | ~(_GEN_0 & _GEN_1)) begin	// @[src/main/core/CSR.scala:29:24, :48:{21,32}, :51:{82,101}, :52:29, :53:34]
+    if (_GEN | ~(_GEN_0 & _GEN_1)) begin	// @[src/main/core/CSR.scala:29:24, :48:{21,32}, :51:{38,81}, :52:29, :53:34]
     end
-    else	// @[src/main/core/CSR.scala:29:24, :48:32, :51:101]
+    else	// @[src/main/core/CSR.scala:29:24, :48:32, :51:81]
       mtvec <= io_csr_wdata;	// @[src/main/core/CSR.scala:29:24]
     if (_GEN) begin	// @[src/main/core/CSR.scala:48:21]
       mepc <= io_csr_reg_pc;	// @[src/main/core/CSR.scala:30:24]
       mcause <= {28'h0, io_csr_irq_num};	// @[src/main/core/CSR.scala:31:24, :50:16]
     end
     else begin	// @[src/main/core/CSR.scala:48:21]
-      if (~_GEN_0 | _GEN_1 | ~_GEN_2) begin	// @[src/main/core/CSR.scala:30:24, :51:{82,101}, :52:29]
+      if (~_GEN_0 | _GEN_1 | ~_GEN_2) begin	// @[src/main/core/CSR.scala:30:24, :51:{38,81}, :52:29]
       end
-      else	// @[src/main/core/CSR.scala:30:24, :51:101, :52:29]
+      else	// @[src/main/core/CSR.scala:30:24, :51:81, :52:29]
         mepc <= io_csr_wdata;	// @[src/main/core/CSR.scala:30:24]
-      if (~_GEN_0 | _GEN_1 | _GEN_2 | ~_GEN_3) begin	// @[src/main/core/CSR.scala:30:24, :31:24, :51:{82,101}, :52:29]
+      if (~_GEN_0 | _GEN_1 | _GEN_2 | ~_GEN_3) begin	// @[src/main/core/CSR.scala:30:24, :31:24, :51:{38,81}, :52:29]
       end
-      else	// @[src/main/core/CSR.scala:31:24, :51:101, :52:29]
+      else	// @[src/main/core/CSR.scala:31:24, :51:81, :52:29]
         mcause <= io_csr_wdata;	// @[src/main/core/CSR.scala:31:24]
     end
   end // always @(posedge)
