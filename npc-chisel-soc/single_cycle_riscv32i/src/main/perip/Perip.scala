@@ -32,15 +32,15 @@ class Clint extends Module {
         val rst = Input(Reset()) 
         val axi4 = new AXI4WithoutClk // 保持与外部接口一致
     })
-    io.rlast := true.B
-    io.rid := 0.U
-    io.bid := 0.U
+    io.axi4.rlast := true.B
+    io.axi4.rid := 0.U
+    io.axi4.bid := 0.U
     val ADDR = "h02000000".U
     val mtime = RegInit(0.U(64.W))
     mtime := mtime + 1.U
 
-    val AXI_AR_fire = io.arvalid & io.arready
-    val AXI_R_fire = io.rvalid & io.rready
+    val AXI_AR_fire = io.axi4.arvalid & io.axi4.arready
+    val AXI_R_fire = io.axi4.rvalid & io.axi4.rready
 
     val sr_BeforeAXI_AR_Fire :: sr_BeforeAXI_R_Fire :: Nil = Enum(2)
     val c_state = RegInit(sr_BeforeAXI_AR_Fire)
@@ -51,13 +51,13 @@ class Clint extends Module {
     ))
     c_state := n_state
 
-    io.arready := c_state === sr_BeforeAXI_AR_Fire
-    io.rvalid := c_state === sr_BeforeAXI_R_Fire
-    io.rresp := 0.U
+    io.axi4.arready := c_state === sr_BeforeAXI_AR_Fire
+    io.axi4.rvalid := c_state === sr_BeforeAXI_R_Fire
+    io.axi4.rresp := 0.U
 
     val rdata = RegInit(0.U)
-    rdata := Mux(io.araddr === ADDR, mtime(31, 0), mtime(63, 32))
+    rdata := Mux(io.axi4.araddr === ADDR, mtime(31, 0), mtime(63, 32))
 
-    io.rdata := rdata
+    io.axi4.rdata := rdata
 }
 
