@@ -9,7 +9,7 @@ import npc.bus.axi._
 
 class Clint(coreConfig: CoreConfig) extends Module{
     val io = IO(new AXI4WithoutClk)
-    io.rlast := true.U
+    io.rlast := true.B
     io.rid := 0.U
     io.bid := 0.U
     val ADDR = "h02000000".U
