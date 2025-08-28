@@ -206,8 +206,8 @@ class IDU extends Module {
     io_pipe.out.bits.id2exe_reg_pc := reg_pc
     // io_pipe.out.bits.id2exe_op1_data := op1_data
     // io_pipe.out.bits.id2exe_op2_data := op2_data
-    io_pipe.out.bits.id2exe_op1_sel = op1_sel
-    io_pipe.out.bits.id2exe_op2_sel = op2_sel
+    io_pipe.out.bits.id2exe_op1_sel := op1_sel
+    io_pipe.out.bits.id2exe_op2_sel := op2_sel
     io_pipe.out.bits.id2exe_rs2_data := rs2_data
     io_pipe.out.bits.id2exe_rs1_data := rs1_data
     io_pipe.out.bits.id2exe_wb_addr := wb_addr
