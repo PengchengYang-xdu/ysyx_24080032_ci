@@ -11,7 +11,7 @@ class IFUIO_HAZARD extends Bundle {
     val flush_flg = Input(Bool())
     val pc_plus4 = Output(UInt(WORD_LEN.W))
     val pc_real_next = Input(UInt(WORD_LEN.W))
-    val is_mret = Input(Bool())
+    val is_mret_rise = Input(Bool())
 }
 
 
@@ -56,7 +56,7 @@ class IFU extends Module {
     io.imem.bready := false.B
 
 
-    val is_mret_rise = io_hazard.is_mret & ~RegNext(io_hazard.is_mret)
+    val is_mret_rise = io_hazard.is_mret_rise
 
     val is_flush = io_hazard.flush_flg | is_mret_rise
     //handshake between modules && handshake between Imem
