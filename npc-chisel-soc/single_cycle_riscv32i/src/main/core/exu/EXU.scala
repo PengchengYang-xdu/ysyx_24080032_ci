@@ -21,7 +21,7 @@ class EXUIO extends Bundle {
 
 class EXUIO_pipe_out extends Bundle{
     val exe2ls_reg_pc = Output(UInt(WORD_LEN.W))
-    val exe2ls_op1_data = Output(UInt(WORD_LEN.W))
+    val exe2ls_rs1_data = Output(UInt(WORD_LEN.W))
     val exe2ls_rs2_data = Output(UInt(WORD_LEN.W))
     val exe2ls_wb_addr = Output(UInt(ADDR_LEN.W))
     val exe2ls_alu_out = Output(UInt(WORD_LEN.W))
