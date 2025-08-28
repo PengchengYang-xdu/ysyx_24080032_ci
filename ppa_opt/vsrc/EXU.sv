@@ -60,14 +60,15 @@ module EXU(	// @[src/main/core/exu/EXU.scala:49:7]
   output        io_pipe_in_ready,	// @[src/main/core/exu/EXU.scala:51:21]
   input         io_pipe_in_valid,	// @[src/main/core/exu/EXU.scala:51:21]
   input  [31:0] io_pipe_in_bits_id2exe_reg_pc,	// @[src/main/core/exu/EXU.scala:51:21]
-                io_pipe_in_bits_id2exe_op1_data,	// @[src/main/core/exu/EXU.scala:51:21]
-                io_pipe_in_bits_id2exe_op2_data,	// @[src/main/core/exu/EXU.scala:51:21]
+  input  [1:0]  io_pipe_in_bits_id2exe_op1_sel,	// @[src/main/core/exu/EXU.scala:51:21]
+                io_pipe_in_bits_id2exe_op2_sel,	// @[src/main/core/exu/EXU.scala:51:21]
+  input  [31:0] io_pipe_in_bits_id2exe_rs1_data,	// @[src/main/core/exu/EXU.scala:51:21]
                 io_pipe_in_bits_id2exe_rs2_data,	// @[src/main/core/exu/EXU.scala:51:21]
   input  [3:0]  io_pipe_in_bits_id2exe_wb_addr,	// @[src/main/core/exu/EXU.scala:51:21]
   input  [1:0]  io_pipe_in_bits_id2exe_rf_wen,	// @[src/main/core/exu/EXU.scala:51:21]
   input  [4:0]  io_pipe_in_bits_id2exe_exe_fun,	// @[src/main/core/exu/EXU.scala:51:21]
   input  [2:0]  io_pipe_in_bits_id2exe_wb_sel,	// @[src/main/core/exu/EXU.scala:51:21]
-  input  [31:0] io_pipe_in_bits_id2exe_imm_b_sext,	// @[src/main/core/exu/EXU.scala:51:21]
+  input  [31:0] io_pipe_in_bits_id2exe_imm_sext,	// @[src/main/core/exu/EXU.scala:51:21]
   input  [11:0] io_pipe_in_bits_id2exe_csr_addr,	// @[src/main/core/exu/EXU.scala:51:21]
   input  [2:0]  io_pipe_in_bits_id2exe_csr_cmd,	// @[src/main/core/exu/EXU.scala:51:21]
   input  [1:0]  io_pipe_in_bits_id2exe_mem_wen,	// @[src/main/core/exu/EXU.scala:51:21]
@@ -94,61 +95,63 @@ module EXU(	// @[src/main/core/exu/EXU.scala:49:7]
   input         io_hazard_flush_flg	// @[src/main/core/exu/EXU.scala:54:23]
 );
 
-  wire [31:0] _alu_out_T_31 =
-    io_pipe_in_bits_id2exe_op1_data + io_pipe_in_bits_id2exe_op2_data;	// @[src/main/core/exu/EXU.scala:75:92]
-  wire [62:0] _alu_out_T_14 =
-    {31'h0, io_pipe_in_bits_id2exe_op1_data} << io_pipe_in_bits_id2exe_op2_data[4:0];	// @[src/main/core/exu/EXU.scala:80:{92,126}]
-  wire [31:0] _GEN = {27'h0, io_pipe_in_bits_id2exe_op2_data[4:0]};	// @[src/main/core/exu/EXU.scala:80:126, :81:92]
-  wire        _br_flg_T_17 =
-    io_pipe_in_bits_id2exe_op1_data < io_pipe_in_bits_id2exe_op2_data;	// @[src/main/core/exu/EXU.scala:84:92]
+  wire [31:0] op1_data =
+    io_pipe_in_bits_id2exe_op1_sel == 2'h0
+      ? io_pipe_in_bits_id2exe_rs1_data
+      : io_pipe_in_bits_id2exe_op1_sel == 2'h1 ? io_pipe_in_bits_id2exe_reg_pc : 32'h0;	// @[src/main/core/exu/EXU.scala:65:41, :66:41, src/main/scala/chisel3/util/Mux.scala:126:16]
+  wire [31:0] op2_data =
+    io_pipe_in_bits_id2exe_op2_sel == 2'h1
+      ? io_pipe_in_bits_id2exe_rs2_data
+      : io_pipe_in_bits_id2exe_imm_sext;	// @[src/main/core/exu/EXU.scala:66:41, :70:{23,55}]
+  wire [31:0] _alu_out_T_31 = op1_data + op2_data;	// @[src/main/core/exu/EXU.scala:70:23, :82:69, src/main/scala/chisel3/util/Mux.scala:126:16]
+  wire [62:0] _alu_out_T_14 = {31'h0, op1_data} << op2_data[4:0];	// @[src/main/core/exu/EXU.scala:70:23, :87:{69,80}, src/main/scala/chisel3/util/Mux.scala:126:16]
+  wire [31:0] _GEN = {27'h0, op2_data[4:0]};	// @[src/main/core/exu/EXU.scala:70:23, :87:80, :88:69]
+  wire        _br_flg_T_17 = op1_data < op2_data;	// @[src/main/core/exu/EXU.scala:70:23, :91:69, src/main/scala/chisel3/util/Mux.scala:126:16]
   wire [31:0] alu_out =
     io_pipe_in_bits_id2exe_exe_fun == 5'h1
       ? _alu_out_T_31
       : io_pipe_in_bits_id2exe_exe_fun == 5'h2
-          ? io_pipe_in_bits_id2exe_op1_data - io_pipe_in_bits_id2exe_op2_data
+          ? op1_data - op2_data
           : io_pipe_in_bits_id2exe_exe_fun == 5'h3
-              ? io_pipe_in_bits_id2exe_op1_data & io_pipe_in_bits_id2exe_op2_data
+              ? op1_data & op2_data
               : io_pipe_in_bits_id2exe_exe_fun == 5'h4
-                  ? io_pipe_in_bits_id2exe_op1_data | io_pipe_in_bits_id2exe_op2_data
+                  ? op1_data | op2_data
                   : io_pipe_in_bits_id2exe_exe_fun == 5'h5
-                      ? io_pipe_in_bits_id2exe_op1_data ^ io_pipe_in_bits_id2exe_op2_data
+                      ? op1_data ^ op2_data
                       : io_pipe_in_bits_id2exe_exe_fun == 5'h6
                           ? _alu_out_T_14[31:0]
                           : io_pipe_in_bits_id2exe_exe_fun == 5'h7
-                              ? io_pipe_in_bits_id2exe_op1_data >> _GEN
+                              ? op1_data >> _GEN
                               : io_pipe_in_bits_id2exe_exe_fun == 5'h8
-                                  ? $signed($signed(io_pipe_in_bits_id2exe_op1_data)
-                                            >>> _GEN)
+                                  ? $signed($signed(op1_data) >>> _GEN)
                                   : io_pipe_in_bits_id2exe_exe_fun == 5'h9
-                                      ? {31'h0,
-                                         $signed(io_pipe_in_bits_id2exe_op1_data) < $signed(io_pipe_in_bits_id2exe_op2_data)}
+                                      ? {31'h0, $signed(op1_data) < $signed(op2_data)}
                                       : io_pipe_in_bits_id2exe_exe_fun == 5'hA
                                           ? {31'h0, _br_flg_T_17}
                                           : io_pipe_in_bits_id2exe_exe_fun == 5'h11
                                               ? _alu_out_T_31 & 32'hFFFFFFFE
                                               : io_pipe_in_bits_id2exe_exe_fun == 5'h12
-                                                  ? io_pipe_in_bits_id2exe_op1_data
-                                                  : 32'h0;	// @[src/main/core/exu/EXU.scala:75:{41,92}, :76:{41,92}, :77:{41,92}, :78:{41,92}, :79:{41,92}, :80:{41,92,133}, :81:{41,92}, :82:{41,99}, :83:{41,99}, :84:{41,92}, :85:{41,128,130}, :86:41, src/main/scala/chisel3/util/Mux.scala:126:16]
-  wire        _br_flg_T_3 =
-    io_pipe_in_bits_id2exe_op1_data == io_pipe_in_bits_id2exe_op2_data;	// @[src/main/core/exu/EXU.scala:90:93]
-  reg         in_ready;	// @[src/main/core/exu/EXU.scala:142:27]
-  reg         out_valid;	// @[src/main/core/exu/EXU.scala:143:28]
-  wire        io_pipe_out_valid_0 = out_valid & ~io_hazard_flush_flg;	// @[src/main/core/exu/EXU.scala:143:28, :145:{36,38}]
-  reg         c_state;	// @[src/main/core/exu/EXU.scala:148:26]
+                                                  ? op1_data
+                                                  : 32'h0;	// @[src/main/core/exu/EXU.scala:70:23, :82:{41,69}, :83:{41,69}, :84:{41,69}, :85:{41,69}, :86:{41,69}, :87:{41,69,87}, :88:{41,69}, :89:{41,76}, :90:{41,76}, :91:{41,69}, :92:{41,82,84}, :93:41, src/main/scala/chisel3/util/Mux.scala:126:16]
+  wire        _br_flg_T_3 = op1_data == op2_data;	// @[src/main/core/exu/EXU.scala:70:23, :97:70, src/main/scala/chisel3/util/Mux.scala:126:16]
+  reg         in_ready;	// @[src/main/core/exu/EXU.scala:149:27]
+  reg         out_valid;	// @[src/main/core/exu/EXU.scala:150:28]
+  wire        io_pipe_out_valid_0 = out_valid & ~io_hazard_flush_flg;	// @[src/main/core/exu/EXU.scala:150:28, :152:{36,38}]
+  reg         c_state;	// @[src/main/core/exu/EXU.scala:155:26]
   wire        n_state =
     c_state
       ? ~(io_pipe_out_ready & io_pipe_out_valid_0 | io_hazard_flush_flg)
-      : in_ready & io_pipe_in_valid & ~io_hazard_flush_flg;	// @[src/main/core/exu/EXU.scala:91:59, :142:27, :145:{36,38}, :148:26, :149:30, :154:51, :155:{33,50}, :156:{33,51}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+      : in_ready & io_pipe_in_valid & ~io_hazard_flush_flg;	// @[src/main/core/exu/EXU.scala:98:59, :149:27, :152:{36,38}, :155:26, :156:30, :161:51, :162:{33,50}, :163:{33,51}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   always @(posedge clock) begin	// @[src/main/core/exu/EXU.scala:49:7]
     if (reset) begin	// @[src/main/core/exu/EXU.scala:49:7]
-      in_ready <= 1'h0;	// @[src/main/core/exu/EXU.scala:49:7, :142:27]
-      out_valid <= 1'h0;	// @[src/main/core/exu/EXU.scala:49:7, :143:28]
-      c_state <= 1'h0;	// @[src/main/core/exu/EXU.scala:49:7, :148:26]
+      in_ready <= 1'h0;	// @[src/main/core/exu/EXU.scala:49:7, :149:27]
+      out_valid <= 1'h0;	// @[src/main/core/exu/EXU.scala:49:7, :150:28]
+      c_state <= 1'h0;	// @[src/main/core/exu/EXU.scala:49:7, :155:26]
     end
     else begin	// @[src/main/core/exu/EXU.scala:49:7]
-      in_ready <= ~n_state | ~n_state & in_ready;	// @[src/main/core/exu/EXU.scala:142:27, :149:30, :159:20, :161:22, :165:22]
-      out_valid <= n_state & (n_state | out_valid);	// @[src/main/core/exu/EXU.scala:143:28, :149:30, :159:20, :162:23, :166:23]
-      c_state <= n_state;	// @[src/main/core/exu/EXU.scala:148:26, :149:30]
+      in_ready <= ~n_state | ~n_state & in_ready;	// @[src/main/core/exu/EXU.scala:149:27, :156:30, :166:20, :168:22, :172:22]
+      out_valid <= n_state & (n_state | out_valid);	// @[src/main/core/exu/EXU.scala:150:28, :156:30, :166:20, :169:23, :173:23]
+      c_state <= n_state;	// @[src/main/core/exu/EXU.scala:155:26, :156:30]
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// @[src/main/core/exu/EXU.scala:49:7]
@@ -162,9 +165,9 @@ module EXU(	// @[src/main/core/exu/EXU.scala:49:7]
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// @[src/main/core/exu/EXU.scala:49:7]
         _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// @[src/main/core/exu/EXU.scala:49:7]
-        in_ready = _RANDOM[/*Zero width*/ 1'b0][0];	// @[src/main/core/exu/EXU.scala:49:7, :142:27]
-        out_valid = _RANDOM[/*Zero width*/ 1'b0][1];	// @[src/main/core/exu/EXU.scala:49:7, :142:27, :143:28]
-        c_state = _RANDOM[/*Zero width*/ 1'b0][2];	// @[src/main/core/exu/EXU.scala:49:7, :142:27, :148:26]
+        in_ready = _RANDOM[/*Zero width*/ 1'b0][0];	// @[src/main/core/exu/EXU.scala:49:7, :149:27]
+        out_valid = _RANDOM[/*Zero width*/ 1'b0][1];	// @[src/main/core/exu/EXU.scala:49:7, :149:27, :150:28]
+        c_state = _RANDOM[/*Zero width*/ 1'b0][2];	// @[src/main/core/exu/EXU.scala:49:7, :149:27, :155:26]
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/core/exu/EXU.scala:49:7]
@@ -177,19 +180,19 @@ module EXU(	// @[src/main/core/exu/EXU.scala:49:7]
       : io_pipe_in_bits_id2exe_exe_fun == 5'hC
           ? ~_br_flg_T_3
           : (io_pipe_in_bits_id2exe_exe_fun == 5'hD)
-              ? $signed(io_pipe_in_bits_id2exe_op1_data) < $signed(io_pipe_in_bits_id2exe_op2_data)
+              ? $signed(op1_data) < $signed(op2_data)
               : io_pipe_in_bits_id2exe_exe_fun == 5'hE
-                  ? $signed(io_pipe_in_bits_id2exe_op1_data) >= $signed(io_pipe_in_bits_id2exe_op2_data)
+                  ? $signed(op1_data) >= $signed(op2_data)
                   : io_pipe_in_bits_id2exe_exe_fun == 5'hF
                       ? _br_flg_T_17
-                      : io_pipe_in_bits_id2exe_exe_fun == 5'h10 & ~_br_flg_T_17;	// @[src/main/core/exu/EXU.scala:49:7, :84:92, :90:{41,93}, :91:{41,59}, :92:{41,100}, :93:{41,100}, :94:41, :95:{41,59}, src/main/scala/chisel3/util/Mux.scala:126:16]
-  assign io_jmp_flg = io_pipe_in_bits_id2exe_wb_sel == 3'h2;	// @[src/main/core/exu/EXU.scala:49:7, :99:50]
-  assign io_br_target = io_pipe_in_bits_id2exe_reg_pc + io_pipe_in_bits_id2exe_imm_b_sext;	// @[src/main/core/exu/EXU.scala:49:7, :98:51]
+                      : io_pipe_in_bits_id2exe_exe_fun == 5'h10 & ~_br_flg_T_17;	// @[src/main/core/exu/EXU.scala:49:7, :70:23, :91:69, :97:{41,70}, :98:{41,59}, :99:{41,77}, :100:{41,77}, :101:41, :102:{41,59}, src/main/scala/chisel3/util/Mux.scala:126:16]
+  assign io_jmp_flg = io_pipe_in_bits_id2exe_wb_sel == 3'h2;	// @[src/main/core/exu/EXU.scala:49:7, :106:50]
+  assign io_br_target = io_pipe_in_bits_id2exe_reg_pc + io_pipe_in_bits_id2exe_imm_sext;	// @[src/main/core/exu/EXU.scala:49:7, :105:51]
   assign io_alu_out = alu_out;	// @[src/main/core/exu/EXU.scala:49:7, src/main/scala/chisel3/util/Mux.scala:126:16]
-  assign io_pipe_in_ready = in_ready;	// @[src/main/core/exu/EXU.scala:49:7, :142:27]
-  assign io_pipe_out_valid = io_pipe_out_valid_0;	// @[src/main/core/exu/EXU.scala:49:7, :145:36]
+  assign io_pipe_in_ready = in_ready;	// @[src/main/core/exu/EXU.scala:49:7, :149:27]
+  assign io_pipe_out_valid = io_pipe_out_valid_0;	// @[src/main/core/exu/EXU.scala:49:7, :152:36]
   assign io_pipe_out_bits_exe2ls_reg_pc = io_pipe_in_bits_id2exe_reg_pc;	// @[src/main/core/exu/EXU.scala:49:7]
-  assign io_pipe_out_bits_exe2ls_op1_data = io_pipe_in_bits_id2exe_op1_data;	// @[src/main/core/exu/EXU.scala:49:7]
+  assign io_pipe_out_bits_exe2ls_op1_data = op1_data;	// @[src/main/core/exu/EXU.scala:49:7, src/main/scala/chisel3/util/Mux.scala:126:16]
   assign io_pipe_out_bits_exe2ls_rs2_data = io_pipe_in_bits_id2exe_rs2_data;	// @[src/main/core/exu/EXU.scala:49:7]
   assign io_pipe_out_bits_exe2ls_wb_addr = io_pipe_in_bits_id2exe_wb_addr;	// @[src/main/core/exu/EXU.scala:49:7]
   assign io_pipe_out_bits_exe2ls_alu_out = alu_out;	// @[src/main/core/exu/EXU.scala:49:7, src/main/scala/chisel3/util/Mux.scala:126:16]

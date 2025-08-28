@@ -112,7 +112,7 @@ class EXU extends Module {
     io.alu_out := alu_out
 
     io_pipe.out.bits.exe2ls_reg_pc := io_pipe.in.bits.id2exe_reg_pc
-    io_pipe.out.bits.exe2ls_op1_data := op1_data
+    io_pipe.out.bits.exe2ls_rs1_data := io_pipe.in.bits.id2exe_rs1_data
     io_pipe.out.bits.exe2ls_rs2_data := io_pipe.in.bits.id2exe_rs2_data
     io_pipe.out.bits.exe2ls_wb_addr := io_pipe.in.bits.id2exe_wb_addr
     io_pipe.out.bits.exe2ls_alu_out := alu_out
