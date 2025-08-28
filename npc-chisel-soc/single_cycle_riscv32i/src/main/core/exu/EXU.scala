@@ -152,8 +152,8 @@ class EXU extends Module {
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire  ->  Mux(io_pipe.in.fire && ~isFlush, s_AfterPreFire, s_BeforePreFire),
-        s_AfterPreFire   ->  Mux(io_pipe.out.fire | isFlush, s_BeforePreFire, s_AfterPreFire)
+        s_BeforePreFire  ->  Mux(io_pipe.in.fire && ~is_flush, s_AfterPreFire, s_BeforePreFire),
+        s_AfterPreFire   ->  Mux(io_pipe.out.fire | is_flush, s_BeforePreFire, s_AfterPreFire)
     ))
 
     switch(n_state){//third phase
