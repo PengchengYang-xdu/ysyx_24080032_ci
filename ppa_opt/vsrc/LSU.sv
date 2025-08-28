@@ -331,9 +331,7 @@ module LSU(	// @[src/main/core/lsu/LSU.scala:40:7]
       ? io_pipe_in_bits_exe2ls_op1_data
       : io_pipe_in_bits_exe2ls_csr_cmd == 3'h2
           ? io_pipe_in_bits_exe2ls_csr_rdata | io_pipe_in_bits_exe2ls_op1_data
-          : io_pipe_in_bits_exe2ls_csr_cmd == 3'h3
-              ? io_pipe_in_bits_exe2ls_csr_rdata & ~io_pipe_in_bits_exe2ls_op1_data
-              : io_pipe_in_bits_exe2ls_csr_cmd == 3'h4 ? 32'hB : 32'h0;	// @[src/main/core/lsu/LSU.scala:40:7, :213:43, :215:41, :216:{41,89}, :217:{41,89,91}, :218:41, src/main/scala/chisel3/util/Mux.scala:126:16]
+          : io_pipe_in_bits_exe2ls_csr_cmd == 3'h4 ? 32'hB : 32'h0;	// @[src/main/core/lsu/LSU.scala:40:7, :213:43, :215:41, :216:{41,89}, :218:41, src/main/scala/chisel3/util/Mux.scala:126:16]
   assign io_pipe_out_bits_ls2wb_csr_addr = io_pipe_in_bits_exe2ls_csr_addr;	// @[src/main/core/lsu/LSU.scala:40:7]
   assign io_pipe_out_bits_ls2wb_csr_cmd = io_pipe_in_bits_exe2ls_csr_cmd;	// @[src/main/core/lsu/LSU.scala:40:7]
   assign io_pipe_out_bits_ls2wb_is_irq = is_laf | is_saf | io_pipe_in_bits_exe2ls_is_irq;	// @[src/main/core/lsu/LSU.scala:40:7, :280:33, :281:33, :282:54]

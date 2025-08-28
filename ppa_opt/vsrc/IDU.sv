@@ -126,46 +126,50 @@ module IDU(	// @[src/main/core/idu/IDU.scala:70:7]
   wire        _csignals_T_59 = _GEN == 10'h2E3;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
   wire        _csignals_T_61 = _GEN == 10'h3E3;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
   wire        _csignals_T_63 = _GEN == 10'h263;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
-  wire        _csignals_T_568 = _GEN == 10'h363;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
+  wire        _csignals_T_516 = _GEN == 10'h363;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
   wire        _csignals_T_67 = inst_r[6:0] == 7'h6F;	// @[src/main/core/idu/IDU.scala:82:27, src/main/scala/chisel3/util/Lookup.scala:31:38]
   wire        _csignals_T_69 = _GEN == 10'h67;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
   wire        _csignals_T_71 = inst_r[6:0] == 7'h37;	// @[src/main/core/idu/IDU.scala:82:27, src/main/scala/chisel3/util/Lookup.scala:31:38]
   wire        _csignals_T_73 = inst_r[6:0] == 7'h17;	// @[src/main/core/idu/IDU.scala:82:27, src/main/scala/chisel3/util/Lookup.scala:31:38]
   wire        _csignals_T_75 = _GEN == 10'hF3;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
-  wire        _csignals_T_77 = _GEN == 10'h2F3;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
-  wire        _csignals_T_79 = _GEN == 10'h173;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
-  wire        _csignals_T_81 = _GEN == 10'h373;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
-  wire        _csignals_T_513 = _GEN == 10'h1F3;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
-  wire        _csignals_T_85 = _GEN == 10'h3F3;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
-  wire        _csignals_T_87 = inst_r == 32'h73;	// @[src/main/core/idu/IDU.scala:82:27, src/main/scala/chisel3/util/Lookup.scala:31:38]
-  wire        _csignals_T_89 = inst_r == 32'h30200073;	// @[src/main/core/idu/IDU.scala:82:27, src/main/scala/chisel3/util/Lookup.scala:31:38]
-  wire        _csignals_T_91 = inst_r == 32'h100073;	// @[src/main/core/idu/IDU.scala:82:27, src/main/scala/chisel3/util/Lookup.scala:31:38]
-  wire        _csignals_T_462 = inst_r == 32'h100F;	// @[src/main/core/idu/IDU.scala:82:27, src/main/scala/chisel3/util/Lookup.scala:31:38]
-  wire        _GEN_1 = _csignals_T_513 | _csignals_T_85;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_2 =
-    _csignals_T_75 | _csignals_T_77 | _csignals_T_79 | _csignals_T_81 | _GEN_1;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_3 = _csignals_T_71 | _csignals_T_73;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_4 = _csignals_T_87 | _csignals_T_89 | _csignals_T_91 | _csignals_T_462;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_5 =
+  wire        _csignals_T_468 = _GEN == 10'h173;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
+  wire        _csignals_T_79 = inst_r == 32'h73;	// @[src/main/core/idu/IDU.scala:82:27, src/main/scala/chisel3/util/Lookup.scala:31:38]
+  wire        _csignals_T_81 = inst_r == 32'h30200073;	// @[src/main/core/idu/IDU.scala:82:27, src/main/scala/chisel3/util/Lookup.scala:31:38]
+  wire        _csignals_T_83 = inst_r == 32'h100073;	// @[src/main/core/idu/IDU.scala:82:27, src/main/scala/chisel3/util/Lookup.scala:31:38]
+  wire        _csignals_T_422 = inst_r == 32'h100F;	// @[src/main/core/idu/IDU.scala:82:27, src/main/scala/chisel3/util/Lookup.scala:31:38]
+  wire        _GEN_1 = _csignals_T_75 | _csignals_T_468;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire        _GEN_2 = _csignals_T_71 | _csignals_T_73;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire        _GEN_3 = _csignals_T_79 | _csignals_T_81 | _csignals_T_83 | _csignals_T_422;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire        _GEN_4 =
     _csignals_T_55 | _csignals_T_57 | _csignals_T_59 | _csignals_T_61 | _csignals_T_63
-    | _csignals_T_568;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_6 =
+    | _csignals_T_516;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire        _GEN_5 =
     _csignals_T_13 | _csignals_T_15 | _csignals_T_17 | _csignals_T_19 | _csignals_T_21
     | _csignals_T_23 | _csignals_T_25 | _csignals_T_27 | _csignals_T_29 | _csignals_T_31
     | _csignals_T_33 | _csignals_T_35 | _csignals_T_37 | _csignals_T_39 | _csignals_T_41
     | _csignals_T_43 | _csignals_T_45 | _csignals_T_47 | _csignals_T_49 | _csignals_T_51
-    | _csignals_T_53 | _GEN_5;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_7 =
+    | _csignals_T_53 | _GEN_4;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire        _GEN_6 =
     _csignals_T_1 | _csignals_T_3 | _csignals_T_5 | _csignals_T_7 | _csignals_T_9
-    | _csignals_T_11 | _GEN_6;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_8 = _csignals_T_51 | _csignals_T_53;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_9 = _csignals_T_47 | _csignals_T_49;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_10 = _csignals_T_41 | _csignals_T_43 | _csignals_T_45;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_11 = _csignals_T_35 | _csignals_T_37 | _csignals_T_39;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_12 = _csignals_T_29 | _csignals_T_31 | _csignals_T_33;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_13 = _csignals_T_21 | _csignals_T_23 | _csignals_T_25 | _csignals_T_27;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_14 = _csignals_T_13 | _csignals_T_15;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  wire        _GEN_15 = _csignals_T_5 | _csignals_T_7 | _csignals_T_9 | _csignals_T_11;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+    | _csignals_T_11 | _GEN_5;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire [1:0]  csignals_1 =
+    _GEN_6
+      ? 2'h0
+      : _csignals_T_67
+          ? 2'h1
+          : _csignals_T_69
+              ? 2'h0
+              : _csignals_T_71
+                  ? 2'h2
+                  : _csignals_T_73 ? 2'h1 : _GEN_1 ? 2'h0 : {_GEN_3, 1'h0};	// @[src/main/core/idu/IDU.scala:70:7, :82:27, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire        _GEN_7 = _csignals_T_51 | _csignals_T_53;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire        _GEN_8 = _csignals_T_47 | _csignals_T_49;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire        _GEN_9 = _csignals_T_41 | _csignals_T_43 | _csignals_T_45;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire        _GEN_10 = _csignals_T_35 | _csignals_T_37 | _csignals_T_39;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire        _GEN_11 = _csignals_T_29 | _csignals_T_31 | _csignals_T_33;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire        _GEN_12 = _csignals_T_21 | _csignals_T_23 | _csignals_T_25 | _csignals_T_27;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire        _GEN_13 = _csignals_T_13 | _csignals_T_15;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  wire        _GEN_14 = _csignals_T_5 | _csignals_T_7 | _csignals_T_9 | _csignals_T_11;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   wire [2:0]  csignals_6 =
     _csignals_T_1 | _csignals_T_3 | _csignals_T_5 | _csignals_T_7 | _csignals_T_9
     | _csignals_T_11 | _csignals_T_13 | _csignals_T_15 | _csignals_T_17 | _csignals_T_19
@@ -173,14 +177,12 @@ module IDU(	// @[src/main/core/idu/IDU.scala:70:7]
     | _csignals_T_31 | _csignals_T_33 | _csignals_T_35 | _csignals_T_37 | _csignals_T_39
     | _csignals_T_41 | _csignals_T_43 | _csignals_T_45 | _csignals_T_47 | _csignals_T_49
     | _csignals_T_51 | _csignals_T_53 | _csignals_T_55 | _csignals_T_57 | _csignals_T_59
-    | _csignals_T_61 | _csignals_T_63 | _csignals_T_568 | _csignals_T_67 | _csignals_T_69
-    | _GEN_3
+    | _csignals_T_61 | _csignals_T_63 | _csignals_T_516 | _csignals_T_67 | _csignals_T_69
+    | _GEN_2
       ? 3'h0
-      : _csignals_T_75 | _csignals_T_77
+      : _csignals_T_75
           ? 3'h1
-          : _csignals_T_79 | _csignals_T_81
-              ? 3'h2
-              : _GEN_1 ? 3'h3 : _csignals_T_87 ? 3'h4 : _csignals_T_89 ? 3'h6 : 3'h0;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+          : _csignals_T_468 ? 3'h2 : _csignals_T_79 ? 3'h4 : _csignals_T_81 ? 3'h6 : 3'h0;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   wire        csignals_8 =
     ~(_csignals_T_1 | _csignals_T_3 | _csignals_T_5 | _csignals_T_7 | _csignals_T_9
       | _csignals_T_11 | _csignals_T_13 | _csignals_T_15 | _csignals_T_17 | _csignals_T_19
@@ -188,101 +190,64 @@ module IDU(	// @[src/main/core/idu/IDU.scala:70:7]
       | _csignals_T_31 | _csignals_T_33 | _csignals_T_35 | _csignals_T_37 | _csignals_T_39
       | _csignals_T_41 | _csignals_T_43 | _csignals_T_45 | _csignals_T_47 | _csignals_T_49
       | _csignals_T_51 | _csignals_T_53 | _csignals_T_55 | _csignals_T_57 | _csignals_T_59
-      | _csignals_T_61 | _csignals_T_63 | _csignals_T_568 | _csignals_T_67
-      | _csignals_T_69 | _csignals_T_71 | _csignals_T_73 | _csignals_T_75 | _csignals_T_77
-      | _csignals_T_79 | _csignals_T_81 | _csignals_T_513 | _csignals_T_85
-      | _csignals_T_87 | _csignals_T_89 | _csignals_T_91) & _csignals_T_462;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+      | _csignals_T_61 | _csignals_T_63 | _csignals_T_516 | _csignals_T_67
+      | _csignals_T_69 | _csignals_T_71 | _csignals_T_73 | _csignals_T_75
+      | _csignals_T_468 | _csignals_T_79 | _csignals_T_81 | _csignals_T_83)
+    & _csignals_T_422;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   reg  [31:0] casez_tmp;	// @[src/main/scala/chisel3/util/Mux.scala:126:16]
-  always_comb begin	// @[src/main/core/idu/IDU.scala:169:18, :170:18, :171:18, src/main/scala/chisel3/util/Mux.scala:126:16]
-    casez (_GEN_7
-             ? 2'h0
-             : _csignals_T_67
-                 ? 2'h1
-                 : _csignals_T_69
-                     ? 2'h0
-                     : _csignals_T_71
-                         ? 2'h2
-                         : _csignals_T_73
-                             ? 2'h1
-                             : _csignals_T_75
-                                 ? 2'h0
-                                 : _csignals_T_77
-                                     ? 2'h3
-                                     : _csignals_T_79
-                                         ? 2'h0
-                                         : _csignals_T_81
-                                             ? 2'h3
-                                             : _csignals_T_513
-                                                 ? 2'h0
-                                                 : _csignals_T_85 ? 2'h3 : {_GEN_4, 1'h0})	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :169:18, :170:18, :171:18, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39, src/main/scala/chisel3/util/Mux.scala:126:16]
-      2'b00:
-        casez_tmp = io_gpr_rs1_data;	// @[src/main/core/idu/IDU.scala:169:18, :170:18, :171:18, src/main/scala/chisel3/util/Mux.scala:126:16]
-      2'b01:
-        casez_tmp = reg_pc_r;	// @[src/main/core/idu/IDU.scala:83:29, :169:18, :170:18, :171:18, src/main/scala/chisel3/util/Mux.scala:126:16]
-      2'b10:
-        casez_tmp = 32'h0;	// @[src/main/core/idu/IDU.scala:169:18, :170:18, :171:18, src/main/scala/chisel3/util/Mux.scala:126:16]
-      default:
-        casez_tmp = {27'h0, inst_r[19:15]};	// @[src/main/core/idu/IDU.scala:82:27, :92:24, :110:{25,30}, :169:18, :170:18, :171:18, src/main/scala/chisel3/util/Mux.scala:126:16]
-    endcase	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :169:18, :170:18, :171:18, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39, src/main/scala/chisel3/util/Mux.scala:126:16]
-  end // always_comb
-  reg  [31:0] casez_tmp_0;	// @[src/main/scala/chisel3/util/Mux.scala:126:16]
   always_comb begin	// @[src/main/core/idu/IDU.scala:175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
     casez (_csignals_T_1
              ? 3'h2
              : _csignals_T_3
                  ? 3'h3
-                 : _GEN_15
+                 : _GEN_14
                      ? 3'h2
-                     : _GEN_14
+                     : _GEN_13
                          ? 3'h3
                          : _csignals_T_17
                              ? 3'h1
                              : _csignals_T_19
                                  ? 3'h2
-                                 : _GEN_13
+                                 : _GEN_12
                                      ? 3'h1
-                                     : _GEN_12
+                                     : _GEN_11
                                          ? 3'h2
-                                         : _GEN_11
+                                         : _GEN_10
                                              ? 3'h1
-                                             : _GEN_10
+                                             : _GEN_9
                                                  ? 3'h2
-                                                 : _GEN_9
+                                                 : _GEN_8
                                                      ? 3'h1
-                                                     : _GEN_8
+                                                     : _GEN_7
                                                          ? 3'h2
-                                                         : _GEN_5
+                                                         : _GEN_4
                                                              ? 3'h1
                                                              : _csignals_T_67
                                                                  ? 3'h4
                                                                  : _csignals_T_69
                                                                      ? 3'h2
-                                                                     : _GEN_3
+                                                                     : _GEN_2
                                                                          ? 3'h5
                                                                          : {2'h0,
                                                                             ~(_csignals_T_75
-                                                                              | _csignals_T_77
-                                                                              | _csignals_T_79
-                                                                              | _csignals_T_81
-                                                                              | _csignals_T_513
-                                                                              | _csignals_T_85
-                                                                              | _GEN_4)})	// @[src/main/core/idu/IDU.scala:70:7, :175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39, src/main/scala/chisel3/util/Mux.scala:126:16]
+                                                                              | _csignals_T_468
+                                                                              | _GEN_3)})	// @[src/main/core/idu/IDU.scala:70:7, :175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b000:
-        casez_tmp_0 = 32'h0;	// @[src/main/core/idu/IDU.scala:175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
+        casez_tmp = 32'h0;	// @[src/main/core/idu/IDU.scala:175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b001:
-        casez_tmp_0 = io_gpr_rs2_data;	// @[src/main/core/idu/IDU.scala:175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
+        casez_tmp = io_gpr_rs2_data;	// @[src/main/core/idu/IDU.scala:175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b010:
-        casez_tmp_0 = {{20{inst_r[31]}}, inst_r[31:20]};	// @[src/main/core/idu/IDU.scala:82:27, :99:21, :100:{25,30,40}, :175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
+        casez_tmp = {{20{inst_r[31]}}, inst_r[31:20]};	// @[src/main/core/idu/IDU.scala:82:27, :99:21, :100:{25,30,40}, :175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b011:
-        casez_tmp_0 = {{20{inst_r[31]}}, inst_r[31:25], inst_r[11:7]};	// @[src/main/core/idu/IDU.scala:82:27, :94:23, :101:25, :102:{25,30,40}, :175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
+        casez_tmp = {{20{inst_r[31]}}, inst_r[31:25], inst_r[11:7]};	// @[src/main/core/idu/IDU.scala:82:27, :94:23, :101:25, :102:{25,30,40}, :175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b100:
-        casez_tmp_0 = {{12{inst_r[31]}}, inst_r[19:12], inst_r[20], inst_r[30:21], 1'h0};	// @[src/main/core/idu/IDU.scala:82:27, :103:25, :105:{35,49,59}, :106:25, :175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
+        casez_tmp = {{12{inst_r[31]}}, inst_r[19:12], inst_r[20], inst_r[30:21], 1'h0};	// @[src/main/core/idu/IDU.scala:82:27, :103:25, :105:{35,49,59}, :106:25, :175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b101:
-        casez_tmp_0 = {inst_r[31:12], 12'h0};	// @[src/main/core/idu/IDU.scala:82:27, :107:21, :108:{28,40}, :175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
+        casez_tmp = {inst_r[31:12], 12'h0};	// @[src/main/core/idu/IDU.scala:82:27, :107:21, :108:{28,40}, :175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b110:
-        casez_tmp_0 = 32'h0;	// @[src/main/core/idu/IDU.scala:175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
+        casez_tmp = 32'h0;	// @[src/main/core/idu/IDU.scala:175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
       default:
-        casez_tmp_0 = 32'h0;	// @[src/main/core/idu/IDU.scala:175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
+        casez_tmp = 32'h0;	// @[src/main/core/idu/IDU.scala:175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Mux.scala:126:16]
     endcase	// @[src/main/core/idu/IDU.scala:70:7, :175:18, :176:18, :177:18, :178:18, :179:18, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39, src/main/scala/chisel3/util/Mux.scala:126:16]
   end // always_comb
   wire        io_pipe_out_bits_id2exe_is_irq_0 = csignals_6 == 3'h4;	// @[src/main/core/idu/IDU.scala:182:32, src/main/scala/chisel3/util/Lookup.scala:34:39]
@@ -354,26 +319,25 @@ module IDU(	// @[src/main/core/idu/IDU.scala:70:7]
   assign io_gpr_rs1_addr = inst_r[18:15];	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :92:24, :189:21]
   assign io_gpr_rs2_addr = inst_r[23:20];	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :93:24, :190:21]
   assign io_gpr_rs1_is_read =
-    _GEN_7 | ~_csignals_T_67
-    & (_csignals_T_69 | ~_GEN_3
-       & (_csignals_T_75 | ~_csignals_T_77
-          & (_csignals_T_79 | ~_csignals_T_81 & _csignals_T_513)));	// @[src/main/core/idu/IDU.scala:70:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+    _GEN_6 | ~_csignals_T_67
+    & (_csignals_T_69 | ~_GEN_2 & (_csignals_T_75 | _csignals_T_468));	// @[src/main/core/idu/IDU.scala:70:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   assign io_gpr_rs2_is_read =
     ~_csignals_T_1
-    & (_csignals_T_3 | ~_GEN_15
+    & (_csignals_T_3 | ~_GEN_14
        & (_csignals_T_13 | _csignals_T_15 | _csignals_T_17 | ~_csignals_T_19
-          & (_GEN_13 | ~_GEN_12
-             & (_GEN_11 | ~_GEN_10
-                & (_GEN_9 | ~_GEN_8
+          & (_GEN_12 | ~_GEN_11
+             & (_GEN_10 | ~_GEN_9
+                & (_GEN_8 | ~_GEN_7
                    & (_csignals_T_55 | _csignals_T_57 | _csignals_T_59 | _csignals_T_61
-                      | _csignals_T_63 | _csignals_T_568))))));	// @[src/main/core/idu/IDU.scala:70:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+                      | _csignals_T_63 | _csignals_T_516))))));	// @[src/main/core/idu/IDU.scala:70:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   assign io_csr_raddr = inst_r[31:20];	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :99:21]
   assign io_is_mret = csignals_6 == 3'h6;	// @[src/main/core/idu/IDU.scala:70:7, :289:27, src/main/scala/chisel3/util/Lookup.scala:34:39]
   assign io_pipe_in_ready = io_pipe_in_ready_0;	// @[src/main/core/idu/IDU.scala:70:7, :251:34]
   assign io_pipe_out_valid = io_pipe_out_valid_0;	// @[src/main/core/idu/IDU.scala:70:7, :252:29]
   assign io_pipe_out_bits_id2exe_reg_pc = reg_pc_r;	// @[src/main/core/idu/IDU.scala:70:7, :83:29]
-  assign io_pipe_out_bits_id2exe_op1_data = casez_tmp;	// @[src/main/core/idu/IDU.scala:70:7, src/main/scala/chisel3/util/Mux.scala:126:16]
-  assign io_pipe_out_bits_id2exe_op2_data = casez_tmp_0;	// @[src/main/core/idu/IDU.scala:70:7, src/main/scala/chisel3/util/Mux.scala:126:16]
+  assign io_pipe_out_bits_id2exe_op1_data =
+    csignals_1 == 2'h0 ? io_gpr_rs1_data : csignals_1 == 2'h1 ? reg_pc_r : 32'h0;	// @[src/main/core/idu/IDU.scala:70:7, :83:29, :169:18, :170:18, src/main/scala/chisel3/util/Lookup.scala:34:39, src/main/scala/chisel3/util/Mux.scala:126:16]
+  assign io_pipe_out_bits_id2exe_op2_data = casez_tmp;	// @[src/main/core/idu/IDU.scala:70:7, src/main/scala/chisel3/util/Mux.scala:126:16]
   assign io_pipe_out_bits_id2exe_rs2_data = io_gpr_rs2_data;	// @[src/main/core/idu/IDU.scala:70:7]
   assign io_pipe_out_bits_id2exe_wb_addr = inst_r[10:7];	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :94:23, :199:37]
   assign io_pipe_out_bits_id2exe_rf_wen =
@@ -381,21 +345,21 @@ module IDU(	// @[src/main/core/idu/IDU.scala:70:7]
       ? 2'h1
       : _csignals_T_3
           ? 2'h0
-          : _GEN_15
+          : _GEN_14
               ? 2'h1
-              : _GEN_14
+              : _GEN_13
                   ? 2'h0
                   : _csignals_T_17 | _csignals_T_19 | _csignals_T_21 | _csignals_T_23
                     | _csignals_T_25 | _csignals_T_27 | _csignals_T_29 | _csignals_T_31
                     | _csignals_T_33 | _csignals_T_35 | _csignals_T_37 | _csignals_T_39
                     | _csignals_T_41 | _csignals_T_43 | _csignals_T_45 | _csignals_T_47
-                    | _csignals_T_49 | _GEN_8
+                    | _csignals_T_49 | _GEN_7
                       ? 2'h1
-                      : _GEN_5
+                      : _GEN_4
                           ? 2'h0
                           : {1'h0,
                              _csignals_T_67 | _csignals_T_69 | _csignals_T_71
-                               | _csignals_T_73 | _GEN_2};	// @[src/main/core/idu/IDU.scala:70:7, :82:27, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+                               | _csignals_T_73 | _GEN_1};	// @[src/main/core/idu/IDU.scala:70:7, :82:27, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   assign io_pipe_out_bits_id2exe_exe_fun =
     _csignals_T_1 | _csignals_T_3 | _csignals_T_5 | _csignals_T_7 | _csignals_T_9
     | _csignals_T_11 | _csignals_T_13 | _csignals_T_15 | _csignals_T_17 | _csignals_T_19
@@ -444,15 +408,15 @@ module IDU(	// @[src/main/core/idu/IDU.scala:70:7]
                                                                                           ? 5'h10
                                                                                           : _csignals_T_63
                                                                                               ? 5'hD
-                                                                                              : _csignals_T_568
+                                                                                              : _csignals_T_516
                                                                                                   ? 5'hF
                                                                                                   : _csignals_T_67
                                                                                                       ? 5'h1
                                                                                                       : _csignals_T_69
                                                                                                           ? 5'h11
-                                                                                                          : _GEN_3
+                                                                                                          : _GEN_2
                                                                                                               ? 5'h1
-                                                                                                              : _GEN_2
+                                                                                                              : _GEN_1
                                                                                                                   ? 5'h12
                                                                                                                   : 5'h0;	// @[src/main/core/idu/IDU.scala:70:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   assign io_pipe_out_bits_id2exe_wb_sel =
@@ -460,20 +424,20 @@ module IDU(	// @[src/main/core/idu/IDU.scala:70:7]
       ? 3'h1
       : _csignals_T_3
           ? 3'h0
-          : _GEN_15
+          : _GEN_14
               ? 3'h1
-              : _GEN_6
+              : _GEN_5
                   ? 3'h0
                   : _csignals_T_67 | _csignals_T_69
                       ? 3'h2
-                      : _GEN_3 | ~_GEN_2 ? 3'h0 : 3'h3;	// @[src/main/core/idu/IDU.scala:70:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+                      : _GEN_2 | ~_GEN_1 ? 3'h0 : 3'h3;	// @[src/main/core/idu/IDU.scala:70:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   assign io_pipe_out_bits_id2exe_imm_b_sext =
     {{20{inst_r[31]}}, inst_r[7], inst_r[30:25], inst_r[11:8], 1'h0};	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :103:{25,35,44,58}, :104:25]
   assign io_pipe_out_bits_id2exe_csr_addr =
     io_pipe_out_bits_id2exe_is_irq_0 ? 12'h342 : inst_r[31:20];	// @[src/main/core/idu/IDU.scala:70:7, :82:27, :99:21, :182:{23,32}]
   assign io_pipe_out_bits_id2exe_csr_cmd = csignals_6;	// @[src/main/core/idu/IDU.scala:70:7, src/main/scala/chisel3/util/Lookup.scala:34:39]
   assign io_pipe_out_bits_id2exe_mem_wen =
-    _csignals_T_1 ? 2'h0 : _csignals_T_3 ? 2'h1 : _GEN_15 ? 2'h0 : {1'h0, _GEN_14};	// @[src/main/core/idu/IDU.scala:70:7, :82:27, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+    _csignals_T_1 ? 2'h0 : _csignals_T_3 ? 2'h1 : _GEN_14 ? 2'h0 : {1'h0, _GEN_13};	// @[src/main/core/idu/IDU.scala:70:7, :82:27, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   assign io_pipe_out_bits_id2exe_mem_op =
     _csignals_T_1 | _csignals_T_3
       ? 3'h2
