@@ -202,7 +202,7 @@ class Core extends Module {
     when(rs1_resolved_r) {rs1_raw_valid := false.B}
     when(rs2_resolved_r) {rs2_raw_valid := false.B}
 
-    idu.io_hazard.stall_flg := false.B
+    idu.io_hazard.stall_flg := rs1_raw_valid | rs2_raw_valid | is_raw
 
 
 
