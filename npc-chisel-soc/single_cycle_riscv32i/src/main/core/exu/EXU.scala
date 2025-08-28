@@ -140,7 +140,7 @@ class EXU extends Module {
 
     //handshake between modules
     val in_ready = RegInit(false.B)
-    val out_valid = RegInit(false.B)
+    val out_valid = WireDefault(false.B)
     io_pipe.in.ready := in_ready
     io_pipe.out.valid := out_valid & ~is_flush
 
@@ -159,13 +159,14 @@ class EXU extends Module {
     switch(n_state){//third phase
         is(s_BeforePreFire){
             in_ready := true.B
-            out_valid := false.B
+            // out_valid := false.B
         }
         is(s_AfterPreFire){
             in_ready := false.B
-            out_valid := true.B
+            // out_valid := true.B
         }
     }
+    out_valid := c_state === s_AfterPreFire
 
 
 
