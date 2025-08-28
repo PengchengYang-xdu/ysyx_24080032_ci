@@ -32,9 +32,15 @@ class Clint extends Module {
         val rst = Input(Reset()) 
         val axi4 = new AXI4WithoutClk // 保持与外部接口一致
     })
+    
+    io.axi4.awready := false.B
+    io.axi4.wready := false.B
+    io.axi4.bvalid := false.B
+    io.axi4.bresp  := 0.U
     io.axi4.rlast := true.B
     io.axi4.rid := 0.U
     io.axi4.bid := 0.U
+
     val ADDR = "h02000000".U
     val mtime = RegInit(0.U(64.W))
     mtime := mtime + 1.U
