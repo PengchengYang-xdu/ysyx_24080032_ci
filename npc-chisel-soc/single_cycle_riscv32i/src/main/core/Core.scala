@@ -193,8 +193,8 @@ class Core extends Module {
         rs2_raw_from_wbu := wbu_raw_rs2
     }
 
-    val rs1_resolved = rs1_raw_valid && wbu_end_flg && wbu.io_pipe.in.bits.ls2wb_wb_addr === rs1_raw_rd
-    val rs2_resolved = rs2_raw_valid && wbu_end_flg && wbu.io_pipe.in.bits.ls2wb_wb_addr === rs2_raw_rd
+    val rs1_resolved = rs1_raw_valid && wbu_end_flg && wbu.io_pipe.in.bits.ls2wb_wb_addr === rs1_raw_rd && wbu.io_pipe.in.bits.ls2wb_rf_wen === REN_S
+    val rs2_resolved = rs2_raw_valid && wbu_end_flg && wbu.io_pipe.in.bits.ls2wb_wb_addr === rs2_raw_rd && wbu.io_pipe.in.bits.ls2wb_rf_wen === REN_S
 
     val rs1_resolved_r = RegNext(rs1_resolved)
     val rs2_resolved_r = RegNext(rs2_resolved)
