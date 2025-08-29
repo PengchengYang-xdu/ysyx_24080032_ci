@@ -181,6 +181,8 @@ class Core extends Module {
         rd1_forward_en := lsu_can_forward_rs1
     }.elsewhen(wbu_raw_rs1){
         rd1_forward_en := wbu_can_forward_rs1
+    }.otherwise{
+        rd1_forward_en := false.B
     }
     val rd2_forward_en = Wire(Bool())
     when(exu_raw_rs2){
@@ -189,6 +191,8 @@ class Core extends Module {
         rd2_forward_en := lsu_can_forward_rs2
     }.elsewhen(wbu_raw_rs2){
         rd2_forward_en := wbu_can_forward_rs2
+    }.otherwise{
+        rd2_forward_en := false.B
     }
     val rd1_forward_data = Mux(rd1_forward_en, MuxCase(0.U, Seq(
         exu_can_forward_rs1 -> exu_forward_data,
