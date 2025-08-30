@@ -186,33 +186,33 @@ class Core extends Module {
 
     val rd1_forward_en = Wire(Bool())
     when(exu_raw_rs1_ing){
-        rd1_forward_en := exu_can_forward_rs1
+        rd1_forward_en := exu_can_forward_rs1 && exu_raw_rs1_ing
     }.elsewhen(lsu_raw_rs1_ing){
-        rd1_forward_en := lsu_can_forward_rs1
+        rd1_forward_en := lsu_can_forward_rs1 && lsu_raw_rs1_ing
     }.elsewhen(wbu_raw_rs1_ing){
-        rd1_forward_en := wbu_can_forward_rs1
+        rd1_forward_en := wbu_can_forward_rs1 && wbu_raw_rs1_ing
     }.otherwise{
         rd1_forward_en := false.B
     }
     val rd2_forward_en = Wire(Bool())
     when(exu_raw_rs2_ing){
-        rd2_forward_en := exu_can_forward_rs2
+        rd2_forward_en := exu_can_forward_rs2 && exu_raw_rs2_ing
     }.elsewhen(lsu_raw_rs2_ing){
-        rd2_forward_en := lsu_can_forward_rs2
+        rd2_forward_en := lsu_can_forward_rs2 && lsu_raw_rs2_ing
     }.elsewhen(wbu_raw_rs2_ing){
-        rd2_forward_en := wbu_can_forward_rs2
+        rd2_forward_en := wbu_can_forward_rs2 && wbu_raw_rs2_ing
     }.otherwise{
         rd2_forward_en := false.B
     }
     val rd1_forward_data = Mux(rd1_forward_en, MuxCase(0.U, Seq(
-        exu_can_forward_rs1 -> exu_forward_data,
-        lsu_can_forward_rs1 -> lsu_forward_data,
-        wbu_can_forward_rs1 -> wbu_forward_data
+        exu_can_forward_rs1 && exu_raw_rs1_ing -> exu_forward_data,
+        lsu_can_forward_rs1 && lsu_raw_rs1_ing -> lsu_forward_data,
+        wbu_can_forward_rs1 && wbu_raw_rs1_ing -> wbu_forward_data
     )), idu.io_pipe.out.bits.id2exe_rs1_data)
     val rd2_forward_data = Mux(rd2_forward_en, MuxCase(0.U, Seq(
-        exu_can_forward_rs2 -> exu_forward_data,
-        lsu_can_forward_rs2 -> lsu_forward_data,
-        wbu_can_forward_rs2 -> wbu_forward_data
+        exu_can_forward_rs2 && exu_raw_rs2_ing -> exu_forward_data,
+        lsu_can_forward_rs2 && lsu_raw_rs2_ing -> lsu_forward_data,
+        wbu_can_forward_rs2 && wbu_raw_rs2_ing -> wbu_forward_data
     )), idu.io_pipe.out.bits.id2exe_rs2_data)
     dontTouch(rd1_forward_en)
     dontTouch(rd2_forward_en)
