@@ -208,8 +208,8 @@ class Core extends Module {
     dontTouch(rd2_forward_en)
     dontTouch(rd1_forward_data)
     dontTouch(rd2_forward_data)
-    exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(rd1_forward_data, idu.io_pipe.out.fire)
-    exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(rd2_forward_data, idu.io_pipe.out.fire)
+    exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(rd1_forward_data, idu.io_pipe.out.valid)
+    exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(rd2_forward_data, idu.io_pipe.out.valid)
 
 
 
