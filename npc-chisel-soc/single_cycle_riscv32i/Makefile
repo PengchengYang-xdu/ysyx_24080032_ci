@@ -147,10 +147,10 @@ clean_nv:
 # CFLAGS += -DNPCCONFIG_ITRACE
 # CFLAGS += -DNPCCONFIG_FTRACE
 # CFLAGS += -DNPCCONFIG_MTRACE
-# CFLAGS += -DNPCCONFIG_DUMPWAVE
+CFLAGS += -DNPCCONFIG_DUMPWAVE
 # CFLAGS += -DNPCCONFIG_WATCHPOINT
 CFLAGS += -DNPCCONFIG_DIFFTEST
-CFLAGS += -DNPCCONFIG_LIGHTSSS
+# CFLAGS += -DNPCCONFIG_LIGHTSSS
 
 
 
@@ -176,7 +176,7 @@ run: $(BIN)
 
 PERF_MD = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/perf/perf.md
 SAVE_MD = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/records/perf_$(shell date +%Y%m%d_%H%M%S).md
-EXPLAIN = 任务进度:流水线简易实现完成 并且优化了一遍面积 在跑一次性能评估
+EXPLAIN = 任务进度:流水线简易实现完成 并且优化了一遍面积 在跑一次性能评估(这一次之前两次保存的perf数据无效, 没跑完成)
 
 perf: checkout run save_perf
 
