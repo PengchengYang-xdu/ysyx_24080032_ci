@@ -159,6 +159,10 @@ class Core extends Module {
 
     val rawing = exu_rs1_rawing || exu_rs2_rawing || lsu_rs1_rawing || lsu_rs2_rawing || wbu_rs1_rawing || wbu_rs2_rawing
     dontTouch(rawing)
+    val rs1_rawing = exu_rs1_rawing || lsu_rs1_rawing || wbu_rs1_rawing
+    val rs2_rawing = exu_rs2_rawing || lsu_rs2_rawing || wbu_rs2_rawing
+    dontTouch(rs1_rawing)
+    dontTouch(rs2_rawing)
 
     dontTouch(exu_raw)
     dontTouch(lsu_raw)
@@ -233,8 +237,8 @@ class Core extends Module {
     val rd1_forward_data_r = RegEnable(rd1_forward_data, rd1_forward_en)
     val rd2_forward_data_r = RegEnable(rd2_forward_data, rd2_forward_en)
 
-    exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || ~rawing, rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
-    exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || ~rawing, rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
+    exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || ~rs1_rawing, rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
+    exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || ~rs2_rawing, rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
 
     idu.io_hazard.stall_flg := is_raw || rawing && (~rd1_forward_en && ~rd2_forward_en)
 
