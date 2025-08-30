@@ -236,7 +236,7 @@ class Core extends Module {
     exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || ~rawing, rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
     exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || ~rawing, rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
 
-    idu.io_hazard.stall_flg := rawing
+    idu.io_hazard.stall_flg := is_raw || rawing
 
 
 
