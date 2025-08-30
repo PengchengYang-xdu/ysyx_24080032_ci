@@ -205,14 +205,14 @@ class Core extends Module {
         rd2_forward_en := false.B
     }
     val rd1_forward_data = Mux(rd1_forward_en, MuxCase(0.U, Seq(
-        exu_can_forward_rs1 && exu_raw_rs1_ing -> exu_forward_data,
-        lsu_can_forward_rs1 && lsu_raw_rs1_ing -> lsu_forward_data,
-        wbu_can_forward_rs1 && wbu_raw_rs1_ing -> wbu_forward_data
+        (exu_can_forward_rs1 && exu_raw_rs1_ing) -> exu_forward_data,
+        (lsu_can_forward_rs1 && lsu_raw_rs1_ing) -> lsu_forward_data,
+        (wbu_can_forward_rs1 && wbu_raw_rs1_ing) -> wbu_forward_data
     )), idu.io_pipe.out.bits.id2exe_rs1_data)
     val rd2_forward_data = Mux(rd2_forward_en, MuxCase(0.U, Seq(
-        exu_can_forward_rs2 && exu_raw_rs2_ing -> exu_forward_data,
-        lsu_can_forward_rs2 && lsu_raw_rs2_ing -> lsu_forward_data,
-        wbu_can_forward_rs2 && wbu_raw_rs2_ing -> wbu_forward_data
+        (exu_can_forward_rs2 && exu_raw_rs2_ing) -> exu_forward_data,
+        (lsu_can_forward_rs2 && lsu_raw_rs2_ing) -> lsu_forward_data,
+        (wbu_can_forward_rs2 && wbu_raw_rs2_ing) -> wbu_forward_data
     )), idu.io_pipe.out.bits.id2exe_rs2_data)
     dontTouch(rd1_forward_en)
     dontTouch(rd2_forward_en)
