@@ -208,12 +208,12 @@ class Core extends Module {
     dontTouch(rd2_forward_en)
     dontTouch(rd1_forward_data)
     dontTouch(rd2_forward_data)
-    // exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(rd1_forward_data, idu.io_pipe.out.fire)
-    // exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(rd2_forward_data, idu.io_pipe.out.fire)
+    exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(rd1_forward_data, idu.io_pipe.out.fire)
+    exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(rd2_forward_data, idu.io_pipe.out.fire)
 
 
 
-
+    idu.io_hazard.stall_flg := is_raw && ~rd1_forward_en && ~rd2_forward_en
 
 
 
@@ -277,7 +277,6 @@ class Core extends Module {
     when(rs1_resolved_r) {rs1_raw_valid := false.B}
     when(rs2_resolved_r) {rs2_raw_valid := false.B}
 
-    idu.io_hazard.stall_flg := is_raw && ~rd1_forward_en && ~rd2_forward_en
 
 
 
