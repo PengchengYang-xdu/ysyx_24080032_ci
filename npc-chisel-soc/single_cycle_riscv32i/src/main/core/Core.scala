@@ -138,10 +138,28 @@ class Core extends Module {
     val rs1_raw = exu_raw_rs1 || lsu_raw_rs1 || wbu_raw_rs1
     val rs2_raw = exu_raw_rs2 || lsu_raw_rs2 || wbu_raw_rs2
 
-    val rawing = RegInit(false.B)
-    rawing := Mux(is_raw, true.B, Mux(idu.io_pipe.out.fire, false.B, rawing))
+    val exu_rs1_rawing = RegInit(false.B)
+    val exu_rs2_rawing = RegInit(false.B)
+    val lsu_rs1_rawing = RegInit(false.B)
+    val lsu_rs2_rawing = RegInit(false.B)
+    val wbu_rs1_rawing = RegInit(false.B)
+    val wbu_rs2_rawing = RegInit(false.B)
+    exu_rs1_rawing := Mux(exu_raw_rs1, true.B, Mux(idu.io_pipe.out.fire, false.B, exu_rs1_rawing))
+    exu_rs2_rawing := Mux(exu_raw_rs2, true.B, Mux(idu.io_pipe.out.fire, false.B, exu_rs2_rawing))
+    lsu_rs1_rawing := Mux(lsu_raw_rs1, true.B, Mux(idu.io_pipe.out.fire, false.B, lsu_rs1_rawing))
+    lsu_rs2_rawing := Mux(lsu_raw_rs2, true.B, Mux(idu.io_pipe.out.fire, false.B, lsu_rs2_rawing))
+    wbu_rs1_rawing := Mux(wbu_raw_rs1, true.B, Mux(idu.io_pipe.out.fire, false.B, wbu_rs1_rawing))
+    wbu_rs2_rawing := Mux(wbu_raw_rs2, true.B, Mux(idu.io_pipe.out.fire, false.B, wbu_rs2_rawing))
+    dontTouch(exu_rs1_rawing)
+    dontTouch(exu_rs2_rawing)
+    dontTouch(lsu_rs1_rawing)
+    dontTouch(lsu_rs2_rawing)
+    dontTouch(wbu_rs1_rawing)
+    dontTouch(wbu_rs2_rawing)
+
+    val rawing = exu_rs1_rawing || exu_rs2_rawing || lsu_rs1_rawing || lsu_rs2_rawing || wbu_rs1_rawing || wbu_rs2_rawing
     dontTouch(rawing)
-    
+
     dontTouch(exu_raw)
     dontTouch(lsu_raw)
     dontTouch(wbu_raw)
@@ -154,12 +172,12 @@ class Core extends Module {
     dontTouch(wbu_raw_rs2)
     dontTouch(rs1_raw)
     dontTouch(rs2_raw)
-    val exu_can_forward_rs1 = exu_raw_rs1 && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
-    val exu_can_forward_rs2 = exu_raw_rs2 && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
-    val lsu_can_forward_rs1 = lsu_raw_rs1 && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || lsu.io.dmem.rvalid) //两种情况：第一种、普通的lsu raw用=/= WB_MEM可以转发。第二种、load-use raw用lsu.io.dmem.rvalid可以转发
-    val lsu_can_forward_rs2 = lsu_raw_rs2 && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || lsu.io.dmem.rvalid)
-    val wbu_can_forward_rs1 = wbu_raw_rs1
-    val wbu_can_forward_rs2 = wbu_raw_rs2
+    val exu_can_forward_rs1 = exu_rs1_rawing && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
+    val exu_can_forward_rs2 = exu_rs2_rawing && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
+    val lsu_can_forward_rs1 = lsu_rs1_rawing && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || lsu.io.dmem.rvalid) //两种情况：第一种、普通的lsu raw用=/= WB_MEM可以转发。第二种、load-use raw用lsu.io.dmem.rvalid可以转发
+    val lsu_can_forward_rs2 = lsu_rs2_rawing && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || lsu.io.dmem.rvalid)
+    val wbu_can_forward_rs1 = wbu_rs1_rawing
+    val wbu_can_forward_rs2 = wbu_rs2_rawing
     val exu_forward_data = MuxLookup(exu.io_pipe.in.bits.id2exe_wb_sel, 0.U)(Seq(
         WB_PC      -> (exu.io_pipe.out.bits.exe2ls_reg_pc + 4.U),
         WB_CSR     -> exu.io_pipe.out.bits.exe2ls_csr_rdata,
@@ -178,21 +196,21 @@ class Core extends Module {
     dontTouch(wbu_forward_data)
 
     val rd1_forward_en = Wire(Bool())
-    when(exu_raw_rs1){
+    when(exu_rs1_rawing){
         rd1_forward_en := exu_can_forward_rs1
-    }.elsewhen(lsu_raw_rs1){
+    }.elsewhen(lsu_rs1_rawing){
         rd1_forward_en := lsu_can_forward_rs1
-    }.elsewhen(wbu_raw_rs1){
+    }.elsewhen(wbu_rs1_rawing){
         rd1_forward_en := wbu_can_forward_rs1
     }.otherwise{
         rd1_forward_en := false.B
     }
     val rd2_forward_en = Wire(Bool())
-    when(exu_raw_rs2){
+    when(exu_rs2_rawing){
         rd2_forward_en := exu_can_forward_rs2
-    }.elsewhen(lsu_raw_rs2){
+    }.elsewhen(lsu_rs2_rawing){
         rd2_forward_en := lsu_can_forward_rs2
-    }.elsewhen(wbu_raw_rs2){
+    }.elsewhen(wbu_rs2_rawing){
         rd2_forward_en := wbu_can_forward_rs2
     }.otherwise{
         rd2_forward_en := false.B
