@@ -174,9 +174,6 @@ class Core extends Module {
     dontTouch(lsu_forward_data)
     dontTouch(wbu_forward_data)
 
-    val rd1_forward_data_r = RegEnable(rd1_forward_data, rd1_forward_en)
-    val rd2_forward_data_r = RegEnable(rd2_forward_data, rd2_forward_en)
-
     val rd1_forward_en = Wire(Bool())
     when(exu_raw_rs1){
         rd1_forward_en := exu_can_forward_rs1
@@ -211,6 +208,8 @@ class Core extends Module {
     dontTouch(rd2_forward_en)
     dontTouch(rd1_forward_data)
     dontTouch(rd2_forward_data)
+    val rd1_forward_data_r = RegEnable(rd1_forward_data, rd1_forward_en)
+    val rd2_forward_data_r = RegEnable(rd2_forward_data, rd2_forward_en)
     exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || ~rs1_raw, rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
     exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || ~rs2_raw, rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
 
