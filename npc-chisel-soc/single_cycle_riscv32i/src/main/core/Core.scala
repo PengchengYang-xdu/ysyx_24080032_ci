@@ -117,9 +117,9 @@ class Core extends Module {
 
 
     //data hazard
-    val exu_is_working = exu.io_pipe.in.valid
-    val lsu_is_working = lsu.io_pipe.in.valid
-    val wbu_is_working = wbu.io_pipe.in.valid
+    val exu_is_working = ~exu.io_pipe.in.ready | exu.io_pipe.in.valid
+    val lsu_is_working = ~lsu.io_pipe.in.ready | lsu.io_pipe.in.valid
+    val wbu_is_working = ~wbu.io_pipe.in.ready | wbu.io_pipe.in.valid
     val wbu_end_flg = RegNext(wbu_is_working) & ~wbu_is_working
     dontTouch(exu_is_working)
     dontTouch(lsu_is_working)
@@ -206,10 +206,15 @@ class Core extends Module {
     dontTouch(rd2_forward_en)
     dontTouch(rd1_forward_data)
     dontTouch(rd2_forward_data)
+
     val rd1_forward_data_r = RegEnable(rd1_forward_data, rd1_forward_en)
     val rd2_forward_data_r = RegEnable(rd2_forward_data, rd2_forward_en)
-    exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || ~rs1_raw, rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
-    exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || ~rs2_raw, rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
+
+    val rawing = RegInit(false.B)
+    rawing := Mux(is_raw, true.B, Mux(idu.io_pipe.out.fire, false.B, rawing))
+
+    exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || ~rawing, rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
+    exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || ~rawing, rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
 
     idu.io_hazard.stall_flg := is_raw && ~rd1_forward_en && ~rd2_forward_en
 
@@ -420,7 +425,7 @@ class Core extends Module {
         val rs2_is_read = stage_left.io.gpr_rs2_is_read
         
         val stage_left_valid_r = RegNext(stage_left.io_pipe.in.valid)
-        ((rs1_is_read && ~rs1_is_zero && dataConflict(rs1, rd)) || (rs2_is_read && ~rs2_is_zero && dataConflict(rs2, rd))) && is_working && is_w && stage_left.io_pipe.in.valid
+        ((rs1_is_read && ~rs1_is_zero && dataConflict(rs1, rd)) || (rs2_is_read && ~rs2_is_zero && dataConflict(rs2, rd))) && is_working && is_w && stage_left_valid_r
     }
 
 }
