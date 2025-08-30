@@ -194,12 +194,19 @@ class Core extends Module {
     }.otherwise{
         rd2_forward_en := false.B
     }
-    val rd1_forward_data = Mux(rd1_forward_en, MuxCase(0.U, Seq(
+    val rd1_forward_en_r = RegInit(false.B)
+    val rd2_forward_en_r = RegInit(false.B)
+    rd1_forward_en_r := Mux(rd1_forward_en, true.B, Mux(idu.io_pipe.out.fire, false.B, rd1_forward_en_r))
+    rd2_forward_en_r := Mux(rd2_forward_en, true.B, Mux(idu.io_pipe.out.fire, false.B, rd2_forward_en_r))
+    val rd1_forward_en_real = rd1_forward_en_r | rd1_forward_en
+    val rd2_forward_en_real = rd2_forward_en_r | rd2_forward_en
+
+    val rd1_forward_data = Mux(rd1_forward_en_real, MuxCase(0.U, Seq(
         exu_can_forward_rs1 -> exu_forward_data,
         lsu_can_forward_rs1 -> lsu_forward_data,
         wbu_can_forward_rs1 -> wbu_forward_data
     )), idu.io_pipe.out.bits.id2exe_rs1_data)
-    val rd2_forward_data = Mux(rd2_forward_en, MuxCase(0.U, Seq(
+    val rd2_forward_data = Mux(rd2_forward_en_real, MuxCase(0.U, Seq(
         exu_can_forward_rs2 -> exu_forward_data,
         lsu_can_forward_rs2 -> lsu_forward_data,
         wbu_can_forward_rs2 -> wbu_forward_data
@@ -210,8 +217,8 @@ class Core extends Module {
     dontTouch(rd2_forward_data)
     val rd1_forward_data_r = RegEnable(rd1_forward_data, rd1_forward_en)
     val rd2_forward_data_r = RegEnable(rd2_forward_data, rd2_forward_en)
-    exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || ~rs1_raw, rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
-    exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || ~rs2_raw, rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
+    exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(rd1_forward_data, idu.io_pipe.out.fire)
+    exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(rd2_forward_data, idu.io_pipe.out.fire)
 
     idu.io_hazard.stall_flg := is_raw && ~rd1_forward_en && ~rd2_forward_en
 
