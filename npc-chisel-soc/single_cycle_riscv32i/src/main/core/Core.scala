@@ -456,7 +456,7 @@ class Core extends Module {
         val rs2_is_read = stage_left.io.gpr_rs2_is_read
         
         val stage_left_valid_r = RegNext(stage_left.io_pipe.in.valid)
-        ((rs1_is_read && ~rs1_is_zero && dataConflict(rs1, rd)) || (rs2_is_read && ~rs2_is_zero && dataConflict(rs2, rd))) && is_working && is_w && stage_left.io_pipe.in.valid
+        ((rs1_is_read && ~rs1_is_zero && dataConflict(rs1, rd)) || (rs2_is_read && ~rs2_is_zero && dataConflict(rs2, rd))) && is_working && is_w && stage_left_valid_r
     }
 
 }
