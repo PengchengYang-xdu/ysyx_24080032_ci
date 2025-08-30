@@ -138,22 +138,18 @@ class Core extends Module {
     val rs1_raw = exu_raw_rs1 || lsu_raw_rs1 || wbu_raw_rs1
     val rs2_raw = exu_raw_rs2 || lsu_raw_rs2 || wbu_raw_rs2
 
-    val rd1_forward_en = Wire(Bool())
-    val rd2_forward_en = Wire(Bool())
-    val rd1_rd2_forward_en = rd1_forward_en || rd2_forward_en
-
     val exu_rs1_rawing = RegInit(false.B)
     val exu_rs2_rawing = RegInit(false.B)
     val lsu_rs1_rawing = RegInit(false.B)
     val lsu_rs2_rawing = RegInit(false.B)
     val wbu_rs1_rawing = RegInit(false.B)
     val wbu_rs2_rawing = RegInit(false.B)
-    exu_rs1_rawing := Mux(exu_raw_rs1, true.B, Mux(rd1_rd2_forward_en, false.B, exu_rs1_rawing))
-    exu_rs2_rawing := Mux(exu_raw_rs2, true.B, Mux(rd1_rd2_forward_en, false.B, exu_rs2_rawing))
-    lsu_rs1_rawing := Mux(lsu_raw_rs1, true.B, Mux(rd1_rd2_forward_en, false.B, lsu_rs1_rawing))
-    lsu_rs2_rawing := Mux(lsu_raw_rs2, true.B, Mux(rd1_rd2_forward_en, false.B, lsu_rs2_rawing))
-    wbu_rs1_rawing := Mux(wbu_raw_rs1, true.B, Mux(rd1_rd2_forward_en, false.B, wbu_rs1_rawing))
-    wbu_rs2_rawing := Mux(wbu_raw_rs2, true.B, Mux(rd1_rd2_forward_en, false.B, wbu_rs2_rawing))
+    exu_rs1_rawing := Mux(exu_raw_rs1, true.B, Mux(idu.io_pipe.out.fire, false.B, exu_rs1_rawing))
+    exu_rs2_rawing := Mux(exu_raw_rs2, true.B, Mux(idu.io_pipe.out.fire, false.B, exu_rs2_rawing))
+    lsu_rs1_rawing := Mux(lsu_raw_rs1, true.B, Mux(idu.io_pipe.out.fire, false.B, lsu_rs1_rawing))
+    lsu_rs2_rawing := Mux(lsu_raw_rs2, true.B, Mux(idu.io_pipe.out.fire, false.B, lsu_rs2_rawing))
+    wbu_rs1_rawing := Mux(wbu_raw_rs1, true.B, Mux(idu.io_pipe.out.fire, false.B, wbu_rs1_rawing))
+    wbu_rs2_rawing := Mux(wbu_raw_rs2, true.B, Mux(idu.io_pipe.out.fire, false.B, wbu_rs2_rawing))
     dontTouch(exu_rs1_rawing)
     dontTouch(exu_rs2_rawing)
     dontTouch(lsu_rs1_rawing)
@@ -203,6 +199,7 @@ class Core extends Module {
     dontTouch(lsu_forward_data)
     dontTouch(wbu_forward_data)
 
+    val rd1_forward_en = Wire(Bool())
     when(exu_rs1_rawing){
         rd1_forward_en := exu_can_forward_rs1
     }.elsewhen(lsu_rs1_rawing){
@@ -212,7 +209,7 @@ class Core extends Module {
     }.otherwise{
         rd1_forward_en := false.B
     }
-
+    val rd2_forward_en = Wire(Bool())
     when(exu_rs2_rawing){
         rd2_forward_en := exu_can_forward_rs2
     }.elsewhen(lsu_rs2_rawing){
@@ -243,7 +240,7 @@ class Core extends Module {
     exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || ~rs1_rawing, rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
     exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || ~rs2_rawing, rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
 
-    idu.io_hazard.stall_flg := (is_raw || rawing) && (~rd1_forward_en && ~rd2_forward_en)
+    idu.io_hazard.stall_flg := is_raw || rawing && (~rd1_forward_en && ~rd2_forward_en)
 
 
 
