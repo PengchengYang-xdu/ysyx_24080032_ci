@@ -254,8 +254,8 @@ class Core extends Module {
     dontTouch(rd1_forward_data_r)
     dontTouch(rd2_forward_data_r)
 
-    raw_rs1_cnt := Mux(rs1_raw, 1.U, Mux(rd1_forward_en, 0.U, raw_rs1_cnt))
-    raw_rs2_cnt := Mux(rs1_raw, 1.U, Mux(rd2_forward_en, 0.U, raw_rs2_cnt))
+    raw_rs1_cnt := Mux(rs1_raw && ~rd1_forward_en, 1.U, Mux(rd1_forward_en, 0.U, raw_rs1_cnt))
+    raw_rs2_cnt := Mux(rs2_raw && ~rd2_forward_en, 1.U, Mux(rd2_forward_en, 0.U, raw_rs2_cnt))
 
     exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || (~rs1_rawing && ~bt_fwd_fsh_rs1), rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
     exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || (~rs2_rawing && ~bt_fwd_fsh_rs2), rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
