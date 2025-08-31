@@ -175,6 +175,9 @@ class Core extends Module {
     dontTouch(rs1_rawing)
     dontTouch(rs2_rawing)
     dontTouch(rawing)
+    val bt_fwd_fsh = RegInit(false.B)
+    bt_fwd_fsh := Mux(rd1_forward_en | rd2_forward_en, true.B, Mux(idu.io_pipe.out.fire, false.B, bt_fwd_fsh))
+    dontTouch(bt_fwd_fsh)
 
     val exu_can_forward_rs1 = exu_rs1_rawing && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
     val exu_can_forward_rs2 = exu_rs2_rawing && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
@@ -240,7 +243,7 @@ class Core extends Module {
 
     exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || ~rs1_rawing, rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
     exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || ~rs2_rawing, rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
-    idu.io_hazard.stall_flg := is_raw || rawing && (~rd1_forward_en && ~rd2_forward_en)
+    idu.io_hazard.stall_flg := is_raw || rawing && (~rd1_forward_en && ~rd2_forward_en && ~bt_fwd_fsh)
 
 
 
