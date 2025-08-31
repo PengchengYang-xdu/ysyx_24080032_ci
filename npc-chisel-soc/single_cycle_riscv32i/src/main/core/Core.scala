@@ -179,6 +179,10 @@ class Core extends Module {
     dontTouch(rs2_rawing)
     dontTouch(rawing)
 
+    val bt_fwd_fsh = RegInit(false.B)
+    bt_fwd_fsh := Mux(rd1_forward_en | rd2_forward_en, true.B, Mux(idu.io_pipe.out.fire, false.B, bt_fwd_fsh))
+    dontTouch(bt_fwd_fsh)
+
 
     val exu_can_forward_rs1 = (exu_rs1_rawing || exu_raw_rs1) && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
     val exu_can_forward_rs2 = (exu_rs2_rawing || exu_raw_rs2) && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
@@ -204,20 +208,20 @@ class Core extends Module {
     dontTouch(wbu_forward_data)
 
     when(exu_rs1_rawing || exu_raw_rs1){
-        rd1_forward_en := exu_can_forward_rs1
+        rd1_forward_en := exu_can_forward_rs1 && ~bt_fwd_fsh
     }.elsewhen(lsu_rs1_rawing || lsu_raw_rs1){
-        rd1_forward_en := lsu_can_forward_rs1
+        rd1_forward_en := lsu_can_forward_rs1 && ~bt_fwd_fsh
     }.elsewhen(wbu_rs1_rawing || wbu_raw_rs1){
-        rd1_forward_en := wbu_can_forward_rs1
+        rd1_forward_en := wbu_can_forward_rs1 && ~bt_fwd_fsh
     }.otherwise{
         rd1_forward_en := false.B
     }
     when(exu_rs2_rawing || exu_raw_rs2){
-        rd2_forward_en := exu_can_forward_rs2
+        rd2_forward_en := exu_can_forward_rs2 && ~bt_fwd_fsh
     }.elsewhen(lsu_rs2_rawing || lsu_raw_rs2){
-        rd2_forward_en := lsu_can_forward_rs2
+        rd2_forward_en := lsu_can_forward_rs2 && ~bt_fwd_fsh
     }.elsewhen(wbu_rs2_rawing || wbu_raw_rs2){
-        rd2_forward_en := wbu_can_forward_rs2
+        rd2_forward_en := wbu_can_forward_rs2 && ~bt_fwd_fsh
     }.otherwise{
         rd2_forward_en := false.B
     }
@@ -239,10 +243,6 @@ class Core extends Module {
     dontTouch(rd2_forward_data)
     dontTouch(rd1_forward_data_r)
     dontTouch(rd2_forward_data_r)
-
-    val bt_fwd_fsh = RegInit(false.B)
-    bt_fwd_fsh := Mux(rd1_forward_en | rd2_forward_en, true.B, Mux(idu.io_pipe.out.fire, false.B, bt_fwd_fsh))
-    dontTouch(bt_fwd_fsh)
 
     exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || ~rs1_rawing, rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
     exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || ~rs2_rawing, rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
