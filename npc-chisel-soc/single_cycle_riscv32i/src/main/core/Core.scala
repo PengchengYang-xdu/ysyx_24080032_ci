@@ -160,12 +160,12 @@ class Core extends Module {
     val lsu_rs2_rawing = RegInit(false.B)
     val wbu_rs1_rawing = RegInit(false.B)
     val wbu_rs2_rawing = RegInit(false.B)
-    exu_rs1_rawing := Mux(exu_raw_rs1, true.B, Mux(rd1_forward_en | rd2_forward_en, false.B, exu_rs1_rawing))
-    exu_rs2_rawing := Mux(exu_raw_rs2, true.B, Mux(rd1_forward_en | rd2_forward_en, false.B, exu_rs2_rawing))
-    lsu_rs1_rawing := Mux(lsu_raw_rs1, true.B, Mux(rd1_forward_en | rd2_forward_en, false.B, lsu_rs1_rawing))
-    lsu_rs2_rawing := Mux(lsu_raw_rs2, true.B, Mux(rd1_forward_en | rd2_forward_en, false.B, lsu_rs2_rawing))
-    wbu_rs1_rawing := Mux(wbu_raw_rs1, true.B, Mux(rd1_forward_en | rd2_forward_en, false.B, wbu_rs1_rawing))
-    wbu_rs2_rawing := Mux(wbu_raw_rs2, true.B, Mux(rd1_forward_en | rd2_forward_en, false.B, wbu_rs2_rawing))
+    exu_rs1_rawing := Mux(rd1_forward_en | rd2_forward_en, false.B, Mux(exu_raw_rs1, true.B, exu_rs1_rawing))
+    exu_rs2_rawing := Mux(rd1_forward_en | rd2_forward_en, false.B, Mux(exu_raw_rs2, true.B, exu_rs2_rawing))
+    lsu_rs1_rawing := Mux(rd1_forward_en | rd2_forward_en, false.B, Mux(lsu_raw_rs1, true.B, lsu_rs1_rawing))
+    lsu_rs2_rawing := Mux(rd1_forward_en | rd2_forward_en, false.B, Mux(lsu_raw_rs2, true.B, lsu_rs2_rawing))
+    wbu_rs1_rawing := Mux(rd1_forward_en | rd2_forward_en, false.B, Mux(wbu_raw_rs1, true.B, wbu_rs1_rawing))
+    wbu_rs2_rawing := Mux(rd1_forward_en | rd2_forward_en, false.B, Mux(wbu_raw_rs2, true.B, wbu_rs2_rawing))
     val rs1_rawing = exu_rs1_rawing || lsu_rs1_rawing || wbu_rs1_rawing
     val rs2_rawing = exu_rs2_rawing || lsu_rs2_rawing || wbu_rs2_rawing
     val rawing = rs1_rawing || rs2_rawing
@@ -180,7 +180,7 @@ class Core extends Module {
     dontTouch(rawing)
 
     val bt_fwd_fsh = RegInit(false.B)
-    bt_fwd_fsh := Mux(rd1_forward_en | rd2_forward_en, true.B, Mux(idu.io_pipe.out.fire, false.B, bt_fwd_fsh))
+    bt_fwd_fsh := Mux(idu.io_pipe.out.fire, false.B, Mux(rd1_forward_en | rd2_forward_en, true.B, bt_fwd_fsh))
     dontTouch(bt_fwd_fsh)
 
 
