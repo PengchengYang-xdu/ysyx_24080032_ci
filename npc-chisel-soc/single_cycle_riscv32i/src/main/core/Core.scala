@@ -122,9 +122,9 @@ class Core extends Module {
     dontTouch(raw_rs1_cnt)
     dontTouch(raw_rs2_cnt)
 
-    val exu_is_working = ~exu.io_pipe.in.ready | exu.io_pipe.in.valid
-    val lsu_is_working = ~lsu.io_pipe.in.ready | lsu.io_pipe.in.valid
-    val wbu_is_working = ~wbu.io_pipe.in.ready | wbu.io_pipe.in.valid
+    val exu_is_working = exu.io_pipe.in.valid
+    val lsu_is_working = lsu.io_pipe.in.valid
+    val wbu_is_working = wbu.io_pipe.in.valid
     val wbu_end_flg = RegNext(wbu_is_working) & ~wbu_is_working
     dontTouch(exu_is_working)
     dontTouch(lsu_is_working)
