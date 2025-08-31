@@ -274,67 +274,6 @@ class Core extends Module {
 
 
 
-    //记录发生raw的寄存器
-    val rs1_raw_valid = RegInit(false.B)
-    val rs2_raw_valid = RegInit(false.B)
-
-    val rs1_raw_rd = Reg(UInt(ADDR_LEN.W))
-    val rs2_raw_rd = Reg(UInt(ADDR_LEN.W))
-
-    // 记录来自哪段
-    val rs1_raw_from_exu = RegInit(false.B)
-    val rs1_raw_from_lsu = RegInit(false.B)
-    val rs1_raw_from_wbu = RegInit(false.B)
-
-    val rs2_raw_from_exu = RegInit(false.B)
-    val rs2_raw_from_lsu = RegInit(false.B)
-    val rs2_raw_from_wbu = RegInit(false.B)
-
-    when(rs1_raw){
-        rs1_raw_rd := MuxCase(0.U, Seq(
-            exu_raw_rs1 -> exu.io_pipe.in.bits.id2exe_wb_addr,
-            lsu_raw_rs1 -> lsu.io_pipe.in.bits.exe2ls_wb_addr,
-            wbu_raw_rs1 -> wbu.io_pipe.in.bits.ls2wb_wb_addr,
-        ))
-        rs1_raw_valid := true.B
-        rs1_raw_from_exu := exu_raw_rs1
-        rs1_raw_from_lsu := lsu_raw_rs1
-        rs1_raw_from_wbu := wbu_raw_rs1
-    }
-    when(rs2_raw){
-        rs2_raw_rd := MuxCase(0.U, Seq(
-            exu_raw_rs2 -> exu.io_pipe.in.bits.id2exe_wb_addr,
-            lsu_raw_rs2 -> lsu.io_pipe.in.bits.exe2ls_wb_addr,
-            wbu_raw_rs2 -> wbu.io_pipe.in.bits.ls2wb_wb_addr,
-        ))
-        rs2_raw_valid := true.B
-        rs2_raw_from_exu := exu_raw_rs2
-        rs2_raw_from_lsu := lsu_raw_rs2
-        rs2_raw_from_wbu := wbu_raw_rs2
-    }
-
-    val rs1_resolved = rs1_raw_valid && wbu_end_flg && wbu.io_pipe.in.bits.ls2wb_wb_addr === rs1_raw_rd && wbu.io_pipe.in.bits.ls2wb_rf_wen === REN_S
-    val rs2_resolved = rs2_raw_valid && wbu_end_flg && wbu.io_pipe.in.bits.ls2wb_wb_addr === rs2_raw_rd && wbu.io_pipe.in.bits.ls2wb_rf_wen === REN_S
-
-    val rs1_resolved_r = RegNext(rs1_resolved)
-    val rs2_resolved_r = RegNext(rs2_resolved)
-
-    when(rs1_resolved_r) {rs1_raw_valid := false.B}
-    when(rs2_resolved_r) {rs2_raw_valid := false.B}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
