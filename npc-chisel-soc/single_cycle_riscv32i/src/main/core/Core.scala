@@ -150,6 +150,9 @@ class Core extends Module {
     dontTouch(rs1_raw)
     dontTouch(rs2_raw)
 
+    val rd1_forward_en = Wire(Bool())
+    val rd2_forward_en = Wire(Bool())
+
     //some state
     val exu_rs1_rawing = RegInit(false.B)
     val exu_rs2_rawing = RegInit(false.B)
@@ -200,7 +203,6 @@ class Core extends Module {
     dontTouch(lsu_forward_data)
     dontTouch(wbu_forward_data)
 
-    val rd1_forward_en = Wire(Bool())
     when(exu_rs1_rawing){
         rd1_forward_en := exu_can_forward_rs1
     }.elsewhen(lsu_rs1_rawing){
@@ -210,7 +212,6 @@ class Core extends Module {
     }.otherwise{
         rd1_forward_en := false.B
     }
-    val rd2_forward_en = Wire(Bool())
     when(exu_rs2_rawing){
         rd2_forward_en := exu_can_forward_rs2
     }.elsewhen(lsu_rs2_rawing){
