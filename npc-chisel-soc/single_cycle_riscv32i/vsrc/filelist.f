@@ -1,0 +1,14 @@
+GPR.sv
+CSR.sv
+IFU.sv
+extern_modules.sv
+IDU.sv
+EXU.sv
+LSU.sv
+WBU.sv
+iCache.sv
+Core.sv
+Xbar_new.sv
+Clint.sv
+NPC.sv
+./Ebreak.sv
