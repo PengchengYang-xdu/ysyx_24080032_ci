@@ -149,70 +149,7 @@ class Core extends Module {
     dontTouch(wbu_raw_rs2)
     dontTouch(rs1_raw)
     dontTouch(rs2_raw)
-    val exu_can_forward_rs1 = exu_raw_rs1 && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
-    val exu_can_forward_rs2 = exu_raw_rs2 && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
-    val lsu_can_forward_rs1 = lsu_raw_rs1 && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || lsu.io_pipe.out.fire)//两种情况：第一种、普通的lsu raw用=/= WB_MEM可以转发。第二种、load-use raw用lsu.io.dmem.rvalid可以转发
-    val lsu_can_forward_rs2 = lsu_raw_rs2 && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || lsu.io_pipe.out.fire)
-    val wbu_can_forward_rs1 = wbu_raw_rs1
-    val wbu_can_forward_rs2 = wbu_raw_rs2
-    val exu_forward_data = MuxLookup(exu.io_pipe.in.bits.id2exe_wb_sel, 0.U)(Seq(
-        WB_PC      -> (exu.io_pipe.out.bits.exe2ls_reg_pc + 4.U),
-        WB_CSR     -> exu.io_pipe.out.bits.exe2ls_csr_rdata,
-        WB_ALU     -> exu.io_pipe.out.bits.exe2ls_alu_out
-    ))
-    val lsu_forward_data = lsu.io_pipe.out.bits.ls2wb_wb_data
-    val wbu_forward_data = wbu.io.gpr_wdata
-    dontTouch(exu_can_forward_rs1)
-    dontTouch(exu_can_forward_rs2)
-    dontTouch(lsu_can_forward_rs1)
-    dontTouch(lsu_can_forward_rs2)
-    dontTouch(wbu_can_forward_rs1)
-    dontTouch(wbu_can_forward_rs2)
-    dontTouch(exu_forward_data)
-    dontTouch(lsu_forward_data)
-    dontTouch(wbu_forward_data)
 
-    val rd1_forward_en = Wire(Bool())
-    when(exu_raw_rs1){
-        rd1_forward_en := exu_can_forward_rs1
-    }.elsewhen(lsu_raw_rs1){
-        rd1_forward_en := lsu_can_forward_rs1
-    }.elsewhen(wbu_raw_rs1){
-        rd1_forward_en := wbu_can_forward_rs1
-    }.otherwise{
-        rd1_forward_en := false.B
-    }
-    val rd2_forward_en = Wire(Bool())
-    when(exu_raw_rs2){
-        rd2_forward_en := exu_can_forward_rs2
-    }.elsewhen(lsu_raw_rs2){
-        rd2_forward_en := lsu_can_forward_rs2
-    }.elsewhen(wbu_raw_rs2){
-        rd2_forward_en := wbu_can_forward_rs2
-    }.otherwise{
-        rd2_forward_en := false.B
-    }
-    val rd1_forward_data = Mux(rd1_forward_en, MuxCase(0.U, Seq(
-        exu_can_forward_rs1 -> exu_forward_data,
-        lsu_can_forward_rs1 -> lsu_forward_data,
-        wbu_can_forward_rs1 -> wbu_forward_data
-    )), idu.io_pipe.out.bits.id2exe_rs1_data)
-    val rd2_forward_data = Mux(rd2_forward_en, MuxCase(0.U, Seq(
-        exu_can_forward_rs2 -> exu_forward_data,
-        lsu_can_forward_rs2 -> lsu_forward_data,
-        wbu_can_forward_rs2 -> wbu_forward_data
-    )), idu.io_pipe.out.bits.id2exe_rs2_data)
-    val rd1_forward_data_r = RegEnable(rd1_forward_data, rd1_forward_en)
-    val rd2_forward_data_r = RegEnable(rd2_forward_data, rd2_forward_en)
-    dontTouch(rd1_forward_en)
-    dontTouch(rd2_forward_en)
-    dontTouch(rd1_forward_data)
-    dontTouch(rd2_forward_data)
-    dontTouch(rd1_forward_data_r)
-    dontTouch(rd2_forward_data_r)
-
-    
-    
     //some state
     val exu_rs1_rawing = RegInit(false.B)
     val exu_rs2_rawing = RegInit(false.B)
@@ -238,6 +175,68 @@ class Core extends Module {
     dontTouch(rs1_rawing)
     dontTouch(rs2_rawing)
     dontTouch(rawing)
+
+    val exu_can_forward_rs1 = exu_rs1_rawing && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
+    val exu_can_forward_rs2 = exu_rs2_rawing && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
+    val lsu_can_forward_rs1 = lsu_rs1_rawing && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || lsu.io_pipe.out.fire)//两种情况：第一种、普通的lsu raw用=/= WB_MEM可以转发。第二种、load-use raw用lsu.io.dmem.rvalid可以转发
+    val lsu_can_forward_rs2 = lsu_rs2_rawing && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || lsu.io_pipe.out.fire)
+    val wbu_can_forward_rs1 = wbu_rs1_rawing
+    val wbu_can_forward_rs2 = wbu_rs2_rawing
+    val exu_forward_data = MuxLookup(exu.io_pipe.in.bits.id2exe_wb_sel, 0.U)(Seq(
+        WB_PC      -> (exu.io_pipe.out.bits.exe2ls_reg_pc + 4.U),
+        WB_CSR     -> exu.io_pipe.out.bits.exe2ls_csr_rdata,
+        WB_ALU     -> exu.io_pipe.out.bits.exe2ls_alu_out
+    ))
+    val lsu_forward_data = lsu.io_pipe.out.bits.ls2wb_wb_data
+    val wbu_forward_data = wbu.io.gpr_wdata
+    dontTouch(exu_can_forward_rs1)
+    dontTouch(exu_can_forward_rs2)
+    dontTouch(lsu_can_forward_rs1)
+    dontTouch(lsu_can_forward_rs2)
+    dontTouch(wbu_can_forward_rs1)
+    dontTouch(wbu_can_forward_rs2)
+    dontTouch(exu_forward_data)
+    dontTouch(lsu_forward_data)
+    dontTouch(wbu_forward_data)
+
+    val rd1_forward_en = Wire(Bool())
+    when(exu_rs1_rawing){
+        rd1_forward_en := exu_can_forward_rs1
+    }.elsewhen(lsu_rs1_rawing){
+        rd1_forward_en := lsu_can_forward_rs1
+    }.elsewhen(wbu_rs1_rawing){
+        rd1_forward_en := wbu_can_forward_rs1
+    }.otherwise{
+        rd1_forward_en := false.B
+    }
+    val rd2_forward_en = Wire(Bool())
+    when(exu_rs2_rawing){
+        rd2_forward_en := exu_can_forward_rs2
+    }.elsewhen(lsu_rs2_rawing){
+        rd2_forward_en := lsu_can_forward_rs2
+    }.elsewhen(wbu_rs2_rawing){
+        rd2_forward_en := wbu_can_forward_rs2
+    }.otherwise{
+        rd2_forward_en := false.B
+    }
+    val rd1_forward_data = Mux(rd1_forward_en, MuxCase(0.U, Seq(
+        exu_can_forward_rs1 -> exu_forward_data,
+        lsu_can_forward_rs1 -> lsu_forward_data,
+        wbu_can_forward_rs1 -> wbu_forward_data
+    )), idu.io_pipe.out.bits.id2exe_rs1_data)
+    val rd2_forward_data = Mux(rd2_forward_en, MuxCase(0.U, Seq(
+        exu_can_forward_rs2 -> exu_forward_data,
+        lsu_can_forward_rs2 -> lsu_forward_data,
+        wbu_can_forward_rs2 -> wbu_forward_data
+    )), idu.io_pipe.out.bits.id2exe_rs2_data)
+    val rd1_forward_data_r = RegEnable(rd1_forward_data, rd1_forward_en)
+    val rd2_forward_data_r = RegEnable(rd2_forward_data, rd2_forward_en)
+    dontTouch(rd1_forward_en)
+    dontTouch(rd2_forward_en)
+    dontTouch(rd1_forward_data)
+    dontTouch(rd2_forward_data)
+    dontTouch(rd1_forward_data_r)
+    dontTouch(rd2_forward_data_r)
 
     exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || ~rs1_rawing, rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
     exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || ~rs2_rawing, rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
