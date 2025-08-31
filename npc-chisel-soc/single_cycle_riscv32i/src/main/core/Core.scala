@@ -244,8 +244,8 @@ class Core extends Module {
     dontTouch(rd1_forward_data_r)
     dontTouch(rd2_forward_data_r)
 
-    exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || ~rs1_rawing, rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
-    exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || ~rs2_rawing, rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
+    exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || (~rs1_rawing && ~bt_fwd_fsh), rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
+    exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || (~rs2_rawing && ~bt_fwd_fsh), rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
     idu.io_hazard.stall_flg := (is_raw || rawing) && (~rd1_forward_en && ~rd2_forward_en && ~bt_fwd_fsh)
 
 
