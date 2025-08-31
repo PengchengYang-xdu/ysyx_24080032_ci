@@ -194,8 +194,8 @@ class Core extends Module {
     dontTouch(bt_fwd_fsh)
 
 
-    val exu_can_forward_rs1 = (exu_rs1_rawing || exu_raw_rs1) && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
-    val exu_can_forward_rs2 = (exu_rs2_rawing || exu_raw_rs2) && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM)
+    val exu_can_forward_rs1 = (exu_rs1_rawing || exu_raw_rs1) && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM || lsu.io_pipe.out.fire)
+    val exu_can_forward_rs2 = (exu_rs2_rawing || exu_raw_rs2) && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM || lsu.io_pipe.out.fire)
     val lsu_can_forward_rs1 = (lsu_rs1_rawing || lsu_raw_rs1) && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || lsu.io_pipe.out.fire)//两种情况：第一种、普通的lsu raw用=/= WB_MEM可以转发。第二种、load-use raw用lsu.io.dmem.rvalid可以转发
     val lsu_can_forward_rs2 = (lsu_rs2_rawing || lsu_raw_rs2) && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || lsu.io_pipe.out.fire)
     val wbu_can_forward_rs1 = (wbu_rs1_rawing || wbu_raw_rs1)
