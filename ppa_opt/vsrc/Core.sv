@@ -95,9 +95,9 @@ module Core(	// @[src/main/core/Core.scala:23:7]
   output        io_dmem_bready	// @[src/main/core/Core.scala:24:16]
 );
 
-  wire        _GEN;	// @[src/main/core/Core.scala:349:{34,56}, :395:22]
-  wire        _GEN_0;	// @[src/main/core/Core.scala:348:{34,56}, :395:22]
-  wire        _GEN_1;	// @[src/main/core/Core.scala:347:{34,56}, :395:22]
+  wire        _GEN;	// @[src/main/core/Core.scala:304:{34,56}, :350:22]
+  wire        _GEN_0;	// @[src/main/core/Core.scala:303:{34,56}, :350:22]
+  wire        _GEN_1;	// @[src/main/core/Core.scala:302:{34,56}, :350:22]
   wire        _icache_io_in_arready;	// @[src/main/core/Core.scala:59:24]
   wire [31:0] _icache_io_in_rdata;	// @[src/main/core/Core.scala:59:24]
   wire        _icache_io_in_rvalid;	// @[src/main/core/Core.scala:59:24]
@@ -185,133 +185,160 @@ module Core(	// @[src/main/core/Core.scala:23:7]
   wire [31:0] _gpr_io_gpr_rs2_data;	// @[src/main/core/Core.scala:26:21]
   reg         ready_r;	// @[src/main/core/Core.scala:41:26]
   reg         ifu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:42:38]
-  reg  [31:0] idu_io_pipe_in_bits_r_if2id_reg_pc;	// @[src/main/core/Core.scala:394:33]
-  reg  [31:0] idu_io_pipe_in_bits_r_if2id_inst;	// @[src/main/core/Core.scala:394:33]
-  reg         idu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:395:34]
-  reg  [31:0] exu_io_pipe_in_bits_r_id2exe_reg_pc;	// @[src/main/core/Core.scala:394:33]
-  reg  [1:0]  exu_io_pipe_in_bits_r_id2exe_op1_sel;	// @[src/main/core/Core.scala:394:33]
-  reg  [1:0]  exu_io_pipe_in_bits_r_id2exe_op2_sel;	// @[src/main/core/Core.scala:394:33]
-  reg  [3:0]  exu_io_pipe_in_bits_r_id2exe_wb_addr;	// @[src/main/core/Core.scala:394:33]
-  reg  [1:0]  exu_io_pipe_in_bits_r_id2exe_rf_wen;	// @[src/main/core/Core.scala:394:33]
-  reg  [4:0]  exu_io_pipe_in_bits_r_id2exe_exe_fun;	// @[src/main/core/Core.scala:394:33]
-  reg  [2:0]  exu_io_pipe_in_bits_r_id2exe_wb_sel;	// @[src/main/core/Core.scala:394:33]
-  reg  [31:0] exu_io_pipe_in_bits_r_id2exe_imm_sext;	// @[src/main/core/Core.scala:394:33]
-  reg  [11:0] exu_io_pipe_in_bits_r_id2exe_csr_addr;	// @[src/main/core/Core.scala:394:33]
-  reg  [2:0]  exu_io_pipe_in_bits_r_id2exe_csr_cmd;	// @[src/main/core/Core.scala:394:33]
-  reg  [1:0]  exu_io_pipe_in_bits_r_id2exe_mem_wen;	// @[src/main/core/Core.scala:394:33]
-  reg  [2:0]  exu_io_pipe_in_bits_r_id2exe_mem_op;	// @[src/main/core/Core.scala:394:33]
-  reg         exu_io_pipe_in_bits_r_id2exe_is_irq;	// @[src/main/core/Core.scala:394:33]
-  reg  [3:0]  exu_io_pipe_in_bits_r_id2exe_irq_num;	// @[src/main/core/Core.scala:394:33]
-  reg  [31:0] exu_io_pipe_in_bits_r_id2exe_csr_rdata;	// @[src/main/core/Core.scala:394:33]
-  reg         exu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:395:34]
-  reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_reg_pc;	// @[src/main/core/Core.scala:394:33]
-  reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_op1_data;	// @[src/main/core/Core.scala:394:33]
-  reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_rs2_data;	// @[src/main/core/Core.scala:394:33]
-  reg  [3:0]  lsu_io_pipe_in_bits_r_exe2ls_wb_addr;	// @[src/main/core/Core.scala:394:33]
-  reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_alu_out;	// @[src/main/core/Core.scala:394:33]
-  reg  [1:0]  lsu_io_pipe_in_bits_r_exe2ls_rf_wen;	// @[src/main/core/Core.scala:394:33]
-  reg  [2:0]  lsu_io_pipe_in_bits_r_exe2ls_wb_sel;	// @[src/main/core/Core.scala:394:33]
-  reg  [11:0] lsu_io_pipe_in_bits_r_exe2ls_csr_addr;	// @[src/main/core/Core.scala:394:33]
-  reg  [2:0]  lsu_io_pipe_in_bits_r_exe2ls_csr_cmd;	// @[src/main/core/Core.scala:394:33]
-  reg  [1:0]  lsu_io_pipe_in_bits_r_exe2ls_mem_wen;	// @[src/main/core/Core.scala:394:33]
-  reg  [2:0]  lsu_io_pipe_in_bits_r_exe2ls_mem_op;	// @[src/main/core/Core.scala:394:33]
-  reg         lsu_io_pipe_in_bits_r_exe2ls_is_irq;	// @[src/main/core/Core.scala:394:33]
-  reg  [3:0]  lsu_io_pipe_in_bits_r_exe2ls_irq_num;	// @[src/main/core/Core.scala:394:33]
-  reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_csr_rdata;	// @[src/main/core/Core.scala:394:33]
-  reg         lsu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:395:34]
-  reg  [31:0] wbu_io_pipe_in_bits_r_ls2wb_reg_pc;	// @[src/main/core/Core.scala:394:33]
-  reg  [3:0]  wbu_io_pipe_in_bits_r_ls2wb_wb_addr;	// @[src/main/core/Core.scala:394:33]
-  reg  [1:0]  wbu_io_pipe_in_bits_r_ls2wb_rf_wen;	// @[src/main/core/Core.scala:394:33]
-  reg  [31:0] wbu_io_pipe_in_bits_r_ls2wb_wb_data;	// @[src/main/core/Core.scala:394:33]
-  reg  [31:0] wbu_io_pipe_in_bits_r_ls2wb_csr_wdata;	// @[src/main/core/Core.scala:394:33]
-  reg  [11:0] wbu_io_pipe_in_bits_r_ls2wb_csr_addr;	// @[src/main/core/Core.scala:394:33]
-  reg  [2:0]  wbu_io_pipe_in_bits_r_ls2wb_csr_cmd;	// @[src/main/core/Core.scala:394:33]
-  reg         wbu_io_pipe_in_bits_r_ls2wb_is_irq;	// @[src/main/core/Core.scala:394:33]
-  reg  [3:0]  wbu_io_pipe_in_bits_r_ls2wb_irq_num;	// @[src/main/core/Core.scala:394:33]
-  reg         wbu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:395:34]
+  reg  [31:0] idu_io_pipe_in_bits_r_if2id_reg_pc;	// @[src/main/core/Core.scala:349:33]
+  reg  [31:0] idu_io_pipe_in_bits_r_if2id_inst;	// @[src/main/core/Core.scala:349:33]
+  reg         idu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:350:34]
+  reg  [31:0] exu_io_pipe_in_bits_r_id2exe_reg_pc;	// @[src/main/core/Core.scala:349:33]
+  reg  [1:0]  exu_io_pipe_in_bits_r_id2exe_op1_sel;	// @[src/main/core/Core.scala:349:33]
+  reg  [1:0]  exu_io_pipe_in_bits_r_id2exe_op2_sel;	// @[src/main/core/Core.scala:349:33]
+  reg  [3:0]  exu_io_pipe_in_bits_r_id2exe_wb_addr;	// @[src/main/core/Core.scala:349:33]
+  reg  [1:0]  exu_io_pipe_in_bits_r_id2exe_rf_wen;	// @[src/main/core/Core.scala:349:33]
+  reg  [4:0]  exu_io_pipe_in_bits_r_id2exe_exe_fun;	// @[src/main/core/Core.scala:349:33]
+  reg  [2:0]  exu_io_pipe_in_bits_r_id2exe_wb_sel;	// @[src/main/core/Core.scala:349:33]
+  reg  [31:0] exu_io_pipe_in_bits_r_id2exe_imm_sext;	// @[src/main/core/Core.scala:349:33]
+  reg  [11:0] exu_io_pipe_in_bits_r_id2exe_csr_addr;	// @[src/main/core/Core.scala:349:33]
+  reg  [2:0]  exu_io_pipe_in_bits_r_id2exe_csr_cmd;	// @[src/main/core/Core.scala:349:33]
+  reg  [1:0]  exu_io_pipe_in_bits_r_id2exe_mem_wen;	// @[src/main/core/Core.scala:349:33]
+  reg  [2:0]  exu_io_pipe_in_bits_r_id2exe_mem_op;	// @[src/main/core/Core.scala:349:33]
+  reg         exu_io_pipe_in_bits_r_id2exe_is_irq;	// @[src/main/core/Core.scala:349:33]
+  reg  [3:0]  exu_io_pipe_in_bits_r_id2exe_irq_num;	// @[src/main/core/Core.scala:349:33]
+  reg  [31:0] exu_io_pipe_in_bits_r_id2exe_csr_rdata;	// @[src/main/core/Core.scala:349:33]
+  reg         exu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:350:34]
+  reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_reg_pc;	// @[src/main/core/Core.scala:349:33]
+  reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_op1_data;	// @[src/main/core/Core.scala:349:33]
+  reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_rs2_data;	// @[src/main/core/Core.scala:349:33]
+  reg  [3:0]  lsu_io_pipe_in_bits_r_exe2ls_wb_addr;	// @[src/main/core/Core.scala:349:33]
+  reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_alu_out;	// @[src/main/core/Core.scala:349:33]
+  reg  [1:0]  lsu_io_pipe_in_bits_r_exe2ls_rf_wen;	// @[src/main/core/Core.scala:349:33]
+  reg  [2:0]  lsu_io_pipe_in_bits_r_exe2ls_wb_sel;	// @[src/main/core/Core.scala:349:33]
+  reg  [11:0] lsu_io_pipe_in_bits_r_exe2ls_csr_addr;	// @[src/main/core/Core.scala:349:33]
+  reg  [2:0]  lsu_io_pipe_in_bits_r_exe2ls_csr_cmd;	// @[src/main/core/Core.scala:349:33]
+  reg  [1:0]  lsu_io_pipe_in_bits_r_exe2ls_mem_wen;	// @[src/main/core/Core.scala:349:33]
+  reg  [2:0]  lsu_io_pipe_in_bits_r_exe2ls_mem_op;	// @[src/main/core/Core.scala:349:33]
+  reg         lsu_io_pipe_in_bits_r_exe2ls_is_irq;	// @[src/main/core/Core.scala:349:33]
+  reg  [3:0]  lsu_io_pipe_in_bits_r_exe2ls_irq_num;	// @[src/main/core/Core.scala:349:33]
+  reg  [31:0] lsu_io_pipe_in_bits_r_exe2ls_csr_rdata;	// @[src/main/core/Core.scala:349:33]
+  reg         lsu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:350:34]
+  reg  [31:0] wbu_io_pipe_in_bits_r_ls2wb_reg_pc;	// @[src/main/core/Core.scala:349:33]
+  reg  [3:0]  wbu_io_pipe_in_bits_r_ls2wb_wb_addr;	// @[src/main/core/Core.scala:349:33]
+  reg  [1:0]  wbu_io_pipe_in_bits_r_ls2wb_rf_wen;	// @[src/main/core/Core.scala:349:33]
+  reg  [31:0] wbu_io_pipe_in_bits_r_ls2wb_wb_data;	// @[src/main/core/Core.scala:349:33]
+  reg  [31:0] wbu_io_pipe_in_bits_r_ls2wb_csr_wdata;	// @[src/main/core/Core.scala:349:33]
+  reg  [11:0] wbu_io_pipe_in_bits_r_ls2wb_csr_addr;	// @[src/main/core/Core.scala:349:33]
+  reg  [2:0]  wbu_io_pipe_in_bits_r_ls2wb_csr_cmd;	// @[src/main/core/Core.scala:349:33]
+  reg         wbu_io_pipe_in_bits_r_ls2wb_is_irq;	// @[src/main/core/Core.scala:349:33]
+  reg  [3:0]  wbu_io_pipe_in_bits_r_ls2wb_irq_num;	// @[src/main/core/Core.scala:349:33]
+  reg         wbu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:350:34]
   reg         raw_rs1_cnt;	// @[src/main/core/Core.scala:120:30]
   reg         raw_rs2_cnt;	// @[src/main/core/Core.scala:121:30]
-  wire        exu_is_working = ~_exu_io_pipe_in_ready | _GEN_1;	// @[src/main/core/Core.scala:31:21, :125:{26,48}, :347:{34,56}, :395:22]
-  wire        lsu_is_working = ~_lsu_io_pipe_in_ready | _GEN_0;	// @[src/main/core/Core.scala:32:21, :126:{26,48}, :348:{34,56}, :395:22]
-  wire        wbu_is_working = ~_wbu_io_pipe_in_ready | _GEN;	// @[src/main/core/Core.scala:33:21, :127:{26,48}, :349:{34,56}, :395:22]
-  reg         wbu_end_flg_REG;	// @[src/main/core/Core.scala:128:30]
-  wire        wbu_end_flg = wbu_end_flg_REG & ~wbu_is_working;	// @[src/main/core/Core.scala:127:48, :128:{30,47,49}]
-  reg         exu_raw_stage_left_valid_r;	// @[src/main/core/Core.scala:408:41]
+  reg         exu_raw_stage_left_valid_r;	// @[src/main/core/Core.scala:363:41]
   wire        _exu_raw_rs1_T =
-    _idu_io_gpr_rs1_addr == exu_io_pipe_in_bits_r_id2exe_wb_addr;	// @[src/main/core/Core.scala:30:21, :394:33, :398:48]
+    _idu_io_gpr_rs1_addr == exu_io_pipe_in_bits_r_id2exe_wb_addr;	// @[src/main/core/Core.scala:30:21, :349:33, :353:48]
   wire        _exu_raw_rs2_T =
-    _idu_io_gpr_rs2_addr == exu_io_pipe_in_bits_r_id2exe_wb_addr;	// @[src/main/core/Core.scala:30:21, :394:33, :398:48]
+    _idu_io_gpr_rs2_addr == exu_io_pipe_in_bits_r_id2exe_wb_addr;	// @[src/main/core/Core.scala:30:21, :349:33, :353:48]
   wire        exu_raw =
     (_idu_io_gpr_rs1_is_read & (|_idu_io_gpr_rs1_addr) & _exu_raw_rs1_T
      | _idu_io_gpr_rs2_is_read & (|_idu_io_gpr_rs2_addr) & _exu_raw_rs2_T)
-    & exu_is_working & exu_io_pipe_in_bits_r_id2exe_rf_wen == 2'h1
-    & exu_raw_stage_left_valid_r;	// @[src/main/core/Core.scala:30:21, :125:48, :133:132, :394:33, :398:48, :403:31, :404:31, :408:41, :409:{39,65,97,146}]
-  reg         lsu_raw_stage_left_valid_r;	// @[src/main/core/Core.scala:408:41]
+    & (~_exu_io_pipe_in_ready | _GEN_1) & exu_io_pipe_in_bits_r_id2exe_rf_wen == 2'h1
+    & exu_raw_stage_left_valid_r;	// @[src/main/core/Core.scala:30:21, :31:21, :123:{26,48}, :127:132, :302:{34,56}, :349:33, :350:22, :353:48, :358:31, :359:31, :363:41, :364:{39,65,97,146}]
+  reg         lsu_raw_stage_left_valid_r;	// @[src/main/core/Core.scala:363:41]
   wire        _lsu_raw_rs1_T =
-    _idu_io_gpr_rs1_addr == lsu_io_pipe_in_bits_r_exe2ls_wb_addr;	// @[src/main/core/Core.scala:30:21, :394:33, :398:48]
+    _idu_io_gpr_rs1_addr == lsu_io_pipe_in_bits_r_exe2ls_wb_addr;	// @[src/main/core/Core.scala:30:21, :349:33, :353:48]
   wire        _lsu_raw_rs2_T =
-    _idu_io_gpr_rs2_addr == lsu_io_pipe_in_bits_r_exe2ls_wb_addr;	// @[src/main/core/Core.scala:30:21, :394:33, :398:48]
+    _idu_io_gpr_rs2_addr == lsu_io_pipe_in_bits_r_exe2ls_wb_addr;	// @[src/main/core/Core.scala:30:21, :349:33, :353:48]
   wire        lsu_raw =
     (_idu_io_gpr_rs1_is_read & (|_idu_io_gpr_rs1_addr) & _lsu_raw_rs1_T
      | _idu_io_gpr_rs2_is_read & (|_idu_io_gpr_rs2_addr) & _lsu_raw_rs2_T)
-    & lsu_is_working & lsu_io_pipe_in_bits_r_exe2ls_rf_wen == 2'h1
-    & lsu_raw_stage_left_valid_r;	// @[src/main/core/Core.scala:30:21, :126:48, :133:132, :134:132, :394:33, :398:48, :403:31, :404:31, :408:41, :409:{39,65,97,146}]
-  reg         wbu_raw_stage_left_valid_r;	// @[src/main/core/Core.scala:408:41]
+    & (~_lsu_io_pipe_in_ready | _GEN_0) & lsu_io_pipe_in_bits_r_exe2ls_rf_wen == 2'h1
+    & lsu_raw_stage_left_valid_r;	// @[src/main/core/Core.scala:30:21, :32:21, :124:{26,48}, :127:132, :128:132, :303:{34,56}, :349:33, :350:22, :353:48, :358:31, :359:31, :363:41, :364:{39,65,97,146}]
+  reg         wbu_raw_stage_left_valid_r;	// @[src/main/core/Core.scala:363:41]
   wire        _wbu_raw_rs1_T =
-    _idu_io_gpr_rs1_addr == wbu_io_pipe_in_bits_r_ls2wb_wb_addr;	// @[src/main/core/Core.scala:30:21, :394:33, :398:48]
+    _idu_io_gpr_rs1_addr == wbu_io_pipe_in_bits_r_ls2wb_wb_addr;	// @[src/main/core/Core.scala:30:21, :349:33, :353:48]
   wire        _wbu_raw_rs2_T =
-    _idu_io_gpr_rs2_addr == wbu_io_pipe_in_bits_r_ls2wb_wb_addr;	// @[src/main/core/Core.scala:30:21, :394:33, :398:48]
+    _idu_io_gpr_rs2_addr == wbu_io_pipe_in_bits_r_ls2wb_wb_addr;	// @[src/main/core/Core.scala:30:21, :349:33, :353:48]
   wire        wbu_raw =
     (_idu_io_gpr_rs1_is_read & (|_idu_io_gpr_rs1_addr) & _wbu_raw_rs1_T
      | _idu_io_gpr_rs2_is_read & (|_idu_io_gpr_rs2_addr) & _wbu_raw_rs2_T)
-    & wbu_is_working & wbu_io_pipe_in_bits_r_ls2wb_rf_wen == 2'h1
-    & wbu_raw_stage_left_valid_r;	// @[src/main/core/Core.scala:30:21, :127:48, :133:132, :135:130, :394:33, :398:48, :403:31, :404:31, :408:41, :409:{39,65,97,146}]
-  wire        is_raw = exu_raw | lsu_raw | wbu_raw;	// @[src/main/core/Core.scala:136:37, :409:146]
-  wire        exu_raw_rs1 = exu_raw & _exu_raw_rs1_T;	// @[src/main/core/Core.scala:137:31, :398:48, :409:146]
-  wire        exu_raw_rs2 = exu_raw & _exu_raw_rs2_T;	// @[src/main/core/Core.scala:138:31, :398:48, :409:146]
-  wire        lsu_raw_rs1 = lsu_raw & _lsu_raw_rs1_T;	// @[src/main/core/Core.scala:139:31, :398:48, :409:146]
-  wire        lsu_raw_rs2 = lsu_raw & _lsu_raw_rs2_T;	// @[src/main/core/Core.scala:140:31, :398:48, :409:146]
-  wire        wbu_raw_rs1 = wbu_raw & _wbu_raw_rs1_T;	// @[src/main/core/Core.scala:141:31, :398:48, :409:146]
-  wire        wbu_raw_rs2 = wbu_raw & _wbu_raw_rs2_T;	// @[src/main/core/Core.scala:142:31, :398:48, :409:146]
-  wire        rs1_raw = exu_raw_rs1 | lsu_raw_rs1 | wbu_raw_rs1;	// @[src/main/core/Core.scala:137:31, :139:31, :141:31, :143:46]
-  wire        rs2_raw = exu_raw_rs2 | lsu_raw_rs2 | wbu_raw_rs2;	// @[src/main/core/Core.scala:138:31, :140:31, :142:31, :144:46]
-  reg         exu_rs1_rawing;	// @[src/main/core/Core.scala:162:33]
-  reg         exu_rs2_rawing;	// @[src/main/core/Core.scala:163:33]
-  reg         lsu_rs1_rawing;	// @[src/main/core/Core.scala:164:33]
-  reg         lsu_rs2_rawing;	// @[src/main/core/Core.scala:165:33]
-  reg         wbu_rs1_rawing;	// @[src/main/core/Core.scala:166:33]
-  reg         wbu_rs2_rawing;	// @[src/main/core/Core.scala:167:33]
-  wire        rs1_rawing = exu_rs1_rawing | lsu_rs1_rawing | wbu_rs1_rawing;	// @[src/main/core/Core.scala:162:33, :164:33, :166:33, :174:55]
-  wire        rs2_rawing = exu_rs2_rawing | lsu_rs2_rawing | wbu_rs2_rawing;	// @[src/main/core/Core.scala:163:33, :165:33, :167:33, :175:55]
-  wire        rawing = rs1_rawing | rs2_rawing;	// @[src/main/core/Core.scala:174:55, :175:55, :176:29]
-  reg         bt_fwd_fsh_rs1;	// @[src/main/core/Core.scala:187:33]
-  reg         bt_fwd_fsh_rs2;	// @[src/main/core/Core.scala:189:33]
-  wire        bt_fwd_fsh = bt_fwd_fsh_rs1 | bt_fwd_fsh_rs2;	// @[src/main/core/Core.scala:187:33, :189:33, :191:37]
-  wire        _exu_can_forward_rs1_T = exu_rs1_rawing | exu_raw_rs1;	// @[src/main/core/Core.scala:137:31, :162:33, :197:47]
-  wire        _exu_can_forward_rs2_T_1 = exu_io_pipe_in_bits_r_id2exe_wb_sel != 3'h1;	// @[src/main/core/Core.scala:197:101, :394:33]
+    & (~_wbu_io_pipe_in_ready | _GEN) & wbu_io_pipe_in_bits_r_ls2wb_rf_wen == 2'h1
+    & wbu_raw_stage_left_valid_r;	// @[src/main/core/Core.scala:30:21, :33:21, :125:{26,48}, :127:132, :129:130, :304:{34,56}, :349:33, :350:22, :353:48, :358:31, :359:31, :363:41, :364:{39,65,97,146}]
+  wire        exu_raw_rs1 = exu_raw & _exu_raw_rs1_T;	// @[src/main/core/Core.scala:131:31, :353:48, :364:146]
+  wire        exu_raw_rs2 = exu_raw & _exu_raw_rs2_T;	// @[src/main/core/Core.scala:132:31, :353:48, :364:146]
+  wire        lsu_raw_rs1 = lsu_raw & _lsu_raw_rs1_T;	// @[src/main/core/Core.scala:133:31, :353:48, :364:146]
+  wire        lsu_raw_rs2 = lsu_raw & _lsu_raw_rs2_T;	// @[src/main/core/Core.scala:134:31, :353:48, :364:146]
+  wire        wbu_raw_rs1 = wbu_raw & _wbu_raw_rs1_T;	// @[src/main/core/Core.scala:135:31, :353:48, :364:146]
+  wire        wbu_raw_rs2 = wbu_raw & _wbu_raw_rs2_T;	// @[src/main/core/Core.scala:136:31, :353:48, :364:146]
+  wire        rs1_raw = exu_raw_rs1 | lsu_raw_rs1 | wbu_raw_rs1;	// @[src/main/core/Core.scala:131:31, :133:31, :135:31, :137:46]
+  wire        rs2_raw = exu_raw_rs2 | lsu_raw_rs2 | wbu_raw_rs2;	// @[src/main/core/Core.scala:132:31, :134:31, :136:31, :138:46]
+  reg         exu_rs1_rawing;	// @[src/main/core/Core.scala:144:33]
+  reg         exu_rs2_rawing;	// @[src/main/core/Core.scala:145:33]
+  reg         lsu_rs1_rawing;	// @[src/main/core/Core.scala:146:33]
+  reg         lsu_rs2_rawing;	// @[src/main/core/Core.scala:147:33]
+  reg         wbu_rs1_rawing;	// @[src/main/core/Core.scala:148:33]
+  reg         wbu_rs2_rawing;	// @[src/main/core/Core.scala:149:33]
+  wire        rs1_rawing = exu_rs1_rawing | lsu_rs1_rawing | wbu_rs1_rawing;	// @[src/main/core/Core.scala:144:33, :146:33, :148:33, :156:55]
+  wire        rs2_rawing = exu_rs2_rawing | lsu_rs2_rawing | wbu_rs2_rawing;	// @[src/main/core/Core.scala:145:33, :147:33, :149:33, :157:55]
+  reg         bt_fwd_fsh_rs1;	// @[src/main/core/Core.scala:160:33]
+  reg         bt_fwd_fsh_rs2;	// @[src/main/core/Core.scala:162:33]
+  wire        _exu_can_forward_rs1_T = exu_rs1_rawing | exu_raw_rs1;	// @[src/main/core/Core.scala:131:31, :144:33, :167:47]
+  wire        _exu_can_forward_rs2_T_1 = exu_io_pipe_in_bits_r_id2exe_wb_sel != 3'h1;	// @[src/main/core/Core.scala:167:101, :349:33]
   wire        _lsu_can_forward_rs2_T_2 = _wbu_io_pipe_in_ready & _lsu_io_pipe_out_valid;	// @[src/main/core/Core.scala:32:21, :33:21, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   wire        _lsu_can_forward_rs1_T_3 =
-    _lsu_io_pipe_out_bits_ls2wb_wb_addr == _idu_io_gpr_rs1_addr;	// @[src/main/core/Core.scala:30:21, :32:21, :197:175]
+    _lsu_io_pipe_out_bits_ls2wb_wb_addr == _idu_io_gpr_rs1_addr;	// @[src/main/core/Core.scala:30:21, :32:21, :167:175]
   wire        exu_can_forward_rs1 =
     _exu_can_forward_rs1_T
-    & (_exu_can_forward_rs2_T_1 | _lsu_can_forward_rs2_T_2 & _lsu_can_forward_rs1_T_3);	// @[src/main/core/Core.scala:197:{47,63,101,112,137,175}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
-  wire        _exu_can_forward_rs2_T = exu_rs2_rawing | exu_raw_rs2;	// @[src/main/core/Core.scala:138:31, :163:33, :198:47]
+    & (_exu_can_forward_rs2_T_1 | _lsu_can_forward_rs2_T_2 & _lsu_can_forward_rs1_T_3);	// @[src/main/core/Core.scala:167:{47,63,101,112,137,175}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+  wire        _exu_can_forward_rs2_T = exu_rs2_rawing | exu_raw_rs2;	// @[src/main/core/Core.scala:132:31, :145:33, :168:47]
   wire        _lsu_can_forward_rs2_T_3 =
-    _lsu_io_pipe_out_bits_ls2wb_wb_addr == _idu_io_gpr_rs2_addr;	// @[src/main/core/Core.scala:30:21, :32:21, :198:175]
+    _lsu_io_pipe_out_bits_ls2wb_wb_addr == _idu_io_gpr_rs2_addr;	// @[src/main/core/Core.scala:30:21, :32:21, :168:175]
   wire        exu_can_forward_rs2 =
     _exu_can_forward_rs2_T
-    & (_exu_can_forward_rs2_T_1 | _lsu_can_forward_rs2_T_2 & _lsu_can_forward_rs2_T_3);	// @[src/main/core/Core.scala:197:101, :198:{47,63,112,137,175}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
-  wire        _lsu_can_forward_rs1_T = lsu_rs1_rawing | lsu_raw_rs1;	// @[src/main/core/Core.scala:139:31, :164:33, :199:47]
-  wire        _lsu_can_forward_rs2_T_1 = lsu_io_pipe_in_bits_r_exe2ls_wb_sel != 3'h1;	// @[src/main/core/Core.scala:197:101, :199:101, :394:33]
+    & (_exu_can_forward_rs2_T_1 | _lsu_can_forward_rs2_T_2 & _lsu_can_forward_rs2_T_3);	// @[src/main/core/Core.scala:167:101, :168:{47,63,112,137,175}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+  wire        _lsu_can_forward_rs1_T = lsu_rs1_rawing | lsu_raw_rs1;	// @[src/main/core/Core.scala:133:31, :146:33, :169:47]
+  wire        _lsu_can_forward_rs2_T_1 = lsu_io_pipe_in_bits_r_exe2ls_wb_sel != 3'h1;	// @[src/main/core/Core.scala:167:101, :169:101, :349:33]
   wire        lsu_can_forward_rs1 =
     _lsu_can_forward_rs1_T
-    & (_lsu_can_forward_rs2_T_1 | _lsu_can_forward_rs2_T_2 & _lsu_can_forward_rs1_T_3);	// @[src/main/core/Core.scala:197:175, :199:{47,63,101,112,137}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
-  wire        _lsu_can_forward_rs2_T = lsu_rs2_rawing | lsu_raw_rs2;	// @[src/main/core/Core.scala:140:31, :165:33, :200:47]
+    & (_lsu_can_forward_rs2_T_1 | _lsu_can_forward_rs2_T_2 & _lsu_can_forward_rs1_T_3);	// @[src/main/core/Core.scala:167:175, :169:{47,63,101,112,137}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+  wire        _lsu_can_forward_rs2_T = lsu_rs2_rawing | lsu_raw_rs2;	// @[src/main/core/Core.scala:134:31, :147:33, :170:47]
   wire        lsu_can_forward_rs2 =
     _lsu_can_forward_rs2_T
-    & (_lsu_can_forward_rs2_T_1 | _lsu_can_forward_rs2_T_2 & _lsu_can_forward_rs2_T_3);	// @[src/main/core/Core.scala:198:175, :199:101, :200:{47,63,112,137}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
-  wire        wbu_can_forward_rs1 = wbu_rs1_rawing | wbu_raw_rs1;	// @[src/main/core/Core.scala:141:31, :166:33, :201:47]
-  wire        wbu_can_forward_rs2 = wbu_rs2_rawing | wbu_raw_rs2;	// @[src/main/core/Core.scala:142:31, :167:33, :202:47]
+    & (_lsu_can_forward_rs2_T_1 | _lsu_can_forward_rs2_T_2 & _lsu_can_forward_rs2_T_3);	// @[src/main/core/Core.scala:168:175, :169:101, :170:{47,63,112,137}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+  wire        wbu_can_forward_rs1 = wbu_rs1_rawing | wbu_raw_rs1;	// @[src/main/core/Core.scala:135:31, :148:33, :171:47]
+  wire        wbu_can_forward_rs2 = wbu_rs2_rawing | wbu_raw_rs2;	// @[src/main/core/Core.scala:136:31, :149:33, :172:47]
+  wire        rd1_forward_en =
+    _exu_can_forward_rs1_T
+      ? exu_can_forward_rs1 & ~bt_fwd_fsh_rs1
+      : _lsu_can_forward_rs1_T
+          ? lsu_can_forward_rs1 & ~bt_fwd_fsh_rs1
+          : wbu_can_forward_rs1 & ~bt_fwd_fsh_rs1;	// @[src/main/core/Core.scala:160:33, :167:{47,63}, :169:{47,63}, :171:47, :182:40, :183:{24,47,50}, :184:46, :185:{24,47,50}, :186:46, :187:{24,50}, :189:24]
+  wire        rd2_forward_en =
+    _exu_can_forward_rs2_T
+      ? exu_can_forward_rs2 & ~bt_fwd_fsh_rs2
+      : _lsu_can_forward_rs2_T
+          ? lsu_can_forward_rs2 & ~bt_fwd_fsh_rs2
+          : wbu_can_forward_rs2 & ~bt_fwd_fsh_rs2;	// @[src/main/core/Core.scala:162:33, :168:{47,63}, :170:{47,63}, :172:47, :191:40, :192:{24,47,50}, :193:46, :194:{24,47,50}, :195:46, :196:{24,50}, :198:24]
+  reg  [31:0] rd1_forward_data_r;	// @[src/main/core/Core.scala:210:39]
+  reg  [31:0] rd2_forward_data_r;	// @[src/main/core/Core.scala:211:39]
+  reg  [31:0] exu_io_pipe_in_bits_id2exe_rs1_data_r;	// @[src/main/core/Core.scala:216:53]
+  reg  [31:0] exu_io_pipe_in_bits_id2exe_rs2_data_r;	// @[src/main/core/Core.scala:217:53]
+  reg         is_irq;	// @[src/main/core/Core.scala:262:25]
+  reg         is_mret_rise_REG;	// @[src/main/core/Core.scala:268:49]
+  wire        is_mret_rise = _idu_io_is_mret & ~is_mret_rise_REG;	// @[src/main/core/Core.scala:30:21, :268:{39,41,49}]
+  reg         is_mret_r;	// @[src/main/core/Core.scala:270:28]
+  wire        is_ctrl_hazard =
+    (_exu_io_br_flg & _exu_io_br_target != _ifu_io_pipe_out_bits_if2id_reg_pc
+     | _exu_io_jmp_flg & _exu_io_alu_out != _ifu_io_pipe_out_bits_if2id_reg_pc)
+    & _exu_io_pipe_out_valid;	// @[src/main/core/Core.scala:29:21, :31:21, :273:{42,62,101,120,138,178}]
+  reg         is_ctrl_hazard_r;	// @[src/main/core/Core.scala:276:35]
+  reg         is_irq_r;	// @[src/main/core/Core.scala:277:27]
+  wire        _idu_io_hazard_flush_flg_T = is_ctrl_hazard | is_irq;	// @[src/main/core/Core.scala:262:25, :273:178, :281:47]
+  wire        _GEN_2 = ~_idu_io_hazard_flush_flg_T & ifu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:42:{26,38}, :281:47, :300:{34,56}]
+  wire        _GEN_3 = ~_idu_io_hazard_flush_flg_T & idu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:42:26, :281:47, :300:{34,56}, :301:{34,56}, :350:{22,34}]
+  assign _GEN_1 = ~is_irq & exu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:262:25, :302:{34,56}, :350:{22,34}]
+  assign _GEN_0 = ~is_irq & lsu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:262:25, :302:{34,56}, :303:{34,56}, :350:{22,34}]
+  assign _GEN = ~is_irq & wbu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:262:25, :302:{34,56}, :304:{34,56}, :350:{22,34}]
+  wire        _is_irq_r_T = _ifu_io_pipe_in_ready & _GEN_2;	// @[src/main/core/Core.scala:29:21, :42:26, :271:69, :300:{34,56}]
+  wire        _exu_io_pipe_in_bits_id2exe_rs2_data_T_5 =
+    _exu_io_pipe_in_ready & _idu_io_pipe_out_valid;	// @[src/main/core/Core.scala:30:21, :31:21, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   wire [31:0] exu_forward_data =
     exu_io_pipe_in_bits_r_id2exe_wb_sel == 3'h1
       ? _lsu_io_pipe_out_bits_ls2wb_wb_data
@@ -321,169 +348,133 @@ module Core(	// @[src/main/core/Core.scala:23:7]
               ? _exu_io_pipe_out_bits_exe2ls_csr_rdata
               : exu_io_pipe_in_bits_r_id2exe_wb_sel == 3'h2
                   ? _exu_io_pipe_out_bits_exe2ls_reg_pc + 32'h4
-                  : 32'h0;	// @[src/main/core/Core.scala:31:21, :32:21, :197:101, :203:77, :204:59, :394:33]
-  wire        rd1_forward_en =
-    _exu_can_forward_rs1_T
-      ? exu_can_forward_rs1 & ~bt_fwd_fsh_rs1
-      : _lsu_can_forward_rs1_T
-          ? lsu_can_forward_rs1 & ~bt_fwd_fsh_rs1
-          : wbu_can_forward_rs1 & wbu_can_forward_rs1 & ~bt_fwd_fsh_rs1;	// @[src/main/core/Core.scala:158:30, :187:33, :197:{47,63}, :199:{47,63}, :201:47, :221:40, :222:{24,47,50}, :223:46, :224:{24,47,50}, :225:46, :226:{24,50}, :228:24]
-  wire        rd2_forward_en =
-    _exu_can_forward_rs2_T
-      ? exu_can_forward_rs2 & ~bt_fwd_fsh_rs2
-      : _lsu_can_forward_rs2_T
-          ? lsu_can_forward_rs2 & ~bt_fwd_fsh_rs2
-          : wbu_can_forward_rs2 & wbu_can_forward_rs2 & ~bt_fwd_fsh_rs2;	// @[src/main/core/Core.scala:159:30, :189:33, :198:{47,63}, :200:{47,63}, :202:47, :230:40, :231:{24,47,50}, :232:46, :233:{24,47,50}, :234:46, :235:{24,50}, :237:24]
-  wire [31:0] rd1_forward_data =
-    rd1_forward_en
-      ? (exu_can_forward_rs1
-           ? exu_forward_data
-           : lsu_can_forward_rs1
-               ? _lsu_io_pipe_out_bits_ls2wb_wb_data
-               : wbu_can_forward_rs1 ? _wbu_io_gpr_wdata : 32'h0)
-      : _idu_io_pipe_out_bits_id2exe_rs1_data;	// @[src/main/core/Core.scala:30:21, :32:21, :33:21, :158:30, :197:63, :199:63, :201:47, :203:77, :239:31, src/main/scala/chisel3/util/Mux.scala:126:16]
-  wire [31:0] rd2_forward_data =
-    rd2_forward_en
-      ? (exu_can_forward_rs2
-           ? exu_forward_data
-           : lsu_can_forward_rs2
-               ? _lsu_io_pipe_out_bits_ls2wb_wb_data
-               : wbu_can_forward_rs2 ? _wbu_io_gpr_wdata : 32'h0)
-      : _idu_io_pipe_out_bits_id2exe_rs2_data;	// @[src/main/core/Core.scala:30:21, :32:21, :33:21, :159:30, :198:63, :200:63, :202:47, :203:77, :244:31, src/main/scala/chisel3/util/Mux.scala:126:16]
-  reg  [31:0] rd1_forward_data_r;	// @[src/main/core/Core.scala:249:39]
-  reg  [31:0] rd2_forward_data_r;	// @[src/main/core/Core.scala:250:39]
-  reg  [31:0] exu_io_pipe_in_bits_id2exe_rs1_data_r;	// @[src/main/core/Core.scala:261:53]
-  reg  [31:0] exu_io_pipe_in_bits_id2exe_rs2_data_r;	// @[src/main/core/Core.scala:262:53]
-  reg         is_irq;	// @[src/main/core/Core.scala:307:25]
-  reg         is_mret_rise_REG;	// @[src/main/core/Core.scala:313:49]
-  wire        is_mret_rise = _idu_io_is_mret & ~is_mret_rise_REG;	// @[src/main/core/Core.scala:30:21, :313:{39,41,49}]
-  reg         is_mret_r;	// @[src/main/core/Core.scala:315:28]
-  wire        is_ctrl_hazard =
-    (_exu_io_br_flg & _exu_io_br_target != _ifu_io_pipe_out_bits_if2id_reg_pc
-     | _exu_io_jmp_flg & _exu_io_alu_out != _ifu_io_pipe_out_bits_if2id_reg_pc)
-    & _exu_io_pipe_out_valid;	// @[src/main/core/Core.scala:29:21, :31:21, :318:{42,62,101,120,138,178}]
-  reg         is_ctrl_hazard_r;	// @[src/main/core/Core.scala:321:35]
-  reg         is_irq_r;	// @[src/main/core/Core.scala:322:27]
-  wire        _idu_io_hazard_flush_flg_T = is_ctrl_hazard | is_irq;	// @[src/main/core/Core.scala:307:25, :318:178, :326:47]
-  wire        _GEN_2 = ~_idu_io_hazard_flush_flg_T & ifu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:42:{26,38}, :326:47, :345:{34,56}]
-  wire        _GEN_3 = ~_idu_io_hazard_flush_flg_T & idu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:42:26, :326:47, :345:{34,56}, :346:{34,56}, :395:{22,34}]
-  assign _GEN_1 = ~is_irq & exu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:307:25, :347:{34,56}, :395:{22,34}]
-  assign _GEN_0 = ~is_irq & lsu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:307:25, :347:{34,56}, :348:{34,56}, :395:{22,34}]
-  assign _GEN = ~is_irq & wbu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:307:25, :347:{34,56}, :349:{34,56}, :395:{22,34}]
-  wire        _is_irq_r_T = _ifu_io_pipe_in_ready & _GEN_2;	// @[src/main/core/Core.scala:29:21, :42:26, :316:69, :345:{34,56}]
-  wire        _exu_io_pipe_in_bits_id2exe_rs2_data_T_5 =
-    _exu_io_pipe_in_ready & _idu_io_pipe_out_valid;	// @[src/main/core/Core.scala:30:21, :31:21, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+                  : 32'h0;	// @[src/main/core/Core.scala:31:21, :32:21, :167:101, :173:77, :174:59, :349:33]
+  wire [31:0] _rd1_forward_data_T_2 =
+    exu_can_forward_rs1
+      ? exu_forward_data
+      : lsu_can_forward_rs1
+          ? _lsu_io_pipe_out_bits_ls2wb_wb_data
+          : wbu_can_forward_rs1 ? _wbu_io_gpr_wdata : 32'h0;	// @[src/main/core/Core.scala:32:21, :33:21, :167:63, :169:63, :171:47, :173:77, src/main/scala/chisel3/util/Mux.scala:126:16]
+  wire [31:0] _rd2_forward_data_T_2 =
+    exu_can_forward_rs2
+      ? exu_forward_data
+      : lsu_can_forward_rs2
+          ? _lsu_io_pipe_out_bits_ls2wb_wb_data
+          : wbu_can_forward_rs2 ? _wbu_io_gpr_wdata : 32'h0;	// @[src/main/core/Core.scala:32:21, :33:21, :168:63, :170:63, :172:47, :173:77, src/main/scala/chisel3/util/Mux.scala:126:16]
   always @(posedge clock) begin	// @[src/main/core/Core.scala:23:7]
     ready_r <= _ifu_io_pipe_in_ready;	// @[src/main/core/Core.scala:29:21, :41:26]
-    if (_ifu_io_pipe_out_valid & _idu_io_pipe_in_ready) begin	// @[src/main/core/Core.scala:29:21, :30:21, :394:62]
-      idu_io_pipe_in_bits_r_if2id_reg_pc <= _ifu_io_pipe_out_bits_if2id_reg_pc;	// @[src/main/core/Core.scala:29:21, :394:33]
-      idu_io_pipe_in_bits_r_if2id_inst <= _ifu_io_pipe_out_bits_if2id_inst;	// @[src/main/core/Core.scala:29:21, :394:33]
+    if (_ifu_io_pipe_out_valid & _idu_io_pipe_in_ready) begin	// @[src/main/core/Core.scala:29:21, :30:21, :349:62]
+      idu_io_pipe_in_bits_r_if2id_reg_pc <= _ifu_io_pipe_out_bits_if2id_reg_pc;	// @[src/main/core/Core.scala:29:21, :349:33]
+      idu_io_pipe_in_bits_r_if2id_inst <= _ifu_io_pipe_out_bits_if2id_inst;	// @[src/main/core/Core.scala:29:21, :349:33]
     end
     if (_idu_io_pipe_in_ready)	// @[src/main/core/Core.scala:30:21]
-      idu_io_pipe_in_valid_r <= _ifu_io_pipe_out_valid;	// @[src/main/core/Core.scala:29:21, :395:34]
-    if (_idu_io_pipe_out_valid & _exu_io_pipe_in_ready) begin	// @[src/main/core/Core.scala:30:21, :31:21, :394:62]
-      exu_io_pipe_in_bits_r_id2exe_reg_pc <= _idu_io_pipe_out_bits_id2exe_reg_pc;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_op1_sel <= _idu_io_pipe_out_bits_id2exe_op1_sel;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_op2_sel <= _idu_io_pipe_out_bits_id2exe_op2_sel;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_wb_addr <= _idu_io_pipe_out_bits_id2exe_wb_addr;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_rf_wen <= _idu_io_pipe_out_bits_id2exe_rf_wen;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_exe_fun <= _idu_io_pipe_out_bits_id2exe_exe_fun;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_wb_sel <= _idu_io_pipe_out_bits_id2exe_wb_sel;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_imm_sext <= _idu_io_pipe_out_bits_id2exe_imm_sext;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_csr_addr <= _idu_io_pipe_out_bits_id2exe_csr_addr;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_csr_cmd <= _idu_io_pipe_out_bits_id2exe_csr_cmd;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_mem_wen <= _idu_io_pipe_out_bits_id2exe_mem_wen;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_mem_op <= _idu_io_pipe_out_bits_id2exe_mem_op;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_is_irq <= _idu_io_pipe_out_bits_id2exe_is_irq;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_irq_num <= _idu_io_pipe_out_bits_id2exe_irq_num;	// @[src/main/core/Core.scala:30:21, :394:33]
-      exu_io_pipe_in_bits_r_id2exe_csr_rdata <= _idu_io_pipe_out_bits_id2exe_csr_rdata;	// @[src/main/core/Core.scala:30:21, :394:33]
+      idu_io_pipe_in_valid_r <= _ifu_io_pipe_out_valid;	// @[src/main/core/Core.scala:29:21, :350:34]
+    if (_idu_io_pipe_out_valid & _exu_io_pipe_in_ready) begin	// @[src/main/core/Core.scala:30:21, :31:21, :349:62]
+      exu_io_pipe_in_bits_r_id2exe_reg_pc <= _idu_io_pipe_out_bits_id2exe_reg_pc;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_op1_sel <= _idu_io_pipe_out_bits_id2exe_op1_sel;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_op2_sel <= _idu_io_pipe_out_bits_id2exe_op2_sel;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_wb_addr <= _idu_io_pipe_out_bits_id2exe_wb_addr;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_rf_wen <= _idu_io_pipe_out_bits_id2exe_rf_wen;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_exe_fun <= _idu_io_pipe_out_bits_id2exe_exe_fun;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_wb_sel <= _idu_io_pipe_out_bits_id2exe_wb_sel;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_imm_sext <= _idu_io_pipe_out_bits_id2exe_imm_sext;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_csr_addr <= _idu_io_pipe_out_bits_id2exe_csr_addr;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_csr_cmd <= _idu_io_pipe_out_bits_id2exe_csr_cmd;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_mem_wen <= _idu_io_pipe_out_bits_id2exe_mem_wen;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_mem_op <= _idu_io_pipe_out_bits_id2exe_mem_op;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_is_irq <= _idu_io_pipe_out_bits_id2exe_is_irq;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_irq_num <= _idu_io_pipe_out_bits_id2exe_irq_num;	// @[src/main/core/Core.scala:30:21, :349:33]
+      exu_io_pipe_in_bits_r_id2exe_csr_rdata <= _idu_io_pipe_out_bits_id2exe_csr_rdata;	// @[src/main/core/Core.scala:30:21, :349:33]
     end
     if (_exu_io_pipe_in_ready)	// @[src/main/core/Core.scala:31:21]
-      exu_io_pipe_in_valid_r <= _idu_io_pipe_out_valid;	// @[src/main/core/Core.scala:30:21, :395:34]
-    if (_exu_io_pipe_out_valid & _lsu_io_pipe_in_ready) begin	// @[src/main/core/Core.scala:31:21, :32:21, :394:62]
-      lsu_io_pipe_in_bits_r_exe2ls_reg_pc <= _exu_io_pipe_out_bits_exe2ls_reg_pc;	// @[src/main/core/Core.scala:31:21, :394:33]
-      lsu_io_pipe_in_bits_r_exe2ls_op1_data <= _exu_io_pipe_out_bits_exe2ls_op1_data;	// @[src/main/core/Core.scala:31:21, :394:33]
-      lsu_io_pipe_in_bits_r_exe2ls_rs2_data <= _exu_io_pipe_out_bits_exe2ls_rs2_data;	// @[src/main/core/Core.scala:31:21, :394:33]
-      lsu_io_pipe_in_bits_r_exe2ls_wb_addr <= _exu_io_pipe_out_bits_exe2ls_wb_addr;	// @[src/main/core/Core.scala:31:21, :394:33]
-      lsu_io_pipe_in_bits_r_exe2ls_alu_out <= _exu_io_pipe_out_bits_exe2ls_alu_out;	// @[src/main/core/Core.scala:31:21, :394:33]
-      lsu_io_pipe_in_bits_r_exe2ls_rf_wen <= _exu_io_pipe_out_bits_exe2ls_rf_wen;	// @[src/main/core/Core.scala:31:21, :394:33]
-      lsu_io_pipe_in_bits_r_exe2ls_wb_sel <= _exu_io_pipe_out_bits_exe2ls_wb_sel;	// @[src/main/core/Core.scala:31:21, :394:33]
-      lsu_io_pipe_in_bits_r_exe2ls_csr_addr <= _exu_io_pipe_out_bits_exe2ls_csr_addr;	// @[src/main/core/Core.scala:31:21, :394:33]
-      lsu_io_pipe_in_bits_r_exe2ls_csr_cmd <= _exu_io_pipe_out_bits_exe2ls_csr_cmd;	// @[src/main/core/Core.scala:31:21, :394:33]
-      lsu_io_pipe_in_bits_r_exe2ls_mem_wen <= _exu_io_pipe_out_bits_exe2ls_mem_wen;	// @[src/main/core/Core.scala:31:21, :394:33]
-      lsu_io_pipe_in_bits_r_exe2ls_mem_op <= _exu_io_pipe_out_bits_exe2ls_mem_op;	// @[src/main/core/Core.scala:31:21, :394:33]
-      lsu_io_pipe_in_bits_r_exe2ls_is_irq <= _exu_io_pipe_out_bits_exe2ls_is_irq;	// @[src/main/core/Core.scala:31:21, :394:33]
-      lsu_io_pipe_in_bits_r_exe2ls_irq_num <= _exu_io_pipe_out_bits_exe2ls_irq_num;	// @[src/main/core/Core.scala:31:21, :394:33]
-      lsu_io_pipe_in_bits_r_exe2ls_csr_rdata <= _exu_io_pipe_out_bits_exe2ls_csr_rdata;	// @[src/main/core/Core.scala:31:21, :394:33]
+      exu_io_pipe_in_valid_r <= _idu_io_pipe_out_valid;	// @[src/main/core/Core.scala:30:21, :350:34]
+    if (_exu_io_pipe_out_valid & _lsu_io_pipe_in_ready) begin	// @[src/main/core/Core.scala:31:21, :32:21, :349:62]
+      lsu_io_pipe_in_bits_r_exe2ls_reg_pc <= _exu_io_pipe_out_bits_exe2ls_reg_pc;	// @[src/main/core/Core.scala:31:21, :349:33]
+      lsu_io_pipe_in_bits_r_exe2ls_op1_data <= _exu_io_pipe_out_bits_exe2ls_op1_data;	// @[src/main/core/Core.scala:31:21, :349:33]
+      lsu_io_pipe_in_bits_r_exe2ls_rs2_data <= _exu_io_pipe_out_bits_exe2ls_rs2_data;	// @[src/main/core/Core.scala:31:21, :349:33]
+      lsu_io_pipe_in_bits_r_exe2ls_wb_addr <= _exu_io_pipe_out_bits_exe2ls_wb_addr;	// @[src/main/core/Core.scala:31:21, :349:33]
+      lsu_io_pipe_in_bits_r_exe2ls_alu_out <= _exu_io_pipe_out_bits_exe2ls_alu_out;	// @[src/main/core/Core.scala:31:21, :349:33]
+      lsu_io_pipe_in_bits_r_exe2ls_rf_wen <= _exu_io_pipe_out_bits_exe2ls_rf_wen;	// @[src/main/core/Core.scala:31:21, :349:33]
+      lsu_io_pipe_in_bits_r_exe2ls_wb_sel <= _exu_io_pipe_out_bits_exe2ls_wb_sel;	// @[src/main/core/Core.scala:31:21, :349:33]
+      lsu_io_pipe_in_bits_r_exe2ls_csr_addr <= _exu_io_pipe_out_bits_exe2ls_csr_addr;	// @[src/main/core/Core.scala:31:21, :349:33]
+      lsu_io_pipe_in_bits_r_exe2ls_csr_cmd <= _exu_io_pipe_out_bits_exe2ls_csr_cmd;	// @[src/main/core/Core.scala:31:21, :349:33]
+      lsu_io_pipe_in_bits_r_exe2ls_mem_wen <= _exu_io_pipe_out_bits_exe2ls_mem_wen;	// @[src/main/core/Core.scala:31:21, :349:33]
+      lsu_io_pipe_in_bits_r_exe2ls_mem_op <= _exu_io_pipe_out_bits_exe2ls_mem_op;	// @[src/main/core/Core.scala:31:21, :349:33]
+      lsu_io_pipe_in_bits_r_exe2ls_is_irq <= _exu_io_pipe_out_bits_exe2ls_is_irq;	// @[src/main/core/Core.scala:31:21, :349:33]
+      lsu_io_pipe_in_bits_r_exe2ls_irq_num <= _exu_io_pipe_out_bits_exe2ls_irq_num;	// @[src/main/core/Core.scala:31:21, :349:33]
+      lsu_io_pipe_in_bits_r_exe2ls_csr_rdata <= _exu_io_pipe_out_bits_exe2ls_csr_rdata;	// @[src/main/core/Core.scala:31:21, :349:33]
     end
     if (_lsu_io_pipe_in_ready)	// @[src/main/core/Core.scala:32:21]
-      lsu_io_pipe_in_valid_r <= _exu_io_pipe_out_valid;	// @[src/main/core/Core.scala:31:21, :395:34]
-    if (_lsu_io_pipe_out_valid & _wbu_io_pipe_in_ready) begin	// @[src/main/core/Core.scala:32:21, :33:21, :394:62]
-      wbu_io_pipe_in_bits_r_ls2wb_reg_pc <= _lsu_io_pipe_out_bits_ls2wb_reg_pc;	// @[src/main/core/Core.scala:32:21, :394:33]
-      wbu_io_pipe_in_bits_r_ls2wb_wb_addr <= _lsu_io_pipe_out_bits_ls2wb_wb_addr;	// @[src/main/core/Core.scala:32:21, :394:33]
-      wbu_io_pipe_in_bits_r_ls2wb_rf_wen <= _lsu_io_pipe_out_bits_ls2wb_rf_wen;	// @[src/main/core/Core.scala:32:21, :394:33]
-      wbu_io_pipe_in_bits_r_ls2wb_wb_data <= _lsu_io_pipe_out_bits_ls2wb_wb_data;	// @[src/main/core/Core.scala:32:21, :394:33]
-      wbu_io_pipe_in_bits_r_ls2wb_csr_wdata <= _lsu_io_pipe_out_bits_ls2wb_csr_wdata;	// @[src/main/core/Core.scala:32:21, :394:33]
-      wbu_io_pipe_in_bits_r_ls2wb_csr_addr <= _lsu_io_pipe_out_bits_ls2wb_csr_addr;	// @[src/main/core/Core.scala:32:21, :394:33]
-      wbu_io_pipe_in_bits_r_ls2wb_csr_cmd <= _lsu_io_pipe_out_bits_ls2wb_csr_cmd;	// @[src/main/core/Core.scala:32:21, :394:33]
-      wbu_io_pipe_in_bits_r_ls2wb_is_irq <= _lsu_io_pipe_out_bits_ls2wb_is_irq;	// @[src/main/core/Core.scala:32:21, :394:33]
-      wbu_io_pipe_in_bits_r_ls2wb_irq_num <= _lsu_io_pipe_out_bits_ls2wb_irq_num;	// @[src/main/core/Core.scala:32:21, :394:33]
+      lsu_io_pipe_in_valid_r <= _exu_io_pipe_out_valid;	// @[src/main/core/Core.scala:31:21, :350:34]
+    if (_lsu_io_pipe_out_valid & _wbu_io_pipe_in_ready) begin	// @[src/main/core/Core.scala:32:21, :33:21, :349:62]
+      wbu_io_pipe_in_bits_r_ls2wb_reg_pc <= _lsu_io_pipe_out_bits_ls2wb_reg_pc;	// @[src/main/core/Core.scala:32:21, :349:33]
+      wbu_io_pipe_in_bits_r_ls2wb_wb_addr <= _lsu_io_pipe_out_bits_ls2wb_wb_addr;	// @[src/main/core/Core.scala:32:21, :349:33]
+      wbu_io_pipe_in_bits_r_ls2wb_rf_wen <= _lsu_io_pipe_out_bits_ls2wb_rf_wen;	// @[src/main/core/Core.scala:32:21, :349:33]
+      wbu_io_pipe_in_bits_r_ls2wb_wb_data <= _lsu_io_pipe_out_bits_ls2wb_wb_data;	// @[src/main/core/Core.scala:32:21, :349:33]
+      wbu_io_pipe_in_bits_r_ls2wb_csr_wdata <= _lsu_io_pipe_out_bits_ls2wb_csr_wdata;	// @[src/main/core/Core.scala:32:21, :349:33]
+      wbu_io_pipe_in_bits_r_ls2wb_csr_addr <= _lsu_io_pipe_out_bits_ls2wb_csr_addr;	// @[src/main/core/Core.scala:32:21, :349:33]
+      wbu_io_pipe_in_bits_r_ls2wb_csr_cmd <= _lsu_io_pipe_out_bits_ls2wb_csr_cmd;	// @[src/main/core/Core.scala:32:21, :349:33]
+      wbu_io_pipe_in_bits_r_ls2wb_is_irq <= _lsu_io_pipe_out_bits_ls2wb_is_irq;	// @[src/main/core/Core.scala:32:21, :349:33]
+      wbu_io_pipe_in_bits_r_ls2wb_irq_num <= _lsu_io_pipe_out_bits_ls2wb_irq_num;	// @[src/main/core/Core.scala:32:21, :349:33]
     end
     if (_wbu_io_pipe_in_ready)	// @[src/main/core/Core.scala:33:21]
-      wbu_io_pipe_in_valid_r <= _lsu_io_pipe_out_valid;	// @[src/main/core/Core.scala:32:21, :395:34]
-    wbu_end_flg_REG <= wbu_is_working;	// @[src/main/core/Core.scala:127:48, :128:30]
-    exu_raw_stage_left_valid_r <= _GEN_3;	// @[src/main/core/Core.scala:346:{34,56}, :395:22, :408:41]
-    lsu_raw_stage_left_valid_r <= _GEN_3;	// @[src/main/core/Core.scala:346:{34,56}, :395:22, :408:41]
-    wbu_raw_stage_left_valid_r <= _GEN_3;	// @[src/main/core/Core.scala:346:{34,56}, :395:22, :408:41]
-    if (rd1_forward_en)	// @[src/main/core/Core.scala:158:30]
-      rd1_forward_data_r <= rd1_forward_data;	// @[src/main/core/Core.scala:239:31, :249:39]
-    if (rd2_forward_en)	// @[src/main/core/Core.scala:159:30]
-      rd2_forward_data_r <= rd2_forward_data;	// @[src/main/core/Core.scala:244:31, :250:39]
+      wbu_io_pipe_in_valid_r <= _lsu_io_pipe_out_valid;	// @[src/main/core/Core.scala:32:21, :350:34]
+    exu_raw_stage_left_valid_r <= _GEN_3;	// @[src/main/core/Core.scala:301:{34,56}, :350:22, :363:41]
+    lsu_raw_stage_left_valid_r <= _GEN_3;	// @[src/main/core/Core.scala:301:{34,56}, :350:22, :363:41]
+    wbu_raw_stage_left_valid_r <= _GEN_3;	// @[src/main/core/Core.scala:301:{34,56}, :350:22, :363:41]
+    if (rd1_forward_en)	// @[src/main/core/Core.scala:182:40, :183:24, :184:46]
+      rd1_forward_data_r <= _rd1_forward_data_T_2;	// @[src/main/core/Core.scala:210:39, src/main/scala/chisel3/util/Mux.scala:126:16]
+    if (rd2_forward_en)	// @[src/main/core/Core.scala:191:40, :192:24, :193:46]
+      rd2_forward_data_r <= _rd2_forward_data_T_2;	// @[src/main/core/Core.scala:211:39, src/main/scala/chisel3/util/Mux.scala:126:16]
     if (_exu_io_pipe_in_bits_id2exe_rs2_data_T_5) begin	// @[src/main/scala/chisel3/util/Decoupled.scala:51:35]
       exu_io_pipe_in_bits_id2exe_rs1_data_r <=
         rd1_forward_en | ~rs1_rawing & ~bt_fwd_fsh_rs1
-          ? rd1_forward_data
-          : rd1_forward_data_r;	// @[src/main/core/Core.scala:158:30, :174:55, :187:33, :239:31, :249:39, :261:{53,57,73,77,89,92}]
+          ? (rd1_forward_en
+               ? _rd1_forward_data_T_2
+               : _idu_io_pipe_out_bits_id2exe_rs1_data)
+          : rd1_forward_data_r;	// @[src/main/core/Core.scala:30:21, :156:55, :160:33, :182:40, :183:24, :184:46, :200:31, :210:39, :216:{53,57,73,77,89,92}, src/main/scala/chisel3/util/Mux.scala:126:16]
       exu_io_pipe_in_bits_id2exe_rs2_data_r <=
         rd2_forward_en | ~rs2_rawing & ~bt_fwd_fsh_rs2
-          ? rd2_forward_data
-          : rd2_forward_data_r;	// @[src/main/core/Core.scala:159:30, :175:55, :189:33, :244:31, :250:39, :262:{53,57,73,77,89,92}]
+          ? (rd2_forward_en
+               ? _rd2_forward_data_T_2
+               : _idu_io_pipe_out_bits_id2exe_rs2_data)
+          : rd2_forward_data_r;	// @[src/main/core/Core.scala:30:21, :157:55, :162:33, :191:40, :192:24, :193:46, :205:31, :211:39, :217:{53,57,73,77,89,92}, src/main/scala/chisel3/util/Mux.scala:126:16]
     end
-    is_irq <= _wbu_io_irq_valid & _wbu_io_is_irq;	// @[src/main/core/Core.scala:33:21, :307:{25,43}]
-    is_mret_rise_REG <= _idu_io_is_mret;	// @[src/main/core/Core.scala:30:21, :313:49]
+    is_irq <= _wbu_io_irq_valid & _wbu_io_is_irq;	// @[src/main/core/Core.scala:33:21, :262:{25,43}]
+    is_mret_rise_REG <= _idu_io_is_mret;	// @[src/main/core/Core.scala:30:21, :268:49]
     if (reset) begin	// @[src/main/core/Core.scala:23:7]
-      ifu_io_pipe_in_valid_r <= _GEN_2;	// @[src/main/core/Core.scala:42:{26,38}, :345:{34,56}]
+      ifu_io_pipe_in_valid_r <= _GEN_2;	// @[src/main/core/Core.scala:42:{26,38}, :300:{34,56}]
       raw_rs1_cnt <= 1'h0;	// @[src/main/core/Core.scala:120:30]
       raw_rs2_cnt <= 1'h0;	// @[src/main/core/Core.scala:120:30, :121:30]
-      exu_rs1_rawing <= 1'h0;	// @[src/main/core/Core.scala:120:30, :162:33]
-      exu_rs2_rawing <= 1'h0;	// @[src/main/core/Core.scala:120:30, :163:33]
-      lsu_rs1_rawing <= 1'h0;	// @[src/main/core/Core.scala:120:30, :164:33]
-      lsu_rs2_rawing <= 1'h0;	// @[src/main/core/Core.scala:120:30, :165:33]
-      wbu_rs1_rawing <= 1'h0;	// @[src/main/core/Core.scala:120:30, :166:33]
-      wbu_rs2_rawing <= 1'h0;	// @[src/main/core/Core.scala:120:30, :167:33]
-      bt_fwd_fsh_rs1 <= 1'h0;	// @[src/main/core/Core.scala:120:30, :187:33]
-      bt_fwd_fsh_rs2 <= 1'h0;	// @[src/main/core/Core.scala:120:30, :189:33]
-      is_mret_r <= 1'h0;	// @[src/main/core/Core.scala:120:30, :315:28]
-      is_ctrl_hazard_r <= 1'h0;	// @[src/main/core/Core.scala:120:30, :321:35]
-      is_irq_r <= 1'h0;	// @[src/main/core/Core.scala:120:30, :322:27]
+      exu_rs1_rawing <= 1'h0;	// @[src/main/core/Core.scala:120:30, :144:33]
+      exu_rs2_rawing <= 1'h0;	// @[src/main/core/Core.scala:120:30, :145:33]
+      lsu_rs1_rawing <= 1'h0;	// @[src/main/core/Core.scala:120:30, :146:33]
+      lsu_rs2_rawing <= 1'h0;	// @[src/main/core/Core.scala:120:30, :147:33]
+      wbu_rs1_rawing <= 1'h0;	// @[src/main/core/Core.scala:120:30, :148:33]
+      wbu_rs2_rawing <= 1'h0;	// @[src/main/core/Core.scala:120:30, :149:33]
+      bt_fwd_fsh_rs1 <= 1'h0;	// @[src/main/core/Core.scala:120:30, :160:33]
+      bt_fwd_fsh_rs2 <= 1'h0;	// @[src/main/core/Core.scala:120:30, :162:33]
+      is_mret_r <= 1'h0;	// @[src/main/core/Core.scala:120:30, :270:28]
+      is_ctrl_hazard_r <= 1'h0;	// @[src/main/core/Core.scala:120:30, :276:35]
+      is_irq_r <= 1'h0;	// @[src/main/core/Core.scala:120:30, :277:27]
     end
     else begin	// @[src/main/core/Core.scala:23:7]
       ifu_io_pipe_in_valid_r <= _ifu_io_pipe_in_ready & ready_r | ifu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:29:21, :41:26, :42:{38,90}]
-      raw_rs1_cnt <= rs1_raw & ~rd1_forward_en | ~rd1_forward_en & raw_rs1_cnt;	// @[src/main/core/Core.scala:120:30, :143:46, :158:30, :168:26, :258:{23,32,35,63}]
-      raw_rs2_cnt <= rs2_raw & ~rd2_forward_en | ~rd2_forward_en & raw_rs2_cnt;	// @[src/main/core/Core.scala:121:30, :144:46, :159:30, :169:26, :259:{23,32,35,63}]
-      exu_rs1_rawing <= ~rd1_forward_en & (exu_raw_rs1 | exu_rs1_rawing);	// @[src/main/core/Core.scala:137:31, :158:30, :162:33, :168:{26,55}]
-      exu_rs2_rawing <= ~rd2_forward_en & (exu_raw_rs2 | exu_rs2_rawing);	// @[src/main/core/Core.scala:138:31, :159:30, :163:33, :169:{26,55}]
-      lsu_rs1_rawing <= ~rd1_forward_en & (lsu_raw_rs1 | lsu_rs1_rawing);	// @[src/main/core/Core.scala:139:31, :158:30, :164:33, :168:26, :170:{26,55}]
-      lsu_rs2_rawing <= ~rd2_forward_en & (lsu_raw_rs2 | lsu_rs2_rawing);	// @[src/main/core/Core.scala:140:31, :159:30, :165:33, :169:26, :171:{26,55}]
-      wbu_rs1_rawing <= ~rd1_forward_en & (wbu_raw_rs1 | wbu_rs1_rawing);	// @[src/main/core/Core.scala:141:31, :158:30, :166:33, :168:26, :172:{26,55}]
-      wbu_rs2_rawing <= ~rd2_forward_en & (wbu_raw_rs2 | wbu_rs2_rawing);	// @[src/main/core/Core.scala:142:31, :159:30, :167:33, :169:26, :173:{26,55}]
+      raw_rs1_cnt <= rs1_raw & ~rd1_forward_en | ~rd1_forward_en & raw_rs1_cnt;	// @[src/main/core/Core.scala:120:30, :137:46, :150:26, :182:40, :183:24, :184:46, :213:{23,32,35,63}]
+      raw_rs2_cnt <= rs2_raw & ~rd2_forward_en | ~rd2_forward_en & raw_rs2_cnt;	// @[src/main/core/Core.scala:121:30, :138:46, :151:26, :191:40, :192:24, :193:46, :214:{23,32,35,63}]
+      exu_rs1_rawing <= ~rd1_forward_en & (exu_raw_rs1 | exu_rs1_rawing);	// @[src/main/core/Core.scala:131:31, :144:33, :150:{26,55}, :182:40, :183:24, :184:46]
+      exu_rs2_rawing <= ~rd2_forward_en & (exu_raw_rs2 | exu_rs2_rawing);	// @[src/main/core/Core.scala:132:31, :145:33, :151:{26,55}, :191:40, :192:24, :193:46]
+      lsu_rs1_rawing <= ~rd1_forward_en & (lsu_raw_rs1 | lsu_rs1_rawing);	// @[src/main/core/Core.scala:133:31, :146:33, :150:26, :152:{26,55}, :182:40, :183:24, :184:46]
+      lsu_rs2_rawing <= ~rd2_forward_en & (lsu_raw_rs2 | lsu_rs2_rawing);	// @[src/main/core/Core.scala:134:31, :147:33, :151:26, :153:{26,55}, :191:40, :192:24, :193:46]
+      wbu_rs1_rawing <= ~rd1_forward_en & (wbu_raw_rs1 | wbu_rs1_rawing);	// @[src/main/core/Core.scala:135:31, :148:33, :150:26, :154:{26,55}, :182:40, :183:24, :184:46]
+      wbu_rs2_rawing <= ~rd2_forward_en & (wbu_raw_rs2 | wbu_rs2_rawing);	// @[src/main/core/Core.scala:136:31, :149:33, :151:26, :155:{26,55}, :191:40, :192:24, :193:46]
       bt_fwd_fsh_rs1 <=
-        ~_exu_io_pipe_in_bits_id2exe_rs2_data_T_5 & (rd1_forward_en | bt_fwd_fsh_rs1);	// @[src/main/core/Core.scala:158:30, :187:33, :188:{26,61}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+        ~_exu_io_pipe_in_bits_id2exe_rs2_data_T_5 & (rd1_forward_en | bt_fwd_fsh_rs1);	// @[src/main/core/Core.scala:160:33, :161:{26,61}, :182:40, :183:24, :184:46, src/main/scala/chisel3/util/Decoupled.scala:51:35]
       bt_fwd_fsh_rs2 <=
-        ~_exu_io_pipe_in_bits_id2exe_rs2_data_T_5 & (rd2_forward_en | bt_fwd_fsh_rs2);	// @[src/main/core/Core.scala:159:30, :188:26, :189:33, :190:{26,61}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
-      is_mret_r <= is_mret_rise | ~_is_irq_r_T & is_mret_r;	// @[src/main/core/Core.scala:313:39, :315:28, :316:{21,47,69}]
-      is_ctrl_hazard_r <= is_ctrl_hazard | ~_is_irq_r_T & is_ctrl_hazard_r;	// @[src/main/core/Core.scala:316:{47,69}, :318:178, :321:35, :323:{28,56}]
-      is_irq_r <= is_irq | ~_is_irq_r_T & is_irq_r;	// @[src/main/core/Core.scala:307:25, :316:{47,69}, :322:27, :324:{20,40}]
+        ~_exu_io_pipe_in_bits_id2exe_rs2_data_T_5 & (rd2_forward_en | bt_fwd_fsh_rs2);	// @[src/main/core/Core.scala:161:26, :162:33, :163:{26,61}, :191:40, :192:24, :193:46, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+      is_mret_r <= is_mret_rise | ~_is_irq_r_T & is_mret_r;	// @[src/main/core/Core.scala:268:39, :270:28, :271:{21,47,69}]
+      is_ctrl_hazard_r <= is_ctrl_hazard | ~_is_irq_r_T & is_ctrl_hazard_r;	// @[src/main/core/Core.scala:271:{47,69}, :273:178, :276:35, :278:{28,56}]
+      is_irq_r <= is_irq | ~_is_irq_r_T & is_irq_r;	// @[src/main/core/Core.scala:262:25, :271:{47,69}, :277:27, :279:{20,40}]
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// @[src/main/core/Core.scala:23:7]
@@ -501,85 +492,84 @@ module Core(	// @[src/main/core/Core.scala:23:7]
         end	// @[src/main/core/Core.scala:23:7]
         ready_r = _RANDOM[5'h0][0];	// @[src/main/core/Core.scala:23:7, :41:26]
         ifu_io_pipe_in_valid_r = _RANDOM[5'h0][1];	// @[src/main/core/Core.scala:23:7, :41:26, :42:38]
-        idu_io_pipe_in_bits_r_if2id_reg_pc = {_RANDOM[5'h0][31:2], _RANDOM[5'h1][1:0]};	// @[src/main/core/Core.scala:23:7, :41:26, :394:33]
-        idu_io_pipe_in_bits_r_if2id_inst = {_RANDOM[5'h1][31:2], _RANDOM[5'h2][1:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
-        idu_io_pipe_in_valid_r = _RANDOM[5'h2][2];	// @[src/main/core/Core.scala:23:7, :394:33, :395:34]
-        exu_io_pipe_in_bits_r_id2exe_reg_pc = {_RANDOM[5'h2][31:3], _RANDOM[5'h3][2:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
-        exu_io_pipe_in_bits_r_id2exe_op1_sel = _RANDOM[5'h3][4:3];	// @[src/main/core/Core.scala:23:7, :394:33]
-        exu_io_pipe_in_bits_r_id2exe_op2_sel = _RANDOM[5'h3][6:5];	// @[src/main/core/Core.scala:23:7, :394:33]
-        exu_io_pipe_in_bits_r_id2exe_wb_addr = _RANDOM[5'h5][10:7];	// @[src/main/core/Core.scala:23:7, :394:33]
-        exu_io_pipe_in_bits_r_id2exe_rf_wen = _RANDOM[5'h5][12:11];	// @[src/main/core/Core.scala:23:7, :394:33]
-        exu_io_pipe_in_bits_r_id2exe_exe_fun = _RANDOM[5'h5][17:13];	// @[src/main/core/Core.scala:23:7, :394:33]
-        exu_io_pipe_in_bits_r_id2exe_wb_sel = _RANDOM[5'h5][20:18];	// @[src/main/core/Core.scala:23:7, :394:33]
+        idu_io_pipe_in_bits_r_if2id_reg_pc = {_RANDOM[5'h0][31:2], _RANDOM[5'h1][1:0]};	// @[src/main/core/Core.scala:23:7, :41:26, :349:33]
+        idu_io_pipe_in_bits_r_if2id_inst = {_RANDOM[5'h1][31:2], _RANDOM[5'h2][1:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
+        idu_io_pipe_in_valid_r = _RANDOM[5'h2][2];	// @[src/main/core/Core.scala:23:7, :349:33, :350:34]
+        exu_io_pipe_in_bits_r_id2exe_reg_pc = {_RANDOM[5'h2][31:3], _RANDOM[5'h3][2:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
+        exu_io_pipe_in_bits_r_id2exe_op1_sel = _RANDOM[5'h3][4:3];	// @[src/main/core/Core.scala:23:7, :349:33]
+        exu_io_pipe_in_bits_r_id2exe_op2_sel = _RANDOM[5'h3][6:5];	// @[src/main/core/Core.scala:23:7, :349:33]
+        exu_io_pipe_in_bits_r_id2exe_wb_addr = _RANDOM[5'h5][10:7];	// @[src/main/core/Core.scala:23:7, :349:33]
+        exu_io_pipe_in_bits_r_id2exe_rf_wen = _RANDOM[5'h5][12:11];	// @[src/main/core/Core.scala:23:7, :349:33]
+        exu_io_pipe_in_bits_r_id2exe_exe_fun = _RANDOM[5'h5][17:13];	// @[src/main/core/Core.scala:23:7, :349:33]
+        exu_io_pipe_in_bits_r_id2exe_wb_sel = _RANDOM[5'h5][20:18];	// @[src/main/core/Core.scala:23:7, :349:33]
         exu_io_pipe_in_bits_r_id2exe_imm_sext =
-          {_RANDOM[5'h5][31:21], _RANDOM[5'h6][20:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
-        exu_io_pipe_in_bits_r_id2exe_csr_addr = {_RANDOM[5'h6][31:21], _RANDOM[5'h7][0]};	// @[src/main/core/Core.scala:23:7, :394:33]
-        exu_io_pipe_in_bits_r_id2exe_csr_cmd = _RANDOM[5'h7][3:1];	// @[src/main/core/Core.scala:23:7, :394:33]
-        exu_io_pipe_in_bits_r_id2exe_mem_wen = _RANDOM[5'h7][5:4];	// @[src/main/core/Core.scala:23:7, :394:33]
-        exu_io_pipe_in_bits_r_id2exe_mem_op = _RANDOM[5'h7][8:6];	// @[src/main/core/Core.scala:23:7, :394:33]
-        exu_io_pipe_in_bits_r_id2exe_is_irq = _RANDOM[5'h7][9];	// @[src/main/core/Core.scala:23:7, :394:33]
-        exu_io_pipe_in_bits_r_id2exe_irq_num = _RANDOM[5'h7][13:10];	// @[src/main/core/Core.scala:23:7, :394:33]
+          {_RANDOM[5'h5][31:21], _RANDOM[5'h6][20:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
+        exu_io_pipe_in_bits_r_id2exe_csr_addr = {_RANDOM[5'h6][31:21], _RANDOM[5'h7][0]};	// @[src/main/core/Core.scala:23:7, :349:33]
+        exu_io_pipe_in_bits_r_id2exe_csr_cmd = _RANDOM[5'h7][3:1];	// @[src/main/core/Core.scala:23:7, :349:33]
+        exu_io_pipe_in_bits_r_id2exe_mem_wen = _RANDOM[5'h7][5:4];	// @[src/main/core/Core.scala:23:7, :349:33]
+        exu_io_pipe_in_bits_r_id2exe_mem_op = _RANDOM[5'h7][8:6];	// @[src/main/core/Core.scala:23:7, :349:33]
+        exu_io_pipe_in_bits_r_id2exe_is_irq = _RANDOM[5'h7][9];	// @[src/main/core/Core.scala:23:7, :349:33]
+        exu_io_pipe_in_bits_r_id2exe_irq_num = _RANDOM[5'h7][13:10];	// @[src/main/core/Core.scala:23:7, :349:33]
         exu_io_pipe_in_bits_r_id2exe_csr_rdata =
-          {_RANDOM[5'h7][31:14], _RANDOM[5'h8][13:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
-        exu_io_pipe_in_valid_r = _RANDOM[5'h8][14];	// @[src/main/core/Core.scala:23:7, :394:33, :395:34]
-        lsu_io_pipe_in_bits_r_exe2ls_reg_pc = {_RANDOM[5'h8][31:15], _RANDOM[5'h9][14:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
+          {_RANDOM[5'h7][31:14], _RANDOM[5'h8][13:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
+        exu_io_pipe_in_valid_r = _RANDOM[5'h8][14];	// @[src/main/core/Core.scala:23:7, :349:33, :350:34]
+        lsu_io_pipe_in_bits_r_exe2ls_reg_pc = {_RANDOM[5'h8][31:15], _RANDOM[5'h9][14:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
         lsu_io_pipe_in_bits_r_exe2ls_op1_data =
-          {_RANDOM[5'h9][31:15], _RANDOM[5'hA][14:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
+          {_RANDOM[5'h9][31:15], _RANDOM[5'hA][14:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
         lsu_io_pipe_in_bits_r_exe2ls_rs2_data =
-          {_RANDOM[5'hA][31:15], _RANDOM[5'hB][14:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
-        lsu_io_pipe_in_bits_r_exe2ls_wb_addr = _RANDOM[5'hB][18:15];	// @[src/main/core/Core.scala:23:7, :394:33]
+          {_RANDOM[5'hA][31:15], _RANDOM[5'hB][14:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
+        lsu_io_pipe_in_bits_r_exe2ls_wb_addr = _RANDOM[5'hB][18:15];	// @[src/main/core/Core.scala:23:7, :349:33]
         lsu_io_pipe_in_bits_r_exe2ls_alu_out =
-          {_RANDOM[5'hB][31:19], _RANDOM[5'hC][18:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
-        lsu_io_pipe_in_bits_r_exe2ls_rf_wen = _RANDOM[5'hC][20:19];	// @[src/main/core/Core.scala:23:7, :394:33]
-        lsu_io_pipe_in_bits_r_exe2ls_wb_sel = _RANDOM[5'hC][23:21];	// @[src/main/core/Core.scala:23:7, :394:33]
+          {_RANDOM[5'hB][31:19], _RANDOM[5'hC][18:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
+        lsu_io_pipe_in_bits_r_exe2ls_rf_wen = _RANDOM[5'hC][20:19];	// @[src/main/core/Core.scala:23:7, :349:33]
+        lsu_io_pipe_in_bits_r_exe2ls_wb_sel = _RANDOM[5'hC][23:21];	// @[src/main/core/Core.scala:23:7, :349:33]
         lsu_io_pipe_in_bits_r_exe2ls_csr_addr =
-          {_RANDOM[5'hC][31:24], _RANDOM[5'hD][3:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
-        lsu_io_pipe_in_bits_r_exe2ls_csr_cmd = _RANDOM[5'hD][6:4];	// @[src/main/core/Core.scala:23:7, :394:33]
-        lsu_io_pipe_in_bits_r_exe2ls_mem_wen = _RANDOM[5'hD][8:7];	// @[src/main/core/Core.scala:23:7, :394:33]
-        lsu_io_pipe_in_bits_r_exe2ls_mem_op = _RANDOM[5'hD][11:9];	// @[src/main/core/Core.scala:23:7, :394:33]
-        lsu_io_pipe_in_bits_r_exe2ls_is_irq = _RANDOM[5'hD][12];	// @[src/main/core/Core.scala:23:7, :394:33]
-        lsu_io_pipe_in_bits_r_exe2ls_irq_num = _RANDOM[5'hD][16:13];	// @[src/main/core/Core.scala:23:7, :394:33]
+          {_RANDOM[5'hC][31:24], _RANDOM[5'hD][3:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
+        lsu_io_pipe_in_bits_r_exe2ls_csr_cmd = _RANDOM[5'hD][6:4];	// @[src/main/core/Core.scala:23:7, :349:33]
+        lsu_io_pipe_in_bits_r_exe2ls_mem_wen = _RANDOM[5'hD][8:7];	// @[src/main/core/Core.scala:23:7, :349:33]
+        lsu_io_pipe_in_bits_r_exe2ls_mem_op = _RANDOM[5'hD][11:9];	// @[src/main/core/Core.scala:23:7, :349:33]
+        lsu_io_pipe_in_bits_r_exe2ls_is_irq = _RANDOM[5'hD][12];	// @[src/main/core/Core.scala:23:7, :349:33]
+        lsu_io_pipe_in_bits_r_exe2ls_irq_num = _RANDOM[5'hD][16:13];	// @[src/main/core/Core.scala:23:7, :349:33]
         lsu_io_pipe_in_bits_r_exe2ls_csr_rdata =
-          {_RANDOM[5'hD][31:17], _RANDOM[5'hE][16:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
-        lsu_io_pipe_in_valid_r = _RANDOM[5'hE][17];	// @[src/main/core/Core.scala:23:7, :394:33, :395:34]
-        wbu_io_pipe_in_bits_r_ls2wb_reg_pc = {_RANDOM[5'hE][31:18], _RANDOM[5'hF][17:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
-        wbu_io_pipe_in_bits_r_ls2wb_wb_addr = _RANDOM[5'hF][21:18];	// @[src/main/core/Core.scala:23:7, :394:33]
-        wbu_io_pipe_in_bits_r_ls2wb_rf_wen = _RANDOM[5'hF][23:22];	// @[src/main/core/Core.scala:23:7, :394:33]
+          {_RANDOM[5'hD][31:17], _RANDOM[5'hE][16:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
+        lsu_io_pipe_in_valid_r = _RANDOM[5'hE][17];	// @[src/main/core/Core.scala:23:7, :349:33, :350:34]
+        wbu_io_pipe_in_bits_r_ls2wb_reg_pc = {_RANDOM[5'hE][31:18], _RANDOM[5'hF][17:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
+        wbu_io_pipe_in_bits_r_ls2wb_wb_addr = _RANDOM[5'hF][21:18];	// @[src/main/core/Core.scala:23:7, :349:33]
+        wbu_io_pipe_in_bits_r_ls2wb_rf_wen = _RANDOM[5'hF][23:22];	// @[src/main/core/Core.scala:23:7, :349:33]
         wbu_io_pipe_in_bits_r_ls2wb_wb_data =
-          {_RANDOM[5'hF][31:24], _RANDOM[5'h10][23:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
+          {_RANDOM[5'hF][31:24], _RANDOM[5'h10][23:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
         wbu_io_pipe_in_bits_r_ls2wb_csr_wdata =
-          {_RANDOM[5'h10][31:24], _RANDOM[5'h11][23:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
+          {_RANDOM[5'h10][31:24], _RANDOM[5'h11][23:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
         wbu_io_pipe_in_bits_r_ls2wb_csr_addr =
-          {_RANDOM[5'h11][31:24], _RANDOM[5'h12][3:0]};	// @[src/main/core/Core.scala:23:7, :394:33]
-        wbu_io_pipe_in_bits_r_ls2wb_csr_cmd = _RANDOM[5'h12][6:4];	// @[src/main/core/Core.scala:23:7, :394:33]
-        wbu_io_pipe_in_bits_r_ls2wb_is_irq = _RANDOM[5'h12][7];	// @[src/main/core/Core.scala:23:7, :394:33]
-        wbu_io_pipe_in_bits_r_ls2wb_irq_num = _RANDOM[5'h12][11:8];	// @[src/main/core/Core.scala:23:7, :394:33]
-        wbu_io_pipe_in_valid_r = _RANDOM[5'h12][12];	// @[src/main/core/Core.scala:23:7, :394:33, :395:34]
-        raw_rs1_cnt = _RANDOM[5'h12][13];	// @[src/main/core/Core.scala:23:7, :120:30, :394:33]
-        raw_rs2_cnt = _RANDOM[5'h12][14];	// @[src/main/core/Core.scala:23:7, :121:30, :394:33]
-        wbu_end_flg_REG = _RANDOM[5'h12][15];	// @[src/main/core/Core.scala:23:7, :128:30, :394:33]
-        exu_raw_stage_left_valid_r = _RANDOM[5'h12][16];	// @[src/main/core/Core.scala:23:7, :394:33, :408:41]
-        lsu_raw_stage_left_valid_r = _RANDOM[5'h12][17];	// @[src/main/core/Core.scala:23:7, :394:33, :408:41]
-        wbu_raw_stage_left_valid_r = _RANDOM[5'h12][18];	// @[src/main/core/Core.scala:23:7, :394:33, :408:41]
-        exu_rs1_rawing = _RANDOM[5'h12][19];	// @[src/main/core/Core.scala:23:7, :162:33, :394:33]
-        exu_rs2_rawing = _RANDOM[5'h12][20];	// @[src/main/core/Core.scala:23:7, :163:33, :394:33]
-        lsu_rs1_rawing = _RANDOM[5'h12][21];	// @[src/main/core/Core.scala:23:7, :164:33, :394:33]
-        lsu_rs2_rawing = _RANDOM[5'h12][22];	// @[src/main/core/Core.scala:23:7, :165:33, :394:33]
-        wbu_rs1_rawing = _RANDOM[5'h12][23];	// @[src/main/core/Core.scala:23:7, :166:33, :394:33]
-        wbu_rs2_rawing = _RANDOM[5'h12][24];	// @[src/main/core/Core.scala:23:7, :167:33, :394:33]
-        bt_fwd_fsh_rs1 = _RANDOM[5'h12][25];	// @[src/main/core/Core.scala:23:7, :187:33, :394:33]
-        bt_fwd_fsh_rs2 = _RANDOM[5'h12][26];	// @[src/main/core/Core.scala:23:7, :189:33, :394:33]
-        rd1_forward_data_r = {_RANDOM[5'h12][31:27], _RANDOM[5'h13][26:0]};	// @[src/main/core/Core.scala:23:7, :249:39, :394:33]
-        rd2_forward_data_r = {_RANDOM[5'h13][31:27], _RANDOM[5'h14][26:0]};	// @[src/main/core/Core.scala:23:7, :249:39, :250:39]
+          {_RANDOM[5'h11][31:24], _RANDOM[5'h12][3:0]};	// @[src/main/core/Core.scala:23:7, :349:33]
+        wbu_io_pipe_in_bits_r_ls2wb_csr_cmd = _RANDOM[5'h12][6:4];	// @[src/main/core/Core.scala:23:7, :349:33]
+        wbu_io_pipe_in_bits_r_ls2wb_is_irq = _RANDOM[5'h12][7];	// @[src/main/core/Core.scala:23:7, :349:33]
+        wbu_io_pipe_in_bits_r_ls2wb_irq_num = _RANDOM[5'h12][11:8];	// @[src/main/core/Core.scala:23:7, :349:33]
+        wbu_io_pipe_in_valid_r = _RANDOM[5'h12][12];	// @[src/main/core/Core.scala:23:7, :349:33, :350:34]
+        raw_rs1_cnt = _RANDOM[5'h12][13];	// @[src/main/core/Core.scala:23:7, :120:30, :349:33]
+        raw_rs2_cnt = _RANDOM[5'h12][14];	// @[src/main/core/Core.scala:23:7, :121:30, :349:33]
+        exu_raw_stage_left_valid_r = _RANDOM[5'h12][16];	// @[src/main/core/Core.scala:23:7, :349:33, :363:41]
+        lsu_raw_stage_left_valid_r = _RANDOM[5'h12][17];	// @[src/main/core/Core.scala:23:7, :349:33, :363:41]
+        wbu_raw_stage_left_valid_r = _RANDOM[5'h12][18];	// @[src/main/core/Core.scala:23:7, :349:33, :363:41]
+        exu_rs1_rawing = _RANDOM[5'h12][19];	// @[src/main/core/Core.scala:23:7, :144:33, :349:33]
+        exu_rs2_rawing = _RANDOM[5'h12][20];	// @[src/main/core/Core.scala:23:7, :145:33, :349:33]
+        lsu_rs1_rawing = _RANDOM[5'h12][21];	// @[src/main/core/Core.scala:23:7, :146:33, :349:33]
+        lsu_rs2_rawing = _RANDOM[5'h12][22];	// @[src/main/core/Core.scala:23:7, :147:33, :349:33]
+        wbu_rs1_rawing = _RANDOM[5'h12][23];	// @[src/main/core/Core.scala:23:7, :148:33, :349:33]
+        wbu_rs2_rawing = _RANDOM[5'h12][24];	// @[src/main/core/Core.scala:23:7, :149:33, :349:33]
+        bt_fwd_fsh_rs1 = _RANDOM[5'h12][25];	// @[src/main/core/Core.scala:23:7, :160:33, :349:33]
+        bt_fwd_fsh_rs2 = _RANDOM[5'h12][26];	// @[src/main/core/Core.scala:23:7, :162:33, :349:33]
+        rd1_forward_data_r = {_RANDOM[5'h12][31:27], _RANDOM[5'h13][26:0]};	// @[src/main/core/Core.scala:23:7, :210:39, :349:33]
+        rd2_forward_data_r = {_RANDOM[5'h13][31:27], _RANDOM[5'h14][26:0]};	// @[src/main/core/Core.scala:23:7, :210:39, :211:39]
         exu_io_pipe_in_bits_id2exe_rs1_data_r =
-          {_RANDOM[5'h14][31:27], _RANDOM[5'h15][26:0]};	// @[src/main/core/Core.scala:23:7, :250:39, :261:53]
+          {_RANDOM[5'h14][31:27], _RANDOM[5'h15][26:0]};	// @[src/main/core/Core.scala:23:7, :211:39, :216:53]
         exu_io_pipe_in_bits_id2exe_rs2_data_r =
-          {_RANDOM[5'h15][31:27], _RANDOM[5'h16][26:0]};	// @[src/main/core/Core.scala:23:7, :261:53, :262:53]
-        is_irq = _RANDOM[5'h16][27];	// @[src/main/core/Core.scala:23:7, :262:53, :307:25]
-        is_mret_rise_REG = _RANDOM[5'h16][28];	// @[src/main/core/Core.scala:23:7, :262:53, :313:49]
-        is_mret_r = _RANDOM[5'h16][29];	// @[src/main/core/Core.scala:23:7, :262:53, :315:28]
-        is_ctrl_hazard_r = _RANDOM[5'h16][30];	// @[src/main/core/Core.scala:23:7, :262:53, :321:35]
-        is_irq_r = _RANDOM[5'h16][31];	// @[src/main/core/Core.scala:23:7, :262:53, :322:27]
+          {_RANDOM[5'h15][31:27], _RANDOM[5'h16][26:0]};	// @[src/main/core/Core.scala:23:7, :216:53, :217:53]
+        is_irq = _RANDOM[5'h16][27];	// @[src/main/core/Core.scala:23:7, :217:53, :262:25]
+        is_mret_rise_REG = _RANDOM[5'h16][28];	// @[src/main/core/Core.scala:23:7, :217:53, :268:49]
+        is_mret_r = _RANDOM[5'h16][29];	// @[src/main/core/Core.scala:23:7, :217:53, :270:28]
+        is_ctrl_hazard_r = _RANDOM[5'h16][30];	// @[src/main/core/Core.scala:23:7, :217:53, :276:35]
+        is_irq_r = _RANDOM[5'h16][31];	// @[src/main/core/Core.scala:23:7, :217:53, :277:27]
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/core/Core.scala:23:7]
@@ -607,9 +597,9 @@ module Core(	// @[src/main/core/Core.scala:23:7]
     .io_csr_addr    (_wbu_io_csr_addr),	// @[src/main/core/Core.scala:33:21]
     .io_csr_cmd     (_wbu_io_csr_cmd),	// @[src/main/core/Core.scala:33:21]
     .io_csr_raddr   (_idu_io_csr_raddr),	// @[src/main/core/Core.scala:30:21]
-    .io_csr_reg_pc  (wbu_io_pipe_in_bits_r_ls2wb_reg_pc),	// @[src/main/core/Core.scala:394:33]
+    .io_csr_reg_pc  (wbu_io_pipe_in_bits_r_ls2wb_reg_pc),	// @[src/main/core/Core.scala:349:33]
     .io_csr_irq_num (_wbu_io_irq_num),	// @[src/main/core/Core.scala:33:21]
-    .io_csr_is_irq  (is_irq)	// @[src/main/core/Core.scala:307:25]
+    .io_csr_is_irq  (is_irq)	// @[src/main/core/Core.scala:262:25]
   );
   IFU ifu (	// @[src/main/core/Core.scala:29:21]
     .clock                         (clock),
@@ -621,12 +611,12 @@ module Core(	// @[src/main/core/Core.scala:23:7]
     .io_imem_rvalid                (_icache_io_in_rvalid),	// @[src/main/core/Core.scala:59:24]
     .io_imem_rready                (_ifu_io_imem_rready),
     .io_pipe_in_ready              (_ifu_io_pipe_in_ready),
-    .io_pipe_in_valid              (_GEN_2),	// @[src/main/core/Core.scala:42:26, :345:{34,56}]
+    .io_pipe_in_valid              (_GEN_2),	// @[src/main/core/Core.scala:42:26, :300:{34,56}]
     .io_pipe_out_ready             (_idu_io_pipe_in_ready),	// @[src/main/core/Core.scala:30:21]
     .io_pipe_out_valid             (_ifu_io_pipe_out_valid),
     .io_pipe_out_bits_if2id_reg_pc (_ifu_io_pipe_out_bits_if2id_reg_pc),
     .io_pipe_out_bits_if2id_inst   (_ifu_io_pipe_out_bits_if2id_inst),
-    .io_hazard_flush_flg           (_idu_io_hazard_flush_flg_T),	// @[src/main/core/Core.scala:326:47]
+    .io_hazard_flush_flg           (_idu_io_hazard_flush_flg_T),	// @[src/main/core/Core.scala:281:47]
     .io_hazard_pc_plus4            (_ifu_io_hazard_pc_plus4),
     .io_hazard_pc_real_next
       (is_irq_r
@@ -635,8 +625,8 @@ module Core(	// @[src/main/core/Core.scala:23:7]
              ? (_exu_io_br_flg ? _exu_io_br_target : 32'h0)
                | (_exu_io_jmp_flg ? _exu_io_alu_out : 32'h0)
                | (_idu_io_is_mret ? _csr_io_csr_mepc : 32'h0)
-             : _ifu_io_hazard_pc_plus4),	// @[src/main/core/Core.scala:27:21, :29:21, :30:21, :31:21, :203:77, :315:28, :321:35, :322:27, :341:{27,59,77}, src/main/scala/chisel3/util/Mux.scala:30:73]
-    .io_hazard_is_mret_rise        (is_mret_rise)	// @[src/main/core/Core.scala:313:39]
+             : _ifu_io_hazard_pc_plus4),	// @[src/main/core/Core.scala:27:21, :29:21, :30:21, :31:21, :173:77, :270:28, :276:35, :277:27, :296:{27,59,77}, src/main/scala/chisel3/util/Mux.scala:30:73]
+    .io_hazard_is_mret_rise        (is_mret_rise)	// @[src/main/core/Core.scala:268:39]
   );
   IDU idu (	// @[src/main/core/Core.scala:30:21]
     .clock                                    (clock),
@@ -651,9 +641,9 @@ module Core(	// @[src/main/core/Core.scala:23:7]
     .io_csr_rdata                             (_csr_io_csr_rdata),	// @[src/main/core/Core.scala:27:21]
     .io_is_mret                               (_idu_io_is_mret),
     .io_pipe_in_ready                         (_idu_io_pipe_in_ready),
-    .io_pipe_in_valid                         (_GEN_3),	// @[src/main/core/Core.scala:346:{34,56}, :395:22]
-    .io_pipe_in_bits_if2id_reg_pc             (idu_io_pipe_in_bits_r_if2id_reg_pc),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_if2id_inst               (idu_io_pipe_in_bits_r_if2id_inst),	// @[src/main/core/Core.scala:394:33]
+    .io_pipe_in_valid                         (_GEN_3),	// @[src/main/core/Core.scala:301:{34,56}, :350:22]
+    .io_pipe_in_bits_if2id_reg_pc             (idu_io_pipe_in_bits_r_if2id_reg_pc),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_if2id_inst               (idu_io_pipe_in_bits_r_if2id_inst),	// @[src/main/core/Core.scala:349:33]
     .io_pipe_out_ready                        (_exu_io_pipe_in_ready),	// @[src/main/core/Core.scala:31:21]
     .io_pipe_out_valid                        (_idu_io_pipe_out_valid),
     .io_pipe_out_bits_id2exe_reg_pc           (_idu_io_pipe_out_bits_id2exe_reg_pc),
@@ -678,11 +668,11 @@ module Core(	// @[src/main/core/Core.scala:23:7]
     .fencei_io_vr_is_fencei_io_bits_is_fencei
       (_idu_fencei_io_vr_is_fencei_io_bits_is_fencei),
     .io_hazard_stall_flg
-      ((is_raw | rawing)
+      ((exu_raw | lsu_raw | wbu_raw | rs1_rawing | rs2_rawing)
        & (rs1_raw & rs2_raw
             ? ~(rd1_forward_en & rd2_forward_en)
-            : ~rd1_forward_en & ~rd2_forward_en) & ~bt_fwd_fsh | raw_rs1_cnt
-       | raw_rs2_cnt)	// @[src/main/core/Core.scala:120:30, :121:30, :136:37, :143:46, :144:46, :158:30, :159:30, :176:29, :191:37, :258:35, :259:35, :263:{40,51,58,67,79,96,132,155,168}]
+            : ~rd1_forward_en & ~rd2_forward_en) & ~(bt_fwd_fsh_rs1 | bt_fwd_fsh_rs2)
+       | raw_rs1_cnt | raw_rs2_cnt)	// @[src/main/core/Core.scala:120:30, :121:30, :137:46, :138:46, :156:55, :157:55, :160:33, :162:33, :164:37, :182:40, :183:24, :184:46, :191:40, :192:24, :193:46, :213:35, :214:35, :218:{40,51,58,67,79,96,132,155,168}, :364:146]
   );
   EXU exu (	// @[src/main/core/Core.scala:31:21]
     .clock                             (clock),
@@ -692,24 +682,24 @@ module Core(	// @[src/main/core/Core.scala:23:7]
     .io_br_target                      (_exu_io_br_target),
     .io_alu_out                        (_exu_io_alu_out),
     .io_pipe_in_ready                  (_exu_io_pipe_in_ready),
-    .io_pipe_in_valid                  (_GEN_1),	// @[src/main/core/Core.scala:347:{34,56}, :395:22]
-    .io_pipe_in_bits_id2exe_reg_pc     (exu_io_pipe_in_bits_r_id2exe_reg_pc),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_op1_sel    (exu_io_pipe_in_bits_r_id2exe_op1_sel),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_op2_sel    (exu_io_pipe_in_bits_r_id2exe_op2_sel),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_rs1_data   (exu_io_pipe_in_bits_id2exe_rs1_data_r),	// @[src/main/core/Core.scala:261:53]
-    .io_pipe_in_bits_id2exe_rs2_data   (exu_io_pipe_in_bits_id2exe_rs2_data_r),	// @[src/main/core/Core.scala:262:53]
-    .io_pipe_in_bits_id2exe_wb_addr    (exu_io_pipe_in_bits_r_id2exe_wb_addr),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_rf_wen     (exu_io_pipe_in_bits_r_id2exe_rf_wen),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_exe_fun    (exu_io_pipe_in_bits_r_id2exe_exe_fun),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_wb_sel     (exu_io_pipe_in_bits_r_id2exe_wb_sel),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_imm_sext   (exu_io_pipe_in_bits_r_id2exe_imm_sext),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_csr_addr   (exu_io_pipe_in_bits_r_id2exe_csr_addr),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_csr_cmd    (exu_io_pipe_in_bits_r_id2exe_csr_cmd),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_mem_wen    (exu_io_pipe_in_bits_r_id2exe_mem_wen),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_mem_op     (exu_io_pipe_in_bits_r_id2exe_mem_op),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_is_irq     (exu_io_pipe_in_bits_r_id2exe_is_irq),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_irq_num    (exu_io_pipe_in_bits_r_id2exe_irq_num),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_id2exe_csr_rdata  (exu_io_pipe_in_bits_r_id2exe_csr_rdata),	// @[src/main/core/Core.scala:394:33]
+    .io_pipe_in_valid                  (_GEN_1),	// @[src/main/core/Core.scala:302:{34,56}, :350:22]
+    .io_pipe_in_bits_id2exe_reg_pc     (exu_io_pipe_in_bits_r_id2exe_reg_pc),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_op1_sel    (exu_io_pipe_in_bits_r_id2exe_op1_sel),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_op2_sel    (exu_io_pipe_in_bits_r_id2exe_op2_sel),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_rs1_data   (exu_io_pipe_in_bits_id2exe_rs1_data_r),	// @[src/main/core/Core.scala:216:53]
+    .io_pipe_in_bits_id2exe_rs2_data   (exu_io_pipe_in_bits_id2exe_rs2_data_r),	// @[src/main/core/Core.scala:217:53]
+    .io_pipe_in_bits_id2exe_wb_addr    (exu_io_pipe_in_bits_r_id2exe_wb_addr),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_rf_wen     (exu_io_pipe_in_bits_r_id2exe_rf_wen),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_exe_fun    (exu_io_pipe_in_bits_r_id2exe_exe_fun),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_wb_sel     (exu_io_pipe_in_bits_r_id2exe_wb_sel),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_imm_sext   (exu_io_pipe_in_bits_r_id2exe_imm_sext),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_csr_addr   (exu_io_pipe_in_bits_r_id2exe_csr_addr),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_csr_cmd    (exu_io_pipe_in_bits_r_id2exe_csr_cmd),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_mem_wen    (exu_io_pipe_in_bits_r_id2exe_mem_wen),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_mem_op     (exu_io_pipe_in_bits_r_id2exe_mem_op),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_is_irq     (exu_io_pipe_in_bits_r_id2exe_is_irq),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_irq_num    (exu_io_pipe_in_bits_r_id2exe_irq_num),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_id2exe_csr_rdata  (exu_io_pipe_in_bits_r_id2exe_csr_rdata),	// @[src/main/core/Core.scala:349:33]
     .io_pipe_out_ready                 (_lsu_io_pipe_in_ready),	// @[src/main/core/Core.scala:32:21]
     .io_pipe_out_valid                 (_exu_io_pipe_out_valid),
     .io_pipe_out_bits_exe2ls_reg_pc    (_exu_io_pipe_out_bits_exe2ls_reg_pc),
@@ -726,7 +716,7 @@ module Core(	// @[src/main/core/Core.scala:23:7]
     .io_pipe_out_bits_exe2ls_is_irq    (_exu_io_pipe_out_bits_exe2ls_is_irq),
     .io_pipe_out_bits_exe2ls_irq_num   (_exu_io_pipe_out_bits_exe2ls_irq_num),
     .io_pipe_out_bits_exe2ls_csr_rdata (_exu_io_pipe_out_bits_exe2ls_csr_rdata),
-    .io_hazard_flush_flg               (is_irq)	// @[src/main/core/Core.scala:307:25]
+    .io_hazard_flush_flg               (is_irq)	// @[src/main/core/Core.scala:262:25]
   );
   LSU lsu (	// @[src/main/core/Core.scala:32:21]
     .clock                            (clock),
@@ -751,21 +741,21 @@ module Core(	// @[src/main/core/Core.scala:23:7]
     .io_dmem_bvalid                   (io_dmem_bvalid),
     .io_dmem_bready                   (io_dmem_bready),
     .io_pipe_in_ready                 (_lsu_io_pipe_in_ready),
-    .io_pipe_in_valid                 (_GEN_0),	// @[src/main/core/Core.scala:348:{34,56}, :395:22]
-    .io_pipe_in_bits_exe2ls_reg_pc    (lsu_io_pipe_in_bits_r_exe2ls_reg_pc),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_exe2ls_op1_data  (lsu_io_pipe_in_bits_r_exe2ls_op1_data),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_exe2ls_rs2_data  (lsu_io_pipe_in_bits_r_exe2ls_rs2_data),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_exe2ls_wb_addr   (lsu_io_pipe_in_bits_r_exe2ls_wb_addr),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_exe2ls_alu_out   (lsu_io_pipe_in_bits_r_exe2ls_alu_out),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_exe2ls_rf_wen    (lsu_io_pipe_in_bits_r_exe2ls_rf_wen),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_exe2ls_wb_sel    (lsu_io_pipe_in_bits_r_exe2ls_wb_sel),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_exe2ls_csr_addr  (lsu_io_pipe_in_bits_r_exe2ls_csr_addr),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_exe2ls_csr_cmd   (lsu_io_pipe_in_bits_r_exe2ls_csr_cmd),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_exe2ls_mem_wen   (lsu_io_pipe_in_bits_r_exe2ls_mem_wen),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_exe2ls_mem_op    (lsu_io_pipe_in_bits_r_exe2ls_mem_op),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_exe2ls_is_irq    (lsu_io_pipe_in_bits_r_exe2ls_is_irq),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_exe2ls_irq_num   (lsu_io_pipe_in_bits_r_exe2ls_irq_num),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_exe2ls_csr_rdata (lsu_io_pipe_in_bits_r_exe2ls_csr_rdata),	// @[src/main/core/Core.scala:394:33]
+    .io_pipe_in_valid                 (_GEN_0),	// @[src/main/core/Core.scala:303:{34,56}, :350:22]
+    .io_pipe_in_bits_exe2ls_reg_pc    (lsu_io_pipe_in_bits_r_exe2ls_reg_pc),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_exe2ls_op1_data  (lsu_io_pipe_in_bits_r_exe2ls_op1_data),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_exe2ls_rs2_data  (lsu_io_pipe_in_bits_r_exe2ls_rs2_data),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_exe2ls_wb_addr   (lsu_io_pipe_in_bits_r_exe2ls_wb_addr),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_exe2ls_alu_out   (lsu_io_pipe_in_bits_r_exe2ls_alu_out),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_exe2ls_rf_wen    (lsu_io_pipe_in_bits_r_exe2ls_rf_wen),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_exe2ls_wb_sel    (lsu_io_pipe_in_bits_r_exe2ls_wb_sel),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_exe2ls_csr_addr  (lsu_io_pipe_in_bits_r_exe2ls_csr_addr),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_exe2ls_csr_cmd   (lsu_io_pipe_in_bits_r_exe2ls_csr_cmd),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_exe2ls_mem_wen   (lsu_io_pipe_in_bits_r_exe2ls_mem_wen),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_exe2ls_mem_op    (lsu_io_pipe_in_bits_r_exe2ls_mem_op),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_exe2ls_is_irq    (lsu_io_pipe_in_bits_r_exe2ls_is_irq),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_exe2ls_irq_num   (lsu_io_pipe_in_bits_r_exe2ls_irq_num),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_exe2ls_csr_rdata (lsu_io_pipe_in_bits_r_exe2ls_csr_rdata),	// @[src/main/core/Core.scala:349:33]
     .io_pipe_out_ready                (_wbu_io_pipe_in_ready),	// @[src/main/core/Core.scala:33:21]
     .io_pipe_out_valid                (_lsu_io_pipe_out_valid),
     .io_pipe_out_bits_ls2wb_reg_pc    (_lsu_io_pipe_out_bits_ls2wb_reg_pc),
@@ -777,7 +767,7 @@ module Core(	// @[src/main/core/Core.scala:23:7]
     .io_pipe_out_bits_ls2wb_csr_cmd   (_lsu_io_pipe_out_bits_ls2wb_csr_cmd),
     .io_pipe_out_bits_ls2wb_is_irq    (_lsu_io_pipe_out_bits_ls2wb_is_irq),
     .io_pipe_out_bits_ls2wb_irq_num   (_lsu_io_pipe_out_bits_ls2wb_irq_num),
-    .io_hazard_flush_flg              (is_irq)	// @[src/main/core/Core.scala:307:25]
+    .io_hazard_flush_flg              (is_irq)	// @[src/main/core/Core.scala:262:25]
   );
   WBU wbu (	// @[src/main/core/Core.scala:33:21]
     .clock                           (clock),
@@ -792,19 +782,19 @@ module Core(	// @[src/main/core/Core.scala:23:7]
     .io_irq_num                      (_wbu_io_irq_num),
     .io_irq_valid                    (_wbu_io_irq_valid),
     .io_pipe_in_ready                (_wbu_io_pipe_in_ready),
-    .io_pipe_in_valid                (_GEN),	// @[src/main/core/Core.scala:349:{34,56}, :395:22]
-    .io_pipe_in_bits_ls2wb_reg_pc    (wbu_io_pipe_in_bits_r_ls2wb_reg_pc),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_ls2wb_wb_addr   (wbu_io_pipe_in_bits_r_ls2wb_wb_addr),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_ls2wb_rf_wen    (wbu_io_pipe_in_bits_r_ls2wb_rf_wen),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_ls2wb_wb_data   (wbu_io_pipe_in_bits_r_ls2wb_wb_data),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_ls2wb_csr_wdata (wbu_io_pipe_in_bits_r_ls2wb_csr_wdata),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_ls2wb_csr_addr  (wbu_io_pipe_in_bits_r_ls2wb_csr_addr),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_ls2wb_csr_cmd   (wbu_io_pipe_in_bits_r_ls2wb_csr_cmd),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_ls2wb_is_irq    (wbu_io_pipe_in_bits_r_ls2wb_is_irq),	// @[src/main/core/Core.scala:394:33]
-    .io_pipe_in_bits_ls2wb_irq_num   (wbu_io_pipe_in_bits_r_ls2wb_irq_num),	// @[src/main/core/Core.scala:394:33]
+    .io_pipe_in_valid                (_GEN),	// @[src/main/core/Core.scala:304:{34,56}, :350:22]
+    .io_pipe_in_bits_ls2wb_reg_pc    (wbu_io_pipe_in_bits_r_ls2wb_reg_pc),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_ls2wb_wb_addr   (wbu_io_pipe_in_bits_r_ls2wb_wb_addr),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_ls2wb_rf_wen    (wbu_io_pipe_in_bits_r_ls2wb_rf_wen),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_ls2wb_wb_data   (wbu_io_pipe_in_bits_r_ls2wb_wb_data),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_ls2wb_csr_wdata (wbu_io_pipe_in_bits_r_ls2wb_csr_wdata),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_ls2wb_csr_addr  (wbu_io_pipe_in_bits_r_ls2wb_csr_addr),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_ls2wb_csr_cmd   (wbu_io_pipe_in_bits_r_ls2wb_csr_cmd),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_ls2wb_is_irq    (wbu_io_pipe_in_bits_r_ls2wb_is_irq),	// @[src/main/core/Core.scala:349:33]
+    .io_pipe_in_bits_ls2wb_irq_num   (wbu_io_pipe_in_bits_r_ls2wb_irq_num),	// @[src/main/core/Core.scala:349:33]
     .io_pipe_out_ready               (1'h1),	// @[src/main/core/Core.scala:40:27]
     .io_pipe_out_valid               (/* unused */),
-    .io_hazard_flush_flg             (is_irq)	// @[src/main/core/Core.scala:307:25]
+    .io_hazard_flush_flg             (is_irq)	// @[src/main/core/Core.scala:262:25]
   );
   iCache icache (	// @[src/main/core/Core.scala:59:24]
     .clock                                    (clock),
