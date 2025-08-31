@@ -203,20 +203,20 @@ class Core extends Module {
     dontTouch(lsu_forward_data)
     dontTouch(wbu_forward_data)
 
-    when(exu_rs1_rawing){
+    when(exu_rs1_rawing || exu_raw_rs1){
         rd1_forward_en := exu_can_forward_rs1
-    }.elsewhen(lsu_rs1_rawing){
+    }.elsewhen(lsu_rs1_rawing || lsu_raw_rs1){
         rd1_forward_en := lsu_can_forward_rs1
-    }.elsewhen(wbu_rs1_rawing){
+    }.elsewhen(wbu_rs1_rawing || wbu_raw_rs1){
         rd1_forward_en := wbu_can_forward_rs1
     }.otherwise{
         rd1_forward_en := false.B
     }
-    when(exu_rs2_rawing){
+    when(exu_rs2_rawing || exu_raw_rs2){
         rd2_forward_en := exu_can_forward_rs2
-    }.elsewhen(lsu_rs2_rawing){
+    }.elsewhen(lsu_rs2_rawing || lsu_raw_rs2){
         rd2_forward_en := lsu_can_forward_rs2
-    }.elsewhen(wbu_rs2_rawing){
+    }.elsewhen(wbu_rs2_rawing || wbu_raw_rs2){
         rd2_forward_en := wbu_can_forward_rs2
     }.otherwise{
         rd2_forward_en := false.B
