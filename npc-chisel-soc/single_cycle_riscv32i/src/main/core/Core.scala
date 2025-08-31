@@ -203,7 +203,8 @@ class Core extends Module {
     val exu_forward_data = MuxLookup(exu.io_pipe.in.bits.id2exe_wb_sel, 0.U)(Seq(
         WB_PC      -> (exu.io_pipe.out.bits.exe2ls_reg_pc + 4.U),
         WB_CSR     -> exu.io_pipe.out.bits.exe2ls_csr_rdata,
-        WB_ALU     -> exu.io_pipe.out.bits.exe2ls_alu_out
+        WB_ALU     -> exu.io_pipe.out.bits.exe2ls_alu_out,
+        WB_MEM     -> lsu.io_pipe.out.bits.ls2wb_wb_data
     ))
     val lsu_forward_data = lsu.io_pipe.out.bits.ls2wb_wb_data
     val wbu_forward_data = wbu.io.gpr_wdata
