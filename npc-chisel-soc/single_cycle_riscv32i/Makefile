@@ -45,7 +45,7 @@ $(BIN):  $(CSRC) $(VSRC)
 GEN_DIR = ./vsrc
 PRJ = playground
 ################################        FLAG        ################################
-MILLFLAG = --target-dir $(GEN_DIR)
+MILLFLAG = --split-verilog --target-dir $(GEN_DIR)
 ################################       COMMAND       ################################
 verilog:
 	$(call git_commit, "generate verilog")
