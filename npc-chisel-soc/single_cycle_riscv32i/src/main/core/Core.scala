@@ -224,20 +224,20 @@ class Core extends Module {
     dontTouch(wbu_forward_data)
 
     when(exu_rs1_rawing_raw){
-        rd1_forward_en := exu_can_forward_rs1
+        rd1_forward_en := exu_can_forward_rs1 && ~bt_fwd_fsh_rs1
     }.elsewhen(lsu_rs1_rawing_raw){
-        rd1_forward_en := lsu_can_forward_rs1
+        rd1_forward_en := lsu_can_forward_rs1 && ~bt_fwd_fsh_rs1
     }.elsewhen(wbu_rs1_rawing_raw){
-        rd1_forward_en := wbu_can_forward_rs1
+        rd1_forward_en := wbu_can_forward_rs1 && ~bt_fwd_fsh_rs1
     }.otherwise{
         rd1_forward_en := false.B
     }
     when(exu_rs2_rawing_raw){
-        rd2_forward_en := exu_can_forward_rs2
+        rd2_forward_en := exu_can_forward_rs2 && ~bt_fwd_fsh_rs2
     }.elsewhen(lsu_rs2_rawing_raw){
-        rd2_forward_en := lsu_can_forward_rs2
+        rd2_forward_en := lsu_can_forward_rs2 && ~bt_fwd_fsh_rs2
     }.elsewhen(wbu_rs2_rawing_raw){
-        rd2_forward_en := wbu_can_forward_rs2
+        rd2_forward_en := wbu_can_forward_rs2 && ~bt_fwd_fsh_rs2
     }.otherwise{
         rd2_forward_en := false.B
     }
