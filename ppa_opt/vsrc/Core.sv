@@ -322,16 +322,12 @@ module Core(	// @[src/main/core/Core.scala:23:7]
                   : 32'h0;	// @[src/main/core/Core.scala:31:21, :32:21, :202:88, :208:77, :209:59, :399:33]
   wire        rd1_forward_en =
     exu_rs1_rawing_raw
-      ? exu_can_forward_rs1 & ~bt_fwd_fsh_rs1
-      : lsu_rs1_rawing_raw
-          ? lsu_can_forward_rs1 & ~bt_fwd_fsh_rs1
-          : wbu_rs1_rawing_raw & ~bt_fwd_fsh_rs1;	// @[src/main/core/Core.scala:156:30, :185:33, :194:46, :196:46, :198:46, :202:50, :204:50, :226:29, :227:{24,47,50}, :228:35, :229:{24,47,50}, :230:35, :231:{24,50}, :233:24]
+      ? exu_can_forward_rs1
+      : lsu_rs1_rawing_raw ? lsu_can_forward_rs1 : wbu_rs1_rawing_raw;	// @[src/main/core/Core.scala:156:30, :194:46, :196:46, :198:46, :202:50, :204:50, :226:29, :227:24, :228:35, :229:24, :230:35]
   wire        rd2_forward_en =
     exu_rs2_rawing_raw
-      ? exu_can_forward_rs2 & ~bt_fwd_fsh_rs2
-      : lsu_rs2_rawing_raw
-          ? lsu_can_forward_rs2 & ~bt_fwd_fsh_rs2
-          : wbu_rs2_rawing_raw & ~bt_fwd_fsh_rs2;	// @[src/main/core/Core.scala:157:30, :187:33, :195:46, :197:46, :199:46, :203:50, :205:50, :235:29, :236:{24,47,50}, :237:35, :238:{24,47,50}, :239:35, :240:{24,50}, :242:24]
+      ? exu_can_forward_rs2
+      : lsu_rs2_rawing_raw ? lsu_can_forward_rs2 : wbu_rs2_rawing_raw;	// @[src/main/core/Core.scala:157:30, :195:46, :197:46, :199:46, :203:50, :205:50, :235:29, :236:24, :237:35, :238:24, :239:35]
   wire [31:0] rd1_forward_data =
     rd1_forward_en
       ? (exu_can_forward_rs1
