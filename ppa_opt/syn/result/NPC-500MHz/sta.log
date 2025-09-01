@@ -1,122 +1,122 @@
 WARNING: Logging before InitGoogleLogging() is written to STDERR
-I20250829 12:15:05.429432 4036731 Sta.cc:375] read verilog file syn/result/NPC-500MHz/NPC.netlist.fixed.v start
-I20250829 12:15:05.429526 4036731 VerilogParserRustC.cc:41] load verilog file syn/result/NPC-500MHz/NPC.netlist.fixed.v
+I20250901 18:22:29.443009 3960145 Sta.cc:375] read verilog file syn/result/NPC-500MHz/NPC.netlist.fixed.v start
+I20250901 18:22:29.443112 3960145 VerilogParserRustC.cc:41] load verilog file syn/result/NPC-500MHz/NPC.netlist.fixed.v
 r str syn/result/NPC-500MHz/NPC.netlist.fixed.v
-I20250829 12:15:05.640328 4036731 Sta.cc:379] read verilog end
-I20250829 12:15:05.640439 4036731 Sta.cc:298] load lib start
-I20250829 12:15:05.643761 4036744 LibParserRustC.cc:1269] load liberty file syn/scripts/../nangate45/lib/merged.lib
+I20250901 18:22:29.660356 3960145 Sta.cc:379] read verilog end
+I20250901 18:22:29.660460 3960145 Sta.cc:298] load lib start
+I20250901 18:22:29.663810 3960147 LibParserRustC.cc:1269] load liberty file syn/scripts/../nangate45/lib/merged.lib
 rust read lib file syn/scripts/../nangate45/lib/merged.lib
-I20250829 12:15:06.351219 4036744 LibParserRustC.cc:1278] load liberty file syn/scripts/../nangate45/lib/merged.lib success.
-I20250829 12:15:06.351979 4036731 Sta.cc:317] load lib end
-I20250829 12:15:06.352033 4036731 Sta.cc:405] link design NPC start
-I20250829 12:15:06.366724 4036792 LibParserRustC.cc:1289] link liberty file syn/scripts/../nangate45/lib/merged.lib start.
-I20250829 12:15:06.888190 4036792 LibParserRustC.cc:1295] link liberty file syn/scripts/../nangate45/lib/merged.lib success.
-I20250829 12:15:08.408331 4036731 Sta.cc:790] link design NPC end
-I20250829 12:15:08.417253 4036731 Sta.cc:172] read sdc syn/sdc/NPC.sdc start 
-I20250829 12:15:08.418032 4036731 CmdCreateClock.cc:116] create clock core_clock for pin/port: clock
-I20250829 12:15:08.418063 4036731 Sta.cc:185] read sdc end
-I20250829 12:15:08.418093 4036731 StaBuildGraph.cc:310] build graph start
-I20250829 12:15:10.439987 4036731 StaBuildGraph.cc:327] build graph end
-I20250829 12:15:10.440033 4036731 Sta.cc:2287] update timing start
-I20250829 12:15:10.473798 4036731 StaApplySdc.cc:694] apply sdc start
-I20250829 12:15:10.473887 4036731 StaApplySdc.cc:725] apply sdc end
-I20250829 12:15:10.474686 4036731 StaClockPropagation.cc:320] ideal clock propagation start
-I20250829 12:15:10.474792 4036731 StaClockPropagation.cc:203] clock propagate end to vertex clint/_1456_:CK
-I20250829 12:15:10.499574 4036731 StaClockPropagation.cc:416] ideal clock propagation end
-I20250829 12:15:10.499619 4036731 StaCheck.cc:129] found loop fwd start
-I20250829 12:15:10.538812 4036731 StaCheck.cc:148] found loop fwd end
-I20250829 12:15:10.538843 4036731 StaCheck.cc:150] found loop bwd start
-I20250829 12:15:10.576844 4036731 StaCheck.cc:172] found loop bwd end
-I20250829 12:15:10.576884 4036731 StaSlewPropagation.cc:266] slew propagation start
-E20250829 12:15:10.579262 4036961 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250829 12:15:10.579257 4036945 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250829 12:15:10.579387 4036961 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250829 12:15:10.579417 4036945 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250829 12:15:10.579427 4036961 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250829 12:15:10.579488 4036945 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250829 12:15:10.579491 4036961 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250829 12:15:10.579540 4036945 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250829 12:15:10.579551 4036961 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-E20250829 12:15:10.579558 4036945 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
-I20250829 12:15:11.052791 4036731 StaSlewPropagation.cc:305] slew propagation end
-I20250829 12:15:11.052871 4036731 StaDelayPropagation.cc:268] delay propagation start
-I20250829 12:15:11.358177 4036731 StaDelayPropagation.cc:309] delay propagation end
-I20250829 12:15:11.358266 4036731 StaClockPropagation.cc:322] propagated(kNormal) clock propagation start
-I20250829 12:15:11.358301 4036731 StaClockPropagation.cc:418] propagated(kNormal) clock propagation end
-I20250829 12:15:11.358326 4036731 StaApplySdc.cc:694] apply sdc start
-I20250829 12:15:11.358350 4036731 StaApplySdc.cc:725] apply sdc end
-I20250829 12:15:11.358390 4036731 StaClockPropagation.cc:324] propagated(kGenerated) clock propagation start
-I20250829 12:15:11.358425 4036731 StaClockPropagation.cc:420] propagated(kGenerated) clock propagation end
-I20250829 12:15:11.358461 4036731 StaApplySdc.cc:694] apply sdc start
-I20250829 12:15:11.358493 4036731 StaApplySdc.cc:725] apply sdc end
-I20250829 12:15:11.409627 4036731 StaBuildPropTag.cc:325] build propagation tag start
-I20250829 12:15:11.409698 4036731 StaDataPropagation.cc:589] data fwd propagation start
-I20250829 12:15:11.413916 4037062 StaDataPropagation.cc:529] Thread 128602150401600 date fwd propagate found start vertex.xbar/_2482_:CK
-I20250829 12:15:11.414084 4037039 StaDataPropagation.cc:529] Thread 128602377004608 date fwd propagate found start vertex.core/lsu/_2899_:CK
-I20250829 12:15:11.414281 4037039 StaDataPropagation.cc:529] Thread 128602377004608 date fwd propagate found start vertex.core/lsu/_2895_:CK
-I20250829 12:15:11.414324 4037062 StaDataPropagation.cc:529] Thread 128602150401600 date fwd propagate found start vertex.core/lsu/_2893_:CK
-I20250829 12:15:11.414502 4037039 StaDataPropagation.cc:529] Thread 128602377004608 date fwd propagate found start vertex.core/icache/_8511_:CK
-I20250829 12:15:11.414633 4037062 StaDataPropagation.cc:529] Thread 128602150401600 date fwd propagate found start vertex.core/lsu/_2894_:CK
-I20250829 12:15:11.414831 4037039 StaDataPropagation.cc:529] Thread 128602377004608 date fwd propagate found start vertex.xbar/_2481_:CK
-I20250829 12:15:11.414999 4037062 StaDataPropagation.cc:529] Thread 128602150401600 date fwd propagate found start vertex.core/lsu/_2891_:CK
-I20250829 12:15:11.415247 4037039 StaDataPropagation.cc:529] Thread 128602377004608 date fwd propagate found start vertex.core/icache/_8520_:CK
-I20250829 12:15:11.415370 4037062 StaDataPropagation.cc:529] Thread 128602150401600 date fwd propagate found start vertex.core/lsu/_2892_:CK
-I20250829 12:15:11.783725 4036731 StaDataPropagation.cc:632] data fwd propagation end
-I20250829 12:15:11.783800 4036731 StaDataPropagation.cc:589] data fwd propagation start
-I20250829 12:15:11.815991 4036731 StaDataPropagation.cc:632] data fwd propagation end
-I20250829 12:15:11.816040 4036731 StaAnalyze.cc:539] analyze timing path start
-E20250829 12:15:11.816066 4036731 StaAnalyze.cc:324] The output port io_master_araddr[19] is not constrained
-E20250829 12:15:11.816088 4036731 StaAnalyze.cc:324] The output port io_master_araddr[19] is not constrained
-E20250829 12:15:11.816108 4036731 StaAnalyze.cc:324] The output port io_master_araddr[20] is not constrained
-E20250829 12:15:11.816125 4036731 StaAnalyze.cc:324] The output port io_master_araddr[20] is not constrained
-E20250829 12:15:11.816147 4036731 StaAnalyze.cc:324] The output port io_master_araddr[21] is not constrained
-E20250829 12:15:11.816165 4036731 StaAnalyze.cc:324] The output port io_master_araddr[21] is not constrained
-E20250829 12:15:11.816184 4036731 StaAnalyze.cc:324] The output port io_master_araddr[22] is not constrained
-E20250829 12:15:11.816217 4036731 StaAnalyze.cc:324] The output port io_master_araddr[22] is not constrained
-E20250829 12:15:11.816236 4036731 StaAnalyze.cc:324] The output port io_master_araddr[23] is not constrained
-E20250829 12:15:11.816253 4036731 StaAnalyze.cc:324] The output port io_master_araddr[23] is not constrained
-I20250829 12:15:11.963843 4036731 StaAnalyze.cc:577] analyze timing path end
-I20250829 12:15:11.963872 4036731 StaApplySdc.cc:694] apply sdc start
-I20250829 12:15:11.963886 4036731 StaApplySdc.cc:725] apply sdc end
-I20250829 12:15:11.963896 4036731 StaDataPropagation.cc:635] data bwd propagation start
-I20250829 12:15:11.966315 4037113 StaDataPropagation.cc:171] Thread 128602385397312 data bwd propagate found end vertex.clint/_1456_:D
-I20250829 12:15:11.966411 4037118 StaDataPropagation.cc:171] Thread 128602343433792 data bwd propagate found end vertex.clint/_1531_:D
-I20250829 12:15:11.966328 4037115 StaDataPropagation.cc:171] Thread 128602368611904 data bwd propagate found end vertex.clint/_1522_:D
-I20250829 12:15:11.966393 4037114 StaDataPropagation.cc:171] Thread 128602377004608 data bwd propagate found end vertex.clint/_1467_:D
-I20250829 12:15:11.966346 4037107 StaDataPropagation.cc:171] Thread 128602192365120 data bwd propagate found end vertex.clint/_1463_:D
-I20250829 12:15:11.966353 4037110 StaDataPropagation.cc:171] Thread 128602410575424 data bwd propagate found end vertex.clint/_1465_:D
-I20250829 12:15:11.966332 4037116 StaDataPropagation.cc:171] Thread 128602360219200 data bwd propagate found end vertex.clint/_1523_:D
-I20250829 12:15:11.966332 4037112 StaDataPropagation.cc:171] Thread 128602393790016 data bwd propagate found end vertex.clint/_1527_:D
-I20250829 12:15:11.966327 4037108 StaDataPropagation.cc:171] Thread 128602200757824 data bwd propagate found end vertex.clint/_1461_:D
-I20250829 12:15:11.966328 4037106 StaDataPropagation.cc:171] Thread 128602183972416 data bwd propagate found end vertex.clint/_1521_:D
-I20250829 12:15:12.026551 4036731 StaDataPropagation.cc:670] data bwd propagation end
-I20250829 12:15:12.026599 4036731 Sta.cc:2316] update timing end
-I20250829 12:15:12.027547 4036731 Sta.cc:2410] start write sta report.
-I20250829 12:15:12.027565 4036731 Sta.cc:2411] output sta report path: syn/result/NPC-500MHz
-I20250829 12:15:12.032701 4036731 StaReport.cc:188] report the clock group core_clock 3 timing paths.
-I20250829 12:15:12.041424 4036731 StaReport.cc:188] report the clock group core_clock 3 timing paths.
-I20250829 12:15:12.048144 4036731 StaReport.cc:188] report the clock group core_clock 1 timing paths.
-I20250829 12:15:12.052955 4036731 StaReport.cc:188] report the clock group core_clock 3 timing paths.
-I20250829 12:15:12.058179 4036731 StaReport.cc:188] report the clock group core_clock 3 timing paths.
-I20250829 12:15:12.065619 4036731 StaReport.cc:188] report the clock group core_clock 1 timing paths.
-I20250829 12:15:12.065637 4036731 Sta.cc:1390] 
+I20250901 18:22:30.377034 3960147 LibParserRustC.cc:1278] load liberty file syn/scripts/../nangate45/lib/merged.lib success.
+I20250901 18:22:30.377658 3960145 Sta.cc:317] load lib end
+I20250901 18:22:30.377712 3960145 Sta.cc:405] link design NPC start
+I20250901 18:22:30.392175 3960216 LibParserRustC.cc:1289] link liberty file syn/scripts/../nangate45/lib/merged.lib start.
+I20250901 18:22:30.971215 3960216 LibParserRustC.cc:1295] link liberty file syn/scripts/../nangate45/lib/merged.lib success.
+I20250901 18:22:32.566093 3960145 Sta.cc:790] link design NPC end
+I20250901 18:22:32.575817 3960145 Sta.cc:172] read sdc syn/sdc/NPC.sdc start 
+I20250901 18:22:32.576658 3960145 CmdCreateClock.cc:116] create clock core_clock for pin/port: clock
+I20250901 18:22:32.576687 3960145 Sta.cc:185] read sdc end
+I20250901 18:22:32.576715 3960145 StaBuildGraph.cc:310] build graph start
+I20250901 18:22:34.703507 3960145 StaBuildGraph.cc:327] build graph end
+I20250901 18:22:34.703552 3960145 Sta.cc:2287] update timing start
+I20250901 18:22:34.739606 3960145 StaApplySdc.cc:694] apply sdc start
+I20250901 18:22:34.739702 3960145 StaApplySdc.cc:725] apply sdc end
+I20250901 18:22:34.740489 3960145 StaClockPropagation.cc:320] ideal clock propagation start
+I20250901 18:22:34.740563 3960145 StaClockPropagation.cc:203] clock propagate end to vertex clint/_1456_:CK
+I20250901 18:22:34.766948 3960145 StaClockPropagation.cc:416] ideal clock propagation end
+I20250901 18:22:34.766993 3960145 StaCheck.cc:129] found loop fwd start
+I20250901 18:22:34.809139 3960145 StaCheck.cc:148] found loop fwd end
+I20250901 18:22:34.809172 3960145 StaCheck.cc:150] found loop bwd start
+I20250901 18:22:34.853418 3960145 StaCheck.cc:172] found loop bwd end
+I20250901 18:22:34.853464 3960145 StaSlewPropagation.cc:266] slew propagation start
+E20250901 18:22:34.856076 3960247 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250901 18:22:34.856168 3960247 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250901 18:22:34.856209 3960247 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250901 18:22:34.856240 3960247 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250901 18:22:34.856261 3960247 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250901 18:22:34.856277 3960247 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250901 18:22:34.856298 3960247 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250901 18:22:34.856295 3960268 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250901 18:22:34.856377 3960247 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+E20250901 18:22:34.856426 3960268 Lib.cc:174] Warning: val outside table ranges:  val = 0; min_val = 0.00117378; max_val = 0.198535
+I20250901 18:22:35.315099 3960145 StaSlewPropagation.cc:305] slew propagation end
+I20250901 18:22:35.315153 3960145 StaDelayPropagation.cc:268] delay propagation start
+I20250901 18:22:35.578126 3960145 StaDelayPropagation.cc:309] delay propagation end
+I20250901 18:22:35.578187 3960145 StaClockPropagation.cc:322] propagated(kNormal) clock propagation start
+I20250901 18:22:35.578222 3960145 StaClockPropagation.cc:418] propagated(kNormal) clock propagation end
+I20250901 18:22:35.578238 3960145 StaApplySdc.cc:694] apply sdc start
+I20250901 18:22:35.578251 3960145 StaApplySdc.cc:725] apply sdc end
+I20250901 18:22:35.578264 3960145 StaClockPropagation.cc:324] propagated(kGenerated) clock propagation start
+I20250901 18:22:35.578276 3960145 StaClockPropagation.cc:420] propagated(kGenerated) clock propagation end
+I20250901 18:22:35.578289 3960145 StaApplySdc.cc:694] apply sdc start
+I20250901 18:22:35.578302 3960145 StaApplySdc.cc:725] apply sdc end
+I20250901 18:22:35.610957 3960145 StaBuildPropTag.cc:325] build propagation tag start
+I20250901 18:22:35.611011 3960145 StaDataPropagation.cc:589] data fwd propagation start
+I20250901 18:22:35.613567 3960318 StaDataPropagation.cc:529] Thread 138902169859648 date fwd propagate found start vertex.xbar/_2482_:CK
+I20250901 18:22:35.613695 3960331 StaDataPropagation.cc:529] Thread 138902320928320 date fwd propagate found start vertex.core/lsu/_2899_:CK
+I20250901 18:22:35.613806 3960318 StaDataPropagation.cc:529] Thread 138902169859648 date fwd propagate found start vertex.core/lsu/_2893_:CK
+I20250901 18:22:35.613978 3960318 StaDataPropagation.cc:529] Thread 138902169859648 date fwd propagate found start vertex.core/lsu/_2894_:CK
+I20250901 18:22:35.614032 3960331 StaDataPropagation.cc:529] Thread 138902320928320 date fwd propagate found start vertex.core/lsu/_2895_:CK
+I20250901 18:22:35.614179 3960318 StaDataPropagation.cc:529] Thread 138902169859648 date fwd propagate found start vertex.core/lsu/_2891_:CK
+I20250901 18:22:35.614389 3960318 StaDataPropagation.cc:529] Thread 138902169859648 date fwd propagate found start vertex.core/lsu/_2892_:CK
+I20250901 18:22:35.614451 3960331 StaDataPropagation.cc:529] Thread 138902320928320 date fwd propagate found start vertex.core/icache/_8511_:CK
+I20250901 18:22:35.614660 3960318 StaDataPropagation.cc:529] Thread 138902169859648 date fwd propagate found start vertex.core/lsu/_2886_:CK
+I20250901 18:22:35.614809 3960318 StaDataPropagation.cc:529] Thread 138902169859648 date fwd propagate found start vertex.core/lsu/_2885_:CK
+I20250901 18:22:35.929955 3960145 StaDataPropagation.cc:632] data fwd propagation end
+I20250901 18:22:35.930018 3960145 StaDataPropagation.cc:589] data fwd propagation start
+I20250901 18:22:35.959718 3960145 StaDataPropagation.cc:632] data fwd propagation end
+I20250901 18:22:35.959782 3960145 StaAnalyze.cc:539] analyze timing path start
+E20250901 18:22:35.959816 3960145 StaAnalyze.cc:324] The output port io_master_araddr[19] is not constrained
+E20250901 18:22:35.959844 3960145 StaAnalyze.cc:324] The output port io_master_araddr[19] is not constrained
+E20250901 18:22:35.959868 3960145 StaAnalyze.cc:324] The output port io_master_araddr[20] is not constrained
+E20250901 18:22:35.959892 3960145 StaAnalyze.cc:324] The output port io_master_araddr[20] is not constrained
+E20250901 18:22:35.959918 3960145 StaAnalyze.cc:324] The output port io_master_araddr[21] is not constrained
+E20250901 18:22:35.959940 3960145 StaAnalyze.cc:324] The output port io_master_araddr[21] is not constrained
+E20250901 18:22:35.959964 3960145 StaAnalyze.cc:324] The output port io_master_araddr[22] is not constrained
+E20250901 18:22:35.959987 3960145 StaAnalyze.cc:324] The output port io_master_araddr[22] is not constrained
+E20250901 18:22:35.960011 3960145 StaAnalyze.cc:324] The output port io_master_araddr[23] is not constrained
+E20250901 18:22:35.960034 3960145 StaAnalyze.cc:324] The output port io_master_araddr[23] is not constrained
+I20250901 18:22:36.110620 3960145 StaAnalyze.cc:577] analyze timing path end
+I20250901 18:22:36.110675 3960145 StaApplySdc.cc:694] apply sdc start
+I20250901 18:22:36.110692 3960145 StaApplySdc.cc:725] apply sdc end
+I20250901 18:22:36.110703 3960145 StaDataPropagation.cc:635] data bwd propagation start
+I20250901 18:22:36.113569 3960385 StaDataPropagation.cc:171] Thread 138902195037760 data bwd propagate found end vertex.clint/_1463_:D
+I20250901 18:22:36.113638 3960393 StaDataPropagation.cc:171] Thread 138902337713728 data bwd propagate found end vertex.clint/_1467_:D
+I20250901 18:22:36.113524 3960388 StaDataPropagation.cc:171] Thread 138902379677248 data bwd propagate found end vertex.clint/_1522_:D
+I20250901 18:22:36.113518 3960386 StaDataPropagation.cc:171] Thread 138902396462656 data bwd propagate found end vertex.clint/_1456_:D
+I20250901 18:22:36.113520 3960387 StaDataPropagation.cc:171] Thread 138902388069952 data bwd propagate found end vertex.clint/_1521_:D
+I20250901 18:22:36.113530 3960389 StaDataPropagation.cc:171] Thread 138902371284544 data bwd propagate found end vertex.clint/_1523_:D
+I20250901 18:22:36.113551 3960382 StaDataPropagation.cc:171] Thread 138902169859648 data bwd propagate found end vertex.clint/_1461_:D
+I20250901 18:22:36.113638 3960394 StaDataPropagation.cc:171] Thread 138902329321024 data bwd propagate found end vertex.clint/_1531_:D
+I20250901 18:22:36.113611 3960390 StaDataPropagation.cc:171] Thread 138902362891840 data bwd propagate found end vertex.clint/_1465_:D
+I20250901 18:22:36.113566 3960384 StaDataPropagation.cc:171] Thread 138902186645056 data bwd propagate found end vertex.clint/_1527_:D
+I20250901 18:22:36.176577 3960145 StaDataPropagation.cc:670] data bwd propagation end
+I20250901 18:22:36.176643 3960145 Sta.cc:2316] update timing end
+I20250901 18:22:36.179018 3960145 Sta.cc:2410] start write sta report.
+I20250901 18:22:36.179042 3960145 Sta.cc:2411] output sta report path: syn/result/NPC-500MHz
+I20250901 18:22:36.186084 3960145 StaReport.cc:188] report the clock group core_clock 3 timing paths.
+I20250901 18:22:36.198606 3960145 StaReport.cc:188] report the clock group core_clock 3 timing paths.
+I20250901 18:22:36.208020 3960145 StaReport.cc:188] report the clock group core_clock 1 timing paths.
+I20250901 18:22:36.214046 3960145 StaReport.cc:188] report the clock group core_clock 3 timing paths.
+I20250901 18:22:36.220363 3960145 StaReport.cc:188] report the clock group core_clock 3 timing paths.
+I20250901 18:22:36.228652 3960145 StaReport.cc:188] report the clock group core_clock 1 timing paths.
+I20250901 18:22:36.228675 3960145 Sta.cc:1390] 
 +-------------------+-------------+------------+------------+---------------+-------+-------+-----------+
 | Endpoint          | Clock Group | Delay Type | Path Delay | Path Required | CPPR  | Slack | Freq(MHz) |
 +-------------------+-------------+------------+------------+---------------+-------+-------+-----------+
-| core/_7096_:D     | core_clock  | max        | 1.505f     | 1.961         | 0.000 | 0.456 | 647.719   |
-| core/_7087_:D     | core_clock  | max        | 1.505f     | 1.961         | 0.000 | 0.456 | 647.719   |
-| core/_7100_:D     | core_clock  | max        | 1.505f     | 1.961         | 0.000 | 0.456 | 647.719   |
-| core/_7082_:D     | core_clock  | min        | 0.081f     | 0.002         | 0.000 | 0.079 | NA        |
-| core/_7082_:D     | core_clock  | min        | 0.088r     | 0.006         | 0.000 | 0.082 | NA        |
-| core/gpr/_8182_:D | core_clock  | min        | 0.114f     | 0.002         | 0.000 | 0.112 | NA        |
+| core/_09675_:D    | core_clock  | max        | 1.496f     | 1.961         | 0.000 | 0.465 | 651.433   |
+| core/_09688_:D    | core_clock  | max        | 1.496f     | 1.961         | 0.000 | 0.465 | 651.433   |
+| core/_09709_:D    | core_clock  | max        | 1.496f     | 1.961         | 0.000 | 0.465 | 651.433   |
+| core/_09668_:D    | core_clock  | min        | 0.081f     | 0.002         | 0.000 | 0.079 | NA        |
+| core/_09668_:D    | core_clock  | min        | 0.088r     | 0.006         | 0.000 | 0.082 | NA        |
+| core/gpr/_8178_:D | core_clock  | min        | 0.114f     | 0.002         | 0.000 | 0.112 | NA        |
 +-------------------+-------------+------------+------------+---------------+-------+-------+-----------+
-I20250829 12:15:12.065785 4036731 Sta.cc:1391] 
+I20250901 18:22:36.228828 3960145 Sta.cc:1391] 
 +------------+------------+-------+
 | Clock      | Delay Type | TNS   |
 +------------+------------+-------+
 | core_clock | max        | 0.000 |
 | core_clock | min        | 0.000 |
 +------------+------------+-------+
-I20250829 12:15:12.686307 4036731 NetlistWriter.cc:52] start write verilog file syn/result/NPC-500MHz/NPC.v
-I20250829 12:15:12.931401 4036731 NetlistWriter.cc:71] finish write verilog file syn/result/NPC-500MHz/NPC.v
-I20250829 12:15:12.931449 4036731 Sta.cc:2495] The timing engine run success.
+I20250901 18:22:36.920673 3960145 NetlistWriter.cc:52] start write verilog file syn/result/NPC-500MHz/NPC.v
+I20250901 18:22:37.187556 3960145 NetlistWriter.cc:71] finish write verilog file syn/result/NPC-500MHz/NPC.v
+I20250901 18:22:37.187601 3960145 Sta.cc:2495] The timing engine run success.
