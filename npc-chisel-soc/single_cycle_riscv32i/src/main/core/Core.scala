@@ -328,7 +328,9 @@ class Core extends Module {
     is_ctrl_hazard_r := Mux(is_ctrl_hazard, true.B, Mux(ifu.io_pipe.in.ready & ifu.io_pipe.in.valid, false.B, is_ctrl_hazard_r))
     is_irq_r := Mux(is_irq, true.B, Mux(ifu.io_pipe.in.ready & ifu.io_pipe.in.valid, false.B, is_irq_r))
 
-    val is_fencei = RegNext(icache.fencei_io_vr.is_fencei_io.fire)
+    val is_fencei = icache.fencei_io_vr.is_fencei_io.fire
+    val is_fencei_r = RegInit(false.B)
+    is_fencei_r := Mux(is_fencei, true.B, Mux(ifu.io_pipe.in.ready & ifu.io_pipe.in.valid, false.B, is_fencei_r))
 
     ifu.io_hazard.flush_flg := is_ctrl_hazard | is_irq | is_fencei
     idu.io_hazard.flush_flg := is_ctrl_hazard | is_irq
