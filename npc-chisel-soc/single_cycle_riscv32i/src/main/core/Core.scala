@@ -67,8 +67,8 @@ class Core extends Module {
 
 
     
-    gpr.io.gpr_rs1_addr := exu.io.gpr_rs1_addr
-    gpr.io.gpr_rs2_addr := exu.io.gpr_rs2_addr
+    gpr.io.gpr_rs1_addr := idu.io.gpr_rs1_addr
+    gpr.io.gpr_rs2_addr := idu.io.gpr_rs2_addr
 
     io.dmem <> lsu.io.dmem
 
