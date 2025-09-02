@@ -169,6 +169,8 @@ class IDU extends Module {
 
     val imm_type :: exe_fun :: op1_sel :: op2_sel :: mem_wen :: rf_wen :: wb_sel :: csr_cmd :: mem_op :: is_fencei :: rs1_is_read :: rs2_is_read :: Nil = csignals
     
+    dontTouch(is_fencei)
+    
     val imm_sext = MuxCase(0.U(WORD_LEN.W), Seq(
         (imm_type === IMM_TYPE_I)  ->  imm_i_sext,
         (imm_type === IMM_TYPE_S)  ->  imm_s_sext,
