@@ -14,10 +14,12 @@ class IDUIO_HAZARD extends Bundle {
 
 
 class IDUIO extends Bundle {
-    val gpr_rs1_addr = Output(UInt(ADDR_LEN.W))//for data hazard detection
-    val gpr_rs2_addr = Output(UInt(ADDR_LEN.W))//for data hazard detection
-    val gpr_rs1_is_read = Output(Bool())//for data hazard detection
-    val gpr_rs2_is_read = Output(Bool())//for data hazard detection
+    val gpr_rs1_addr = Output(UInt(ADDR_LEN.W))
+    val gpr_rs2_addr = Output(UInt(ADDR_LEN.W))
+    val gpr_rs1_data = Input(UInt(WORD_LEN.W))
+    val gpr_rs2_data = Input(UInt(WORD_LEN.W))
+    val gpr_rs1_is_read = Output(Bool())
+    val gpr_rs2_is_read = Output(Bool())
 
     val csr_raddr = Output(UInt(CSR_ADDR_LEN.W))
     val csr_rdata = Input(UInt(WORD_LEN.W))
@@ -31,8 +33,8 @@ class IDUIO_pipe_out extends Bundle{
     // val id2exe_op2_data = Output(UInt(WORD_LEN.W))
     val id2exe_op1_sel = Output(UInt(OP1_LEN.W))
     val id2exe_op2_sel = Output(UInt(OP2_LEN.W))
-    val id2exe_rs1_addr = Output(UInt(ADDR_LEN.W))
-    val id2exe_rs2_addr = Output(UInt(ADDR_LEN.W))
+    val id2exe_rs1_data = Output(UInt(WORD_LEN.W))
+    val id2exe_rs2_data = Output(UInt(WORD_LEN.W))
     val id2exe_wb_addr = Output(UInt(ADDR_LEN.W))
     val id2exe_rf_wen = Output(UInt(REN_LEN.W))
     val id2exe_exe_fun = Output(UInt(EXE_FUN_LEN.W))
@@ -94,6 +96,9 @@ class IDU extends Module {
     val rs1_addr = inst(19, 15)
     val rs2_addr = inst(24, 20)
     val wb_addr = inst(11, 7)
+
+    val rs1_data = io.gpr_rs1_data
+    val rs2_data = io.gpr_rs2_data
 
     val imm_i = inst(31, 20)
     val imm_i_sext = Cat(Fill(20, imm_i(11)), imm_i)
@@ -189,8 +194,8 @@ class IDU extends Module {
     io_pipe.out.bits.id2exe_reg_pc := reg_pc//32  must
     io_pipe.out.bits.id2exe_op1_sel := op1_sel//2
     io_pipe.out.bits.id2exe_op2_sel := op2_sel//2
-    io_pipe.out.bits.id2exe_rs1_addr := rs1_addr//32
-    io_pipe.out.bits.id2exe_rs2_addr := rs2_addr//32
+    io_pipe.out.bits.id2exe_rs2_data := rs2_data//32
+    io_pipe.out.bits.id2exe_rs1_data := rs1_data//32
     io_pipe.out.bits.id2exe_wb_addr := wb_addr//5
     io_pipe.out.bits.id2exe_rf_wen := rf_wen//2
     io_pipe.out.bits.id2exe_exe_fun := exe_fun//5
