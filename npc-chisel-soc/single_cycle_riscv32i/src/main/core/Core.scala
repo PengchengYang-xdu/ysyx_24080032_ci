@@ -199,10 +199,10 @@ class Core extends Module {
     val wbu_rs2_rawing_raw = (wbu_rs2_rawing || wbu_raw_rs2)
 
 
-    val exu_can_forward_rs1 = exu_rs1_rawing_raw && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM || (lsu.io_pipe.out.fire && lsu.io_pipe.out.bits.ls2wb_wb_addr === idu.io.gpr_rs1_addr))
-    val exu_can_forward_rs2 = exu_rs2_rawing_raw && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM || (lsu.io_pipe.out.fire && lsu.io_pipe.out.bits.ls2wb_wb_addr === idu.io.gpr_rs2_addr))
-    val lsu_can_forward_rs1 = lsu_rs1_rawing_raw && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || (lsu.io_pipe.out.fire && lsu.io_pipe.out.bits.ls2wb_wb_addr === idu.io.gpr_rs1_addr))//两种情况：第一种、普通的lsu raw用=/= WB_MEM可以转发。第二种、load-use raw用lsu.io.dmem.rvalid可以转发
-    val lsu_can_forward_rs2 = lsu_rs2_rawing_raw && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || (lsu.io_pipe.out.fire && lsu.io_pipe.out.bits.ls2wb_wb_addr === idu.io.gpr_rs2_addr))
+    val exu_can_forward_rs1 = exu_rs1_rawing_raw && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM || (lsu.io_pipe.out.fire && lsu.io_pipe.out.bits.ls2wb_wb_addr === idu.io.gpr_rs1_addr && lsu.io_pipe.out.bits.ls2wb_rf_wen === REN_S))
+    val exu_can_forward_rs2 = exu_rs2_rawing_raw && (exu.io_pipe.in.bits.id2exe_wb_sel =/= WB_MEM || (lsu.io_pipe.out.fire && lsu.io_pipe.out.bits.ls2wb_wb_addr === idu.io.gpr_rs2_addr && lsu.io_pipe.out.bits.ls2wb_rf_wen === REN_S))
+    val lsu_can_forward_rs1 = lsu_rs1_rawing_raw && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || (lsu.io_pipe.out.fire && lsu.io_pipe.out.bits.ls2wb_wb_addr === idu.io.gpr_rs1_addr && lsu.io_pipe.out.bits.ls2wb_rf_wen === REN_S))//两种情况：第一种、普通的lsu raw用=/= WB_MEM可以转发。第二种、load-use raw用lsu.io.dmem.rvalid可以转发
+    val lsu_can_forward_rs2 = lsu_rs2_rawing_raw && (lsu.io_pipe.in.bits.exe2ls_wb_sel =/= WB_MEM || (lsu.io_pipe.out.fire && lsu.io_pipe.out.bits.ls2wb_wb_addr === idu.io.gpr_rs2_addr && lsu.io_pipe.out.bits.ls2wb_rf_wen === REN_S))
     val wbu_can_forward_rs1 = wbu_rs1_rawing_raw
     val wbu_can_forward_rs2 = wbu_rs2_rawing_raw
     val exu_forward_data = MuxLookup(exu.io_pipe.in.bits.id2exe_wb_sel, 0.U)(Seq(

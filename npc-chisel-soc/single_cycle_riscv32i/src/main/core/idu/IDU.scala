@@ -177,19 +177,6 @@ class IDU extends Module {
         (imm_type === IMM_TYPE_B)  ->  imm_b_sext
     ))
 
-    // val op1_data = MuxCase(0.U(WORD_LEN.W), Seq(
-    //     (op1_sel === OP1_RS1)  ->  rs1_data,
-    //     (op1_sel === OP1_PC)   ->  reg_pc
-    //     // (op1_sel === OP1_IMZ)  ->  imm_z_uext
-    // ))
-
-    // val op2_data = MuxCase(0.U(WORD_LEN.W), Seq(
-    //     (op2_sel === OP2_RS2)  ->  rs2_data,
-    //     (op2_sel === OP2_IMI)  ->  imm_i_sext,
-    //     (op2_sel === OP2_IMS)  ->  imm_s_sext,
-    //     (op2_sel === OP2_IMJ)  ->  imm_j_sext,
-    //     (op2_sel === OP2_IMU)  ->  imm_u_shifted
-    // ))
 
     val csr_addr = Mux(csr_cmd === CSR_E, 0x342.U(CSR_ADDR_LEN.W), inst(31,20))
     val csr_raddr = inst(31,20)
@@ -205,8 +192,6 @@ class IDU extends Module {
 
 
     io_pipe.out.bits.id2exe_reg_pc := reg_pc
-    // io_pipe.out.bits.id2exe_op1_data := op1_data
-    // io_pipe.out.bits.id2exe_op2_data := op2_data
     io_pipe.out.bits.id2exe_op1_sel := op1_sel
     io_pipe.out.bits.id2exe_op2_sel := op2_sel
     io_pipe.out.bits.id2exe_rs2_data := rs2_data
@@ -216,11 +201,6 @@ class IDU extends Module {
     io_pipe.out.bits.id2exe_exe_fun := exe_fun
     io_pipe.out.bits.id2exe_wb_sel := wb_sel
     io_pipe.out.bits.id2exe_imm_sext := imm_sext
-    // io_pipe.out.bits.id2exe_imm_i_sext := imm_i_sext
-    // io_pipe.out.bits.id2exe_imm_s_sext := imm_s_sext
-    // io_pipe.out.bits.id2exe_imm_b_sext := imm_b_sext
-    // io_pipe.out.bits.id2exe_imm_u_shifted := imm_u_shifted
-    // io_pipe.out.bits.id2exe_imm_z_uext := imm_z_uext
     io_pipe.out.bits.id2exe_csr_addr := csr_addr
     io_pipe.out.bits.id2exe_csr_cmd := csr_cmd
     io_pipe.out.bits.id2exe_mem_wen := mem_wen
