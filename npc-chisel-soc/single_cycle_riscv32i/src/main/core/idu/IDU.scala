@@ -14,12 +14,10 @@ class IDUIO_HAZARD extends Bundle {
 
 
 class IDUIO extends Bundle {
-    val gpr_rs1_addr = Output(UInt(ADDR_LEN.W))
-    val gpr_rs2_addr = Output(UInt(ADDR_LEN.W))
-    val gpr_rs1_data = Input(UInt(WORD_LEN.W))
-    val gpr_rs2_data = Input(UInt(WORD_LEN.W))
-    val gpr_rs1_is_read = Output(Bool())
-    val gpr_rs2_is_read = Output(Bool())
+    val gpr_rs1_addr = Output(UInt(ADDR_LEN.W))//for data hazard detection
+    val gpr_rs2_addr = Output(UInt(ADDR_LEN.W))//for data hazard detection
+    val gpr_rs1_is_read = Output(Bool())//for data hazard detection
+    val gpr_rs2_is_read = Output(Bool())//for data hazard detection
 
     val csr_raddr = Output(UInt(CSR_ADDR_LEN.W))
     val csr_rdata = Input(UInt(WORD_LEN.W))
@@ -97,9 +95,6 @@ class IDU extends Module {
     val rs2_addr = inst(24, 20)
     val wb_addr = inst(11, 7)
 
-    val rs1_data = io.gpr_rs1_data
-    val rs2_data = io.gpr_rs2_data
-
     val imm_i = inst(31, 20)
     val imm_i_sext = Cat(Fill(20, imm_i(11)), imm_i)
     val imm_s = Cat(inst(31, 25), inst(11, 7))
@@ -169,8 +164,6 @@ class IDU extends Module {
 
     val imm_type :: exe_fun :: op1_sel :: op2_sel :: mem_wen :: rf_wen :: wb_sel :: csr_cmd :: mem_op :: is_fencei :: rs1_is_read :: rs2_is_read :: Nil = csignals
     
-    dontTouch(is_fencei)
-    
     val imm_sext = MuxCase(0.U(WORD_LEN.W), Seq(
         (imm_type === IMM_TYPE_I)  ->  imm_i_sext,
         (imm_type === IMM_TYPE_S)  ->  imm_s_sext,
@@ -193,20 +186,20 @@ class IDU extends Module {
     io.gpr_rs2_is_read := rs2_is_read
 
 
-    io_pipe.out.bits.id2exe_reg_pc := reg_pc
-    io_pipe.out.bits.id2exe_op1_sel := op1_sel
-    io_pipe.out.bits.id2exe_op2_sel := op2_sel
-    io_pipe.out.bits.id2exe_rs2_data := rs2_data
-    io_pipe.out.bits.id2exe_rs1_data := rs1_data
-    io_pipe.out.bits.id2exe_wb_addr := wb_addr
-    io_pipe.out.bits.id2exe_rf_wen := rf_wen
-    io_pipe.out.bits.id2exe_exe_fun := exe_fun
-    io_pipe.out.bits.id2exe_wb_sel := wb_sel
-    io_pipe.out.bits.id2exe_imm_sext := imm_sext
-    io_pipe.out.bits.id2exe_csr_addr := csr_addr
-    io_pipe.out.bits.id2exe_csr_cmd := csr_cmd
-    io_pipe.out.bits.id2exe_mem_wen := mem_wen
-    io_pipe.out.bits.id2exe_mem_op := mem_op
+    io_pipe.out.bits.id2exe_reg_pc := reg_pc//32  must
+    io_pipe.out.bits.id2exe_op1_sel := op1_sel//2
+    io_pipe.out.bits.id2exe_op2_sel := op2_sel//2
+    io_pipe.out.bits.id2exe_rs1_addr := rs1_addr//32
+    io_pipe.out.bits.id2exe_rs2_addr := rs2_addr//32
+    io_pipe.out.bits.id2exe_wb_addr := wb_addr//5
+    io_pipe.out.bits.id2exe_rf_wen := rf_wen//2
+    io_pipe.out.bits.id2exe_exe_fun := exe_fun//5
+    io_pipe.out.bits.id2exe_wb_sel := wb_sel//3
+    io_pipe.out.bits.id2exe_imm_sext := imm_sext//32  must
+    io_pipe.out.bits.id2exe_csr_addr := csr_addr//12  must
+    io_pipe.out.bits.id2exe_csr_cmd := csr_cmd//3
+    io_pipe.out.bits.id2exe_mem_wen := mem_wen//2
+    io_pipe.out.bits.id2exe_mem_op := mem_op//3
 
     io_pipe.out.bits.id2exe_csr_rdata := io.csr_rdata
 
