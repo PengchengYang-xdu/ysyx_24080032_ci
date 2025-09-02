@@ -50,41 +50,45 @@
   `endif // not def ENABLE_INITIAL_MEM_
 `endif // not def SYNTHESIS
 
-module IDU(	// @[src/main/core/idu/IDU.scala:72:7]
-  input         clock,	// @[src/main/core/idu/IDU.scala:72:7]
-                reset,	// @[src/main/core/idu/IDU.scala:72:7]
-  output [3:0]  io_gpr_rs1_addr,	// @[src/main/core/idu/IDU.scala:73:16]
-                io_gpr_rs2_addr,	// @[src/main/core/idu/IDU.scala:73:16]
-  output        io_gpr_rs1_is_read,	// @[src/main/core/idu/IDU.scala:73:16]
-                io_gpr_rs2_is_read,	// @[src/main/core/idu/IDU.scala:73:16]
-  output [11:0] io_csr_raddr,	// @[src/main/core/idu/IDU.scala:73:16]
-  input  [31:0] io_csr_rdata,	// @[src/main/core/idu/IDU.scala:73:16]
-  output        io_is_mret,	// @[src/main/core/idu/IDU.scala:73:16]
-                io_pipe_in_ready,	// @[src/main/core/idu/IDU.scala:74:21]
-  input         io_pipe_in_valid,	// @[src/main/core/idu/IDU.scala:74:21]
-  input  [31:0] io_pipe_in_bits_if2id_reg_pc,	// @[src/main/core/idu/IDU.scala:74:21]
-                io_pipe_in_bits_if2id_inst,	// @[src/main/core/idu/IDU.scala:74:21]
-  input         io_pipe_out_ready,	// @[src/main/core/idu/IDU.scala:74:21]
-  output        io_pipe_out_valid,	// @[src/main/core/idu/IDU.scala:74:21]
-  output [31:0] io_pipe_out_bits_id2exe_reg_pc,	// @[src/main/core/idu/IDU.scala:74:21]
-  output [1:0]  io_pipe_out_bits_id2exe_op1_sel,	// @[src/main/core/idu/IDU.scala:74:21]
-                io_pipe_out_bits_id2exe_op2_sel,	// @[src/main/core/idu/IDU.scala:74:21]
-  output [3:0]  io_pipe_out_bits_id2exe_wb_addr,	// @[src/main/core/idu/IDU.scala:74:21]
-  output [1:0]  io_pipe_out_bits_id2exe_rf_wen,	// @[src/main/core/idu/IDU.scala:74:21]
-  output [4:0]  io_pipe_out_bits_id2exe_exe_fun,	// @[src/main/core/idu/IDU.scala:74:21]
-  output [2:0]  io_pipe_out_bits_id2exe_wb_sel,	// @[src/main/core/idu/IDU.scala:74:21]
-  output [31:0] io_pipe_out_bits_id2exe_imm_sext,	// @[src/main/core/idu/IDU.scala:74:21]
-  output [11:0] io_pipe_out_bits_id2exe_csr_addr,	// @[src/main/core/idu/IDU.scala:74:21]
-  output [2:0]  io_pipe_out_bits_id2exe_csr_cmd,	// @[src/main/core/idu/IDU.scala:74:21]
-  output [1:0]  io_pipe_out_bits_id2exe_mem_wen,	// @[src/main/core/idu/IDU.scala:74:21]
-  output [2:0]  io_pipe_out_bits_id2exe_mem_op,	// @[src/main/core/idu/IDU.scala:74:21]
-  output        io_pipe_out_bits_id2exe_is_irq,	// @[src/main/core/idu/IDU.scala:74:21]
-  output [3:0]  io_pipe_out_bits_id2exe_irq_num,	// @[src/main/core/idu/IDU.scala:74:21]
-  output [31:0] io_pipe_out_bits_id2exe_csr_rdata,	// @[src/main/core/idu/IDU.scala:74:21]
-  input         fencei_io_vr_is_fencei_io_ready,	// @[src/main/core/idu/IDU.scala:76:26]
-  output        fencei_io_vr_is_fencei_io_valid,	// @[src/main/core/idu/IDU.scala:76:26]
-                fencei_io_vr_is_fencei_io_bits_is_fencei,	// @[src/main/core/idu/IDU.scala:76:26]
-  input         io_hazard_stall_flg	// @[src/main/core/idu/IDU.scala:78:23]
+module IDU(	// @[src/main/core/idu/IDU.scala:74:7]
+  input         clock,	// @[src/main/core/idu/IDU.scala:74:7]
+                reset,	// @[src/main/core/idu/IDU.scala:74:7]
+  output [3:0]  io_gpr_rs1_addr,	// @[src/main/core/idu/IDU.scala:75:16]
+                io_gpr_rs2_addr,	// @[src/main/core/idu/IDU.scala:75:16]
+  input  [31:0] io_gpr_rs1_data,	// @[src/main/core/idu/IDU.scala:75:16]
+                io_gpr_rs2_data,	// @[src/main/core/idu/IDU.scala:75:16]
+  output        io_gpr_rs1_is_read,	// @[src/main/core/idu/IDU.scala:75:16]
+                io_gpr_rs2_is_read,	// @[src/main/core/idu/IDU.scala:75:16]
+  output [11:0] io_csr_raddr,	// @[src/main/core/idu/IDU.scala:75:16]
+  input  [31:0] io_csr_rdata,	// @[src/main/core/idu/IDU.scala:75:16]
+  output        io_is_mret,	// @[src/main/core/idu/IDU.scala:75:16]
+                io_pipe_in_ready,	// @[src/main/core/idu/IDU.scala:76:21]
+  input         io_pipe_in_valid,	// @[src/main/core/idu/IDU.scala:76:21]
+  input  [31:0] io_pipe_in_bits_if2id_reg_pc,	// @[src/main/core/idu/IDU.scala:76:21]
+                io_pipe_in_bits_if2id_inst,	// @[src/main/core/idu/IDU.scala:76:21]
+  input         io_pipe_out_ready,	// @[src/main/core/idu/IDU.scala:76:21]
+  output        io_pipe_out_valid,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [31:0] io_pipe_out_bits_id2exe_reg_pc,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [1:0]  io_pipe_out_bits_id2exe_op1_sel,	// @[src/main/core/idu/IDU.scala:76:21]
+                io_pipe_out_bits_id2exe_op2_sel,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [31:0] io_pipe_out_bits_id2exe_rs1_data,	// @[src/main/core/idu/IDU.scala:76:21]
+                io_pipe_out_bits_id2exe_rs2_data,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [3:0]  io_pipe_out_bits_id2exe_wb_addr,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [1:0]  io_pipe_out_bits_id2exe_rf_wen,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [4:0]  io_pipe_out_bits_id2exe_exe_fun,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [2:0]  io_pipe_out_bits_id2exe_wb_sel,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [31:0] io_pipe_out_bits_id2exe_imm_sext,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [11:0] io_pipe_out_bits_id2exe_csr_addr,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [2:0]  io_pipe_out_bits_id2exe_csr_cmd,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [1:0]  io_pipe_out_bits_id2exe_mem_wen,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [2:0]  io_pipe_out_bits_id2exe_mem_op,	// @[src/main/core/idu/IDU.scala:76:21]
+  output        io_pipe_out_bits_id2exe_is_irq,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [3:0]  io_pipe_out_bits_id2exe_irq_num,	// @[src/main/core/idu/IDU.scala:76:21]
+  output [31:0] io_pipe_out_bits_id2exe_csr_rdata,	// @[src/main/core/idu/IDU.scala:76:21]
+  input         fencei_io_vr_is_fencei_io_ready,	// @[src/main/core/idu/IDU.scala:78:26]
+  output        fencei_io_vr_is_fencei_io_valid,	// @[src/main/core/idu/IDU.scala:78:26]
+                fencei_io_vr_is_fencei_io_bits_is_fencei,	// @[src/main/core/idu/IDU.scala:78:26]
+  input         io_hazard_stall_flg	// @[src/main/core/idu/IDU.scala:80:23]
 );
 
   wire [9:0]  _GEN = {io_pipe_in_bits_if2id_inst[14:12], io_pipe_in_bits_if2id_inst[6:0]};	// @[src/main/scala/chisel3/util/Lookup.scala:31:38]
@@ -184,7 +188,7 @@ module IDU(	// @[src/main/core/idu/IDU.scala:72:7]
       | _csignals_T_510 | _csignals_T_79 | _csignals_T_81 | _csignals_T_83)
     & _csignals_T_464;	// @[src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   reg  [31:0] casez_tmp;	// @[src/main/scala/chisel3/util/Mux.scala:126:16]
-  always_comb begin	// @[src/main/core/idu/IDU.scala:168:19, :169:19, :170:19, :171:19, :172:19, src/main/scala/chisel3/util/Mux.scala:126:16]
+  always_comb begin	// @[src/main/core/idu/IDU.scala:173:19, :174:19, :175:19, :176:19, :177:19, src/main/scala/chisel3/util/Mux.scala:126:16]
     casez (_csignals_T_1
              ? 3'h2
              : _csignals_T_3
@@ -217,100 +221,100 @@ module IDU(	// @[src/main/core/idu/IDU.scala:72:7]
                                                                      ? 3'h2
                                                                      : _GEN_1
                                                                          ? 3'h5
-                                                                         : 3'h0)	// @[src/main/core/idu/IDU.scala:168:19, :169:19, :170:19, :171:19, :172:19, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39, src/main/scala/chisel3/util/Mux.scala:126:16]
+                                                                         : 3'h0)	// @[src/main/core/idu/IDU.scala:173:19, :174:19, :175:19, :176:19, :177:19, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b000:
-        casez_tmp = 32'h0;	// @[src/main/core/idu/IDU.scala:168:19, :169:19, :170:19, :171:19, :172:19, src/main/scala/chisel3/util/Mux.scala:126:16]
+        casez_tmp = 32'h0;	// @[src/main/core/idu/IDU.scala:173:19, :174:19, :175:19, :176:19, :177:19, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b001:
         casez_tmp =
           {{20{io_pipe_in_bits_if2id_inst[31]}},
            io_pipe_in_bits_if2id_inst[7],
            io_pipe_in_bits_if2id_inst[30:25],
            io_pipe_in_bits_if2id_inst[11:8],
-           1'h0};	// @[src/main/core/idu/IDU.scala:72:7, :102:{25,35,44,58}, :103:25, :168:19, :169:19, :170:19, :171:19, :172:19, src/main/scala/chisel3/util/Mux.scala:126:16]
+           1'h0};	// @[src/main/core/idu/IDU.scala:74:7, :107:{25,35,44,58}, :108:25, :173:19, :174:19, :175:19, :176:19, :177:19, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b010:
         casez_tmp =
-          {{20{io_pipe_in_bits_if2id_inst[31]}}, io_pipe_in_bits_if2id_inst[31:20]};	// @[src/main/core/idu/IDU.scala:98:21, :99:{25,30,40}, :168:19, :169:19, :170:19, :171:19, :172:19, src/main/scala/chisel3/util/Mux.scala:126:16]
+          {{20{io_pipe_in_bits_if2id_inst[31]}}, io_pipe_in_bits_if2id_inst[31:20]};	// @[src/main/core/idu/IDU.scala:103:21, :104:{25,30,40}, :173:19, :174:19, :175:19, :176:19, :177:19, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b011:
         casez_tmp =
           {{20{io_pipe_in_bits_if2id_inst[31]}},
            io_pipe_in_bits_if2id_inst[31:25],
-           io_pipe_in_bits_if2id_inst[11:7]};	// @[src/main/core/idu/IDU.scala:96:23, :100:25, :101:{25,30,40}, :168:19, :169:19, :170:19, :171:19, :172:19, src/main/scala/chisel3/util/Mux.scala:126:16]
+           io_pipe_in_bits_if2id_inst[11:7]};	// @[src/main/core/idu/IDU.scala:98:23, :105:25, :106:{25,30,40}, :173:19, :174:19, :175:19, :176:19, :177:19, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b100:
         casez_tmp =
           {{12{io_pipe_in_bits_if2id_inst[31]}},
            io_pipe_in_bits_if2id_inst[19:12],
            io_pipe_in_bits_if2id_inst[20],
            io_pipe_in_bits_if2id_inst[30:21],
-           1'h0};	// @[src/main/core/idu/IDU.scala:72:7, :102:25, :104:{35,49,59}, :105:25, :168:19, :169:19, :170:19, :171:19, :172:19, src/main/scala/chisel3/util/Mux.scala:126:16]
+           1'h0};	// @[src/main/core/idu/IDU.scala:74:7, :107:25, :109:{35,49,59}, :110:25, :173:19, :174:19, :175:19, :176:19, :177:19, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b101:
-        casez_tmp = {io_pipe_in_bits_if2id_inst[31:12], 12'h0};	// @[src/main/core/idu/IDU.scala:106:21, :107:{28,40}, :168:19, :169:19, :170:19, :171:19, :172:19, src/main/scala/chisel3/util/Mux.scala:126:16]
+        casez_tmp = {io_pipe_in_bits_if2id_inst[31:12], 12'h0};	// @[src/main/core/idu/IDU.scala:111:21, :112:{28,40}, :173:19, :174:19, :175:19, :176:19, :177:19, src/main/scala/chisel3/util/Mux.scala:126:16]
       3'b110:
-        casez_tmp = 32'h0;	// @[src/main/core/idu/IDU.scala:168:19, :169:19, :170:19, :171:19, :172:19, src/main/scala/chisel3/util/Mux.scala:126:16]
+        casez_tmp = 32'h0;	// @[src/main/core/idu/IDU.scala:173:19, :174:19, :175:19, :176:19, :177:19, src/main/scala/chisel3/util/Mux.scala:126:16]
       default:
-        casez_tmp = 32'h0;	// @[src/main/core/idu/IDU.scala:168:19, :169:19, :170:19, :171:19, :172:19, src/main/scala/chisel3/util/Mux.scala:126:16]
-    endcase	// @[src/main/core/idu/IDU.scala:168:19, :169:19, :170:19, :171:19, :172:19, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39, src/main/scala/chisel3/util/Mux.scala:126:16]
+        casez_tmp = 32'h0;	// @[src/main/core/idu/IDU.scala:173:19, :174:19, :175:19, :176:19, :177:19, src/main/scala/chisel3/util/Mux.scala:126:16]
+    endcase	// @[src/main/core/idu/IDU.scala:173:19, :174:19, :175:19, :176:19, :177:19, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39, src/main/scala/chisel3/util/Mux.scala:126:16]
   end // always_comb
-  wire        io_pipe_out_bits_id2exe_is_irq_0 = csignals_7 == 3'h4;	// @[src/main/core/idu/IDU.scala:176:32, src/main/scala/chisel3/util/Lookup.scala:34:39]
-  reg         is_fencei_valid;	// @[src/main/core/idu/IDU.scala:235:34]
-  reg         is_fencei_reg;	// @[src/main/core/idu/IDU.scala:237:32]
-  reg         in_ready;	// @[src/main/core/idu/IDU.scala:240:27]
-  reg         out_valid;	// @[src/main/core/idu/IDU.scala:241:28]
-  wire        io_pipe_in_ready_0 = in_ready & ~io_hazard_stall_flg;	// @[src/main/core/idu/IDU.scala:240:27, :242:{34,37}]
+  wire        io_pipe_out_bits_id2exe_is_irq_0 = csignals_7 == 3'h4;	// @[src/main/core/idu/IDU.scala:181:32, src/main/scala/chisel3/util/Lookup.scala:34:39]
+  reg         is_fencei_valid;	// @[src/main/core/idu/IDU.scala:240:34]
+  reg         is_fencei_reg;	// @[src/main/core/idu/IDU.scala:242:32]
+  reg         in_ready;	// @[src/main/core/idu/IDU.scala:245:27]
+  reg         out_valid;	// @[src/main/core/idu/IDU.scala:246:28]
+  wire        io_pipe_in_ready_0 = in_ready & ~io_hazard_stall_flg;	// @[src/main/core/idu/IDU.scala:245:27, :247:{34,37}]
   wire        io_pipe_out_valid_0 =
-    csignals_9 ? fencei_io_vr_is_fencei_io_ready : out_valid & ~io_hazard_stall_flg;	// @[src/main/core/idu/IDU.scala:241:28, :242:37, :243:{29,92}, src/main/scala/chisel3/util/Lookup.scala:34:39]
-  reg         c_state;	// @[src/main/core/idu/IDU.scala:246:26]
-  wire        _is_fencei_reg_T = fencei_io_vr_is_fencei_io_ready & is_fencei_valid;	// @[src/main/core/idu/IDU.scala:235:34, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+    csignals_9 ? fencei_io_vr_is_fencei_io_ready : out_valid & ~io_hazard_stall_flg;	// @[src/main/core/idu/IDU.scala:246:28, :247:37, :248:{29,92}, src/main/scala/chisel3/util/Lookup.scala:34:39]
+  reg         c_state;	// @[src/main/core/idu/IDU.scala:251:26]
+  wire        _is_fencei_reg_T = fencei_io_vr_is_fencei_io_ready & is_fencei_valid;	// @[src/main/core/idu/IDU.scala:240:34, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   wire        n_state =
     c_state
       ? ~(csignals_9 ? _is_fencei_reg_T : io_pipe_out_ready & io_pipe_out_valid_0)
-      : io_pipe_in_ready_0 & io_pipe_in_valid;	// @[src/main/core/idu/IDU.scala:103:25, :242:34, :243:29, :246:26, :247:30, :252:51, :254:{33,37}, src/main/scala/chisel3/util/Decoupled.scala:51:35, src/main/scala/chisel3/util/Lookup.scala:34:39]
-  always @(posedge clock) begin	// @[src/main/core/idu/IDU.scala:72:7]
-    if (reset) begin	// @[src/main/core/idu/IDU.scala:72:7]
-      is_fencei_valid <= 1'h0;	// @[src/main/core/idu/IDU.scala:72:7, :235:34]
-      is_fencei_reg <= 1'h0;	// @[src/main/core/idu/IDU.scala:72:7, :237:32]
-      in_ready <= 1'h0;	// @[src/main/core/idu/IDU.scala:72:7, :240:27]
-      out_valid <= 1'h0;	// @[src/main/core/idu/IDU.scala:72:7, :241:28]
-      c_state <= 1'h0;	// @[src/main/core/idu/IDU.scala:72:7, :246:26]
+      : io_pipe_in_ready_0 & io_pipe_in_valid;	// @[src/main/core/idu/IDU.scala:108:25, :247:34, :248:29, :251:26, :252:30, :257:51, :259:{33,37}, src/main/scala/chisel3/util/Decoupled.scala:51:35, src/main/scala/chisel3/util/Lookup.scala:34:39]
+  always @(posedge clock) begin	// @[src/main/core/idu/IDU.scala:74:7]
+    if (reset) begin	// @[src/main/core/idu/IDU.scala:74:7]
+      is_fencei_valid <= 1'h0;	// @[src/main/core/idu/IDU.scala:74:7, :240:34]
+      is_fencei_reg <= 1'h0;	// @[src/main/core/idu/IDU.scala:74:7, :242:32]
+      in_ready <= 1'h0;	// @[src/main/core/idu/IDU.scala:74:7, :245:27]
+      out_valid <= 1'h0;	// @[src/main/core/idu/IDU.scala:74:7, :246:28]
+      c_state <= 1'h0;	// @[src/main/core/idu/IDU.scala:74:7, :251:26]
     end
-    else begin	// @[src/main/core/idu/IDU.scala:72:7]
-      is_fencei_valid <= n_state & (n_state ? csignals_9 : is_fencei_valid);	// @[src/main/core/idu/IDU.scala:235:34, :247:30, :257:20, :261:29, :266:29, src/main/scala/chisel3/util/Lookup.scala:34:39]
+    else begin	// @[src/main/core/idu/IDU.scala:74:7]
+      is_fencei_valid <= n_state & (n_state ? csignals_9 : is_fencei_valid);	// @[src/main/core/idu/IDU.scala:240:34, :252:30, :262:20, :266:29, :271:29, src/main/scala/chisel3/util/Lookup.scala:34:39]
       is_fencei_reg <=
-        ~_is_fencei_reg_T & (io_pipe_in_valid ? csignals_9 : is_fencei_reg);	// @[src/main/core/idu/IDU.scala:237:32, :275:{25,66}, src/main/scala/chisel3/util/Decoupled.scala:51:35, src/main/scala/chisel3/util/Lookup.scala:34:39]
-      in_ready <= ~n_state | ~n_state & in_ready;	// @[src/main/core/idu/IDU.scala:240:27, :247:30, :257:20, :259:22, :264:22]
-      out_valid <= n_state & (n_state | out_valid);	// @[src/main/core/idu/IDU.scala:241:28, :247:30, :257:20, :260:23, :265:23]
-      c_state <= n_state;	// @[src/main/core/idu/IDU.scala:246:26, :247:30]
+        ~_is_fencei_reg_T & (io_pipe_in_valid ? csignals_9 : is_fencei_reg);	// @[src/main/core/idu/IDU.scala:242:32, :280:{25,66}, src/main/scala/chisel3/util/Decoupled.scala:51:35, src/main/scala/chisel3/util/Lookup.scala:34:39]
+      in_ready <= ~n_state | ~n_state & in_ready;	// @[src/main/core/idu/IDU.scala:245:27, :252:30, :262:20, :264:22, :269:22]
+      out_valid <= n_state & (n_state | out_valid);	// @[src/main/core/idu/IDU.scala:246:28, :252:30, :262:20, :265:23, :270:23]
+      c_state <= n_state;	// @[src/main/core/idu/IDU.scala:251:26, :252:30]
     end
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_REG_	// @[src/main/core/idu/IDU.scala:72:7]
-    `ifdef FIRRTL_BEFORE_INITIAL	// @[src/main/core/idu/IDU.scala:72:7]
-      `FIRRTL_BEFORE_INITIAL	// @[src/main/core/idu/IDU.scala:72:7]
+  `ifdef ENABLE_INITIAL_REG_	// @[src/main/core/idu/IDU.scala:74:7]
+    `ifdef FIRRTL_BEFORE_INITIAL	// @[src/main/core/idu/IDU.scala:74:7]
+      `FIRRTL_BEFORE_INITIAL	// @[src/main/core/idu/IDU.scala:74:7]
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:0];	// @[src/main/core/idu/IDU.scala:72:7]
-    initial begin	// @[src/main/core/idu/IDU.scala:72:7]
-      `ifdef INIT_RANDOM_PROLOG_	// @[src/main/core/idu/IDU.scala:72:7]
-        `INIT_RANDOM_PROLOG_	// @[src/main/core/idu/IDU.scala:72:7]
+    logic [31:0] _RANDOM[0:0];	// @[src/main/core/idu/IDU.scala:74:7]
+    initial begin	// @[src/main/core/idu/IDU.scala:74:7]
+      `ifdef INIT_RANDOM_PROLOG_	// @[src/main/core/idu/IDU.scala:74:7]
+        `INIT_RANDOM_PROLOG_	// @[src/main/core/idu/IDU.scala:74:7]
       `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// @[src/main/core/idu/IDU.scala:72:7]
-        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// @[src/main/core/idu/IDU.scala:72:7]
-        is_fencei_valid = _RANDOM[/*Zero width*/ 1'b0][0];	// @[src/main/core/idu/IDU.scala:72:7, :235:34]
-        is_fencei_reg = _RANDOM[/*Zero width*/ 1'b0][1];	// @[src/main/core/idu/IDU.scala:72:7, :235:34, :237:32]
-        in_ready = _RANDOM[/*Zero width*/ 1'b0][2];	// @[src/main/core/idu/IDU.scala:72:7, :235:34, :240:27]
-        out_valid = _RANDOM[/*Zero width*/ 1'b0][3];	// @[src/main/core/idu/IDU.scala:72:7, :235:34, :241:28]
-        c_state = _RANDOM[/*Zero width*/ 1'b0][4];	// @[src/main/core/idu/IDU.scala:72:7, :235:34, :246:26]
+      `ifdef RANDOMIZE_REG_INIT	// @[src/main/core/idu/IDU.scala:74:7]
+        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// @[src/main/core/idu/IDU.scala:74:7]
+        is_fencei_valid = _RANDOM[/*Zero width*/ 1'b0][0];	// @[src/main/core/idu/IDU.scala:74:7, :240:34]
+        is_fencei_reg = _RANDOM[/*Zero width*/ 1'b0][1];	// @[src/main/core/idu/IDU.scala:74:7, :240:34, :242:32]
+        in_ready = _RANDOM[/*Zero width*/ 1'b0][2];	// @[src/main/core/idu/IDU.scala:74:7, :240:34, :245:27]
+        out_valid = _RANDOM[/*Zero width*/ 1'b0][3];	// @[src/main/core/idu/IDU.scala:74:7, :240:34, :246:28]
+        c_state = _RANDOM[/*Zero width*/ 1'b0][4];	// @[src/main/core/idu/IDU.scala:74:7, :240:34, :251:26]
       `endif // RANDOMIZE_REG_INIT
     end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/core/idu/IDU.scala:72:7]
-      `FIRRTL_AFTER_INITIAL	// @[src/main/core/idu/IDU.scala:72:7]
+    `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/core/idu/IDU.scala:74:7]
+      `FIRRTL_AFTER_INITIAL	// @[src/main/core/idu/IDU.scala:74:7]
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  Ebreak ebreak (	// @[src/main/core/idu/IDU.scala:213:29]
+  Ebreak ebreak (	// @[src/main/core/idu/IDU.scala:218:29]
     .inst (io_pipe_in_bits_if2id_inst)
   );
-  assign io_gpr_rs1_addr = io_pipe_in_bits_if2id_inst[18:15];	// @[src/main/core/idu/IDU.scala:72:7, :94:24, :183:21]
-  assign io_gpr_rs2_addr = io_pipe_in_bits_if2id_inst[23:20];	// @[src/main/core/idu/IDU.scala:72:7, :95:24, :184:21]
+  assign io_gpr_rs1_addr = io_pipe_in_bits_if2id_inst[18:15];	// @[src/main/core/idu/IDU.scala:74:7, :96:24, :188:21]
+  assign io_gpr_rs2_addr = io_pipe_in_bits_if2id_inst[23:20];	// @[src/main/core/idu/IDU.scala:74:7, :97:24, :189:21]
   assign io_gpr_rs1_is_read =
     _GEN_14 | ~_csignals_T_67
-    & (_csignals_T_69 | ~_GEN_1 & (_csignals_T_75 | _csignals_T_510));	// @[src/main/core/idu/IDU.scala:72:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+    & (_csignals_T_69 | ~_GEN_1 & (_csignals_T_75 | _csignals_T_510));	// @[src/main/core/idu/IDU.scala:74:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   assign io_gpr_rs2_is_read =
     ~_csignals_T_1
     & (_csignals_T_3 | ~_GEN_10
@@ -319,12 +323,12 @@ module IDU(	// @[src/main/core/idu/IDU.scala:72:7]
              & (_GEN_6 | ~_GEN_5
                 & (_GEN_4 | ~_GEN_3
                    & (_csignals_T_55 | _csignals_T_57 | _csignals_T_59 | _csignals_T_61
-                      | _csignals_T_63 | _csignals_T_558))))));	// @[src/main/core/idu/IDU.scala:72:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  assign io_csr_raddr = io_pipe_in_bits_if2id_inst[31:20];	// @[src/main/core/idu/IDU.scala:72:7, :98:21]
-  assign io_is_mret = csignals_7 == 3'h6;	// @[src/main/core/idu/IDU.scala:72:7, :280:27, src/main/scala/chisel3/util/Lookup.scala:34:39]
-  assign io_pipe_in_ready = io_pipe_in_ready_0;	// @[src/main/core/idu/IDU.scala:72:7, :242:34]
-  assign io_pipe_out_valid = io_pipe_out_valid_0;	// @[src/main/core/idu/IDU.scala:72:7, :243:29]
-  assign io_pipe_out_bits_id2exe_reg_pc = io_pipe_in_bits_if2id_reg_pc;	// @[src/main/core/idu/IDU.scala:72:7]
+                      | _csignals_T_63 | _csignals_T_558))))));	// @[src/main/core/idu/IDU.scala:74:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  assign io_csr_raddr = io_pipe_in_bits_if2id_inst[31:20];	// @[src/main/core/idu/IDU.scala:74:7, :103:21]
+  assign io_is_mret = csignals_7 == 3'h6;	// @[src/main/core/idu/IDU.scala:74:7, :285:27, src/main/scala/chisel3/util/Lookup.scala:34:39]
+  assign io_pipe_in_ready = io_pipe_in_ready_0;	// @[src/main/core/idu/IDU.scala:74:7, :247:34]
+  assign io_pipe_out_valid = io_pipe_out_valid_0;	// @[src/main/core/idu/IDU.scala:74:7, :248:29]
+  assign io_pipe_out_bits_id2exe_reg_pc = io_pipe_in_bits_if2id_reg_pc;	// @[src/main/core/idu/IDU.scala:74:7]
   assign io_pipe_out_bits_id2exe_op1_sel =
     _GEN_14
       ? 2'h0
@@ -334,7 +338,7 @@ module IDU(	// @[src/main/core/idu/IDU.scala:72:7]
               ? 2'h0
               : _csignals_T_71
                   ? 2'h2
-                  : _csignals_T_73 ? 2'h1 : _GEN_11 ? 2'h0 : {_GEN_12, 1'h0};	// @[src/main/core/idu/IDU.scala:72:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+                  : _csignals_T_73 ? 2'h1 : _GEN_11 ? 2'h0 : {_GEN_12, 1'h0};	// @[src/main/core/idu/IDU.scala:74:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   assign io_pipe_out_bits_id2exe_op2_sel =
     _csignals_T_1 | _csignals_T_3 | _csignals_T_5 | _csignals_T_7 | _csignals_T_9
     | _csignals_T_11 | _GEN_9
@@ -361,8 +365,10 @@ module IDU(	// @[src/main/core/idu/IDU.scala:72:7]
                                               ? 2'h2
                                               : {1'h0,
                                                  ~(_csignals_T_75 | _csignals_T_510
-                                                   | _GEN_12)};	// @[src/main/core/idu/IDU.scala:72:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  assign io_pipe_out_bits_id2exe_wb_addr = io_pipe_in_bits_if2id_inst[10:7];	// @[src/main/core/idu/IDU.scala:72:7, :96:23, :194:37]
+                                                   | _GEN_12)};	// @[src/main/core/idu/IDU.scala:74:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  assign io_pipe_out_bits_id2exe_rs1_data = io_gpr_rs1_data;	// @[src/main/core/idu/IDU.scala:74:7]
+  assign io_pipe_out_bits_id2exe_rs2_data = io_gpr_rs2_data;	// @[src/main/core/idu/IDU.scala:74:7]
+  assign io_pipe_out_bits_id2exe_wb_addr = io_pipe_in_bits_if2id_inst[10:7];	// @[src/main/core/idu/IDU.scala:74:7, :98:23, :199:37]
   assign io_pipe_out_bits_id2exe_rf_wen =
     _csignals_T_1
       ? 2'h1
@@ -382,7 +388,7 @@ module IDU(	// @[src/main/core/idu/IDU.scala:72:7]
                           ? 2'h0
                           : {1'h0,
                              _csignals_T_67 | _csignals_T_69 | _csignals_T_71
-                               | _csignals_T_73 | _GEN_11};	// @[src/main/core/idu/IDU.scala:72:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+                               | _csignals_T_73 | _GEN_11};	// @[src/main/core/idu/IDU.scala:74:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   assign io_pipe_out_bits_id2exe_exe_fun =
     _csignals_T_1 | _csignals_T_3 | _csignals_T_5 | _csignals_T_7 | _csignals_T_9
     | _csignals_T_11 | _csignals_T_13 | _csignals_T_15 | _csignals_T_17 | _csignals_T_19
@@ -441,7 +447,7 @@ module IDU(	// @[src/main/core/idu/IDU.scala:72:7]
                                                                                                               ? 5'h1
                                                                                                               : _GEN_11
                                                                                                                   ? 5'h12
-                                                                                                                  : 5'h0;	// @[src/main/core/idu/IDU.scala:72:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+                                                                                                                  : 5'h0;	// @[src/main/core/idu/IDU.scala:74:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   assign io_pipe_out_bits_id2exe_wb_sel =
     _csignals_T_1
       ? 3'h1
@@ -453,13 +459,13 @@ module IDU(	// @[src/main/core/idu/IDU.scala:72:7]
                   ? 3'h0
                   : _csignals_T_67 | _csignals_T_69
                       ? 3'h2
-                      : _GEN_1 | ~_GEN_11 ? 3'h0 : 3'h3;	// @[src/main/core/idu/IDU.scala:72:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  assign io_pipe_out_bits_id2exe_imm_sext = casez_tmp;	// @[src/main/core/idu/IDU.scala:72:7, src/main/scala/chisel3/util/Mux.scala:126:16]
+                      : _GEN_1 | ~_GEN_11 ? 3'h0 : 3'h3;	// @[src/main/core/idu/IDU.scala:74:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  assign io_pipe_out_bits_id2exe_imm_sext = casez_tmp;	// @[src/main/core/idu/IDU.scala:74:7, src/main/scala/chisel3/util/Mux.scala:126:16]
   assign io_pipe_out_bits_id2exe_csr_addr =
-    io_pipe_out_bits_id2exe_is_irq_0 ? 12'h342 : io_pipe_in_bits_if2id_inst[31:20];	// @[src/main/core/idu/IDU.scala:72:7, :98:21, :176:{23,32}]
-  assign io_pipe_out_bits_id2exe_csr_cmd = csignals_7;	// @[src/main/core/idu/IDU.scala:72:7, src/main/scala/chisel3/util/Lookup.scala:34:39]
+    io_pipe_out_bits_id2exe_is_irq_0 ? 12'h342 : io_pipe_in_bits_if2id_inst[31:20];	// @[src/main/core/idu/IDU.scala:74:7, :103:21, :181:{23,32}]
+  assign io_pipe_out_bits_id2exe_csr_cmd = csignals_7;	// @[src/main/core/idu/IDU.scala:74:7, src/main/scala/chisel3/util/Lookup.scala:34:39]
   assign io_pipe_out_bits_id2exe_mem_wen =
-    _csignals_T_1 ? 2'h0 : _csignals_T_3 ? 2'h1 : _GEN_10 ? 2'h0 : {1'h0, _GEN_9};	// @[src/main/core/idu/IDU.scala:72:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+    _csignals_T_1 ? 2'h0 : _csignals_T_3 ? 2'h1 : _GEN_10 ? 2'h0 : {1'h0, _GEN_9};	// @[src/main/core/idu/IDU.scala:74:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
   assign io_pipe_out_bits_id2exe_mem_op =
     _csignals_T_1 | _csignals_T_3
       ? 3'h2
@@ -471,11 +477,11 @@ module IDU(	// @[src/main/core/idu/IDU.scala:72:7]
                   ? 3'h4
                   : _csignals_T_11
                       ? 3'h5
-                      : _csignals_T_13 ? 3'h0 : _csignals_T_15 ? 3'h1 : 3'h7;	// @[src/main/core/idu/IDU.scala:72:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
-  assign io_pipe_out_bits_id2exe_is_irq = io_pipe_out_bits_id2exe_is_irq_0;	// @[src/main/core/idu/IDU.scala:72:7, :176:32]
-  assign io_pipe_out_bits_id2exe_irq_num = io_pipe_out_bits_id2exe_is_irq_0 ? 4'hB : 4'h0;	// @[src/main/core/idu/IDU.scala:72:7, :176:32, :279:43]
-  assign io_pipe_out_bits_id2exe_csr_rdata = io_csr_rdata;	// @[src/main/core/idu/IDU.scala:72:7]
-  assign fencei_io_vr_is_fencei_io_valid = is_fencei_valid;	// @[src/main/core/idu/IDU.scala:72:7, :235:34]
-  assign fencei_io_vr_is_fencei_io_bits_is_fencei = is_fencei_reg;	// @[src/main/core/idu/IDU.scala:72:7, :237:32]
+                      : _csignals_T_13 ? 3'h0 : _csignals_T_15 ? 3'h1 : 3'h7;	// @[src/main/core/idu/IDU.scala:74:7, src/main/scala/chisel3/util/Lookup.scala:31:38, :34:39]
+  assign io_pipe_out_bits_id2exe_is_irq = io_pipe_out_bits_id2exe_is_irq_0;	// @[src/main/core/idu/IDU.scala:74:7, :181:32]
+  assign io_pipe_out_bits_id2exe_irq_num = io_pipe_out_bits_id2exe_is_irq_0 ? 4'hB : 4'h0;	// @[src/main/core/idu/IDU.scala:74:7, :181:32, :284:43]
+  assign io_pipe_out_bits_id2exe_csr_rdata = io_csr_rdata;	// @[src/main/core/idu/IDU.scala:74:7]
+  assign fencei_io_vr_is_fencei_io_valid = is_fencei_valid;	// @[src/main/core/idu/IDU.scala:74:7, :240:34]
+  assign fencei_io_vr_is_fencei_io_bits_is_fencei = is_fencei_reg;	// @[src/main/core/idu/IDU.scala:74:7, :242:32]
 endmodule
 
