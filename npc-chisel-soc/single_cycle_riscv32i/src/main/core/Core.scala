@@ -345,7 +345,7 @@ class Core extends Module {
         sel_jmp  -> exu.io.alu_out,
         sel_mret -> csr.io.csr_mepc
     ))
-    val pc_real_next = Mux(is_irq_r, csr.io.csr_mtvec, Mux(is_ctrl_hazard_r | is_mret_r, pc_next_normal, ifu.io_hazard.pc_plus4))
+    val pc_real_next = Mux(is_irq_r, csr.io.csr_mtvec, Mux(is_ctrl_hazard_r | is_mret_r, pc_next_normal, Mux(is_fencei_r, ifu.io_hazard.reg_pc, ifu.io_hazard.pc_plus4)))
     ifu.io_hazard.pc_real_next := pc_real_next
 
 
