@@ -67,8 +67,6 @@ class Core extends Module {
 
 
     
-    exu.io.gpr_rs1_data := gpr.io.gpr_rs1_data
-    exu.io.gpr_rs2_data := gpr.io.gpr_rs2_data
     gpr.io.gpr_rs1_addr := exu.io.gpr_rs1_addr
     gpr.io.gpr_rs2_addr := exu.io.gpr_rs2_addr
 
@@ -245,12 +243,12 @@ class Core extends Module {
         exu_can_forward_rs1 -> exu_forward_data,
         lsu_can_forward_rs1 -> lsu_forward_data,
         wbu_can_forward_rs1 -> wbu_forward_data
-    )), idu.io_pipe.out.bits.id2exe_rs1_data)
+    )), gpr.io.gpr_rs1_data)
     val rd2_forward_data = Mux(rd2_forward_en, MuxCase(0.U, Seq(
         exu_can_forward_rs2 -> exu_forward_data,
         lsu_can_forward_rs2 -> lsu_forward_data,
         wbu_can_forward_rs2 -> wbu_forward_data
-    )), idu.io_pipe.out.bits.id2exe_rs2_data)
+    )), gpr.io.gpr_rs2_data)
     val rd1_forward_data_r = RegEnable(rd1_forward_data, rd1_forward_en)
     val rd2_forward_data_r = RegEnable(rd2_forward_data, rd2_forward_en)
     dontTouch(rd1_forward_en)
@@ -263,8 +261,8 @@ class Core extends Module {
     raw_rs1_cnt := Mux(rs1_raw && ~rd1_forward_en, true.B, Mux(rd1_forward_en, false.B, raw_rs1_cnt))
     raw_rs2_cnt := Mux(rs2_raw && ~rd2_forward_en, true.B, Mux(rd2_forward_en, false.B, raw_rs2_cnt))
 
-    exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || (~rs1_rawing && ~bt_fwd_fsh_rs1), rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
-    exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || (~rs2_rawing && ~bt_fwd_fsh_rs2), rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
+    exu.io_hazard.real_rs1 := RegEnable(Mux(rd1_forward_en || (~rs1_rawing && ~bt_fwd_fsh_rs1), rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)
+    exu.io_hazard.real_rs2 := RegEnable(Mux(rd2_forward_en || (~rs2_rawing && ~bt_fwd_fsh_rs2), rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)
     idu.io_hazard.stall_flg := (is_raw || rawing) && (Mux(rs1_raw && rs2_raw, ~(rd1_forward_en && rd2_forward_en), ~rd1_forward_en && ~rd2_forward_en) && ~bt_fwd_fsh) || (raw_rs1_cnt || raw_rs2_cnt)
 
 
