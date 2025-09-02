@@ -9,6 +9,8 @@ import npc.core.idu._
 
 class EXUIO_HAZARD extends Bundle {
     val flush_flg = Input(Bool())
+    val real_rs1 = Input(UInt(WORD_LEN.W))
+    val real_rs2 = Input(UInt(WORD_LEN.W))
 }
 
 
@@ -20,8 +22,6 @@ class EXUIO extends Bundle {
 
     val gpr_rs1_addr = Output(UInt(ADDR_LEN.W))
     val gpr_rs2_addr = Output(UInt(ADDR_LEN.W))
-    val gpr_rs1_data = Input(UInt(WORD_LEN.W))
-    val gpr_rs2_data = Input(UInt(WORD_LEN.W))
 }
 
 class EXUIO_pipe_out extends Bundle{
@@ -61,6 +61,8 @@ class EXU extends Module {
     val is_flush = io_hazard.flush_flg
 
 
+    val rs1_data = io_hazard.real_rs1
+    val rs2_data = io_hazard.real_rs2
 
     val io.gpr_rs1_addr = io_pipe.in.bits.id2exe_rs1_addr
     val io.gpr_rs2_addr = io_pipe.in.bits.id2exe_rs2_addr
@@ -68,12 +70,12 @@ class EXU extends Module {
 
 
     val op1_data = MuxCase(0.U(WORD_LEN.W), Seq(
-        (io_pipe.in.bits.id2exe_op1_sel === OP1_RS1)  ->  io.in.gpr_rs1_data,
+        (io_pipe.in.bits.id2exe_op1_sel === OP1_RS1)  ->  rs1_data,
         (io_pipe.in.bits.id2exe_op1_sel === OP1_PC)   ->  io_pipe.in.bits.id2exe_reg_pc
         // (op1_sel === OP1_IMZ)  ->  imm_z_uext
     ))
 
-    val op2_data = Mux(io_pipe.in.bits.id2exe_op2_sel === OP2_RS2, io.in.gpr_rs2_data, io_pipe.in.bits.id2exe_imm_sext)
+    val op2_data = Mux(io_pipe.in.bits.id2exe_op2_sel === OP2_RS2, rs2_data, io_pipe.in.bits.id2exe_imm_sext)
 
 
 
@@ -121,7 +123,7 @@ class EXU extends Module {
 
     io_pipe.out.bits.exe2ls_reg_pc := io_pipe.in.bits.id2exe_reg_pc
     io_pipe.out.bits.exe2ls_op1_data := op1_data
-    io_pipe.out.bits.exe2ls_rs2_data := io.in.gpr_rs2_data
+    io_pipe.out.bits.exe2ls_rs2_data := rs2_data
     io_pipe.out.bits.exe2ls_wb_addr := io_pipe.in.bits.id2exe_wb_addr
     io_pipe.out.bits.exe2ls_alu_out := alu_out
     io_pipe.out.bits.exe2ls_rf_wen := io_pipe.in.bits.id2exe_rf_wen
