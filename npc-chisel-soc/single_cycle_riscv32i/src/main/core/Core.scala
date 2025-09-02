@@ -41,10 +41,10 @@ class Core extends Module {
     val ready_r = RegNext(ifu.io_pipe.in.ready)
     ifu.io_pipe.in.valid := RegEnable(true.B, ifu.io_pipe.in.valid, ifu.io_pipe.in.ready & ready_r)
 
-    // pipelineConnect(ifu.io_pipe.out, idu.io_pipe.in)
-    // pipelineConnect(idu.io_pipe.out, exu.io_pipe.in)
-    // pipelineConnect(exu.io_pipe.out, lsu.io_pipe.in)
-    // pipelineConnect(lsu.io_pipe.out, wbu.io_pipe.in)
+    pipelineConnect(ifu.io_pipe.out, idu.io_pipe.in)
+    pipelineConnect(idu.io_pipe.out, exu.io_pipe.in)
+    pipelineConnect(exu.io_pipe.out, lsu.io_pipe.in)
+    pipelineConnect(lsu.io_pipe.out, wbu.io_pipe.in)
 
 
 
