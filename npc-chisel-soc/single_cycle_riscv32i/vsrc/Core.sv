@@ -295,21 +295,26 @@ module Core(	// @[src/main/core/Core.scala:23:7]
   wire        _lsu_can_forward_rs2_T_1 = _wbu_io_pipe_in_ready & _lsu_io_pipe_out_valid;	// @[src/main/core/Core.scala:32:21, :33:21, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   wire        _lsu_can_forward_rs1_T_2 =
     _lsu_io_pipe_out_bits_ls2wb_wb_addr == _idu_io_gpr_rs1_addr;	// @[src/main/core/Core.scala:30:21, :32:21, :202:162]
+  wire        _lsu_can_forward_rs2_T_4 = _lsu_io_pipe_out_bits_ls2wb_rf_wen == 2'h1;	// @[src/main/core/Core.scala:32:21, :131:132, :202:223]
   wire        exu_can_forward_rs1 =
     exu_rs1_rawing_raw
-    & (_exu_can_forward_rs2_T | _lsu_can_forward_rs2_T_1 & _lsu_can_forward_rs1_T_2);	// @[src/main/core/Core.scala:194:46, :202:{50,88,99,124,162}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+    & (_exu_can_forward_rs2_T | _lsu_can_forward_rs2_T_1 & _lsu_can_forward_rs1_T_2
+       & _lsu_can_forward_rs2_T_4);	// @[src/main/core/Core.scala:194:46, :202:{50,88,99,162,186,223}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   wire        _lsu_can_forward_rs2_T_2 =
     _lsu_io_pipe_out_bits_ls2wb_wb_addr == _idu_io_gpr_rs2_addr;	// @[src/main/core/Core.scala:30:21, :32:21, :203:162]
   wire        exu_can_forward_rs2 =
     exu_rs2_rawing_raw
-    & (_exu_can_forward_rs2_T | _lsu_can_forward_rs2_T_1 & _lsu_can_forward_rs2_T_2);	// @[src/main/core/Core.scala:195:46, :202:88, :203:{50,99,124,162}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+    & (_exu_can_forward_rs2_T | _lsu_can_forward_rs2_T_1 & _lsu_can_forward_rs2_T_2
+       & _lsu_can_forward_rs2_T_4);	// @[src/main/core/Core.scala:195:46, :202:{88,223}, :203:{50,99,162,186}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   wire        _lsu_can_forward_rs2_T = lsu_io_pipe_in_bits_r_exe2ls_wb_sel != 3'h1;	// @[src/main/core/Core.scala:202:88, :204:88, :399:33]
   wire        lsu_can_forward_rs1 =
     lsu_rs1_rawing_raw
-    & (_lsu_can_forward_rs2_T | _lsu_can_forward_rs2_T_1 & _lsu_can_forward_rs1_T_2);	// @[src/main/core/Core.scala:196:46, :202:162, :204:{50,88,99,124}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+    & (_lsu_can_forward_rs2_T | _lsu_can_forward_rs2_T_1 & _lsu_can_forward_rs1_T_2
+       & _lsu_can_forward_rs2_T_4);	// @[src/main/core/Core.scala:196:46, :202:{162,223}, :204:{50,88,99,186}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   wire        lsu_can_forward_rs2 =
     lsu_rs2_rawing_raw
-    & (_lsu_can_forward_rs2_T | _lsu_can_forward_rs2_T_1 & _lsu_can_forward_rs2_T_2);	// @[src/main/core/Core.scala:197:46, :203:162, :204:88, :205:{50,99,124}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+    & (_lsu_can_forward_rs2_T | _lsu_can_forward_rs2_T_1 & _lsu_can_forward_rs2_T_2
+       & _lsu_can_forward_rs2_T_4);	// @[src/main/core/Core.scala:197:46, :202:223, :203:162, :204:88, :205:{50,99,186}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   wire [31:0] exu_forward_data =
     exu_io_pipe_in_bits_r_id2exe_wb_sel == 3'h1
       ? _lsu_io_pipe_out_bits_ls2wb_wb_data
