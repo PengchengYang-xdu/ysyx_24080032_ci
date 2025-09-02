@@ -1,9 +1,2 @@
-[0m[[0m[0minfo[0m] [0m[0mcompiling 3 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:67:12: Pattern definition introduces Unit-valued member of EXU; consider wrapping it in `locally { ... }`.[0m
-[0m[[0m[33mwarn[0m] [0m[0m    val io.gpr_rs1_addr = io_pipe.in.bits.id2exe_rs1_addr[0m
-[0m[[0m[33mwarn[0m] [0m[0m           ^[0m
-[0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:68:12: Pattern definition introduces Unit-valued member of EXU; consider wrapping it in `locally { ... }`.[0m
-[0m[[0m[33mwarn[0m] [0m[0m    val io.gpr_rs2_addr = io_pipe.in.bits.id2exe_rs2_addr[0m
-[0m[[0m[33mwarn[0m] [0m[0m           ^[0m
-[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
 [0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
