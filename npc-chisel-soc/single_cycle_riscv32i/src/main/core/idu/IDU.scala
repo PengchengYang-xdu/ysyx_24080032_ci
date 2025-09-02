@@ -83,8 +83,8 @@ class IDU extends Module {
 
 
     //registers
-    val inst_r = RegEnable(io_pipe.in.bits.if2id_inst, 0.U, io_pipe.in.valid & io_pipe.in.ready)
-    val reg_pc_r = RegEnable(io_pipe.in.bits.if2id_reg_pc, 0.U, io_pipe.in.valid & io_pipe.in.ready)
+    // val inst_r = RegEnable(io_pipe.in.bits.if2id_inst, 0.U, io_pipe.in.valid & io_pipe.in.ready)
+    // val reg_pc_r = RegEnable(io_pipe.in.bits.if2id_reg_pc, 0.U, io_pipe.in.valid & io_pipe.in.ready)
 
 
 
