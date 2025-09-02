@@ -146,8 +146,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         Mux(out_rready && io.out.rvalid, io.out.rdata, icache_wdata(icache_wdata_index(log2Ceil(c)-1, 0))))
 
     val fencei_counter = RegInit(0.U(n.W))
+    val fencei_counter_ways = RegInit(0.U(c.W))
+
     val is_fencei = fencei_io_vr.is_fencei_io.valid && fencei_io_vr.is_fencei_io.bits.is_fencei
-    val fencei_fsh = fencei_counter === sets.U - 1.U
+    val fencei_fsh = fencei_counter === sets.U - 1.U && fencei_counter_ways === ways.U - 1.U
 
 
     c_state := n_state//first phase
@@ -162,15 +164,19 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     ))
 
     when(is_fencei && ~fencei_fsh){
-        fencei_counter := fencei_counter + 1.U
+        when(fencei_counter_ways === ways.U - 1.U){
+            fencei_counter_ways := 0.U
+            fencei_counter := fencei_counter + 1.U
+        }.otherwise{
+            fencei_counter_ways := fencei_counter_ways + 1.U
+        }
     }.otherwise{
         fencei_counter := 0.U
+        fencei_counter_ways := 0.U
     }
     fencei_io_vr.is_fencei_io.ready := fencei_fsh
     when(is_fencei){
-        for(i <- 0 until ways){
-            icache(fencei_counter).set(i).valid := false.B
-        }
+            icache(fencei_counter).set(fencei_counter_ways).valid := false.B
     }
 
     switch(n_state){//third phase
