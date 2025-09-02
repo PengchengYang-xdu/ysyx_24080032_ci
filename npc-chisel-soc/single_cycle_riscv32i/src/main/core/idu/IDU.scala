@@ -90,8 +90,8 @@ class IDU extends Module {
 
 
     //main process
-    val inst = inst_r
-    val reg_pc = reg_pc_r
+    val inst = io_pipe.in.bits.if2id_inst
+    val reg_pc = io_pipe.in.bits.if2id_reg_pc
     
     val rs1_addr = inst(19, 15)
     val rs2_addr = inst(24, 20)
