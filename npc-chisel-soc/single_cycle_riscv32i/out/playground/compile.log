@@ -1,34 +1,9 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 3 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:248:30: value id2exe_rs1_data is not a member of npc.core.idu.IDUIO_pipe_out[0m
-[0m[[0m[31merror[0m] [0m[0mdid you mean id2exe_csr_rdata?[0m
-[0m[[0m[31merror[0m] [0m[0m    )), idu.io_pipe.out.bits.id2exe_rs1_data)[0m
-[0m[[0m[31merror[0m] [0m[0m                             ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:253:30: value id2exe_rs2_data is not a member of npc.core.idu.IDUIO_pipe_out[0m
-[0m[[0m[31merror[0m] [0m[0mdid you mean id2exe_csr_rdata?[0m
-[0m[[0m[31merror[0m] [0m[0m    )), idu.io_pipe.out.bits.id2exe_rs2_data)[0m
-[0m[[0m[31merror[0m] [0m[0m                             ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:266:25: value id2exe_rs1_data is not a member of npc.core.idu.IDUIO_pipe_out[0m
-[0m[[0m[31merror[0m] [0m[0mdid you mean id2exe_csr_rdata?[0m
-[0m[[0m[31merror[0m] [0m[0m    exu.io_pipe.in.bits.id2exe_rs1_data := RegEnable(Mux(rd1_forward_en || (~rs1_rawing && ~bt_fwd_fsh_rs1), rd1_forward_data, rd1_forward_data_r), idu.io_pipe.out.fire)[0m
-[0m[[0m[31merror[0m] [0m[0m                        ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:267:25: value id2exe_rs2_data is not a member of npc.core.idu.IDUIO_pipe_out[0m
-[0m[[0m[31merror[0m] [0m[0mdid you mean id2exe_csr_rdata?[0m
-[0m[[0m[31merror[0m] [0m[0m    exu.io_pipe.in.bits.id2exe_rs2_data := RegEnable(Mux(rd2_forward_en || (~rs2_rawing && ~bt_fwd_fsh_rs2), rd2_forward_data, rd2_forward_data_r), idu.io_pipe.out.fire)[0m
-[0m[[0m[31merror[0m] [0m[0m                        ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:71:62: value in is not a member of npc.core.exu.EXUIO[0m
-[0m[[0m[31merror[0m] [0m[0m        (io_pipe.in.bits.id2exe_op1_sel === OP1_RS1)  ->  io.in.gpr_rs1_data,[0m
-[0m[[0m[31merror[0m] [0m[0m                                                             ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:76:71: value in is not a member of npc.core.exu.EXUIO[0m
-[0m[[0m[31merror[0m] [0m[0m    val op2_data = Mux(io_pipe.in.bits.id2exe_op2_sel === OP2_RS2, io.in.gpr_rs2_data, io_pipe.in.bits.id2exe_imm_sext)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                      ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:124:44: value in is not a member of npc.core.exu.EXUIO[0m
-[0m[[0m[31merror[0m] [0m[0m    io_pipe.out.bits.exe2ls_rs2_data := io.in.gpr_rs2_data[0m
-[0m[[0m[31merror[0m] [0m[0m                                           ^[0m
-[0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:65:12: Pattern definition introduces Unit-valued member of EXU; consider wrapping it in `locally { ... }`.[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:67:12: Pattern definition introduces Unit-valued member of EXU; consider wrapping it in `locally { ... }`.[0m
 [0m[[0m[33mwarn[0m] [0m[0m    val io.gpr_rs1_addr = io_pipe.in.bits.id2exe_rs1_addr[0m
 [0m[[0m[33mwarn[0m] [0m[0m           ^[0m
-[0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:66:12: Pattern definition introduces Unit-valued member of EXU; consider wrapping it in `locally { ... }`.[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:68:12: Pattern definition introduces Unit-valued member of EXU; consider wrapping it in `locally { ... }`.[0m
 [0m[[0m[33mwarn[0m] [0m[0m    val io.gpr_rs2_addr = io_pipe.in.bits.id2exe_rs2_addr[0m
 [0m[[0m[33mwarn[0m] [0m[0m           ^[0m
 [0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
-[0m[[0m[31merror[0m] [0m[0m7 errors found[0m
+[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m

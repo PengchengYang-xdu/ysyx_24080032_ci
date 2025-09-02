@@ -64,8 +64,8 @@ class EXU extends Module {
     val rs1_data = io_hazard.real_rs1
     val rs2_data = io_hazard.real_rs2
 
-    val io.gpr_rs1_addr = io_pipe.in.bits.id2exe_rs1_addr
-    val io.gpr_rs2_addr = io_pipe.in.bits.id2exe_rs2_addr
+    io.gpr_rs1_addr := io_pipe.in.bits.id2exe_rs1_addr
+    io.gpr_rs2_addr := io_pipe.in.bits.id2exe_rs2_addr
 
 
 
