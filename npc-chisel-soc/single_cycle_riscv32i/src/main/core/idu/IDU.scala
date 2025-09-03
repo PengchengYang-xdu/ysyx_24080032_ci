@@ -79,16 +79,6 @@ class IDU extends Module {
 
     val io_hazard = IO(new IDUIO_HAZARD)
 
-
-
-
-    //registers
-    // val inst_r = RegEnable(io_pipe.in.bits.if2id_inst, 0.U, io_pipe.in.valid & io_pipe.in.ready)
-    // val reg_pc_r = RegEnable(io_pipe.in.bits.if2id_reg_pc, 0.U, io_pipe.in.valid & io_pipe.in.ready)
-
-
-
-
     //main process
     val inst = io_pipe.in.bits.if2id_inst
     val reg_pc = io_pipe.in.bits.if2id_reg_pc

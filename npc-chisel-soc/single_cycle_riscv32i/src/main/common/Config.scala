@@ -14,15 +14,8 @@ object Config{
     // val START_ADDR    = "h20000000".U(WORD_LEN.W) /*THIS IS MROM MODE*/
     val START_ADDR    = "h30000000".U(WORD_LEN.W) /*THIS IS FLASH MODE*/
 
-    val BUBBLE        = "h00000013".U(WORD_LEN.W)  // [ADDI x0,x0,0] = BUBBLE
-    val UNIMP         = "x_c0001073".U(WORD_LEN.W) // [CSRRW x0, cycle, x0]
     val ADDR_LEN      = 4 // rs1,rs2,wb
     val CSR_ADDR_LEN  = 12
-    val VLEN          = 128
-    val LMUL_LEN      = 2
-    val SEW_LEN       = 11
-    val VL_ADDR       = 0xC20
-    val VTYPE_ADDR    = 0xC21
 
     val EXE_FUN_LEN = 5
     val ALU_X       =  0.U(EXE_FUN_LEN.W)
@@ -44,15 +37,11 @@ object Config{
     val BR_BGEU     = 16.U(EXE_FUN_LEN.W)
     val ALU_JALR    = 17.U(EXE_FUN_LEN.W)
     val ALU_COPY1   = 18.U(EXE_FUN_LEN.W)
-    val ALU_VADDVV  = 19.U(EXE_FUN_LEN.W)
-    val VSET        = 20.U(EXE_FUN_LEN.W)
-    val ALU_PCNT    = 21.U(EXE_FUN_LEN.W)
   
     val OP1_LEN = 2
     val OP1_RS1 = 0.U(OP1_LEN.W)
     val OP1_PC  = 1.U(OP1_LEN.W)
     val OP1_X   = 2.U(OP1_LEN.W)
-    val OP1_IMZ = 3.U(OP1_LEN.W)
   
     val OP2_LEN = 2
     val OP2_X   = 0.U(OP2_LEN.W)
@@ -60,17 +49,16 @@ object Config{
     val OP2_IMM = 2.U(OP2_LEN.W)
 
     val IMM_TYPE_LEN = 3
-    val IMM_TYPE_X   = 0.U(IMM_TYPE_LEN.W)
+    val IMM_TYPE_X = 0.U(IMM_TYPE_LEN.W)
     val IMM_TYPE_B = 1.U(IMM_TYPE_LEN.W)
     val IMM_TYPE_I = 2.U(IMM_TYPE_LEN.W)
     val IMM_TYPE_S = 3.U(IMM_TYPE_LEN.W)
     val IMM_TYPE_J = 4.U(IMM_TYPE_LEN.W)
     val IMM_TYPE_U = 5.U(IMM_TYPE_LEN.W)
   
-    val MEN_LEN = 2
+    val MEN_LEN = 1
     val MEN_X   = 0.U(MEN_LEN.W)
-    val MEN_S   = 1.U(MEN_LEN.W) // スカラ命令用
-    val MEN_V   = 2.U(MEN_LEN.W) // ベクトル命令用
+    val MEN_S   = 1.U(MEN_LEN.W)
 
     val MEM_OP = 3
     val MEM_OP_1U = "b100".U(MEM_OP.W)
@@ -80,10 +68,9 @@ object Config{
     val MEM_OP_4  = "b010".U(MEM_OP.W)
     val MEM_OP_X  = "b111".U(MEM_OP.W)
   
-    val REN_LEN = 2
+    val REN_LEN = 1
     val REN_X   = 0.U(REN_LEN.W)
-    val REN_S   = 1.U(REN_LEN.W) // スカラ命令用
-    val REN_V   = 2.U(REN_LEN.W) // ベクトル命令用
+    val REN_S   = 1.U(REN_LEN.W)
   
     val WB_SEL_LEN = 3
     val WB_X       = 0.U(WB_SEL_LEN.W)
@@ -95,30 +82,12 @@ object Config{
     val WB_ALU_V   = 5.U(WB_SEL_LEN.W)
     val WB_VL      = 6.U(WB_SEL_LEN.W)
   
-    val MW_LEN = 3
-    val MW_X   = 0.U(MW_LEN.W)
-    val MW_W   = 1.U(MW_LEN.W)
-    val MW_H   = 2.U(MW_LEN.W)
-    val MW_B   = 3.U(MW_LEN.W)
-    val MW_HU  = 4.U(MW_LEN.W)
-    val MW_BU  = 5.U(MW_LEN.W)
-  
     val CSR_LEN = 3
     val CSR_X   = 0.U(CSR_LEN.W)
     val CSR_W   = 1.U(CSR_LEN.W)
     val CSR_S   = 2.U(CSR_LEN.W)
-    val CSR_C   = 3.U(CSR_LEN.W)
-    val CSR_E   = 4.U(CSR_LEN.W)
-    val CSR_V   = 5.U(CSR_LEN.W)
-    val CSR_M   = 6.U(CSR_LEN.W)//modified by ypc
-
-    val CSR_ADDR = 3
-    val CSR_MSTATUS_ADDR = 0.U(CSR_ADDR.W)
-    val CSR_MTVEC_ADDR = 1.U(CSR_ADDR.W)
-    val CSR_MEPC_ADDR = 2.U(CSR_ADDR.W)
-    val CSR_MCAUSE_ADDR = 3.U(CSR_ADDR.W)
-    val CSR_MVENDORID_ADDR = 4.U(CSR_ADDR.W)
-    val CSR_MARCHID_ADDR = 5.U(CSR_ADDR.W)
+    val CSR_E   = 3.U(CSR_LEN.W)
+    val CSR_M   = 4.U(CSR_LEN.W)//modified by ypc
 
     val IS_FENCEI_LEN = 1
     val IS_FENCEI   = 1.U(IS_FENCEI_LEN.W)
