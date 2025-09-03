@@ -6,8 +6,29 @@ ExitCode:
 STDOUT:
 
 STDERR:
-src/main/core/Core.scala:23:7: error: detected combinational cycle in a FIRRTL module, sample path: Core.{exu_is_working <- ... <- idu.io_pipe_out_valid <- idu.io_hazard_stall_flg <- ... <- _idu_io_hazard_stall_flg_T_12 <- ... <- _idu_io_hazard_stall_flg_T_10 <- ... <- _idu_io_hazard_stall_flg_T_9 <- ... <- _idu_io_hazard_stall_flg_T_7 <- ... <- _idu_io_hazard_stall_flg_T_3 <- ... <- _idu_io_hazard_stall_flg_T_2 <- ... <- rd2_forward_en <- ... <- _rd2_forward_en_T_1 <- ... <- exu_can_forward_rs2 <- ... <- exu_rs2_rawing_raw <- ... <- exu_raw_rs2 <- ... <- exu_raw <- ... <- _exu_raw_T_11 <- ... <- _exu_raw_T_10 <- ... <- exu_is_working}
-class Core extends Module {
-      ^
+src/main/core/Core.scala:29:21: error: sink "" not fully initialized in "Core"
+    val ifu = Module(new IFU)
+                    ^
+src/main/core/Core.scala:29:21: error: sink "" not fully initialized in "Core"
+    val ifu = Module(new IFU)
+                    ^
+src/main/core/Core.scala:29:21: error: sink "" not fully initialized in "Core"
+    val ifu = Module(new IFU)
+                    ^
+src/main/core/Core.scala:30:21: error: sink "" not fully initialized in "Core"
+    val idu = Module(new IDU)
+                    ^
+src/main/core/Core.scala:30:21: error: sink "" not fully initialized in "Core"
+    val idu = Module(new IDU)
+                    ^
+src/main/core/Core.scala:31:21: error: sink "" not fully initialized in "Core"
+    val exu = Module(new EXU)
+                    ^
+src/main/core/Core.scala:32:21: error: sink "" not fully initialized in "Core"
+    val lsu = Module(new LSU)
+                    ^
+src/main/core/Core.scala:33:21: error: sink "" not fully initialized in "Core"
+    val wbu = Module(new WBU)
+                    ^
 
 ------------------------------------------------------------------------------
