@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Generate the report at 2025-09-01T18:22:36, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+=======
+Generate the report at 2025-09-02T20:40:46, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+>>>>>>> tracer-ysyx
 Clock: core_clock
 +-----------------------------+---------+-------+------+
 | Clock Pin                   | Latency | Skew  |      |
@@ -6,14 +10,21 @@ Clock: core_clock
 | xbar/_2482_:CK (DFF_X1)     | 0.000   |       | rp-+ |
 | xbar/_2482_:CK (DFF_X1)     | 0.000   | 0.000 | rp-+ |
 | core/wbu/_156_:CK (DFF_X1)  | 0.000   |       | rp-+ |
+<<<<<<< HEAD
 | core/wbu/_157_:CK (DFF_X1)  | 0.000   | 0.000 | rp-+ |
 | core/lsu/_2887_:CK (DFF_X1) | 0.000   |       | rp-+ |
 | core/lsu/_2972_:CK (DFF_X1) | 0.000   | 0.000 | rp-+ |
+=======
+| core/wbu/_158_:CK (DFF_X1)  | 0.000   | 0.000 | rp-+ |
+| core/lsu/_2887_:CK (DFF_X1) | 0.000   |       | rp-+ |
+| core/lsu/_2965_:CK (DFF_X1) | 0.000   | 0.000 | rp-+ |
+>>>>>>> tracer-ysyx
 +-----------------------------+---------+-------+------+
 +------------------------------+--------+-------------+------------+------------+-------+--------+
 | Point                        | Fanout | Capacitance | Resistance | Transition | Incr  | Path   |
 +------------------------------+--------+-------------+------------+------------+-------+--------+
 | clock core_clock (rise edge) |        |             |            | 0          | 0     |        |
+<<<<<<< HEAD
 | clock (port)                 |        | 2.130       | 0.000      | 0.000      | 0.000 | 0.000r |
 | clock (net)                  | 2242   |             |            |            |       |        |
 | xbar/_2482_:CK (DFF_X1)      |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
@@ -21,6 +32,15 @@ Clock: core_clock
 | clock core_clock (rise edge) |        |             |            | 2          | 2     |        |
 | clock (port)                 |        | 2.130       | 0.000      | 0.000      | 0.000 | 0.000r |
 | clock (net)                  | 2242   |             |            |            |       |        |
+=======
+| clock (port)                 |        | 2.070       | 0.000      | 0.000      | 0.000 | 0.000r |
+| clock (net)                  | 2179   |             |            |            |       |        |
+| xbar/_2482_:CK (DFF_X1)      |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
+|                              |        |             |            |            |       |        |
+| clock core_clock (rise edge) |        |             |            | 2          | 2     |        |
+| clock (port)                 |        | 2.070       | 0.000      | 0.000      | 0.000 | 0.000r |
+| clock (net)                  | 2179   |             |            |            |       |        |
+>>>>>>> tracer-ysyx
 | xbar/_2482_:CK (DFF_X1)      |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
 |                              |        |             |            |            |       |        |
 | startpoint clock latency     |        |             |            |            | 0.000 |        |
@@ -32,6 +52,7 @@ Clock: core_clock
 | Point                        | Fanout | Capacitance | Resistance | Transition | Incr  | Path   |
 +------------------------------+--------+-------------+------------+------------+-------+--------+
 | clock core_clock (rise edge) |        |             |            | 0          | 0     |        |
+<<<<<<< HEAD
 | clock (port)                 |        | 2.130       | 0.000      | 0.000      | 0.000 | 0.000r |
 | clock (net)                  | 2242   |             |            |            |       |        |
 | core/wbu/_156_:CK (DFF_X1)   |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
@@ -40,6 +61,16 @@ Clock: core_clock
 | clock (port)                 |        | 2.130       | 0.000      | 0.000      | 0.000 | 0.000r |
 | clock (net)                  | 2242   |             |            |            |       |        |
 | core/wbu/_157_:CK (DFF_X1)   |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
+=======
+| clock (port)                 |        | 2.070       | 0.000      | 0.000      | 0.000 | 0.000r |
+| clock (net)                  | 2179   |             |            |            |       |        |
+| core/wbu/_156_:CK (DFF_X1)   |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
+|                              |        |             |            |            |       |        |
+| clock core_clock (rise edge) |        |             |            | 2          | 2     |        |
+| clock (port)                 |        | 2.070       | 0.000      | 0.000      | 0.000 | 0.000r |
+| clock (net)                  | 2179   |             |            |            |       |        |
+| core/wbu/_158_:CK (DFF_X1)   |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
+>>>>>>> tracer-ysyx
 |                              |        |             |            |            |       |        |
 | startpoint clock latency     |        |             |            |            | 0.000 |        |
 | endpoint clock latency       |        |             |            |            | 0.000 |        |
@@ -50,6 +81,7 @@ Clock: core_clock
 | Point                        | Fanout | Capacitance | Resistance | Transition | Incr  | Path   |
 +------------------------------+--------+-------------+------------+------------+-------+--------+
 | clock core_clock (rise edge) |        |             |            | 0          | 0     |        |
+<<<<<<< HEAD
 | clock (port)                 |        | 2.130       | 0.000      | 0.000      | 0.000 | 0.000r |
 | clock (net)                  | 2242   |             |            |            |       |        |
 | core/lsu/_2887_:CK (DFF_X1)  |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
@@ -58,6 +90,16 @@ Clock: core_clock
 | clock (port)                 |        | 2.130       | 0.000      | 0.000      | 0.000 | 0.000r |
 | clock (net)                  | 2242   |             |            |            |       |        |
 | core/lsu/_2972_:CK (DFF_X1)  |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
+=======
+| clock (port)                 |        | 2.070       | 0.000      | 0.000      | 0.000 | 0.000r |
+| clock (net)                  | 2179   |             |            |            |       |        |
+| core/lsu/_2887_:CK (DFF_X1)  |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
+|                              |        |             |            |            |       |        |
+| clock core_clock (rise edge) |        |             |            | 2          | 2     |        |
+| clock (port)                 |        | 2.070       | 0.000      | 0.000      | 0.000 | 0.000r |
+| clock (net)                  | 2179   |             |            |            |       |        |
+| core/lsu/_2965_:CK (DFF_X1)  |        | 0.001       | 0.000      | 0.000      | 0.000 | 0.000r |
+>>>>>>> tracer-ysyx
 |                              |        |             |            |            |       |        |
 | startpoint clock latency     |        |             |            |            | 0.000 |        |
 | endpoint clock latency       |        |             |            |            | 0.000 |        |

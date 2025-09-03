@@ -23,7 +23,11 @@
         "SSH_CONNECTION": "10.12.31.238 59461 10.2.255.13 6000",
         "AM_HOME": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/abstract-machine",
         "LC_MEASUREMENT": "zh_CN.UTF-8",
+<<<<<<< HEAD
         "OLDPWD": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/am-kernels/tests/cpu-tests/tests",
+=======
+        "OLDPWD": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/am-kernels/tests",
+>>>>>>> tracer-ysyx
         "XDG_SESSION_TYPE": "x11",
         "NVBOARD_HOME": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/nvboard",
         "LESSOPEN": "| /usr/bin/lesspipe %s",
@@ -43,7 +47,11 @@
         "PK": "/home/yangpengcheng/workspace/opt/spike/riscv64-unknown-elf",
         "MODULESHOME": "/usr/share/modules",
         "XDG_SESSION_ID": "28",
+<<<<<<< HEAD
         "ALL": "recursion",
+=======
+        "ALL": "string",
+>>>>>>> tracer-ysyx
         "LC_TIME": "zh_CN.UTF-8",
         "CONDA_EXE": "/home/yangpengcheng/miniconda3/bin/conda",
         "VNCDESKTOP": "ubuntu-4029:4 (yangpengcheng)",
@@ -59,7 +67,11 @@
         "LM_LICENSE_FILE": "/home/yangpengcheng/license.dat",
         "SSH_AGENT_PID": "24377",
         "LC_ADDRESS": "zh_CN.UTF-8",
+<<<<<<< HEAD
         "MAKEFLAGS": "s -- ALL=recursion ARCH=riscv32e-ysyxsoc",
+=======
+        "MAKEFLAGS": "s -- ALL=string ARCH=riscv32e-ysyxsoc",
+>>>>>>> tracer-ysyx
         "ftp_proxy": "http://127.0.0.1:40325",
         "CUDA_HOME": "/usr/local/cuda-12.4",
         "LC_MEASUREMENT\\tDEFAULT": "en_US.UTF-8",
@@ -124,6 +136,11 @@
         "MODEL_TECH": "/home/yangpengcheng/questasim/bin",
         "DESKTOP_SESSION": "xfce"
     },
+<<<<<<< HEAD
     "valueHash": -953064982,
     "inputsHash": -1238319210
+=======
+    "valueHash": 789330686,
+    "inputsHash": 602558781
+>>>>>>> tracer-ysyx
 }

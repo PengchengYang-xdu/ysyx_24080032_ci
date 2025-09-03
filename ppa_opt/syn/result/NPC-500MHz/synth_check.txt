@@ -133,7 +133,11 @@ Warning: Wire Clint.\io_axi4_rdata [1] is used but has no driver.
 Warning: Wire Clint.\io_axi4_rdata [0] is used but has no driver.
 Warning: Wire Clint.\io_axi4_arready is used but has no driver.
 checking module Core..
+<<<<<<< HEAD
 Warning: Wire Core.$auto$hilomap.cc:39:hilomap_worker$56809 is used but has no driver.
+=======
+Warning: Wire Core.$auto$hilomap.cc:39:hilomap_worker$56464 is used but has no driver.
+>>>>>>> tracer-ysyx
 Warning: Wire Core.\_GEN is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_wb_data[31] is used but has no driver.
 Warning: Wire Core.\wbu_io_pipe_in_bits_r_ls2wb_wb_data[30] is used but has no driver.
@@ -421,6 +425,7 @@ Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_alu_out[2] is used but has no d
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_alu_out[1] is used but has no driver.
 Warning: Wire Core.\lsu_io_pipe_in_bits_r_exe2ls_alu_out[0] is used but has no driver.
 Warning: Wire Core.\_GEN_2 is used but has no driver.
+<<<<<<< HEAD
 Warning: Wire Core.$abc$28709$ternary$./vsrc/Core.sv:630$963_Y[31] is used but has no driver.
 Warning: Wire Core.$abc$28709$ternary$./vsrc/Core.sv:630$963_Y[30] is used but has no driver.
 Warning: Wire Core.$abc$28709$ternary$./vsrc/Core.sv:630$963_Y[29] is used but has no driver.
@@ -455,6 +460,42 @@ Warning: Wire Core.$abc$28709$ternary$./vsrc/Core.sv:630$963_Y[1] is used but ha
 Warning: Wire Core.$abc$28709$ternary$./vsrc/Core.sv:630$963_Y[0] is used but has no driver.
 Warning: Wire Core.\is_mret_rise is used but has no driver.
 Warning: Wire Core.\_idu_io_hazard_flush_flg_T is used but has no driver.
+=======
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[31] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[30] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[29] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[28] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[27] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[26] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[25] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[24] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[23] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[22] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[21] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[20] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[19] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[18] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[17] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[16] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[15] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[14] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[13] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[12] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[11] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[10] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[9] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[8] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[7] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[6] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[5] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[4] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[3] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[2] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[1] is used but has no driver.
+Warning: Wire Core.$abc$28539$ternary$./vsrc/Core.sv:647$985_Y[0] is used but has no driver.
+Warning: Wire Core.\is_mret_rise is used but has no driver.
+Warning: Wire Core.\_ifu_io_hazard_flush_flg_T_1 is used but has no driver.
+>>>>>>> tracer-ysyx
 Warning: Wire Core.\_GEN_3 is used but has no driver.
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_reg_pc[31] is used but has no driver.
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_reg_pc[30] is used but has no driver.
@@ -520,7 +561,11 @@ Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[3] is used but has no drive
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[2] is used but has no driver.
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[1] is used but has no driver.
 Warning: Wire Core.\idu_io_pipe_in_bits_r_if2id_inst[0] is used but has no driver.
+<<<<<<< HEAD
 Warning: Wire Core.$abc$28709$or$./vsrc/Core.sv:677$976_Y is used but has no driver.
+=======
+Warning: Wire Core.$abc$28539$or$./vsrc/Core.sv:695$998_Y is used but has no driver.
+>>>>>>> tracer-ysyx
 Warning: Wire Core.\_GEN_1 is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_wb_sel[2] is used but has no driver.
 Warning: Wire Core.\exu_io_pipe_in_bits_r_id2exe_wb_sel[1] is used but has no driver.
@@ -1418,6 +1463,41 @@ Warning: Wire IFU.\io_imem_araddr [3] is used but has no driver.
 Warning: Wire IFU.\io_imem_araddr [2] is used but has no driver.
 Warning: Wire IFU.\io_imem_araddr [1] is used but has no driver.
 Warning: Wire IFU.\io_imem_araddr [0] is used but has no driver.
+<<<<<<< HEAD
+=======
+Warning: Wire IFU.\io_hazard_reg_pc [31] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [30] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [29] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [28] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [27] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [26] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [25] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [24] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [23] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [22] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [21] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [20] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [19] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [18] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [17] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [16] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [15] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [14] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [13] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [12] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [11] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [10] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [9] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [8] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [7] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [6] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [5] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [4] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [3] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [2] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [1] is used but has no driver.
+Warning: Wire IFU.\io_hazard_reg_pc [0] is used but has no driver.
+>>>>>>> tracer-ysyx
 Warning: Wire IFU.\io_hazard_pc_plus4 [31] is used but has no driver.
 Warning: Wire IFU.\io_hazard_pc_plus4 [30] is used but has no driver.
 Warning: Wire IFU.\io_hazard_pc_plus4 [29] is used but has no driver.
@@ -2257,4 +2337,8 @@ Warning: Wire iCache.\io_in_rdata [1] is used but has no driver.
 Warning: Wire iCache.\io_in_rdata [0] is used but has no driver.
 Warning: Wire iCache.\io_in_arready is used but has no driver.
 Warning: Wire iCache.\fencei_io_vr_is_fencei_io_ready is used but has no driver.
+<<<<<<< HEAD
 found and reported 2245 problems.
+=======
+found and reported 2277 problems.
+>>>>>>> tracer-ysyx
