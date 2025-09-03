@@ -102,7 +102,7 @@ class IDU extends Module {
     val imm_z_uext = Cat(Fill(27, 0.U), imm_z)
 
     val csignals = ListLookup(inst,
-                        List(IMM_TYPE_X, ALU_X    , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_X, CH3_X), INST_TPE_X),
+                        List(IMM_TYPE_X, ALU_X    , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_X, CH3_X)),
         Array(
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             //[[LOAD/STORE指令]]-------------------------------------------------------------------------------------------------------------------------------
