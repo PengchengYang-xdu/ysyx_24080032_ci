@@ -187,9 +187,11 @@ class IDU extends Module {
         )
     )
 
-    val imm_type :: exe_fun :: op1_sel :: op2_sel :: mem_wen :: rf_wen :: wb_sel :: csr_cmd :: mem_op :: is_fencei :: rs1_is_read :: rs2_is_read :: ctrlsigs :: Nil = csignals
+    val imm_type :: exe_fun :: op1_sel :: op2_sel :: mem_wen :: rf_wen :: wb_sel :: csr_cmd :: mem_op :: is_fencei :: rs1_is_read :: rs2_is_read :: channelsig :: Nil = csignals
     
-    val Cat(ch1_tpe, ch2_tpe, ch3_tpe) = ctrlsigs
+    val ch1_tpe = channelsig(3)
+    val ch2_tpe = channelsig(2)
+    val ch2_tpe = channelsig(1, 0)
 
 
     val imm_sext = MuxCase(0.U(WORD_LEN.W), Seq(

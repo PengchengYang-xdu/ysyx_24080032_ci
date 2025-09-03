@@ -1,36 +1,5 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 3 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:105:174: not found: value INST_TPE_X[0m
-[0m[[0m[31merror[0m] [0m[0m                        List(IMM_TYPE_X, ALU_X    , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_X, CH3_X), INST_TPE_X),[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                                                                                                             ^[0m
 [0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:192:9: object Cat is not a case class, nor does it have a valid unapply/unapplySeq member[0m
 [0m[[0m[31merror[0m] [0m[0m    val Cat(ch1_tpe, ch2_tpe, ch3_tpe) = ctrlsigs[0m
 [0m[[0m[31merror[0m] [0m[0m        ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:196:19: value === is not a member of Any[0m
-[0m[[0m[31merror[0m] [0m[0m        (imm_type === IMM_TYPE_I)  ->  imm_i_sext,[0m
-[0m[[0m[31merror[0m] [0m[0m                  ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:197:19: value === is not a member of Any[0m
-[0m[[0m[31merror[0m] [0m[0m        (imm_type === IMM_TYPE_S)  ->  imm_s_sext,[0m
-[0m[[0m[31merror[0m] [0m[0m                  ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:198:19: value === is not a member of Any[0m
-[0m[[0m[31merror[0m] [0m[0m        (imm_type === IMM_TYPE_J)  ->  imm_j_sext,[0m
-[0m[[0m[31merror[0m] [0m[0m                  ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:199:19: value === is not a member of Any[0m
-[0m[[0m[31merror[0m] [0m[0m        (imm_type === IMM_TYPE_U)  ->  imm_u_shifted,[0m
-[0m[[0m[31merror[0m] [0m[0m                  ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:200:19: value === is not a member of Any[0m
-[0m[[0m[31merror[0m] [0m[0m        (imm_type === IMM_TYPE_B)  ->  imm_b_sext[0m
-[0m[[0m[31merror[0m] [0m[0m                  ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:204:32: value === is not a member of Any[0m
-[0m[[0m[31merror[0m] [0m[0m    val csr_addr = Mux(csr_cmd === CSR_E, 0x342.U(CSR_ADDR_LEN.W), inst(31,20))[0m
-[0m[[0m[31merror[0m] [0m[0m                               ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:213:27: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Any[0m
-[0m[[0m[31merror[0m] [0m[0m required: chisel3.Data[0m
-[0m[[0m[31merror[0m] [0m[0m    io.gpr_rs1_is_read := rs1_is_read[0m
-[0m[[0m[31merror[0m] [0m[0m                          ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:214:27: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : Any[0m
-[0m[[0m[31merror[0m] [0m[0m required: chisel3.Data[0m
-[0m[[0m[31merror[0m] [0m[0m    io.gpr_rs2_is_read := rs2_is_read[0m
-[0m[[0m[31merror[0m] [0m[0m                          ^[0m
-[0m[[0m[31merror[0m] [0m[0m25 errors found[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
