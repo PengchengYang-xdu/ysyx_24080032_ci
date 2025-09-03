@@ -191,7 +191,7 @@ class IDU extends Module {
     
     val ch1_tpe = channelsig(3)
     val ch2_tpe = channelsig(2)
-    val ch2_tpe = channelsig(1, 0)
+    val ch3_tpe = channelsig(1, 0)
 
 
     val imm_sext = MuxCase(0.U(WORD_LEN.W), Seq(
