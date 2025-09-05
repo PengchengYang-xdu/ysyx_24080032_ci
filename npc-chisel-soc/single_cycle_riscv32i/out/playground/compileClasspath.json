@@ -58,10 +58,8 @@
         "qref:v1:8fa2e508:/home/yangpengcheng/.cache/coursier/v1/https/repo1.maven.org/maven2/org/codehaus/plexus/plexus-classworlds/2.6.0/plexus-classworlds-2.6.0.jar",
         "qref:v1:fbafe068:/home/yangpengcheng/.cache/coursier/v1/https/repo1.maven.org/maven2/org/apache/xbean/xbean-reflect/3.7/xbean-reflect-3.7.jar",
         "qref:v1:8c3ef24c:/home/yangpengcheng/.cache/coursier/v1/https/repo1.maven.org/maven2/org/fusesource/jansi/jansi/1.18/jansi-1.18.jar",
-        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/rvdecoderdb/rvdecoderdb/src/compile-resources",
-        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/rvdecoderdb/compile.dest/classes",
         "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/compile-resources"
     ],
-    "valueHash": -2079179410,
-    "inputsHash": -1260217274
+    "valueHash": 80395773,
+    "inputsHash": 1585511875
 }

@@ -1,8 +1,5 @@
 {
-    "value": [
-        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/rvdecoderdb/rvdecoderdb/src/compile-resources",
-        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/rvdecoderdb/compile.dest/classes"
-    ],
-    "valueHash": 1097740486,
-    "inputsHash": 1992485462
+    "value": [],
+    "valueHash": -1499023084,
+    "inputsHash": 858615153
 }
