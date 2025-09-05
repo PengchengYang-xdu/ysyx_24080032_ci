@@ -10,6 +10,16 @@ import npc.core.wbu._
 import npc.perip._
 
 object Elaborate extends App {
+  // === 单独测试 instList ===
+  println("=== Instruction List ===")
+  instList.foreach { insn =>
+    println(s"${insn.inst.toString}")
+  }
+
+
+
+
+  
   val firtoolOptions = Array("--lowering-options=" + List(
     // make yosys happy
     // see https://github.com/llvm/circt/blob/main/docs/VerilogGeneration.md
