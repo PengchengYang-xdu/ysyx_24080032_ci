@@ -23,11 +23,6 @@ object playground extends SbtModule with ScalafmtModule { m =>
                            PathRef(os.pwd / "rvdecoderdb" / "rvdecoderdb")
                           )
   }
-
-
-//   def moduleDeps = Seq(rvdecoderdb)
-
-
   override def ivyDeps = Agg(
     if (useChisel3) ivy"edu.berkeley.cs::chisel3:3.6.0" else
     ivy"org.chipsalliance::chisel:6.4.0"
@@ -51,9 +46,3 @@ object playground extends SbtModule with ScalafmtModule { m =>
     coursier.MavenRepository("https://oss.sonatype.org/content/repositories/snapshots"),
   ) ++ super.repositoriesTask() }
 }
-
-// /** 单独的 rvdecoderdb 模块 */
-// object rvdecoderdb extends SbtModule {
-//   override def millSourcePath = os.pwd / "rvdecoderdb" / "rvdecoderdb" / "src"
-//   override def scalaVersion = "2.13.14"
-// }

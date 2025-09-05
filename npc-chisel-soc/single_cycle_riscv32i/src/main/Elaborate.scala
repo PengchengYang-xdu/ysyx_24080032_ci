@@ -12,8 +12,8 @@ import npc.perip._
 object Elaborate extends App {
     // === 单独测试 instList ===
   println("=== Instruction List ===")
-  instList.foreach { insn =>
-    println(s"${insn.inst.toString}")
+  instList.foreach { InstructionPattern =>
+    println(s"${InstructionPattern.toString}")
   }
 
 
