@@ -68,7 +68,7 @@ object Instructions {
 }
 
 
-object InstructionNew {
+object InstructionsNew {
     val instTable: Iterable[rvdecoderdb.Instruction] = rvdecoderdb.instructions(os.pwd / "rvdecoderdb" / "rvdecoderdbtest" / "jvm" / "riscv-opcodes")
 
     case class InstructionPattern (

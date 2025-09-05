@@ -1,5 +1,5 @@
 import npc.common.Config._
-import npc.common.Instructions._
+import npc.common.InstructionsNew._
 
 import npc.core._
 import npc.core.ifu._
