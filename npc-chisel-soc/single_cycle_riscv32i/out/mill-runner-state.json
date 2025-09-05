@@ -1,6 +1,23 @@
 {
-    "workerCache": {},
-    "evalWatched": [],
+    "workerCache": {
+        "mill.scalalib.ZincWorkerModule.worker": {
+            "identityHashCode": 707492405,
+            "inputHash": -1312576655
+        }
+    },
+    "evalWatched": [
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/src/main/resources",
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/src/main/scala",
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/src/main/java",
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/rvdecoderdb/rvdecoderdb/src/main/resources",
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/src/main/scala",
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/src/main/java",
+        "ref:v0:744cc4e2:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main",
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/rvdecoderdb/rvdecoderdb/src/main/scala",
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/rvdecoderdb/rvdecoderdb/src/main/java",
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/rvdecoderdb/rvdecoderdb/compile-resources",
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/compile-resources"
+    ],
     "moduleWatched": [],
     "scriptImportGraph": [],
     "classLoaderIdentity": [],
