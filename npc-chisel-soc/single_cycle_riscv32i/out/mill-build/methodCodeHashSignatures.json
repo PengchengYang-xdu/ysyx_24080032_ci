@@ -211,7 +211,6 @@
         "millbuild.build$playground$#runMainBackground(java.lang.String,scala.collection.immutable.Seq)mill.define.Command": 1338991587,
         "millbuild.build$playground$#runMainLocal(java.lang.String,scala.collection.immutable.Seq)mill.define.Command": -1439987951,
         "millbuild.build$playground$#runUseArgsFile()mill.define.Target": 1159587925,
-        "millbuild.build$playground$#rvdecoderdbSourcePath()os.Path": 1144901346,
         "millbuild.build$playground$#scalaCompilerClasspath()mill.define.Target": 1095116285,
         "millbuild.build$playground$#scalaDocClasspath()mill.define.Target": -1039543089,
         "millbuild.build$playground$#scalaDocOptions()mill.define.Target": 1384894939,
@@ -235,7 +234,7 @@
         "millbuild.build$playground$#showModuleDeps(boolean)mill.define.Command": -1988833591,
         "millbuild.build$playground$#skipIdea()boolean": 18471707,
         "millbuild.build$playground$#sourceJar()mill.define.Target": 282451541,
-        "millbuild.build$playground$#sources()mill.define.Target": -1509267039,
+        "millbuild.build$playground$#sources()mill.define.Target": 2134751333,
         "millbuild.build$playground$#super$sources()mill.define.Target": 78257018,
         "millbuild.build$playground$#test$lzycompute$1()void": -17490564,
         "millbuild.build$playground$#test()millbuild.build$playground$test$": -687993505,
@@ -270,10 +269,10 @@
         "millbuild.build$playground$.$anonfun$scalacPluginIvyDeps$1(millbuild.build$playground$)mill.define.TargetImpl": -719320388,
         "millbuild.build$playground$.$anonfun$scalacPluginIvyDeps$2(millbuild.build$playground$,scala.collection.immutable.Seq,mill.api.Ctx)mill.api.Result": 803293315,
         "millbuild.build$playground$.$anonfun$scalacPluginIvyDeps$3(millbuild.build$playground$)mill.api.AggWrapper$Agg": 1054573176,
-        "millbuild.build$playground$.$anonfun$sources$1(millbuild.build$playground$)mill.define.SourcesImpl": -394242246,
-        "millbuild.build$playground$.$anonfun$sources$2(millbuild.build$playground$,scala.collection.immutable.Seq,mill.api.Ctx)mill.api.Result": -1587207117,
-        "millbuild.build$playground$.$anonfun$sources$3(millbuild.build$playground$,scala.collection.immutable.Seq)scala.collection.immutable.Seq": -261373060,
-        "millbuild.build$playground$.$deserializeLambda$(java.lang.invoke.SerializedLambda)java.lang.Object": 1591305045,
+        "millbuild.build$playground$.$anonfun$sources$1(millbuild.build$playground$)mill.define.SourcesImpl": -1045191170,
+        "millbuild.build$playground$.$anonfun$sources$2(millbuild.build$playground$,scala.collection.immutable.Seq,mill.api.Ctx)mill.api.Result": -1148107163,
+        "millbuild.build$playground$.$anonfun$sources$3(millbuild.build$playground$,scala.collection.immutable.Seq)scala.collection.immutable.Seq": 177726894,
+        "millbuild.build$playground$.$deserializeLambda$(java.lang.invoke.SerializedLambda)java.lang.Object": 1818556029,
         "millbuild.build$playground$test$#<init>(millbuild.build$playground$)void": 1344369051,
         "millbuild.build$playground$test$#allIvyDeps()mill.define.Target": 1959948132,
         "millbuild.build$playground$test$#allScalacOptions()mill.define.Target": 1772209401,
@@ -456,6 +455,6 @@
         "millbuild.build$playground$test$.$anonfun$sources$6(millbuild.build$playground$test$,scala.collection.immutable.Seq)scala.collection.immutable.Seq": -1878195175,
         "millbuild.build$playground$test$.$deserializeLambda$(java.lang.invoke.SerializedLambda)java.lang.Object": -503512413
     },
-    "valueHash": -1760296247,
-    "inputsHash": 1321027145
+    "valueHash": 1283762414,
+    "inputsHash": 742890492
 }
