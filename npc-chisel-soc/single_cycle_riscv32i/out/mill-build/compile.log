@@ -1,7 +1,2 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/mill-build/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/mill-build/generateScriptSources.dest/millbuild/build.sc:72:8: object creation impossible.[0m
-[0m[[0m[31merror[0m] [0m[0mMissing implementation for member of trait ScalaModule:[0m
-[0m[[0m[31merror[0m] [0m[0m  def scalaVersion: mill.T[String] = ???[0m
-[0m[[0m[31merror[0m] [0m[0mobject rvdecoderdb extends SbtModule {[0m
-[0m[[0m[31merror[0m] [0m[0m       ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
