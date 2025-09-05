@@ -19,11 +19,13 @@ object playground extends SbtModule with ScalafmtModule { m =>
     "-Xcheckinit"
   )
   override def sources = T.sources {
-    super.sources() ++ Seq(PathRef(millSourcePath / "main"))
+    super.sources() ++ Seq(PathRef(millSourcePath / "main"),
+                           PathRef(os.pwd / "rvdecoderdb" / "rvdecoderdb")
+                          )
   }
 
 
-  def moduleDeps = Seq(rvdecoderdb)
+//   def moduleDeps = Seq(rvdecoderdb)
 
 
   override def ivyDeps = Agg(
@@ -50,8 +52,8 @@ object playground extends SbtModule with ScalafmtModule { m =>
   ) ++ super.repositoriesTask() }
 }
 
-/** 单独的 rvdecoderdb 模块 */
-object rvdecoderdb extends SbtModule {
-  override def millSourcePath = os.pwd / "rvdecoderdb" / "rvdecoderdb" / "src"
-  override def scalaVersion = "2.13.14"
-}
+// /** 单独的 rvdecoderdb 模块 */
+// object rvdecoderdb extends SbtModule {
+//   override def millSourcePath = os.pwd / "rvdecoderdb" / "rvdecoderdb" / "src"
+//   override def scalaVersion = "2.13.14"
+// }
