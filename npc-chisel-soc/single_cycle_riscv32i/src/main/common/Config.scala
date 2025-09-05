@@ -126,8 +126,9 @@ object Config{
 
 
     val INST_TPE_WIDTH = 2
+    val INST_TPE_X = 0.U(INST_TPE_WIDTH.W)
     val INST_TPE_ALU = 0.U(INST_TPE_WIDTH.W)
-    val INST_TPE_BJ = 1.U(INST_TPE_WIDTH.W)
+    val INST_TPE_LSU = 1.U(INST_TPE_WIDTH.W)
     val INST_TPE_CSR = 2.U(INST_TPE_WIDTH.W)
     
 }

@@ -33,6 +33,7 @@ import mill.bsp._
 object playground extends SbtModule with ScalafmtModule { m =>
   val useChisel3 = false
   override def millSourcePath = os.pwd / "src"
+  def rvdecoderdbSourcePath = os.pwd / "rvdecoderdb"
   override def scalaVersion = if (useChisel3) "2.13.10" else "2.13.14"
   override def scalacOptions = Seq(
     "-language:reflectiveCalls",
@@ -42,6 +43,7 @@ object playground extends SbtModule with ScalafmtModule { m =>
   )
   override def sources = T.sources {
     super.sources() ++ Seq(PathRef(millSourcePath / "main"))
+    super.sources() ++ Seq(PathRef(rvdecoderdbSourcePath / "rvdecoderdb"))
   }
   override def ivyDeps = Agg(
     if (useChisel3) ivy"edu.berkeley.cs::chisel3:3.6.0" else

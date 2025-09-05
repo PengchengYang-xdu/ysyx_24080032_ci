@@ -102,92 +102,92 @@ class IDU extends Module {
     val imm_z_uext = Cat(Fill(27, 0.U), imm_z)
 
     val csignals = ListLookup(inst,
-                        List(IMM_TYPE_X, ALU_X    , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_X, CH3_X)),
+                        List(IMM_TYPE_X, ALU_X    , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_X, CH3_X), INST_TPE_X),
         Array(
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             //[[LOAD/STORE指令]]-------------------------------------------------------------------------------------------------------------------------------
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             //LOAD: src1 = rs1, src2 = imm, addr = rs1 + imm, 从内存读数据, 写回rd (2 来源[rs1, imm])
-            LW       -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_4 , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X)),
-            LB       -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_1S, NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X)),
-            LH       -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_2S, NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X)),
-            LBU      -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_1U, NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X)),
-            LHU      -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_2U, NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X)),
+            LW       -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_4 , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X), INST_TPE_LSU),
+            LB       -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_1S, NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X), INST_TPE_LSU),
+            LH       -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_2S, NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X), INST_TPE_LSU),
+            LBU      -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_1U, NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X), INST_TPE_LSU),
+            LHU      -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_2U, NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X), INST_TPE_LSU),
             //STORE: src1 = rs1, src2 = imm, addr = rs1 + imm, 把rs2写回内存 (3 来源[rs1, rs2, imm])
-            SW       -> List(IMM_TYPE_S, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_S, REN_X, WB_X  , CSR_X, MEM_OP_4 , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1_IMM, CH2_RS2, CH3_X)),
-            SB       -> List(IMM_TYPE_S, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_S, REN_X, WB_X  , CSR_X, MEM_OP_1S, NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1_IMM, CH2_RS2, CH3_X)),
-            SH       -> List(IMM_TYPE_S, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_S, REN_X, WB_X  , CSR_X, MEM_OP_2S, NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1_IMM, CH2_RS2, CH3_X)),
+            SW       -> List(IMM_TYPE_S, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_S, REN_X, WB_X  , CSR_X, MEM_OP_4 , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1_IMM, CH2_RS2, CH3_X), INST_TPE_LSU),
+            SB       -> List(IMM_TYPE_S, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_S, REN_X, WB_X  , CSR_X, MEM_OP_1S, NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1_IMM, CH2_RS2, CH3_X), INST_TPE_LSU),
+            SH       -> List(IMM_TYPE_S, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_S, REN_X, WB_X  , CSR_X, MEM_OP_2S, NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1_IMM, CH2_RS2, CH3_X), INST_TPE_LSU),
 
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             //[[算数逻辑指令]]----------------------------------------------------------------------------------------------------------------------------------
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             //R型算术指令: src1 = rs1, src2 = rs2, 写回rd (2 来源[rs1, rs2])
-            ADD      -> List(IMM_TYPE_X, ALU_ADD  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X)),
-            SUB      -> List(IMM_TYPE_X, ALU_SUB  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X)),
-            AND      -> List(IMM_TYPE_X, ALU_AND  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X)),
-            OR       -> List(IMM_TYPE_X, ALU_OR   , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X)),
-            XOR      -> List(IMM_TYPE_X, ALU_XOR  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X)),
-            SLL      -> List(IMM_TYPE_X, ALU_SLL  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X)),
-            SRL      -> List(IMM_TYPE_X, ALU_SRL  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X)),
-            SRA      -> List(IMM_TYPE_X, ALU_SRA  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X)),
-            SLT      -> List(IMM_TYPE_X, ALU_SLT  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X)),
-            SLTU     -> List(IMM_TYPE_X, ALU_SLTU , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X)),
+            ADD      -> List(IMM_TYPE_X, ALU_ADD  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X), INST_TPE_ALU),
+            SUB      -> List(IMM_TYPE_X, ALU_SUB  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X), INST_TPE_ALU),
+            AND      -> List(IMM_TYPE_X, ALU_AND  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X), INST_TPE_ALU),
+            OR       -> List(IMM_TYPE_X, ALU_OR   , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X), INST_TPE_ALU),
+            XOR      -> List(IMM_TYPE_X, ALU_XOR  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X), INST_TPE_ALU),
+            SLL      -> List(IMM_TYPE_X, ALU_SLL  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X), INST_TPE_ALU),
+            SRL      -> List(IMM_TYPE_X, ALU_SRL  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X), INST_TPE_ALU),
+            SRA      -> List(IMM_TYPE_X, ALU_SRA  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X), INST_TPE_ALU),
+            SLT      -> List(IMM_TYPE_X, ALU_SLT  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X), INST_TPE_ALU),
+            SLTU     -> List(IMM_TYPE_X, ALU_SLTU , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X), INST_TPE_ALU),
             //I型算术指令: src1 = rs1, src2 = imm, 写回rd (2 来源[rs1, imm])
-            ADDI     -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X)),
-            ANDI     -> List(IMM_TYPE_I, ALU_AND  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X)),
-            ORI      -> List(IMM_TYPE_I, ALU_OR   , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X)),
-            XORI     -> List(IMM_TYPE_I, ALU_XOR  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X)),
-            SLLI     -> List(IMM_TYPE_I, ALU_SLL  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X)),
-            SRLI     -> List(IMM_TYPE_I, ALU_SRL  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X)),
-            SRAI     -> List(IMM_TYPE_I, ALU_SRA  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X)),
-            SLTI     -> List(IMM_TYPE_I, ALU_SLT  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X)),
-            SLTIU    -> List(IMM_TYPE_I, ALU_SLTU , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X)),
+            ADDI     -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X), INST_TPE_ALU),
+            ANDI     -> List(IMM_TYPE_I, ALU_AND  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X), INST_TPE_ALU),
+            ORI      -> List(IMM_TYPE_I, ALU_OR   , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X), INST_TPE_ALU),
+            XORI     -> List(IMM_TYPE_I, ALU_XOR  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X), INST_TPE_ALU),
+            SLLI     -> List(IMM_TYPE_I, ALU_SLL  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X), INST_TPE_ALU),
+            SRLI     -> List(IMM_TYPE_I, ALU_SRL  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X), INST_TPE_ALU),
+            SRAI     -> List(IMM_TYPE_I, ALU_SRA  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X), INST_TPE_ALU),
+            SLTI     -> List(IMM_TYPE_I, ALU_SLT  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X), INST_TPE_ALU),
+            SLTIU    -> List(IMM_TYPE_I, ALU_SLTU , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_X), INST_TPE_ALU),
 
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             //[[分支跳转指令]]----------------------------------------------------------------------------------------------------------------------------------
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             //Branch指令: src1 = rs1, src2 = rs2, 比较两者, 满足则跳target = pc + imm (4 来源[rs1, rs2, imm, pc])
-            BEQ      -> List(IMM_TYPE_B, BR_BEQ   , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_PC_IMM)),
-            BNE      -> List(IMM_TYPE_B, BR_BNE   , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_PC_IMM)),
-            BGE      -> List(IMM_TYPE_B, BR_BGE   , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_PC_IMM)),
-            BGEU     -> List(IMM_TYPE_B, BR_BGEU  , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_PC_IMM)),
-            BLT      -> List(IMM_TYPE_B, BR_BLT   , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_PC_IMM)),
-            BLTU     -> List(IMM_TYPE_B, BR_BLTU  , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_PC_IMM)),
+            BEQ      -> List(IMM_TYPE_B, BR_BEQ   , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_PC_IMM), INST_TPE_ALU),
+            BNE      -> List(IMM_TYPE_B, BR_BNE   , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_PC_IMM), INST_TPE_ALU),
+            BGE      -> List(IMM_TYPE_B, BR_BGE   , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_PC_IMM), INST_TPE_ALU),
+            BGEU     -> List(IMM_TYPE_B, BR_BGEU  , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_PC_IMM), INST_TPE_ALU),
+            BLT      -> List(IMM_TYPE_B, BR_BLT   , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_PC_IMM), INST_TPE_ALU),
+            BLTU     -> List(IMM_TYPE_B, BR_BLTU  , OP1_RS1, OP2_RS2, MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_PC_IMM), INST_TPE_ALU),
             //JAL指令: src1 = pc, src2 = imm, 跳target = pc + imm, 写回rd = pc + 4 (2 来源[imm, pc])
-            JAL      -> List(IMM_TYPE_J, ALU_ADD  , OP1_PC , OP2_IMM, MEN_X, REN_S, WB_PC , CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_IMM, CH3_PC)),
-            //JALR指令: src1 = rs1, src2 = imm, 跳target = rs1 + imm, 写回rd = pc + 4 (2 来源[rs1, imm])
-            JALR     -> List(IMM_TYPE_I, ALU_JALR , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_PC , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_PC)),
+            JAL      -> List(IMM_TYPE_J, ALU_ADD  , OP1_PC , OP2_IMM, MEN_X, REN_S, WB_PC , CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_IMM, CH3_PC), INST_TPE_ALU),
+            //JALR指令: src1 = rs1, src2 = imm, 跳target = (rs1 + imm) & ~1(可以不&因为总是4字节对齐), 写回rd = pc + 4 (2 来源[rs1, imm])
+            JALR     -> List(IMM_TYPE_I, ALU_JALR , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_PC , CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_IMM, CH3_PC), INST_TPE_ALU),
 
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             //[[常数生成以及PC相对指令]]-------------------------------------------------------------------------------------------------------------------------
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             //LUI指令: src1 = imm, 写回rd = imm << 12 (1 来源[imm])
-            LUI      -> List(IMM_TYPE_U, ALU_ADD  , OP1_X  , OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_IMM, CH3_X)),
+            LUI      -> List(IMM_TYPE_U, ALU_ADD  , OP1_X  , OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_IMM, CH3_X), INST_TPE_ALU),
             //AUIPC指令: src1 = pc, src2 = imm, 写回rd = pc + imm (2 来源[imm, pc])
-            AUIPC    -> List(IMM_TYPE_U, ALU_ADD  , OP1_PC , OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_IMM, CH3_PC)),
+            AUIPC    -> List(IMM_TYPE_U, ALU_ADD  , OP1_PC , OP2_IMM, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_IMM, CH3_PC), INST_TPE_ALU),
         
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             //[[CSR指令]]--------------------------------------------------------------------------------------------------------------------------------------
             //-------------------------------------------------------------------------------------------------------------------------------------------------
             //CSRRW指令: src1 = rs1, csr_addr = inst(31,20), csr读出的值写回rd, 更新csr值为rs1
             //CSRRS指令: src1 = rs1, csr_addr = inst(31,20), csr读出的值写回rd, 更新csr值为rs1 | csr读出的值
-            CSRRW    -> List(IMM_TYPE_X, ALU_COPY1, OP1_RS1, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_W, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_CSR_RDATA, CH3_X)),
-            CSRRS    -> List(IMM_TYPE_X, ALU_COPY1, OP1_RS1, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_S, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_CSR_RDATA, CH3_X)),
+            CSRRW    -> List(IMM_TYPE_X, ALU_COPY1, OP1_RS1, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_W, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_CSR_RDATA, CH3_X), INST_TPE_CSR),
+            CSRRS    -> List(IMM_TYPE_X, ALU_COPY1, OP1_RS1, OP2_X  , MEN_X, REN_S, WB_CSR, CSR_S, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1, CH2_CSR_RDATA, CH3_X), INST_TPE_CSR),
             //ECALL指令: 触发异常, 写mepc为触发异常的pc, 跳转到mtvec, 写mcause为11
             //MRET指令: 恢复pc为mepc
-            ECALL    -> List(IMM_TYPE_X, ALU_X    , OP1_X  , OP2_X  , MEN_X, REN_X, WB_X  , CSR_E, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_X, CH3_X)),
-            MRET     -> List(IMM_TYPE_X, ALU_X    , OP1_X  , OP2_X  , MEN_X, REN_X, WB_X  , CSR_M, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_X, CH3_X)),
+            ECALL    -> List(IMM_TYPE_X, ALU_X    , OP1_X  , OP2_X  , MEN_X, REN_X, WB_X  , CSR_E, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_X, CH3_X), INST_TPE_CSR),
+            MRET     -> List(IMM_TYPE_X, ALU_X    , OP1_X  , OP2_X  , MEN_X, REN_X, WB_X  , CSR_M, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_X, CH3_X), INST_TPE_CSR),
 
 
 
 
             //其他指令
-            EBREAK   -> List(IMM_TYPE_X, ALU_X    , OP1_X  , OP2_X  , MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_X, CH3_X)),
-            FENCEI   -> List(IMM_TYPE_X, ALU_X    , OP1_X  , OP2_X  , MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , IS_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_X, CH3_X))
+            EBREAK   -> List(IMM_TYPE_X, ALU_X    , OP1_X  , OP2_X  , MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , NO_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_X, CH3_X), INST_TPE_X),
+            FENCEI   -> List(IMM_TYPE_X, ALU_X    , OP1_X  , OP2_X  , MEN_X, REN_X, WB_X  , CSR_X, MEM_OP_X , IS_FENCEI, RS1_NO_READ, RS2_NO_READ, Cat(CH1_X, CH2_X, CH3_X), INST_TPE_X)
         )
     )
 
-    val imm_type :: exe_fun :: op1_sel :: op2_sel :: mem_wen :: rf_wen :: wb_sel :: csr_cmd :: mem_op :: is_fencei :: rs1_is_read :: rs2_is_read :: channelsig :: Nil = csignals
+    val imm_type :: exe_fun :: op1_sel :: op2_sel :: mem_wen :: rf_wen :: wb_sel :: csr_cmd :: mem_op :: is_fencei :: rs1_is_read :: rs2_is_read :: channelsig :: insttpe :: Nil = csignals
     
     val ch1_tpe = channelsig(3)
     val ch2_tpe = channelsig(2)
