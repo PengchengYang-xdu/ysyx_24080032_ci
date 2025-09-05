@@ -10,7 +10,7 @@ import npc.core.wbu._
 import npc.perip._
 
 object Elaborate extends App {
-  // === 单独测试 instList ===
+    // === 单独测试 instList ===
   println("=== Instruction List ===")
   instList.foreach { insn =>
     println(s"${insn.inst.toString}")
@@ -19,15 +19,15 @@ object Elaborate extends App {
 
 
 
-  
-  val firtoolOptions = Array("--lowering-options=" + List(
-    // make yosys happy
-    // see https://github.com/llvm/circt/blob/main/docs/VerilogGeneration.md
-    "disallowLocalVariables",
-    "disallowPackedArrays",
-    "locationInfoStyle=wrapInAtSquareBracket"
-  ).reduce(_ + "," + _))
-  // circt.stage.ChiselStage.emitSystemVerilogFile(new npc.core.Core, args, firtoolOptions)
-  circt.stage.ChiselStage.emitSystemVerilogFile(new npc.NPC, args, firtoolOptions)
-  // circt.stage.ChiselStage.emitSystemVerilogFile(new npc.core.ifu.IFU, args, firtoolOptions)
+
+//   val firtoolOptions = Array("--lowering-options=" + List(
+//     // make yosys happy
+//     // see https://github.com/llvm/circt/blob/main/docs/VerilogGeneration.md
+//     "disallowLocalVariables",
+//     "disallowPackedArrays",
+//     "locationInfoStyle=wrapInAtSquareBracket"
+//   ).reduce(_ + "," + _))
+//   // circt.stage.ChiselStage.emitSystemVerilogFile(new npc.core.Core, args, firtoolOptions)
+//   circt.stage.ChiselStage.emitSystemVerilogFile(new npc.NPC, args, firtoolOptions)
+//   // circt.stage.ChiselStage.emitSystemVerilogFile(new npc.core.ifu.IFU, args, firtoolOptions)
 }
