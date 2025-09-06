@@ -1,5 +1,5 @@
 import npc.common.Config._
-import npc.common.Instructions._
+import npc.common.InstructionsNew._
 
 import npc.core._
 import npc.core.ifu._
@@ -12,8 +12,9 @@ import npc.perip._
 object Elaborate extends App {
     // === 单独测试 instList ===
   println("=== Instruction List ===")
-  instInput = allPossibleInput(os.pwd / "rvdecoderdb" / "rvdecoderdbtest" / "jvm" / "riscv-opcodes")
-  instInput.map(_.toString).foreach(println)
+  instList.foreach { InstructionPattern =>
+    println(s"${InstructionPattern.toString}")
+  }
 
 
 
