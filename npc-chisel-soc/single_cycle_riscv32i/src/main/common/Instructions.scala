@@ -83,19 +83,19 @@ object InstructionsNew {
       }
     }
 
-    val rv32iExceptionInstructions = 
-        Set("sbreak", "scall", "pause", "fence.tso", "fence", "slli_rv32", "srli_rv32", "srai_rv32")
-    val rv32iTargetSets = Set("rv_i", "rv32_i")
-    val rvzicsrTargetSets = Set("rv_zicsr")
-    val rv32iInstList = instTable
-        .filter(instr => rv32iTargetSets.contains(instr.instructionSet.name))
-        .filter(instr => !rv32iExceptionInstructions.contains(instr.instructionSet.name))
-        .map(InstructionPattern(_))
-        .toSeq
-    val rvzicsrInstList = instTable
-        .filter(instr => rvzicsrTargetSets.contains(instr.instructionSet.name))
-        .filter(_.pseudoFrom.isEmpty)
-        .map(InstructionPattern(_))
-        .toSeq
-    val instList = rv32iInstList ++ rvzicsrInstList
+
+    val instSets = Set("rv_i", "rv_zicsr", "rv_system", "rv_zifencei")
+    val ex_rv_i = Set("fence")
+    val ex_rv_zicsr = Set("csrrc", "csrrwi", "csrrsi", "csrrci")
+    val ex_rv_system = Set("wfi")
+    val patternSeq = instTable
+      .filter(_.pseudoFrom.isEmpty) //伪指令不考虑
+      .filter(inst => instSets.contains(inst.instructionSet.name))
+      .filter(inst => !ex_rv_i.contains(inst.name))
+      .filter(inst => !ex_rv_zicsr.contains(inst.name))
+      .filter(inst => !ex_rv_system.contains(inst.name))
+      .map(InstructionPattern(_))
+      .toSeq
+    val instList = patternSeq
+
 }
