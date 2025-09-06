@@ -12,9 +12,8 @@ import npc.perip._
 object Elaborate extends App {
     // === 单独测试 instList ===
   println("=== Instruction List ===")
-  instList.foreach { InstructionPattern =>
-    println(s"${InstructionPattern.toString}")
-  }
+  allPossibleInput = allPossibleInput(os.pwd / "rvdecoderdb" / "rvdecoderdbtest" / "jvm" / "riscv-opcodes")
+  allPossibleInput.map(_.toString).foreach(println)
 
 
 
