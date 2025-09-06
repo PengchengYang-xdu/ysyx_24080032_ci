@@ -6,7 +6,7 @@ import chisel3.util.experimental.decode._
 import org.chipsalliance.rvdecoderdb
 
 
-object class Instructions{
+object Instructions{
 
     case class InstructionPattern (
       val inst: rvdecoderdb.Instruction
