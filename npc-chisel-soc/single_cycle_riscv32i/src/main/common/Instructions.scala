@@ -69,7 +69,7 @@ object Instructions {
 
 
 object InstructionsNew {
-    val instTable = rvdecoderdb.instructions(os.pwd / "rvdecoderdb" / "rvdecoderdbtest" / "jvm" / "riscv-opcodes")
+    val instTable: Iterable[rvdecoderdb.Instruction] = rvdecoderdb.instructions(os.pwd / "rvdecoderdb" / "rvdecoderdbtest" / "jvm" / "riscv-opcodes")
 
     case class InstructionPattern (
       val inst: rvdecoderdb.Instruction
