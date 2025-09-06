@@ -13,7 +13,7 @@ object Elaborate extends App {
     // === 单独测试 instList ===
   println("=== Instruction List ===")
   instList.foreach { InstructionPattern =>
-    println(s"${InstructionPattern.inst.toString}")
+    println(s"${InstructionPattern.toString}")
   }
 
 
