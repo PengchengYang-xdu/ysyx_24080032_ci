@@ -1,2 +1,9 @@
-[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 9 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/rvdecoderdb/rvdecoderdb/src/parser/parse.scala:38:17: method copyArrayToImmutableIndexedSeq in class LowPriorityImplicits2 is deprecated (since 2.13.0): implicit conversions from Array to immutable.IndexedSeq are implemented by copying; use `toIndexedSeq` explicitly if you want to copy, or use the more efficient non-copying ArraySeq.unsafeWrapArray[0m
+[0m[[0m[33mwarn[0m] [0m[0m            .map(new RawInstruction(_))[0m
+[0m[[0m[33mwarn[0m] [0m[0m                ^[0m
+[0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/rvdecoderdb/rvdecoderdb/src/parser/parse.scala:38:37: method copyArrayToImmutableIndexedSeq in class LowPriorityImplicits2 is deprecated (since 2.13.0): implicit conversions from Array to immutable.IndexedSeq are implemented by copying; use `toIndexedSeq` explicitly if you want to copy, or use the more efficient non-copying ArraySeq.unsafeWrapArray[0m
+[0m[[0m[33mwarn[0m] [0m[0m            .map(new RawInstruction(_))[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                    ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mtwo warnings found[0m
 [0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
