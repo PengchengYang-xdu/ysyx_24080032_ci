@@ -17,186 +17,84 @@ object Config{
     val GPR_NUM = 16
     val ADDR_LEN      = 4 // rs1,rs2,wb
     val CSR_ADDR_LEN  = 12
+}
 
-    object ProcessUnit{
-        val ProcessUnit_Width = 2
-        def ALU = 0.U(ProcessUnit_Width.W)
-        def CSR = 1.U(ProcessUnit_Width.W)
-        def LSU = 2.U(ProcessUnit_Width.W)
+object ProcessUnit{
+    val ProcessUnit_Width = 2
+    def ALU = 0.U(ProcessUnit_Width.W)
+    def CSR = 1.U(ProcessUnit_Width.W)
+    def LSU = 2.U(ProcessUnit_Width.W)
+}
+
+object ProcessTpe{
+    val ProcessTpe_Width = 4
+    object ALU {
+        def ALU_ADD    =  "b1000".U(ProcessTpe_Width.W)
+        def ALU_SUB    =  "b1001".U(ProcessTpe_Width.W)
+        def ALU_AND    =  "b0000".U(ProcessTpe_Width.W)
+        def ALU_OR     =  "b0001".U(ProcessTpe_Width.W)
+        def ALU_XOR    =  "b0010".U(ProcessTpe_Width.W)
+        def ALU_SLL    =  "b0011".U(ProcessTpe_Width.W)
+        def ALU_SRL    =  "b0100".U(ProcessTpe_Width.W)
+        def ALU_SRA    =  "b0101".U(ProcessTpe_Width.W)
+        def ALU_COMPS  =  "b0110".U(ProcessTpe_Width.W)
+        def ALU_COMPU  =  "b0111".U(ProcessTpe_Width.W)
     }
-
-    object ProcessTpe{
-        val ProcessTpe_Width = 4
-        object ALU {
-            def ALU_ADD    =  "b1000".U(ProcessTpe_Width.W)
-            def ALU_SUB    =  "b1001".U(ProcessTpe_Width.W)
-            def ALU_AND    =  "b0000".U(ProcessTpe_Width.W)
-            def ALU_OR     =  "b0001".U(ProcessTpe_Width.W)
-            def ALU_XOR    =  "b0010".U(ProcessTpe_Width.W)
-            def ALU_SLL    =  "b0011".U(ProcessTpe_Width.W)
-            def ALU_SRL    =  "b0100".U(ProcessTpe_Width.W)
-            def ALU_SRA    =  "b0101".U(ProcessTpe_Width.W)
-            def ALU_COMPS  =  "b0110".U(ProcessTpe_Width.W)
-            def ALU_COMPU  =  "b0111".U(ProcessTpe_Width.W)
-        }
-        object CSR {
-            def CSR_W      =  0.U(ProcessTpe_Width.W)
-            def CSR_S      =  1.U(ProcessTpe_Width.W)
-            def CSR_MRET   =  2.U(ProcessTpe_Width.W)
-            def CSR_ECALL  =  3.U(ProcessTpe_Width.W)
-        }
-        object LSU {
-            def LSU_LB     =  "b0000".U(ProcessTpe_Width.W)
-            def LSU_LH     =  "b0001".U(ProcessTpe_Width.W)
-            def LSU_LW     =  "b0010".U(ProcessTpe_Width.W)
-            def LSU_LBU    =  "b0100".U(ProcessTpe_Width.W)
-            def LSU_LHU    =  "b0101".U(ProcessTpe_Width.W)
-            def LSU_SB     =  "b1000".U(ProcessTpe_Width.W)
-            def LSU_SH     =  "b1001".U(ProcessTpe_Width.W)
-            def LSU_SW     =  "b1010".U(ProcessTpe_Width.W)
-        }
+    object CSR {
+        def CSR_W      =  0.U(ProcessTpe_Width.W)
+        def CSR_S      =  1.U(ProcessTpe_Width.W)
+        def CSR_MRET   =  2.U(ProcessTpe_Width.W)
+        def CSR_ECALL  =  3.U(ProcessTpe_Width.W)
     }
-
-    object BJTpe{
-        val BJTpe_Width = 3
-        def BJ_X      = "b000".U(BJTpe_Width.W)
-        def BJ_BEQ    = "b001".U(BJTpe_Width.W)
-        def BJ_BNE    = "b010".U(BJTpe_Width.W)
-        def BJ_BLTU   = "b011".U(BJTpe_Width.W)
-        def BJ_BLT    = "b100".U(BJTpe_Width.W)
-        def BJ_BGEU   = "b101".U(BJTpe_Width.W)
-        def BJ_BGE    = "b110".U(BJTpe_Width.W)
-        def BJ_J      = "b111".U(BJTpe_Width.W)
+    object LSU {
+        def LSU_LB     =  "b0000".U(ProcessTpe_Width.W)
+        def LSU_LH     =  "b0001".U(ProcessTpe_Width.W)
+        def LSU_LW     =  "b0010".U(ProcessTpe_Width.W)
+        def LSU_LBU    =  "b0100".U(ProcessTpe_Width.W)
+        def LSU_LHU    =  "b0101".U(ProcessTpe_Width.W)
+        def LSU_SB     =  "b1000".U(ProcessTpe_Width.W)
+        def LSU_SH     =  "b1001".U(ProcessTpe_Width.W)
+        def LSU_SW     =  "b1010".U(ProcessTpe_Width.W)
     }
+}
 
-    object CH1Tpe{
-        val CH1Tpe_Width = 1
-        def CH1Tpe_RS1   = 0.U(CH1Tpe_Width.W)
-        def CH1Tpe_PC    = 1.U(CH1Tpe_Width.W)
-    }
+object BJTpe{
+    val BJTpe_Width = 3
+    def BJ_X      = "b000".U(BJTpe_Width.W)
+    def BJ_BEQ    = "b001".U(BJTpe_Width.W)
+    def BJ_BNE    = "b010".U(BJTpe_Width.W)
+    def BJ_BLTU   = "b011".U(BJTpe_Width.W)
+    def BJ_BLT    = "b100".U(BJTpe_Width.W)
+    def BJ_BGEU   = "b101".U(BJTpe_Width.W)
+    def BJ_BGE    = "b110".U(BJTpe_Width.W)
+    def BJ_J      = "b111".U(BJTpe_Width.W)
+}
 
-    object CH2Tpe{
-        val CH2Tpe_Width = 2
-        def CH2Tpe_RS2        = 0.U(CH2Tpe_Width.W)
-        def CH2Tpe_IMM        = 1.U(CH2Tpe_Width.W)
-        def CH2Tpe_CSR_ADDR   = 3.U(CH2Tpe_Width.W)
-    }
+object CH1Tpe{
+    val CH1Tpe_Width = 1
+    def CH1Tpe_RS1   = 0.U(CH1Tpe_Width.W)
+    def CH1Tpe_PC    = 1.U(CH1Tpe_Width.W)
+}
 
-    object RFwe{
-        val RFwe_Width = 1
-        def RFwe_y = 0.U(RFwe_Width.W)
-        def RFwe_n = 1.U(RFwe_Width.W)
-    }
+object CH2Tpe{
+    val CH2Tpe_Width = 2
+    def CH2Tpe_RS2        = 0.U(CH2Tpe_Width.W)
+    def CH2Tpe_IMM        = 1.U(CH2Tpe_Width.W)
+    def CH2Tpe_CSR_ADDR   = 3.U(CH2Tpe_Width.W)
+}
 
-    object IMMTpe{
-        val IMMTpe_Width = 3
-        def IMM_TYPE_X = 0.U(IMMTpe_Width.W)
-        def IMM_TYPE_B = 1.U(IMMTpe_Width.W)
-        def IMM_TYPE_I = 2.U(IMMTpe_Width.W)
-        def IMM_TYPE_S = 3.U(IMMTpe_Width.W)
-        def IMM_TYPE_J = 4.U(IMMTpe_Width.W)
-        def IMM_TYPE_U = 5.U(IMMTpe_Width.W)
-    }
+object RFwe{
+    val RFwe_Width = 1
+    def RFwe_y = 0.U(RFwe_Width.W)
+    def RFwe_n = 1.U(RFwe_Width.W)
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    val IRQ_NUM_WIDTH = 4
-    val IRQ_NUM_ECALL = 11.U(IRQ_NUM_WIDTH.W)
-    val IRQ_NUM_IAF = 1.U(IRQ_NUM_WIDTH.W)
-    val IRQ_NUM_LAF = 5.U(IRQ_NUM_WIDTH.W)
-    val IRQ_NUM_SAF = 7.U(IRQ_NUM_WIDTH.W)
-
-
-    val MEM_OP = 3
-    val MEM_OP_1U = "b100".U(MEM_OP.W)
-    val MEM_OP_1S = "b000".U(MEM_OP.W)
-    val MEM_OP_2U = "b101".U(MEM_OP.W)
-    val MEM_OP_2S = "b001".U(MEM_OP.W)
-    val MEM_OP_4  = "b010".U(MEM_OP.W)
-    val MEM_OP_X  = "b111".U(MEM_OP.W)
-
-    val REN_LEN = 1
-    val REN_X   = 0.U(REN_LEN.W)
-    val REN_S   = 1.U(REN_LEN.W)
-
-    val WB_SEL_LEN = 3
-    val WB_X       = 0.U(WB_SEL_LEN.W)
-    val WB_ALU     = 0.U(WB_SEL_LEN.W)
-    val WB_MEM     = 1.U(WB_SEL_LEN.W)
-    val WB_PC      = 2.U(WB_SEL_LEN.W)
-    val WB_CSR     = 3.U(WB_SEL_LEN.W)
-    val WB_MEM_V   = 4.U(WB_SEL_LEN.W)
-    val WB_ALU_V   = 5.U(WB_SEL_LEN.W)
-    val WB_VL      = 6.U(WB_SEL_LEN.W)
-
-    val CSR_LEN = 3
-    val CSR_X   = 0.U(CSR_LEN.W)
-    val CSR_W   = 1.U(CSR_LEN.W)
-    val CSR_S   = 2.U(CSR_LEN.W)
-    val CSR_E   = 3.U(CSR_LEN.W)
-    val CSR_M   = 4.U(CSR_LEN.W)//modified by ypc
-
-    val IS_FENCEI_LEN = 1
-    val IS_FENCEI   = 1.U(IS_FENCEI_LEN.W)
-    val NO_FENCEI   = 0.U(IS_FENCEI_LEN.W)
-
-    val RS1_IS_READ = true.B
-    val RS1_NO_READ = false.B
-    val RS2_IS_READ = true.B
-    val RS2_NO_READ = false.B
-
-
-
-
-
-
-    val CHANNEL_1_CATO_WIDTH = 1
-    val CH1_X = 0.U(CHANNEL_1_CATO_WIDTH.W)
-    val CH1_RS1 = 0.U(CHANNEL_1_CATO_WIDTH.W)
-    val CH1_RS1_IMM = 1.U(CHANNEL_1_CATO_WIDTH.W)
-
-    val CHANNEL_2_CATO_WIDTH = 2
-    val CH2_X = 0.U(CHANNEL_2_CATO_WIDTH.W)
-    val CH2_RS2 = 0.U(CHANNEL_2_CATO_WIDTH.W)
-    val CH2_IMM = 1.U(CHANNEL_2_CATO_WIDTH.W)
-    val CH2_CSR_RDATA = 2.U(CHANNEL_2_CATO_WIDTH.W)
-
-    val CHANNEL_3_CATO_WIDTH = 1
-    val CH3_X = 0.U(CHANNEL_3_CATO_WIDTH.W)
-    val CH3_PC = 0.U(CHANNEL_3_CATO_WIDTH.W)
-    val CH3_PC_IMM = 1.U(CHANNEL_3_CATO_WIDTH.W)
-
-
-
-    val INST_TPE_WIDTH = 2
-    val INST_TPE_X = 0.U(INST_TPE_WIDTH.W)
-    val INST_TPE_ALU = 0.U(INST_TPE_WIDTH.W)
-    val INST_TPE_LSU = 1.U(INST_TPE_WIDTH.W)
-    val INST_TPE_CSR = 2.U(INST_TPE_WIDTH.W)
-
+object IMMTpe{
+    val IMMTpe_Width = 3
+    def IMM_TYPE_X = 0.U(IMMTpe_Width.W)
+    def IMM_TYPE_B = 1.U(IMMTpe_Width.W)
+    def IMM_TYPE_I = 2.U(IMMTpe_Width.W)
+    def IMM_TYPE_S = 3.U(IMMTpe_Width.W)
+    def IMM_TYPE_J = 4.U(IMMTpe_Width.W)
+    def IMM_TYPE_U = 5.U(IMMTpe_Width.W)
 }

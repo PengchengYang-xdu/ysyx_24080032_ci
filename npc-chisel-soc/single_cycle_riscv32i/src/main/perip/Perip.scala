@@ -3,6 +3,13 @@ package npc.perip
 import chisel3._
 import chisel3.util._
 import npc.common.Config._
+import npc.common.ProcessUnit._
+import npc.common.ProcessTpe._
+import npc.common.BJTpe._
+import npc.common.CH1Tpe._
+import npc.common.CH2Tpe._
+import npc.common.RFwe._
+import npc.common.IMMTpe._
 import npc.common.Instructions._
 import npc.bus.axi._
 
@@ -29,10 +36,10 @@ import npc.bus.axi._
 class Clint extends Module {
     val io = IO(new Bundle {
         val clk = Input(Clock())
-        val rst = Input(Reset()) 
+        val rst = Input(Reset())
         val axi4 = new AXI4WithoutClk // 保持与外部接口一致
     })
-    
+
     io.axi4.awready := false.B
     io.axi4.wready := false.B
     io.axi4.bvalid := false.B
