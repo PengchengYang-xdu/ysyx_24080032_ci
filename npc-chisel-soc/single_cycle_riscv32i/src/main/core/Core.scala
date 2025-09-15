@@ -9,7 +9,6 @@ import npc.core._
 import npc.core.ifu._
 import npc.core.idu._
 import npc.core.exu._
-import npc.core.lsu._
 import npc.core.wbu._
 import npc.perip._
 import npc.bus.axi._
