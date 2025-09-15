@@ -3,15 +3,15 @@
         "ref:v0:0cbea6ec:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar.scala",
         "ref:v0:e3a2bde5:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/Xbar_new.scala",
         "ref:v0:d78ff4e2:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/bus/AXI.scala",
-        "ref:v0:f77089a0:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/wbu/WBU.scala",
+        "ref:v0:1ec3f46f:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/wbu/WBU.scala",
         "ref:v0:0f75e5f4:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala",
+        "ref:v0:6a639e2d:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/CSR.scala",
+        "ref:v0:6a6c7874:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/LSU.scala",
         "ref:v0:39004b01:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala",
-        "ref:v0:5df1f52c:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/ALU.scala",
-        "ref:v0:55f90140:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/GPR.scala",
-        "ref:v0:53dca996:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/CSR.scala",
-        "ref:v0:02b36611:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/lsu/LSU.scala",
+        "ref:v0:c175f8b3:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/ALU.scala",
+        "ref:v0:c6c6d792:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/GPR.scala",
         "ref:v0:cf54d57c:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/ifu/IFU.scala",
-        "ref:v0:d6e007a7:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala",
+        "ref:v0:c3afd8a7:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala",
         "ref:v0:9a4cc881:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/perip/Perip.scala",
         "ref:v0:35be2ccb:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/Elaborate.scala",
         "ref:v0:b0bffd70:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/NPC.scala",
@@ -34,6 +34,6 @@
         "ref:v0:b130ee29:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/rvdecoderdb/rvdecoderdb/src/parser/parse.scala",
         "ref:v0:17121ed2:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/rvdecoderdb/rvdecoderdb/jvm/src/package.scala"
     ],
-    "valueHash": 324361886,
-    "inputsHash": -1964759191
+    "valueHash": 1890823062,
+    "inputsHash": -806594820
 }
