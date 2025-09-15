@@ -77,7 +77,7 @@ object Instructions{
         ).flatten
     }
 
-    object ProcessUnit extends DecodeField[Insn, UInt] with InstCateg{
+    object MyProcessUnit extends DecodeField[Insn, UInt] with InstCateg{
         def name = "processunit"
         def chiselType = UInt(ProcessUnit.ProcessUnit_Width.W)
         def genTable(i: Insn): BitPat = i.inst.name match {
@@ -88,7 +88,7 @@ object Instructions{
         }
     }
 
-    object ProcessTpe extends DecodeField[Insn, UInt] with InstCateg{
+    object MyProcessTpe extends DecodeField[Insn, UInt] with InstCateg{
         def name = "processtpe"
         def chiselType = UInt(ProcessTpe_Width.W)
         def genTable(i: Insn): BitPat = i.inst.name match {
@@ -130,7 +130,7 @@ object Instructions{
             }
     }
 
-    object BJTpe extends DecodeField[Insn, UInt] with InstCateg{
+    object MyBJTpe extends DecodeField[Insn, UInt] with InstCateg{
         def name = "bjtpe"
         def chiselType = UInt(BJTpe_Width.W)
         def genTable(i: Insn): BitPat = i.inst.name match {
@@ -145,7 +145,7 @@ object Instructions{
         }
     }
 
-    object CH1Tpe extends DecodeField[Insn, UInt] with InstCateg{
+    object MyCH1Tpe extends DecodeField[Insn, UInt] with InstCateg{
         def name = "ch1tpe"
         def chiselType = UInt(CH1Tpe_Width.W)
         def genTable(i: Insn): BitPat = {
@@ -155,7 +155,7 @@ object Instructions{
         }
     }
 
-    object CH2Tpe extends DecodeField[Insn, UInt] with InstCateg{
+    object MyCH2Tpe extends DecodeField[Insn, UInt] with InstCateg{
         def name = "ch2tpe"
         def chiselType = UInt(CH2Tpe_Width.W)
         def genTable(i: Insn): BitPat = {
@@ -165,7 +165,7 @@ object Instructions{
         }
     }
 
-    object RFwe extends DecodeField[Insn, UInt] with InstCateg{
+    object MyRFwe extends DecodeField[Insn, UInt] with InstCateg{
         def name = "rfwe"
         def chiselType = UInt(RFwe_Width.W)
         def genTable(i: Insn): BitPat = {
@@ -174,7 +174,7 @@ object Instructions{
         }
     }
 
-    object IMMTpe extends DecodeField[Insn, UInt] with InstCateg{
+    object MyIMMTpe extends DecodeField[Insn, UInt] with InstCateg{
         def name = "immtpe"
         def chiselType = UInt(IMMTpe_Width.W)
         def genTable(i: Insn): BitPat = {
