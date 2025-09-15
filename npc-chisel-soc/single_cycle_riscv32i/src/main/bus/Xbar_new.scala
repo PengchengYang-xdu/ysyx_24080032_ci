@@ -4,6 +4,13 @@ import chisel3._
 import chisel3.util._
 import npc.bus.axi._
 import npc.common.Config._
+import npc.common.ProcessUnit._
+import npc.common.ProcessTpe._
+import npc.common.BJTpe._
+import npc.common.CH1Tpe._
+import npc.common.CH2Tpe._
+import npc.common.RFwe._
+import npc.common.IMMTpe._
 import npc.bus.axi.AXI4Connector._
 
 /*              This is the SOC version                        */
