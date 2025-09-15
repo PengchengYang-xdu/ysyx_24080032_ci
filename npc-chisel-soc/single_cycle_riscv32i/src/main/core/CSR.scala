@@ -5,26 +5,30 @@ import chisel3.util._
 import npc.common.Config._
 import npc.common.Instructions._
 
-class CSRIO extends Bundle {
-    val csr_mtvec = Output(UInt(WORD_LEN.W))
-    val csr_mepc = Output(UInt(WORD_LEN.W))
+class CSR_BJIO extends Bundle {
+    val target = Output(UInt(WORD_LEN.W))
+}
 
+class CSRIO_in extends Bundle{
+    val op1 = Input(UInt(WORD_LEN.W))
+    val op2 = Input(UInt(WORD_LEN.W))
+    val processtpe = Input(UInt(ProcessTpe.ProcessTpe_Width.W))
+}
+class CSRIO_out extends Bundle{
     val csr_rdata = Output(UInt(WORD_LEN.W))
-    val csr_wdata = Input(UInt(WORD_LEN.W))
-    val csr_addr = Input(UInt(CSR_ADDR_LEN.W))
-    val csr_cmd = Input(UInt(CSR_LEN.W))
+}
 
-    val csr_raddr = Input(UInt(CSR_ADDR_LEN.W))
-
-    val csr_reg_pc = Input(UInt(WORD_LEN.W))
-    val csr_irq_num = Input(UInt(IRQ_NUM_WIDTH.W))
-
-    val csr_is_irq = Input(Bool())
+class CSRIO extends Bundle {
+    val in = Decoupled(new CSRIO_in)
+    val out = Decoupled(new CSRIO_out)
 }
 
 class CSR extends Module {
     val io = IO(new CSRIO)
-// 面积优化
+    val io_bj = Valid(new CSR_BJIO)
+
+    val (processtpe, op1, addr) = (io.in.bits.processtpe, io.in.bits.op1, io.in.bits.op2(11, 0))
+
     val mstatus   = RegInit(0x1800.U(WORD_LEN.W))
     val mtvec     = Reg(UInt(WORD_LEN.W))
     val mepc      = Reg(UInt(WORD_LEN.W))
@@ -32,8 +36,8 @@ class CSR extends Module {
     val mvendorid = "h79737978".U(WORD_LEN.W)
     val marchid   = 24080032.U(WORD_LEN.W)
 
-    val rdata = WireDefault(0.U(WORD_LEN.W))
-    switch(io.csr_raddr) {
+    val rdata = Wire(UInt(WORD_LEN.W))
+    switch(addr){
         is("h300".U) { rdata := mstatus }
         is("h305".U) { rdata := mtvec }
         is("h341".U) { rdata := mepc }
@@ -41,20 +45,28 @@ class CSR extends Module {
         is("hf11".U) { rdata := mvendorid }
         is("hf12".U) { rdata := marchid }
     }
-    io.csr_rdata := rdata
-    io.csr_mtvec := mtvec
-    io.csr_mepc  := mepc
+    io.out.bits.csr_rdata := rdata
 
-    when(io.csr_cmd === CSR_E) {
-        mepc   := io.csr_reg_pc
-        mcause := io.csr_irq_num
-    } .elsewhen(io.csr_cmd === CSR_S || io.csr_cmd === CSR_W && ~io.csr_is_irq) {
-        switch(io.csr_addr) {
-            is("h305".U) { mtvec := io.csr_wdata }
-            is("h341".U) { mepc  := io.csr_wdata }
-            is("h342".U) { mcause := io.csr_wdata }
-            is("h300".U) { mstatus := io.csr_wdata }
+    val wdata = Mux(processtpe(0), rdata | op1, op1)
+    when(io.in.valid && ~processtpe(1)){
+        switch(addr) {
+            is("h305".U) { mtvec := wdata }
+            is("h341".U) { mepc  := wdata }
+            is("h342".U) { mcause := wdata }
+            is("h300".U) { mstatus := wdata }
         }
     }
 
+    when(processtpe === ProcessTpe.CSR.CSR_ECALL && io.in.valid){
+        mepc := op1
+        mcause := 0x1800.U
+    }
+
+    //handshake
+    io.in.ready := true.B
+    io.out.valid := io.in.valid
+
+    //ecall and mret
+    io_bj.valid := processtpe(1) && io.in.valid
+    io_bj.bits.target := Mux(processtpe(0), mtvec, mepc)
 }

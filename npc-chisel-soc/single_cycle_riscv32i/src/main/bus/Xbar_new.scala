@@ -1,5 +1,5 @@
 package npc.bus.xbar
- 
+
 import chisel3._
 import chisel3.util._
 import npc.bus.axi._
@@ -154,12 +154,12 @@ class Xbar_new extends Module {
 }
 
 
-/* 
+/*
 +-----+      +---------------+      +------+
-| IMEM| ---> |               |----> | soc  |  
+| IMEM| ---> |               |----> | soc  |
 +-----+      |               |      +------+
              |      Xbar     |
 +-----+      |               |      +------+
-| DMEM| ---> |               |----> | CLINT| 
+| DMEM| ---> |               |----> | CLINT|
 +-----+      +---------------+      +------+
 */
