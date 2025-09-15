@@ -6,6 +6,7 @@ import npc.common.Config._
 import npc.common._
 import npc.common.Instructions._
 import npc.core.wbu._
+import npc.core.exu._
 import npc.bus.axi._
 /*
               ___ _____ _   _ _____ ____  ____ ___ ____
@@ -16,9 +17,6 @@ import npc.bus.axi._
 */
 class IFUIO extends Bundle {
     val imem = Flipped(new AXI4WithoutClk)
-}
-class IFU_BJIO extends Bundle {
-    val target = Input(UInt(WORD_LEN.W))
 }
 /*
              ____ ___ ____  _____ ____ ___ ____
@@ -47,7 +45,7 @@ class IFUIO_pipe extends Bundle{
 class IFU extends Module {
     val io = IO(new IFUIO)
     val io_pipe = IO(new IFUIO_pipe)
-    val io_bj = Valid(new IFU_BJIO)
+    val io_bj = Flipped(Valid(new EXU_BJIO))
 
     dontTouch(io_pipe)
 
