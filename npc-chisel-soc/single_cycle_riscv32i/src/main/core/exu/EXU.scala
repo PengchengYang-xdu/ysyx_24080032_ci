@@ -5,6 +5,7 @@ import chisel3.util._
 import npc.common.Config._
 import npc.common._
 import npc.common.Instructions._
+import npc.bus.axi._
 import npc.core.idu._
 /*
               ___ _____ _   _ _____ ____  ____ ___ ____
