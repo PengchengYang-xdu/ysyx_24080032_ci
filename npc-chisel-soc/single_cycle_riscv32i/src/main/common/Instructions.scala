@@ -98,17 +98,17 @@ object Instructions{
             case _ => BitPat(0.U(ProcessTpe.ProcessTpe_Width.W))
         }
             def genALUTpeTable(i: Insn): BitPat = i.inst.name match {
-                case name if aluInst_add.contains(name)                                  => BitPat(ProcessTpe.ALU.ALU_ADD)
-                case name if aluInst_sub.contains(name) || ("beq" | "bne")               => BitPat(ProcessTpe.ALU.ALU_SUB)
-                case name if aluInst_and.contains(name)                                  => BitPat(ProcessTpe.ALU.ALU_AND)
-                case name if aluInst_or.contains(name)                                   => BitPat(ProcessTpe.ALU.ALU_OR)
-                case name if aluInst_xor.contains(name)                                  => BitPat(ProcessTpe.ALU.ALU_XOR)
-                case name if aluInst_sll.contains(name)                                  => BitPat(ProcessTpe.ALU.ALU_SLL)
-                case name if aluInst_srl.contains(name)                                  => BitPat(ProcessTpe.ALU.ALU_SRL)
-                case name if aluInst_sra.contains(name)                                  => BitPat(ProcessTpe.ALU.ALU_SRA)
-                case name if aluInst_comps.contains(name) || ("blt" | "bge")             => BitPat(ProcessTpe.ALU.ALU_COMPS)
-                case name if aluInst_compu.contains(name) || ("bltu" | "bgeu")           => BitPat(ProcessTpe.ALU.ALU_COMPU)
-                case _                                                                   => BitPat(ProcessTpe.ALU.ALU_ADD)
+                case name if aluInst_add.contains(name)                                             => BitPat(ProcessTpe.ALU.ALU_ADD)
+                case name if aluInst_sub.contains(name) || (name == "beq") || (name == "bne")       => BitPat(ProcessTpe.ALU.ALU_SUB)
+                case name if aluInst_and.contains(name)                                             => BitPat(ProcessTpe.ALU.ALU_AND)
+                case name if aluInst_or.contains(name)                                              => BitPat(ProcessTpe.ALU.ALU_OR)
+                case name if aluInst_xor.contains(name)                                             => BitPat(ProcessTpe.ALU.ALU_XOR)
+                case name if aluInst_sll.contains(name)                                             => BitPat(ProcessTpe.ALU.ALU_SLL)
+                case name if aluInst_srl.contains(name)                                             => BitPat(ProcessTpe.ALU.ALU_SRL)
+                case name if aluInst_sra.contains(name)                                             => BitPat(ProcessTpe.ALU.ALU_SRA)
+                case name if aluInst_comps.contains(name) || (name == "blt") || (name == "bge")     => BitPat(ProcessTpe.ALU.ALU_COMPS)
+                case name if aluInst_compu.contains(name) || (name == "bltu") || (name == "bgeu")   => BitPat(ProcessTpe.ALU.ALU_COMPU)
+                case _ => BitPat(ProcessTpe.ALU.ALU_ADD)
             }
             def genCSRTpeTable(i: Insn): BitPat = i.inst.name match {
                 case name if csrInst_s.contains(name)     => BitPat(ProcessTpe.CSR.CSR_S)
