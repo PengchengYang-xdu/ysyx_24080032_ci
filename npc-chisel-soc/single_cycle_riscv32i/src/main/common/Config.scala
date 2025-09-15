@@ -14,51 +14,123 @@ object Config{
     // val START_ADDR    = "h20000000".U(WORD_LEN.W) /*THIS IS MROM MODE*/
     val START_ADDR    = "h30000000".U(WORD_LEN.W) /*THIS IS FLASH MODE*/
 
+    val GPR_NUM = 16
     val ADDR_LEN      = 4 // rs1,rs2,wb
     val CSR_ADDR_LEN  = 12
 
-    val EXE_FUN_LEN = 5
-    val ALU_X       =  0.U(EXE_FUN_LEN.W)
-    val ALU_ADD     =  1.U(EXE_FUN_LEN.W)
-    val ALU_SUB     =  2.U(EXE_FUN_LEN.W)
-    val ALU_AND     =  3.U(EXE_FUN_LEN.W)
-    val ALU_OR      =  4.U(EXE_FUN_LEN.W)
-    val ALU_XOR     =  5.U(EXE_FUN_LEN.W)
-    val ALU_SLL     =  6.U(EXE_FUN_LEN.W)
-    val ALU_SRL     =  7.U(EXE_FUN_LEN.W)
-    val ALU_SRA     =  8.U(EXE_FUN_LEN.W)
-    val ALU_SLT     =  9.U(EXE_FUN_LEN.W)
-    val ALU_SLTU    = 10.U(EXE_FUN_LEN.W)
-    val BR_BEQ      = 11.U(EXE_FUN_LEN.W)
-    val BR_BNE      = 12.U(EXE_FUN_LEN.W)
-    val BR_BLT      = 13.U(EXE_FUN_LEN.W)
-    val BR_BGE      = 14.U(EXE_FUN_LEN.W)
-    val BR_BLTU     = 15.U(EXE_FUN_LEN.W)
-    val BR_BGEU     = 16.U(EXE_FUN_LEN.W)
-    val ALU_JALR    = 17.U(EXE_FUN_LEN.W)
-    val ALU_COPY1   = 18.U(EXE_FUN_LEN.W)
-  
-    val OP1_LEN = 2
-    val OP1_RS1 = 0.U(OP1_LEN.W)
-    val OP1_PC  = 1.U(OP1_LEN.W)
-    val OP1_X   = 2.U(OP1_LEN.W)
-  
-    val OP2_LEN = 2
-    val OP2_X   = 0.U(OP2_LEN.W)
-    val OP2_RS2 = 1.U(OP2_LEN.W)
-    val OP2_IMM = 2.U(OP2_LEN.W)
+    object ProcessUnit{
+        val ProcessUnit_Width = 2
+        def ALU = 0.U(ProcessUnit_Width.W)
+        def CSR = 1.U(ProcessUnit_Width.W)
+        def LSU = 2.U(ProcessUnit_Width.W)
+    }
 
-    val IMM_TYPE_LEN = 3
-    val IMM_TYPE_X = 0.U(IMM_TYPE_LEN.W)
-    val IMM_TYPE_B = 1.U(IMM_TYPE_LEN.W)
-    val IMM_TYPE_I = 2.U(IMM_TYPE_LEN.W)
-    val IMM_TYPE_S = 3.U(IMM_TYPE_LEN.W)
-    val IMM_TYPE_J = 4.U(IMM_TYPE_LEN.W)
-    val IMM_TYPE_U = 5.U(IMM_TYPE_LEN.W)
-  
-    val MEN_LEN = 1
-    val MEN_X   = 0.U(MEN_LEN.W)
-    val MEN_S   = 1.U(MEN_LEN.W)
+    object ProcessTpe{
+        val ProcessTpe_Width = 4
+        object ALU {
+            def ALU_ADD    =  "b1000".U(ProcessTpe_Width.W)
+            def ALU_SUB    =  "b1001".U(ProcessTpe_Width.W)
+            def ALU_AND    =  "b0000".U(ProcessTpe_Width.W)
+            def ALU_OR     =  "b0001".U(ProcessTpe_Width.W)
+            def ALU_XOR    =  "b0010".U(ProcessTpe_Width.W)
+            def ALU_SLL    =  "b0011".U(ProcessTpe_Width.W)
+            def ALU_SRL    =  "b0100".U(ProcessTpe_Width.W)
+            def ALU_SRA    =  "b0101".U(ProcessTpe_Width.W)
+            def ALU_COMPS  =  "b0110".U(ProcessTpe_Width.W)
+            def ALU_COMPU  =  "b0111".U(ProcessTpe_Width.W)
+        }
+        object CSR {
+            def CSR_W      =  0.U(ProcessTpe_Width.W)
+            def CSR_S      =  1.U(ProcessTpe_Width.W)
+            def CSR_MRET   =  2.U(ProcessTpe_Width.W)
+            def CSR_ECALL  =  3.U(ProcessTpe_Width.W)
+        }
+        object LSU {
+            def LSU_LB     =  "b0000".U(ProcessTpe_Width.W)
+            def LSU_LH     =  "b0001".U(ProcessTpe_Width.W)
+            def LSU_LW     =  "b0010".U(ProcessTpe_Width.W)
+            def LSU_LBU    =  "b0100".U(ProcessTpe_Width.W)
+            def LSU_LHU    =  "b0101".U(ProcessTpe_Width.W)
+            def LSU_SB     =  "b1000".U(ProcessTpe_Width.W)
+            def LSU_SH     =  "b1001".U(ProcessTpe_Width.W)
+            def LSU_SW     =  "b1010".U(ProcessTpe_Width.W)
+        }
+    }
+
+    object BJTpe{
+        val BJTpe_Width = 3
+        def BJ_X      = "b000".U(BJTpe_Width.W)
+        def BJ_BEQ    = "b001".U(BJTpe_Width.W)
+        def BJ_BNE    = "b010".U(BJTpe_Width.W)
+        def BJ_BLTU   = "b011".U(BJTpe_Width.W)
+        def BJ_BLT    = "b100".U(BJTpe_Width.W)
+        def BJ_BGEU   = "b101".U(BJTpe_Width.W)
+        def BJ_BGE    = "b110".U(BJTpe_Width.W)
+        def BJ_J      = "b111".U(BJTpe_Width.W)
+    }
+
+    object CH1Tpe{
+        val CH1Tpe_Width = 1
+        def CH1Tpe_RS1   = 0.U(CH1Tpe_Width.W)
+        def CH1Tpe_PC    = 1.U(CH1Tpe_Width.W)
+    }
+
+    object CH2Tpe{
+        val CH2Tpe_Width = 2
+        def CH2Tpe_RS2        = 0.U(CH2Tpe_Width.W)
+        def CH2Tpe_IMM        = 1.U(CH2Tpe_Width.W)
+        def CH2Tpe_CSR_ADDR   = 3.U(CH2Tpe_Width.W)
+    }
+
+    object RFwe{
+        val RFwe_Width = 1
+        def RFwe_y = 0.U(RFwe_Width.W)
+        def RFwe_n = 1.U(RFwe_Width.W)
+    }
+
+    object IMMTpe{
+        val IMMTpe_Width = 3
+        def IMM_TYPE_X = 0.U(IMMTpe_Width.W)
+        def IMM_TYPE_B = 1.U(IMMTpe_Width.W)
+        def IMM_TYPE_I = 2.U(IMMTpe_Width.W)
+        def IMM_TYPE_S = 3.U(IMMTpe_Width.W)
+        def IMM_TYPE_J = 4.U(IMMTpe_Width.W)
+        def IMM_TYPE_U = 5.U(IMMTpe_Width.W)
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    val IRQ_NUM_WIDTH = 4
+    val IRQ_NUM_ECALL = 11.U(IRQ_NUM_WIDTH.W)
+    val IRQ_NUM_IAF = 1.U(IRQ_NUM_WIDTH.W)
+    val IRQ_NUM_LAF = 5.U(IRQ_NUM_WIDTH.W)
+    val IRQ_NUM_SAF = 7.U(IRQ_NUM_WIDTH.W)
+
 
     val MEM_OP = 3
     val MEM_OP_1U = "b100".U(MEM_OP.W)
@@ -67,11 +139,11 @@ object Config{
     val MEM_OP_2S = "b001".U(MEM_OP.W)
     val MEM_OP_4  = "b010".U(MEM_OP.W)
     val MEM_OP_X  = "b111".U(MEM_OP.W)
-  
+
     val REN_LEN = 1
     val REN_X   = 0.U(REN_LEN.W)
     val REN_S   = 1.U(REN_LEN.W)
-  
+
     val WB_SEL_LEN = 3
     val WB_X       = 0.U(WB_SEL_LEN.W)
     val WB_ALU     = 0.U(WB_SEL_LEN.W)
@@ -81,7 +153,7 @@ object Config{
     val WB_MEM_V   = 4.U(WB_SEL_LEN.W)
     val WB_ALU_V   = 5.U(WB_SEL_LEN.W)
     val WB_VL      = 6.U(WB_SEL_LEN.W)
-  
+
     val CSR_LEN = 3
     val CSR_X   = 0.U(CSR_LEN.W)
     val CSR_W   = 1.U(CSR_LEN.W)
@@ -98,11 +170,7 @@ object Config{
     val RS2_IS_READ = true.B
     val RS2_NO_READ = false.B
 
-    val IRQ_NUM_WIDTH = 4
-    val IRQ_NUM_ECALL = 11.U(IRQ_NUM_WIDTH.W)
-    val IRQ_NUM_IAF = 1.U(IRQ_NUM_WIDTH.W)
-    val IRQ_NUM_LAF = 5.U(IRQ_NUM_WIDTH.W)
-    val IRQ_NUM_SAF = 7.U(IRQ_NUM_WIDTH.W)
+
 
 
 
@@ -130,5 +198,5 @@ object Config{
     val INST_TPE_ALU = 0.U(INST_TPE_WIDTH.W)
     val INST_TPE_LSU = 1.U(INST_TPE_WIDTH.W)
     val INST_TPE_CSR = 2.U(INST_TPE_WIDTH.W)
-    
+
 }

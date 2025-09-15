@@ -1,5 +1,5 @@
 package npc.bus.xbar
- 
+
 import chisel3._
 import chisel3.util._
 import npc.bus.axi._
