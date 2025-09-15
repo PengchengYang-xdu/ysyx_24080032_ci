@@ -6,6 +6,8 @@ import npc.common.Config._
 import npc.common._
 import npc.common.Instructions._
 import npc.core.ifu._
+import npc.core._
+import chisel3.util.experimental.decode._
 /*
               ___ _____ _   _ _____ ____  ____ ___ ____
              / _ \_   _| | | | ____|  _ \/ ___|_ _/ ___|
@@ -95,15 +97,15 @@ class IDU extends Module{
     val csr_addr = inst(31, 20)
 
     val ch1 = Mux1H(Seq(
-        (decodeBundle(MyCH1Tpe) === CH1Tpe.CH1Tpe_RS1) -> gpr_rs1_data,
+        (decodeBundle(MyCH1Tpe) === CH1Tpe.CH1Tpe_RS1) -> rs1_data,
         (decodeBundle(MyCH1Tpe) === CH1Tpe.CH1Tpe_PC) -> reg_pc
     ))
     val ch2 = Mux1H(Seq(
         (decodeBundle(MyCH2Tpe) === CH2Tpe.CH2Tpe_IMM) -> imm,
         (decodeBundle(MyCH2Tpe) === CH2Tpe.CH2Tpe_CSR_ADDR) -> csr_addr,
-        (decodeBundle(MyCH2Tpe) === CH2Tpe.CH2Tpe_RS2) -> gpr_rs2_data
+        (decodeBundle(MyCH2Tpe) === CH2Tpe.CH2Tpe_RS2) -> rs2_data
     ))
-    val ch3 = Mux(decodeBundle(MyBJTpe).orR, reg_pc, gpr_rs1_data) +& imm
+    val ch3 = Mux(decodeBundle(MyBJTpe).orR, reg_pc, rs1_data) +& imm
 
 
     //pipeline
