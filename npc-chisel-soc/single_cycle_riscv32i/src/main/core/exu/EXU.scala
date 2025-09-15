@@ -3,13 +3,7 @@ package npc.core.exu
 import chisel3._
 import chisel3.util._
 import npc.common.Config._
-import npc.common.ProcessUnit._
-import npc.common.ProcessTpe._
-import npc.common.BJTpe._
-import npc.common.CH1Tpe._
-import npc.common.CH2Tpe._
-import npc.common.RFwe._
-import npc.common.IMMTpe._
+import npc.common._
 import npc.common.Instructions._
 import npc.core.idu._
 /*

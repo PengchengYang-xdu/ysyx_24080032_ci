@@ -1,13 +1,7 @@
 package npc.common
 
 import npc.common.Config._
-import npc.common.ProcessUnit._
-import npc.common.ProcessTpe._
-import npc.common.BJTpe._
-import npc.common.CH1Tpe._
-import npc.common.CH2Tpe._
-import npc.common.RFwe._
-import npc.common.IMMTpe._
+import npc.common._
 import chisel3._
 import chisel3.util._
 import chisel3.util.experimental.decode._
@@ -85,12 +79,12 @@ object Instructions{
 
     object ProcessUnit extends DecodeField[Insn, UInt] with InstCateg{
         def name = "processunit"
-        def chiselType = UInt(ProcessUnit_Width.W)
+        def chiselType = UInt(ProcessUnit.ProcessUnit_Width.W)
         def genTable(i: Insn): BitPat = i.inst.name match {
-            case name if aluInst.contains(name) || bjInst.contains(name) => BitPat(ALU)
-            case name if csrInst.contains(name) => BitPat(CSR)
-            case name if lsuInst.contains(name) => BitPat(LSU)
-            case _ => BitPat(ALU)
+            case name if aluInst.contains(name) || bjInst.contains(name) => BitPat(ProcessUnit.ALU)
+            case name if csrInst.contains(name) => BitPat(ProcessUnit.CSR)
+            case name if lsuInst.contains(name) => BitPat(ProcessUnit.LSU)
+            case _ => BitPat(ProcessUnit.ALU)
         }
     }
 
