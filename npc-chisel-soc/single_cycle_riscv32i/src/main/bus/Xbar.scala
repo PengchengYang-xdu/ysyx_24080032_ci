@@ -20,7 +20,7 @@ class XbarIO extends Bundle{
     val clint = Flipped(new AXI4WithoutClk)
 }
 
-class Xbar_new extends Module {
+class Xbar extends Module {
     val io = IO(new XbarIO)
 
 /*-----------------------FSM-----------------------*/

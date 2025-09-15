@@ -74,10 +74,10 @@ class IDU extends Module{
     val inst = io_pipe.in.bits.if2id_inst
     val reg_pc = io_pipe.in.bits.if2id_reg_pc
 
-    val decodeTable = new DecodeTable(instList, Seq(ProcessUnit, ProcessTpe, BJTpe, CH1Tpe, CH2Tpe, RFwe, IMMTpe))
+    val decodeTable = new DecodeTable(instList, Seq(MyProcessUnit, MyProcessTpe, MyBJTpe, MyCH1Tpe, MyCH2Tpe, MyRFwe, MyIMMTpe))
     val decodeBundle = decodeTable.decode(inst)
 
-    val immtpe = decodeBundle(IMMTpe)
+    val immtpe = decodeBundle(MyIMMTpe)
     val imm_i = inst(31, 20).asSInt
     val imm_s = Cat(inst(31, 25), inst(11, 7)).asSInt
     val imm_b = Cat(inst(31), inst(7), inst(30, 25), inst(11, 8), 0.U(1.W)).asSInt
@@ -95,22 +95,22 @@ class IDU extends Module{
     val csr_addr = inst(31, 20)
 
     val ch1 = Mux1H(Seq(
-        (decodeBundle(CH1Tpe) === CH1Tpe.CH1Tpe_RS1) -> gpr_rs1_data,
-        (decodeBundle(CH1Tpe) === CH1Tpe.CH1Tpe_PC) -> reg_pc
+        (decodeBundle(MyCH1Tpe) === CH1Tpe.CH1Tpe_RS1) -> gpr_rs1_data,
+        (decodeBundle(MyCH1Tpe) === CH1Tpe.CH1Tpe_PC) -> reg_pc
     ))
     val ch2 = Mux1H(Seq(
-        (decodeBundle(CH2Tpe) === CH2Tpe.CH2Tpe_IMM) -> imm,
-        (decodeBundle(CH2Tpe) === CH2Tpe.CH2Tpe_CSR_ADDR) -> csr_addr,
-        (decodeBundle(CH2Tpe) === CH2Tpe.CH2Tpe_RS2) -> gpr_rs2_data
+        (decodeBundle(MyCH2Tpe) === CH2Tpe.CH2Tpe_IMM) -> imm,
+        (decodeBundle(MyCH2Tpe) === CH2Tpe.CH2Tpe_CSR_ADDR) -> csr_addr,
+        (decodeBundle(MyCH2Tpe) === CH2Tpe.CH2Tpe_RS2) -> gpr_rs2_data
     ))
-    val ch3 = Mux(decodeBundle(BJTpe).orR, reg_pc, gpr_rs1_data) +& imm
+    val ch3 = Mux(decodeBundle(MyBJTpe).orR, reg_pc, gpr_rs1_data) +& imm
 
 
     //pipeline
-    val io_pipe.out.bits.id2exe_processunit = decodeBundle(ProcessUnit)
-    val io_pipe.out.bits.id2exe_processtpe = decodeBundle(ProcessTpe)
-    val io_pipe.out.bits.id2exe_bjtpe = decodeBundle(BJTpe)
-    val io_pipe.out.bits.id2exe_rfwe = decodeBundle(RFwe)
+    val io_pipe.out.bits.id2exe_processunit = decodeBundle(MyProcessUnit)
+    val io_pipe.out.bits.id2exe_processtpe = decodeBundle(MyProcessTpe)
+    val io_pipe.out.bits.id2exe_bjtpe = decodeBundle(MyBJTpe)
+    val io_pipe.out.bits.id2exe_rfwe = decodeBundle(MyRFwe)
     val io_pipe.out.bits.id2exe_rd_addr = rd_addr
     val io_pipe.out.bits.id2exe_ch1 = ch1
     val io_pipe.out.bits.id2exe_ch2 = ch2
