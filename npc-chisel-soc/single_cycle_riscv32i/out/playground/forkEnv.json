@@ -85,13 +85,14 @@
         "NPC_HOME": "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc",
         "SPIKE": "/home/yangpengcheng/workspace/opt/spike",
         "LC_ADDRESS\\tDEFAULT": "en_US.UTF-8",
-        "SHLVL": "1",
+        "SHLVL": "2",
         "LANGUAGE\\tDEFAULT": "en_US",
         "MFLAGS": "",
         "MAKELEVEL": "1",
         "VERILATOR_MY": "/home/yangpengcheng/workspace/tools/verilator",
         "XILINX_HLS": "/10T/vivado/Vitis/2024.2",
         "MAKE_TERMERR": "/dev/pts/2",
+        "MAKE_TERMOUT": "/dev/pts/2",
         "https_proxy": "http://127.0.0.1:40325",
         "SSH_TTY": "/dev/pts/9",
         "PULP_RISCV_GCC_TOOLCHAIN": "/home/yangpengcheng/workspace/opt/riscv_pulp",
@@ -120,6 +121,6 @@
         "MODEL_TECH": "/home/yangpengcheng/questasim/bin",
         "DESKTOP_SESSION": "xfce"
     },
-    "valueHash": 1733442566,
-    "inputsHash": 2047219171
+    "valueHash": 1044429897,
+    "inputsHash": 1779884010
 }
