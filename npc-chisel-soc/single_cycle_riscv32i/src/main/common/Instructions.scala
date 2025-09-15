@@ -85,12 +85,12 @@ object Instructions{
 
     object ProcessUnit extends DecodeField[Insn, UInt] with InstCateg{
         def name = "processunit"
-        def chiselType = UInt(ProcessUnit.ProcessUnit_Width.W)
+        def chiselType = UInt(ProcessUnit_Width.W)
         def genTable(i: Insn): BitPat = i.inst.name match {
-            case name if aluInst.contains(name) || bjInst.contains(name) => BitPat(ProcessUnit.ALU)
-            case name if csrInst.contains(name) => BitPat(ProcessUnit.CSR)
-            case name if lsuInst.contains(name) => BitPat(ProcessUnit.LSU)
-            case _ => BitPat(ProcessUnit.ALU)
+            case name if aluInst.contains(name) || bjInst.contains(name) => BitPat(ALU)
+            case name if csrInst.contains(name) => BitPat(CSR)
+            case name if lsuInst.contains(name) => BitPat(LSU)
+            case _ => BitPat(ALU)
         }
     }
 
