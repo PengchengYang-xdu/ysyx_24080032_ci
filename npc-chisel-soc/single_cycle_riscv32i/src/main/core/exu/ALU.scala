@@ -5,10 +5,7 @@ import chisel3.util._
 import npc.common.Config._
 import npc.common._
 import npc.common.Instructions._
-
-class ALU_BJIO extends Bundle {
-    val target = Output(UInt(WORD_LEN.W))
-}
+import npc.core.exu._
 
 class ALUIO_in extends Bundle{
     val op1 = Input(UInt(WORD_LEN.W))
@@ -28,7 +25,7 @@ class ALUIO extends Bundle {
 
 class ALU extends Module{
     val io = IO(new ALUIO)
-    val io_bj = Valid(new ALU_BJIO)
+    val io_bj = Valid(new EXU_BJIO)
 
     val (op1_data, op2_data, processtpe, bjtpe) = (io.in.bits.op1, io.in.bits.op2, io.in.bits.processtpe, io.in.bits.bjtpe)
     val shamt = op2_data(4, 0).asUInt
@@ -75,7 +72,7 @@ class ALU extends Module{
         (bjtpe === BJTpe.BJ_BGEU && !cmp) ||
         (bjtpe === BJTpe.BJ_J)
     )
-    io_bj.bits.target := DontCare
+    io_bj.bits := DontCare
 
     //handshake
     io.in.ready := io.out.ready

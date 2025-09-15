@@ -5,10 +5,7 @@ import chisel3.util._
 import npc.common.Config._
 import npc.common._
 import npc.common.Instructions._
-
-class CSR_BJIO extends Bundle {
-    val target = Output(UInt(WORD_LEN.W))
-}
+import npc.core.exu._
 
 class CSRIO_in extends Bundle{
     val op1 = Input(UInt(WORD_LEN.W))
@@ -26,7 +23,7 @@ class CSRIO extends Bundle {
 
 class CSR extends Module {
     val io = IO(new CSRIO)
-    val io_bj = Valid(new CSR_BJIO)
+    val io_bj = Valid(new EXU_BJIO)
 
     val (processtpe, op1, addr) = (io.in.bits.processtpe, io.in.bits.op1, io.in.bits.op2(11, 0))
 
