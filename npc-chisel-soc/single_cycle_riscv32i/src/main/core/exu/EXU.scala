@@ -92,15 +92,15 @@ class EXU extends Module {
 */
     val lsu = Module(new LSU)
     lsu.io.in.valid := io_pipe.in.fire && processunit === ProcessUnit.LSU
-    lsu.io.in.bits.op1 = ch3
-    lsu.io.in.bits.op2 = ch2
+    lsu.io.in.bits.op1 := ch3
+    lsu.io.in.bits.op2 := ch2
     lsu.io.in.bits.processtpe := processtpe
     lsu.io_dmem.dmem <> io.dmem
     lsu.io.out.ready := io_pipe.out.ready
 
 
     io_bj.valid := alu.io_bj.valid | csr.io_bj.valid
-    io_bj.target := Mux(alu.io_bj.valid, ch3, Mux(csr.io_bj.valid, csr.io_bj.bits.target, 0.U))
+    io_bj.bits.target := Mux(alu.io_bj.valid, ch3, Mux(csr.io_bj.valid, csr.io_bj.bits.target, 0.U))
 
     val exefsh = csr.io.out.valid | alu.io.out.valid | lsu.io.out.valid
 

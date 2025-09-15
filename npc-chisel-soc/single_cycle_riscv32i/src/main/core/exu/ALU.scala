@@ -75,7 +75,7 @@ class ALU extends Module{
         (bjtpe === BJTpe.BJ_BGEU && !cmp) ||
         (bjtpe === BJTpe.BJ_J)
     )
-    io_bj.target := DontCare
+    io_bj.bits.target := DontCare
 
     //handshake
     io.in.ready := io.out.ready

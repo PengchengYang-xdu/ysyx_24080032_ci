@@ -1,35 +1,27 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 32 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:102:67: value | is not a member of String[0m
-[0m[[0m[31merror[0m] [0m[0m                case name if aluInst_sub.contains(name) || ("beq" | "bne")               => BitPat(ProcessTpe.ALU.ALU_SUB)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                  ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:109:69: value | is not a member of String[0m
-[0m[[0m[31merror[0m] [0m[0m                case name if aluInst_comps.contains(name) || ("blt" | "bge")             => BitPat(ProcessTpe.ALU.ALU_COMPS)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                    ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:110:70: value | is not a member of String[0m
-[0m[[0m[31merror[0m] [0m[0m                case name if aluInst_compu.contains(name) || ("bltu" | "bgeu")           => BitPat(ProcessTpe.ALU.ALU_COMPU)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                     ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:17:28: not found: type AXI4WithoutClk[0m
-[0m[[0m[31merror[0m] [0m[0m    val dmem = Flipped(new AXI4WithoutClk)[0m
-[0m[[0m[31merror[0m] [0m[0m                           ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:98:33: value gpr_rs1_addr is not a member of npc.core.idu.IDUIO[0m
-[0m[[0m[31merror[0m] [0m[0m        val rs1 = stage_left.io.gpr_rs1_addr[0m
-[0m[[0m[31merror[0m] [0m[0m                                ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:99:33: value gpr_rs2_addr is not a member of npc.core.idu.IDUIO[0m
-[0m[[0m[31merror[0m] [0m[0m        val rs2 = stage_left.io.gpr_rs2_addr[0m
-[0m[[0m[31merror[0m] [0m[0m                                ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:103:41: value gpr_rs1_is_read is not a member of npc.core.idu.IDUIO[0m
-[0m[[0m[31merror[0m] [0m[0m        val rs1_is_read = stage_left.io.gpr_rs1_is_read[0m
-[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/Core.scala:104:41: value gpr_rs2_is_read is not a member of npc.core.idu.IDUIO[0m
-[0m[[0m[31merror[0m] [0m[0m        val rs2_is_read = stage_left.io.gpr_rs2_is_read[0m
-[0m[[0m[31merror[0m] [0m[0m                                        ^[0m
 [0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/ALU.scala:78:11: value target is not a member of chisel3.util.Valid[npc.core.exu.ALU_BJIO][0m
 [0m[[0m[31merror[0m] [0m[0mdid you mean toTarget?[0m
 [0m[[0m[31merror[0m] [0m[0m    io_bj.target := DontCare[0m
 [0m[[0m[31merror[0m] [0m[0m          ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:94:24: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:95:24: reassignment to val[0m
 [0m[[0m[31merror[0m] [0m[0m    lsu.io.in.bits.op1 = ch3[0m
 [0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:96:24: reassignment to val[0m
+[0m[[0m[31merror[0m] [0m[0m    lsu.io.in.bits.op2 = ch2[0m
+[0m[[0m[31merror[0m] [0m[0m                       ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:103:11: value target is not a member of chisel3.util.Valid[npc.core.exu.EXU_BJIO][0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean toTarget?[0m
+[0m[[0m[31merror[0m] [0m[0m    io_bj.target := Mux(alu.io_bj.valid, ch3, Mux(csr.io_bj.valid, csr.io_bj.bits.target, 0.U))[0m
+[0m[[0m[31merror[0m] [0m[0m          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:58:19: not found: type GPR[0m
+[0m[[0m[31merror[0m] [0m[0m    val gpr = new GPR[0m
+[0m[[0m[31merror[0m] [0m[0m                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:77:27: not found: type DecodeTable[0m
+[0m[[0m[31merror[0m] [0m[0m    val decodeTable = new DecodeTable(instList, Seq(MyProcessUnit, MyProcessTpe, MyBJTpe, MyCH1Tpe, MyCH2Tpe, MyRFwe, MyIMMTpe))[0m
+[0m[[0m[31merror[0m] [0m[0m                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:106:54: not found: value gpr_rs1_data[0m
+[0m[[0m[31merror[0m] [0m[0m    val ch3 = Mux(decodeBundle(MyBJTpe).orR, reg_pc, gpr_rs1_data) +& imm[0m
+[0m[[0m[31merror[0m] [0m[0m                                                     ^[0m
 [0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:110:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.[0m
 [0m[[0m[33mwarn[0m] [0m[0m    val io_pipe.out.bits.id2exe_processunit = decodeBundle(MyProcessUnit)[0m
 [0m[[0m[33mwarn[0m] [0m[0m                         ^[0m
@@ -54,5 +46,9 @@
 [0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:117:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.[0m
 [0m[[0m[33mwarn[0m] [0m[0m    val io_pipe.out.bits.id2exe_ch3 = ch3[0m
 [0m[[0m[33mwarn[0m] [0m[0m                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/ifu/IFU.scala:155:39: value target is not a member of chisel3.util.Valid[npc.core.ifu.IFU_BJIO][0m
+[0m[[0m[31merror[0m] [0m[0mdid you mean toTarget?[0m
+[0m[[0m[31merror[0m] [0m[0m    pc_next := Mux(io_bj.valid, io_bj.target, pc_plus4)[0m
+[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
 [0m[[0m[33mwarn[0m] [0m[0m8 warnings found[0m
-[0m[[0m[31merror[0m] [0m[0m16 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m8 errors found[0m
