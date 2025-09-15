@@ -1,34 +1,11 @@
-[0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
-[0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:111:13: not found: value LW[0m
-[0m[[0m[31merror[0m] [0m[0m            LW       -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_4 , NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X), INST_TPE_LSU),[0m
-[0m[[0m[31merror[0m] [0m[0m            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:112:13: not found: value LB[0m
-[0m[[0m[31merror[0m] [0m[0m            LB       -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_1S, NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X), INST_TPE_LSU),[0m
-[0m[[0m[31merror[0m] [0m[0m            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:113:13: not found: value LH[0m
-[0m[[0m[31merror[0m] [0m[0m            LH       -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_2S, NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X), INST_TPE_LSU),[0m
-[0m[[0m[31merror[0m] [0m[0m            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:114:13: not found: value LBU[0m
-[0m[[0m[31merror[0m] [0m[0m            LBU      -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_1U, NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X), INST_TPE_LSU),[0m
-[0m[[0m[31merror[0m] [0m[0m            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:115:13: not found: value LHU[0m
-[0m[[0m[31merror[0m] [0m[0m            LHU      -> List(IMM_TYPE_I, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_X, REN_S, WB_MEM, CSR_X, MEM_OP_2U, NO_FENCEI, RS1_IS_READ, RS2_NO_READ, Cat(CH1_RS1_IMM, CH2_X, CH3_X), INST_TPE_LSU),[0m
-[0m[[0m[31merror[0m] [0m[0m            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:117:13: not found: value SW[0m
-[0m[[0m[31merror[0m] [0m[0m            SW       -> List(IMM_TYPE_S, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_S, REN_X, WB_X  , CSR_X, MEM_OP_4 , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1_IMM, CH2_RS2, CH3_X), INST_TPE_LSU),[0m
-[0m[[0m[31merror[0m] [0m[0m            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:118:13: not found: value SB[0m
-[0m[[0m[31merror[0m] [0m[0m            SB       -> List(IMM_TYPE_S, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_S, REN_X, WB_X  , CSR_X, MEM_OP_1S, NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1_IMM, CH2_RS2, CH3_X), INST_TPE_LSU),[0m
-[0m[[0m[31merror[0m] [0m[0m            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:119:13: not found: value SH[0m
-[0m[[0m[31merror[0m] [0m[0m            SH       -> List(IMM_TYPE_S, ALU_ADD  , OP1_RS1, OP2_IMM, MEN_S, REN_X, WB_X  , CSR_X, MEM_OP_2S, NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1_IMM, CH2_RS2, CH3_X), INST_TPE_LSU),[0m
-[0m[[0m[31merror[0m] [0m[0m            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:125:13: not found: value ADD[0m
-[0m[[0m[31merror[0m] [0m[0m            ADD      -> List(IMM_TYPE_X, ALU_ADD  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X), INST_TPE_ALU),[0m
-[0m[[0m[31merror[0m] [0m[0m            ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:126:13: not found: value SUB[0m
-[0m[[0m[31merror[0m] [0m[0m            SUB      -> List(IMM_TYPE_X, ALU_SUB  , OP1_RS1, OP2_RS2, MEN_X, REN_S, WB_ALU, CSR_X, MEM_OP_X , NO_FENCEI, RS1_IS_READ, RS2_IS_READ, Cat(CH1_RS1, CH2_RS2, CH3_X), INST_TPE_ALU),[0m
-[0m[[0m[31merror[0m] [0m[0m            ^[0m
-[0m[[0m[31merror[0m] [0m[0m69 errors found[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 16 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/GPR.scala:13:9: illegal start of declaration (possible cause: missing `=` in front of current method body)[0m
+[0m[[0m[31merror[0m] [0m[0m        gpr(addr) := data(WORD_LEN - 1, 0)[0m
+[0m[[0m[31merror[0m] [0m[0m        ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/lsu/LSU.scala:168:60: illegal start of simple expression[0m
+[0m[[0m[31merror[0m] [0m[0m    val dmem_rdata_processed = MuxLookup(processtpe(2, 0), )(Seq([0m
+[0m[[0m[31merror[0m] [0m[0m                                                           ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/lsu/LSU.scala:180:1: ')' expected but '}' found.[0m
+[0m[[0m[31merror[0m] [0m[0m}[0m
+[0m[[0m[31merror[0m] [0m[0m^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m

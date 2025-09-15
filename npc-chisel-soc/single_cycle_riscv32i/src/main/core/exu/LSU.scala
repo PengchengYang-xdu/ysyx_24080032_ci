@@ -1,10 +1,9 @@
-package npc.core.lsu
+package npc.core.exu
 
 import chisel3._
 import chisel3.util._
 import npc.common.Config._
 import npc.common.Instructions._
-import npc.core.exu._
 import npc.bus.axi._
 
 class LSU_DMEMIO extends Bundle {
@@ -165,7 +164,7 @@ class LSU extends Module {
 
     /*LOAD INST*/
     val shift_rdata = dmem_rdata >> shift_op
-    val dmem_rdata_processed = MuxLookup(processtpe(2, 0), )(Seq(
+    val dmem_rdata_processed = MuxLookup(processtpe(2, 0), shift_rdata)(Seq(
         "b000".U -> Cat(Fill(24, shift_rdata(7)), shift_rdata(7,0)),
         "b001".U -> Cat(Fill(16, shift_rdata(15)), shift_rdata(15,0)),
         "b010".U -> shift_rdata,

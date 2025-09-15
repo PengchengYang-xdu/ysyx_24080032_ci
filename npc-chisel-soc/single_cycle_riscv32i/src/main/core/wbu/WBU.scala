@@ -4,7 +4,7 @@ import chisel3._
 import chisel3.util._
 import npc.common.Config._
 import npc.common.Instructions._
-import npc.core.lsu._
+import npc.core.exu._
 /*
               ___ _____ _   _ _____ ____  ____ ___ ____
              / _ \_   _| | | | ____|  _ \/ ___|_ _/ ___|
