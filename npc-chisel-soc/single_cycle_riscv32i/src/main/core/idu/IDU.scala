@@ -79,7 +79,7 @@ class IDU extends Module{
     val decodeTable = new DecodeTable(instList, Seq(MyProcessUnit, MyProcessTpe, MyBJTpe, MyCH1Tpe, MyCH2Tpe, MyRFwe, MyIMMTpe))
     val decodeBundle = decodeTable.decode(inst)
 
-    val immtpe = decodeBundle(MyIMMTpe)
+    immtpe = decodeBundle(MyIMMTpe)
     val imm_i = inst(31, 20).asSInt
     val imm_s = Cat(inst(31, 25), inst(11, 7)).asSInt
     val imm_b = Cat(inst(31), inst(7), inst(30, 25), inst(11, 8), 0.U(1.W)).asSInt
@@ -109,10 +109,10 @@ class IDU extends Module{
 
 
     //pipeline
-    val io_pipe.out.bits.id2exe_processunit = decodeBundle(MyProcessUnit)
-    val io_pipe.out.bits.id2exe_processtpe = decodeBundle(MyProcessTpe)
-    val io_pipe.out.bits.id2exe_bjtpe = decodeBundle(MyBJTpe)
-    val io_pipe.out.bits.id2exe_rfwe = decodeBundle(MyRFwe)
+    io_pipe.out.bits.id2exe_processunit = decodeBundle(MyProcessUnit)
+    io_pipe.out.bits.id2exe_processtpe = decodeBundle(MyProcessTpe)
+    io_pipe.out.bits.id2exe_bjtpe = decodeBundle(MyBJTpe)
+    io_pipe.out.bits.id2exe_rfwe = decodeBundle(MyRFwe)
     val io_pipe.out.bits.id2exe_rd_addr = rd_addr
     val io_pipe.out.bits.id2exe_ch1 = ch1
     val io_pipe.out.bits.id2exe_ch2 = ch2
