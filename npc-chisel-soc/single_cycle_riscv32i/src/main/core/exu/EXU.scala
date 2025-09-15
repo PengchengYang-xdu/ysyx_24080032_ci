@@ -99,7 +99,7 @@ class EXU extends Module {
     lsu.io.out.ready := io_pipe.out.ready
 
 
-    io_bj.valid := true.B
+    io_bj.valid := alu.io_bj.valid | csr.io_bj.valid
     io_bj.bits.target := Mux(alu.io_bj.valid, ch3, Mux(csr.io_bj.valid, csr.io_bj.bits.target, 0.U))
 
     val exefsh = csr.io.out.valid | alu.io.out.valid | lsu.io.out.valid
