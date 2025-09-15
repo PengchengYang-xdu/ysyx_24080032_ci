@@ -30,7 +30,7 @@ object Instructions{
         .filter(inst => !ex_rv_i.contains(inst.name))
         .filter(inst => !ex_rv_zicsr.contains(inst.name))
         .filter(inst => !ex_rv_system.contains(inst.name))
-        .map(InstructionPattern(_))
+        .map(Insn(_))
         .toSeq
     val instList = patternSeq
 
