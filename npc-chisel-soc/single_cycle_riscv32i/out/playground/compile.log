@@ -1,46 +1,45 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 32 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/NPC.scala:55:40: type Xbar is not a member of package npc.bus.xbar[0m
-[0m[[0m[31merror[0m] [0m[0mdid you mean XbarIO?[0m
-[0m[[0m[31merror[0m] [0m[0m    val xbar = Module(new npc.bus.xbar.Xbar)[0m
-[0m[[0m[31merror[0m] [0m[0m                                       ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:82:43: value ProcessUnit_Width is not a member of object npc.common.Instructions.ProcessUnit[0m
-[0m[[0m[31merror[0m] [0m[0m        def chiselType = UInt(ProcessUnit.ProcessUnit_Width.W)[0m
-[0m[[0m[31merror[0m] [0m[0m                                          ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:84:96: value ALU is not a member of object npc.common.Instructions.ProcessUnit[0m
-[0m[[0m[31merror[0m] [0m[0m            case name if aluInst.contains(name) || bjInst.contains(name) => BitPat(ProcessUnit.ALU)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                               ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:85:71: value CSR is not a member of object npc.common.Instructions.ProcessUnit[0m
-[0m[[0m[31merror[0m] [0m[0m            case name if csrInst.contains(name) => BitPat(ProcessUnit.CSR)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                      ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:86:71: value LSU is not a member of object npc.common.Instructions.ProcessUnit[0m
-[0m[[0m[31merror[0m] [0m[0m            case name if lsuInst.contains(name) => BitPat(ProcessUnit.LSU)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                      ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:87:42: value ALU is not a member of object npc.common.Instructions.ProcessUnit[0m
-[0m[[0m[31merror[0m] [0m[0m            case _ => BitPat(ProcessUnit.ALU)[0m
-[0m[[0m[31merror[0m] [0m[0m                                         ^[0m
 [0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:93:31: not found: value ProcessTpe_Width[0m
 [0m[[0m[31merror[0m] [0m[0m        def chiselType = UInt(ProcessTpe_Width.W)[0m
 [0m[[0m[31merror[0m] [0m[0m                              ^[0m
 [0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:98:34: not found: value ProcessTpe_Width[0m
 [0m[[0m[31merror[0m] [0m[0m            case _ => BitPat(0.U(ProcessTpe_Width.W))[0m
 [0m[[0m[31merror[0m] [0m[0m                                 ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:101:111: value ALU is not a member of object npc.common.Instructions.ProcessTpe[0m
-[0m[[0m[31merror[0m] [0m[0m                case name if aluInst_add.contains(name)                                  => BitPat(ProcessTpe.ALU.ALU_ADD)[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                                              ^[0m
 [0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:102:67: value | is not a member of String[0m
 [0m[[0m[31merror[0m] [0m[0m                case name if aluInst_sub.contains(name) || ("beq" | "bne")               => BitPat(ProcessTpe.ALU.ALU_SUB)[0m
 [0m[[0m[31merror[0m] [0m[0m                                                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:109:69: value | is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m                case name if aluInst_comps.contains(name) || ("blt" | "bge")             => BitPat(ProcessTpe.ALU.ALU_COMPS)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:110:70: value | is not a member of String[0m
+[0m[[0m[31merror[0m] [0m[0m                case name if aluInst_compu.contains(name) || ("bltu" | "bgeu")           => BitPat(ProcessTpe.ALU.ALU_COMPU)[0m
+[0m[[0m[31merror[0m] [0m[0m                                                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:135:31: not found: value BJTpe_Width[0m
+[0m[[0m[31merror[0m] [0m[0m        def chiselType = UInt(BJTpe_Width.W)[0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:144:42: value BJ_X is not a member of object npc.common.ProcessUnit[0m
+[0m[[0m[31merror[0m] [0m[0m            case _ => BitPat(ProcessUnit.BJ_X)[0m
+[0m[[0m[31merror[0m] [0m[0m                                         ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:150:31: not found: value CH1Tpe_Width[0m
+[0m[[0m[31merror[0m] [0m[0m        def chiselType = UInt(CH1Tpe_Width.W)[0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:160:31: not found: value CH2Tpe_Width[0m
+[0m[[0m[31merror[0m] [0m[0m        def chiselType = UInt(CH2Tpe_Width.W)[0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:170:31: not found: value RFwe_Width[0m
+[0m[[0m[31merror[0m] [0m[0m        def chiselType = UInt(RFwe_Width.W)[0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
 [0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:110:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.[0m
-[0m[[0m[33mwarn[0m] [0m[0m    val io_pipe.out.bits.id2exe_processunit = decodeBundle(ProcessUnit)[0m
+[0m[[0m[33mwarn[0m] [0m[0m    val io_pipe.out.bits.id2exe_processunit = decodeBundle(MyProcessUnit)[0m
 [0m[[0m[33mwarn[0m] [0m[0m                         ^[0m
 [0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:111:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.[0m
-[0m[[0m[33mwarn[0m] [0m[0m    val io_pipe.out.bits.id2exe_processtpe = decodeBundle(ProcessTpe)[0m
+[0m[[0m[33mwarn[0m] [0m[0m    val io_pipe.out.bits.id2exe_processtpe = decodeBundle(MyProcessTpe)[0m
 [0m[[0m[33mwarn[0m] [0m[0m                         ^[0m
 [0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:112:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.[0m
-[0m[[0m[33mwarn[0m] [0m[0m    val io_pipe.out.bits.id2exe_bjtpe = decodeBundle(BJTpe)[0m
+[0m[[0m[33mwarn[0m] [0m[0m    val io_pipe.out.bits.id2exe_bjtpe = decodeBundle(MyBJTpe)[0m
 [0m[[0m[33mwarn[0m] [0m[0m                         ^[0m
 [0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:113:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.[0m
-[0m[[0m[33mwarn[0m] [0m[0m    val io_pipe.out.bits.id2exe_rfwe = decodeBundle(RFwe)[0m
+[0m[[0m[33mwarn[0m] [0m[0m    val io_pipe.out.bits.id2exe_rfwe = decodeBundle(MyRFwe)[0m
 [0m[[0m[33mwarn[0m] [0m[0m                         ^[0m
 [0m[[0m[33mwarn[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:114:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.[0m
 [0m[[0m[33mwarn[0m] [0m[0m    val io_pipe.out.bits.id2exe_rd_addr = rd_addr[0m
@@ -55,4 +54,4 @@
 [0m[[0m[33mwarn[0m] [0m[0m    val io_pipe.out.bits.id2exe_ch3 = ch3[0m
 [0m[[0m[33mwarn[0m] [0m[0m                         ^[0m
 [0m[[0m[33mwarn[0m] [0m[0m8 warnings found[0m
-[0m[[0m[31merror[0m] [0m[0m100 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m24 errors found[0m

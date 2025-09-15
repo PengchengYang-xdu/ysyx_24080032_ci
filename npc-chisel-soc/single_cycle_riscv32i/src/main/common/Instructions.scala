@@ -90,12 +90,12 @@ object Instructions{
 
     object MyProcessTpe extends DecodeField[Insn, UInt] with InstCateg{
         def name = "processtpe"
-        def chiselType = UInt(ProcessTpe_Width.W)
+        def chiselType = UInt(ProcessTpe.ProcessTpe_Width.W)
         def genTable(i: Insn): BitPat = i.inst.name match {
             case name if aluInst.contains(name) => genALUTpeTable(i)
             case name if csrInst.contains(name) => genCSRTpeTable(i)
             case name if lsuInst.contains(name) => genLSUTpeTable(i)
-            case _ => BitPat(0.U(ProcessTpe_Width.W))
+            case _ => BitPat(0.U(ProcessTpe.ProcessTpe_Width.W))
         }
             def genALUTpeTable(i: Insn): BitPat = i.inst.name match {
                 case name if aluInst_add.contains(name)                                  => BitPat(ProcessTpe.ALU.ALU_ADD)
@@ -132,7 +132,7 @@ object Instructions{
 
     object MyBJTpe extends DecodeField[Insn, UInt] with InstCateg{
         def name = "bjtpe"
-        def chiselType = UInt(BJTpe_Width.W)
+        def chiselType = UInt(BJTpe.BJTpe_Width.W)
         def genTable(i: Insn): BitPat = i.inst.name match {
             case "jal" | "jalr"    => BitPat(BJTpe.BJ_J)
             case "beq"             => BitPat(BJTpe.BJ_BEQ)
@@ -141,13 +141,13 @@ object Instructions{
             case "blt"             => BitPat(BJTpe.BJ_BLT)
             case "bgeu"            => BitPat(BJTpe.BJ_BGEU)
             case "bge"             => BitPat(BJTpe.BJ_BGE)
-            case _ => BitPat(ProcessUnit.BJ_X)
+            case _ => BitPat(BJTpe.BJ_X)
         }
     }
 
     object MyCH1Tpe extends DecodeField[Insn, UInt] with InstCateg{
         def name = "ch1tpe"
-        def chiselType = UInt(CH1Tpe_Width.W)
+        def chiselType = UInt(CH1Tpe.CH1Tpe_Width.W)
         def genTable(i: Insn): BitPat = {
             if(i.hasArg("rs1")) BitPat(CH1Tpe.CH1Tpe_RS1)
             else if(i.inst.name == "lui") BitPat(CH1Tpe.CH1Tpe_RS1)
@@ -157,7 +157,7 @@ object Instructions{
 
     object MyCH2Tpe extends DecodeField[Insn, UInt] with InstCateg{
         def name = "ch2tpe"
-        def chiselType = UInt(CH2Tpe_Width.W)
+        def chiselType = UInt(CH2Tpe.CH2Tpe_Width.W)
         def genTable(i: Insn): BitPat = {
             if(i.hasArg("rs2")) BitPat(CH2Tpe.CH2Tpe_RS2)
             else if(i.inst.name == "csr") BitPat(CH2Tpe.CH2Tpe_CSR_ADDR)
@@ -167,7 +167,7 @@ object Instructions{
 
     object MyRFwe extends DecodeField[Insn, UInt] with InstCateg{
         def name = "rfwe"
-        def chiselType = UInt(RFwe_Width.W)
+        def chiselType = UInt(RFwe.RFwe_Width.W)
         def genTable(i: Insn): BitPat = {
             if(i.hasArg("rd")) BitPat(RFwe.RFwe_y)
             else BitPat(RFwe.RFwe_n)
@@ -176,7 +176,7 @@ object Instructions{
 
     object MyIMMTpe extends DecodeField[Insn, UInt] with InstCateg{
         def name = "immtpe"
-        def chiselType = UInt(IMMTpe_Width.W)
+        def chiselType = UInt(IMMTpe.IMMTpe_Width.W)
         def genTable(i: Insn): BitPat = {
             val immtpe = i.inst.args
                 .map(_.name match{
