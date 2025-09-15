@@ -150,7 +150,7 @@ class IFU extends Module {
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
-    pc_next := Mux(io_bj.valid, io_bj.bits.target, pc_plus4)
+    pc_next := Mux(true.B, io_bj.bits.target, pc_plus4)
 
     //connect
     araddr := reg_pc

@@ -70,7 +70,7 @@ class Core extends Module {
     idu.io.gpr_waddr := wbu.io.gpr_waddr
     idu.io.gpr_wdata := wbu.io.gpr_wdata
 
-    ifu.io_bj.valid := true.B
+    ifu.io_bj.valid := exu.io_bj.valid
     ifu.io_bj.bits.target := exu.io_bj.bits.target
 
 
