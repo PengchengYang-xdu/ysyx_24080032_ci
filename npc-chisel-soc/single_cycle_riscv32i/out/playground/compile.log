@@ -1,56 +1,56 @@
 [info] compiling 33 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...
-[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:81:43: value ProcessUnit_Width is not a member of object npc.common.Instructions.ProcessUnit
+[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:88:43: value ProcessUnit_Width is not a member of object npc.common.Instructions.ProcessUnit
 [error]         def chiselType = UInt(ProcessUnit.ProcessUnit_Width.W)
 [error]                                           ^
-[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:83:96: value ALU is not a member of object npc.common.Instructions.ProcessUnit
+[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:90:96: value ALU is not a member of object npc.common.Instructions.ProcessUnit
 [error]             case name if aluInst.contains(name) || bjInst.contains(name) => BitPat(ProcessUnit.ALU)
 [error]                                                                                                ^
-[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:84:71: value CSR is not a member of object npc.common.Instructions.ProcessUnit
+[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:91:71: value CSR is not a member of object npc.common.Instructions.ProcessUnit
 [error]             case name if csrInst.contains(name) => BitPat(ProcessUnit.CSR)
 [error]                                                                       ^
-[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:85:71: value LSU is not a member of object npc.common.Instructions.ProcessUnit
+[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:92:71: value LSU is not a member of object npc.common.Instructions.ProcessUnit
 [error]             case name if lsuInst.contains(name) => BitPat(ProcessUnit.LSU)
 [error]                                                                       ^
-[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:86:42: value ALU is not a member of object npc.common.Instructions.ProcessUnit
+[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:93:42: value ALU is not a member of object npc.common.Instructions.ProcessUnit
 [error]             case _ => BitPat(ProcessUnit.ALU)
 [error]                                          ^
-[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:92:31: not found: value ProcessTpe_Width
-[error]         def chiselType = UInt(ProcessTpe_Width.W)
-[error]                               ^
-[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:97:34: not found: value ProcessTpe_Width
-[error]             case _ => BitPat(0.U(ProcessTpe_Width.W))
-[error]                                  ^
-[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:100:111: value ALU is not a member of object npc.common.Instructions.ProcessTpe
+[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:107:111: value ALU is not a member of object npc.common.Instructions.ProcessTpe
 [error]                 case name if aluInst_add.contains(name)                                  => BitPat(ProcessTpe.ALU.ALU_ADD)
 [error]                                                                                                               ^
-[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:101:67: value | is not a member of String
+[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:108:67: value | is not a member of String
 [error]                 case name if aluInst_sub.contains(name) || ("beq" | "bne")               => BitPat(ProcessTpe.ALU.ALU_SUB)
 [error]                                                                   ^
-[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:101:111: value ALU is not a member of object npc.common.Instructions.ProcessTpe
+[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:108:111: value ALU is not a member of object npc.common.Instructions.ProcessTpe
 [error]                 case name if aluInst_sub.contains(name) || ("beq" | "bne")               => BitPat(ProcessTpe.ALU.ALU_SUB)
 [error]                                                                                                               ^
-[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:109:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
+[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:109:111: value ALU is not a member of object npc.common.Instructions.ProcessTpe
+[error]                 case name if aluInst_and.contains(name)                                  => BitPat(ProcessTpe.ALU.ALU_AND)
+[error]                                                                                                               ^
+[error] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Instructions.scala:110:111: value ALU is not a member of object npc.common.Instructions.ProcessTpe
+[error]                 case name if aluInst_or.contains(name)                                   => BitPat(ProcessTpe.ALU.ALU_OR)
+[error]                                                                                                               ^
+[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:116:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
 [warn]     val io_pipe.out.bits.id2exe_processunit = decodeBundle(ProcessUnit)
 [warn]                          ^
-[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:110:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
+[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:117:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
 [warn]     val io_pipe.out.bits.id2exe_processtpe = decodeBundle(ProcessTpe)
 [warn]                          ^
-[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:111:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
+[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:118:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
 [warn]     val io_pipe.out.bits.id2exe_bjtpe = decodeBundle(BJTpe)
 [warn]                          ^
-[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:112:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
+[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:119:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
 [warn]     val io_pipe.out.bits.id2exe_rfwe = decodeBundle(RFwe)
 [warn]                          ^
-[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:113:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
+[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:120:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
 [warn]     val io_pipe.out.bits.id2exe_rd_addr = rd_addr
 [warn]                          ^
-[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:114:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
+[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:121:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
 [warn]     val io_pipe.out.bits.id2exe_ch1 = ch1
 [warn]                          ^
-[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:115:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
+[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:122:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
 [warn]     val io_pipe.out.bits.id2exe_ch2 = ch2
 [warn]                          ^
-[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:116:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
+[warn] /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:123:26: Pattern definition introduces Unit-valued member of IDU; consider wrapping it in `locally { ... }`.
 [warn]     val io_pipe.out.bits.id2exe_ch3 = ch3
 [warn]                          ^
 [warn] 8 warnings found
