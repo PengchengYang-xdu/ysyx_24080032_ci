@@ -34,7 +34,7 @@ class IFUIO_pipe_out extends Bundle{
     val if2id_inst = Output(UInt(WORD_LEN.W)) //pipe
 }
 class IFUIO_pipe extends Bundle{
-    val in = Decoupled(new IFUIO_pipe_in)
+    val in = Flipped(Decoupled(new IFUIO_pipe_in))
     val out = Decoupled(new IFUIO_pipe_out)
 }
 /*
