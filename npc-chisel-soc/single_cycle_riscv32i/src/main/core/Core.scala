@@ -35,6 +35,7 @@ class Core extends Module {
             |  __/| ||  __/| |___| |___ | || |\  | |___
             |_|  |___|_|   |_____|_____|___|_| \_|_____|
 */
+    wbu.io_pipe.out.ready := true.B
     val ready_r = RegNext(ifu.io_pipe.in.ready)
     ifu.io_pipe.in.valid := RegEnable(true.B, ifu.io_pipe.in.valid, ifu.io_pipe.in.ready & ready_r)
     pipelineConnect(ifu.io_pipe.out, idu.io_pipe.in)
