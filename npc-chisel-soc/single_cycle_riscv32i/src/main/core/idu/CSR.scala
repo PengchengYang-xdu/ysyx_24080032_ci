@@ -8,16 +8,16 @@ import npc.common.Instructions._
 import npc.core.exu._
 
 class CSRIO_in extends Bundle{
-    val op1 = Input(UInt(WORD_LEN.W))
-    val op2 = Input(UInt(WORD_LEN.W))
-    val processtpe = Input(UInt(ProcessTpe.ProcessTpe_Width.W))
+    val op1 = Output(UInt(WORD_LEN.W))
+    val op2 = Output(UInt(WORD_LEN.W))
+    val processtpe = Output(UInt(ProcessTpe.ProcessTpe_Width.W))
 }
 class CSRIO_out extends Bundle{
     val csr_rdata = Output(UInt(WORD_LEN.W))
 }
 
 class CSRIO extends Bundle {
-    val in = Decoupled(new CSRIO_in)
+    val in = Flipped(Decoupled(new CSRIO_in))
     val out = Decoupled(new CSRIO_out)
 }
 

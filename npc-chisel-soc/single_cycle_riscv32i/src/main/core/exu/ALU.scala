@@ -8,17 +8,17 @@ import npc.common.Instructions._
 import npc.core.exu._
 
 class ALUIO_in extends Bundle{
-    val op1 = Input(UInt(WORD_LEN.W))
-    val op2 = Input(UInt(WORD_LEN.W))
-    val processtpe = Input(UInt(ProcessTpe.ProcessTpe_Width.W))
-    val bjtpe = Input(UInt(BJTpe.BJTpe_Width.W))
+    val op1 = Output(UInt(WORD_LEN.W))
+    val op2 = Output(UInt(WORD_LEN.W))
+    val processtpe = Output(UInt(ProcessTpe.ProcessTpe_Width.W))
+    val bjtpe = Output(UInt(BJTpe.BJTpe_Width.W))
 }
 class ALUIO_out extends Bundle{
     val alu_out = Output(UInt(WORD_LEN.W))
 }
 
 class ALUIO extends Bundle {
-    val in = Decoupled(new ALUIO_in)
+    val in = Flipped(Decoupled(new ALUIO_in))
     val out = Decoupled(new ALUIO_out)
 }
 

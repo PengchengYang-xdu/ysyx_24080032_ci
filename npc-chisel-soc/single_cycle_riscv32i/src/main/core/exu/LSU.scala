@@ -13,15 +13,15 @@ class LSU_DMEMIO extends Bundle {
 
 /*LSU handshake in and out*/
 class LSUIO_in extends Bundle {
-    val op1 = Input(UInt(WORD_LEN.W))
-    val op2 = Input(UInt(WORD_LEN.W))
-    val processtpe = Input(UInt(ProcessTpe.ProcessTpe_Width.W))
+    val op1 = Output(UInt(WORD_LEN.W))
+    val op2 = Output(UInt(WORD_LEN.W))
+    val processtpe = Output(UInt(ProcessTpe.ProcessTpe_Width.W))
 }
 class LSUIO_out extends Bundle {
     val gpr_wdata = Output(UInt(WORD_LEN.W))
 }
 class LSUIO extends Bundle {
-    val in = Decoupled(new LSUIO_in)
+    val in = Flipped(Decoupled(new LSUIO_in))
     val out = Decoupled(new LSUIO_out)
 }
 
