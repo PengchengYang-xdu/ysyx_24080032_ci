@@ -49,6 +49,37 @@ class IFU extends Module {
 
     dontTouch(io_pipe)
 
+    //main process
+    val pc_next = Wire(UInt(WORD_LEN.W))
+    dontTouch(pc_next)
+
+    val reg_pc = withReset(reset.asAsyncReset){
+        RegEnable(pc_next, START_ADDR, io_pipe.in.valid & io_pipe.in.ready)
+    }
+
+    val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
+
+    pc_next := Mux(io_bj.valid, io_bj.target, pc_plus4)
+
+    //connect
+    araddr := reg_pc
+
+    io_pipe.out.bits.if2id_reg_pc := reg_pc
+    io_pipe.out.bits.if2id_inst := io.imem.rdata
+
+
+
+
+
+
+
+/*
+             _   _    _    _   _ ____  ____  _   _    _    _  _______
+            | | | |  / \  | \ | |  _ \/ ___|| | | |  / \  | |/ / ____|
+            | |_| | / _ \ |  \| | | | \___ \| |_| | / _ \ | ' /|  _|
+            |  _  |/ ___ \| |\  | |_| |___) |  _  |/ ___ \| . \| |___
+            |_| |_/_/   \_\_| \_|____/|____/|_| |_/_/   \_\_|\_\_____|
+*/
     //disable AW W B and something in AR R
     io.imem.arid := 0.U
     io.imem.arlen := 0.U
@@ -65,7 +96,6 @@ class IFU extends Module {
     io.imem.wlast := false.B
     io.imem.bready := false.B
 
-
     //handshake between modules && handshake between Imem
     val in_ready = RegInit(false.B)
     val out_valid = RegInit(false.B)
@@ -79,7 +109,6 @@ class IFU extends Module {
     io.imem.arvalid := arvalid
     io.imem.rready := rready
     io.imem.arsize := 2.U
-
 
     val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: Nil = Enum(4)
     val c_state = RegInit(s_BeforeAXI_AR_Fire)
@@ -134,28 +163,5 @@ class IFU extends Module {
             rready := false.B
         }
     }
-
-
-
-
-
-
-    //main process
-    val pc_next = Wire(UInt(WORD_LEN.W))
-    dontTouch(pc_next)
-
-    val reg_pc = withReset(reset.asAsyncReset){
-        RegEnable(pc_next, START_ADDR, io_pipe.in.valid & io_pipe.in.ready)
-    }
-
-    val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
-
-    pc_next := Mux(io_bj.valid, io_bj.target, pc_plus4)
-
-    //connect
-    araddr := reg_pc
-
-    io_pipe.out.bits.if2id_reg_pc := reg_pc
-    io_pipe.out.bits.if2id_inst := io.imem.rdata
 }
 
