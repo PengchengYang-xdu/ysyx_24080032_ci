@@ -80,7 +80,7 @@ class Core extends Module {
     isu.io_for_ex <> exu.io_for
     isu.io_for_wb <> wbu.io_for
 
-    isu.io_flush := false.B
+    isu.io_flush.is_flush := false.B
 
 
 

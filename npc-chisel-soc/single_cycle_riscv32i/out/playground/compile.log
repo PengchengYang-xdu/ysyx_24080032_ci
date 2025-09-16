@@ -1,15 +1,2 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 5 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/isu/ISU.scala:88:57: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : npc.common.ProcessTpe.CSR.type[0m
-[0m[[0m[31merror[0m] [0m[0m required: chisel3.UInt[0m
-[0m[[0m[31merror[0m] [0m[0m    val dontForEX = io_for_ex.processtpe === ProcessTpe.CSR[0m
-[0m[[0m[31merror[0m] [0m[0m                                                        ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/isu/ISU.scala:104:102: type mismatch;[0m
-[0m[[0m[31merror[0m] [0m[0m found   : npc.common.ProcessTpe.LSU.type[0m
-[0m[[0m[31merror[0m] [0m[0m required: chisel3.UInt[0m
-[0m[[0m[31merror[0m] [0m[0m    val useCh3 = io_pipe.in.bits.id2is_bjtpe.orR || (io_pipe.in.bits.id2is_processtpe === ProcessTpe.LSU && io_pipe.in.bits.id2is_processtpe(3))[0m
-[0m[[0m[31merror[0m] [0m[0m                                                                                                     ^[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/isu/ISU.scala:110:33: value out is not a member of npc.core.isu.ISUIO[0m
-[0m[[0m[31merror[0m] [0m[0m    val isuFireSetMask = Mux(io.out.fire, sb.mask(io_pipe.in.bits.id2is_rd_addr), 0.U)[0m
-[0m[[0m[31merror[0m] [0m[0m                                ^[0m
-[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
