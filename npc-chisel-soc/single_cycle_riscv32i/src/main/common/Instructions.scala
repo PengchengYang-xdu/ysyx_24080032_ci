@@ -1,7 +1,5 @@
 package npc.common
 
-import npc.common.Config._
-import npc.common._
 import chisel3._
 import chisel3.util._
 import chisel3.util.experimental.decode._

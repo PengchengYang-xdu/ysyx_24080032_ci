@@ -56,7 +56,7 @@
 `endif // not def SYNTHESIS
 
 // VCS coverage exclude_file
-module gpr_16x32(	// @[src/main/core/exu/GPR.scala:11:18]
+module gpr_16x32(	// @[src/main/core/idu/GPR.scala:11:18]
   input  [3:0]  R0_addr,
   input         R0_en,
                 R0_clk,
@@ -71,24 +71,24 @@ module gpr_16x32(	// @[src/main/core/exu/GPR.scala:11:18]
   input  [31:0] W0_data
 );
 
-  reg [31:0] Memory[0:15];	// @[src/main/core/exu/GPR.scala:11:18]
-  always @(posedge W0_clk) begin	// @[src/main/core/exu/GPR.scala:11:18]
-    if (W0_en & 1'h1)	// @[src/main/core/exu/GPR.scala:11:18]
-      Memory[W0_addr] <= W0_data;	// @[src/main/core/exu/GPR.scala:11:18]
+  reg [31:0] Memory[0:15];	// @[src/main/core/idu/GPR.scala:11:18]
+  always @(posedge W0_clk) begin	// @[src/main/core/idu/GPR.scala:11:18]
+    if (W0_en & 1'h1)	// @[src/main/core/idu/GPR.scala:11:18]
+      Memory[W0_addr] <= W0_data;	// @[src/main/core/idu/GPR.scala:11:18]
   end // always @(posedge)
-  `ifdef ENABLE_INITIAL_MEM_	// @[src/main/core/exu/GPR.scala:11:18]
-    reg [31:0] _RANDOM_MEM;	// @[src/main/core/exu/GPR.scala:11:18]
-    initial begin	// @[src/main/core/exu/GPR.scala:11:18]
-      `INIT_RANDOM_PROLOG_	// @[src/main/core/exu/GPR.scala:11:18]
-      `ifdef RANDOMIZE_MEM_INIT	// @[src/main/core/exu/GPR.scala:11:18]
+  `ifdef ENABLE_INITIAL_MEM_	// @[src/main/core/idu/GPR.scala:11:18]
+    reg [31:0] _RANDOM_MEM;	// @[src/main/core/idu/GPR.scala:11:18]
+    initial begin	// @[src/main/core/idu/GPR.scala:11:18]
+      `INIT_RANDOM_PROLOG_	// @[src/main/core/idu/GPR.scala:11:18]
+      `ifdef RANDOMIZE_MEM_INIT	// @[src/main/core/idu/GPR.scala:11:18]
         for (logic [4:0] i = 5'h0; i < 5'h10; i += 5'h1) begin
-          _RANDOM_MEM = `RANDOM;	// @[src/main/core/exu/GPR.scala:11:18]
-          Memory[i[3:0]] = _RANDOM_MEM;	// @[src/main/core/exu/GPR.scala:11:18]
-        end	// @[src/main/core/exu/GPR.scala:11:18]
+          _RANDOM_MEM = `RANDOM;	// @[src/main/core/idu/GPR.scala:11:18]
+          Memory[i[3:0]] = _RANDOM_MEM;	// @[src/main/core/idu/GPR.scala:11:18]
+        end	// @[src/main/core/idu/GPR.scala:11:18]
       `endif // RANDOMIZE_MEM_INIT
     end // initial
   `endif // ENABLE_INITIAL_MEM_
-  assign R0_data = R0_en ? Memory[R0_addr] : 32'bx;	// @[src/main/core/exu/GPR.scala:11:18]
-  assign R1_data = R1_en ? Memory[R1_addr] : 32'bx;	// @[src/main/core/exu/GPR.scala:11:18]
+  assign R0_data = R0_en ? Memory[R0_addr] : 32'bx;	// @[src/main/core/idu/GPR.scala:11:18]
+  assign R1_data = R1_en ? Memory[R1_addr] : 32'bx;	// @[src/main/core/idu/GPR.scala:11:18]
 endmodule
 

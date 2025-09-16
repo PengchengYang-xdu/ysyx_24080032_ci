@@ -1,7 +1,8 @@
 IFU.sv
 extern_modules.sv
-gpr_16x32.sv
 IDU.sv
+gpr_16x32.sv
+ISU.sv
 CSR.sv
 ALU.sv
 LSU.sv

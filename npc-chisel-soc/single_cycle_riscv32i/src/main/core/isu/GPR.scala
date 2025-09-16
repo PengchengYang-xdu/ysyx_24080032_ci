@@ -1,4 +1,4 @@
-package npc.core
+package npc.core.isu
 
 import chisel3._
 import chisel3.util._

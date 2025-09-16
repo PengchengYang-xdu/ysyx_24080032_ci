@@ -6,9 +6,7 @@ import npc.common.Config._
 import npc.common._
 import npc.common.Instructions._
 import npc.core.ifu._
-import npc.core._
 import chisel3.util.experimental.decode._
-
 /*
              ____ ___ ____  _____ ____ ___ ____
             |  _ \_ _|  _ \| ____/ ___|_ _/ ___|

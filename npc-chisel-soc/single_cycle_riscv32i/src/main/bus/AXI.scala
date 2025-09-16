@@ -3,8 +3,6 @@ package npc.bus.axi
 import chisel3._
 import chisel3.util._
 import npc.common.Config._
-import npc.common._
-import npc.common.Instructions._
 
 class AXI4 extends Bundle{
   //slave

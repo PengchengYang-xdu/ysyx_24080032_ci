@@ -4,7 +4,6 @@ import chisel3._
 import chisel3.util._
 import scala.math._
 import npc.common.Config._
-import npc.common._
 import npc.common.Instructions._
 import npc.bus.axi._
 
