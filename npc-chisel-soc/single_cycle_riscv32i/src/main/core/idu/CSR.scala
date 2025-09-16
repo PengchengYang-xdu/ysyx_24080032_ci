@@ -66,5 +66,5 @@ class CSR extends Module {
 
     //ecall and mret
     io_bj.valid := true.B
-    io_bj.bits.target := Mux(processtpe(0), mtvec, mepc)
+    io_bj.bits.target := 0.U
 }
