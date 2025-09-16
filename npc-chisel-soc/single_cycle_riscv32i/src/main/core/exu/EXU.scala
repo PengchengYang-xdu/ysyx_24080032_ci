@@ -34,7 +34,7 @@ class EXUIO_pipe_out extends Bundle{
     val exe2wb_gpr_waddr = Output(UInt(ADDR_LEN.W))
 }
 class EXUIO_pipe extends Bundle {
-    val in = Flipped(Decoupled(new IDUIO_pipe_out))
+    val in = Flipped(Decoupled(new ISUIO_pipe_out))
     val out = Decoupled(new EXUIO_pipe_out)
 }
 /*

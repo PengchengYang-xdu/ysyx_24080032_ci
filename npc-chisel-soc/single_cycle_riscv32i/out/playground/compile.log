@@ -1,2 +1,36 @@
-[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 6 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:52:39: value is2exe_processunit is not a member of npc.core.idu.IDUIO_pipe_out[0m
+[0m[[0m[31merror[0m] [0m[0m    val processunit = io_pipe.in.bits.is2exe_processunit[0m
+[0m[[0m[31merror[0m] [0m[0m                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:53:38: value is2exe_processtpe is not a member of npc.core.idu.IDUIO_pipe_out[0m
+[0m[[0m[31merror[0m] [0m[0m    val processtpe = io_pipe.in.bits.is2exe_processtpe[0m
+[0m[[0m[31merror[0m] [0m[0m                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:54:33: value is2exe_bjtpe is not a member of npc.core.idu.IDUIO_pipe_out[0m
+[0m[[0m[31merror[0m] [0m[0m    val bjtpe = io_pipe.in.bits.is2exe_bjtpe[0m
+[0m[[0m[31merror[0m] [0m[0m                                ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:55:32: value is2exe_rfwe is not a member of npc.core.idu.IDUIO_pipe_out[0m
+[0m[[0m[31merror[0m] [0m[0m    val rfwe = io_pipe.in.bits.is2exe_rfwe[0m
+[0m[[0m[31merror[0m] [0m[0m                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:56:35: value is2exe_rd_addr is not a member of npc.core.idu.IDUIO_pipe_out[0m
+[0m[[0m[31merror[0m] [0m[0m    val rd_addr = io_pipe.in.bits.is2exe_rd_addr[0m
+[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:57:31: value is2exe_ch1 is not a member of npc.core.idu.IDUIO_pipe_out[0m
+[0m[[0m[31merror[0m] [0m[0m    val ch1 = io_pipe.in.bits.is2exe_ch1[0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:58:31: value is2exe_ch2 is not a member of npc.core.idu.IDUIO_pipe_out[0m
+[0m[[0m[31merror[0m] [0m[0m    val ch2 = io_pipe.in.bits.is2exe_ch2[0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/exu/EXU.scala:59:31: value is2exe_ch3 is not a member of npc.core.idu.IDUIO_pipe_out[0m
+[0m[[0m[31merror[0m] [0m[0m    val ch3 = io_pipe.in.bits.is2exe_ch3[0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:25:43: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int[0m
+[0m[[0m[31merror[0m] [0m[0m required: chisel3.Width[0m
+[0m[[0m[31merror[0m] [0m[0m    val id2is_ch1tpe = Output(UInt(CH1Tpe.CH1Tpe_Width))[0m
+[0m[[0m[31merror[0m] [0m[0m                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/idu/IDU.scala:26:43: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int[0m
+[0m[[0m[31merror[0m] [0m[0m required: chisel3.Width[0m
+[0m[[0m[31merror[0m] [0m[0m    val id2is_ch2tpe = Output(UInt(CH2Tpe.CH2Tpe_Width))[0m
+[0m[[0m[31merror[0m] [0m[0m                                          ^[0m
+[0m[[0m[31merror[0m] [0m[0m11 errors found[0m
