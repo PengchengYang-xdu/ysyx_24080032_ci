@@ -5,7 +5,7 @@ import chisel3.util._
 import npc.common.Config._
 import npc.common._
 import npc.common.Instructions._
-import npc.core.exu._
+import npc.core.exu
 /*
               ___ _____ _   _ _____ ____  ____ ___ ____
              / _ \_   _| | | | ____|  _ \/ ___|_ _/ ___|

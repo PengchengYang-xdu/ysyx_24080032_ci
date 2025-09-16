@@ -5,7 +5,6 @@ import chisel3.util._
 import npc.common.Config._
 import npc.common._
 import npc.common.Instructions._
-import npc.core.exu._
 
 class CSRIO_in extends Bundle{
     val op1 = Output(UInt(WORD_LEN.W))

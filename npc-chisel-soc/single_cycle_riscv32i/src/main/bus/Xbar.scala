@@ -4,9 +4,14 @@ import chisel3._
 import chisel3.util._
 import npc.bus.axi._
 import npc.common.Config._
-import npc.common._
 import npc.bus.axi.AXI4Connector._
-
+/*
+            __  ______    _    ____
+            \ \/ / __ )  / \  |  _ \
+             \  /|  _ \ / _ \ | |_) |
+             /  \| |_) / ___ \|  _ <
+            /_/\_\____/_/   \_\_| \_\
+*/
 /*              This is the SOC version                        */
 /*              combine Arbiter and Xbar together              */
 class XbarIO extends Bundle{
