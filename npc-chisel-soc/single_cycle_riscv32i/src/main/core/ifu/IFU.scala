@@ -45,7 +45,7 @@ class IFUIO_pipe extends Bundle{
 class IFU extends Module {
     val io = IO(new IFUIO)
     val io_pipe = IO(new IFUIO_pipe)
-    val io_bj = Flipped(Valid(new EXU_BJIO))
+    val io_bj = Flipped(IO(new EXU_BJIO))
 
     dontTouch(io_pipe)
 
@@ -150,7 +150,7 @@ class IFU extends Module {
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
-    pc_next := pc_plus4
+    pc_next := Mux(io_bj.valid, io_bj.target, pc_plus4)
 
     //connect
     araddr := reg_pc
