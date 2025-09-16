@@ -23,7 +23,7 @@ class EXU_BJIO extends Bundle {
 }
 class EXUIO_FOR extends Bundle {
     val valid = Output(Bool())
-    val processtpe = Output(UInt(ProcessTpe.ProcessTpe_Width.W))
+    val processunit = Output(UInt(ProcessUnit.ProcessUnit_Width.W))
     val gpr_we = Output(Bool())
     val gpr_wdata = Output(UInt(WORD_LEN.W))
     val gpr_waddr = Output(UInt(ADDR_LEN.W))
@@ -119,7 +119,7 @@ class EXU extends Module {
     io_pipe.out.bits.exe2wb_gpr_waddr := rd_addr
 
     io_for.valid := exefsh
-    io_for.processtpe := processtpe
+    io_for.processunit := processunit
     io_for.gpr_we := rfwe
     io_for.gpr_wdata := gpr_wdata
     io_for.gpr_wdata := rd_addr

@@ -85,7 +85,7 @@ class ISU extends Module{
 */
     def isDepend(addr: UInt, rd_addr: UInt, rfwe: Bool): Bool = (addr =/= 0.U) && (addr === rd_addr) && rfwe
     val validForEX = io_for_ex.valid && (io_for_ex.gpr_we === RFwe.RFwe_y)
-    val dontForEX = io_for_ex.processtpe === ProcessTpe.CSR
+    val dontForEX = io_for_ex.processunit === ProcessUnit.CSR
     val rs1DependEX = isDepend(rs1_addr, io_for_ex.gpr_waddr, validForEX)
     val rs2DependEX = isDepend(rs2_addr, io_for_ex.gpr_waddr, validForEX)
 
@@ -101,13 +101,13 @@ class ISU extends Module{
     val sb = new ScoreBoard
     val ch1Ready = ~sb.isBusy(rs1_addr) || rs1ForEX || rs1ForWB || io_pipe.in.bits.id2is_ch1tpe =/= CH1Tpe.CH1Tpe_RS1
     val ch2Ready = ~sb.isBusy(rs2_addr) || rs2ForEX || rs2ForWB || io_pipe.in.bits.id2is_ch2tpe =/= CH2Tpe.CH2Tpe_RS2
-    val useCh3 = io_pipe.in.bits.id2is_bjtpe.orR || (io_pipe.in.bits.id2is_processtpe === ProcessTpe.LSU && io_pipe.in.bits.id2is_processtpe(3))
+    val useCh3 = io_pipe.in.bits.id2is_bjtpe.orR || (io_pipe.in.bits.id2is_processunit === ProcessUnit.LSU && io_pipe.in.bits.id2is_processtpe(3))
     val ch3Ready = ~useCh3 || io_pipe.in.bits.id2is_bjtpe.orR || (~sb.isBusy(rs1_addr) || rs1ForEX || rs1ForWB)
 
     val isudone = ch1Ready || ch2Ready || ch3Ready
 
     val wbClearMask = Mux(io_for_wb.gpr_we === RFwe.RFwe_y && !isDepend(io_for_wb.gpr_waddr, io_for_ex.gpr_waddr, io_for_ex.gpr_we === RFwe.RFwe_y), sb.mask(io_for_wb.gpr_waddr), 0.U(GPR_NUM.W))
-    val isuFireSetMask = Mux(io.out.fire, sb.mask(io_pipe.in.bits.id2is_rd_addr), 0.U)
+    val isuFireSetMask = Mux(io_pipe.out.fire, sb.mask(io_pipe.in.bits.id2is_rd_addr), 0.U)
     when (io_flush.is_flush) { sb.update(0.U, Fill(GPR_NUM, 1.U(1.W))) }
     .otherwise { sb.update(isuFireSetMask, wbClearMask) }
 
