@@ -49,7 +49,7 @@ class ALU extends Module{
     ))
     //Comp
     val compu_out = !add_sub_out(WORD_LEN.U)
-    val comps_out = xor_out(WORD_LEN.U - 1.U) ^ compu_out
+    val comps_out = xor_out((WORD_LEN - 1).U) ^ compu_out
     //alu_out
     io.out.bits.alu_out := Mux(
         processtpe(3), add_sub_out, Mux(
