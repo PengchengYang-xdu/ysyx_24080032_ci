@@ -45,6 +45,7 @@ class WBU extends Module {
     dontTouch(io_pipe)
 
     io_pipe.in.ready := true.B
+    io_pipe.out.valid := true.B
     io.gpr_we := io_pipe.in.bits.exe2wb_gpr_we
     io.gpr_waddr := io_pipe.in.bits.exe2wb_gpr_waddr
     io.gpr_wdata := io_pipe.in.bits.exe2wb_gpr_wdata
