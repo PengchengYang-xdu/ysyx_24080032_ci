@@ -8,18 +8,7 @@ import npc.common.Instructions._
 import npc.core.ifu._
 import npc.core._
 import chisel3.util.experimental.decode._
-/*
-              ___ _____ _   _ _____ ____  ____ ___ ____
-             / _ \_   _| | | | ____|  _ \/ ___|_ _/ ___|
-            | | | || | | |_| |  _| | |_) \___ \| | |  _
-            | |_| || | |  _  | |___|  _ < ___) | | |_| |
-             \___/ |_| |_| |_|_____|_| \_\____/___\____|
-*/
-class IDUIO extends Bundle{
-    val gpr_we = Input(Bool())
-    val gpr_wdata = Input(UInt(WORD_LEN.W))
-    val gpr_waddr = Input(UInt(ADDR_LEN.W))
-}
+
 /*
              ____ ___ ____  _____ ____ ___ ____
             |  _ \_ _|  _ \| ____/ ___|_ _/ ___|
@@ -28,14 +17,18 @@ class IDUIO extends Bundle{
             |_|  |___|_|   |_____|____/___\____|
 */
 class IDUIO_pipe_out extends Bundle{
-    val id2exe_processunit = Output(UInt(ProcessUnit.ProcessUnit_Width.W))
-    val id2exe_processtpe = Output(UInt(ProcessTpe.ProcessTpe_Width.W))
-    val id2exe_bjtpe = Output(UInt(BJTpe.BJTpe_Width.W))
-    val id2exe_rfwe = Output(UInt(RFwe.RFwe_Width.W))
-    val id2exe_rd_addr = Output(UInt(ADDR_LEN.W))
-    val id2exe_ch1 = Output(UInt(WORD_LEN.W))
-    val id2exe_ch2 = Output(UInt(WORD_LEN.W))
-    val id2exe_ch3 = Output(UInt(WORD_LEN.W))
+    val id2is_processunit = Output(UInt(ProcessUnit.ProcessUnit_Width.W))
+    val id2is_processtpe = Output(UInt(ProcessTpe.ProcessTpe_Width.W))
+    val id2is_bjtpe = Output(UInt(BJTpe.BJTpe_Width.W))
+    val id2is_rfwe = Output(UInt(RFwe.RFwe_Width.W))
+    val id2is_rd_addr = Output(UInt(ADDR_LEN.W))
+    val id2is_ch1tpe = Output(UInt(CH1Tpe.CH1Tpe_Width))
+    val id2is_ch2tpe = Output(UInt(CH2Tpe.CH2Tpe_Width))
+    val id2is_rs1_addr = Output(UInt(ADDR_LEN.W))
+    val id2is_rs2_addr = Output(UInt(ADDR_LEN.W))
+    val id2is_reg_pc = Output(UInt(WORD_LEN.W))
+    val id2is_imm = Output(UInt(WORD_LEN.W))
+    val id2is_csr_addr = Output(UInt(CSR_ADDR_LEN.W))
 }
 class IDUIO_pipe extends Bundle{
     val in = Flipped(Decoupled(new IFUIO_pipe_out))
@@ -53,19 +46,6 @@ class IDU extends Module{
     val io_pipe = IO(new IDUIO_pipe)
     val inst = io_pipe.in.bits.if2id_inst
     val reg_pc = io_pipe.in.bits.if2id_reg_pc
-/*
-              ____ ____  ____
-             / ___|  _ \|  _ \
-            | |  _| |_) | |_) |
-            | |_| |  __/|  _ <
-             \____|_|   |_| \_\
-*/
-    val gpr = new GPR
-    val rs1_data = gpr.read(inst(19, 15))
-    val rs2_data = gpr.read(inst(24, 20))
-    when(io.gpr_we){
-        gpr.write(io.gpr_waddr, io.gpr_wdata)
-    }
 /*
              ____  _____ ____ ___  ____  _____ ____
             |  _ \| ____/ ___/ _ \|  _ \| ____|  _ \
@@ -90,30 +70,19 @@ class IDU extends Module{
         IMMTpe.IMM_TYPE_B -> imm_b
     )).asUInt
 
-    val rd_addr = inst(11, 7)
-    val csr_addr = inst(31, 20)
-
-    val ch1 = Mux1H(Seq(
-        (decodeBundle(MyCH1Tpe) === CH1Tpe.CH1Tpe_RS1) -> rs1_data,
-        (decodeBundle(MyCH1Tpe) === CH1Tpe.CH1Tpe_PC) -> reg_pc
-    ))
-    val ch2 = Mux1H(Seq(
-        (decodeBundle(MyCH2Tpe) === CH2Tpe.CH2Tpe_IMM) -> imm,
-        (decodeBundle(MyCH2Tpe) === CH2Tpe.CH2Tpe_CSR_ADDR) -> csr_addr,
-        (decodeBundle(MyCH2Tpe) === CH2Tpe.CH2Tpe_RS2) -> rs2_data
-    ))
-    val ch3 = Mux(decodeBundle(MyBJTpe).orR, reg_pc, rs1_data) +& imm
-
-
     //pipeline
-    io_pipe.out.bits.id2exe_processunit := decodeBundle(MyProcessUnit)
-    io_pipe.out.bits.id2exe_processtpe := decodeBundle(MyProcessTpe)
-    io_pipe.out.bits.id2exe_bjtpe := decodeBundle(MyBJTpe)
-    io_pipe.out.bits.id2exe_rfwe := decodeBundle(MyRFwe)
-    io_pipe.out.bits.id2exe_rd_addr := rd_addr
-    io_pipe.out.bits.id2exe_ch1 := ch1
-    io_pipe.out.bits.id2exe_ch2 := ch2
-    io_pipe.out.bits.id2exe_ch3 := ch3
+    io_pipe.out.bits.id2is_processunit := decodeBundle(MyProcessUnit)
+    io_pipe.out.bits.id2is_processtpe := decodeBundle(MyProcessTpe)
+    io_pipe.out.bits.id2is_bjtpe := decodeBundle(MyBJTpe)
+    io_pipe.out.bits.id2is_rfwe := decodeBundle(MyRFwe)
+    io_pipe.out.bits.id2is_rd_addr := inst(11, 7)
+    io_pipe.out.bits.id2is_ch1tpe := decodeBundle(MyCH1Tpe)
+    io_pipe.out.bits.id2is_ch2tpe := decodeBundle(MyCH2Tpe)
+    io_pipe.out.bits.id2is_rs1_addr := inst(19, 15)
+    io_pipe.out.bits.id2is_rs2_addr := inst(24, 20)
+    io_pipe.out.bits.id2is_reg_pc := reg_pc
+    io_pipe.out.bits.id2is_imm := imm
+    io_pipe.out.bits.id2is_csr_addr := inst(31, 20)
 
 
     class Ebreak extends BlackBox with HasBlackBoxPath{

@@ -9,6 +9,7 @@ import npc.common.Instructions._
 import npc.core._
 import npc.core.ifu._
 import npc.core.idu._
+import npc.core.isu._
 import npc.core.exu._
 import npc.core.wbu._
 import npc.perip._
@@ -25,6 +26,7 @@ class Core extends Module {
 
     val ifu = Module(new IFU)
     val idu = Module(new IDU)
+    val isu = Module(new ISU)
     val exu = Module(new EXU)
     val wbu = Module(new WBU)
 
@@ -39,6 +41,7 @@ class Core extends Module {
     val ready_r = RegNext(ifu.io_pipe.in.ready)
     ifu.io_pipe.in.valid := RegEnable(true.B, ifu.io_pipe.in.valid, ifu.io_pipe.in.ready & ready_r)
     pipelineConnect(ifu.io_pipe.out, idu.io_pipe.in)
+    pipelineConnect(isu.io_pipe.out, isu.io_pipe.in)
     pipelineConnect(idu.io_pipe.out, exu.io_pipe.in)
     pipelineConnect(exu.io_pipe.out, wbu.io_pipe.in)
 
@@ -67,9 +70,9 @@ class Core extends Module {
             | |_| || | |  _  | |___|  _ <
              \___/ |_| |_| |_|_____|_| \_\
 */
-    idu.io.gpr_we := wbu.io.gpr_we
-    idu.io.gpr_waddr := wbu.io.gpr_waddr
-    idu.io.gpr_wdata := wbu.io.gpr_wdata
+    isu.io.gpr_we := wbu.io.gpr_we
+    isu.io.gpr_waddr := wbu.io.gpr_waddr
+    isu.io.gpr_wdata := wbu.io.gpr_wdata
 
     ifu.io_bj.valid := exu.io_bj.valid
     ifu.io_bj.target := exu.io_bj.target
