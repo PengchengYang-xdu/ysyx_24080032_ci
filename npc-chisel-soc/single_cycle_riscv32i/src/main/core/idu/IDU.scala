@@ -42,7 +42,6 @@ class IDUIO_pipe extends Bundle{
             |___|____/ \___/
 */
 class IDU extends Module{
-    val io = IO(new IDUIO)
     val io_pipe = IO(new IDUIO_pipe)
     val inst = io_pipe.in.bits.if2id_inst
     val reg_pc = io_pipe.in.bits.if2id_reg_pc
