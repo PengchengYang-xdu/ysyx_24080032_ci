@@ -49,14 +49,14 @@ class EXU extends Module {
     val io_bj = IO(new EXU_BJIO)
     val io_pipe = IO(new EXUIO_pipe)
 
-    val processunit = io_pipe.in.bits.id2exe_processunit
-    val processtpe = io_pipe.in.bits.id2exe_processtpe
-    val bjtpe = io_pipe.in.bits.id2exe_bjtpe
-    val rfwe = io_pipe.in.bits.id2exe_rfwe
-    val rd_addr = io_pipe.in.bits.id2exe_rd_addr
-    val ch1 = io_pipe.in.bits.id2exe_ch1
-    val ch2 = io_pipe.in.bits.id2exe_ch2
-    val ch3 = io_pipe.in.bits.id2exe_ch3
+    val processunit = io_pipe.in.bits.is2exe_processunit
+    val processtpe = io_pipe.in.bits.is2exe_processtpe
+    val bjtpe = io_pipe.in.bits.is2exe_bjtpe
+    val rfwe = io_pipe.in.bits.is2exe_rfwe
+    val rd_addr = io_pipe.in.bits.is2exe_rd_addr
+    val ch1 = io_pipe.in.bits.is2exe_ch1
+    val ch2 = io_pipe.in.bits.is2exe_ch2
+    val ch3 = io_pipe.in.bits.is2exe_ch3
 /*
               ____ ____  ____
              / ___/ ___||  _ \
