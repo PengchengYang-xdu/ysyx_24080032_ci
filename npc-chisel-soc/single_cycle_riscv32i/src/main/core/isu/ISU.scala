@@ -6,6 +6,8 @@ import npc.common.Config._
 import npc.common._
 import npc.common.Instructions._
 import npc.core.idu._
+import npc.core.exu._
+import npc.core.wbu._
 /*
               ___ _____ _   _ _____ ____  ____ ___ ____
              / _ \_   _| | | | ____|  _ \/ ___|_ _/ ___|
@@ -17,6 +19,9 @@ class ISUIO extends Bundle{
     val gpr_we = Input(Bool())
     val gpr_wdata = Input(UInt(WORD_LEN.W))
     val gpr_waddr = Input(UInt(ADDR_LEN.W))
+}
+class ISU_FLUSH extends Bundle{
+    val is_flush = Input(Bool())
 }
 /*
              ____ ___ ____  _____ ____ ___ ____
@@ -49,6 +54,9 @@ class ISUIO_pipe extends Bundle {
 class ISU extends Module{
     val io_pipe = IO(new ISUIO_pipe)
     val io = IO(new ISUIO)
+    val io_for_ex = IO(Flipped(new EXUIO_FOR))
+    val io_for_wb = IO(Flipped(new WBUIO_FOR))
+    val io_flush = IO(new ISU_FLUSH)
 /*
               ____ ____  ____
              / ___|  _ \|  _ \
@@ -57,12 +65,51 @@ class ISU extends Module{
              \____|_|   |_| \_\
 */
     val gpr = new GPR
-    val rs1_data = gpr.read(io_pipe.in.bits.id2is_rs1_addr)
-    val rs2_data = gpr.read(io_pipe.in.bits.id2is_rs2_addr)
-    when(io.gpr_we){
+    val rs1_addr = io_pipe.in.bits.id2is_rs1_addr
+    val rs2_addr = io_pipe.in.bits.id2is_rs2_addr
+    val rs1_data = gpr.read(rs1_addr)
+    val rs2_data = gpr.read(rs2_addr)
+    when(io.gpr_we === RFwe.RFwe_y){
         gpr.write(io.gpr_waddr, io.gpr_wdata)
     }
+/*
+             ____    _  _____  _
+            |  _ \  / \|_   _|/ \
+            | | | |/ _ \ | | / _ \
+            | |_| / ___ \| |/ ___ \
+            |____/_/__ \_\_/_/   \_\  ___    ____  ____ ___ _   _  ____
+            |  ___/ _ \|  _ \ \      / / \  |  _ \|  _ \_ _| \ | |/ ___|
+            | |_ | | | | |_) \ \ /\ / / _ \ | |_) | | | | ||  \| | |  _
+            |  _|| |_| |  _ < \ V  V / ___ \|  _ <| |_| | || |\  | |_| |
+            |_|   \___/|_| \_\ \_/\_/_/   \_\_| \_\____/___|_| \_|\____|
+*/
+    def isDepend(addr: UInt, rd_addr: UInt, rfwe: Bool): Bool = (addr =/= 0.U) && (addr === rd_addr) && rfwe
+    val validForEX = io_for_ex.valid && (io_for_ex.gpr_we === RFwe.RFwe_y)
+    val dontForEX = io_for_ex.processtpe === ProcessTpe.CSR
+    val rs1DependEX = isDepend(rs1_addr, io_for_ex.gpr_waddr, validForEX)
+    val rs2DependEX = isDepend(rs2_addr, io_for_ex.gpr_waddr, validForEX)
 
+    val validForWB = io_for_wb.gpr_we === RFwe.RFwe_y
+    val rs1DependWB = isDepend(rs1_addr, io_for_wb.gpr_waddr, validForWB)
+    val rs2DependWB = isDepend(rs2_addr, io_for_wb.gpr_waddr, validForWB)
+
+    val rs1ForEX = rs1DependEX && ~dontForEX
+    val rs2ForEX = rs2DependEX && ~dontForEX
+    val rs1ForWB = rs1DependWB && Mux(dontForEX, ~rs1DependEX, true.B)
+    val rs2ForWB = rs2DependWB && Mux(dontForEX, ~rs2DependEX, true.B)
+
+    val sb = new ScoreBoard
+    val ch1Ready = ~sb.isBusy(rs1_addr) || rs1ForEX || rs1ForWB || io_pipe.in.bits.id2is_ch1tpe =/= CH1Tpe.CH1Tpe_RS1
+    val ch2Ready = ~sb.isBusy(rs2_addr) || rs2ForEX || rs2ForWB || io_pipe.in.bits.id2is_ch2tpe =/= CH2Tpe.CH2Tpe_RS2
+    val useCh3 = io_pipe.in.bits.id2is_bjtpe.orR || (io_pipe.in.bits.id2is_processtpe === ProcessTpe.LSU && io_pipe.in.bits.id2is_processtpe(3))
+    val ch3Ready = ~useCh3 || io_pipe.in.bits.id2is_bjtpe.orR || (~sb.isBusy(rs1_addr) || rs1ForEX || rs1ForWB)
+
+    val isudone = ch1Ready || ch2Ready || ch3Ready
+
+    val wbClearMask = Mux(io_for_wb.gpr_we === RFwe.RFwe_y && !isDepend(io_for_wb.gpr_waddr, io_for_ex.gpr_waddr, io_for_ex.gpr_we === RFwe.RFwe_y), sb.mask(io_for_wb.gpr_waddr), 0.U(GPR_NUM.W))
+    val isuFireSetMask = Mux(io.out.fire, sb.mask(io_pipe.in.bits.id2is_rd_addr), 0.U)
+    when (io_flush.is_flush) { sb.update(0.U, Fill(GPR_NUM, 1.U(1.W))) }
+    .otherwise { sb.update(isuFireSetMask, wbClearMask) }
 
 
 
@@ -72,15 +119,24 @@ class ISU extends Module{
 
 
     val ch1 = Mux1H(Seq(
-        (io_pipe.in.bits.id2is_ch1tpe === CH1Tpe.CH1Tpe_RS1) -> rs1_data,
-        (io_pipe.in.bits.id2is_ch1tpe === CH1Tpe.CH1Tpe_PC) -> io_pipe.in.bits.id2is_reg_pc
+        (io_pipe.in.bits.id2is_ch1tpe === CH1Tpe.CH1Tpe_PC) -> io_pipe.in.bits.id2is_reg_pc,
+        (rs1ForEX) -> io_for_ex.gpr_wdata,
+        (rs1ForWB) -> io_for_wb.gpr_wdata,
+        (io_pipe.in.bits.id2is_ch1tpe === CH1Tpe.CH1Tpe_RS1 && ~(rs1ForEX || rs1ForWB)) -> rs1_data
     ))
     val ch2 = Mux1H(Seq(
         (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_IMM) -> io_pipe.in.bits.id2is_imm,
         (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_CSR_ADDR) -> io_pipe.in.bits.id2is_csr_addr,
-        (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_RS2) -> rs2_data
+        (rs2ForEX) -> io_for_ex.gpr_wdata,
+        (rs2ForWB) -> io_for_wb.gpr_wdata,
+        (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_RS2 && ~(rs2ForEX || rs2ForWB)) -> rs2_data
     ))
-    val ch3 = Mux(io_pipe.in.bits.id2is_bjtpe.orR, io_pipe.in.bits.id2is_reg_pc, rs1_data) +& io_pipe.in.bits.id2is_imm
+    val ch3_rs1 = Mux1H(Seq(
+        (rs1ForEX) -> io_for_ex.gpr_wdata,
+        (rs1ForWB) -> io_for_wb.gpr_wdata,
+        (~(rs1ForEX || rs1ForWB)) -> rs1_data
+    ))
+    val ch3 = Mux(io_pipe.in.bits.id2is_bjtpe.orR, io_pipe.in.bits.id2is_reg_pc, ch3_rs1) +& io_pipe.in.bits.id2is_imm
 
     io_pipe.out.bits.is2exe_processunit := io_pipe.in.bits.id2is_processunit
     io_pipe.out.bits.is2exe_processtpe := io_pipe.in.bits.id2is_processtpe
@@ -129,7 +185,7 @@ class ISU extends Module{
         }
         is(s_AfterPreFire){
             in_ready := false.B
-            out_valid := true.B
+            out_valid := true.B && isudone
         }
     }
 

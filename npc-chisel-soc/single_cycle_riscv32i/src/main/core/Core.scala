@@ -77,7 +77,10 @@ class Core extends Module {
     ifu.io_bj.valid := exu.io_bj.valid
     ifu.io_bj.target := exu.io_bj.target
 
+    isu.io_for_ex <> exu.io_for
+    isu.io_for_wb <> wbu.io_for
 
+    isu.io_flush := false.B
 
 
 

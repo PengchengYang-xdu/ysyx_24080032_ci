@@ -18,6 +18,11 @@ class WBUIO extends Bundle {
     val gpr_waddr = Output(UInt(ADDR_LEN.W))
     val gpr_wdata = Output(UInt(WORD_LEN.W))
 }
+class WBUIO_FOR extends Bundle {
+    val gpr_we = Output(Bool())
+    val gpr_wdata = Output(UInt(WORD_LEN.W))
+    val gpr_waddr = Output(UInt(ADDR_LEN.W))
+}
 /*
              ____ ___ ____  _____ ____ ___ ____
             |  _ \_ _|  _ \| ____/ ___|_ _/ ___|
@@ -41,6 +46,7 @@ class WBUIO_pipe extends Bundle {
 class WBU extends Module {
     val io = IO(new WBUIO)
     val io_pipe = IO(new WBUIO_pipe)
+    val io_for = IO(new WBUIO_FOR)
 
     dontTouch(io_pipe)
 
@@ -49,5 +55,9 @@ class WBU extends Module {
     io.gpr_we := io_pipe.in.bits.exe2wb_gpr_we
     io.gpr_waddr := io_pipe.in.bits.exe2wb_gpr_waddr
     io.gpr_wdata := io_pipe.in.bits.exe2wb_gpr_wdata
+
+    io_for.gpr_we := io_pipe.in.bits.exe2wb_gpr_we
+    io_for.gpr_waddr := io_pipe.in.bits.exe2wb_gpr_waddr
+    io_for.gpr_wdata := io_pipe.in.bits.exe2wb_gpr_wdata
 }
 
