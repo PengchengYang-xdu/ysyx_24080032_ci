@@ -40,8 +40,13 @@ class ISUIO_pipe extends Bundle {
     val in = Flipped(Decoupled(new IDUIO_pipe_out))
     val out = Decoupled(new ISUIO_pipe_out)
 }
-
-
+/*
+             ___ ____  _   _
+            |_ _/ ___|| | | |
+             | |\___ \| | | |
+             | | ___) | |_| |
+            |___|____/ \___/
+*/
 class ISU extends Module{
     val io_pipe = IO(new ISUIO_pipe)
     val io = IO(new ISUIO)
@@ -58,13 +63,15 @@ class ISU extends Module{
     when(io.gpr_we){
         gpr.write(io.gpr_waddr, io.gpr_wdata)
     }
-/*
-             ___ ____  _   _
-            |_ _/ ___|| | | |
-             | |\___ \| | | |
-             | | ___) | |_| |
-            |___|____/ \___/
-*/
+
+
+
+
+
+
+
+
+
     val ch1 = Mux1H(Seq(
         (io_pipe.in.bits.id2is_ch1tpe === CH1Tpe.CH1Tpe_RS1) -> rs1_data,
         (io_pipe.in.bits.id2is_ch1tpe === CH1Tpe.CH1Tpe_PC) -> io_pipe.in.bits.id2is_reg_pc
@@ -84,5 +91,48 @@ class ISU extends Module{
     io_pipe.out.bits.is2exe_ch1 := ch1
     io_pipe.out.bits.is2exe_ch2 := ch2
     io_pipe.out.bits.is2exe_ch3 := ch3
+
+
+
+
+
+
+
+/*
+             _   _    _    _   _ ____  ____  _   _    _    _  _______
+            | | | |  / \  | \ | |  _ \/ ___|| | | |  / \  | |/ / ____|
+            | |_| | / _ \ |  \| | | | \___ \| |_| | / _ \ | ' /|  _|
+            |  _  |/ ___ \| |\  | |_| |___) |  _  |/ ___ \| . \| |___
+            |_| |_/_/   \_\_| \_|____/|____/|_| |_/_/   \_\_|\_\_____|
+*/
+    //handshake between modules
+    val in_ready = RegInit(false.B)
+    val out_valid = RegInit(false.B)
+    io_pipe.in.ready := in_ready
+    io_pipe.out.valid := out_valid
+
+    val s_BeforePreFire :: s_AfterPreFire :: Nil = Enum(2)
+    val c_state = RegInit(s_BeforePreFire)
+    val n_state = WireDefault(c_state)
+    dontTouch(n_state)
+
+    c_state := n_state//first phase
+
+    n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
+        s_BeforePreFire  ->  Mux(io_pipe.in.fire, s_AfterPreFire, s_BeforePreFire),
+        s_AfterPreFire   ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
+    ))
+
+    switch(n_state){//third phase
+        is(s_BeforePreFire){
+            in_ready := true.B
+            out_valid := false.B
+        }
+        is(s_AfterPreFire){
+            in_ready := false.B
+            out_valid := true.B
+        }
+    }
+
 }
 

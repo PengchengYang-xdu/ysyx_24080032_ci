@@ -110,7 +110,13 @@ class EXU extends Module {
     io_pipe.out.bits.exe2wb_gpr_waddr := rd_addr
 
 
-
+/*
+             _   _    _    _   _ ____  ____  _   _    _    _  _______
+            | | | |  / \  | \ | |  _ \/ ___|| | | |  / \  | |/ / ____|
+            | |_| | / _ \ |  \| | | | \___ \| |_| | / _ \ | ' /|  _|
+            |  _  |/ ___ \| |\  | |_| |___) |  _  |/ ___ \| . \| |___
+            |_| |_/_/   \_\_| \_|____/|____/|_| |_/_/   \_\_|\_\_____|
+*/
     //handshake between modules
     val in_ready = RegInit(false.B)
     val out_valid = RegInit(false.B)
