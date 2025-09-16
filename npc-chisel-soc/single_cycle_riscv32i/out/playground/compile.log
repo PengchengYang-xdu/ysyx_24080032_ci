@@ -1,8 +1,5 @@
 [0m[[0m[0minfo[0m] [0m[0mcompiling 12 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/ifu/IFU.scala:47:32: not found: type EXU_BJIO[0m
-[0m[[0m[31merror[0m] [0m[0m    val io_bj = IO(Flipped(new EXU_BJIO))[0m
-[0m[[0m[31merror[0m] [0m[0m                               ^[0m
 [0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/core/wbu/WBU.scala:31:36: not found: type EXUIO_pipe_out[0m
 [0m[[0m[31merror[0m] [0m[0m    val in = Flipped(Decoupled(new EXUIO_pipe_out))[0m
 [0m[[0m[31merror[0m] [0m[0m                                   ^[0m
-[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
