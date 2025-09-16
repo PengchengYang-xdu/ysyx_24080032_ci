@@ -45,7 +45,7 @@ class IFUIO_pipe extends Bundle{
 class IFU extends Module {
     val io = IO(new IFUIO)
     val io_pipe = IO(new IFUIO_pipe)
-    val io_bj = Flipped(IO(new EXU_BJIO))
+    val io_bj = IO(Flipped(new EXU_BJIO))
 
     dontTouch(io_pipe)
 
