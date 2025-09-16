@@ -65,6 +65,6 @@ class CSR extends Module {
     io.out.valid := io.in.valid
 
     //ecall and mret
-    io_bj.valid := (processtpe(1) === "b1".U) && io.in.valid
+    io_bj.valid := io.in.valid
     io_bj.bits.target := Mux(processtpe(0), mtvec, mepc)
 }
