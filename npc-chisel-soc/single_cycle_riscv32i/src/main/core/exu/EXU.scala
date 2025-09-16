@@ -122,7 +122,7 @@ class EXU extends Module {
     io_for.processunit := processunit
     io_for.gpr_we := rfwe
     io_for.gpr_wdata := gpr_wdata
-    io_for.gpr_wdata := rd_addr
+    io_for.gpr_waddr := rd_addr
 
 /*
              _   _    _    _   _ ____  ____  _   _    _    _  _______
