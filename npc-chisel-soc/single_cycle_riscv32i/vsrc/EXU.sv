@@ -79,14 +79,14 @@ module EXU(	// @[src/main/core/exu/EXU.scala:47:7]
   output [31:0] io_bj_target,	// @[src/main/core/exu/EXU.scala:49:19]
   output        io_pipe_in_ready,	// @[src/main/core/exu/EXU.scala:50:21]
   input         io_pipe_in_valid,	// @[src/main/core/exu/EXU.scala:50:21]
-  input  [1:0]  io_pipe_in_bits_id2exe_processunit,	// @[src/main/core/exu/EXU.scala:50:21]
-  input  [3:0]  io_pipe_in_bits_id2exe_processtpe,	// @[src/main/core/exu/EXU.scala:50:21]
-  input  [2:0]  io_pipe_in_bits_id2exe_bjtpe,	// @[src/main/core/exu/EXU.scala:50:21]
-  input         io_pipe_in_bits_id2exe_rfwe,	// @[src/main/core/exu/EXU.scala:50:21]
-  input  [3:0]  io_pipe_in_bits_id2exe_rd_addr,	// @[src/main/core/exu/EXU.scala:50:21]
-  input  [31:0] io_pipe_in_bits_id2exe_ch1,	// @[src/main/core/exu/EXU.scala:50:21]
-                io_pipe_in_bits_id2exe_ch2,	// @[src/main/core/exu/EXU.scala:50:21]
-                io_pipe_in_bits_id2exe_ch3,	// @[src/main/core/exu/EXU.scala:50:21]
+  input  [1:0]  io_pipe_in_bits_is2exe_processunit,	// @[src/main/core/exu/EXU.scala:50:21]
+  input  [3:0]  io_pipe_in_bits_is2exe_processtpe,	// @[src/main/core/exu/EXU.scala:50:21]
+  input  [2:0]  io_pipe_in_bits_is2exe_bjtpe,	// @[src/main/core/exu/EXU.scala:50:21]
+  input         io_pipe_in_bits_is2exe_rfwe,	// @[src/main/core/exu/EXU.scala:50:21]
+  input  [3:0]  io_pipe_in_bits_is2exe_rd_addr,	// @[src/main/core/exu/EXU.scala:50:21]
+  input  [31:0] io_pipe_in_bits_is2exe_ch1,	// @[src/main/core/exu/EXU.scala:50:21]
+                io_pipe_in_bits_is2exe_ch2,	// @[src/main/core/exu/EXU.scala:50:21]
+                io_pipe_in_bits_is2exe_ch3,	// @[src/main/core/exu/EXU.scala:50:21]
   input         io_pipe_out_ready,	// @[src/main/core/exu/EXU.scala:50:21]
   output        io_pipe_out_valid,	// @[src/main/core/exu/EXU.scala:50:21]
                 io_pipe_out_bits_exe2wb_gpr_we,	// @[src/main/core/exu/EXU.scala:50:21]
@@ -94,7 +94,7 @@ module EXU(	// @[src/main/core/exu/EXU.scala:47:7]
   output [3:0]  io_pipe_out_bits_exe2wb_gpr_waddr	// @[src/main/core/exu/EXU.scala:50:21]
 );
 
-  reg         in_ready;	// @[src/main/core/exu/EXU.scala:115:27]
+  reg         in_ready;	// @[src/main/core/exu/EXU.scala:121:27]
   wire        _lsu_io_in_ready;	// @[src/main/core/exu/EXU.scala:94:21]
   wire        _lsu_io_out_valid;	// @[src/main/core/exu/EXU.scala:94:21]
   wire [31:0] _lsu_io_out_bits_gpr_wdata;	// @[src/main/core/exu/EXU.scala:94:21]
@@ -106,31 +106,31 @@ module EXU(	// @[src/main/core/exu/EXU.scala:47:7]
   wire [31:0] _csr_io_out_bits_csr_rdata;	// @[src/main/core/exu/EXU.scala:67:21]
   wire        _csr_io_bj_valid;	// @[src/main/core/exu/EXU.scala:67:21]
   wire [31:0] _csr_io_bj_target;	// @[src/main/core/exu/EXU.scala:67:21]
-  wire        _n_state_T_1 = in_ready & io_pipe_in_valid;	// @[src/main/core/exu/EXU.scala:115:27, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+  wire        _n_state_T_1 = in_ready & io_pipe_in_valid;	// @[src/main/core/exu/EXU.scala:121:27, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   wire        _io_pipe_out_bits_exe2wb_gpr_wdata_T =
-    io_pipe_in_bits_id2exe_processunit == 2'h1;	// @[src/main/core/exu/EXU.scala:68:55]
+    io_pipe_in_bits_is2exe_processunit == 2'h1;	// @[src/main/core/exu/EXU.scala:68:55]
   wire        _io_pipe_out_bits_exe2wb_gpr_wdata_T_1 =
-    io_pipe_in_bits_id2exe_processunit == 2'h2;	// @[src/main/core/exu/EXU.scala:95:55]
-  reg         out_valid;	// @[src/main/core/exu/EXU.scala:116:28]
-  reg         c_state;	// @[src/main/core/exu/EXU.scala:121:26]
-  wire        n_state = c_state ? ~(io_pipe_out_ready & out_valid) : _n_state_T_1;	// @[src/main/core/exu/EXU.scala:104:50, :116:28, :121:26, :122:30, :127:51, :128:33, :129:33, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+    io_pipe_in_bits_is2exe_processunit == 2'h2;	// @[src/main/core/exu/EXU.scala:95:55]
+  reg         out_valid;	// @[src/main/core/exu/EXU.scala:122:28]
+  reg         c_state;	// @[src/main/core/exu/EXU.scala:127:26]
+  wire        n_state = c_state ? ~(io_pipe_out_ready & out_valid) : _n_state_T_1;	// @[src/main/core/exu/EXU.scala:104:50, :122:28, :127:26, :128:30, :133:51, :134:33, :135:33, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   always @(posedge clock) begin	// @[src/main/core/exu/EXU.scala:47:7]
     if (reset) begin	// @[src/main/core/exu/EXU.scala:47:7]
-      in_ready <= 1'h0;	// @[src/main/core/exu/EXU.scala:47:7, :115:27]
-      out_valid <= 1'h0;	// @[src/main/core/exu/EXU.scala:47:7, :116:28]
-      c_state <= 1'h0;	// @[src/main/core/exu/EXU.scala:47:7, :121:26]
+      in_ready <= 1'h0;	// @[src/main/core/exu/EXU.scala:47:7, :121:27]
+      out_valid <= 1'h0;	// @[src/main/core/exu/EXU.scala:47:7, :122:28]
+      c_state <= 1'h0;	// @[src/main/core/exu/EXU.scala:47:7, :127:26]
     end
     else begin	// @[src/main/core/exu/EXU.scala:47:7]
-      if (n_state)	// @[src/main/core/exu/EXU.scala:122:30]
-        in_ready <= ~n_state & in_ready;	// @[src/main/core/exu/EXU.scala:115:27, :122:30, :132:20, :138:22]
-      else	// @[src/main/core/exu/EXU.scala:122:30]
-        in_ready <= _alu_io_in_ready & _lsu_io_in_ready;	// @[src/main/core/exu/EXU.scala:80:21, :94:21, :115:27, :134:60]
+      if (n_state)	// @[src/main/core/exu/EXU.scala:128:30]
+        in_ready <= ~n_state & in_ready;	// @[src/main/core/exu/EXU.scala:121:27, :128:30, :138:20, :144:22]
+      else	// @[src/main/core/exu/EXU.scala:128:30]
+        in_ready <= _alu_io_in_ready & _lsu_io_in_ready;	// @[src/main/core/exu/EXU.scala:80:21, :94:21, :121:27, :140:60]
       out_valid <=
         n_state
         & (n_state
              ? _csr_io_out_valid | _alu_io_out_valid | _lsu_io_out_valid
-             : out_valid);	// @[src/main/core/exu/EXU.scala:67:21, :80:21, :94:21, :106:54, :116:28, :122:30, :132:20, :135:23, :139:23]
-      c_state <= n_state;	// @[src/main/core/exu/EXU.scala:121:26, :122:30]
+             : out_valid);	// @[src/main/core/exu/EXU.scala:67:21, :80:21, :94:21, :106:54, :122:28, :128:30, :138:20, :141:23, :145:23]
+      c_state <= n_state;	// @[src/main/core/exu/EXU.scala:127:26, :128:30]
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// @[src/main/core/exu/EXU.scala:47:7]
@@ -144,9 +144,9 @@ module EXU(	// @[src/main/core/exu/EXU.scala:47:7]
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// @[src/main/core/exu/EXU.scala:47:7]
         _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// @[src/main/core/exu/EXU.scala:47:7]
-        in_ready = _RANDOM[/*Zero width*/ 1'b0][0];	// @[src/main/core/exu/EXU.scala:47:7, :115:27]
-        out_valid = _RANDOM[/*Zero width*/ 1'b0][1];	// @[src/main/core/exu/EXU.scala:47:7, :115:27, :116:28]
-        c_state = _RANDOM[/*Zero width*/ 1'b0][2];	// @[src/main/core/exu/EXU.scala:47:7, :115:27, :121:26]
+        in_ready = _RANDOM[/*Zero width*/ 1'b0][0];	// @[src/main/core/exu/EXU.scala:47:7, :121:27]
+        out_valid = _RANDOM[/*Zero width*/ 1'b0][1];	// @[src/main/core/exu/EXU.scala:47:7, :121:27, :122:28]
+        c_state = _RANDOM[/*Zero width*/ 1'b0][2];	// @[src/main/core/exu/EXU.scala:47:7, :121:27, :127:26]
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/core/exu/EXU.scala:47:7]
@@ -157,9 +157,9 @@ module EXU(	// @[src/main/core/exu/EXU.scala:47:7]
     .clock                 (clock),
     .reset                 (reset),
     .io_in_valid           (_n_state_T_1 & _io_pipe_out_bits_exe2wb_gpr_wdata_T),	// @[src/main/core/exu/EXU.scala:68:{40,55}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
-    .io_in_bits_op1        (io_pipe_in_bits_id2exe_ch1),
-    .io_in_bits_op2        (io_pipe_in_bits_id2exe_ch2),
-    .io_in_bits_processtpe (io_pipe_in_bits_id2exe_processtpe),
+    .io_in_bits_op1        (io_pipe_in_bits_is2exe_ch1),
+    .io_in_bits_op2        (io_pipe_in_bits_is2exe_ch2),
+    .io_in_bits_processtpe (io_pipe_in_bits_is2exe_processtpe),
     .io_out_valid          (_csr_io_out_valid),
     .io_out_bits_csr_rdata (_csr_io_out_bits_csr_rdata),
     .io_bj_valid           (_csr_io_bj_valid),
@@ -167,11 +167,11 @@ module EXU(	// @[src/main/core/exu/EXU.scala:47:7]
   );
   ALU alu (	// @[src/main/core/exu/EXU.scala:80:21]
     .io_in_ready           (_alu_io_in_ready),
-    .io_in_valid           (_n_state_T_1 & io_pipe_in_bits_id2exe_processunit == 2'h0),	// @[src/main/core/exu/EXU.scala:81:{40,55}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
-    .io_in_bits_op1        (io_pipe_in_bits_id2exe_ch1),
-    .io_in_bits_op2        (io_pipe_in_bits_id2exe_ch2),
-    .io_in_bits_processtpe (io_pipe_in_bits_id2exe_processtpe),
-    .io_in_bits_bjtpe      (io_pipe_in_bits_id2exe_bjtpe),
+    .io_in_valid           (_n_state_T_1 & io_pipe_in_bits_is2exe_processunit == 2'h0),	// @[src/main/core/exu/EXU.scala:81:{40,55}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+    .io_in_bits_op1        (io_pipe_in_bits_is2exe_ch1),
+    .io_in_bits_op2        (io_pipe_in_bits_is2exe_ch2),
+    .io_in_bits_processtpe (io_pipe_in_bits_is2exe_processtpe),
+    .io_in_bits_bjtpe      (io_pipe_in_bits_is2exe_bjtpe),
     .io_out_ready          (io_pipe_out_ready),
     .io_out_valid          (_alu_io_out_valid),
     .io_out_bits_alu_out   (_alu_io_out_bits_alu_out),
@@ -199,9 +199,9 @@ module EXU(	// @[src/main/core/exu/EXU.scala:47:7]
     .io_dmem_dmem_bready   (io_dmem_bready),
     .io_in_ready           (_lsu_io_in_ready),
     .io_in_valid           (_n_state_T_1 & _io_pipe_out_bits_exe2wb_gpr_wdata_T_1),	// @[src/main/core/exu/EXU.scala:95:{40,55}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
-    .io_in_bits_op1        (io_pipe_in_bits_id2exe_ch3),
-    .io_in_bits_op2        (io_pipe_in_bits_id2exe_ch2),
-    .io_in_bits_processtpe (io_pipe_in_bits_id2exe_processtpe),
+    .io_in_bits_op1        (io_pipe_in_bits_is2exe_ch3),
+    .io_in_bits_op2        (io_pipe_in_bits_is2exe_ch2),
+    .io_in_bits_processtpe (io_pipe_in_bits_is2exe_processtpe),
     .io_out_ready          (io_pipe_out_ready),
     .io_out_valid          (_lsu_io_out_valid),
     .io_out_bits_gpr_wdata (_lsu_io_out_bits_gpr_wdata)
@@ -209,17 +209,17 @@ module EXU(	// @[src/main/core/exu/EXU.scala:47:7]
   assign io_bj_valid = _alu_io_bj_valid | _csr_io_bj_valid;	// @[src/main/core/exu/EXU.scala:47:7, :67:21, :80:21, :103:36]
   assign io_bj_target =
     _alu_io_bj_valid
-      ? io_pipe_in_bits_id2exe_ch3
+      ? io_pipe_in_bits_is2exe_ch3
       : _csr_io_bj_valid ? _csr_io_bj_target : 32'h0;	// @[src/main/core/exu/EXU.scala:47:7, :67:21, :80:21, :104:{24,50}]
-  assign io_pipe_in_ready = in_ready;	// @[src/main/core/exu/EXU.scala:47:7, :115:27]
-  assign io_pipe_out_valid = out_valid;	// @[src/main/core/exu/EXU.scala:47:7, :116:28]
-  assign io_pipe_out_bits_exe2wb_gpr_we = io_pipe_in_bits_id2exe_rfwe;	// @[src/main/core/exu/EXU.scala:47:7]
+  assign io_pipe_in_ready = in_ready;	// @[src/main/core/exu/EXU.scala:47:7, :121:27]
+  assign io_pipe_out_valid = out_valid;	// @[src/main/core/exu/EXU.scala:47:7, :122:28]
+  assign io_pipe_out_bits_exe2wb_gpr_we = io_pipe_in_bits_is2exe_rfwe;	// @[src/main/core/exu/EXU.scala:47:7]
   assign io_pipe_out_bits_exe2wb_gpr_wdata =
     _io_pipe_out_bits_exe2wb_gpr_wdata_T
       ? _csr_io_out_bits_csr_rdata
       : _io_pipe_out_bits_exe2wb_gpr_wdata_T_1
           ? _lsu_io_out_bits_gpr_wdata
           : _alu_io_out_bits_alu_out;	// @[src/main/core/exu/EXU.scala:47:7, :67:21, :68:55, :80:21, :94:21, :95:55, :109:{45,109}]
-  assign io_pipe_out_bits_exe2wb_gpr_waddr = io_pipe_in_bits_id2exe_rd_addr;	// @[src/main/core/exu/EXU.scala:47:7]
+  assign io_pipe_out_bits_exe2wb_gpr_waddr = io_pipe_in_bits_is2exe_rd_addr;	// @[src/main/core/exu/EXU.scala:47:7]
 endmodule
 
