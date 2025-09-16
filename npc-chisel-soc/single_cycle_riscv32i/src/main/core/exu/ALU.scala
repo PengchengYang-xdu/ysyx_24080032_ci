@@ -25,7 +25,7 @@ class ALUIO extends Bundle {
 
 class ALU extends Module{
     val io = IO(new ALUIO)
-    val io_bj = Valid(new EXU_BJIO)
+    val io_bj = IO(new EXU_BJIO)
 
     val (op1_data, op2_data, processtpe, bjtpe) = (io.in.bits.op1, io.in.bits.op2, io.in.bits.processtpe, io.in.bits.bjtpe)
     val shamt = op2_data(4, 0).asUInt
@@ -72,7 +72,7 @@ class ALU extends Module{
         (bjtpe === BJTpe.BJ_BGEU && !cmp) ||
         (bjtpe === BJTpe.BJ_J)
     )
-    io_bj.bits := DontCare
+    io_bj.target := DontCare
 
     //handshake
     io.in.ready := io.out.ready

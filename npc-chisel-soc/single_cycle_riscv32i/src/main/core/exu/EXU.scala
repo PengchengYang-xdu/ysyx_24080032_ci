@@ -18,6 +18,7 @@ class EXUIO extends Bundle {
     val dmem = Flipped(new AXI4WithoutClk)
 }
 class EXU_BJIO extends Bundle {
+    val valid = Output(Bool())
     val target = Output(UInt(WORD_LEN.W))
 }
 /*
@@ -45,7 +46,7 @@ class EXUIO_pipe extends Bundle {
 */
 class EXU extends Module {
     val io = IO(new EXUIO)
-    val io_bj = Valid(new EXU_BJIO)
+    val io_bj = IO(new EXU_BJIO)
     val io_pipe = IO(new EXUIO_pipe)
 
     val processunit = io_pipe.in.bits.id2exe_processunit
@@ -100,7 +101,7 @@ class EXU extends Module {
 
 
     io_bj.valid := alu.io_bj.valid | csr.io_bj.valid
-    io_bj.bits.target := Mux(alu.io_bj.valid, ch3, Mux(csr.io_bj.valid, csr.io_bj.bits.target, 0.U))
+    io_bj.target := Mux(alu.io_bj.valid, ch3, Mux(csr.io_bj.valid, csr.io_bj.target, 0.U))
 
     val exefsh = csr.io.out.valid | alu.io.out.valid | lsu.io.out.valid
 

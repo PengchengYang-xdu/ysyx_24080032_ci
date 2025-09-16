@@ -23,7 +23,7 @@ class CSRIO extends Bundle {
 
 class CSR extends Module {
     val io = IO(new CSRIO)
-    val io_bj = Valid(new EXU_BJIO)
+    val io_bj = IO(new EXU_BJIO)
 
     val (processtpe, op1, addr) = (io.in.bits.processtpe, io.in.bits.op1, io.in.bits.op2(11, 0))
 
@@ -65,6 +65,6 @@ class CSR extends Module {
     io.out.valid := io.in.valid
 
     //ecall and mret
-    io_bj.valid := true.B
-    io_bj.bits.target := 0.U
+    io_bj.valid := processtpe(1) && io.in.valid
+    io_bj.target := Mux(processtpe(0), mtvec, mepc)
 }
