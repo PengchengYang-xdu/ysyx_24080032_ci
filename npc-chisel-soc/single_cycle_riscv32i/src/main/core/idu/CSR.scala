@@ -34,7 +34,7 @@ class CSR extends Module {
     val mvendorid = "h79737978".U(WORD_LEN.W)
     val marchid   = 24080032.U(WORD_LEN.W)
 
-    val rdata = Wire(UInt(WORD_LEN.W))
+    val rdata = WireDefault(0.U(WORD_LEN.W))
     switch(addr){
         is("h300".U) { rdata := mstatus }
         is("h305".U) { rdata := mtvec }
