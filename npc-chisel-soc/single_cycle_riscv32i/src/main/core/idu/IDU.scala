@@ -73,7 +73,7 @@ class IDU extends Module{
     val io_pipe = IO(new IDUIO_pipe)
 
     //main process
-    val inst = io_pipe.in.bits.if2id_inst
+    val inst = 0.U(WORD_LEN.W)
     val reg_pc = io_pipe.in.bits.if2id_reg_pc
 
     val decodeTable = new DecodeTable(instList, Seq(MyProcessUnit, MyProcessTpe, MyBJTpe, MyCH1Tpe, MyCH2Tpe, MyRFwe, MyIMMTpe))
