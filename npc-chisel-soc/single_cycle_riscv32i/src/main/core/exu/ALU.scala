@@ -32,9 +32,7 @@ class ALU extends Module{
 
     //Adder
     val is_sub = processtpe(0)
-    val add_op1 = op1_data
-    val add_op2 = Mux(is_sub, ~op2_data, op2_data)
-    val add_sub_out = add_op1 + add_op2 + is_sub
+    val add_sub_out = op1_data +& (op2_data ^ Fill(WORD_LEN, is_sub)) + is_sub
     //others
     val and_out = op1_data & op2_data
     val or_out = op1_data | op2_data
@@ -50,7 +48,7 @@ class ALU extends Module{
         ProcessTpe.ALU.ALU_SRA(2, 0) -> sra_out
     ))
     //Comp
-    val compu_out = !add_sub_out
+    val compu_out = !add_sub_out(WORD_LEN.U)
     val comps_out = xor_out(WORD_LEN.U - 1.U) ^ compu_out
     //alu_out
     io.out.bits.alu_out := Mux(
