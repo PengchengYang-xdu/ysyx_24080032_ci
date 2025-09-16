@@ -62,7 +62,7 @@ class IFU extends Module {
     pc_next := Mux(io_bj.valid, io_bj.target, pc_plus4)
 
     //connect
-    araddr := reg_pc
+    io.imem.araddr := reg_pc
 
     io_pipe.out.bits.if2id_reg_pc := reg_pc
     io_pipe.out.bits.if2id_inst := io.imem.rdata
@@ -102,10 +102,8 @@ class IFU extends Module {
     io_pipe.in.ready := in_ready
     io_pipe.out.valid := out_valid
 
-    val araddr = Wire(UInt(WORD_LEN.W))
     val arvalid = RegInit(false.B)
     val rready = RegInit(false.B)
-    io.imem.araddr := araddr
     io.imem.arvalid := arvalid
     io.imem.rready := rready
     io.imem.arsize := 2.U
