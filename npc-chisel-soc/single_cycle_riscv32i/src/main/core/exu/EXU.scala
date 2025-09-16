@@ -21,6 +21,13 @@ class EXU_BJIO extends Bundle {
     val valid = Output(Bool())
     val target = Output(UInt(WORD_LEN.W))
 }
+class EXUIO_FOR extends Bundle {
+    val valid = Output(Bool())
+    val processtpe = Output(UInt(ProcessTpe.ProcessTpe_Width.W))
+    val gpr_we = Output(Bool())
+    val gpr_wdata = Output(UInt(WORD_LEN.W))
+    val gpr_waddr = Output(UInt(ADDR_LEN.W))
+}
 /*
              ____ ___ ____  _____ ____ ___ ____
             |  _ \_ _|  _ \| ____/ ___|_ _/ ___|
@@ -48,6 +55,7 @@ class EXU extends Module {
     val io = IO(new EXUIO)
     val io_bj = IO(new EXU_BJIO)
     val io_pipe = IO(new EXUIO_pipe)
+    val io_for = IO(new EXUIO_FOR)
 
     val processunit = io_pipe.in.bits.is2exe_processunit
     val processtpe = io_pipe.in.bits.is2exe_processtpe
@@ -104,11 +112,17 @@ class EXU extends Module {
     io_bj.target := Mux(alu.io_bj.valid, ch3, Mux(csr.io_bj.valid, csr.io_bj.target, 0.U))
 
     val exefsh = csr.io.out.valid | alu.io.out.valid | lsu.io.out.valid
+    val gpr_wdata = Mux(processunit === ProcessUnit.CSR, csr.io.out.bits.csr_rdata, Mux(processunit === ProcessUnit.LSU, lsu.io.out.bits.gpr_wdata, alu.io.out.bits.alu_out))
 
     io_pipe.out.bits.exe2wb_gpr_we := rfwe
-    io_pipe.out.bits.exe2wb_gpr_wdata := Mux(processunit === ProcessUnit.CSR, csr.io.out.bits.csr_rdata, Mux(processunit === ProcessUnit.LSU, lsu.io.out.bits.gpr_wdata, alu.io.out.bits.alu_out))
+    io_pipe.out.bits.exe2wb_gpr_wdata := gpr_wdata
     io_pipe.out.bits.exe2wb_gpr_waddr := rd_addr
 
+    io_for.valid := exefsh
+    io_for.processtpe := processtpe
+    io_for.gpr_we := rfwe
+    io_for.gpr_wdata := gpr_wdata
+    io_for.gpr_wdata := rd_addr
 
 /*
              _   _    _    _   _ ____  ____  _   _    _    _  _______

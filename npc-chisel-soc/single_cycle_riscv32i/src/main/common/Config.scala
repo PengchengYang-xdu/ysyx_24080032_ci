@@ -4,19 +4,19 @@ import chisel3._
 import chisel3.util._
 
 object Config{
-    val ENABLE_DELAY      = false
-    val IFU_DELAY         = 0.U(4.W)
-    val LSU_DELAY         = 0.U(4.W)
+    val ENABLE_DELAY = false
+    val IFU_DELAY = 0.U(4.W)
+    val LSU_DELAY = 0.U(4.W)
 
-    val WORD_LEN      = 32
+    val WORD_LEN = 32
 
-    // val START_ADDR    = "h80000000".U(WORD_LEN.W) /*THIS IS NPC MODE*/
-    // val START_ADDR    = "h20000000".U(WORD_LEN.W) /*THIS IS MROM MODE*/
-    val START_ADDR    = "h30000000".U(WORD_LEN.W) /*THIS IS FLASH MODE*/
+    // val START_ADDR = "h80000000".U(WORD_LEN.W) /*THIS IS NPC MODE*/
+    // val START_ADDR = "h20000000".U(WORD_LEN.W) /*THIS IS MROM MODE*/
+    val START_ADDR = "h30000000".U(WORD_LEN.W) /*THIS IS FLASH MODE*/
 
     val GPR_NUM = 16
-    val ADDR_LEN      = 4 // rs1,rs2,wb
-    val CSR_ADDR_LEN  = 12
+    val ADDR_LEN = 4 // rs1,rs2,wb
+    val CSR_ADDR_LEN = 12
 }
 
 object ProcessUnit{
