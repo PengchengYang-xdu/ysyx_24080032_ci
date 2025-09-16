@@ -29,7 +29,7 @@ class WBUIO_pipe_out extends Bundle{
 }
 class WBUIO_pipe extends Bundle {
     val in = Flipped(Decoupled(new EXUIO_pipe_out))
-    val out = Flipped(Decoupled(new WBUIO_pipe_out))
+    val out = Decoupled(new WBUIO_pipe_out)
 }
 /*
             __        ______  _   _
