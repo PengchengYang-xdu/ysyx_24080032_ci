@@ -86,9 +86,7 @@ module IDU(	// @[src/main/core/idu/IDU.scala:44:7]
                 io_pipe_out_bits_id2is_rs2_addr,	// @[src/main/core/idu/IDU.scala:45:21]
   output [31:0] io_pipe_out_bits_id2is_reg_pc,	// @[src/main/core/idu/IDU.scala:45:21]
                 io_pipe_out_bits_id2is_imm,	// @[src/main/core/idu/IDU.scala:45:21]
-  output [11:0] io_pipe_out_bits_id2is_csr_addr,	// @[src/main/core/idu/IDU.scala:45:21]
-  output [31:0] io_pipe_out_bits_diff_pc,	// @[src/main/core/idu/IDU.scala:45:21]
-                io_pipe_out_bits_diff_inst	// @[src/main/core/idu/IDU.scala:45:21]
+  output [11:0] io_pipe_out_bits_id2is_csr_addr	// @[src/main/core/idu/IDU.scala:45:21]
 );
 
   reg         out_valid;	// @[src/main/core/idu/IDU.scala:132:28]
@@ -364,7 +362,5 @@ module IDU(	// @[src/main/core/idu/IDU.scala:44:7]
               ? {{11{imm_j[20]}}, imm_j}
               : decodeBundle_immtpe == 3'h5 ? imm_u : {{20{_imm_T_1[11]}}, _imm_T_1};	// @[src/main/core/idu/IDU.scala:44:7, :63:48, :64:77, :65:79, :66:46, :67:37, src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106]
   assign io_pipe_out_bits_id2is_csr_addr = imm_i;	// @[src/main/core/idu/IDU.scala:44:7, :62:30]
-  assign io_pipe_out_bits_diff_pc = io_pipe_in_bits_if2id_reg_pc;	// @[src/main/core/idu/IDU.scala:44:7]
-  assign io_pipe_out_bits_diff_inst = io_pipe_in_bits_if2id_inst;	// @[src/main/core/idu/IDU.scala:44:7]
 endmodule
 
