@@ -20,7 +20,7 @@ class IFUIO extends Bundle {
     val imem = Flipped(new AXI4WithoutClk)
 }
 class FLUSHIO extends Bundle{
-    val flush_flg = Output(Vec(4, Bool()))//control hazard flush for idu isu
+    val flush_flg = Output(Vec(2, Bool()))//control hazard flush for idu isu
 }
 /*
              ____ ___ ____  _____ ____ ___ ____
