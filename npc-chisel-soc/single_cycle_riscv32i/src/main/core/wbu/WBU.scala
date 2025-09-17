@@ -59,5 +59,11 @@ class WBU extends Module {
     io_for.gpr_we := io_pipe.in.bits.exe2wb_gpr_we
     io_for.gpr_waddr := io_pipe.in.bits.exe2wb_gpr_waddr
     io_for.gpr_wdata := io_pipe.in.bits.exe2wb_gpr_wdata
+
+
+    if(DIFFTEST){
+        val diffvalid = RegNext(io_pipe.in.valid)
+        dontTouch(diffvalid)
+    }
 }
 
