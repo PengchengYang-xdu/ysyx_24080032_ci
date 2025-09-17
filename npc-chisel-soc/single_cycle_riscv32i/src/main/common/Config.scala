@@ -83,6 +83,7 @@ object CH2Tpe{
     def CH2Tpe_RS2        = 0.U(CH2Tpe_Width.W)
     def CH2Tpe_IMM        = 1.U(CH2Tpe_Width.W)
     def CH2Tpe_CSR_ADDR   = 3.U(CH2Tpe_Width.W)
+    def CH2Tpe_4          = 2.U(CH2Tpe_Width.W)
 }
 
 object RFwe{
