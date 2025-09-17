@@ -40,9 +40,7 @@ class ISUIO_pipe_out extends Bundle{
     val is2exe_ch1 = Output(UInt(WORD_LEN.W))
     val is2exe_ch2 = Output(UInt(WORD_LEN.W))
     val is2exe_ch3 = Output(UInt(WORD_LEN.W))
-    if(DIFFTEST){
-        val diff = Output(new DIFFIO)
-    }
+    val diff = if(DIFFTEST) Some(new DIFFIO) else None
 }
 class ISUIO_pipe extends Bundle {
     val in = Flipped(Decoupled(new IDUIO_pipe_out))
@@ -195,8 +193,8 @@ class ISU extends Module{
 
 
     if(DIFFTEST){
-        io_pipe.out.bits.diff.pc := io_pipe.in.bits.diff.pc
-        io_pipe.out.bits.diff.inst := io_pipe.in.bits.diff.inst
+        io_pipe.out.bits.diff.get.pc := io_pipe.in.bits.diff.get.pc
+        io_pipe.out.bits.diff.get.inst := io_pipe.in.bits.diff.get.inst
     }
 
 }

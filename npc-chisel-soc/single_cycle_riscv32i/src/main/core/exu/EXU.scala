@@ -40,9 +40,7 @@ class EXUIO_pipe_out extends Bundle{
     val exe2wb_gpr_we = Output(Bool())
     val exe2wb_gpr_wdata = Output(UInt(WORD_LEN.W))
     val exe2wb_gpr_waddr = Output(UInt(ADDR_LEN.W))
-    if(DIFFTEST){
-        val diff = IO(new DIFFIO)
-    }
+    val diff = if(DIFFTEST) Some(new DIFFIO) else None
 }
 class EXUIO_pipe extends Bundle {
     val in = Flipped(Decoupled(new ISUIO_pipe_out))
@@ -168,8 +166,8 @@ class EXU extends Module {
 
 
     if(DIFFTEST){
-        io_pipe.out.bits.diff.pc := io_pipe.in.bits.diff.pc
-        io_pipe.out.bits.diff.inst := io_pipe.in.bits.diff.inst
+        io_pipe.out.bits.diff.get.pc := io_pipe.in.bits.diff.get.pc
+        io_pipe.out.bits.diff.get.inst := io_pipe.in.bits.diff.get.inst
     }
 
 

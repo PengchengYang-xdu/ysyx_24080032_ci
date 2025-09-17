@@ -28,9 +28,7 @@ class IDUIO_pipe_out extends Bundle{
     val id2is_reg_pc = Output(UInt(WORD_LEN.W))
     val id2is_imm = Output(UInt(WORD_LEN.W))
     val id2is_csr_addr = Output(UInt(CSR_ADDR_LEN.W))
-    if(DIFFTEST){
-        val diff = Output(new DIFFIO)
-    }
+    val diff = if(DIFFTEST) Some(new DIFFIO) else None
 }
 class IDUIO_pipe extends Bundle{
     val in = Flipped(Decoupled(new IFUIO_pipe_out))
@@ -154,8 +152,8 @@ class IDU extends Module{
 
 
     if(DIFFTEST){
-        io_pipe.out.bits.diff.pc := io_pipe.in.bits.if2id_reg_pc
-        io_pipe.out.bits.diff.inst := io_pipe.in.bits.if2id_inst
+        io_pipe.out.bits.diff.get.pc := io_pipe.in.bits.if2id_reg_pc
+        io_pipe.out.bits.diff.get.inst := io_pipe.in.bits.if2id_inst
     }
 }
 
