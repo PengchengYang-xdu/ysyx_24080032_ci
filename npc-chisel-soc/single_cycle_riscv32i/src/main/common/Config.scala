@@ -18,7 +18,7 @@ object Config{
     val ADDR_LEN = 4 // rs1,rs2,wb
     val CSR_ADDR_LEN = 12
 
-    def DIFFTEST = true.B
+    def DIFFTEST = true
 }
 
 object ProcessUnit{
