@@ -93,7 +93,7 @@ object Instructions{
             case name if aluInst.contains(name) => genALUTpeTable(i)
             case name if csrInst.contains(name) => genCSRTpeTable(i)
             case name if lsuInst.contains(name) => genLSUTpeTable(i)
-            case _ => BitPat(0.U(ProcessTpe.ProcessTpe_Width.W))
+            case _ => genALUTpeTable(i)
         }
             def genALUTpeTable(i: Insn): BitPat = i.inst.name match {
                 case name if aluInst_add.contains(name)                                             => BitPat(ProcessTpe.ALU.ALU_ADD)
