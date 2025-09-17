@@ -128,9 +128,9 @@ class IFU extends Module {
 
     val start =  io_pipe.in.valid && io.imem.arready && ~flush_flg//only work at in.valid and imem ready and not flush
 
-    val R_while_flush = AXI_R_fire & is_flush
-    val flush_before_R = ~AXI_R_fire & is_flush
-    val fetch_normal = AXI_R_fire & ~is_flush
+    val R_while_flush = AXI_R_fire & flush_flg
+    val flush_before_R = ~AXI_R_fire & flush_flg
+    val fetch_normal = AXI_R_fire & ~flush_flg
 
     c_state := n_state//first phase
 
@@ -170,7 +170,7 @@ class IFU extends Module {
         is(s_AfterPreFire){
             //between modules
             in_ready := false.B
-            out_valid := true.B && ~is_flush
+            out_valid := true.B && ~flush_flg
             //AXI
             arvalid := false.B
             rready := false.B
