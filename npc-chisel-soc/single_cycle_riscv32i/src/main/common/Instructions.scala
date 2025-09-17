@@ -172,10 +172,10 @@ object Instructions{
         }
     }
 
-    object MyIMMTpe extends DecodeField[Insn, UInt] {
-        override def name = "immtpe"
-        override def chiselType = UInt(IMMTpe.IMMTpe_Width.W)
-        override def genTable(i: Insn): BitPat = {
+    object MyIMMTpe extends DecodeField[Insn, UInt] with InstCateg{
+        def name = "immtpe"
+        def chiselType = UInt(IMMTpe.IMMTpe_Width.W)
+        def genTable(i: Insn): BitPat = {
             val immtpe = i.inst.args
                 .map(_.name match{
                     case "imm12"                 => IMMTpe.IMM_TYPE_I

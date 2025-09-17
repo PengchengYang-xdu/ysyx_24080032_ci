@@ -54,6 +54,9 @@ class IDU extends Module{
 */
     val decodeTable = new DecodeTable(instList, Seq(MyProcessUnit, MyProcessTpe, MyBJTpe, MyCH1Tpe, MyCH2Tpe, MyRFwe, MyIMMTpe))
     val decodeBundle = decodeTable.decode(inst)
+    when(io_pipe.out.valid) {
+        printf(p"decode=${decodeBundle.toPrintable}\n")
+    }
 
     val immtpe = decodeBundle(MyIMMTpe)
     val imm_i = inst(31, 20).asSInt
