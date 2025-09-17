@@ -67,7 +67,7 @@ class ALU extends Module{
         (bjtpe === BJTpe.BJ_BLTU && cmp) ||
         (bjtpe === BJTpe.BJ_BGE && !cmp) ||
         (bjtpe === BJTpe.BJ_BGEU && !cmp) ||
-        (bjtpe === BJTpe.BJ_J)
+        (bjtpe(3))
     )
     io_bj.target := DontCare
 

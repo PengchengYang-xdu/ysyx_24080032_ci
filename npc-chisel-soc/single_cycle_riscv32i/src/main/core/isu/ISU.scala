@@ -139,7 +139,7 @@ class ISU extends Module{
         (rs1ForWB) -> io_for_wb.gpr_wdata,
         (~(rs1ForEX || rs1ForWB)) -> rs1_data
     ))
-    val ch3 = Mux(io_pipe.in.bits.id2is_bjtpe.orR && io_pipe.in.bits.id2is_bjtpe =/= BJTpe.BJ_J, io_pipe.in.bits.id2is_reg_pc, ch3_rs1) +& io_pipe.in.bits.id2is_imm
+    val ch3 = Mux(io_pipe.in.bits.id2is_bjtpe.orR && io_pipe.in.bits.id2is_bjtpe =/= BJTpe.BJ_JR, io_pipe.in.bits.id2is_reg_pc, ch3_rs1) +& io_pipe.in.bits.id2is_imm
 
     io_pipe.out.bits.is2exe_processunit := io_pipe.in.bits.id2is_processunit
     io_pipe.out.bits.is2exe_processtpe := io_pipe.in.bits.id2is_processtpe

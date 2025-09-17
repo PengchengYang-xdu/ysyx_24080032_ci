@@ -61,15 +61,17 @@ object ProcessTpe{
 }
 
 object BJTpe{
-    val BJTpe_Width = 3
-    def BJ_X      = "b000".U(BJTpe_Width.W)
-    def BJ_BEQ    = "b001".U(BJTpe_Width.W)
-    def BJ_BNE    = "b010".U(BJTpe_Width.W)
-    def BJ_BLTU   = "b011".U(BJTpe_Width.W)
-    def BJ_BLT    = "b100".U(BJTpe_Width.W)
-    def BJ_BGEU   = "b101".U(BJTpe_Width.W)
-    def BJ_BGE    = "b110".U(BJTpe_Width.W)
-    def BJ_J      = "b111".U(BJTpe_Width.W)
+    val BJTpe_Width = 4
+    def BJ_X      = "b0000".U(BJTpe_Width.W)
+    def BJ_BEQ    = "b0001".U(BJTpe_Width.W)
+    def BJ_BNE    = "b0010".U(BJTpe_Width.W)
+    def BJ_BLTU   = "b0011".U(BJTpe_Width.W)
+    def BJ_BLT    = "b0100".U(BJTpe_Width.W)
+    def BJ_BGEU   = "b0101".U(BJTpe_Width.W)
+    def BJ_BGE    = "b0110".U(BJTpe_Width.W)
+
+    def BJ_J      = "b1000".U(BJTpe_Width.W)
+    def BJ_JR     = "b1001".U(BJTpe_Width.W)
 }
 
 object CH1Tpe{

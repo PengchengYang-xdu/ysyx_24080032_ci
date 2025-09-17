@@ -132,7 +132,8 @@ object Instructions{
         def name = "bjtpe"
         def chiselType = UInt(BJTpe.BJTpe_Width.W)
         def genTable(i: Insn): BitPat = i.inst.name match {
-            case "jal" | "jalr"    => BitPat(BJTpe.BJ_J)
+            case "jal"             => BitPat(BJTpe.BJ_J)
+            case "jalr"            => BitPat(BJTpe.BJ_JR)
             case "beq"             => BitPat(BJTpe.BJ_BEQ)
             case "bne"             => BitPat(BJTpe.BJ_BNE)
             case "bltu"            => BitPat(BJTpe.BJ_BLTU)
