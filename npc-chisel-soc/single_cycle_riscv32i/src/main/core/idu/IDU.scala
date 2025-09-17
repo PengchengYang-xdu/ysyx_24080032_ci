@@ -68,6 +68,12 @@ class IDU extends Module{
         IMMTpe.IMM_TYPE_S -> imm_s,
         IMMTpe.IMM_TYPE_B -> imm_b
     )).asUInt
+    dontTouch(immtpe)
+    dontTouch(imm_i)
+    dontTouch(imm_s)
+    dontTouch(imm_b)
+    dontTouch(imm_j)
+    dontTouch(imm_u)
 
     //pipeline
     io_pipe.out.bits.id2is_processunit := decodeBundle(MyProcessUnit)
