@@ -19,6 +19,9 @@ import npc.bus.axi._
 class IFUIO extends Bundle {
     val imem = Flipped(new AXI4WithoutClk)
 }
+class FLUSHIO extends Bundle{
+    val flush_flg = Output(UInt(2.W))//control hazard flush for idu isu
+}
 /*
              ____ ___ ____  _____ ____ ___ ____
             |  _ \_ _|  _ \| ____/ ___|_ _/ ___|
@@ -47,15 +50,21 @@ class IFU extends Module {
     val io = IO(new IFUIO)
     val io_pipe = IO(new IFUIO_pipe)
     val io_bj = IO(Flipped(new EXU_BJIO))
+    val io_flush = IO(new FLUSHIO)
 
     dontTouch(io_pipe)
+
+    //flush
+    io_flush.flush_flg := VecInit(Seq.fill(2)(io_bj.valid))
+    val flush_flg = io_bj.valid
+
 
     //main process
     val pc_next = Wire(UInt(WORD_LEN.W))
     dontTouch(pc_next)
 
     val reg_pc = withReset(reset.asAsyncReset){
-        RegEnable(pc_next, START_ADDR, io_pipe.in.valid & io_pipe.in.ready)
+        RegEnable(pc_next, START_ADDR, io_pipe.in.fire || io_bj.valid)
     }
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
@@ -109,7 +118,7 @@ class IFU extends Module {
     io.imem.rready := rready
     io.imem.arsize := 2.U
 
-    val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: Nil = Enum(4)
+    val s_BeforePreFire :: s_BeforeAXI_AR_Fire :: s_BeforeAXI_R_Fire :: s_AfterPreFire :: s_Flush :: Nil = Enum(5)
     val c_state = RegInit(s_BeforeAXI_AR_Fire)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -117,15 +126,20 @@ class IFU extends Module {
     val AXI_AR_fire = arvalid & io.imem.arready
     val AXI_R_fire = io.imem.rvalid & rready
 
-    val start =  io_pipe.in.valid && io.imem.arready
+    val start =  io_pipe.in.valid && io.imem.arready && ~flush_flg//only work at in.valid and imem ready and not flush
+
+    val R_while_flush = AXI_R_fire & is_flush
+    val flush_before_R = ~AXI_R_fire & is_flush
+    val fetch_normal = AXI_R_fire & ~is_flush
 
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
         s_BeforePreFire       ->  Mux(start, s_BeforeAXI_AR_Fire, s_BeforePreFire),
         s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, s_BeforeAXI_R_Fire, s_BeforeAXI_AR_Fire),
-        s_BeforeAXI_R_Fire    ->  Mux(AXI_R_fire, s_AfterPreFire, s_BeforeAXI_R_Fire),
-        s_AfterPreFire        ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
+        s_BeforeAXI_R_Fire    ->  Mux(fetch_normal, s_AfterPreFire, Mux(flush_before_R, s_Flush, Mux(R_while_flush, s_BeforePreFire, s_BeforeAXI_R_Fire))),
+        s_AfterPreFire        ->  Mux(io_pipe.out.fire || flush_flg, s_BeforePreFire, s_AfterPreFire),
+        s_Flush               ->  Mux(AXI_R_fire, s_BeforePreFire, s_Flush)
     ))
 
     switch(n_state){//third phase
@@ -156,10 +170,18 @@ class IFU extends Module {
         is(s_AfterPreFire){
             //between modules
             in_ready := false.B
-            out_valid := true.B
+            out_valid := true.B && ~is_flush
             //AXI
             arvalid := false.B
             rready := false.B
+        }
+        is(s_Flush){
+            //between modules
+            in_ready := false.B
+            out_valid := false.B
+            //AXI
+            arvalid := false.B
+            rready := true.B
         }
     }
 }
