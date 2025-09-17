@@ -1,5 +1,5 @@
 ### Report: NPC.rpt (first 11 lines)
-Generate the report at 2025-09-17T19:17:36, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-09-17T20:28:15, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 +----------------------+-------------+------------+------------+---------------+-------+-------+-----------+
 | Endpoint             | Clock Group | Delay Type | Path Delay | Path Required | CPPR  | Slack | Freq(MHz) |
 +----------------------+-------------+------------+------------+---------------+-------+-------+-----------+
@@ -13,18 +13,18 @@ Generate the report at 2025-09-17T19:17:36, GitVersion: aa25008b3778a76ae1975c83
 
 ### Chip area info from synth_stat.txt
    Chip area for module '\ALU': 1570.996000
-   Chip area for module '\CSR': 1850.562000
-   Chip area for module '\Clint': 1084.216000
+   Chip area for module '\CSR': 1881.418000
+   Chip area for module '\Clint': 1141.672000
    Chip area for module '\Core': 2964.836000
    Chip area for module '\EXU': 492.898000
    Chip area for module '\IDU': 343.406000
-   Chip area for module '\IFU': 596.638000
+   Chip area for module '\IFU': 582.806000
    Chip area for module '\ISU': 1565.410000
    Chip area for module '\LSU': 1248.072000
    Chip area for module '\NPC': 40.964000
    Chip area for module '\WBU': 61.180000
    Chip area for module '\Xbar': 1284.514000
-   Chip area for module '\gpr_16x32': 6439.860000
+   Chip area for module '\gpr_16x32': 6436.402000
    Chip area for module '\iCache': 6647.340000
-   Chip area for top module '\NPC': 26190.892000
+   Chip area for top module '\NPC': 26261.914000
 
