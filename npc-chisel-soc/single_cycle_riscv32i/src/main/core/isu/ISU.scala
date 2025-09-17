@@ -71,7 +71,7 @@ class ISU extends Module{
     val rs2_addr = io_pipe.in.bits.id2is_rs2_addr
     val rs1_data = gpr.read(rs1_addr)
     val rs2_data = gpr.read(rs2_addr)
-    when(io.gpr_we === RFwe.RFwe_y){
+    when(io.gpr_we === RFwe.RFwe_y && io.gpr_waddr =/= 0.U){
         gpr.write(io.gpr_waddr, io.gpr_wdata)
     }
 /*
