@@ -54,11 +54,6 @@ class IFU extends Module {
 
     dontTouch(io_pipe)
 
-    //flush
-    io_flush.flush_flg := io_bj.valid
-    val flush_flg = io_bj.valid && (io_bj.target =/= reg_pc)
-
-
     //main process
     val pc_next = Wire(UInt(WORD_LEN.W))
     dontTouch(pc_next)
@@ -77,7 +72,9 @@ class IFU extends Module {
     io_pipe.out.bits.if2id_reg_pc := reg_pc
     io_pipe.out.bits.if2id_inst := io.imem.rdata
 
-
+    //flush
+    io_flush.flush_flg := io_bj.valid
+    val flush_flg = io_bj.valid && (io_bj.target =/= reg_pc)
 
 
 
