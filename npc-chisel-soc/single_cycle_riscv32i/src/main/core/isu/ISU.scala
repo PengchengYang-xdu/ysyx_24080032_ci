@@ -8,6 +8,7 @@ import npc.common.Instructions._
 import npc.core.idu._
 import npc.core.exu._
 import npc.core.wbu._
+import npc.core.difftest._
 /*
               ___ _____ _   _ _____ ____  ____ ___ ____
              / _ \_   _| | | | ____|  _ \/ ___|_ _/ ___|
@@ -39,6 +40,9 @@ class ISUIO_pipe_out extends Bundle{
     val is2exe_ch1 = Output(UInt(WORD_LEN.W))
     val is2exe_ch2 = Output(UInt(WORD_LEN.W))
     val is2exe_ch3 = Output(UInt(WORD_LEN.W))
+    if(DIFFTEST){
+        val diff = Output(new DIFFIO)
+    }
 }
 class ISUIO_pipe extends Bundle {
     val in = Flipped(Decoupled(new IDUIO_pipe_out))
@@ -187,6 +191,12 @@ class ISU extends Module{
             in_ready := false.B
             out_valid := true.B && isudone
         }
+    }
+
+
+    if(DIFFTEST){
+        io_pipe.out.bits.diff.pc := io_pipe.in.bits.diff.pc
+        io_pipe.out.bits.diff.inst := io_pipe.in.bits.diff.inst
     }
 
 }
