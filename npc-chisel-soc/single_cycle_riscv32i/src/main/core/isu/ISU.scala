@@ -131,7 +131,8 @@ class ISU extends Module{
         (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_CSR_ADDR) -> io_pipe.in.bits.id2is_csr_addr,
         (rs2ForEX) -> io_for_ex.gpr_wdata,
         (rs2ForWB) -> io_for_wb.gpr_wdata,
-        (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_RS2 && ~(rs2ForEX || rs2ForWB)) -> rs2_data
+        (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_RS2 && ~(rs2ForEX || rs2ForWB)) -> rs2_data,
+        (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_4) -> 4.U,
     ))
     val ch3_rs1 = Mux1H(Seq(
         (rs1ForEX) -> io_for_ex.gpr_wdata,
