@@ -103,7 +103,7 @@ class ISU extends Module{
     val sb = new ScoreBoard
     val ch1Ready = ~sb.isBusy(rs1_addr) || rs1ForEX || rs1ForWB || io_pipe.in.bits.id2is_ch1tpe =/= CH1Tpe.CH1Tpe_RS1
     val ch2Ready = ~sb.isBusy(rs2_addr) || rs2ForEX || rs2ForWB || io_pipe.in.bits.id2is_ch2tpe =/= CH2Tpe.CH2Tpe_RS2
-    val useCh3 = io_pipe.in.bits.id2is_bjtpe.orR || (io_pipe.in.bits.id2is_processunit === ProcessUnit.LSU && io_pipe.in.bits.id2is_processtpe(3))
+    val useCh3 = io_pipe.in.bits.id2is_bjtpe.orR || io_pipe.in.bits.id2is_processunit === ProcessUnit.LSU
     val ch3Ready = ~useCh3 || io_pipe.in.bits.id2is_bjtpe.orR || (~sb.isBusy(rs1_addr) || rs1ForEX || rs1ForWB)
 
     val isudone = ch1Ready || ch2Ready || ch3Ready
