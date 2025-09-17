@@ -3,8 +3,6 @@ package npc.common
 import chisel3._
 import chisel3.util._
 
-def DIFFTEST = true.B
-
 object Config{
     val ENABLE_DELAY = false
     val IFU_DELAY = 0.U(4.W)
@@ -19,6 +17,8 @@ object Config{
     val GPR_NUM = 16
     val ADDR_LEN = 4 // rs1,rs2,wb
     val CSR_ADDR_LEN = 12
+
+    def DIFFTEST = true.B
 }
 
 object ProcessUnit{
