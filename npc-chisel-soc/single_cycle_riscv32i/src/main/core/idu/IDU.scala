@@ -7,6 +7,7 @@ import npc.common._
 import npc.common.Instructions._
 import npc.core.ifu._
 import chisel3.util.experimental.decode._
+import npc.core.difftest._
 /*
              ____ ___ ____  _____ ____ ___ ____
             |  _ \_ _|  _ \| ____/ ___|_ _/ ___|
@@ -27,6 +28,9 @@ class IDUIO_pipe_out extends Bundle{
     val id2is_reg_pc = Output(UInt(WORD_LEN.W))
     val id2is_imm = Output(UInt(WORD_LEN.W))
     val id2is_csr_addr = Output(UInt(CSR_ADDR_LEN.W))
+    if(DIFFTEST){
+        val diff = Output(new DIFFIO)
+    }
 }
 class IDUIO_pipe extends Bundle{
     val in = Flipped(Decoupled(new IFUIO_pipe_out))
@@ -143,6 +147,15 @@ class IDU extends Module{
             in_ready := false.B
             out_valid := true.B
         }
+    }
+
+
+
+
+
+    if(DIFFTEST){
+        io_pipe.out.bits.diff.pc := io_pipe.in.bits.if2id_reg_pc
+        io_pipe.out.bits.diff.inst := io_pipe.in.bits.if2id_inst
     }
 }
 

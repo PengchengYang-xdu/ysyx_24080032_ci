@@ -3,6 +3,8 @@ package npc.common
 import chisel3._
 import chisel3.util._
 
+def DIFFTEST = true.B
+
 object Config{
     val ENABLE_DELAY = false
     val IFU_DELAY = 0.U(4.W)

@@ -8,6 +8,7 @@ import npc.common.Instructions._
 import npc.core.wbu._
 import npc.core.exu._
 import npc.bus.axi._
+
 /*
               ___ _____ _   _ _____ ____  ____ ___ ____
              / _ \_   _| | | | ____|  _ \/ ___|_ _/ ___|
