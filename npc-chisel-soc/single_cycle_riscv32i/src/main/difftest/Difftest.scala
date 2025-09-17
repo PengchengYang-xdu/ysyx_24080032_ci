@@ -16,6 +16,6 @@ import npc.common.Instructions._
 */
 
 class DIFFIO extends Bundle {
-    val pc = Input(UInt(WORD_LEN.W))
-    val inst = Input(UInt(WORD_LEN.W))
+    val pc = Output(UInt(WORD_LEN.W))
+    val inst = Output(UInt(WORD_LEN.W))
 }
