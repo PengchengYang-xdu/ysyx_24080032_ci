@@ -214,10 +214,7 @@ module EXU(	// @[src/main/core/exu/EXU.scala:56:7]
     .io_dmem_dmem_bready   (io_dmem_bready),
     .io_in_ready           (_lsu_io_in_ready),
     .io_in_valid           (_n_state_T_1 & _gpr_wdata_T_1),	// @[src/main/core/exu/EXU.scala:105:{40,55}, src/main/scala/chisel3/util/Decoupled.scala:51:35]
-    .io_in_bits_op1
-      (io_pipe_in_bits_is2exe_processtpe[3]
-         ? io_pipe_in_bits_is2exe_ch3
-         : _alu_io_out_bits_alu_out),	// @[src/main/core/exu/EXU.scala:90:21, :106:{30,41}]
+    .io_in_bits_op1        (io_pipe_in_bits_is2exe_ch3),
     .io_in_bits_op2        (io_pipe_in_bits_is2exe_ch2),
     .io_in_bits_processtpe (io_pipe_in_bits_is2exe_processtpe),
     .io_out_ready          (io_pipe_out_ready),

@@ -174,10 +174,9 @@ module ISU(	// @[src/main/core/isu/ISU.scala:56:7]
              ? ~(_ch3Ready_T_3[0]) | rs1ForEX | rs1ForWB | io_pipe_in_bits_id2is_ch1tpe
                | ~(_ch2Ready_T[0]) | rs2ForEX | rs2ForWB | (|io_pipe_in_bits_id2is_ch2tpe)
                | ~((|io_pipe_in_bits_id2is_bjtpe)
-                   | io_pipe_in_bits_id2is_processunit == 2'h2
-                   & io_pipe_in_bits_id2is_processtpe[3]) | (|io_pipe_in_bits_id2is_bjtpe)
-               | ~(_ch3Ready_T_3[0])
-             : out_valid);	// @[src/main/core/isu/GPR.scala:27:37, src/main/core/isu/ISU.scala:98:32, :99:32, :100:32, :101:32, :104:20, :105:{20,97}, :106:{46,50,88,108,143}, :107:{20,67}, :109:40, :168:28, :174:30, :184:20, :187:23, :191:23]
+                   | io_pipe_in_bits_id2is_processunit == 2'h2)
+               | (|io_pipe_in_bits_id2is_bjtpe) | ~(_ch3Ready_T_3[0])
+             : out_valid);	// @[src/main/core/isu/GPR.scala:27:37, src/main/core/isu/ISU.scala:98:32, :99:32, :100:32, :101:32, :104:20, :105:{20,97}, :106:{46,50,87}, :107:{20,67}, :109:40, :168:28, :174:30, :184:20, :187:23, :191:23]
       c_state <= n_state;	// @[src/main/core/isu/ISU.scala:173:26, :174:30]
     end
   end // always @(posedge)
@@ -230,7 +229,7 @@ module ISU(	// @[src/main/core/isu/ISU.scala:56:7]
          ? 32'h0
          : _gpr_ext_R1_data);	// @[src/main/core/isu/GPR.scala:11:18, :12:44, src/main/core/isu/ISU.scala:56:7, :127:75, src/main/scala/chisel3/util/Mux.scala:30:73]
   assign io_pipe_out_bits_is2exe_ch2 =
-    {_ch2_T_16[31:3], _ch2_T_16[2:0] | {io_pipe_in_bits_id2is_ch2tpe == 2'h2, 2'h0}};	// @[src/main/core/isu/ISU.scala:56:7, :105:97, :106:88, :135:39, src/main/scala/chisel3/util/Mux.scala:30:73]
+    {_ch2_T_16[31:3], _ch2_T_16[2:0] | {io_pipe_in_bits_id2is_ch2tpe == 2'h2, 2'h0}};	// @[src/main/core/isu/ISU.scala:56:7, :105:97, :106:87, :135:39, src/main/scala/chisel3/util/Mux.scala:30:73]
   assign io_pipe_out_bits_is2exe_ch3 =
     ((|io_pipe_in_bits_id2is_bjtpe) & io_pipe_in_bits_id2is_bjtpe != 3'h7
        ? io_pipe_in_bits_id2is_reg_pc
