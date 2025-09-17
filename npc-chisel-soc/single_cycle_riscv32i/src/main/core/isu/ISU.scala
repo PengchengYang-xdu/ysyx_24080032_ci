@@ -122,15 +122,15 @@ class ISU extends Module{
 
     val ch1 = Mux1H(Seq(
         (io_pipe.in.bits.id2is_ch1tpe === CH1Tpe.CH1Tpe_PC) -> io_pipe.in.bits.id2is_reg_pc,
-        (rs1ForEX) -> io_for_ex.gpr_wdata,
-        (rs1ForWB) -> io_for_wb.gpr_wdata,
+        (io_pipe.in.bits.id2is_ch1tpe === CH1Tpe.CH1Tpe_RS1 && rs1ForEX) -> io_for_ex.gpr_wdata,
+        (io_pipe.in.bits.id2is_ch1tpe === CH1Tpe.CH1Tpe_RS1 && rs1ForWB) -> io_for_wb.gpr_wdata,
         (io_pipe.in.bits.id2is_ch1tpe === CH1Tpe.CH1Tpe_RS1 && ~(rs1ForEX || rs1ForWB)) -> rs1_data
     ))
     val ch2 = Mux1H(Seq(
         (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_IMM) -> io_pipe.in.bits.id2is_imm,
         (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_CSR_ADDR) -> io_pipe.in.bits.id2is_csr_addr,
-        (rs2ForEX) -> io_for_ex.gpr_wdata,
-        (rs2ForWB) -> io_for_wb.gpr_wdata,
+        (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_RS2 && rs2ForEX) -> io_for_ex.gpr_wdata,
+        (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_RS2 && rs2ForWB) -> io_for_wb.gpr_wdata,
         (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_RS2 && ~(rs2ForEX || rs2ForWB)) -> rs2_data,
         (io_pipe.in.bits.id2is_ch2tpe === CH2Tpe.CH2Tpe_4) -> 4.U,
     ))
