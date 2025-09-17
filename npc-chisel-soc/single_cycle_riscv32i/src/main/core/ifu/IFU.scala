@@ -56,7 +56,7 @@ class IFU extends Module {
 
     //flush
     io_flush.flush_flg := io_bj.valid
-    val flush_flg = io_bj.valid && (io_bj.target =/= reg_pc)
+    val flush_flg = io_bj.valid
 
 
     //main process
