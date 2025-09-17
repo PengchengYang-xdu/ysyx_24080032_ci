@@ -21,8 +21,8 @@ class ISUIO extends Bundle{
     val gpr_wdata = Input(UInt(WORD_LEN.W))
     val gpr_waddr = Input(UInt(ADDR_LEN.W))
 }
-class ISU_FLUSH extends Bundle{
-    val is_flush = Input(Bool())
+class FLUSHIO extends Bundle{
+    val flush_flg = Input(Bool())
 }
 /*
              ____ ___ ____  _____ ____ ___ ____
@@ -58,7 +58,7 @@ class ISU extends Module{
     val io = IO(new ISUIO)
     val io_for_ex = IO(Flipped(new EXUIO_FOR))
     val io_for_wb = IO(Flipped(new WBUIO_FOR))
-    val io_flush = IO(new ISU_FLUSH)
+    val io_flush = IO(new FLUSHIO)
 /*
               ____ ____  ____
              / ___|  _ \|  _ \
@@ -110,7 +110,7 @@ class ISU extends Module{
 
     val wbClearMask = Mux(io_for_wb.gpr_we === RFwe.RFwe_y && !isDepend(io_for_wb.gpr_waddr, io_for_ex.gpr_waddr, io_for_ex.gpr_we === RFwe.RFwe_y), sb.mask(io_for_wb.gpr_waddr), 0.U(GPR_NUM.W))
     val isuFireSetMask = Mux(io_pipe.out.fire, sb.mask(io_pipe.in.bits.id2is_rd_addr), 0.U)
-    when (io_flush.is_flush) { sb.update(0.U, Fill(GPR_NUM, 1.U(1.W))) }
+    when (io_flush.flush_flg) { sb.update(0.U, Fill(GPR_NUM, 1.U(1.W))) }
     .otherwise { sb.update(isuFireSetMask, wbClearMask) }
 
 
