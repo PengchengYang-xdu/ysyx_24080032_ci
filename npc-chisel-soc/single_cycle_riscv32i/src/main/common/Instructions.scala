@@ -176,19 +176,12 @@ object Instructions{
         def name = "immtpe"
         def chiselType = UInt(IMMTpe.IMMTpe_Width.W)
         def genTable(i: Insn): BitPat = {
-            val immtpe = i.inst.args
-                .map(_.name match{
-                    case "imm12"                 => IMMTpe.IMM_TYPE_I
-                    case "imm12hi" | "imm12lo"   => IMMTpe.IMM_TYPE_S
-                    case "bimm12hi" | "bimm12lo" => IMMTpe.IMM_TYPE_B
-                    case "imm20"                 => IMMTpe.IMM_TYPE_U
-                    case "jimm20"                => IMMTpe.IMM_TYPE_J
-                    case _                       => IMMTpe.IMM_TYPE_X
-                })
-                .filterNot(_ == IMMTpe.IMM_TYPE_X)
-                .headOption // different ImmType will not appear in the Seq
-                .getOrElse(IMMTpe.IMM_TYPE_X)
-            BitPat(immtpe)
+            if(i.hasArg("imm12")) BitPat(IMMTpe.IMM_TYPE_I)
+            else if(i.hasArg("imm12hi") || i.hasArg("imm12lo")) BitPat(IMMTpe.IMM_TYPE_S)
+            else if(i.hasArg("bimm12hi") || i.hasArg("bimm12lo")) BitPat(IMMTpe.IMM_TYPE_B)
+            else if(i.hasArg("imm20")) BitPat(IMMTpe.IMM_TYPE_U)
+            else if(i.hasArg("jimm20")) BitPat(IMMTpe.IMM_TYPE_J)
+            else BitPat(IMMTpe.IMM_TYPE_X)
         }
     }
 }
