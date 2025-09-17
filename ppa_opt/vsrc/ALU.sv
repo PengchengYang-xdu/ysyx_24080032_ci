@@ -72,7 +72,7 @@ module ALU(	// @[src/main/core/exu/ALU.scala:25:7]
   input  [31:0] io_in_bits_op1,	// @[src/main/core/exu/ALU.scala:26:16]
                 io_in_bits_op2,	// @[src/main/core/exu/ALU.scala:26:16]
   input  [3:0]  io_in_bits_processtpe,	// @[src/main/core/exu/ALU.scala:26:16]
-  input  [2:0]  io_in_bits_bjtpe,	// @[src/main/core/exu/ALU.scala:26:16]
+                io_in_bits_bjtpe,	// @[src/main/core/exu/ALU.scala:26:16]
   input         io_out_ready,	// @[src/main/core/exu/ALU.scala:26:16]
   output        io_out_valid,	// @[src/main/core/exu/ALU.scala:26:16]
   output [31:0] io_out_bits_alu_out,	// @[src/main/core/exu/ALU.scala:26:16]
@@ -120,11 +120,11 @@ module ALU(	// @[src/main/core/exu/ALU.scala:25:7]
   assign io_out_bits_alu_out = _io_out_bits_alu_out_T_5;	// @[src/main/core/exu/ALU.scala:25:7, :53:31]
   assign io_bj_valid =
     io_in_valid
-    & (io_in_bits_bjtpe == 3'h1 & ~(|_io_out_bits_alu_out_T_5) | io_in_bits_bjtpe == 3'h2
-       & (|_io_out_bits_alu_out_T_5) | io_in_bits_bjtpe == 3'h4
-       & _io_out_bits_alu_out_T_5[0] | io_in_bits_bjtpe == 3'h3
-       & _io_out_bits_alu_out_T_5[0] | io_in_bits_bjtpe == 3'h6
-       & ~(_io_out_bits_alu_out_T_5[0]) | io_in_bits_bjtpe == 3'h5
-       & ~(_io_out_bits_alu_out_T_5[0]) | (&io_in_bits_bjtpe));	// @[src/main/core/exu/ALU.scala:25:7, :42:58, :53:31, :61:34, :62:34, :63:32, :64:{16,33}, :65:{16,33}, :66:{16,33}, :67:{16,34}, :68:{16,33,36}, :69:{16,34,43}, :70:16]
+    & (io_in_bits_bjtpe == 4'h1 & ~(|_io_out_bits_alu_out_T_5) | io_in_bits_bjtpe == 4'h2
+       & (|_io_out_bits_alu_out_T_5) | io_in_bits_bjtpe == 4'h4
+       & _io_out_bits_alu_out_T_5[0] | io_in_bits_bjtpe == 4'h3
+       & _io_out_bits_alu_out_T_5[0] | io_in_bits_bjtpe == 4'h6
+       & ~(_io_out_bits_alu_out_T_5[0]) | io_in_bits_bjtpe == 4'h5
+       & ~(_io_out_bits_alu_out_T_5[0]) | io_in_bits_bjtpe[3]);	// @[src/main/core/exu/ALU.scala:25:7, :53:31, :56:20, :61:34, :62:34, :63:32, :64:{16,33}, :65:{16,33}, :66:{16,33}, :67:{16,34}, :68:{16,33,36}, :69:{16,34,43}, :70:15]
 endmodule
 
