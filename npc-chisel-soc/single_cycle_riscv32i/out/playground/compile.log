@@ -1,5 +1,2 @@
-[0m[[0m[0minfo[0m] [0m[0mcompiling 3 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
-[0m[[0m[31merror[0m] [0m[0m/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/cache/iCache.scala:162:34: not found: value io_flush[0m
-[0m[[0m[31merror[0m] [0m[0m        s_i_1            ->  Mux(io_flush.flush_flg, s_Flush, Mux((io.out.rvalid & out_rready), Mux(((c.U === 1.U || ~issdram_raddr) || (c.U =/= 1.U && count === 0.U)), s_i_2, Mux((c.U =/= 1.U && count =/= 0.U && out_arlen === 0.U), s_i_0, s_i_1)), s_i_1)),[0m
-[0m[[0m[31merror[0m] [0m[0m                                 ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 4 Scala sources to /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/out/playground/compile.dest/classes ...[0m
+[0m[[0m[0minfo[0m] [0m[0mdone compiling[0m
