@@ -74,4 +74,16 @@ class ALU extends Module{
     //handshake
     io.in.ready := io.out.ready
     io.out.valid := io.in.valid
+
+
+    dontTouch(cmp)
+    dontTouch(eq)
+    dontTouch(eq)
+    dontTouch(and_out)
+    dontTouch(or_out)
+    dontTouch(xor_out)
+    dontTouch(sra_out)
+    dontTouch(srl_out)
+    dontTouch(sll_out)
+    dontTouch(add_sub_out)
 }
