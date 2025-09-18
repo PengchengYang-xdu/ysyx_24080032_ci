@@ -117,7 +117,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
-    val s_IDLE :: s_icache_lookup :: s_i_0 :: s_i_1 :: s_i_2 :: s_fencei :: Nil = Enum(6)
+    val s_IDLE :: s_icache_lookup :: s_i_0 :: s_i_1 :: s_i_2 :: s_fencei :: s_Flush :: Nil = Enum(7)
     val c_state = RegInit(s_IDLE)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -159,9 +159,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         s_IDLE           ->  Mux(isifu_rreq, s_icache_lookup, Mux(is_fencei, s_fencei, s_IDLE)),
         s_icache_lookup  ->  Mux(hit0, s_IDLE, s_i_0),
         s_i_0            ->  Mux(io.out.arready & out_arvalid, s_i_1, s_i_0),
-        s_i_1            ->  Mux((io.out.rvalid & out_rready), Mux(((c.U === 1.U || ~issdram_raddr) || (c.U =/= 1.U && count === 0.U)), s_i_2, Mux((c.U =/= 1.U && count =/= 0.U && out_arlen === 0.U), s_i_0, s_i_1)), s_i_1),
+        s_i_1            ->  Mux(io_flush.flush_flg, s_Flush, Mux((io.out.rvalid & out_rready), Mux(((c.U === 1.U || ~issdram_raddr) || (c.U =/= 1.U && count === 0.U)), s_i_2, Mux((c.U =/= 1.U && count =/= 0.U && out_arlen === 0.U), s_i_0, s_i_1)), s_i_1)),
         s_i_2            ->  Mux(in_rvalid & io.in.rready, s_IDLE, s_i_2),
-        s_fencei         ->  Mux(fencei_fsh, s_IDLE, s_fencei)
+        s_fencei         ->  Mux(fencei_fsh, s_IDLE, s_fencei),
+        s_Flush          ->  Mux(io.out.rvalid & out_rready, s_i_2, s_Flush)
     ))
 
     when(is_fencei && ~fencei_fsh){
@@ -211,6 +212,14 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
             out_arvalid := false.B
             out_rready := false.B
             in_rvalid := true.B
+            in_arready := false.B
+        }
+        is(s_Flush){
+            ConnectIn2Out()
+            out_araddr := 0.U
+            out_arvalid := false.B
+            out_rready := true.B
+            in_rvalid := false.B
             in_arready := false.B
         }
     }
