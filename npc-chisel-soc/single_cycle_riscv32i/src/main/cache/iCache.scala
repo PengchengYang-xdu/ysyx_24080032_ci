@@ -160,7 +160,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
 
     c_state := n_state//first phase
 
-    val c_state_r := RegNext(c_state)
+    val c_state_r = RegNext(c_state)
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
         s_IDLE           ->  Mux(isifu_rreq, s_icache_lookup, Mux(is_fencei, s_fencei, s_IDLE)),
