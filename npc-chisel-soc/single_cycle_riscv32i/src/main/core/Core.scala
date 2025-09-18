@@ -52,10 +52,9 @@ class Core extends Module {
              | || |  | | |___| |  | | | (_>  <  | | |___ / ___ \ |___|  _  | |___
             |___|_|  |_|_____|_|  |_|  \___/\/ |___\____/_/   \_\____|_| |_|_____|
 */
-    // val icache = Module(new iCache(8, 4, 1, "FIFO"))
-    // io.imem <> icache.io.out
-    // icache.io.in <> ifu.io.imem
-    io.imem <> ifu.io.imem
+    val icache = Module(new iCache(8, 4, 1, "FIFO"))
+    io.imem <> icache.io.out
+    icache.io.in <> ifu.io.imem
 /*
              ____  __  __ _____ __  __
             |  _ \|  \/  | ____|  \/  |
@@ -83,7 +82,7 @@ class Core extends Module {
 
     idu.io_flush.flush_flg := ifu.io_flush.flush_flg
     isu.io_flush.flush_flg := ifu.io_flush.flush_flg
-    // icache.io_flush.flush_flg := ifu.io_flush.flush_flg
+    icache.io_flush.flush_flg := ifu.io_flush.flush_flg
 
 
 
