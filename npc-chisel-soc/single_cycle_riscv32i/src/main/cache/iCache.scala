@@ -169,7 +169,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
                                 (Mux((io.out.rvalid & out_rready), Mux(((c.U === 1.U || ~issdram_raddr) || (c.U =/= 1.U && count === 0.U)), s_i_2, Mux((c.U =/= 1.U && count =/= 0.U && out_arlen === 0.U), s_i_0, s_i_1)), s_i_1)))),
         s_i_2            ->  Mux(in_rvalid & io.in.rready, s_IDLE, s_i_2),
         s_fencei         ->  Mux(fencei_fsh, s_IDLE, s_fencei),
-        s_Flush          ->  Mux(io.out.rvalid & out_rready, s_i_2, s_Flush)
+        s_Flush          ->  Mux(io.out.rvalid & out_rready, s_IDLE, s_Flush)
     ))
 
     when(is_fencei && ~fencei_fsh){
