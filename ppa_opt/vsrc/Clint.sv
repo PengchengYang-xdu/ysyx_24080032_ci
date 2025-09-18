@@ -55,17 +55,6 @@
   `endif // not def ENABLE_INITIAL_MEM_
 `endif // not def SYNTHESIS
 
-// Standard header to adapt well known macros for prints and assertions.
-
-// Users can define 'PRINTF_COND' to add an extra gate to prints.
-`ifndef PRINTF_COND_
-  `ifdef PRINTF_COND
-    `define PRINTF_COND_ (`PRINTF_COND)
-  `else  // PRINTF_COND
-    `define PRINTF_COND_ 1
-  `endif // PRINTF_COND
-`endif // not def PRINTF_COND_
-
 module Clint(	// @[src/main/perip/Perip.scala:10:7]
   input         clock,	// @[src/main/perip/Perip.scala:10:7]
                 reset,	// @[src/main/perip/Perip.scala:10:7]
