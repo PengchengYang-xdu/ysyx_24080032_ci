@@ -133,7 +133,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val issdram_raddr = (io.in.araddr >= "ha000_0000".U(32.W) && io.in.araddr <= "hbfff_ffff".U(32.W))
     val isifu_rreq = io.in.arvalid & in_arready
 
-    issdram_raddr_r = RegInit(false.B)
+    val issdram_raddr_r = RegInit(false.B)
     issdram_raddr_r := Mux(n_state === s_icache_lookup, issdram_raddr, Mux(n_state === s_IDLE, false.B, issdram_raddr_r))
 
 
