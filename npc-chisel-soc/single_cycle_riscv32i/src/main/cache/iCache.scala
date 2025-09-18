@@ -160,6 +160,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
 
     c_state := n_state//first phase
 
+    val c_state_r := RegNext(c_state)
+
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
         s_IDLE           ->  Mux(isifu_rreq, s_icache_lookup, Mux(is_fencei, s_fencei, s_IDLE)),
         s_icache_lookup  ->  Mux(hit0, s_IDLE, s_i_0),
@@ -169,7 +171,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
                                 (Mux((io.out.rvalid & out_rready), Mux(((c.U === 1.U || ~issdram_raddr) || (c.U =/= 1.U && count === 0.U)), s_i_2, Mux((c.U =/= 1.U && count =/= 0.U && out_arlen === 0.U), s_i_0, s_i_1)), s_i_1)))),
         s_i_2            ->  Mux(in_rvalid & io.in.rready, s_IDLE, s_i_2),
         s_fencei         ->  Mux(fencei_fsh, s_IDLE, s_fencei),
-        s_Flush          ->  Mux(io.out.rvalid & out_rready, s_IDLE, s_Flush)
+        s_Flush          ->  Mux(io.out.rvalid & out_rready, s_i_2, s_Flush)
     ))
 
     when(is_fencei && ~fencei_fsh){
@@ -258,7 +260,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         }
     }
 
-    when(c_state === s_i_2 && issdram_raddr_r){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
+    when(c_state === s_i_2 && c_state_r =/= s_Flush && issdram_raddr_r){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
         val set = icache(req_index).set
 
         when(hasEmpty === true.B) {
