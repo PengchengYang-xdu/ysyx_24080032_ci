@@ -90,6 +90,11 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     io.out.wlast := out_wlast
     io.out.bready := out_bready
 
+    val s_IDLE :: s_icache_lookup :: s_i_0 :: s_i_1 :: s_i_2 :: s_fencei :: Nil = Enum(6)
+    val c_state = RegInit(s_IDLE)
+    val n_state = WireDefault(c_state)
+    dontTouch(n_state)
+
     val m = log2(block_size).toInt
     val n = log2(sets).toInt
     val w = math.ceil(log2(ways)).toInt
@@ -125,10 +130,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
-    val s_IDLE :: s_icache_lookup :: s_i_0 :: s_i_1 :: s_i_2 :: s_fencei :: Nil = Enum(6)
-    val c_state = RegInit(s_IDLE)
-    val n_state = WireDefault(c_state)
-    dontTouch(n_state)
+
 
     val issdram_raddr = (io.in.araddr >= "ha000_0000".U(32.W) && io.in.araddr <= "hbfff_ffff".U(32.W))
     val isifu_rreq = io.in.arvalid & in_arready
