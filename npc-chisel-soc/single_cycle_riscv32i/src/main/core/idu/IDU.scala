@@ -9,6 +9,16 @@ import npc.core.ifu._
 import chisel3.util.experimental.decode._
 import npc.core.difftest._
 /*
+              ___ _____ _   _ _____ ____  ____ ___ ____
+             / _ \_   _| | | | ____|  _ \/ ___|_ _/ ___|
+            | | | || | | |_| |  _| | |_) \___ \| | |  _
+            | |_| || | |  _  | |___|  _ < ___) | | |_| |
+             \___/ |_| |_| |_|_____|_| \_\____/___\____|
+*/
+class FLUSHIO extends Bundle{
+    val flush_flg = Input(Bool())
+}
+/*
              ____ ___ ____  _____ ____ ___ ____
             |  _ \_ _|  _ \| ____/ ___|_ _/ ___|
             | |_) | || |_) |  _| \___ \| | |  _
@@ -43,6 +53,7 @@ class IDUIO_pipe extends Bundle{
 */
 class IDU extends Module{
     val io_pipe = IO(new IDUIO_pipe)
+    val io_flush = IO(new FLUSHIO)
     val inst = io_pipe.in.bits.if2id_inst
     val reg_pc = io_pipe.in.bits.if2id_reg_pc
 /*
@@ -141,7 +152,7 @@ class IDU extends Module{
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire  ->  Mux(io_pipe.in.fire, s_AfterPreFire, s_BeforePreFire),
+        s_BeforePreFire  ->  Mux(io_pipe.in.fire && ~io_flush.flush_flg, s_AfterPreFire, s_BeforePreFire),
         s_AfterPreFire   ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
     ))
 

@@ -80,7 +80,7 @@ class Core extends Module {
     isu.io_for_ex <> exu.io_for
     isu.io_for_wb <> wbu.io_for
 
-    isu.io_flush.flush_flg := ifu.io_flush.flush_flg
+    idu.io_flush.flush_flg := ifu.io_flush.flush_flg
     isu.io_flush.flush_flg := ifu.io_flush.flush_flg
 
 
