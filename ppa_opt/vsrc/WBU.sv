@@ -55,17 +55,6 @@
   `endif // not def ENABLE_INITIAL_MEM_
 `endif // not def SYNTHESIS
 
-// Standard header to adapt well known macros for prints and assertions.
-
-// Users can define 'PRINTF_COND' to add an extra gate to prints.
-`ifndef PRINTF_COND_
-  `ifdef PRINTF_COND
-    `define PRINTF_COND_ (`PRINTF_COND)
-  `else  // PRINTF_COND
-    `define PRINTF_COND_ 1
-  `endif // PRINTF_COND
-`endif // not def PRINTF_COND_
-
 module WBU(	// @[src/main/core/wbu/WBU.scala:46:7]
   output        io_gpr_we,	// @[src/main/core/wbu/WBU.scala:47:16]
   output [3:0]  io_gpr_waddr,	// @[src/main/core/wbu/WBU.scala:47:16]
