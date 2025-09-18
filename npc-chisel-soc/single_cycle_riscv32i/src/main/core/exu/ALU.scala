@@ -58,7 +58,7 @@ class ALU extends Module{
     )
 
     //bj
-    val cmp = io.out.bits.alu_out(0)//bj指令需要比较的时候直接拿alu结果就行
+    val cmp = io.out.bits.alu_out(0)
     val eq = io.out.bits.alu_out === 0.U
     io_bj.valid := io.in.valid && (
         (bjtpe === BJTpe.BJ_BEQ && eq) ||

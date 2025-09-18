@@ -33,14 +33,15 @@ object ProcessTpe{
     object ALU {
         def ALU_ADD    =  "b1000".U(ProcessTpe_Width.W)
         def ALU_SUB    =  "b1001".U(ProcessTpe_Width.W)
+
         def ALU_AND    =  "b0000".U(ProcessTpe_Width.W)
-        def ALU_OR     =  "b0001".U(ProcessTpe_Width.W)
+        def ALU_COMPS  =  "b0001".U(ProcessTpe_Width.W)
         def ALU_XOR    =  "b0010".U(ProcessTpe_Width.W)
-        def ALU_SLL    =  "b0011".U(ProcessTpe_Width.W)
-        def ALU_SRL    =  "b0100".U(ProcessTpe_Width.W)
+        def ALU_COMPU  =  "b0011".U(ProcessTpe_Width.W)
+        def ALU_OR     =  "b0100".U(ProcessTpe_Width.W)
         def ALU_SRA    =  "b0101".U(ProcessTpe_Width.W)
-        def ALU_COMPS  =  "b0110".U(ProcessTpe_Width.W)
-        def ALU_COMPU  =  "b0111".U(ProcessTpe_Width.W)
+        def ALU_SRL    =  "b0110".U(ProcessTpe_Width.W)
+        def ALU_SLL    =  "b0111".U(ProcessTpe_Width.W)
     }
     object CSR {
         def CSR_W      =  0.U(ProcessTpe_Width.W)
