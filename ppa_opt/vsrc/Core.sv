@@ -322,7 +322,8 @@ module Core(	// @[src/main/core/Core.scala:24:7]
     .io_pipe_out_bits_id2is_rs2_addr    (_idu_io_pipe_out_bits_id2is_rs2_addr),
     .io_pipe_out_bits_id2is_reg_pc      (_idu_io_pipe_out_bits_id2is_reg_pc),
     .io_pipe_out_bits_id2is_imm         (_idu_io_pipe_out_bits_id2is_imm),
-    .io_pipe_out_bits_id2is_csr_addr    (_idu_io_pipe_out_bits_id2is_csr_addr)
+    .io_pipe_out_bits_id2is_csr_addr    (_idu_io_pipe_out_bits_id2is_csr_addr),
+    .io_flush_flush_flg                 (_ifu_io_flush_flush_flg)	// @[src/main/core/Core.scala:27:21]
   );
   ISU isu (	// @[src/main/core/Core.scala:29:21]
     .clock                               (clock),
