@@ -8,7 +8,7 @@ import npc.common.Instructions._
 import npc.bus.axi._
 
 class FLUSHIO extends Bundle{
-    val flush_flg = Output(Bool())
+    val flush_flg = Input(Bool())
 }
 
 class iCacheIO extends Bundle {
