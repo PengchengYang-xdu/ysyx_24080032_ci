@@ -142,7 +142,7 @@ class IDU extends Module{
     val in_ready = RegInit(false.B)
     val out_valid = RegInit(false.B)
     io_pipe.in.ready := in_ready
-    io_pipe.out.valid := out_valid
+    io_pipe.out.valid := out_valid && ~io_flush.flush_flg
 
     val s_BeforePreFire :: s_AfterPreFire :: Nil = Enum(2)
     val c_state = RegInit(s_BeforePreFire)
