@@ -176,7 +176,7 @@ class ISU extends Module{
 
     c_state := n_state//first phase
 
-    When(io_flush.flush_flg){
+    when(io_flush.flush_flg){
         n_state := s_BeforePreFire
     }.otherwise{
         n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
