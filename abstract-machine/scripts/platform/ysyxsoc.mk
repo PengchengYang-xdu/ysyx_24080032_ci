@@ -10,7 +10,7 @@ AM_SRCS := riscv/ysyxsoc/start.S \
 \
 		   riscv/ysyxsoc/bootloader.c \
 		   riscv/ysyxsoc/gpu.c \
-		   
+
 
 CFLAGS    += -fdata-sections -ffunction-sections
 LDFLAGS   += -T $(AM_HOME)/scripts/linkerysyxsoc.ld \
@@ -48,11 +48,10 @@ NPCFLAGS += -d /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/singl
 # run: image
 # 	$(MAKE) -C $(NPC_CHISEL_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
 run: image
-	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i clr
-	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i verilog
+	# $(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i clr
+	# $(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i verilog
 	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
 
 
 perf:
 	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i perf ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
-	
