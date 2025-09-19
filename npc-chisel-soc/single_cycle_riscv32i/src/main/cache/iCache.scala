@@ -12,6 +12,10 @@ class iCacheIO extends Bundle {
     val out = Flipped(new AXI4WithoutClk)
 }
 
+class FLUSHIO extends Bundle{
+    val flush_flg = Input(Bool())
+}
+
 class iCacheBlock(val m: Int, val n: Int) extends Bundle{
     val valid = Bool()
     val tag = UInt((32 - m - n).W)
@@ -26,6 +30,7 @@ class iCacheSet(val m: Int, val n: Int, val ways: Int, val ways_width: Int) exte
 
 class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementPolicy: String) extends Module{
     val io = IO(new iCacheIO)
+    val io_flush = IO(new FLUSHIO)
 
     // val fencei_io_vr = IO(Flipped(new npc.core.idu.FENCEI_IO_VR))
     // dontTouch(fencei_io_vr)
@@ -126,13 +131,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val isifu_rreq = io.in.arvalid & in_arready
 
     val issdram_raddr_r = RegInit(false.B)
-    issdram_raddr_r := Mux(n_state === s_i_1 && c_state === s_i_0, issdram_raddr, Mux(n_state === s_IDLE, false.B, issdram_raddr_r))
+    issdram_raddr_r := Mux(n_state === s_icache_lookup, issdram_raddr, Mux(n_state === s_IDLE, false.B, issdram_raddr_r))
     val req_index_r = RegInit(0.U(index_width.W))
-    req_index_r := Mux(n_state === s_i_1 && c_state === s_i_0, req_index, Mux(n_state === s_IDLE, 0.U, req_index_r))
+    req_index_r := Mux(n_state === s_icache_lookup, req_index, Mux(n_state === s_IDLE, 0.U, req_index_r))
     val req_tag_r = RegInit(0.U(tag_width.W))
-    req_tag_r := Mux(n_state === s_i_1 && c_state === s_i_0, req_tag, Mux(n_state === s_IDLE, 0.U, req_tag_r))
+    req_tag_r := Mux(n_state === s_icache_lookup, req_tag, Mux(n_state === s_IDLE, 0.U, req_tag_r))
     val req_offset_r = RegInit(0.U(offset_width.W))
-    req_offset_r := Mux(n_state === s_i_1 && c_state === s_i_0, req_offset, Mux(n_state === s_IDLE, 0.U, req_offset_r))
+    req_offset_r := Mux(n_state === s_icache_lookup, req_offset, Mux(n_state === s_IDLE, 0.U, req_offset_r))
 
 
     val ways_hit = Wire(Bool())
