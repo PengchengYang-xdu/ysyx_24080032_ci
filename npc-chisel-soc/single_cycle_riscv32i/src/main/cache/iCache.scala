@@ -114,10 +114,19 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
 
     val addr_r = RegInit(0.U(WORD_LEN.W))
     addr_r := Mux(io.in.arvalid & in_arready, io.in.araddr, addr_r)
+    val issdram_raddr = (io.in.araddr >= "ha000_0000".U(32.W) && io.in.araddr <= "hbfff_ffff".U(32.W))
+    val issdram_raddr_r = RegInit(false.B)
+    issdram_raddr_r := Mux(n_state === s_icache_lookup, issdram_raddr, Mux(n_state === s_IDLE, false.B, issdram_raddr_r))
+    val req_index_r = RegInit(0.U(index_width.W))
+    req_index_r := Mux(n_state === s_icache_lookup, req_index, Mux(n_state === s_IDLE, 0.U, req_index_r))
+    val req_tag_r = RegInit(0.U(tag_width.W))
+    req_tag_r := Mux(n_state === s_icache_lookup, req_tag, Mux(n_state === s_IDLE, 0.U, req_tag_r))
+    val req_offset_r = RegInit(0.U(offset_width.W))
+    req_offset_r := Mux(n_state === s_icache_lookup, req_offset, Mux(n_state === s_IDLE, 0.U, req_offset_r))
 
 
     val addr_align = Wire(UInt(WORD_LEN.W))
-    addr_align := addr_r - req_offset
+    addr_align := addr_r - req_offset_r
     dontTouch(req_index)
     dontTouch(req_offset)
     dontTouch(req_tag)
@@ -132,18 +141,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
 
-    val issdram_raddr = (io.in.araddr >= "ha000_0000".U(32.W) && io.in.araddr <= "hbfff_ffff".U(32.W))
     val isifu_rreq = io.in.arvalid & in_arready
-
-    val issdram_raddr_r = RegInit(false.B)
-    issdram_raddr_r := Mux(n_state === s_icache_lookup, issdram_raddr, Mux(n_state === s_IDLE, false.B, issdram_raddr_r))
-    val req_index_r = RegInit(0.U(index_width.W))
-    req_index_r := Mux(n_state === s_icache_lookup, req_index, Mux(n_state === s_IDLE, 0.U, req_index_r))
-    val req_tag_r = RegInit(0.U(tag_width.W))
-    req_tag_r := Mux(n_state === s_icache_lookup, req_tag, Mux(n_state === s_IDLE, 0.U, req_tag_r))
-    val req_offset_r = RegInit(0.U(offset_width.W))
-    req_offset_r := Mux(n_state === s_icache_lookup, req_offset, Mux(n_state === s_IDLE, 0.U, req_offset_r))
-
 
     val ways_hit = Wire(Bool())
     ways_hit := false.B
