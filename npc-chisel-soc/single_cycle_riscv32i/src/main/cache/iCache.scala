@@ -90,11 +90,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     io.out.wlast := out_wlast
     io.out.bready := out_bready
 
-    val s_IDLE :: s_icache_lookup :: s_i_0 :: s_i_1 :: s_i_2 :: s_fencei :: Nil = Enum(6)
-    val c_state = RegInit(s_IDLE)
-    val n_state = WireDefault(c_state)
-    dontTouch(n_state)
-
     val m = log2(block_size).toInt
     val n = log2(sets).toInt
     val w = math.ceil(log2(ways)).toInt
@@ -111,16 +106,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     req_offset := io.in.araddr(m - 1, 0)
     val req_tag = Wire(UInt(tag_width.W))
     req_tag := io.in.araddr(31, m + n)
-
-    val req_index_r = RegInit(0.U(index_width.W))
-    req_index_r := Mux(n_state === s_icache_lookup, req_index, Mux(n_state === s_IDLE, 0.U, req_index_r))
-    val req_tag_r = RegInit(0.U(tag_width.W))
-    req_tag_r:= Mux(n_state === s_icache_lookup, req_tag, Mux(n_state === s_IDLE, 0.U, req_tag_r))
-    val req_offset_r = RegInit(0.U(offset_width.W))
-    req_offset_r := Mux(n_state === s_icache_lookup, req_offset, Mux(n_state === s_IDLE, 0.U, req_offset_r))
-
     val addr_align = Wire(UInt(WORD_LEN.W))
-    addr_align := io.in.araddr - req_offset_r
+    addr_align := io.in.araddr - req_offset
     dontTouch(req_index)
     dontTouch(req_offset)
     dontTouch(req_tag)
@@ -130,13 +117,18 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
-
+    val s_IDLE :: s_icache_lookup :: s_i_0 :: s_i_1 :: s_i_2 :: s_fencei :: Nil = Enum(6)
+    val c_state = RegInit(s_IDLE)
+    val n_state = WireDefault(c_state)
+    dontTouch(n_state)
 
     val issdram_raddr = (io.in.araddr >= "ha000_0000".U(32.W) && io.in.araddr <= "hbfff_ffff".U(32.W))
     val isifu_rreq = io.in.arvalid & in_arready
 
-    val issdram_raddr_r = RegInit(false.B)
-    issdram_raddr_r := Mux(n_state === s_icache_lookup, issdram_raddr, Mux(n_state === s_IDLE, false.B, issdram_raddr_r))
+    val issdram_raddr_r = Mux(n_state === s_icache_lookup, issdram_raddr, Mux(n_state === s_IDLE, false.B, issdram_raddr_r))
+    val req_index_r = Mux(n_state === s_icache_lookup, req_index, Mux(n_state === s_IDLE, 0.U, req_index_r))
+    val req_tag_r = Mux(n_state === s_icache_lookup, req_tag, Mux(n_state === s_IDLE, 0.U, req_tag_r))
+    val req_offset_r = Mux(n_state === s_icache_lookup, req_offset, Mux(n_state === s_IDLE, 0.U, req_offset_r))
 
 
     val ways_hit = Wire(Bool())
@@ -231,7 +223,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     hasEmpty := false.B
     val emptyIndex = RegInit(0.U(ways_width.W))
     for (i <- (ways - 1) to 0 by -1) {
-        when(icache(req_index_r).set(i).valid === false.B) {
+        when(icache(req_index).set(i).valid === false.B) {
             hasEmpty := true.B
             emptyIndex := i.U
         }
@@ -239,8 +231,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
 
     in_rdata := Mux(issdram_raddr,
     Mux(n_state === s_icache_lookup && ways_hit,
-        icache(req_index_r).set(ways_hit_num).data(req_offset_r >> 2),
-        Mux(io.out.rvalid & out_rready && ((c.U - 1.U - count) === req_offset_r >> 2),
+        icache(req_index).set(ways_hit_num).data(req_offset >> 2),
+        Mux(io.out.rvalid & out_rready && ((c.U - 1.U - count) === req_offset >> 2),
             io.out.rdata,
             in_rdata)),
     Mux(n_state === s_i_2 && (io.out.rvalid & out_rready), io.out.rdata, in_rdata))
@@ -249,7 +241,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     //命中的时候更新LRU矩阵
     if(replacementPolicy == "LRU"){
         when(hit0){
-            updateLRU(icache(req_index_r), ways_hit_num)
+            updateLRU(icache(req_index), ways_hit_num)
         }
     }
 
