@@ -111,8 +111,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     req_offset := io.in.araddr(m - 1, 0)
     val req_tag = Wire(UInt(tag_width.W))
     req_tag := io.in.araddr(31, m + n)
+
+    val addr_r = RegInit(0.U(WORD_LEN.W))
+    addr_r := Mux(io.in.arvalid & in_arready, io.in.araddr, addr_r)
+
+
     val addr_align = Wire(UInt(WORD_LEN.W))
-    addr_align := io.in.araddr - req_offset
+    addr_align := addr_r - req_offset
     dontTouch(req_index)
     dontTouch(req_offset)
     dontTouch(req_tag)
@@ -199,7 +204,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         }
         is(s_i_0){
             ConnectIn2Out()
-            out_araddr := Mux(issdram_raddr, Mux(c.U === 1.U, io.in.araddr, addr_align + ((c.U - count) << 2)), io.in.araddr)
+            out_araddr := Mux(issdram_raddr, Mux(c.U === 1.U, addr_r, addr_align + ((c.U - count) << 2)), addr_r)
             out_arvalid := ~hit0
             out_rready := false.B
             in_rvalid := hit0
