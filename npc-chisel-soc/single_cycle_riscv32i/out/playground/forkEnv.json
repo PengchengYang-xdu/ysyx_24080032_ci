@@ -43,7 +43,7 @@
         "PK": "/home/yangpengcheng/workspace/opt/spike/riscv64-unknown-elf",
         "MODULESHOME": "/usr/share/modules",
         "XDG_SESSION_ID": "28",
-        "ALL": "quick-sort",
+        "ALL": "load-store",
         "LC_TIME": "zh_CN.UTF-8",
         "CONDA_EXE": "/home/yangpengcheng/miniconda3/bin/conda",
         "VNCDESKTOP": "ubuntu-4029:4 (yangpengcheng)",
@@ -59,7 +59,7 @@
         "LM_LICENSE_FILE": "/home/yangpengcheng/license.dat",
         "SSH_AGENT_PID": "24377",
         "LC_ADDRESS": "zh_CN.UTF-8",
-        "MAKEFLAGS": "s -- ALL=quick-sort ARCH=riscv32e-ysyxsoc",
+        "MAKEFLAGS": "s -- ALL=load-store ARCH=riscv32e-ysyxsoc",
         "ftp_proxy": "http://127.0.0.1:40325",
         "CUDA_HOME": "/usr/local/cuda-12.4",
         "LC_MEASUREMENT\\tDEFAULT": "en_US.UTF-8",
@@ -124,6 +124,6 @@
         "MODEL_TECH": "/home/yangpengcheng/questasim/bin",
         "DESKTOP_SESSION": "xfce"
     },
-    "valueHash": -1960761566,
-    "inputsHash": 824599880
+    "valueHash": 1277482702,
+    "inputsHash": -362714326
 }
