@@ -66,9 +66,6 @@ class IFU extends Module {
 
     pc_next := Mux(io_bj.valid, io_bj.target, pc_plus4)
 
-    //connect
-    io.imem.araddr := reg_pc
-
     io_pipe.out.bits.if2id_reg_pc := reg_pc
     io_pipe.out.bits.if2id_inst := io.imem.rdata
 
@@ -76,7 +73,8 @@ class IFU extends Module {
     io_flush.flush_flg := io_bj.valid
     val flush_flg = io_bj.valid && (io_bj.target =/= reg_pc)
 
-
+    //connect
+    io.imem.araddr := Mux(flush_flg, io_bj.target, reg_pc)
 
 
 
