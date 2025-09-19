@@ -151,10 +151,14 @@ class IDU extends Module{
 
     c_state := n_state//first phase
 
-    n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire  ->  Mux(io_pipe.in.fire && ~io_flush.flush_flg, s_AfterPreFire, s_BeforePreFire),
-        s_AfterPreFire   ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
-    ))
+    When(io_flush.flush_flg){
+        n_state := s_BeforePreFire
+    }.otherwise{
+        n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
+            s_BeforePreFire  ->  Mux(io_pipe.in.fire, s_AfterPreFire, s_BeforePreFire),
+            s_AfterPreFire   ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
+        ))
+    }
 
     switch(n_state){//third phase
         is(s_BeforePreFire){
@@ -163,7 +167,7 @@ class IDU extends Module{
         }
         is(s_AfterPreFire){
             in_ready := false.B
-            out_valid := true.B
+            out_valid := ~io_flush.flush_flg
         }
     }
 

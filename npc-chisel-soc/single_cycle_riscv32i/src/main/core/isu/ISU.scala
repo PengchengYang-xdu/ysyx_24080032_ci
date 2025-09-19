@@ -167,7 +167,7 @@ class ISU extends Module{
     val in_ready = RegInit(false.B)
     val out_valid = RegInit(false.B)
     io_pipe.in.ready := in_ready
-    io_pipe.out.valid := out_valid && ~io_flush.flush_flg
+    io_pipe.out.valid := out_valid
 
     val s_BeforePreFire :: s_AfterPreFire :: Nil = Enum(2)
     val c_state = RegInit(s_BeforePreFire)
@@ -176,10 +176,14 @@ class ISU extends Module{
 
     c_state := n_state//first phase
 
-    n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
-        s_BeforePreFire  ->  Mux(io_pipe.in.fire, s_AfterPreFire, s_BeforePreFire),
-        s_AfterPreFire   ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
-    ))
+    When(io_flush.flush_flg){
+        n_state := s_BeforePreFire
+    }.otherwise{
+        n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
+            s_BeforePreFire  ->  Mux(io_pipe.in.fire, s_AfterPreFire, s_BeforePreFire),
+            s_AfterPreFire   ->  Mux(io_pipe.out.fire, s_BeforePreFire, s_AfterPreFire)
+        ))
+    }
 
     switch(n_state){//third phase
         is(s_BeforePreFire){
@@ -188,7 +192,7 @@ class ISU extends Module{
         }
         is(s_AfterPreFire){
             in_ready := false.B
-            out_valid := true.B && isudone
+            out_valid := true.B && isudone && ~io_flush.flush_flg
         }
     }
 
