@@ -104,20 +104,18 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val offset_width = m
     val tag_width = 32 - m - n
     val ways_width = w
-
-    val req_index = Wire(UInt(index_width.W))
-    req_index := io.in.araddr(m + n - 1, m)
-    val req_offset = Wire(UInt(offset_width.W))
-    req_offset := io.in.araddr(m - 1, 0)
-    val req_tag = Wire(UInt(tag_width.W))
-    req_tag := io.in.araddr(31, m + n)
-
     val addr_r = RegInit(0.U(WORD_LEN.W))
+    val req_index = Wire(UInt(index_width.W))
+    req_index := addr_r(m + n - 1, m)
+    val req_offset = Wire(UInt(offset_width.W))
+    req_offset := addr_r(m - 1, 0)
+    val req_tag = Wire(UInt(tag_width.W))
+    req_tag := addr_r(31, m + n)
+
     addr_r := Mux(io.in.arvalid & in_arready, io.in.araddr, addr_r)
-    val req_offset_r = RegInit(0.U(offset_width.W))
 
     val addr_align = Wire(UInt(WORD_LEN.W))
-    addr_align := addr_r - req_offset_r
+    addr_align := addr_r - req_offset
     dontTouch(req_index)
     dontTouch(req_offset)
     dontTouch(req_tag)
@@ -132,18 +130,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
 
-    val issdram_raddr = (io.in.araddr >= "ha000_0000".U(32.W) && io.in.araddr <= "hbfff_ffff".U(32.W))
+    val issdram_raddr = (addr_r >= "ha000_0000".U(32.W) && addr_r <= "hbfff_ffff".U(32.W))
     val isifu_rreq = io.in.arvalid & in_arready
-
-    val issdram_raddr_r = RegInit(false.B)
-    issdram_raddr_r := Mux(n_state === s_icache_lookup, issdram_raddr, Mux(n_state === s_IDLE, false.B, issdram_raddr_r))
-    val req_index_r = RegInit(0.U(index_width.W))
-    req_index_r := Mux(n_state === s_icache_lookup, req_index, Mux(n_state === s_IDLE, 0.U, req_index_r))
-    val req_tag_r = RegInit(0.U(tag_width.W))
-    req_tag_r := Mux(n_state === s_icache_lookup, req_tag, Mux(n_state === s_IDLE, 0.U, req_tag_r))
-
-    req_offset_r := Mux(n_state === s_icache_lookup, req_offset, Mux(n_state === s_IDLE, 0.U, req_offset_r))
-
 
     val ways_hit = Wire(Bool())
     ways_hit := false.B
@@ -176,7 +164,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         s_IDLE           ->  Mux(isifu_rreq, s_icache_lookup, Mux(is_fencei, s_fencei, s_IDLE)),
         s_icache_lookup  ->  Mux(hit0, s_IDLE, s_i_0),
         s_i_0            ->  Mux(io.out.arready & out_arvalid, s_i_1, s_i_0),
-        s_i_1            ->  Mux((io.out.rvalid & out_rready), Mux(((c.U === 1.U || ~issdram_raddr_r) || (c.U =/= 1.U && count === 0.U)), s_i_2, Mux((c.U =/= 1.U && count =/= 0.U && out_arlen === 0.U), s_i_0, s_i_1)), s_i_1),
+        s_i_1            ->  Mux((io.out.rvalid & out_rready), Mux(((c.U === 1.U || ~issdram_raddr) || (c.U =/= 1.U && count === 0.U)), s_i_2, Mux((c.U =/= 1.U && count =/= 0.U && out_arlen === 0.U), s_i_0, s_i_1)), s_i_1),
         s_i_2            ->  Mux(in_rvalid & io.in.rready, s_IDLE, s_i_2),
         s_fencei         ->  Mux(fencei_fsh, s_IDLE, s_fencei)
     ))
@@ -259,41 +247,41 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int, val replacementP
         }
     }
 
-    when(c_state === s_i_2 && issdram_raddr_r){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
-        val set = icache(req_index_r).set
+    when(c_state === s_i_2 && issdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
+        val set = icache(req_index).set
 
         when(hasEmpty === true.B) {
             // 如果有空闲块，填充
             set(emptyIndex).valid := true.B
-            set(emptyIndex).tag := req_tag_r
+            set(emptyIndex).tag := req_tag
             set(emptyIndex).data := icache_wdata
             //填充的时候更新LRU矩阵
             if(replacementPolicy == "LRU"){
-                updateLRU(icache(req_index_r), emptyIndex)
+                updateLRU(icache(req_index), emptyIndex)
             } else if(replacementPolicy == "FIFO"){
-                icache(req_index_r).fifoPtr := (emptyIndex + 1.U) % ways.U
+                icache(req_index).fifoPtr := (emptyIndex + 1.U) % ways.U
             }
         } .otherwise{
             // 如果没有空闲块，替换逻辑
             replacementPolicy match {
                 case "LRU" =>
-                    val lruIndex = getLRUIndex(icache(req_index_r), ways_width)
+                    val lruIndex = getLRUIndex(icache(req_index), ways_width)
                     set(lruIndex).valid := true.B
-                    set(lruIndex).tag := req_tag_r
+                    set(lruIndex).tag := req_tag
                     set(lruIndex).data := icache_wdata
                     //替换的时候更新LRU矩阵
-                    updateLRU(icache(req_index_r), lruIndex)
+                    updateLRU(icache(req_index), lruIndex)
                 case "FIFO" =>
-                    val fifoIndex = icache(req_index_r).fifoPtr
+                    val fifoIndex = icache(req_index).fifoPtr
                     set(fifoIndex).valid := true.B
-                    set(fifoIndex).tag := req_tag_r
+                    set(fifoIndex).tag := req_tag
                     set(fifoIndex).data := icache_wdata
                     //替换的时候更新FIFO指针
-                    icache(req_index_r).fifoPtr := (fifoIndex + 1.U) % ways.U
+                    icache(req_index).fifoPtr := (fifoIndex + 1.U) % ways.U
                 case "RANDOM" =>
                     val randomIndex = scala.util.Random.nextInt(ways)
                     set(randomIndex).valid := true.B
-                    set(randomIndex).tag := req_tag_r
+                    set(randomIndex).tag := req_tag
                     set(randomIndex).data := icache_wdata
             }
         }
