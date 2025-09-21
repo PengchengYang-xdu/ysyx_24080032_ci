@@ -112,20 +112,20 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         }
     }
 
-    val readout = io.out.rdata
+
     when(is_fetch_done && is_sdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
         val set = icache(req_index).set
         when(hasEmpty === true.B) {
             // 如果有空闲块，填充
             set(emptyIndex).valid := true.B
             set(emptyIndex).tag := req_tag
-            set(emptyIndex).data := readout
+            set(emptyIndex).data := io.out.rdata
         } .otherwise{
             // 如果没有空闲块，替换逻辑
             val randomIndex = scala.util.Random.nextInt(ways)
             set(randomIndex).valid := true.B
             set(randomIndex).tag := req_tag
-            set(randomIndex).data := readout
+            set(randomIndex).data := io.out.rdata
         }
     }
 
