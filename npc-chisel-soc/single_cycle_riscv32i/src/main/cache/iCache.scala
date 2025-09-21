@@ -37,7 +37,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val req_index = io.in.araddr(m + n - 1, m)
     val req_offset = io.in.araddr(m - 1, 0)
     val req_tag = io.in.araddr(WORD_LEN, m + n)
-    val addr_align := io.in.araddr - req_offset
+    val addr_align = io.in.araddr - req_offset
     dontTouch(count)
     dontTouch(req_index)
     dontTouch(req_offset)
