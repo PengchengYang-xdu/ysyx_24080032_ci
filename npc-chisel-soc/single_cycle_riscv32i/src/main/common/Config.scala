@@ -9,6 +9,7 @@ object Config{
     val LSU_DELAY = 0.U(4.W)
 
     val WORD_LEN = 32
+    val BYTE_LEN = 8
 
     // val START_ADDR = "h80000000".U(WORD_LEN.W) /*THIS IS NPC MODE*/
     // val START_ADDR = "h20000000".U(WORD_LEN.W) /*THIS IS MROM MODE*/
