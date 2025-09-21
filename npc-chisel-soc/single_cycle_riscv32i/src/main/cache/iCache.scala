@@ -14,7 +14,7 @@ class iCacheIO extends Bundle {
 }
 
 class iCacheBlock(val m: Int, val n: Int) extends Bundle{
-    val valid = Reg(Bool())
+    val valid = false.B
     val tag = UInt((WORD_LEN - m - n).W)
     val data = Vec((2 << (m - 1)) / (WORD_LEN / BYTE_LEN), UInt(WORD_LEN.W))
 }
@@ -45,7 +45,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     dontTouch(req_tag)
     dontTouch(addr_align)
 
-    val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways)))))
+    val icache = RegInit(VecInit(Seq.fill(sets)(new iCacheSet(m, n, ways))))
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
