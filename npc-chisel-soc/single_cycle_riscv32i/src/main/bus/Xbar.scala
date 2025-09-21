@@ -31,7 +31,7 @@ class Xbar extends Module {
 /*-----------------------FSM-----------------------*/
     val s_IDLE :: s_i_soc :: s_d_soc :: s_d_clint :: Nil = Enum(4)
     val c_state = RegInit(s_IDLE)
-    val n_state = WireDefault(s_IDLE)
+    val n_state = WireDefault(c_state)
     dontTouch(c_state)
     dontTouch(n_state)
 
