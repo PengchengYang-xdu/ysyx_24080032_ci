@@ -57,7 +57,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
     val is_ifu_ar_req = io.in.arvalid//无需等待arready 先查询cache
     val is_ifu_ar_fire = io.in.arvalid && io.in.arready
-    val is_fetch_done = io.out.rvalid && io.out.rready
+    val is_fetch_done = io.in.rvalid && io.in.rready
 
     val hit = WireDefault(false.B)
     val hit_num = WireDefault(0.U(ways_width.W))
