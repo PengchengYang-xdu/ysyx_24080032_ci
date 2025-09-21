@@ -6,6 +6,7 @@ import scala.math._
 import npc.common.Config._
 import npc.common.Instructions._
 import npc.bus.axi._
+import npc.bus.axi.AXI4Connector._
 
 class iCacheIO extends Bundle {
     val in = new AXI4WithoutClk//ifu
@@ -74,7 +75,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
-        s_IDLE           ->  Mux(is_ifu_ar_req, Mux(issdram_raddr, s_icache_lookup, s_fetch), s_IDLE),
+        s_IDLE           ->  Mux(is_ifu_ar_req, Mux(is_sdram_raddr, s_icache_lookup, s_fetch), s_IDLE),
         s_icache_lookup  ->  Mux(hit && io.in.rready, s_IDLE, s_fetch),
         s_fetch          ->  Mux(is_ifu_ar_fire, s_outdone, s_fetch),
         s_outdone        ->  Mux(is_fetch_done, s_IDLE, s_outdone)
@@ -117,13 +118,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
             // 如果有空闲块，填充
             set(emptyIndex).valid := true.B
             set(emptyIndex).tag := req_tag
-            set(emptyIndex).data := icache_wdata
+            set(emptyIndex).data := io.out.rdata
         } .otherwise{
             // 如果没有空闲块，替换逻辑
             val randomIndex = scala.util.Random.nextInt(ways)
             set(randomIndex).valid := true.B
             set(randomIndex).tag := req_tag
-            set(randomIndex).data := icache_wdata
+            set(randomIndex).data := io.out.rdata
         }
     }
 
