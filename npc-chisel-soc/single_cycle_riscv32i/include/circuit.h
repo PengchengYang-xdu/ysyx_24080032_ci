@@ -124,7 +124,7 @@ void close_wave(int i);
                  BITS(INSTR, 6, 0) != INST_JALR && \
                  BITS(INSTR, 6, 0) != INST_CSR)
 
-#define IS_HIT (top->rootp->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__hit0)
+#define IS_HIT 0
 #define INST_ADDR_IS_SDRAM (top->rootp->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__io_imem_araddr >= 0xa0000000 && top->rootp->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__io_imem_araddr <= 0xbfffffff)
 
 #define EV_ICACHE_FIRE (CYC_START & INST_ADDR_IS_SDRAM)
