@@ -77,6 +77,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }.otherwise{
         send_rdata := io.out.rdata
     }
+    io.in.rdata := send_rdata
 
     DefaultIFU()
     DefaultIMEM()
@@ -102,14 +103,12 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
-            io.in.rdata := send_rdata
         }
         is(s_outdone){
             connectAll(io.in, io.out)
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
-            io.in.rdata := send_rdata
         }
     }
 
