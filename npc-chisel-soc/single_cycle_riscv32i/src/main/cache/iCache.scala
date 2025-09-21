@@ -14,7 +14,7 @@ class iCacheIO extends Bundle {
 }
 
 class iCacheBlock(val m: Int, val n: Int) extends Bundle{
-    val valid = Bool
+    val valid = Bool()
     val tag = UInt((WORD_LEN - m - n).W)
     val data = Vec((2 << (m - 1)) / (WORD_LEN / BYTE_LEN), UInt(WORD_LEN.W))
 }
