@@ -54,11 +54,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
 
-    val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
-    val is_ifu_ar_req = io.in.arvalid//无需等待arready 先查询cache
-    val is_ifu_ar_fire = io.in.arvalid && io.in.arready
-    val is_fetch_done = io.in.rvalid && io.in.rready
-
     val hit = WireDefault(false.B)
     val hit_num = WireDefault(0.U(ways_width.W))
     for (i <- 0 until ways) {
@@ -67,7 +62,21 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
             hit_num := i.U
         }
     }
+
+    //state conditions
+    val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
+    val is_ifu_ar_req = io.in.arvalid//无需等待arready 先查询cache
+    val is_hit_handshake = hit && io.in.rready
+    val is_ifu_ar_fire = io.in.arvalid && io.in.arready
+    val is_fetch_done = io.in.rvalid && io.in.rready
+
     val hit_rdata = Mux(hit, icache(req_index).set(hit_num).data(req_offset >> 2), 0.U)
+    val send_rdata = Reg(UInt(WORD_LEN.W))
+    when(is_hit_handshake){
+        send_rdata := hit_rdata
+    }.otherwise{
+        send_rdata := io.out.rdata
+    }
 
     DefaultIFU()
     DefaultIMEM()
@@ -76,7 +85,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
         s_IDLE           ->  Mux(is_ifu_ar_req, Mux(is_sdram_raddr, s_icache_lookup, s_fetch), s_IDLE),
-        s_icache_lookup  ->  Mux(hit && io.in.rready, s_IDLE, s_fetch),
+        s_icache_lookup  ->  Mux(is_hit_handshake, s_IDLE, s_fetch),
         s_fetch          ->  Mux(is_ifu_ar_fire, s_outdone, s_fetch),
         s_outdone        ->  Mux(is_fetch_done, s_IDLE, s_outdone)
     ))
@@ -86,19 +95,21 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         }
         is(s_icache_lookup){
             io.in.rvalid := hit
-            io.in.rdata := hit_rdata
+            io.in.rdata := send_rdata
         }
         is(s_fetch){
             connectAll(io.in, io.out)
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
+            io.in.rdata := send_rdata
         }
         is(s_outdone){
             connectAll(io.in, io.out)
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
+            io.in.rdata := send_rdata
         }
     }
 
@@ -120,7 +131,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
             set(emptyIndex).valid := true.B
             set(emptyIndex).tag := req_tag
             set(emptyIndex).data(0) := io.out.rdata
-        } .otherwise{
+        }.otherwise{
             // 如果没有空闲块，替换逻辑
             val randomIndex = scala.util.Random.nextInt(ways)
             set(randomIndex).valid := true.B
