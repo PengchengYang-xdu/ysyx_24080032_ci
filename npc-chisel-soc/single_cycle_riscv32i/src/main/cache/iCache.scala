@@ -119,13 +119,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
             // 如果有空闲块，填充
             set(emptyIndex).valid := true.B
             set(emptyIndex).tag := req_tag
-            set(emptyIndex).data := io.out.rdata
+            set(emptyIndex).data(0) := io.out.rdata
         } .otherwise{
             // 如果没有空闲块，替换逻辑
             val randomIndex = scala.util.Random.nextInt(ways)
             set(randomIndex).valid := true.B
             set(randomIndex).tag := req_tag
-            set(randomIndex).data := io.out.rdata
+            set(randomIndex).data(0) := io.out.rdata
         }
     }
 
