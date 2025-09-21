@@ -121,7 +121,7 @@ class IFU extends Module {
     val AXI_AR_fire = arvalid & io.imem.arready
     val AXI_R_fire = io.imem.rvalid & rready
 
-    val start =  io_pipe.in.valid && io.imem.arready && ~flush_flg//only work at in.valid and imem ready and not flush
+    val start =  io_pipe.in.valid && ~flush_flg//only work at in.valid and imem ready and not flush
 
     val R_while_flush = AXI_R_fire & flush_flg
     val flush_before_R = ~AXI_R_fire & flush_flg
