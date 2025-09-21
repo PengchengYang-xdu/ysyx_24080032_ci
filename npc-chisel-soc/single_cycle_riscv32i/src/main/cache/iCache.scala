@@ -67,7 +67,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
     val is_ifu_ar_req = io.in.arvalid//无需等待arready 先查询cache
     val is_hit_handshake = hit && io.in.rready
-    val is_ifu_ar_fire = io.in.arvalid && io.out.arready
+    val is_ifu_ar_fire = io.in.arvalid && io.in.arready
     val is_fetch_done = io.in.rvalid && io.in.rready
 
     val hit_rdata = Mux(hit, icache(req_index).set(hit_num).data(req_offset >> 2), 0.U)
@@ -99,6 +99,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
             io.in.rdata := send_rdata
         }
         is(s_fetch){
+            connectAll(io.in, io.out)
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
