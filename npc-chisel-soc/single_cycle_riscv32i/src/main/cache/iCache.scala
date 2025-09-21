@@ -59,8 +59,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val is_ifu_ar_fire = io.in.arvalid && io.in.arready
     val is_fetch_done = io.out.rvalid && io.out.rready
 
-    val hit = Wire(Bool())
-    val hit_num = Wire(UInt(ways_width.W))
+    val hit = WireDefault(false.B)
+    val hit_num = WireDefault(0.U(ways_width.W))
     for (i <- 0 until ways) {
         when(icache(req_index).set(i).tag === req_tag && icache(req_index).set(i).valid === true.B) {
             hit := true.B
