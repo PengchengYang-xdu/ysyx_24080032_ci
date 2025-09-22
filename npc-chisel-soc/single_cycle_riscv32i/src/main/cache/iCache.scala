@@ -96,12 +96,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         is(s_icache_lookup){
             io.in.rvalid := hit
         }
-        is(s_fetch){
-            connectAll(io.in, io.out)
-            io.out.arburst :="b01".U
-            io.out.arlen := 0.U
-            io.out.arsize := "b10".U
-        }
         is(s_outdone){
             connectAll(io.in, io.out)
             io.out.arburst :="b01".U
