@@ -221,10 +221,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
     // Connect All Channels
     def connectAll_my(slave: AXI4WithoutClk, master: AXI4WithoutClk): Unit = {
-      connectAR(slave, master)
-      connectR(slave, master)
-      connectAW(slave, master)
-      connectW(slave, master)
-      connectB(slave, master)
+      connectAR_my(slave, master)
+      connectR_my(slave, master)
+      connectAW_my(slave, master)
+      connectW_my(slave, master)
+      connectB_my(slave, master)
     }
 }
