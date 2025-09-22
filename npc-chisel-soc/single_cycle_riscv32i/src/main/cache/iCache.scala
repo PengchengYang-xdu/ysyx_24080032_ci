@@ -143,7 +143,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
 
     def DefaultIFU(): Unit = {
-        io.in.arready := true.B
+        io.in.arready := false.B
         // io.in.rdata := 0.U
         io.in.rresp := 0.U
         io.in.rvalid := false.B
