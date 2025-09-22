@@ -76,11 +76,11 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     //state conditions
     val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
 
-    val is_ifu_ar_fire = io.in.arvalid && io.in.arready
+    val is_ifu_ar_fire = io.in.arvalid && in_arready
     val is_hit_handshake = hit && io.in.rready
-    val is_imem_ar_fire = io.out.arvalid && io.out.arready
-    val is_imem_r_fire = io.out.rvalid && io.out.rready
-    val is_ifu_r_fire = io.in.rvalid && io.in.rready
+    val is_imem_ar_fire = out_arvalid && io.out.arready
+    val is_imem_r_fire = io.out.rvalid && out_rready
+    val is_ifu_r_fire = in_rvalid && io.in.rready
 
     val hit_rdata = Mux(hit, icache(req_index).set(hit_num).data(req_offset >> 2), 0.U)
     val send_rdata = Reg(UInt(WORD_LEN.W))
