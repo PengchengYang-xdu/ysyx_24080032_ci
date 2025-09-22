@@ -6,7 +6,6 @@ import scala.math._
 import npc.common.Config._
 import npc.common.Instructions._
 import npc.bus.axi._
-import npc.bus.axi.AXI4Connector._
 
 class iCacheIO extends Bundle {
     val in = new AXI4WithoutClk//ifu
@@ -93,20 +92,17 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     ))
 
     switch(c_state){//third phase
-        is(s_IDLE){
-        }
         is(s_icache_lookup){
             io.in.rvalid := hit
-            io.in.rdata := send_rdata
         }
         is(s_fetch){
-            connectAll(io.in, io.out)
+            connectAll_my(io.in, io.out)
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
         }
         is(s_outdone){
-            connectAll(io.in, io.out)
+            connectAll_my(io.in, io.out)
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
@@ -178,5 +174,57 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         io.out.wvalid := false.B
         io.out.wlast := false.B
         io.out.bready := false.B
+    }
+
+    def connectAR_my(slave: AXI4WithoutClk, master: AXI4WithoutClk): Unit = {
+        master.araddr   := slave.araddr
+        master.arvalid  := slave.arvalid
+        master.arid     := slave.arid
+        master.arlen    := slave.arlen
+        master.arsize   := slave.arsize
+        master.arburst  := slave.arburst
+        slave.arready   := master.arready
+    }
+    // Connect Read Data Channel (R)
+    def connectR_my(slave: AXI4WithoutClk, master: AXI4WithoutClk): Unit = {
+    //   slave.rdata    := master.rdata
+      slave.rresp    := master.rresp
+      slave.rvalid   := master.rvalid
+      slave.rlast    := master.rlast
+      slave.rid      := master.rid
+      master.rready  := slave.rready
+    }
+    // Connect Write Address Channel (AW)
+    def connectAW_my(slave: AXI4WithoutClk, master: AXI4WithoutClk): Unit = {
+      master.awaddr   := slave.awaddr
+      master.awvalid  := slave.awvalid
+      master.awid     := slave.awid
+      master.awlen    := slave.awlen
+      master.awsize   := slave.awsize
+      master.awburst  := slave.awburst
+      slave.awready   := master.awready
+    }
+    // Connect Write Data Channel (W)
+    def connectW_my(slave: AXI4WithoutClk, master: AXI4WithoutClk): Unit = {
+      master.wdata    := slave.wdata
+      master.wstrb    := slave.wstrb
+      master.wvalid   := slave.wvalid
+      master.wlast    := slave.wlast
+      slave.wready    := master.wready
+    }
+    // Connect Write Response Channel (B)
+    def connectB_my(slave: AXI4WithoutClk, master: AXI4WithoutClk): Unit = {
+      slave.bresp    := master.bresp
+      slave.bvalid   := master.bvalid
+      slave.bid      := master.bid
+      master.bready  := slave.bready
+    }
+    // Connect All Channels
+    def connectAll_my(slave: AXI4WithoutClk, master: AXI4WithoutClk): Unit = {
+      connectAR(slave, master)
+      connectR(slave, master)
+      connectAW(slave, master)
+      connectW(slave, master)
+      connectB(slave, master)
     }
 }
