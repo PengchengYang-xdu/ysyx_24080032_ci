@@ -80,6 +80,9 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     io.in.rdata := send_rdata
     dontTouch(send_rdata)
 
+    DefaultIFU()
+    DefaultIMEM()
+
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
@@ -90,10 +93,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     ))
 
     switch(c_state){//third phase
-        is(s_IDLE){
-            DefaultIFU()
-            DefaultIMEM()
-        }
         is(s_icache_lookup){
             io.in.rvalid := hit
         }
