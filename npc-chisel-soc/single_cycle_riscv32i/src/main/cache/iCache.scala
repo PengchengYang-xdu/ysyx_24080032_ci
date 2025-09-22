@@ -26,16 +26,6 @@ class iCacheSet(val m: Int, val n: Int, val ways: Int) extends Bundle{
 class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val io = IO(new iCacheIO)
 
-    val in_arready = RegInit(true.B)
-    val in_rvalid = RegInit(false.B)
-    io.in.arready := in_arready
-    io.in.rvalid := in_rvalid
-
-    val out_arvalid = RegInit(false.B)
-    val out_rready = RegInit(false.B)
-    io.out.arvalid := out_arvalid
-    io.out.rready := out_rready
-
     val m = log2(block_size).toInt
     val n = log2(sets).toInt
     val w = math.ceil(log2(ways)).toInt
@@ -59,7 +49,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
-    val s_IDLE :: s_icache_lookup :: s_imem_ar :: s_imem_r :: s_ifu_r :: Nil = Enum(5)
+    val s_IDLE :: s_icache_lookup :: s_fetch :: s_outdone :: Nil = Enum(4)
     val c_state = RegInit(s_IDLE)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -75,12 +65,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     //state conditions
     val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
-
-    val is_ifu_ar_fire = io.in.arvalid && in_arready
+    val is_ifu_ar_req = io.in.arvalid//无需等待arready 先查询cache
     val is_hit_handshake = hit && io.in.rready
-    val is_imem_ar_fire = out_arvalid && io.out.arready
-    val is_imem_r_fire = io.out.rvalid && out_rready
-    val is_ifu_r_fire = in_rvalid && io.in.rready
+    val is_ifu_ar_fire = io.in.arvalid && io.in.arready
+    val is_fetch_done = io.in.rvalid && io.in.rready
 
     val hit_rdata = Mux(hit, icache(req_index).set(hit_num).data(req_offset >> 2), 0.U)
     val send_rdata = Reg(UInt(WORD_LEN.W))
@@ -98,55 +86,27 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
-        s_IDLE           ->  Mux(is_ifu_ar_fire, Mux(is_sdram_raddr, s_icache_lookup, s_imem_ar), s_IDLE),
-        s_icache_lookup  ->  Mux(is_hit_handshake, s_IDLE, s_imem_ar),
-        s_imem_ar        ->  Mux(is_imem_ar_fire, s_imem_r, s_imem_ar),
-        s_imem_r         ->  Mux(is_imem_r_fire, s_ifu_r, s_imem_r),
-        s_ifu_r          ->  Mux(is_ifu_r_fire, s_IDLE, s_ifu_r),
+        s_IDLE           ->  Mux(is_ifu_ar_req, Mux(is_sdram_raddr, s_icache_lookup, s_fetch), s_IDLE),
+        s_icache_lookup  ->  Mux(is_hit_handshake, s_IDLE, s_fetch),
+        s_fetch          ->  Mux(is_ifu_ar_fire, s_outdone, s_fetch),
+        s_outdone        ->  Mux(is_fetch_done, s_IDLE, s_outdone)
     ))
 
-    switch(n_state){//third phase
-        is(s_IDLE){
-
-        }
+    switch(c_state){//third phase
         is(s_icache_lookup){
-            in_rvalid := hit
-            in_arready := false.B
-            out_arvalid := false.B
-            out_rready := false.B
+            io.in.rvalid := hit
         }
-        is(s_imem_ar){
+        is(s_fetch){
             connectAll(io.in, io.out)
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
-
-            in_rvalid := false.B
-            in_arready := false.B
-            out_arvalid := true.B
-            out_rready := false.B
         }
-        is(s_imem_r){
+        is(s_outdone){
             connectAll(io.in, io.out)
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
-
-            in_rvalid := false.B
-            in_arready := false.B
-            out_arvalid := false.B
-            out_rready := true.B
-        }
-        is(s_ifu_r){
-            connectAll(io.in, io.out)
-            io.out.arburst :="b01".U
-            io.out.arlen := 0.U
-            io.out.arsize := "b10".U
-
-            in_rvalid := true.B
-            in_arready := false.B
-            out_arvalid := false.B
-            out_rready := false.B
         }
     }
 
@@ -161,7 +121,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
 
 
-    when(is_ifu_r_fire && is_sdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
+    when(is_fetch_done && is_sdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
         val set = icache(req_index).set
         when(hasEmpty === true.B) {
             // 如果有空闲块，填充
@@ -183,10 +143,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
 
     def DefaultIFU(): Unit = {
-        // io.in.arready := true.B
+        io.in.arready := true.B
         // io.in.rdata := 0.U
         io.in.rresp := 0.U
-        // io.in.rvalid := false.B
+        io.in.rvalid := false.B
         io.in.rlast := false.B
         io.in.rid := 0.U
         io.in.awready := false.B
@@ -198,12 +158,12 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     def DefaultIMEM(): Unit = {
         io.out.araddr := 0.U
-        // io.out.arvalid := false.B
+        io.out.arvalid := false.B
         io.out.arid := 0.U
         io.out.arlen := 0.U
         io.out.arsize := 0.U
         io.out.arburst := 0.U
-        // io.out.rready := false.B
+        io.out.rready := false.B
         io.out.awaddr := 0.U
         io.out.awvalid := false.B
         io.out.awid := 0.U

@@ -6,8 +6,8 @@ ExitCode:
 STDOUT:
 
 STDERR:
-src/main/cache/iCache.scala:26:7: error: detected combinational cycle in a FIRRTL module, sample path: iCache.{_n_state_T_3 <- ... <- is_imem_ar_fire <- ... <- io_out_arvalid <- ... <- n_state <- _n_state_T_15 <- ... <- _n_state_T_13 <- ... <- _n_state_T_11 <- ... <- _n_state_T_3}
-class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
+src/main/NPC.scala:15:7: error: detected combinational cycle in a FIRRTL module, sample path: NPC.{xbar.io_imem_arready <- xbar.io_imem_arvalid <- ... <- core.io_imem_arvalid <- core.io_imem_arready <- ... <- xbar.io_imem_arready}
+class NPC extends Module {
       ^
 
 ------------------------------------------------------------------------------
