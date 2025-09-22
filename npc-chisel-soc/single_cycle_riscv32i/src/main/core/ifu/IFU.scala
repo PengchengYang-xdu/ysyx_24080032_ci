@@ -131,7 +131,7 @@ class IFU extends Module {
 
     n_state := MuxLookup(c_state, s_BeforePreFire)(Seq(//second phase
         s_BeforePreFire       ->  Mux(start, s_BeforeAXI_AR_Fire, s_BeforePreFire),
-        s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, s_BeforeAXI_R_Fire, s_BeforeAXI_AR_Fire),
+        s_BeforeAXI_AR_Fire   ->  Mux(AXI_AR_fire, Mux(flush_flg, s_Flush, s_BeforeAXI_R_Fire), s_BeforeAXI_AR_Fire),
         s_BeforeAXI_R_Fire    ->  Mux(fetch_normal, s_AfterPreFire, Mux(flush_before_R, s_Flush, Mux(R_while_flush, s_BeforePreFire, s_BeforeAXI_R_Fire))),
         s_AfterPreFire        ->  Mux(io_pipe.out.fire || flush_flg, s_BeforePreFire, s_AfterPreFire),
         s_Flush               ->  Mux(AXI_R_fire, s_BeforePreFire, s_Flush)
