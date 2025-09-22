@@ -72,19 +72,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     val hit_rdata = Mux(hit, icache(req_index).set(hit_num).data(req_offset >> 2), 0.U)
     val send_rdata = Reg(UInt(WORD_LEN.W))
-    val send_raddr = Reg(UInt(WORD_LEN.W))
     when(is_hit_handshake){
         send_rdata := hit_rdata
     }.otherwise{
         send_rdata := io.out.rdata
     }
-    when(n_state === s_icache_lookup){
-        send_raddr := io.in.araddr
-    }
     io.in.rdata := send_rdata
-    io.out.araddr := send_raddr
     dontTouch(send_rdata)
-    dontTouch(send_raddr)
 
     DefaultIFU()
     DefaultIMEM()
@@ -110,14 +104,12 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
-            io.out.araddr := send_raddr
         }
         is(s_outdone){
             connectAll(io.in, io.out)
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
-            io.out.araddr := send_raddr
         }
     }
 
