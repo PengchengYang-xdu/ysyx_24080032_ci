@@ -63,6 +63,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         }
     }
 
+    val out_arvalid = RegInit(false.B)
+    out_arvalid := Mux(n_state === s_shoot_fetch, true.B, false.B)
+    val in_arready = RegInit(false.B)
+    in_arready :=  Mux(n_state === s_fetch, true.B, false.B)
+    io.out.arvalid := out_arvalid
+    io.in.arready := in_arready
+
     //state conditions
     val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
     val is_ifu_ar_req = io.in.arvalid//无需等待arready 先查询cache
@@ -80,13 +87,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
     io.in.rdata := send_rdata
     dontTouch(send_rdata)
-
-    val out_arvalid = RegInit(false.B)
-    out_arvalid := Mux(n_state === s_shoot_fetch, true.B, false.B)
-    val in_arready = RegInit(false.B)
-    in_arready :=  Mux(n_state === s_fetch, true.B, false.B)
-    io.out.arvalid := out_arvalid
-    io.in.arready := in_arready
 
     DefaultIFU()
     DefaultIMEM()
