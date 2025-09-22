@@ -91,17 +91,14 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         s_fetch          ->  Mux(is_ifu_ar_fire, s_outdone, s_fetch),
         s_outdone        ->  Mux(is_fetch_done, s_IDLE, s_outdone)
     ))
-
-    switch(c_state){//third phase
-        is(s_icache_lookup){
-            io.in.rvalid := hit
-        }
-        is(s_outdone){
+    when(c_state === s_icache_lookup){
+        io.in.rvalid := hit
+    }
+    when(n_state === s_outdone){
             connectAll(io.in, io.out)
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
-        }
     }
 
     //检查空闲的cache块
