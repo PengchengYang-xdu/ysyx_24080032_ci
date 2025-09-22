@@ -6,7 +6,6 @@ import scala.math._
 import npc.common.Config._
 import npc.common.Instructions._
 import npc.bus.axi._
-import npc.bus.axi.AXI4Connector._
 
 class iCacheIO extends Bundle {
     val in = new AXI4WithoutClk//ifu
@@ -67,8 +66,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     out_arvalid := Mux(n_state === s_shoot_fetch, true.B, false.B)
     val in_arready = RegInit(false.B)
     in_arready :=  Mux(n_state === s_fetch, true.B, false.B)
-    io.out.arvalid := out_arvalid
-    io.in.arready := in_arready
 
     //state conditions
     val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
@@ -187,12 +184,12 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
     def connectIMEM2IFU(): Unit = {
         io.out.araddr   := io.in.araddr
-        // io.out.arvalid  := io.in.arvalid
+        io.out.arvalid  := out_arvalid
         io.out.arid     := io.in.arid
         io.out.arlen    := io.in.arlen
         io.out.arsize   := io.in.arsize
         io.out.arburst  := io.in.arburst
-        // io.in.arready   := io.out.arready
+        io.in.arready   := in_arready
 
         io.in.rdata    := io.out.rdata
         io.in.rresp    := io.out.rresp
