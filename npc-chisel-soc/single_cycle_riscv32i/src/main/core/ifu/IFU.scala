@@ -74,7 +74,7 @@ class IFU extends Module {
     val flush_flg = io_bj.valid && (io_bj.target =/= reg_pc)
 
     //connect
-    io.imem.araddr := reg_pc
+    io.imem.araddr := Mux(flush_flg, io_bj.target, reg_pc)
 
 
 

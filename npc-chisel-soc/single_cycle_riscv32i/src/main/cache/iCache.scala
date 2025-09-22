@@ -6,6 +6,7 @@ import scala.math._
 import npc.common.Config._
 import npc.common.Instructions._
 import npc.bus.axi._
+import npc.bus.axi.AXI4Connector._
 
 class iCacheIO extends Bundle {
     val in = new AXI4WithoutClk//ifu
@@ -48,7 +49,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
-    val s_IDLE :: s_icache_lookup :: s_fetch :: s_outdone :: s_shoot_fetch :: Nil = Enum(5)
+    val s_IDLE :: s_icache_lookup :: s_fetch :: s_outdone :: Nil = Enum(4)
     val c_state = RegInit(s_IDLE)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -62,17 +63,11 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         }
     }
 
-    val out_arvalid = RegInit(false.B)
-    out_arvalid := Mux(n_state === s_shoot_fetch, true.B, false.B)
-    val in_arready = RegInit(false.B)
-    in_arready :=  Mux(n_state === s_fetch, true.B, false.B)
-
     //state conditions
     val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
     val is_ifu_ar_req = io.in.arvalid//无需等待arready 先查询cache
     val is_hit_handshake = hit && io.in.rready
-    val is_ifu_ar_fire = io.in.arvalid && in_arready
-    val is_imem_ar_fire = out_arvalid && io.out.arready
+    val is_ifu_ar_fire = io.in.arvalid && io.in.arready
     val is_fetch_done = io.in.rvalid && io.in.rready
 
     val hit_rdata = Mux(hit, icache(req_index).set(hit_num).data(req_offset >> 2), 0.U)
@@ -93,8 +88,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
         s_IDLE           ->  Mux(is_ifu_ar_req, Mux(is_sdram_raddr, s_icache_lookup, s_fetch), s_IDLE),
         s_icache_lookup  ->  Mux(is_hit_handshake, s_IDLE, s_fetch),
-        s_fetch          ->  Mux(is_ifu_ar_fire, s_shoot_fetch, s_fetch),
-        s_shoot_fetch    ->  Mux(is_imem_ar_fire, s_outdone, s_shoot_fetch),
+        s_fetch          ->  Mux(is_ifu_ar_fire, s_outdone, s_fetch),
         s_outdone        ->  Mux(is_fetch_done, s_IDLE, s_outdone)
     ))
 
@@ -102,14 +96,14 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         is(s_icache_lookup){
             io.in.rvalid := hit
         }
-        is(s_shoot_fetch){
-            connectIMEM2IFU()
+        is(s_fetch){
+            connectAll(io.in, io.out)
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
         }
         is(s_outdone){
-            connectIMEM2IFU()
+            connectAll(io.in, io.out)
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
@@ -182,40 +176,4 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         io.out.wlast := false.B
         io.out.bready := false.B
     }
-    def connectIMEM2IFU(): Unit = {
-        io.out.araddr   := io.in.araddr
-        io.out.arvalid  := out_arvalid
-        io.out.arid     := io.in.arid
-        io.out.arlen    := io.in.arlen
-        io.out.arsize   := io.in.arsize
-        io.out.arburst  := io.in.arburst
-        io.in.arready   := in_arready
-
-        io.in.rdata    := io.out.rdata
-        io.in.rresp    := io.out.rresp
-        io.in.rvalid   := io.out.rvalid
-        io.in.rlast    := io.out.rlast
-        io.in.rid      := io.out.rid
-        io.out.rready  := io.in.rready
-
-        io.out.awaddr   := io.in.awaddr
-        io.out.awvalid  := io.in.awvalid
-        io.out.awid     := io.in.awid
-        io.out.awlen    := io.in.awlen
-        io.out.awsize   := io.in.awsize
-        io.out.awburst  := io.in.awburst
-        io.in.awready   := io.out.awready
-
-        io.out.wdata    := io.in.wdata
-        io.out.wstrb    := io.in.wstrb
-        io.out.wvalid   := io.in.wvalid
-        io.out.wlast    := io.in.wlast
-        io.in.wready    := io.out.wready
-
-        io.in.bresp    := io.out.bresp
-        io.in.bvalid   := io.out.bvalid
-        io.in.bid      := io.out.bid
-        io.out.bready  := io.in.bready
-    }
-
 }
