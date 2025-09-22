@@ -95,6 +95,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     switch(c_state){//third phase
         is(s_icache_lookup){
             io.in.rvalid := hit
+            io.in.arready := false.B
         }
         is(s_fetch){
             connectAll(io.in, io.out)
