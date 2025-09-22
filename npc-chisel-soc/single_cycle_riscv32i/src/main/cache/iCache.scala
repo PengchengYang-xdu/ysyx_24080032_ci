@@ -65,10 +65,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     //state conditions
     val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
-    val is_ifu_ar_req = io.in.arvalid && io.in.arready
-    val is_hit_handshake = hit && io.in.rready
     val is_ifu_ar_fire = io.in.arvalid && io.in.arready
-    val is_fetch_done = io.in.rvalid && io.in.rready
+    val is_hit_handshake = hit && io.in.rready
+    val is_imem_ar_fire = io.out.arvalid && io.out.arready
+    val is_ifu_r_fire = io.in.rvalid && io.in.rready
 
     val hit_rdata = Mux(hit, icache(req_index).set(hit_num).data(req_offset >> 2), 0.U)
     val send_rdata = Reg(UInt(WORD_LEN.W))
@@ -86,10 +86,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
-        s_IDLE           ->  Mux(is_ifu_ar_req, Mux(is_sdram_raddr, s_icache_lookup, s_fetch), s_IDLE),
+        s_IDLE           ->  Mux(is_ifu_ar_fire, Mux(is_sdram_raddr, s_icache_lookup, s_fetch), s_IDLE),
         s_icache_lookup  ->  Mux(is_hit_handshake, s_IDLE, s_fetch),
-        s_fetch          ->  Mux(is_ifu_ar_fire, s_outdone, s_fetch),
-        s_outdone        ->  Mux(is_fetch_done, s_IDLE, s_outdone)
+        s_fetch          ->  Mux(is_imem_ar_fire, s_outdone, s_fetch),
+        s_outdone        ->  Mux(is_ifu_r_fire, s_IDLE, s_outdone)
     ))
 
     switch(c_state){//third phase
@@ -98,12 +98,16 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         }
         is(s_fetch){
             connectAll(io.in, io.out)
+            io.out.arvalid := true.B
+
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
         }
         is(s_outdone){
             connectAll(io.in, io.out)
+            io.out.arvalid := false.B
+
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
@@ -121,7 +125,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
 
 
-    when(is_fetch_done && is_sdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
+    when(is_ifu_r_fire && is_sdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
         val set = icache(req_index).set
         when(hasEmpty === true.B) {
             // 如果有空闲块，填充
