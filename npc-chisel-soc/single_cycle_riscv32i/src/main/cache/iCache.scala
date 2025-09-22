@@ -63,6 +63,14 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         }
     }
 
+    val in_arready = RegInit(false.B)
+    io.in.arready := in_arready
+    when(n_state === s_fetch){
+        in_arready := true.B
+    }.otherwise{
+        in_arready := false.B
+    }
+
     //state conditions
     val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
     val is_ifu_ar_req = io.in.arvalid//无需等待arready 先查询cache
@@ -143,7 +151,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
 
     def DefaultIFU(): Unit = {
-        io.in.arready := false.B
+        // io.in.arready := false.B
         // io.in.rdata := 0.U
         io.in.rresp := 0.U
         io.in.rvalid := false.B
