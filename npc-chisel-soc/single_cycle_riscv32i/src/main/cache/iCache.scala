@@ -106,13 +106,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
             io.in.rvalid := hit
         }
         is(s_shoot_fetch){
-            connectAll(io.in, io.out)
+            connectIMEM2IFU()
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
         }
         is(s_outdone){
-            connectAll(io.in, io.out)
+            connectIMEM2IFU()
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
             io.out.arsize := "b10".U
@@ -185,4 +185,40 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         io.out.wlast := false.B
         io.out.bready := false.B
     }
+    def connectIMEM2IFU(): Unit = {
+        io.out.araddr   := io.in.araddr
+        // io.out.arvalid  := io.in.arvalid
+        io.out.arid     := io.in.arid
+        io.out.arlen    := io.in.arlen
+        io.out.arsize   := io.in.arsize
+        io.out.arburst  := io.in.arburst
+        // io.in.arready   := io.out.arready
+
+        io.in.rdata    := io.out.rdata
+        io.in.rresp    := io.out.rresp
+        io.in.rvalid   := io.out.rvalid
+        io.in.rlast    := io.out.rlast
+        io.in.rid      := io.out.rid
+        io.out.rready  := io.in.rready
+
+        io.out.awaddr   := io.in.awaddr
+        io.out.awvalid  := io.in.awvalid
+        io.out.awid     := io.in.awid
+        io.out.awlen    := io.in.awlen
+        io.out.awsize   := io.in.awsize
+        io.out.awburst  := io.in.awburst
+        io.in.awready   := io.out.awready
+
+        io.out.wdata    := io.in.wdata
+        io.out.wstrb    := io.in.wstrb
+        io.out.wvalid   := io.in.wvalid
+        io.out.wlast    := io.in.wlast
+        io.in.wready    := io.out.wready
+
+        io.in.bresp    := io.out.bresp
+        io.in.bvalid   := io.out.bvalid
+        io.in.bid      := io.out.bid
+        io.out.bready  := io.in.bready
+    }
+
 }
