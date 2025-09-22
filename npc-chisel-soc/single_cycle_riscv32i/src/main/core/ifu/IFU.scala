@@ -59,7 +59,7 @@ class IFU extends Module {
     dontTouch(pc_next)
 
     val reg_pc = withReset(reset.asAsyncReset){
-        RegEnable(pc_next, START_ADDR, io_pipe.out.fire)
+        RegEnable(pc_next, START_ADDR, io_pipe.out.fire || io_bj.valid)
     }
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
@@ -74,7 +74,7 @@ class IFU extends Module {
     val flush_flg = io_bj.valid && (io_bj.target =/= reg_pc)
 
     //connect
-    io.imem.araddr := Mux(flush_flg, io_bj.target, reg_pc)
+    io.imem.araddr := reg_pc
 
 
 
