@@ -81,8 +81,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     io.in.rdata := send_rdata
     dontTouch(send_rdata)
 
-    val out_arvalid = RegEnable(true.B, false.B, n_state === s_shoot_fetch)
-    val in_arready = RegEnable(true.B, false.B, n_state === s_fetch)
+    val out_arvalid = RegInit(false.B)
+    out_arvalid := Mux(n_state === s_shoot_fetch, true.B, false.B)
+    val in_arready = RegInit(false.B)
+    in_arready :=  Mux(n_state === s_fetch, true.B, false.B)
     io.out.arvalid := out_arvalid
     io.in.arready := in_arready
 
