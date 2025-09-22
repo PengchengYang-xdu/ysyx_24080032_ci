@@ -59,7 +59,7 @@ class IFU extends Module {
     dontTouch(pc_next)
 
     val reg_pc = withReset(reset.asAsyncReset){
-        RegEnable(pc_next, START_ADDR, io_pipe.out.fire || io_bj.valid)
+        RegEnable(pc_next, START_ADDR, io_pipe.out.fire)
     }
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
