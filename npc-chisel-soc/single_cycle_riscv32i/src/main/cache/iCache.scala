@@ -83,6 +83,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
     io.in.rdata := send_rdata
     io.out.araddr := send_raddr
+    dontTouch(send_rdata)
+    dontTouch(send_raddr)
 
     DefaultIFU()
     DefaultIMEM()
