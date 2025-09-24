@@ -87,6 +87,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     DefaultIFU()
     DefaultIMEM()
+    io.in.arready := true.B
+    io.in.rvalid := false.B
 
     c_state := n_state//first phase
 
@@ -155,10 +157,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
 
     def DefaultIFU(): Unit = {
-        io.in.arready := true.B//
+        // io.in.arready := true.B
         // io.in.rdata := 0.U
         io.in.rresp := 0.U
-        io.in.rvalid := false.B//
+        // io.in.rvalid := false.B
         io.in.rlast := false.B
         io.in.rid := 0.U
         io.in.awready := false.B
