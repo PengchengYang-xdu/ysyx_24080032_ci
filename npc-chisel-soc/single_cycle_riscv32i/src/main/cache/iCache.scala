@@ -71,16 +71,19 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     val hit_rdata = Mux(hit, icache(req_index).set(hit_num).data(req_offset >> 2), 0.U)
     val send_rdata = Reg(UInt(WORD_LEN.W))
+    val send_araddr = Reg(UInt(WORD_LEN.W))
     when(is_hit_handshake){
         send_rdata := hit_rdata
     }.otherwise{
-        send_rdata := io.out.rdata
+        send_ardata := io.out.rdata
     }
     io.in.rdata := send_rdata
+    when(is_ifu_ar_fire){
+        send_araddr := io.in.araddr
+    }
+    io.out.araddr := send_araddr
     dontTouch(send_rdata)
-
-    DefaultIFU()
-    DefaultIMEM()
+    dontTouch(send_araddr)
 
     c_state := n_state//first phase
 
@@ -92,14 +95,27 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     ))
 
     switch(c_state){//third phase
+        is(s_IDLE){
+            DefaultIFU()
+            DefaultIMEM()
+            io.in.rvalid := false.B
+            io.in.arready := true.B
+        }
         is(s_icache_lookup){
+            DefaultIFU()
+            DefaultIMEM()
             io.in.rvalid := hit
+            io.in.arready := false.B
         }
         is(s_fetch){
             connectAll_my()
+            io.in.arready := false.B
+            io.out.arvalid := true.B
         }
         is(s_outdone){
             connectAll_my()
+            io.in.arready := false.B
+            io.out.arvalid := false.B
         }
     }
 
@@ -136,10 +152,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
 
     def DefaultIFU(): Unit = {
-        io.in.arready := false.B
+        // io.in.arready := true.B
         // io.in.rdata := 0.U
         io.in.rresp := 0.U
-        io.in.rvalid := false.B
+        // io.in.rvalid := false.B
         io.in.rlast := false.B
         io.in.rid := 0.U
         io.in.awready := false.B
@@ -150,7 +166,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
 
     def DefaultIMEM(): Unit = {
-        io.out.araddr := 0.U
+        // io.out.araddr := 0.U
         io.out.arvalid := false.B
         io.out.arid := 0.U
         io.out.arlen := 0.U
@@ -171,15 +187,15 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
 
     def connectAll_my(): Unit = {
-        io.out.araddr   := io.in.araddr
-        io.out.arvalid  := io.in.arvalid
+        // io.out.araddr   := io.in.araddr
+        // io.out.arvalid  := io.in.arvalid
         io.out.arid     := io.in.arid
         io.out.arlen    := 0.U
         io.out.arsize   := "b10".U
         io.out.arburst  := "b01".U
-        io.in.arready   := io.out.arready
+        // io.in.arready   := io.out.arready
     // Connect Read Data Channel (R)
-        io.in.rdata    := io.out.rdata
+        // io.in.rdata    := io.out.rdata
         io.in.rresp    := io.out.rresp
         io.in.rvalid   := io.out.rvalid
         io.in.rlast    := io.out.rlast
