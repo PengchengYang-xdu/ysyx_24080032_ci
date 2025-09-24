@@ -137,7 +137,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
 
 
-    when(is_ifu_r_fire && is_sdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM
+    when(is_ifu_r_fire && ~hit && is_sdram_raddr){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM, 这里注意hit了就不需要替换或填充
         val set = icache(req_index).set
         when(hasEmpty === true.B) {
             // 如果有空闲块，填充
