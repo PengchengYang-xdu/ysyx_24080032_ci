@@ -212,4 +212,5 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         io.in.bvalid   := io.out.bvalid
         io.in.bid      := io.out.bid
         io.out.bready  := io.in.bready
+    }
 }
