@@ -25,6 +25,10 @@ class iCacheSet(val m: Int, val n: Int, val ways: Int) extends Bundle{
 class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val io = IO(new iCacheIO)
 
+    // 寄存读出的数据以及要读的地址
+    val send_rdata = Reg(UInt(WORD_LEN.W))
+    val send_araddr = Reg(UInt(WORD_LEN.W))
+
     val m = log2(block_size).toInt
     val n = log2(sets).toInt
     val w = math.ceil(log2(ways)).toInt
@@ -34,10 +38,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val tag_width = WORD_LEN - m - n
     val ways_width = w
     val count = RegInit(c.U(log2Ceil(c + 1).W))
-    val req_index = io.in.araddr(m + n - 1, m)
-    val req_offset = io.in.araddr(m - 1, 0)
-    val req_tag = io.in.araddr(WORD_LEN - 1, m + n)
-    val addr_align = io.in.araddr - req_offset
+    val req_index = send_araddr(m + n - 1, m)
+    val req_offset = send_araddr(m - 1, 0)
+    val req_tag = send_araddr(WORD_LEN - 1, m + n)
+    val addr_align = send_araddr - req_offset
     dontTouch(count)
     dontTouch(req_index)
     dontTouch(req_offset)
@@ -63,15 +67,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
 
     //state conditions
-    val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
+    val is_sdram_raddr = (send_araddr >= "ha000_0000".U(WORD_LEN.W) && send_araddr <= "hbfff_ffff".U(WORD_LEN.W))
     val is_ifu_ar_fire = io.in.arvalid && io.in.arready
     val is_hit_handshake = hit && io.in.rready
     val is_imem_ar_fire = io.out.arvalid && io.out.arready
     val is_ifu_r_fire = io.in.rvalid && io.in.rready
 
     val hit_rdata = Mux(hit, icache(req_index).set(hit_num).data(req_offset >> 2), 0.U)
-    val send_rdata = Reg(UInt(WORD_LEN.W))
-    val send_araddr = Reg(UInt(WORD_LEN.W))
     when(is_hit_handshake){
         send_rdata := hit_rdata
     }.otherwise{
