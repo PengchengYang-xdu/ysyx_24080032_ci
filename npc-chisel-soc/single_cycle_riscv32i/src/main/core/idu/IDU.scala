@@ -99,7 +99,7 @@ class IDU extends Module{
     io_pipe.out.bits.id2is_rd_addr := inst(11, 7)
     io_pipe.out.bits.id2is_ch1tpe := decodeBundle(MyCH1Tpe)
     io_pipe.out.bits.id2is_ch2tpe := decodeBundle(MyCH2Tpe)
-    io_pipe.out.bits.id2is_rs1_addr := Mux(opcode === "b0110111".U, 0.U, (19, 15))
+    io_pipe.out.bits.id2is_rs1_addr := Mux(opcode === "b0110111".U, 0.U, inst(19, 15))
     io_pipe.out.bits.id2is_rs2_addr := inst(24, 20)
     io_pipe.out.bits.id2is_reg_pc := reg_pc
     io_pipe.out.bits.id2is_imm := imm
