@@ -99,7 +99,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         }
         is(s_fetch){
             connectAll(io.in, io.out)
-            io.out.arvalid := true.B
+            io.out.arvalid := true.B && io.out.arready
 
             io.out.arburst :="b01".U
             io.out.arlen := 0.U
