@@ -76,8 +76,10 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val hit_rdata = Mux(hit, icache(req_index).set(hit_num).data(req_offset >> 2), 0.U)
     when(is_hit_handshake){
         send_rdata := hit_rdata
-    }.otherwise{
+    }.elsewhen(is_ifu_r_fire){
         send_rdata := io.out.rdata
+    }.otherwise{
+        send_rdata := send_rdata
     }
     io.in.rdata := send_rdata
     when(is_ifu_ar_fire){
