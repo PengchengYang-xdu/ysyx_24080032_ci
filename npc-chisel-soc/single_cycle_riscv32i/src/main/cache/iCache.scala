@@ -94,15 +94,12 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     switch(c_state){//third phase
         is(s_icache_lookup){
             io.in.rvalid := hit
-            io.in.arready := false.B
         }
         is(s_fetch){
             connectAll_my()
-            io.out.arvalid := true.B
         }
         is(s_outdone){
             connectAll_my()
-            io.out.arvalid := false.B
         }
     }
 
@@ -139,7 +136,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
 
     def DefaultIFU(): Unit = {
-        io.in.arready := true.B
+        io.in.arready := false.B
         // io.in.rdata := 0.U
         io.in.rresp := 0.U
         io.in.rvalid := false.B
@@ -175,7 +172,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     def connectAll_my(): Unit = {
         io.out.araddr   := io.in.araddr
-        // io.out.arvalid  := io.in.arvalid
+        io.out.arvalid  := io.in.arvalid
         io.out.arid     := io.in.arid
         io.out.arlen    := 0.U
         io.out.arsize   := "b10".U
