@@ -184,18 +184,18 @@ extern "C" void sdram_write(int id, int bank_addr, int row_addr, int col_addr, i
 	{
 	case 0b0001:{
 		*(uint8_t *)guest_to_host_sdram(addr_processed, id) = wdata;
-		if(addr_processed == 0xa000023c) printf("sdram_write addr = %#x , data = %#x ,wstrb = %d\n", addr_processed, wdata, wstrb);
+		// if(addr_processed == 0xa000023c) printf("sdram_write addr = %#x , data = %#x ,wstrb = %d\n", addr_processed, wdata, wstrb);
 		break;}
     case 0b0010:{
 		*(uint8_t *)(guest_to_host_sdram(addr_processed, id) + 1) = wdata >> 8;
-		if(addr_processed == 0xa000023c) printf("sdram_write addr = %#x , data = %#x ,wstrb = %d\n", addr_processed, wdata, wstrb);
+		// if(addr_processed == 0xa000023c) printf("sdram_write addr = %#x , data = %#x ,wstrb = %d\n", addr_processed, wdata, wstrb);
 		break;}
 	case 0b0011:{
 		*(uint16_t *)guest_to_host_sdram(addr_processed, id) = wdata;
-		if(addr_processed == 0xa000023c) printf("sdram_write addr = %#x , data = %#x ,wstrb = %d\n", addr_processed, wdata, wstrb);
+		// if(addr_processed == 0xa000023c) printf("sdram_write addr = %#x , data = %#x ,wstrb = %d\n", addr_processed, wdata, wstrb);
 		break;}
 	default:{
-        if(addr_processed == 0xa000023c) printf("default : sdram_write addr = %#x , data = %#x ,wstrb = %d\n", addr_processed, wdata, wstrb);
+        // if(addr_processed == 0xa000023c) printf("default : sdram_write addr = %#x , data = %#x ,wstrb = %d\n", addr_processed, wdata, wstrb);
 		break;}
 	}
 }
