@@ -85,6 +85,9 @@ bool static checkregs(struct CPU_state *ref_r){
     if(comp_pc != PC) flag = false;
   else;
 
+// 添加一个inst不可能=0的判断，指示取指错误
+  if(INSTR == 0) flag = false;
+
   for(i = 0;i < REAL_REGNUM;i++){
     if(ref_r -> gpr[i] != gpr[i])
       flag = false;
