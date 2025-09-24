@@ -88,7 +88,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
         s_IDLE           ->  Mux(is_ifu_ar_fire, Mux(is_sdram_raddr, s_icache_lookup, s_imem_arready), s_IDLE),
         s_icache_lookup  ->  Mux(is_hit_handshake, s_IDLE, s_imem_arready),
-        s_imem_arready   ->  Mux(is_imem_arready, s_fetch, s_imem_arready)
+        s_imem_arready   ->  Mux(is_imem_arready, s_fetch, s_imem_arready),
         s_fetch          ->  Mux(is_imem_ar_fire, s_outdone, s_fetch),
         s_outdone        ->  Mux(is_ifu_r_fire, s_IDLE, s_outdone)
     ))
