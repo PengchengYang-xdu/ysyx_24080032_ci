@@ -75,7 +75,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     when(is_hit_handshake){
         send_rdata := hit_rdata
     }.otherwise{
-        send_ardata := io.out.rdata
+        send_rdata := io.out.rdata
     }
     io.in.rdata := send_rdata
     when(is_ifu_ar_fire){
