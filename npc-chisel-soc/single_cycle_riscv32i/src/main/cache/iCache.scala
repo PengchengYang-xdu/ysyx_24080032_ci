@@ -85,6 +85,9 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     dontTouch(send_rdata)
     dontTouch(send_araddr)
 
+    DefaultIFU()
+    DefaultIMEM()
+
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
