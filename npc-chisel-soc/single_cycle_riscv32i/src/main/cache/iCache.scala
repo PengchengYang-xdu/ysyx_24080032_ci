@@ -48,7 +48,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
-    val s_IDLE :: s_icache_lookup :: s_imem_arready :: s_fetch :: s_outdone :: Nil = Enum(5)
+    val s_IDLE :: s_icache_lookup :: s_fetch :: s_outdone :: Nil = Enum(4)
     val c_state = RegInit(s_IDLE)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -66,7 +66,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
     val is_ifu_ar_fire = io.in.arvalid && io.in.arready
     val is_hit_handshake = hit && io.in.rready
-    val is_imem_arready = io.out.arready
     val is_imem_ar_fire = io.out.arvalid && io.out.arready
     val is_ifu_r_fire = io.in.rvalid && io.in.rready
 
@@ -86,9 +85,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
-        s_IDLE           ->  Mux(is_ifu_ar_fire, Mux(is_sdram_raddr, s_icache_lookup, s_imem_arready), s_IDLE),
-        s_icache_lookup  ->  Mux(is_hit_handshake, s_IDLE, s_imem_arready),
-        s_imem_arready   ->  Mux(is_imem_arready, s_fetch, s_imem_arready),
+        s_IDLE           ->  Mux(is_ifu_ar_fire, Mux(is_sdram_raddr, s_icache_lookup, s_fetch), s_IDLE),
+        s_icache_lookup  ->  Mux(is_hit_handshake, s_IDLE, s_fetch),
         s_fetch          ->  Mux(is_imem_ar_fire, s_outdone, s_fetch),
         s_outdone        ->  Mux(is_ifu_r_fire, s_IDLE, s_outdone)
     ))
@@ -97,9 +95,6 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         is(s_icache_lookup){
             io.in.rvalid := hit
             io.in.arready := false.B
-        }
-        is(s_imem_arready){
-            io.out.arvalid := false.B
         }
         is(s_fetch){
             connectAll_my()
