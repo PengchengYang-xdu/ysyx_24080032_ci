@@ -61,24 +61,11 @@ module Xbar(	// @[src/main/bus/Xbar.scala:28:7]
   input  [31:0] io_imem_araddr,	// @[src/main/bus/Xbar.scala:29:16]
   input         io_imem_arvalid,	// @[src/main/bus/Xbar.scala:29:16]
   output        io_imem_arready,	// @[src/main/bus/Xbar.scala:29:16]
-  input  [3:0]  io_imem_arid,	// @[src/main/bus/Xbar.scala:29:16]
-  input  [7:0]  io_imem_arlen,	// @[src/main/bus/Xbar.scala:29:16]
   input  [2:0]  io_imem_arsize,	// @[src/main/bus/Xbar.scala:29:16]
   input  [1:0]  io_imem_arburst,	// @[src/main/bus/Xbar.scala:29:16]
   output [31:0] io_imem_rdata,	// @[src/main/bus/Xbar.scala:29:16]
   output        io_imem_rvalid,	// @[src/main/bus/Xbar.scala:29:16]
   input         io_imem_rready,	// @[src/main/bus/Xbar.scala:29:16]
-  input  [31:0] io_imem_awaddr,	// @[src/main/bus/Xbar.scala:29:16]
-  input         io_imem_awvalid,	// @[src/main/bus/Xbar.scala:29:16]
-  input  [3:0]  io_imem_awid,	// @[src/main/bus/Xbar.scala:29:16]
-  input  [7:0]  io_imem_awlen,	// @[src/main/bus/Xbar.scala:29:16]
-  input  [2:0]  io_imem_awsize,	// @[src/main/bus/Xbar.scala:29:16]
-  input  [1:0]  io_imem_awburst,	// @[src/main/bus/Xbar.scala:29:16]
-  input  [31:0] io_imem_wdata,	// @[src/main/bus/Xbar.scala:29:16]
-  input  [3:0]  io_imem_wstrb,	// @[src/main/bus/Xbar.scala:29:16]
-  input         io_imem_wvalid,	// @[src/main/bus/Xbar.scala:29:16]
-                io_imem_wlast,	// @[src/main/bus/Xbar.scala:29:16]
-                io_imem_bready,	// @[src/main/bus/Xbar.scala:29:16]
   input  [31:0] io_dmem_araddr,	// @[src/main/bus/Xbar.scala:29:16]
   input         io_dmem_arvalid,	// @[src/main/bus/Xbar.scala:29:16]
   output        io_dmem_arready,	// @[src/main/bus/Xbar.scala:29:16]
@@ -99,8 +86,6 @@ module Xbar(	// @[src/main/bus/Xbar.scala:28:7]
   output [31:0] io_soc_araddr,	// @[src/main/bus/Xbar.scala:29:16]
   output        io_soc_arvalid,	// @[src/main/bus/Xbar.scala:29:16]
   input         io_soc_arready,	// @[src/main/bus/Xbar.scala:29:16]
-  output [3:0]  io_soc_arid,	// @[src/main/bus/Xbar.scala:29:16]
-  output [7:0]  io_soc_arlen,	// @[src/main/bus/Xbar.scala:29:16]
   output [2:0]  io_soc_arsize,	// @[src/main/bus/Xbar.scala:29:16]
   output [1:0]  io_soc_arburst,	// @[src/main/bus/Xbar.scala:29:16]
   input  [31:0] io_soc_rdata,	// @[src/main/bus/Xbar.scala:29:16]
@@ -110,10 +95,7 @@ module Xbar(	// @[src/main/bus/Xbar.scala:28:7]
   output [31:0] io_soc_awaddr,	// @[src/main/bus/Xbar.scala:29:16]
   output        io_soc_awvalid,	// @[src/main/bus/Xbar.scala:29:16]
   input         io_soc_awready,	// @[src/main/bus/Xbar.scala:29:16]
-  output [3:0]  io_soc_awid,	// @[src/main/bus/Xbar.scala:29:16]
-  output [7:0]  io_soc_awlen,	// @[src/main/bus/Xbar.scala:29:16]
   output [2:0]  io_soc_awsize,	// @[src/main/bus/Xbar.scala:29:16]
-  output [1:0]  io_soc_awburst,	// @[src/main/bus/Xbar.scala:29:16]
   output [31:0] io_soc_wdata,	// @[src/main/bus/Xbar.scala:29:16]
   output [3:0]  io_soc_wstrb,	// @[src/main/bus/Xbar.scala:29:16]
   output        io_soc_wvalid,	// @[src/main/bus/Xbar.scala:29:16]
@@ -148,123 +130,72 @@ module Xbar(	// @[src/main/bus/Xbar.scala:28:7]
       2'b10:
         casez_tmp = {~(io_soc_rvalid | io_soc_bvalid), 1'h0};	// @[src/main/bus/Xbar.scala:28:7, :48:36, :51:42, :58:27]
       default:
-        casez_tmp = io_clint_rvalid | io_soc_bvalid ? 2'h0 : 2'h3;	// @[src/main/bus/AXI.scala:95:25, :101:22, :114:23, :127:22, src/main/bus/Xbar.scala:28:7, :29:16, :41:61, :49:40, :51:42, :59:27, :67:20, :71:42, :73:41, :107:23, :113:23, :124:24, :131:24]
+        casez_tmp = io_clint_rvalid | io_soc_bvalid ? 2'h0 : 2'h3;	// @[src/main/bus/AXI.scala:95:25, :101:24, :127:24, src/main/bus/Xbar.scala:28:7, :29:16, :41:61, :49:40, :51:42, :59:27, :67:20, :71:42, :73:41, :107:23, :113:23, :124:24]
     endcase	// @[src/main/bus/Xbar.scala:33:26, :51:42]
   end // always_comb
   wire [1:0]  n_state = casez_tmp;	// @[src/main/bus/Xbar.scala:34:30, :51:42]
-  wire        _GEN = c_state == 2'h0;	// @[src/main/bus/AXI.scala:95:25, :101:22, :114:23, :127:22, src/main/bus/Xbar.scala:28:7, :29:16, :33:26, :67:20, :71:42, :73:41, :107:23, :113:23, :124:24, :131:24]
+  wire        _GEN = c_state == 2'h0;	// @[src/main/bus/AXI.scala:95:25, :101:24, :127:24, src/main/bus/Xbar.scala:28:7, :29:16, :33:26, :67:20, :71:42, :73:41, :107:23, :113:23, :124:24]
   wire        _GEN_0 = isdmem & ~isclint;	// @[src/main/bus/Xbar.scala:40:38, :43:33, :54:24, :71:31]
   wire        _GEN_1 = isimem | _GEN_0;	// @[src/main/bus/Xbar.scala:41:21, :69:25, :71:{31,42}, :73:41, :140:25]
-  wire        _GEN_2 = _GEN ? isimem : _n_state_T_10;	// @[src/main/bus/AXI.scala:100:22, src/main/bus/Xbar.scala:41:21, :51:42, :67:20, :69:25, :92:23]
+  wire        _GEN_2 = _GEN ? isimem : _n_state_T_10;	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:41:21, :51:42, :67:20, :69:25, :92:23]
   reg  [31:0] casez_tmp_0;	// @[src/main/bus/Xbar.scala:67:20, :69:25]
   always_comb begin	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :119:23]
     casez (c_state)	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :119:23]
       2'b00:
-        casez_tmp_0 = isimem ? io_imem_araddr : _GEN_0 ? io_dmem_araddr : 32'h0;	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:41:21, :51:42, :67:20, :69:25, :71:{31,42}, :92:23, :119:23]
+        casez_tmp_0 = isimem ? io_imem_araddr : _GEN_0 ? io_dmem_araddr : 32'h0;	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:29:16, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :119:23]
       2'b01:
         casez_tmp_0 = io_imem_araddr;	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :119:23]
       2'b10:
         casez_tmp_0 = io_dmem_araddr;	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :119:23]
       default:
-        casez_tmp_0 = 32'h0;	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :92:23, :119:23]
+        casez_tmp_0 = 32'h0;	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:29:16, :51:42, :67:20, :69:25, :119:23]
     endcase	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :119:23]
   end // always_comb
   reg  [2:0]  casez_tmp_1;	// @[src/main/bus/Xbar.scala:67:20, :69:25]
   always_comb begin	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :123:23]
     casez (c_state)	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :123:23]
       2'b00:
-        casez_tmp_1 = isimem ? io_imem_arsize : _GEN_0 ? io_dmem_arsize : 3'h0;	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:41:21, :51:42, :67:20, :69:25, :71:{31,42}, :123:23]
+        casez_tmp_1 = isimem ? io_imem_arsize : _GEN_0 ? io_dmem_arsize : 3'h0;	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:29:16, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :123:23]
       2'b01:
         casez_tmp_1 = io_imem_arsize;	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :123:23]
       2'b10:
         casez_tmp_1 = io_dmem_arsize;	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :123:23]
       default:
-        casez_tmp_1 = 3'h0;	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :123:23]
+        casez_tmp_1 = 3'h0;	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:29:16, :51:42, :67:20, :69:25, :123:23]
     endcase	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :123:23]
   end // always_comb
+  wire        _GEN_3 = _GEN ? isimem | ~_GEN_0 : _n_state_T_10 | ~_n_state_T_12;	// @[src/main/bus/AXI.scala:109:25, src/main/bus/Xbar.scala:41:21, :51:42, :67:20, :69:25, :71:{31,42}]
+  wire        _GEN_4 = _n_state_T_10 | _n_state_T_12;	// @[src/main/bus/Xbar.scala:51:42, :67:20, :140:25]
   reg  [31:0] casez_tmp_2;	// @[src/main/bus/Xbar.scala:67:20, :69:25]
-  always_comb begin	// @[src/main/bus/AXI.scala:109:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :126:23]
-    casez (c_state)	// @[src/main/bus/AXI.scala:109:23, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :126:23]
-      2'b00:
-        casez_tmp_2 = isimem ? io_imem_awaddr : _GEN_0 ? io_dmem_awaddr : 32'h0;	// @[src/main/bus/AXI.scala:109:23, src/main/bus/Xbar.scala:41:21, :51:42, :67:20, :69:25, :71:{31,42}, :92:23, :126:23]
-      2'b01:
-        casez_tmp_2 = io_imem_awaddr;	// @[src/main/bus/AXI.scala:109:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :126:23]
-      2'b10:
-        casez_tmp_2 = io_dmem_awaddr;	// @[src/main/bus/AXI.scala:109:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :126:23]
-      default:
-        casez_tmp_2 = 32'h0;	// @[src/main/bus/AXI.scala:109:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :92:23, :126:23]
-    endcase	// @[src/main/bus/AXI.scala:109:23, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :126:23]
-  end // always_comb
-  reg  [2:0]  casez_tmp_3;	// @[src/main/bus/Xbar.scala:67:20, :69:25]
-  always_comb begin	// @[src/main/bus/AXI.scala:113:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :130:23]
-    casez (c_state)	// @[src/main/bus/AXI.scala:113:23, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :130:23]
-      2'b00:
-        casez_tmp_3 = isimem ? io_imem_awsize : _GEN_0 ? io_dmem_awsize : 3'h0;	// @[src/main/bus/AXI.scala:113:23, src/main/bus/Xbar.scala:41:21, :51:42, :67:20, :69:25, :71:{31,42}, :123:23, :130:23]
-      2'b01:
-        casez_tmp_3 = io_imem_awsize;	// @[src/main/bus/AXI.scala:113:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :130:23]
-      2'b10:
-        casez_tmp_3 = io_dmem_awsize;	// @[src/main/bus/AXI.scala:113:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :130:23]
-      default:
-        casez_tmp_3 = 3'h0;	// @[src/main/bus/AXI.scala:113:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :123:23, :130:23]
-    endcase	// @[src/main/bus/AXI.scala:113:23, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :130:23]
-  end // always_comb
-  reg  [31:0] casez_tmp_4;	// @[src/main/bus/Xbar.scala:67:20, :69:25]
-  always_comb begin	// @[src/main/bus/AXI.scala:119:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :132:22]
-    casez (c_state)	// @[src/main/bus/AXI.scala:119:23, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :132:22]
-      2'b00:
-        casez_tmp_4 = isimem ? io_imem_wdata : _GEN_0 ? io_dmem_wdata : 32'h0;	// @[src/main/bus/AXI.scala:119:23, src/main/bus/Xbar.scala:41:21, :51:42, :67:20, :69:25, :71:{31,42}, :92:23, :132:22]
-      2'b01:
-        casez_tmp_4 = io_imem_wdata;	// @[src/main/bus/AXI.scala:119:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :132:22]
-      2'b10:
-        casez_tmp_4 = io_dmem_wdata;	// @[src/main/bus/AXI.scala:119:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :132:22]
-      default:
-        casez_tmp_4 = 32'h0;	// @[src/main/bus/AXI.scala:119:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :92:23, :132:22]
-    endcase	// @[src/main/bus/AXI.scala:119:23, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :132:22]
-  end // always_comb
-  reg  [3:0]  casez_tmp_5;	// @[src/main/bus/Xbar.scala:67:20, :69:25]
-  always_comb begin	// @[src/main/bus/AXI.scala:120:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :133:22]
-    casez (c_state)	// @[src/main/bus/AXI.scala:120:23, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :133:22]
-      2'b00:
-        casez_tmp_5 = isimem ? io_imem_wstrb : _GEN_0 ? io_dmem_wstrb : 4'h0;	// @[src/main/bus/AXI.scala:92:25, :104:22, :111:23, :120:23, :129:22, src/main/bus/Xbar.scala:28:7, :29:16, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :73:41, :110:21, :115:21, :121:21, :128:21, :133:22]
-      2'b01:
-        casez_tmp_5 = io_imem_wstrb;	// @[src/main/bus/AXI.scala:120:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :133:22]
-      2'b10:
-        casez_tmp_5 = io_dmem_wstrb;	// @[src/main/bus/AXI.scala:120:23, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :133:22]
-      default:
-        casez_tmp_5 = 4'h0;	// @[src/main/bus/AXI.scala:92:25, :104:22, :111:23, :120:23, :129:22, src/main/bus/Xbar.scala:28:7, :29:16, :51:42, :67:20, :69:25, :71:42, :73:41, :110:21, :115:21, :121:21, :128:21, :133:22]
-    endcase	// @[src/main/bus/AXI.scala:120:23, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :133:22]
-  end // always_comb
-  wire        _GEN_3 = _n_state_T_10 | _n_state_T_12;	// @[src/main/bus/Xbar.scala:51:42, :67:20, :140:25]
-  reg  [31:0] casez_tmp_6;	// @[src/main/bus/Xbar.scala:67:20, :69:25]
   always_comb begin	// @[src/main/bus/Xbar.scala:67:20, :69:25, :140:25]
     casez (c_state)	// @[src/main/bus/Xbar.scala:33:26, :67:20, :69:25, :140:25]
       2'b00:
-        casez_tmp_6 = _GEN_1 | ~_n_state_T_2 ? 32'h0 : io_dmem_araddr;	// @[src/main/bus/Xbar.scala:55:21, :67:20, :69:25, :71:42, :73:41, :92:23, :140:25]
+        casez_tmp_2 = _GEN_1 | ~_n_state_T_2 ? 32'h0 : io_dmem_araddr;	// @[src/main/bus/Xbar.scala:29:16, :55:21, :67:20, :69:25, :71:42, :73:41, :140:25]
       2'b01:
-        casez_tmp_6 = 32'h0;	// @[src/main/bus/Xbar.scala:67:20, :69:25, :92:23, :140:25]
+        casez_tmp_2 = 32'h0;	// @[src/main/bus/Xbar.scala:29:16, :67:20, :69:25, :140:25]
       2'b10:
-        casez_tmp_6 = 32'h0;	// @[src/main/bus/Xbar.scala:67:20, :69:25, :92:23, :140:25]
+        casez_tmp_2 = 32'h0;	// @[src/main/bus/Xbar.scala:29:16, :67:20, :69:25, :140:25]
       default:
-        casez_tmp_6 = _GEN_3 | ~(&c_state) ? 32'h0 : io_dmem_araddr;	// @[src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :92:23, :140:25]
+        casez_tmp_2 = _GEN_4 | ~(&c_state) ? 32'h0 : io_dmem_araddr;	// @[src/main/bus/Xbar.scala:29:16, :33:26, :51:42, :67:20, :69:25, :140:25]
     endcase	// @[src/main/bus/Xbar.scala:33:26, :67:20, :69:25, :140:25]
   end // always_comb
-  reg  [31:0] casez_tmp_7;	// @[src/main/bus/Xbar.scala:67:20, :69:25]
-  always_comb begin	// @[src/main/bus/AXI.scala:100:22, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :106:23]
-    casez (c_state)	// @[src/main/bus/AXI.scala:100:22, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :106:23]
+  reg  [31:0] casez_tmp_3;	// @[src/main/bus/Xbar.scala:67:20, :69:25]
+  always_comb begin	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :106:23]
+    casez (c_state)	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :106:23]
       2'b00:
-        casez_tmp_7 =
-          isimem ? 32'h0 : _GEN_0 ? io_soc_rdata : _n_state_T_2 ? io_clint_rdata : 32'h0;	// @[src/main/bus/AXI.scala:100:22, src/main/bus/Xbar.scala:41:21, :51:42, :55:21, :67:20, :69:25, :71:{31,42}, :73:41, :92:23, :106:23]
+        casez_tmp_3 =
+          isimem ? 32'h0 : _GEN_0 ? io_soc_rdata : _n_state_T_2 ? io_clint_rdata : 32'h0;	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:29:16, :41:21, :51:42, :55:21, :67:20, :69:25, :71:{31,42}, :73:41, :106:23]
       2'b01:
-        casez_tmp_7 = 32'h0;	// @[src/main/bus/AXI.scala:100:22, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :92:23, :106:23]
+        casez_tmp_3 = 32'h0;	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:29:16, :51:42, :67:20, :69:25, :106:23]
       2'b10:
-        casez_tmp_7 = io_soc_rdata;	// @[src/main/bus/AXI.scala:100:22, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :106:23]
+        casez_tmp_3 = io_soc_rdata;	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :106:23]
       default:
-        casez_tmp_7 = io_clint_rdata;	// @[src/main/bus/AXI.scala:100:22, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :106:23]
-    endcase	// @[src/main/bus/AXI.scala:100:22, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :106:23]
+        casez_tmp_3 = io_clint_rdata;	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:51:42, :67:20, :69:25, :106:23]
+    endcase	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:33:26, :51:42, :67:20, :69:25, :106:23]
   end // always_comb
   always @(posedge clock) begin	// @[src/main/bus/Xbar.scala:28:7]
     if (reset)	// @[src/main/bus/Xbar.scala:28:7]
-      c_state <= 2'h0;	// @[src/main/bus/AXI.scala:95:25, :101:22, :114:23, :127:22, src/main/bus/Xbar.scala:28:7, :29:16, :33:26, :67:20, :71:42, :73:41, :107:23, :113:23, :124:24, :131:24]
+      c_state <= 2'h0;	// @[src/main/bus/AXI.scala:95:25, :101:24, :127:24, src/main/bus/Xbar.scala:28:7, :29:16, :33:26, :67:20, :71:42, :73:41, :107:23, :113:23, :124:24]
     else	// @[src/main/bus/Xbar.scala:28:7]
       c_state <= n_state;	// @[src/main/bus/Xbar.scala:33:26, :34:30]
   end // always @(posedge)
@@ -288,73 +219,65 @@ module Xbar(	// @[src/main/bus/Xbar.scala:28:7]
   `endif // ENABLE_INITIAL_REG_
   assign io_imem_arready =
     _GEN ? isimem & io_soc_arready : _n_state_T_10 & io_soc_arready;	// @[src/main/bus/AXI.scala:96:25, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :91:25]
-  assign io_imem_rdata = _GEN_2 ? io_soc_rdata : 32'h0;	// @[src/main/bus/AXI.scala:100:22, src/main/bus/Xbar.scala:28:7, :67:20, :69:25, :92:23]
-  assign io_imem_rvalid = _GEN ? isimem & io_soc_rvalid : _n_state_T_10 & io_soc_rvalid;	// @[src/main/bus/AXI.scala:102:22, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :94:24]
+  assign io_imem_rdata = _GEN_2 ? io_soc_rdata : 32'h0;	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:28:7, :29:16, :67:20, :69:25, :92:23]
+  assign io_imem_rvalid = _GEN ? isimem & io_soc_rvalid : _n_state_T_10 & io_soc_rvalid;	// @[src/main/bus/AXI.scala:102:24, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :94:24]
   assign io_dmem_arready =
     _GEN
       ? ~isimem & (_GEN_0 ? io_soc_arready : _n_state_T_2 & io_clint_arready)
-      : ~_n_state_T_10 & (_n_state_T_12 ? io_soc_arready : (&c_state) & io_clint_arready);	// @[src/main/bus/AXI.scala:96:25, src/main/bus/Xbar.scala:28:7, :33:26, :41:21, :51:42, :55:21, :67:20, :69:25, :71:{31,42}, :73:41, :105:25]
-  assign io_dmem_rdata = casez_tmp_7;	// @[src/main/bus/Xbar.scala:28:7, :67:20, :69:25]
+      : ~_n_state_T_10 & (_n_state_T_12 ? io_soc_arready : (&c_state) & io_clint_arready);	// @[src/main/bus/AXI.scala:96:25, :110:25, src/main/bus/Xbar.scala:28:7, :33:26, :41:21, :51:42, :55:21, :67:20, :69:25, :71:{31,42}, :73:41, :105:25]
+  assign io_dmem_rdata = casez_tmp_3;	// @[src/main/bus/Xbar.scala:28:7, :67:20, :69:25]
   assign io_dmem_rvalid =
     _GEN
       ? ~isimem & (_GEN_0 ? io_soc_rvalid : _n_state_T_2 & io_clint_rvalid)
-      : ~_n_state_T_10 & (_n_state_T_12 ? io_soc_rvalid : (&c_state) & io_clint_rvalid);	// @[src/main/bus/AXI.scala:102:22, src/main/bus/Xbar.scala:28:7, :33:26, :41:21, :51:42, :55:21, :67:20, :69:25, :71:{31,42}, :73:41, :105:25, :108:24]
+      : ~_n_state_T_10 & (_n_state_T_12 ? io_soc_rvalid : (&c_state) & io_clint_rvalid);	// @[src/main/bus/AXI.scala:102:24, :110:25, src/main/bus/Xbar.scala:28:7, :33:26, :41:21, :51:42, :55:21, :67:20, :69:25, :71:{31,42}, :73:41, :108:24]
   assign io_dmem_awready =
     _GEN
       ? ~isimem & _GEN_0 & io_soc_awready
-      : ~_n_state_T_10 & _n_state_T_12 & io_soc_awready;	// @[src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :105:25, :111:25]
+      : ~_n_state_T_10 & _n_state_T_12 & io_soc_awready;	// @[src/main/bus/AXI.scala:110:25, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :111:25]
   assign io_dmem_wready =
     _GEN
       ? ~isimem & _GEN_0 & io_soc_wready
-      : ~_n_state_T_10 & _n_state_T_12 & io_soc_wready;	// @[src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :105:25, :112:24]
+      : ~_n_state_T_10 & _n_state_T_12 & io_soc_wready;	// @[src/main/bus/AXI.scala:110:25, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :112:24]
   assign io_dmem_bvalid =
     _GEN
       ? ~isimem & _GEN_0 & io_soc_bvalid
-      : ~_n_state_T_10 & _n_state_T_12 & io_soc_bvalid;	// @[src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :105:25, :114:24]
+      : ~_n_state_T_10 & _n_state_T_12 & io_soc_bvalid;	// @[src/main/bus/AXI.scala:110:25, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :114:24]
   assign io_soc_araddr = casez_tmp_0;	// @[src/main/bus/Xbar.scala:28:7, :67:20, :69:25]
   assign io_soc_arvalid =
     _GEN
       ? (isimem ? io_imem_arvalid : _GEN_0 & io_dmem_arvalid)
       : _n_state_T_10 ? io_imem_arvalid : _n_state_T_12 & io_dmem_arvalid;	// @[src/main/bus/AXI.scala:91:25, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :120:24]
-  assign io_soc_arid = _GEN_2 ? io_imem_arid : 4'h0;	// @[src/main/bus/AXI.scala:92:25, :100:22, :104:22, :111:23, :129:22, src/main/bus/Xbar.scala:28:7, :29:16, :67:20, :69:25, :71:42, :73:41, :92:23, :110:21, :115:21, :121:21, :128:21]
-  assign io_soc_arlen = _GEN_2 ? io_imem_arlen : 8'h0;	// @[src/main/bus/AXI.scala:93:25, :100:22, :112:23, src/main/bus/Xbar.scala:28:7, :29:16, :67:20, :69:25, :71:42, :92:23, :122:22, :129:22]
   assign io_soc_arsize = casez_tmp_1;	// @[src/main/bus/Xbar.scala:28:7, :67:20, :69:25]
-  assign io_soc_arburst = _GEN_2 ? io_imem_arburst : 2'h0;	// @[src/main/bus/AXI.scala:95:25, :100:22, :101:22, :114:23, :127:22, src/main/bus/Xbar.scala:28:7, :29:16, :67:20, :69:25, :71:42, :73:41, :92:23, :107:23, :113:23, :124:24, :131:24]
+  assign io_soc_arburst = _GEN_2 ? io_imem_arburst : 2'h0;	// @[src/main/bus/AXI.scala:95:25, :100:24, :101:24, :127:24, src/main/bus/Xbar.scala:28:7, :29:16, :67:20, :69:25, :71:42, :73:41, :92:23, :107:23, :113:23, :124:24]
   assign io_soc_rready =
     _GEN
       ? (isimem ? io_imem_rready : _GEN_0 & io_dmem_rready)
-      : _n_state_T_10 ? io_imem_rready : _n_state_T_12 & io_dmem_rready;	// @[src/main/bus/AXI.scala:105:22, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :125:23]
-  assign io_soc_awaddr = casez_tmp_2;	// @[src/main/bus/Xbar.scala:28:7, :67:20, :69:25]
+      : _n_state_T_10 ? io_imem_rready : _n_state_T_12 & io_dmem_rready;	// @[src/main/bus/AXI.scala:105:24, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :125:23]
+  assign io_soc_awaddr = _GEN_3 ? 32'h0 : io_dmem_awaddr;	// @[src/main/bus/AXI.scala:109:25, src/main/bus/Xbar.scala:28:7, :29:16, :67:20, :69:25, :71:42]
   assign io_soc_awvalid =
     _GEN
-      ? (isimem ? io_imem_awvalid : _GEN_0 & io_dmem_awvalid)
-      : _n_state_T_10 ? io_imem_awvalid : _n_state_T_12 & io_dmem_awvalid;	// @[src/main/bus/AXI.scala:110:23, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :127:24]
-  assign io_soc_awid = _GEN_2 ? io_imem_awid : 4'h0;	// @[src/main/bus/AXI.scala:92:25, :100:22, :104:22, :111:23, :129:22, src/main/bus/Xbar.scala:28:7, :29:16, :67:20, :69:25, :71:42, :73:41, :92:23, :110:21, :115:21, :121:21, :128:21]
-  assign io_soc_awlen = _GEN_2 ? io_imem_awlen : 8'h0;	// @[src/main/bus/AXI.scala:93:25, :100:22, :112:23, src/main/bus/Xbar.scala:28:7, :29:16, :67:20, :69:25, :71:42, :92:23, :122:22, :129:22]
-  assign io_soc_awsize = casez_tmp_3;	// @[src/main/bus/Xbar.scala:28:7, :67:20, :69:25]
-  assign io_soc_awburst = _GEN_2 ? io_imem_awburst : 2'h0;	// @[src/main/bus/AXI.scala:95:25, :100:22, :101:22, :114:23, :127:22, src/main/bus/Xbar.scala:28:7, :29:16, :67:20, :69:25, :71:42, :73:41, :92:23, :107:23, :113:23, :124:24, :131:24]
-  assign io_soc_wdata = casez_tmp_4;	// @[src/main/bus/Xbar.scala:28:7, :67:20, :69:25]
-  assign io_soc_wstrb = casez_tmp_5;	// @[src/main/bus/Xbar.scala:28:7, :67:20, :69:25]
+      ? ~isimem & _GEN_0 & io_dmem_awvalid
+      : ~_n_state_T_10 & _n_state_T_12 & io_dmem_awvalid;	// @[src/main/bus/AXI.scala:110:25, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}]
+  assign io_soc_awsize = _GEN_3 ? 3'h0 : io_dmem_awsize;	// @[src/main/bus/AXI.scala:109:25, src/main/bus/Xbar.scala:28:7, :29:16, :67:20, :69:25, :71:42]
+  assign io_soc_wdata = _GEN_3 ? 32'h0 : io_dmem_wdata;	// @[src/main/bus/AXI.scala:109:25, src/main/bus/Xbar.scala:28:7, :29:16, :67:20, :69:25, :71:42]
+  assign io_soc_wstrb = _GEN_3 ? 4'h0 : io_dmem_wstrb;	// @[src/main/bus/AXI.scala:104:24, :109:25, :129:24, src/main/bus/Xbar.scala:28:7, :29:16, :67:20, :69:25, :71:42, :73:41, :110:21, :115:21]
   assign io_soc_wvalid =
     _GEN
-      ? (isimem ? io_imem_wvalid : _GEN_0 & io_dmem_wvalid)
-      : _n_state_T_10 ? io_imem_wvalid : _n_state_T_12 & io_dmem_wvalid;	// @[src/main/bus/AXI.scala:121:23, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :134:23]
-  assign io_soc_wlast =
-    _GEN
-      ? (isimem ? io_imem_wlast : _GEN_0)
-      : _n_state_T_10 ? io_imem_wlast : _n_state_T_12;	// @[src/main/bus/AXI.scala:122:23, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}]
+      ? ~isimem & _GEN_0 & io_dmem_wvalid
+      : ~_n_state_T_10 & _n_state_T_12 & io_dmem_wvalid;	// @[src/main/bus/AXI.scala:110:25, :121:25, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}]
+  assign io_soc_wlast = _GEN ? ~isimem & _GEN_0 : ~_n_state_T_10 & _n_state_T_12;	// @[src/main/bus/AXI.scala:110:25, :122:25, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}]
   assign io_soc_bready =
     _GEN
-      ? (isimem ? io_imem_bready : _GEN_0 & io_dmem_bready)
-      : _n_state_T_10 ? io_imem_bready : _n_state_T_12 & io_dmem_bready;	// @[src/main/bus/AXI.scala:130:22, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}, :136:23]
-  assign io_clint_araddr = casez_tmp_6;	// @[src/main/bus/Xbar.scala:28:7, :67:20, :69:25]
+      ? ~isimem & _GEN_0 & io_dmem_bready
+      : ~_n_state_T_10 & _n_state_T_12 & io_dmem_bready;	// @[src/main/bus/AXI.scala:110:25, :130:24, src/main/bus/Xbar.scala:28:7, :41:21, :51:42, :67:20, :69:25, :71:{31,42}]
+  assign io_clint_araddr = casez_tmp_2;	// @[src/main/bus/Xbar.scala:28:7, :67:20, :69:25]
   assign io_clint_arvalid =
     _GEN
       ? ~_GEN_1 & _n_state_T_2 & io_dmem_arvalid
-      : ~_GEN_3 & (&c_state) & io_dmem_arvalid;	// @[src/main/bus/Xbar.scala:28:7, :33:26, :51:42, :55:21, :67:20, :69:25, :71:42, :73:41, :140:25, :141:26]
+      : ~_GEN_4 & (&c_state) & io_dmem_arvalid;	// @[src/main/bus/Xbar.scala:28:7, :33:26, :51:42, :55:21, :67:20, :69:25, :71:42, :73:41, :140:25, :141:26]
   assign io_clint_rready =
     _GEN
       ? ~_GEN_1 & _n_state_T_2 & io_dmem_rready
-      : ~_GEN_3 & (&c_state) & io_dmem_rready;	// @[src/main/bus/Xbar.scala:28:7, :33:26, :51:42, :55:21, :67:20, :69:25, :71:42, :73:41, :140:25, :141:26, :146:25]
+      : ~_GEN_4 & (&c_state) & io_dmem_rready;	// @[src/main/bus/Xbar.scala:28:7, :33:26, :51:42, :55:21, :67:20, :69:25, :71:42, :73:41, :140:25, :141:26, :146:25]
 endmodule
 
