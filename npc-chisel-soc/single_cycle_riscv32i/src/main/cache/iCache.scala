@@ -6,7 +6,6 @@ import scala.math._
 import npc.common.Config._
 import npc.common.Instructions._
 import npc.bus.axi._
-import npc.bus.axi.AXI4Connector._
 
 class iCacheIO extends Bundle {
     val in = new AXI4WithoutClk//ifu
@@ -49,7 +48,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
-    val s_IDLE :: s_icache_lookup :: s_fetch :: s_outdone :: Nil = Enum(4)
+    val s_IDLE :: s_icache_lookup :: s_imem_arready :: s_fetch :: s_outdone :: Nil = Enum(5)
     val c_state = RegInit(s_IDLE)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -67,6 +66,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val is_sdram_raddr = (io.in.araddr >= "ha000_0000".U(WORD_LEN.W) && io.in.araddr <= "hbfff_ffff".U(WORD_LEN.W))
     val is_ifu_ar_fire = io.in.arvalid && io.in.arready
     val is_hit_handshake = hit && io.in.rready
+    val is_imem_arready = io.out.arready
     val is_imem_ar_fire = io.out.arvalid && io.out.arready
     val is_ifu_r_fire = io.in.rvalid && io.in.rready
 
@@ -86,8 +86,9 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
-        s_IDLE           ->  Mux(is_ifu_ar_fire, Mux(is_sdram_raddr, s_icache_lookup, s_fetch), s_IDLE),
-        s_icache_lookup  ->  Mux(is_hit_handshake, s_IDLE, s_fetch),
+        s_IDLE           ->  Mux(is_ifu_ar_fire, Mux(is_sdram_raddr, s_icache_lookup, s_imem_rready), s_IDLE),
+        s_icache_lookup  ->  Mux(is_hit_handshake, s_IDLE, s_imem_arready),
+        s_imem_arready   ->  Mux(is_imem_arready, s_fetch, s_imem_arready)
         s_fetch          ->  Mux(is_imem_ar_fire, s_outdone, s_fetch),
         s_outdone        ->  Mux(is_ifu_r_fire, s_IDLE, s_outdone)
     ))
@@ -97,21 +98,16 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
             io.in.rvalid := hit
             io.in.arready := false.B
         }
+        is(s_imem_arready){
+            io.out.arvalid := false.B
+        }
         is(s_fetch){
-            connectAll(io.in, io.out)
-            io.out.arvalid := true.B && io.out.arready
-
-            io.out.arburst :="b01".U
-            io.out.arlen := 0.U
-            io.out.arsize := "b10".U
+            connectAll_my()
+            io.out.arvalid := true.B
         }
         is(s_outdone){
-            connectAll(io.in, io.out)
+            connectAll_my()
             io.out.arvalid := false.B
-
-            io.out.arburst :="b01".U
-            io.out.arlen := 0.U
-            io.out.arsize := "b10".U
         }
     }
 
@@ -181,4 +177,39 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         io.out.wlast := false.B
         io.out.bready := false.B
     }
+
+    def connectAll_my(): Unit = {
+        io.out.araddr   := io.in.araddr
+        // io.out.arvalid  := io.in.arvalid
+        io.out.arid     := io.in.arid
+        io.out.arlen    := 0.U
+        io.out.arsize   := "b10".U
+        io.out.arburst  := "b01".U
+        io.in.arready   := io.out.arready
+    // Connect Read Data Channel (R)
+        io.in.rdata    := io.out.rdata
+        io.in.rresp    := io.out.rresp
+        io.in.rvalid   := io.out.rvalid
+        io.in.rlast    := io.out.rlast
+        io.in.rid      := io.out.rid
+        io.out.rready  := io.in.rready
+    // Connect Write Address Channel (AW)
+        io.out.awaddr   := io.in.awaddr
+        io.out.awvalid  := io.in.awvalid
+        io.out.awid     := io.in.awid
+        io.out.awlen    := io.in.awlen
+        io.out.awsize   := io.in.awsize
+        io.out.awburst  := io.in.awburst
+        io.in.awready   := io.out.awready
+    // Connect Write Data Channel (W)
+        io.out.wdata    := io.in.wdata
+        io.out.wstrb    := io.in.wstrb
+        io.out.wvalid   := io.in.wvalid
+        io.out.wlast    := io.in.wlast
+        io.in.wready    := io.out.wready
+    // Connect Write Response Channel (B)
+        io.in.bresp    := io.out.bresp
+        io.in.bvalid   := io.out.bvalid
+        io.in.bid      := io.out.bid
+        io.out.bready  := io.in.bready
 }
