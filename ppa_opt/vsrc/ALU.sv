@@ -68,52 +68,55 @@ module ALU(	// @[src/main/core/exu/ALU.scala:25:7]
   output        io_bj_valid	// @[src/main/core/exu/ALU.scala:27:19]
 );
 
-  wire [32:0] _add_sub_out_T_3 =
+  wire [32:0] add_sub_out =
     {1'h0, io_in_bits_op1} + {1'h0, io_in_bits_op2 ^ {32{io_in_bits_processtpe[0]}}}
     + {32'h0, io_in_bits_processtpe[0]};	// @[src/main/core/exu/ALU.scala:33:28, :34:{32,45,51,71}]
-  wire [31:0] xor_out = io_in_bits_op1 ^ io_in_bits_op2;	// @[src/main/core/exu/ALU.scala:38:28]
-  reg  [31:0] casez_tmp;	// @[src/main/core/exu/ALU.scala:42:58]
   wire [31:0] and_out = io_in_bits_op1 & io_in_bits_op2;	// @[src/main/core/exu/ALU.scala:36:28]
+  wire [31:0] or_out = io_in_bits_op1 | io_in_bits_op2;	// @[src/main/core/exu/ALU.scala:37:27]
+  wire [31:0] xor_out = io_in_bits_op1 ^ io_in_bits_op2;	// @[src/main/core/exu/ALU.scala:38:28]
   wire [31:0] _GEN = {27'h0, io_in_bits_op2[4:0]};	// @[src/main/core/exu/ALU.scala:30:25, :39:36]
+  wire [31:0] sra_out = $signed($signed(io_in_bits_op1) >>> _GEN);	// @[src/main/core/exu/ALU.scala:39:{36,46}]
+  wire [31:0] srl_out = io_in_bits_op1 >> _GEN;	// @[src/main/core/exu/ALU.scala:39:36, :40:28]
   wire [62:0] sll_out = {31'h0, io_in_bits_op1} << io_in_bits_op2[4:0];	// @[src/main/core/exu/ALU.scala:30:25, :41:28]
+  reg  [31:0] casez_tmp;	// @[src/main/core/exu/ALU.scala:42:58]
   always_comb begin	// @[src/main/core/exu/ALU.scala:42:58]
     casez (io_in_bits_processtpe[2:0])	// @[src/main/core/exu/ALU.scala:42:{42,58}]
       3'b000:
         casez_tmp = and_out;	// @[src/main/core/exu/ALU.scala:36:28, :42:58]
       3'b001:
-        casez_tmp = io_in_bits_op1 | io_in_bits_op2;	// @[src/main/core/exu/ALU.scala:37:27, :42:58]
+        casez_tmp = and_out;	// @[src/main/core/exu/ALU.scala:36:28, :42:58]
       3'b010:
         casez_tmp = xor_out;	// @[src/main/core/exu/ALU.scala:38:28, :42:58]
       3'b011:
-        casez_tmp = sll_out[31:0];	// @[src/main/core/exu/ALU.scala:41:28, :42:58]
+        casez_tmp = and_out;	// @[src/main/core/exu/ALU.scala:36:28, :42:58]
       3'b100:
-        casez_tmp = io_in_bits_op1 >> _GEN;	// @[src/main/core/exu/ALU.scala:39:36, :40:28, :42:58]
+        casez_tmp = or_out;	// @[src/main/core/exu/ALU.scala:37:27, :42:58]
       3'b101:
-        casez_tmp = $signed($signed(io_in_bits_op1) >>> _GEN);	// @[src/main/core/exu/ALU.scala:39:36, :42:58]
+        casez_tmp = sra_out;	// @[src/main/core/exu/ALU.scala:39:46, :42:58]
       3'b110:
-        casez_tmp = and_out;	// @[src/main/core/exu/ALU.scala:36:28, :42:58]
+        casez_tmp = srl_out;	// @[src/main/core/exu/ALU.scala:40:28, :42:58]
       default:
-        casez_tmp = and_out;	// @[src/main/core/exu/ALU.scala:36:28, :42:58]
+        casez_tmp = sll_out[31:0];	// @[src/main/core/exu/ALU.scala:41:28, :42:58]
     endcase	// @[src/main/core/exu/ALU.scala:42:{42,58}]
   end // always_comb
   wire [31:0] _io_out_bits_alu_out_T_5 =
     io_in_bits_processtpe[3]
-      ? _add_sub_out_T_3[31:0]
-      : io_in_bits_processtpe == 4'h7
-          ? {31'h0, ~(_add_sub_out_T_3[32])}
-          : io_in_bits_processtpe == 4'h6
-              ? {31'h0, xor_out[31] ^ ~(_add_sub_out_T_3[32])}
+      ? add_sub_out[31:0]
+      : io_in_bits_processtpe == 4'h3
+          ? {31'h0, ~(add_sub_out[32])}
+          : io_in_bits_processtpe == 4'h1
+              ? {31'h0, xor_out[31] ^ ~(add_sub_out[32])}
               : casez_tmp;	// @[src/main/core/exu/ALU.scala:34:71, :38:28, :41:28, :42:58, :50:{21,33}, :51:{28,47}, :53:31, :54:{19,40}, :55:{20,64}, :56:20]
+  wire        cmp = _io_out_bits_alu_out_T_5[0];	// @[src/main/core/exu/ALU.scala:53:31, :61:34]
+  wire        eq = _io_out_bits_alu_out_T_5 == 32'h0;	// @[src/main/core/exu/ALU.scala:34:51, :53:31, :62:34]
   assign io_in_ready = io_out_ready;	// @[src/main/core/exu/ALU.scala:25:7]
   assign io_out_valid = io_in_valid;	// @[src/main/core/exu/ALU.scala:25:7]
   assign io_out_bits_alu_out = _io_out_bits_alu_out_T_5;	// @[src/main/core/exu/ALU.scala:25:7, :53:31]
   assign io_bj_valid =
     io_in_valid
-    & (io_in_bits_bjtpe == 4'h1 & ~(|_io_out_bits_alu_out_T_5) | io_in_bits_bjtpe == 4'h2
-       & (|_io_out_bits_alu_out_T_5) | io_in_bits_bjtpe == 4'h4
-       & _io_out_bits_alu_out_T_5[0] | io_in_bits_bjtpe == 4'h3
-       & _io_out_bits_alu_out_T_5[0] | io_in_bits_bjtpe == 4'h6
-       & ~(_io_out_bits_alu_out_T_5[0]) | io_in_bits_bjtpe == 4'h5
-       & ~(_io_out_bits_alu_out_T_5[0]) | io_in_bits_bjtpe[3]);	// @[src/main/core/exu/ALU.scala:25:7, :53:31, :56:20, :61:34, :62:34, :63:32, :64:{16,33}, :65:{16,33}, :66:{16,33}, :67:{16,34}, :68:{16,33,36}, :69:{16,34,43}, :70:15]
+    & (io_in_bits_bjtpe == 4'h1 & eq | io_in_bits_bjtpe == 4'h2 & ~eq
+       | io_in_bits_bjtpe == 4'h4 & cmp | io_in_bits_bjtpe == 4'h3 & cmp
+       | io_in_bits_bjtpe == 4'h6 & ~cmp | io_in_bits_bjtpe == 4'h5 & ~cmp
+       | io_in_bits_bjtpe[3]);	// @[src/main/core/exu/ALU.scala:25:7, :55:20, :56:20, :61:34, :62:34, :63:32, :64:{16,33}, :65:{16,33,36}, :66:{16,33}, :67:{16,34}, :68:{16,33,36}, :69:{16,34,43}, :70:15]
 endmodule
 
