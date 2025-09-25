@@ -56,7 +56,6 @@
 `endif // not def SYNTHESIS
 
 module WBU(	// @[src/main/core/wbu/WBU.scala:46:7]
-  input         clock,	// @[src/main/core/wbu/WBU.scala:46:7]
   output        io_gpr_we,	// @[src/main/core/wbu/WBU.scala:47:16]
   output [3:0]  io_gpr_waddr,	// @[src/main/core/wbu/WBU.scala:47:16]
   output [31:0] io_gpr_wdata,	// @[src/main/core/wbu/WBU.scala:47:16]
@@ -65,8 +64,6 @@ module WBU(	// @[src/main/core/wbu/WBU.scala:46:7]
                 io_pipe_in_bits_exe2wb_gpr_we,	// @[src/main/core/wbu/WBU.scala:48:21]
   input  [31:0] io_pipe_in_bits_exe2wb_gpr_wdata,	// @[src/main/core/wbu/WBU.scala:48:21]
   input  [3:0]  io_pipe_in_bits_exe2wb_gpr_waddr,	// @[src/main/core/wbu/WBU.scala:48:21]
-  input  [31:0] io_pipe_in_bits_diff_pc,	// @[src/main/core/wbu/WBU.scala:48:21]
-                io_pipe_in_bits_diff_inst,	// @[src/main/core/wbu/WBU.scala:48:21]
   input         io_pipe_out_ready,	// @[src/main/core/wbu/WBU.scala:48:21]
   output        io_pipe_out_valid,	// @[src/main/core/wbu/WBU.scala:48:21]
                 io_for_gpr_we,	// @[src/main/core/wbu/WBU.scala:49:20]
@@ -74,32 +71,11 @@ module WBU(	// @[src/main/core/wbu/WBU.scala:46:7]
   output [3:0]  io_for_gpr_waddr	// @[src/main/core/wbu/WBU.scala:49:20]
 );
 
-  reg diffvalid;	// @[src/main/core/wbu/WBU.scala:65:32]
-  always @(posedge clock)	// @[src/main/core/wbu/WBU.scala:46:7]
-    diffvalid <= io_pipe_in_valid;	// @[src/main/core/wbu/WBU.scala:65:32]
-  `ifdef ENABLE_INITIAL_REG_	// @[src/main/core/wbu/WBU.scala:46:7]
-    `ifdef FIRRTL_BEFORE_INITIAL	// @[src/main/core/wbu/WBU.scala:46:7]
-      `FIRRTL_BEFORE_INITIAL	// @[src/main/core/wbu/WBU.scala:46:7]
-    `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:0];	// @[src/main/core/wbu/WBU.scala:46:7]
-    initial begin	// @[src/main/core/wbu/WBU.scala:46:7]
-      `ifdef INIT_RANDOM_PROLOG_	// @[src/main/core/wbu/WBU.scala:46:7]
-        `INIT_RANDOM_PROLOG_	// @[src/main/core/wbu/WBU.scala:46:7]
-      `endif // INIT_RANDOM_PROLOG_
-      `ifdef RANDOMIZE_REG_INIT	// @[src/main/core/wbu/WBU.scala:46:7]
-        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// @[src/main/core/wbu/WBU.scala:46:7]
-        diffvalid = _RANDOM[/*Zero width*/ 1'b0][0];	// @[src/main/core/wbu/WBU.scala:46:7, :65:32]
-      `endif // RANDOMIZE_REG_INIT
-    end // initial
-    `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/core/wbu/WBU.scala:46:7]
-      `FIRRTL_AFTER_INITIAL	// @[src/main/core/wbu/WBU.scala:46:7]
-    `endif // FIRRTL_AFTER_INITIAL
-  `endif // ENABLE_INITIAL_REG_
   assign io_gpr_we = io_pipe_in_bits_exe2wb_gpr_we;	// @[src/main/core/wbu/WBU.scala:46:7]
   assign io_gpr_waddr = io_pipe_in_bits_exe2wb_gpr_waddr;	// @[src/main/core/wbu/WBU.scala:46:7]
   assign io_gpr_wdata = io_pipe_in_bits_exe2wb_gpr_wdata;	// @[src/main/core/wbu/WBU.scala:46:7]
-  assign io_pipe_in_ready = 1'h1;	// @[src/main/core/wbu/WBU.scala:46:7]
-  assign io_pipe_out_valid = 1'h1;	// @[src/main/core/wbu/WBU.scala:46:7]
+  assign io_pipe_in_ready = 1'h1;	// @[src/main/core/wbu/WBU.scala:46:7, :53:22]
+  assign io_pipe_out_valid = 1'h1;	// @[src/main/core/wbu/WBU.scala:46:7, :53:22]
   assign io_for_gpr_we = io_pipe_in_bits_exe2wb_gpr_we;	// @[src/main/core/wbu/WBU.scala:46:7]
   assign io_for_gpr_wdata = io_pipe_in_bits_exe2wb_gpr_wdata;	// @[src/main/core/wbu/WBU.scala:46:7]
   assign io_for_gpr_waddr = io_pipe_in_bits_exe2wb_gpr_waddr;	// @[src/main/core/wbu/WBU.scala:46:7]

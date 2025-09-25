@@ -181,25 +181,25 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
      1'h0};	// @[src/main/core/idu/IDU.scala:54:7, :75:25, :76:{20,35,49,59,79}]
   wire [31:0] imm_u = {io_pipe_in_bits_if2id_inst[31:12], 12'h0};	// @[src/main/core/idu/IDU.scala:77:{20,25,46}, :78:37]
   wire [11:0] _imm_T_1 = decodeBundle_immtpe == 3'h2 ? imm_i : 12'h0;	// @[src/main/core/idu/IDU.scala:73:30, :78:37, src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106]
-  reg         in_ready;	// @[src/main/core/idu/IDU.scala:142:27]
-  reg         out_valid;	// @[src/main/core/idu/IDU.scala:143:28]
-  wire        io_pipe_out_valid_0 = out_valid & ~io_flush_flush_flg;	// @[src/main/core/idu/IDU.scala:143:28, :145:{36,39}]
-  reg         c_state;	// @[src/main/core/idu/IDU.scala:148:26]
+  reg         in_ready;	// @[src/main/core/idu/IDU.scala:144:27]
+  reg         out_valid;	// @[src/main/core/idu/IDU.scala:145:28]
+  wire        io_pipe_out_valid_0 = out_valid & ~io_flush_flush_flg;	// @[src/main/core/idu/IDU.scala:145:28, :147:{36,39}]
+  reg         c_state;	// @[src/main/core/idu/IDU.scala:150:26]
   wire        n_state =
     ~io_flush_flush_flg
     & (c_state
          ? ~(io_pipe_out_ready & io_pipe_out_valid_0)
-         : in_ready & io_pipe_in_valid);	// @[src/main/core/idu/IDU.scala:75:20, :142:27, :145:36, :148:26, :149:30, :154:29, :155:17, :157:{17,55}, :158:37, :159:37, src/main/scala/chisel3/util/Decoupled.scala:51:35]
+         : in_ready & io_pipe_in_valid);	// @[src/main/core/idu/IDU.scala:75:20, :144:27, :147:36, :150:26, :151:30, :156:29, :157:17, :159:{17,55}, :160:37, :161:37, src/main/scala/chisel3/util/Decoupled.scala:51:35]
   always @(posedge clock) begin	// @[src/main/core/idu/IDU.scala:54:7]
     if (reset) begin	// @[src/main/core/idu/IDU.scala:54:7]
-      in_ready <= 1'h0;	// @[src/main/core/idu/IDU.scala:54:7, :142:27]
-      out_valid <= 1'h0;	// @[src/main/core/idu/IDU.scala:54:7, :143:28]
-      c_state <= 1'h0;	// @[src/main/core/idu/IDU.scala:54:7, :148:26]
+      in_ready <= 1'h0;	// @[src/main/core/idu/IDU.scala:54:7, :144:27]
+      out_valid <= 1'h0;	// @[src/main/core/idu/IDU.scala:54:7, :145:28]
+      c_state <= 1'h0;	// @[src/main/core/idu/IDU.scala:54:7, :150:26]
     end
     else begin	// @[src/main/core/idu/IDU.scala:54:7]
-      in_ready <= ~n_state | ~n_state & in_ready;	// @[src/main/core/idu/IDU.scala:142:27, :149:30, :163:20, :165:22, :169:22]
-      out_valid <= n_state & (n_state ? ~io_flush_flush_flg : out_valid);	// @[src/main/core/idu/IDU.scala:143:28, :145:39, :149:30, :163:20, :166:23, :170:23]
-      c_state <= n_state;	// @[src/main/core/idu/IDU.scala:148:26, :149:30]
+      in_ready <= ~n_state | ~n_state & in_ready;	// @[src/main/core/idu/IDU.scala:144:27, :151:30, :165:20, :167:22, :171:22]
+      out_valid <= n_state & (n_state ? ~io_flush_flush_flg : out_valid);	// @[src/main/core/idu/IDU.scala:145:28, :147:39, :151:30, :165:20, :168:23, :172:23]
+      c_state <= n_state;	// @[src/main/core/idu/IDU.scala:150:26, :151:30]
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// @[src/main/core/idu/IDU.scala:54:7]
@@ -213,20 +213,20 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// @[src/main/core/idu/IDU.scala:54:7]
         _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// @[src/main/core/idu/IDU.scala:54:7]
-        in_ready = _RANDOM[/*Zero width*/ 1'b0][0];	// @[src/main/core/idu/IDU.scala:54:7, :142:27]
-        out_valid = _RANDOM[/*Zero width*/ 1'b0][1];	// @[src/main/core/idu/IDU.scala:54:7, :142:27, :143:28]
-        c_state = _RANDOM[/*Zero width*/ 1'b0][2];	// @[src/main/core/idu/IDU.scala:54:7, :142:27, :148:26]
+        in_ready = _RANDOM[/*Zero width*/ 1'b0][0];	// @[src/main/core/idu/IDU.scala:54:7, :144:27]
+        out_valid = _RANDOM[/*Zero width*/ 1'b0][1];	// @[src/main/core/idu/IDU.scala:54:7, :144:27, :145:28]
+        c_state = _RANDOM[/*Zero width*/ 1'b0][2];	// @[src/main/core/idu/IDU.scala:54:7, :144:27, :150:26]
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/core/idu/IDU.scala:54:7]
       `FIRRTL_AFTER_INITIAL	// @[src/main/core/idu/IDU.scala:54:7]
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  Ebreak ebreak (	// @[src/main/core/idu/IDU.scala:114:29]
+  Ebreak ebreak (	// @[src/main/core/idu/IDU.scala:116:29]
     .inst (io_pipe_in_bits_if2id_inst)
   );
-  assign io_pipe_in_ready = in_ready;	// @[src/main/core/idu/IDU.scala:54:7, :142:27]
-  assign io_pipe_out_valid = io_pipe_out_valid_0;	// @[src/main/core/idu/IDU.scala:54:7, :145:36]
+  assign io_pipe_in_ready = in_ready;	// @[src/main/core/idu/IDU.scala:54:7, :144:27]
+  assign io_pipe_out_valid = io_pipe_out_valid_0;	// @[src/main/core/idu/IDU.scala:54:7, :147:36]
   assign io_pipe_out_bits_id2is_processunit =
     {&_decodeBundle_andMatrixOutputs_T_1,
      |{&_decodeBundle_andMatrixOutputs_T_10,
@@ -311,7 +311,7 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
       &_decodeBundle_andMatrixOutputs_T_20,
       &_decodeBundle_andMatrixOutputs_T_24,
       &_decodeBundle_andMatrixOutputs_T_26};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/pla.scala:98:{53,70}, :114:{19,36}]
-  assign io_pipe_out_bits_id2is_rd_addr = io_pipe_in_bits_if2id_inst[10:7];	// @[src/main/core/idu/IDU.scala:54:7, :74:39, :97:36]
+  assign io_pipe_out_bits_id2is_rd_addr = io_pipe_in_bits_if2id_inst[10:7];	// @[src/main/core/idu/IDU.scala:54:7, :74:39, :99:36]
   assign io_pipe_out_bits_id2is_ch1tpe =
     |{&_decodeBundle_andMatrixOutputs_T_2,
       &{io_pipe_in_bits_if2id_inst[2],
@@ -329,8 +329,9 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
        &_decodeBundle_andMatrixOutputs_T_15,
        &_decodeBundle_andMatrixOutputs_T_19,
        &_decodeBundle_andMatrixOutputs_T_26}};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106, src/main/scala/chisel3/util/pla.scala:98:{53,70}, :114:{19,36}]
-  assign io_pipe_out_bits_id2is_rs1_addr = io_pipe_in_bits_if2id_inst[18:15];	// @[src/main/core/idu/IDU.scala:54:7, :100:{37,44}]
-  assign io_pipe_out_bits_id2is_rs2_addr = io_pipe_in_bits_if2id_inst[23:20];	// @[src/main/core/idu/IDU.scala:54:7, :101:{37,44}]
+  assign io_pipe_out_bits_id2is_rs1_addr =
+    io_pipe_in_bits_if2id_inst[6:0] == 7'h37 ? 4'h0 : io_pipe_in_bits_if2id_inst[18:15];	// @[src/main/core/idu/IDU.scala:54:7, :92:22, :102:{43,51,78}, src/main/scala/chisel3/util/pla.scala:114:36]
+  assign io_pipe_out_bits_id2is_rs2_addr = io_pipe_in_bits_if2id_inst[23:20];	// @[src/main/core/idu/IDU.scala:54:7, :103:{37,44}]
   assign io_pipe_out_bits_id2is_reg_pc = io_pipe_in_bits_if2id_reg_pc;	// @[src/main/core/idu/IDU.scala:54:7]
   assign io_pipe_out_bits_id2is_imm =
     decodeBundle_immtpe == 3'h1
