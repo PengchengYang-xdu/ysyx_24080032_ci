@@ -19,7 +19,7 @@ object Instructions{
         }
     }
 
-    val instSets = Set("rv_i", "rv_zicsr", "rv_system", "rv_zifencei", "rv32_i")
+    val instSets = Set("rv_i", "rv_zicsr", "rv_system", "rv_zifencei", "rv_my")
     val ex_rv_i = Set("fence")
     val ex_rv_zicsr = Set("csrrc", "csrrwi", "csrrsi", "csrrci")
     val ex_rv_system = Set("wfi")
