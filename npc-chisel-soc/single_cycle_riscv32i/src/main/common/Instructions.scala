@@ -24,6 +24,7 @@ object Instructions{
     , "subw", "sllw", "srlw", "sraw")
     val patternSeq_more = instTable
         .filter(_.pseudoFrom.isEmpty)
+        .filter(inst => instSet_more.contains(inst.instructionSet.name))
         .filter(inst => !ex_rv64_i.contains(inst.name))
         .map(Insn(_))
         .toSeq
