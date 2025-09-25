@@ -19,7 +19,15 @@ object Instructions{
         }
     }
 
-    val instSets = Set("rv_i", "rv_zicsr", "rv_system", "rv_zifencei", "rv_my")
+    val instSet_more = Set("rv64_i")
+    val ex_rv64_i = Set("lwu", "ld", "sd", "addiw", "slliw", "srliw", "sraiw", "addw"
+    , "subw", "sllw", "srlw", "sraw")
+    val patternSeq_more = instTable
+        .filter(_.pseudoFrom.isEmpty)
+        .filter(inst => !ex_rv64_i.contains(inst.name))
+        .map(Insn(_))
+        .toSeq
+    val instSets = Set("rv_i", "rv_zicsr", "rv_system", "rv_zifencei")
     val ex_rv_i = Set("fence")
     val ex_rv_zicsr = Set("csrrc", "csrrwi", "csrrsi", "csrrci")
     val ex_rv_system = Set("wfi")
@@ -31,7 +39,7 @@ object Instructions{
         .filter(inst => !ex_rv_system.contains(inst.name))
         .map(Insn(_))
         .toSeq
-    val instList = patternSeq
+    val instList = patternSeq ++ patternSeq_more
 
 
     trait InstCateg{
