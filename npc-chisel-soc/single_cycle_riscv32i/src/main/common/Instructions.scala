@@ -187,7 +187,7 @@ object Instructions{
         def name = "immtpe"
         def chiselType = UInt(IMMTpe.IMMTpe_Width.W)
         def genTable(i: Insn): BitPat = {
-            if(i.hasArg("imm12")) BitPat(IMMTpe.IMM_TYPE_I)
+            if(i.hasArg("imm12") || i.hasArg("shamtd")) BitPat(IMMTpe.IMM_TYPE_I)
             else if(i.hasArg("imm12hi") || i.hasArg("imm12lo")) BitPat(IMMTpe.IMM_TYPE_S)
             else if(i.hasArg("bimm12hi") || i.hasArg("bimm12lo")) BitPat(IMMTpe.IMM_TYPE_B)
             else if(i.hasArg("imm20")) BitPat(IMMTpe.IMM_TYPE_U)
