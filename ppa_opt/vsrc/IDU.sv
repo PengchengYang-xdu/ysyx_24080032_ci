@@ -266,7 +266,7 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
        &_decodeBundle_andMatrixOutputs_T_20,
        &{decodeBundle_invInputs[0],
          io_pipe_in_bits_if2id_inst[4],
-         decodeBundle_invInputs[3],
+         decodeBundle_invInputs[10],
          decodeBundle_invInputs[11],
          io_pipe_in_bits_if2id_inst[14]},
        &{decodeBundle_invInputs[0],
@@ -295,6 +295,11 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
          io_pipe_in_bits_if2id_inst[4],
          io_pipe_in_bits_if2id_inst[5],
          decodeBundle_invInputs[4],
+         io_pipe_in_bits_if2id_inst[30]},
+       &{decodeBundle_invInputs[0],
+         decodeBundle_invInputs[3],
+         io_pipe_in_bits_if2id_inst[12],
+         decodeBundle_invInputs[11],
          io_pipe_in_bits_if2id_inst[30]}}};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106, src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:{53,70}, :114:{19,36}]
   assign io_pipe_out_bits_id2is_bjtpe =
     {|_decodeBundle_orMatrixOutputs_T_23,
