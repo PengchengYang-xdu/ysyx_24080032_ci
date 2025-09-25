@@ -40,9 +40,9 @@ object Instructions{
         val aluInst_and = Set("and", "andi")
         val aluInst_or  = Set("or", "ori")
         val aluInst_xor = Set("xor", "xori")
-        val aluInst_sll = Set("sll")
-        val aluInst_srl = Set("srl")
-        val aluInst_sra = Set("sra")
+        val aluInst_sll = Set("sll", "slli")
+        val aluInst_srl = Set("srl", "srli")
+        val aluInst_sra = Set("sra", "srai")
         val aluInst_comps = Set("slt", "slti")
         val aluInst_compu= Set("sltu", "sltiu")
         val aluInst = Set(
