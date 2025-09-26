@@ -142,7 +142,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         }
         is(s_outdone){
             connectAll_my()
-            io.in.rvalid := Mux(is_ifu_require, io.out.valid, false.B)
+            io.in.rvalid := Mux(is_ifu_require, io.out.rvalid, false.B)
             io.in.arready := false.B
             io.out.arvalid := false.B
         }
