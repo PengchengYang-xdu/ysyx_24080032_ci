@@ -47,7 +47,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val req_index = send_araddr(m + n - 1, m)
     val req_offset = send_araddr(m - 1, 0)
     val req_tag = send_araddr(WORD_LEN - 1, m + n)
-    val addr_align = send_araddr - req_offset
+    val addr_align = Cat(send_araddr(WORD_LEN - 1, m), 0.U(m.W))
     dontTouch(req_index)
     dontTouch(req_offset)
     dontTouch(req_tag)
@@ -76,8 +76,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val is_ifu_ar_fire = io.in.arvalid && io.in.arready
     val is_hit_handshake = hit && io.in.rready
     val is_imem_ar_fire = io.out.arvalid && io.out.arready
-    val is_ifu_r_fire = io.in.rvalid && io.in.rready
     val is_imem_r_fire = io.out.rvalid && io.out.rready
+    val is_ifu_r_fire = io.in.rvalid && io.in.rready
 
     val burst_done = io.out.rlast
 
@@ -103,14 +103,14 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     io.in.rvalid := false.B
 
     /*-----------------------Burst---------------------*/
-    require(c != 0, "c must be greater than 0")
-    val count = RegInit(c.U(log2Ceil(c + 1).W))
+    val count = RegInit(0.U(log2Ceil(c).W))
     when(is_imem_ar_fire){
-        count := c.U
+        count := 0.U
     }.elsewhen(is_imem_r_fire){
-        count := count - 1.U
+        count := count + 1.U
     }
     dontTouch(count)
+    val is_ifu_require = count === req_offset >> 2
 
     c_state := n_state//first phase
 
@@ -136,11 +136,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         }
         is(s_fetch){
             connectAll_my()
+            io.in.rvalid := false.B
             io.in.arready := false.B
             io.out.arvalid := true.B
         }
         is(s_outdone){
             connectAll_my()
+            io.in.rvalid := Mux(is_ifu_require, io.out.valid, false.B)
             io.in.arready := false.B
             io.out.arvalid := false.B
         }
@@ -224,7 +226,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     // Connect Read Data Channel (R)
         // io.in.rdata    := io.out.rdata
         io.in.rresp    := io.out.rresp
-        io.in.rvalid   := io.out.rvalid
+        // io.in.rvalid   := io.out.rvalid
         io.in.rlast    := io.out.rlast
         io.in.rid      := io.out.rid
         io.out.rready  := io.in.rready
