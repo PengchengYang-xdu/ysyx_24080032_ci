@@ -104,7 +104,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     require(c != 0, "c must be greater than 0")
     val count = RegInit(c.U(log2Ceil(c + 1).W))
     when(is_imem_ar_fire){
-        count := c
+        count := c.U
     }.elsewhen(is_imem_r_fire){
         count := count - 1.U
     }
