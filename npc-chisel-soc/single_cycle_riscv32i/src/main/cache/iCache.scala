@@ -138,12 +138,14 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         is(s_fetch){
             connectAll_my()
             io.in.rvalid := false.B
+            io.out.rready := false.B
             io.in.arready := false.B
             io.out.arvalid := true.B
         }
         is(s_outdone){
             connectAll_my()
             io.in.rvalid := Mux(is_ifu_require || ~is_sdram_raddr, io.out.rvalid, false.B)
+            io.out.rready := Mux(is_ifu_require || ~is_sdram_raddr, io.in.rready, true.B)
             io.in.arready := false.B
             io.out.arvalid := false.B
         }
@@ -230,7 +232,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         // io.in.rvalid   := io.out.rvalid
         io.in.rlast    := io.out.rlast
         io.in.rid      := io.out.rid
-        io.out.rready  := io.in.rready
+        // io.out.rready  := io.in.rready
     // Connect Write Address Channel (AW)
         io.out.awaddr   := io.in.awaddr
         io.out.awvalid  := io.in.awvalid
