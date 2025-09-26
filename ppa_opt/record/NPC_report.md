@@ -1,30 +1,30 @@
 ### Report: NPC.rpt (first 11 lines)
-Generate the report at 2025-09-25T13:24:01, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
-+---------------+-------------+------------+------------+---------------+-------+-------+-----------+
-| Endpoint      | Clock Group | Delay Type | Path Delay | Path Required | CPPR  | Slack | Freq(MHz) |
-+---------------+-------------+------------+------------+---------------+-------+-------+-----------+
-| core/_3014_:D | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
-| core/_3013_:D | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
-| core/_3010_:D | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
-| core/_2972_:D | core_clock  | min        | 0.081f     | 0.002         | 0.000 | 0.079 | NA        |
-| core/_2972_:D | core_clock  | min        | 0.088r     | 0.006         | 0.000 | 0.082 | NA        |
-| core/_2973_:D | core_clock  | min        | 0.124f     | 0.002         | 0.000 | 0.122 | NA        |
-+---------------+-------------+------------+------------+---------------+-------+-------+-----------+
+Generate the report at 2025-09-26T16:58:29, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
++----------------------+-------------+------------+------------+---------------+-------+-------+-----------+
+| Endpoint             | Clock Group | Delay Type | Path Delay | Path Required | CPPR  | Slack | Freq(MHz) |
++----------------------+-------------+------------+------------+---------------+-------+-------+-----------+
+| core/_3012_:D        | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
+| core/_3010_:D        | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
+| core/_3014_:D        | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
+| core/_2972_:D        | core_clock  | min        | 0.081f     | 0.002         | 0.000 | 0.079 | NA        |
+| core/_2972_:D        | core_clock  | min        | 0.088r     | 0.006         | 0.000 | 0.082 | NA        |
+| core/icache/_6129_:D | core_clock  | min        | 0.123f     | 0.002         | 0.000 | 0.121 | NA        |
++----------------------+-------------+------------+------------+---------------+-------+-------+-----------+
 
 ### Chip area info from synth_stat.txt
    Chip area for module '\ALU': 1469.118000
-   Chip area for module '\CSR': 1899.772000
-   Chip area for module '\Clint': 1106.560000
+   Chip area for module '\CSR': 1872.374000
+   Chip area for module '\Clint': 1141.672000
    Chip area for module '\Core': 2952.068000
    Chip area for module '\EXU': 492.898000
-   Chip area for module '\IDU': 342.608000
+   Chip area for module '\IDU': 387.296000
    Chip area for module '\IFU': 752.248000
    Chip area for module '\ISU': 1585.892000
    Chip area for module '\LSU': 1248.072000
-   Chip area for module '\NPC': 61.712000
+   Chip area for module '\NPC': 55.328000
    Chip area for module '\WBU': 61.180000
-   Chip area for module '\Xbar': 978.082000
-   Chip area for module '\gpr_16x32': 6603.716000
-   Chip area for module '\iCache': 3650.584000
-   Chip area for top module '\NPC': 23204.510000
+   Chip area for module '\Xbar': 968.506000
+   Chip area for module '\gpr_16x32': 6464.598000
+   Chip area for module '\iCache': 4797.310000
+   Chip area for top module '\NPC': 24248.560000
 
