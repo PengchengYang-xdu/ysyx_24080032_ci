@@ -110,7 +110,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         count := count + 1.U
     }
     dontTouch(count)
-    val is_ifu_require = count === req_offset >> 2
+    val is_ifu_require = count + 1.U === req_offset >> 2
+    dontTouch(is_ifu_require)
 
     c_state := n_state//first phase
 
@@ -118,7 +119,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         s_IDLE           ->  Mux(is_ifu_ar_fire, Mux(is_sdram_raddr, s_icache_lookup, s_fetch), s_IDLE),
         s_icache_lookup  ->  Mux(is_hit_handshake, s_IDLE, s_fetch),
         s_fetch          ->  Mux(is_imem_ar_fire, s_outdone, s_fetch),
-        s_outdone        ->  Mux(is_ifu_r_fire, Mux(burst_done, s_IDLE, s_outdone), s_outdone)
+        s_outdone        ->  Mux(is_imem_r_fire, Mux(burst_done || ~is_sdram_raddr, s_IDLE, s_outdone), s_outdone)
     ))
 
     switch(c_state){//third phase
