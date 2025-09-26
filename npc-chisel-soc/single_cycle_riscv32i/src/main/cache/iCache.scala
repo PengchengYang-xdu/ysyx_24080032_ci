@@ -6,7 +6,13 @@ import scala.math._
 import npc.common.Config._
 import npc.common.Instructions._
 import npc.bus.axi._
-
+/*
+             ___ ____    _    ____ _   _ _____
+            |_ _/ ___|  / \  / ___| | | | ____|
+             | | |     / _ \| |   | |_| |  _|
+             | | |___ / ___ \ |___|  _  | |___
+            |___\____/_/   \_\____|_| |_|_____|
+*/
 class iCacheIO extends Bundle {
     val in = new AXI4WithoutClk//ifu
     val out = Flipped(new AXI4WithoutClk)//imem
@@ -37,12 +43,11 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val offset_width = m
     val tag_width = WORD_LEN - m - n
     val ways_width = w
-    val count = RegInit(c.U(log2Ceil(c + 1).W))
+
     val req_index = send_araddr(m + n - 1, m)
     val req_offset = send_araddr(m - 1, 0)
     val req_tag = send_araddr(WORD_LEN - 1, m + n)
     val addr_align = send_araddr - req_offset
-    dontTouch(count)
     dontTouch(req_index)
     dontTouch(req_offset)
     dontTouch(req_tag)
@@ -50,7 +55,9 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways)))))
     dontTouch(icache)
-
+    /*-----------------------Burst---------------------*/
+    val count = RegInit(c.U(log2Ceil(c + 1).W))
+    dontTouch(count)
     /*-----------------------FSM-----------------------*/
     val s_IDLE :: s_icache_lookup :: s_fetch :: s_outdone :: Nil = Enum(4)
     val c_state = RegInit(s_IDLE)
@@ -199,9 +206,9 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         // io.out.araddr   := io.in.araddr
         // io.out.arvalid  := io.in.arvalid
         io.out.arid     := io.in.arid
-        io.out.arlen    := 0.U
-        io.out.arsize   := "b10".U
-        io.out.arburst  := "b01".U
+        io.out.arlen    := 0.U//transfer n + 1 data block during one transfer
+        io.out.arsize   := "b10".U//one data block has 4B
+        io.out.arburst  := "b01".U//incr burst mode
         // io.in.arready   := io.out.arready
     // Connect Read Data Channel (R)
         // io.in.rdata    := io.out.rdata
