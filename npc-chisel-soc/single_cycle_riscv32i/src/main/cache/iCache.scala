@@ -93,7 +93,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     when(is_ifu_ar_fire){
         send_araddr := io.in.araddr
     }
-    io.out.araddr := send_araddr
+    io.out.araddr := Mux(io.out.arlen === 0.U, send_araddr, addr_align)//raw addr when not burst, align addr when burst
     dontTouch(send_rdata)
     dontTouch(send_araddr)
 
@@ -143,7 +143,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         }
         is(s_outdone){
             connectAll_my()
-            io.in.rvalid := Mux(is_ifu_require, io.out.rvalid, false.B)
+            io.in.rvalid := Mux(is_ifu_require || ~is_sdram_raddr, io.out.rvalid, false.B)
             io.in.arready := false.B
             io.out.arvalid := false.B
         }
