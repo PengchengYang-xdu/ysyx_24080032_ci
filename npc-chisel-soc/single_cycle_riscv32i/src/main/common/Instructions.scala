@@ -168,7 +168,7 @@ object Instructions{
         def chiselType = UInt(CH2Tpe.CH2Tpe_Width.W)
         def genTable(i: Insn): BitPat = {
             if(i.hasArg("rs2")) BitPat(CH2Tpe.CH2Tpe_RS2)
-            else if(i.inst.name == "csr") BitPat(CH2Tpe.CH2Tpe_CSR_ADDR)
+            else if(i.hasArg("csr")) BitPat(CH2Tpe.CH2Tpe_CSR_ADDR)
             else if(i.inst.name == "jal" || i.inst.name == "jalr") BitPat(CH2Tpe.CH2Tpe_4)
             else BitPat(CH2Tpe.CH2Tpe_IMM)
         }
