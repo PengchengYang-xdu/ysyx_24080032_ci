@@ -166,13 +166,13 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         val set = icache(req_index).set
         when(hasEmpty === true.B) {
             // 如果有空闲块，填充
-            set(emptyIndex).valid := true.B
+            set(emptyIndex).valid := io.out.rlast//突发传输，分阶段写data块，valid只在最后一次拉高，否则最后一次的data块因为没有hasEmpty而写入失败
             set(emptyIndex).tag := req_tag
             set(emptyIndex).data(count) := io.out.rdata
         }.otherwise{
             // 如果没有空闲块，替换逻辑
             val randomIndex = scala.util.Random.nextInt(ways)
-            set(randomIndex).valid := true.B
+            set(randomIndex).valid := io.out.rlast
             set(randomIndex).tag := req_tag
             set(randomIndex).data(count) := io.out.rdata
         }
