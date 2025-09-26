@@ -56,7 +56,7 @@ class CSR extends Module {
 
     when(processtpe === ProcessTpe.CSR.CSR_ECALL && io.in.valid){
         mepc := op1
-        mcause := 0x1800.U
+        mcause := 11.U
     }
 
     //handshake
