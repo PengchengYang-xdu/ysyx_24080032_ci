@@ -61,11 +61,13 @@ module Core(	// @[src/main/core/Core.scala:24:7]
   output [31:0] io_imem_araddr,	// @[src/main/core/Core.scala:25:16]
   output        io_imem_arvalid,	// @[src/main/core/Core.scala:25:16]
   input         io_imem_arready,	// @[src/main/core/Core.scala:25:16]
+  output [7:0]  io_imem_arlen,	// @[src/main/core/Core.scala:25:16]
   output [2:0]  io_imem_arsize,	// @[src/main/core/Core.scala:25:16]
   output [1:0]  io_imem_arburst,	// @[src/main/core/Core.scala:25:16]
   input  [31:0] io_imem_rdata,	// @[src/main/core/Core.scala:25:16]
   input         io_imem_rvalid,	// @[src/main/core/Core.scala:25:16]
   output        io_imem_rready,	// @[src/main/core/Core.scala:25:16]
+  input         io_imem_rlast,	// @[src/main/core/Core.scala:25:16]
   output [31:0] io_dmem_araddr,	// @[src/main/core/Core.scala:25:16]
   output        io_dmem_arvalid,	// @[src/main/core/Core.scala:25:16]
   input         io_dmem_arready,	// @[src/main/core/Core.scala:25:16]
@@ -422,11 +424,13 @@ module Core(	// @[src/main/core/Core.scala:24:7]
     .io_out_araddr  (io_imem_araddr),
     .io_out_arvalid (io_imem_arvalid),
     .io_out_arready (io_imem_arready),
+    .io_out_arlen   (io_imem_arlen),
     .io_out_arsize  (io_imem_arsize),
     .io_out_arburst (io_imem_arburst),
     .io_out_rdata   (io_imem_rdata),
     .io_out_rvalid  (io_imem_rvalid),
-    .io_out_rready  (io_imem_rready)
+    .io_out_rready  (io_imem_rready),
+    .io_out_rlast   (io_imem_rlast)
   );
 endmodule
 

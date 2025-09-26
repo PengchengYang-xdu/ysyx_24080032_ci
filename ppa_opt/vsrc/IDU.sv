@@ -109,50 +109,48 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
      decodeBundle_invInputs[10],
      decodeBundle_invInputs[11],
      decodeBundle_invInputs[18]};	// @[src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:53]
-  wire [4:0]  _decodeBundle_andMatrixOutputs_T_13 =
+  wire [4:0]  _decodeBundle_andMatrixOutputs_T_14 =
     {decodeBundle_invInputs[0],
      io_pipe_in_bits_if2id_inst[4],
      decodeBundle_invInputs[4],
      io_pipe_in_bits_if2id_inst[12],
      decodeBundle_invInputs[12]};	// @[src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:53]
-  wire [4:0]  _decodeBundle_andMatrixOutputs_T_14 =
+  wire [4:0]  _decodeBundle_andMatrixOutputs_T_15 =
     {decodeBundle_invInputs[0],
      decodeBundle_invInputs[2],
      io_pipe_in_bits_if2id_inst[6],
      io_pipe_in_bits_if2id_inst[12],
      decodeBundle_invInputs[11]};	// @[src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:53]
-  wire [2:0]  _decodeBundle_andMatrixOutputs_T_15 =
+  wire [2:0]  _decodeBundle_andMatrixOutputs_T_16 =
     {io_pipe_in_bits_if2id_inst[4],
      io_pipe_in_bits_if2id_inst[6],
      io_pipe_in_bits_if2id_inst[12]};	// @[src/main/scala/chisel3/util/pla.scala:90:45, :98:53]
-  wire [4:0]  _decodeBundle_andMatrixOutputs_T_18 =
+  wire [4:0]  _decodeBundle_andMatrixOutputs_T_19 =
     {decodeBundle_invInputs[0],
      decodeBundle_invInputs[2],
      io_pipe_in_bits_if2id_inst[6],
      decodeBundle_invInputs[10],
      io_pipe_in_bits_if2id_inst[13]};	// @[src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:53]
-  wire [2:0]  _decodeBundle_andMatrixOutputs_T_19 =
+  wire [2:0]  _decodeBundle_andMatrixOutputs_T_20 =
     {io_pipe_in_bits_if2id_inst[4],
      io_pipe_in_bits_if2id_inst[6],
      io_pipe_in_bits_if2id_inst[13]};	// @[src/main/scala/chisel3/util/pla.scala:90:45, :98:53]
-  wire [3:0]  _decodeBundle_andMatrixOutputs_T_20 =
+  wire [3:0]  _decodeBundle_andMatrixOutputs_T_21 =
     {decodeBundle_invInputs[0],
      decodeBundle_invInputs[2],
      io_pipe_in_bits_if2id_inst[12],
      io_pipe_in_bits_if2id_inst[13]};	// @[src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:53]
-  wire [3:0]  _decodeBundle_andMatrixOutputs_T_24 =
+  wire [3:0]  _decodeBundle_andMatrixOutputs_T_25 =
     {decodeBundle_invInputs[0],
      io_pipe_in_bits_if2id_inst[6],
      decodeBundle_invInputs[11],
      io_pipe_in_bits_if2id_inst[14]};	// @[src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:53]
-  wire [4:0]  _decodeBundle_andMatrixOutputs_T_26 =
+  wire [4:0]  _decodeBundle_andMatrixOutputs_T_27 =
     {io_pipe_in_bits_if2id_inst[4],
      io_pipe_in_bits_if2id_inst[6],
      decodeBundle_invInputs[10],
      decodeBundle_invInputs[11],
      io_pipe_in_bits_if2id_inst[20]};	// @[src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:53]
-  wire [1:0]  _decodeBundle_orMatrixOutputs_T_23 =
-    {&_decodeBundle_andMatrixOutputs_T_2, &_decodeBundle_andMatrixOutputs_T_8};	// @[src/main/scala/chisel3/util/pla.scala:98:{53,70}, :114:19]
   wire [2:0]  decodeBundle_immtpe =
     {|{&_decodeBundle_andMatrixOutputs_T_6, &_decodeBundle_andMatrixOutputs_T_8},
      |{&_decodeBundle_andMatrixOutputs_T,
@@ -161,9 +159,9 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
        &_decodeBundle_andMatrixOutputs_T_4},
      |{&_decodeBundle_andMatrixOutputs_T_6,
        &_decodeBundle_andMatrixOutputs_T_7,
-       &_decodeBundle_andMatrixOutputs_T_18,
-       &_decodeBundle_andMatrixOutputs_T_20,
-       &_decodeBundle_andMatrixOutputs_T_24}};	// @[src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106, src/main/scala/chisel3/util/pla.scala:98:{53,70}, :114:{19,36}]
+       &_decodeBundle_andMatrixOutputs_T_19,
+       &_decodeBundle_andMatrixOutputs_T_21,
+       &_decodeBundle_andMatrixOutputs_T_25}};	// @[src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106, src/main/scala/chisel3/util/pla.scala:98:{53,70}, :114:{19,36}]
   wire [11:0] imm_i = io_pipe_in_bits_if2id_inst[31:20];	// @[src/main/core/idu/IDU.scala:73:{21,30}]
   wire [11:0] imm_s =
     {io_pipe_in_bits_if2id_inst[31:25], io_pipe_in_bits_if2id_inst[11:7]};	// @[src/main/core/idu/IDU.scala:74:{20,25,39,48}]
@@ -230,8 +228,8 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
   assign io_pipe_out_bits_id2is_processunit =
     {&_decodeBundle_andMatrixOutputs_T_1,
      |{&_decodeBundle_andMatrixOutputs_T_10,
-       &_decodeBundle_andMatrixOutputs_T_15,
-       &_decodeBundle_andMatrixOutputs_T_19}};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106, src/main/scala/chisel3/util/pla.scala:98:{53,70}, :114:{19,36}]
+       &_decodeBundle_andMatrixOutputs_T_16,
+       &_decodeBundle_andMatrixOutputs_T_20}};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106, src/main/scala/chisel3/util/pla.scala:98:{53,70}, :114:{19,36}]
   assign io_pipe_out_bits_id2is_processtpe =
     {|{&_decodeBundle_andMatrixOutputs_T_2,
        &_decodeBundle_andMatrixOutputs_T_4,
@@ -243,7 +241,7 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
        &_decodeBundle_andMatrixOutputs_T_6,
        &_decodeBundle_andMatrixOutputs_T_7,
        &_decodeBundle_andMatrixOutputs_T_8,
-       &_decodeBundle_andMatrixOutputs_T_26},
+       &_decodeBundle_andMatrixOutputs_T_27},
      |{&{decodeBundle_invInputs[0],
          io_pipe_in_bits_if2id_inst[4],
          decodeBundle_invInputs[4],
@@ -258,12 +256,12 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
          io_pipe_in_bits_if2id_inst[13],
          io_pipe_in_bits_if2id_inst[14]}},
      |{&_decodeBundle_andMatrixOutputs_T_10,
-       &_decodeBundle_andMatrixOutputs_T_13,
+       &_decodeBundle_andMatrixOutputs_T_14,
        &{decodeBundle_invInputs[2],
          decodeBundle_invInputs[4],
          io_pipe_in_bits_if2id_inst[13]},
-       &_decodeBundle_andMatrixOutputs_T_18,
-       &_decodeBundle_andMatrixOutputs_T_20,
+       &_decodeBundle_andMatrixOutputs_T_19,
+       &_decodeBundle_andMatrixOutputs_T_21,
        &{decodeBundle_invInputs[0],
          io_pipe_in_bits_if2id_inst[4],
          decodeBundle_invInputs[10],
@@ -275,22 +273,23 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
          io_pipe_in_bits_if2id_inst[14],
          decodeBundle_invInputs[28]}},
      |{&_decodeBundle_andMatrixOutputs_T_9,
+       &{io_pipe_in_bits_if2id_inst[4],
+         io_pipe_in_bits_if2id_inst[6],
+         decodeBundle_invInputs[10],
+         decodeBundle_invInputs[18],
+         decodeBundle_invInputs[19]},
        &{decodeBundle_invInputs[0],
          decodeBundle_invInputs[2],
          io_pipe_in_bits_if2id_inst[12]},
-       &_decodeBundle_andMatrixOutputs_T_13,
        &_decodeBundle_andMatrixOutputs_T_14,
+       &_decodeBundle_andMatrixOutputs_T_15,
        &{decodeBundle_invInputs[0],
          io_pipe_in_bits_if2id_inst[4],
          io_pipe_in_bits_if2id_inst[13],
          decodeBundle_invInputs[12]},
-       &_decodeBundle_andMatrixOutputs_T_18,
-       &_decodeBundle_andMatrixOutputs_T_20,
-       &_decodeBundle_andMatrixOutputs_T_24,
-       &{io_pipe_in_bits_if2id_inst[4],
-         io_pipe_in_bits_if2id_inst[6],
-         decodeBundle_invInputs[10],
-         io_pipe_in_bits_if2id_inst[21]},
+       &_decodeBundle_andMatrixOutputs_T_19,
+       &_decodeBundle_andMatrixOutputs_T_21,
+       &_decodeBundle_andMatrixOutputs_T_25,
        &{decodeBundle_invInputs[0],
          io_pipe_in_bits_if2id_inst[4],
          io_pipe_in_bits_if2id_inst[5],
@@ -302,20 +301,20 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
          decodeBundle_invInputs[11],
          io_pipe_in_bits_if2id_inst[30]}}};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106, src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:{53,70}, :114:{19,36}]
   assign io_pipe_out_bits_id2is_bjtpe =
-    {|_decodeBundle_orMatrixOutputs_T_23,
-     |{&_decodeBundle_andMatrixOutputs_T_20, &_decodeBundle_andMatrixOutputs_T_24},
-     |{&_decodeBundle_andMatrixOutputs_T_14, &_decodeBundle_andMatrixOutputs_T_18},
+    {|{&_decodeBundle_andMatrixOutputs_T_2, &_decodeBundle_andMatrixOutputs_T_8},
+     |{&_decodeBundle_andMatrixOutputs_T_21, &_decodeBundle_andMatrixOutputs_T_25},
+     |{&_decodeBundle_andMatrixOutputs_T_15, &_decodeBundle_andMatrixOutputs_T_19},
      |{&_decodeBundle_andMatrixOutputs_T_2,
        &_decodeBundle_andMatrixOutputs_T_9,
-       &_decodeBundle_andMatrixOutputs_T_18,
-       &_decodeBundle_andMatrixOutputs_T_20}};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106, src/main/scala/chisel3/util/pla.scala:98:{53,70}, :114:{19,36}]
+       &_decodeBundle_andMatrixOutputs_T_19,
+       &_decodeBundle_andMatrixOutputs_T_21}};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106, src/main/scala/chisel3/util/pla.scala:98:{53,70}, :114:{19,36}]
   assign io_pipe_out_bits_id2is_rfwe =
     |{&_decodeBundle_andMatrixOutputs_T_7,
       &_decodeBundle_andMatrixOutputs_T_10,
-      &_decodeBundle_andMatrixOutputs_T_18,
-      &_decodeBundle_andMatrixOutputs_T_20,
-      &_decodeBundle_andMatrixOutputs_T_24,
-      &_decodeBundle_andMatrixOutputs_T_26};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/pla.scala:98:{53,70}, :114:{19,36}]
+      &_decodeBundle_andMatrixOutputs_T_19,
+      &_decodeBundle_andMatrixOutputs_T_21,
+      &_decodeBundle_andMatrixOutputs_T_25,
+      &_decodeBundle_andMatrixOutputs_T_27};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/pla.scala:98:{53,70}, :114:{19,36}]
   assign io_pipe_out_bits_id2is_rd_addr = io_pipe_in_bits_if2id_inst[10:7];	// @[src/main/core/idu/IDU.scala:54:7, :74:39, :99:36]
   assign io_pipe_out_bits_id2is_ch1tpe =
     |{&_decodeBundle_andMatrixOutputs_T_2,
@@ -324,16 +323,19 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
         decodeBundle_invInputs[3]},
       &_decodeBundle_andMatrixOutputs_T_8,
       &_decodeBundle_andMatrixOutputs_T_10,
-      &_decodeBundle_andMatrixOutputs_T_26};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:{53,70}, :114:{19,36}]
+      &_decodeBundle_andMatrixOutputs_T_27};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:{53,70}, :114:{19,36}]
   assign io_pipe_out_bits_id2is_ch2tpe =
-    {|_decodeBundle_orMatrixOutputs_T_23,
+    {|{&_decodeBundle_andMatrixOutputs_T_2,
+       &_decodeBundle_andMatrixOutputs_T_8,
+       &_decodeBundle_andMatrixOutputs_T_16,
+       &_decodeBundle_andMatrixOutputs_T_20},
      |{&_decodeBundle_andMatrixOutputs_T,
        &_decodeBundle_andMatrixOutputs_T_4,
        &_decodeBundle_andMatrixOutputs_T_6,
        &_decodeBundle_andMatrixOutputs_T_10,
-       &_decodeBundle_andMatrixOutputs_T_15,
-       &_decodeBundle_andMatrixOutputs_T_19,
-       &_decodeBundle_andMatrixOutputs_T_26}};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106, src/main/scala/chisel3/util/pla.scala:98:{53,70}, :114:{19,36}]
+       &_decodeBundle_andMatrixOutputs_T_16,
+       &_decodeBundle_andMatrixOutputs_T_20,
+       &_decodeBundle_andMatrixOutputs_T_27}};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106, src/main/scala/chisel3/util/pla.scala:98:{53,70}, :114:{19,36}]
   assign io_pipe_out_bits_id2is_rs1_addr =
     io_pipe_in_bits_if2id_inst[6:0] == 7'h37 ? 4'h0 : io_pipe_in_bits_if2id_inst[18:15];	// @[src/main/core/idu/IDU.scala:54:7, :92:22, :102:{43,51,78}, src/main/scala/chisel3/util/pla.scala:114:36]
   assign io_pipe_out_bits_id2is_rs2_addr = io_pipe_in_bits_if2id_inst[23:20];	// @[src/main/core/idu/IDU.scala:54:7, :103:{37,44}]

@@ -101,7 +101,7 @@ module CSR(	// @[src/main/core/exu/CSR.scala:23:7]
       mtvec <= wdata;	// @[src/main/core/exu/CSR.scala:30:24, :47:20]
     if (io_in_bits_processtpe == 4'h3 & io_in_valid) begin	// @[src/main/core/exu/CSR.scala:57:{21,50}]
       mepc <= io_in_bits_op1;	// @[src/main/core/exu/CSR.scala:31:24]
-      mcause <= 32'h1800;	// @[src/main/core/exu/CSR.scala:29:28, :32:24]
+      mcause <= 32'hB;	// @[src/main/core/exu/CSR.scala:32:24, :59:16]
     end
     else begin	// @[src/main/core/exu/CSR.scala:57:50]
       if (~_GEN_3 | _GEN_0 | ~_GEN_1) begin	// @[src/main/core/exu/CSR.scala:31:24, :37:17, :48:{22,40}, :49:22]
