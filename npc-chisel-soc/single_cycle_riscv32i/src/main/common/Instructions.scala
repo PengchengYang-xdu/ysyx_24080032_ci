@@ -120,8 +120,8 @@ object Instructions{
             def genCSRTpeTable(i: Insn): BitPat = i.inst.name match {
                 case name if csrInst_s.contains(name)     => BitPat(ProcessTpe.CSR.CSR_S)
                 case name if csrInst_w.contains(name)     => BitPat(ProcessTpe.CSR.CSR_W)
-                case name if csrInst_ecall.contains(name) => BitPat(ProcessTpe.CSR.CSR_MRET)
-                case name if csrInst_mret.contains(name)  => BitPat(ProcessTpe.CSR.CSR_ECALL)
+                case name if csrInst_mret.contains(name)  => BitPat(ProcessTpe.CSR.CSR_MRET)
+                case name if csrInst_ecall.contains(name) => BitPat(ProcessTpe.CSR.CSR_ECALL)
                 case _ => BitPat(ProcessTpe.CSR.CSR_S)
             }
             def genLSUTpeTable(i: Insn): BitPat = i.inst.name match {
