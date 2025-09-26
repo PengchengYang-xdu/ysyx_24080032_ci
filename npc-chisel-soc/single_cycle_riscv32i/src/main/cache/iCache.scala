@@ -79,7 +79,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val is_ifu_r_fire = io.in.rvalid && io.in.rready
     val is_imem_r_fire = io.out.rvalid && io.out.rready
 
-    val burst_done = io.out.rlast == true.B
+    val burst_done = io.out.rlast
 
     val hit_rdata = Mux(hit, icache(req_index).set(hit_num).data(req_offset >> 2), 0.U)
     when(is_hit_handshake){
