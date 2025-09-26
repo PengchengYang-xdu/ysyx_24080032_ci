@@ -55,9 +55,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
 
     val icache = RegInit(VecInit(Seq.fill(sets)(0.U.asTypeOf(new iCacheSet(m, n, ways)))))
     dontTouch(icache)
-    /*-----------------------Burst---------------------*/
-    val count = RegInit(c.U(log2Ceil(c + 1).W))
-    dontTouch(count)
+
     /*-----------------------FSM-----------------------*/
     val s_IDLE :: s_icache_lookup :: s_fetch :: s_outdone :: Nil = Enum(4)
     val c_state = RegInit(s_IDLE)
@@ -79,6 +77,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val is_hit_handshake = hit && io.in.rready
     val is_imem_ar_fire = io.out.arvalid && io.out.arready
     val is_ifu_r_fire = io.in.rvalid && io.in.rready
+    val is_imem_r_fire = io.out.rvalid && io.out.rready
 
     val hit_rdata = Mux(hit, icache(req_index).set(hit_num).data(req_offset >> 2), 0.U)
     when(is_hit_handshake){
@@ -100,6 +99,16 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     DefaultIMEM()
     io.in.arready := true.B
     io.in.rvalid := false.B
+
+    /*-----------------------Burst---------------------*/
+    require(c != 0. "c must be greater than 0")
+    val count = RegInit(c.U(log2Ceil(c + 1).W))
+    when(is_imem_ar_fire){
+        count := c
+    }.elsewhen(is_imem_r_fire){
+        count := count - 1.U
+    }
+    dontTouch(count)
 
     c_state := n_state//first phase
 
@@ -206,7 +215,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         // io.out.araddr   := io.in.araddr
         // io.out.arvalid  := io.in.arvalid
         io.out.arid     := io.in.arid
-        io.out.arlen    := 0.U//transfer n + 1 data block during one transfer
+        io.out.arlen    := Mux(is_sdram_raddr, c.U - 1.U, 0.U)//transfer n + 1 data block during one transfer
         io.out.arsize   := "b10".U//one data block has 4B
         io.out.arburst  := "b01".U//incr burst mode
         // io.in.arready   := io.out.arready
