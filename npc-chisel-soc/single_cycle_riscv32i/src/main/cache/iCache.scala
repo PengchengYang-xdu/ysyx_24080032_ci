@@ -79,6 +79,8 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val is_ifu_r_fire = io.in.rvalid && io.in.rready
     val is_imem_r_fire = io.out.rvalid && io.out.rready
 
+    val burst_done = io.out.rlast == true.B
+
     val hit_rdata = Mux(hit, icache(req_index).set(hit_num).data(req_offset >> 2), 0.U)
     when(is_hit_handshake){
         send_rdata := hit_rdata
@@ -116,7 +118,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         s_IDLE           ->  Mux(is_ifu_ar_fire, Mux(is_sdram_raddr, s_icache_lookup, s_fetch), s_IDLE),
         s_icache_lookup  ->  Mux(is_hit_handshake, s_IDLE, s_fetch),
         s_fetch          ->  Mux(is_imem_ar_fire, s_outdone, s_fetch),
-        s_outdone        ->  Mux(is_ifu_r_fire, s_IDLE, s_outdone)
+        s_outdone        ->  Mux(is_ifu_r_fire, Mux(burst_done, s_IDLE, s_outdone), s_outdone)
     ))
 
     switch(c_state){//third phase
