@@ -110,7 +110,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         count := count + 1.U
     }
     dontTouch(count)
-    val is_ifu_require = count + 1.U === req_offset >> 2
+    val is_ifu_require = count === req_offset >> 2
     dontTouch(is_ifu_require)
 
     c_state := n_state//first phase
