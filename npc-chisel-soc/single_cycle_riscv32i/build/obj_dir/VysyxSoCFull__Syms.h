@@ -20,7 +20,7 @@
 // DPI TYPES for DPI Export callbacks (Internal use)
 
 // SYMS CLASS (contains all model state)
-class alignas(VL_CACHE_LINE_BYTES)VysyxSoCFull__Syms final : public VerilatedSyms {
+class alignas(VL_CACHE_LINE_BYTES) VysyxSoCFull__Syms final : public VerilatedSyms {
   public:
     // INTERNAL STATE
     VysyxSoCFull* const __Vm_modelp;
@@ -180,14 +180,16 @@ class alignas(VL_CACHE_LINE_BYTES)VysyxSoCFull__Syms final : public VerilatedSym
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__clint;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core;
-    VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__csr;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__exu;
-    VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__gpr;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__exu__alu;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__exu__csr;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__exu__lsu;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__icache;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__idu;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__idu__ebreak;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__ifu;
-    VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__lsu;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__isu;
+    VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__isu__gpr_ext;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__core__wbu;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu__cpu__xbar;
     VerilatedScope __Vscope_ysyxSoCFull__asic__cpu_reset_chain;
