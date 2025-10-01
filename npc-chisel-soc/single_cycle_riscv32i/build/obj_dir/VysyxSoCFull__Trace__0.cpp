@@ -10,20 +10,24 @@ void VysyxSoCFull___024root__trace_chg_0(void* voidSelf, VerilatedFst::OffloadBu
     VL_DEBUG_IF(VL_DBG_MSGF("+    VysyxSoCFull___024root__trace_chg_0\n"); );
     // Init
     VysyxSoCFull___024root* const __restrict vlSelf VL_ATTR_UNUSED = static_cast<VysyxSoCFull___024root*>(voidSelf);
+
     VysyxSoCFull__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+
     if (VL_UNLIKELY(!vlSymsp->__Vm_activity)) return;
+
     // Body
     VysyxSoCFull___024root__trace_chg_0_sub_0((&vlSymsp->TOP), bufp);
 }
 
 void VysyxSoCFull___024root__trace_chg_0_sub_0(VysyxSoCFull___024root* vlSelf, VerilatedFst::OffloadBuffer* bufp) {
-    (void)vlSelf;  // Prevent unused variable warning
-    VysyxSoCFull__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
     VL_DEBUG_IF(VL_DBG_MSGF("+    VysyxSoCFull___024root__trace_chg_0_sub_0\n"); );
-    auto &vlSelfRef = std::ref(*vlSelf).get();
+    VysyxSoCFull__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+    auto& vlSelfRef = std::ref(*vlSelf).get();
     // Init
     const uint32_t base VL_ATTR_UNUSED = vlSymsp->__Vm_baseCode + 1;
+
     (void)bufp;  // Prevent unused variable warning
+
     // Body
     bufp->chgBit(base+0,(vlSelfRef.clock));
     bufp->chgBit(base+1,(vlSelfRef.reset));
@@ -3249,7 +3253,9 @@ void VysyxSoCFull___024root__trace_cleanup(void* voidSelf, VerilatedFst* /*unuse
     VL_DEBUG_IF(VL_DBG_MSGF("+    VysyxSoCFull___024root__trace_cleanup\n"); );
     // Init
     VysyxSoCFull___024root* const __restrict vlSelf VL_ATTR_UNUSED = static_cast<VysyxSoCFull___024root*>(voidSelf);
+
     VysyxSoCFull__Syms* const __restrict vlSymsp VL_ATTR_UNUSED = vlSelf->vlSymsp;
+
     VlUnpacked<CData/*0:0*/, 1> __Vm_traceActivity;
     for (int __Vi0 = 0; __Vi0 < 1; ++__Vi0) {
         __Vm_traceActivity[__Vi0] = 0;

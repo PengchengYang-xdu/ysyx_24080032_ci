@@ -1,8 +1,8 @@
 verilated_threads.o: \
- /usr/local/share/verilator/include/verilated_threads.cpp \
- /usr/local/share/verilator/include/verilatedos.h \
- /usr/local/share/verilator/include/verilated_threads.h \
- /usr/local/share/verilator/include/verilated.h \
- /usr/local/share/verilator/include/verilated_config.h \
- /usr/local/share/verilator/include/verilated_types.h \
- /usr/local/share/verilator/include/verilated_funcs.h
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_threads.cpp \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilatedos.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_threads.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_config.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_types.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_funcs.h
