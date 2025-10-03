@@ -186,7 +186,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val fencei_fsh = fencei_counter === sets.U - 1.U
 
     val is_fencei = io_fencei.is_fencei
-    io_fencei.fencei_done = fencei_fsh
+    io_fencei.fencei_done := fencei_fsh
 
     when(is_fencei){
         is_fencei_r := true.B
