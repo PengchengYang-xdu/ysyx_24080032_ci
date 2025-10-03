@@ -1,11 +1,11 @@
 ### Report: NPC.rpt (first 11 lines)
-Generate the report at 2025-10-03T14:10:17, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-10-03T14:25:29, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 +---------------+-------------+------------+------------+---------------+-------+-------+-----------+
 | Endpoint      | Clock Group | Delay Type | Path Delay | Path Required | CPPR  | Slack | Freq(MHz) |
 +---------------+-------------+------------+------------+---------------+-------+-------+-----------+
-| core/_3010_:D | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
-| core/_3009_:D | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
+| core/_3011_:D | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
 | core/_3006_:D | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
+| core/_3012_:D | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
 | core/_2972_:D | core_clock  | min        | 0.081f     | 0.002         | 0.000 | 0.079 | NA        |
 | core/_2972_:D | core_clock  | min        | 0.088r     | 0.006         | 0.000 | 0.082 | NA        |
 | core/_2973_:D | core_clock  | min        | 0.124f     | 0.002         | 0.000 | 0.122 | NA        |
@@ -25,6 +25,6 @@ Generate the report at 2025-10-03T14:10:17, GitVersion: aa25008b3778a76ae1975c83
    Chip area for module '\WBU': 61.180000
    Chip area for module '\Xbar': 1067.458000
    Chip area for module '\gpr_16x32': 6436.934000
-   Chip area for module '\iCache': 3532.480000
-   Chip area for top module '\NPC': 23019.640000
+   Chip area for module '\iCache': 3606.960000
+   Chip area for top module '\NPC': 23094.120000
 

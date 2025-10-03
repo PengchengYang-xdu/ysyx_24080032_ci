@@ -77,9 +77,9 @@ module iCache(	// @[src/main/cache/iCache.scala:32:7]
   output        io_fencei_fencei_done	// @[src/main/cache/iCache.scala:34:23]
 );
 
-  wire        io_out_arvalid_0;	// @[src/main/cache/iCache.scala:127:20, :228:24]
-  wire        io_in_arready_0;	// @[src/main/cache/iCache.scala:127:20, :132:27]
-  wire        io_out_rready_0;	// @[src/main/cache/iCache.scala:127:20, :143:27, :233:23]
+  wire        io_out_arvalid_0;	// @[src/main/cache/iCache.scala:154:20, :231:24]
+  wire        io_in_arready_0;	// @[src/main/cache/iCache.scala:154:20, :159:27]
+  wire        io_out_rready_0;	// @[src/main/cache/iCache.scala:154:20, :170:27, :236:23]
   wire        is_ifu_require = 1'h1;	// @[src/main/cache/iCache.scala:70:89, :115:32]
   reg  [31:0] send_rdata;	// @[src/main/cache/iCache.scala:37:25]
   reg  [31:0] send_araddr;	// @[src/main/cache/iCache.scala:38:26]
@@ -99,7 +99,7 @@ module iCache(	// @[src/main/cache/iCache.scala:32:7]
   reg         icache_3_set_0_valid;	// @[src/main/cache/iCache.scala:58:25]
   reg  [27:0] icache_3_set_0_tag;	// @[src/main/cache/iCache.scala:58:25]
   reg  [31:0] icache_3_set_0_data_0;	// @[src/main/cache/iCache.scala:58:25]
-  reg  [1:0]  c_state;	// @[src/main/cache/iCache.scala:63:26]
+  reg  [2:0]  c_state;	// @[src/main/cache/iCache.scala:63:26]
   reg         casez_tmp;	// @[src/main/cache/iCache.scala:70:43]
   always_comb begin	// @[src/main/cache/iCache.scala:70:43]
     casez (req_index)	// @[src/main/cache/iCache.scala:49:32, :70:43]
@@ -140,51 +140,58 @@ module iCache(	// @[src/main/cache/iCache.scala:32:7]
     endcase	// @[src/main/cache/iCache.scala:49:32, :70:43]
   end // always_comb
   wire        hit = casez_tmp_0 == req_tag & casez_tmp;	// @[src/main/cache/iCache.scala:51:30, :70:{43,55}]
-  wire        is_sdram_raddr = send_araddr > 32'h9FFFFFFF & send_araddr[31:30] != 2'h3;	// @[src/main/cache/iCache.scala:38:26, :77:{39,69,84}, :123:33]
-  wire        is_ifu_ar_fire = io_in_arvalid & io_in_arready_0;	// @[src/main/cache/iCache.scala:78:40, :127:20, :132:27]
+  wire        is_sdram_raddr = send_araddr > 32'h9FFFFFFF & send_araddr[31:30] != 2'h3;	// @[src/main/cache/iCache.scala:38:26, :77:{39,69,84}, :140:49]
+  wire        is_ifu_ar_fire = io_in_arvalid & io_in_arready_0;	// @[src/main/cache/iCache.scala:78:40, :154:20, :159:27]
   wire        is_hit_handshake = hit & io_in_rready;	// @[src/main/cache/iCache.scala:70:55, :79:32]
-  wire        is_imem_r_fire = io_out_rvalid & io_out_rready_0;	// @[src/main/cache/iCache.scala:81:40, :127:20, :143:27, :233:23]
-  wire        _n_state_T_8 = c_state == 2'h1;	// @[src/main/cache/iCache.scala:63:26, :120:42, :121:53]
-  wire        _n_state_T_10 = c_state == 2'h2;	// @[src/main/cache/iCache.scala:63:26, :120:42, :121:53]
-  reg  [1:0]  casez_tmp_2;	// @[src/main/cache/iCache.scala:120:42]
-  always_comb begin	// @[src/main/cache/iCache.scala:120:42]
-    casez (c_state)	// @[src/main/cache/iCache.scala:63:26, :120:42]
-      2'b00:
-        casez_tmp_2 = is_ifu_ar_fire ? (is_sdram_raddr ? 2'h1 : 2'h2) : 2'h0;	// @[src/main/cache/iCache.scala:52:25, :77:69, :78:40, :120:42, :121:{33,53}]
-      2'b01:
-        casez_tmp_2 = {~is_hit_handshake, 1'h0};	// @[src/main/cache/iCache.scala:58:61, :79:32, :120:42, :122:33]
-      2'b10:
-        casez_tmp_2 = {1'h1, io_out_arvalid_0 & io_out_arready};	// @[src/main/cache/iCache.scala:70:89, :80:42, :120:42, :123:33, :127:20, :228:24]
+  wire        is_imem_r_fire = io_out_rvalid & io_out_rready_0;	// @[src/main/cache/iCache.scala:81:40, :154:20, :170:27, :236:23]
+  reg         is_fencei_r;	// @[src/main/cache/iCache.scala:119:30]
+  reg  [1:0]  fencei_counter;	// @[src/main/cache/iCache.scala:120:33]
+  wire        fencing = io_fencei_is_fencei | is_fencei_r;	// @[src/main/cache/iCache.scala:119:30, :126:29]
+  wire        _n_state_T_10 = c_state == 3'h0;	// @[src/main/cache/iCache.scala:63:26, :146:42]
+  wire        _n_state_T_12 = c_state == 3'h1;	// @[src/main/cache/iCache.scala:63:26, :146:42, :147:53]
+  wire        _n_state_T_14 = c_state == 3'h2;	// @[src/main/cache/iCache.scala:63:26, :146:42, :147:53]
+  wire        _n_state_T_16 = c_state == 3'h3;	// @[src/main/cache/iCache.scala:63:26, :146:42, :149:33]
+  reg  [2:0]  casez_tmp_2;	// @[src/main/cache/iCache.scala:146:42]
+  always_comb begin	// @[src/main/cache/iCache.scala:146:42]
+    casez (c_state)	// @[src/main/cache/iCache.scala:63:26, :146:42]
+      3'b000:
+        casez_tmp_2 = is_ifu_ar_fire ? (is_sdram_raddr ? 3'h1 : 3'h2) : {fencing, 2'h0};	// @[src/main/cache/iCache.scala:52:25, :77:69, :78:40, :126:29, :146:42, :147:{33,53,100}]
+      3'b001:
+        casez_tmp_2 = {1'h0, ~is_hit_handshake, 1'h0};	// @[src/main/cache/iCache.scala:58:61, :79:32, :146:42, :148:33]
+      3'b010:
+        casez_tmp_2 = {2'h1, io_out_arvalid_0 & io_out_arready};	// @[src/main/cache/iCache.scala:80:42, :140:49, :146:42, :149:33, :154:20, :231:24]
+      3'b011:
+        casez_tmp_2 = is_imem_r_fire & (io_out_rlast | ~is_sdram_raddr) ? 3'h0 : 3'h3;	// @[src/main/cache/iCache.scala:63:26, :77:69, :81:40, :146:42, :149:33, :150:{33,53,65,68}]
+      3'b100:
+        casez_tmp_2 = {~(&fencei_counter), 2'h0};	// @[src/main/cache/iCache.scala:52:25, :119:30, :120:33, :121:37, :130:27, :131:21, :146:42, :151:33]
+      3'b101:
+        casez_tmp_2 = 3'h0;	// @[src/main/cache/iCache.scala:63:26, :146:42]
+      3'b110:
+        casez_tmp_2 = 3'h0;	// @[src/main/cache/iCache.scala:63:26, :146:42]
       default:
-        casez_tmp_2 = is_imem_r_fire & (io_out_rlast | ~is_sdram_raddr) ? 2'h0 : 2'h3;	// @[src/main/cache/iCache.scala:52:25, :77:69, :81:40, :120:42, :123:33, :124:{33,53,65,68}]
-    endcase	// @[src/main/cache/iCache.scala:63:26, :120:42]
+        casez_tmp_2 = 3'h0;	// @[src/main/cache/iCache.scala:63:26, :146:42]
+    endcase	// @[src/main/cache/iCache.scala:63:26, :146:42]
   end // always_comb
-  wire [1:0]  n_state = casez_tmp_2;	// @[src/main/cache/iCache.scala:64:30, :120:42]
-  wire        _GEN = c_state == 2'h0;	// @[src/main/cache/iCache.scala:52:25, :63:26, :127:20]
-  wire        _GEN_0 = _n_state_T_10 | (&c_state);	// @[src/main/cache/iCache.scala:63:26, :120:42, :127:20, :231:23, :252:25]
-  wire        _GEN_1 = _GEN | _n_state_T_8;	// @[src/main/cache/iCache.scala:120:42, :127:20, :231:23]
+  wire [2:0]  n_state = casez_tmp_2;	// @[src/main/cache/iCache.scala:64:30, :146:42]
+  wire        _GEN = _n_state_T_14 | _n_state_T_16;	// @[src/main/cache/iCache.scala:146:42, :154:20, :234:23, :255:25]
+  wire        _GEN_0 = _n_state_T_10 | _n_state_T_12;	// @[src/main/cache/iCache.scala:146:42, :154:20, :234:23]
   wire        io_in_rvalid_0 =
-    ~_GEN
-    & (_n_state_T_8
+    ~_n_state_T_10
+    & (_n_state_T_12
          ? hit
-         : ~_n_state_T_10 & (&c_state) & (is_ifu_require | ~is_sdram_raddr)
-           & io_out_rvalid);	// @[src/main/cache/iCache.scala:63:26, :70:55, :77:69, :115:32, :120:42, :124:68, :127:20, :131:26, :137:26, :142:26, :149:48]
-  wire        _GEN_2 = _n_state_T_8 | _n_state_T_10;	// @[src/main/cache/iCache.scala:120:42, :127:20, :143:27, :233:23]
+         : ~_n_state_T_14 & _n_state_T_16 & (is_ifu_require | ~is_sdram_raddr)
+           & io_out_rvalid);	// @[src/main/cache/iCache.scala:70:55, :77:69, :115:32, :146:42, :150:68, :154:20, :158:26, :164:26, :169:26, :176:48]
+  wire        _GEN_1 = _n_state_T_12 | _n_state_T_14;	// @[src/main/cache/iCache.scala:146:42, :154:20, :170:27, :236:23]
   assign io_out_rready_0 =
-    ~(_GEN | _GEN_2) & (&c_state) & (~(is_ifu_require | ~is_sdram_raddr) | io_in_rready);	// @[src/main/cache/iCache.scala:63:26, :77:69, :115:32, :120:42, :124:68, :127:20, :143:27, :150:{33,49}, :233:23]
-  assign io_in_arready_0 = _GEN | ~_GEN_2 & ~(&c_state);	// @[src/main/cache/iCache.scala:58:61, :63:26, :70:89, :104:19, :120:42, :127:20, :132:27, :138:27, :143:27, :144:27, :151:27, :233:23]
-  assign io_out_arvalid_0 = ~_GEN_1 & _n_state_T_10;	// @[src/main/cache/iCache.scala:120:42, :127:20, :228:24, :231:23]
-  reg         is_fencei_r;	// @[src/main/cache/iCache.scala:184:30]
-  reg  [1:0]  fencei_counter;	// @[src/main/cache/iCache.scala:185:33]
-  wire        _GEN_3 = is_imem_r_fire & ~hit & is_sdram_raddr;	// @[src/main/cache/iCache.scala:70:55, :77:69, :81:40, :167:{28,33}]
-  wire        _GEN_4 = _GEN_3 & req_index == 2'h0;	// @[src/main/cache/iCache.scala:49:32, :52:25, :58:25, :167:{33,51}, :169:35, :171:35]
-  wire        _GEN_5 = _GEN_3 & req_index == 2'h1;	// @[src/main/cache/iCache.scala:49:32, :58:25, :121:53, :167:{33,51}, :169:35, :171:35]
-  wire        _GEN_6 = _GEN_3 & req_index == 2'h2;	// @[src/main/cache/iCache.scala:49:32, :58:25, :121:53, :167:{33,51}, :169:35, :171:35]
-  wire        _GEN_7 = _GEN_3 & (&req_index);	// @[src/main/cache/iCache.scala:49:32, :58:25, :167:{33,51}, :169:35, :171:35]
+    ~(_n_state_T_10 | _GEN_1) & _n_state_T_16
+    & (~(is_ifu_require | ~is_sdram_raddr) | io_in_rready);	// @[src/main/cache/iCache.scala:77:69, :115:32, :146:42, :150:68, :154:20, :170:27, :177:{33,49}, :236:23]
+  assign io_in_arready_0 = _n_state_T_10 | ~_GEN_1 & ~_n_state_T_16;	// @[src/main/cache/iCache.scala:58:61, :70:89, :104:19, :146:42, :154:20, :159:27, :165:27, :170:27, :171:27, :178:27, :236:23]
+  assign io_out_arvalid_0 = ~_GEN_0 & _n_state_T_14;	// @[src/main/cache/iCache.scala:146:42, :154:20, :231:24, :234:23]
+  wire        _GEN_2 = is_imem_r_fire & ~hit & is_sdram_raddr & ~fencing;	// @[src/main/cache/iCache.scala:70:55, :77:69, :81:40, :126:29, :194:{28,51,54}]
   always @(posedge clock) begin	// @[src/main/cache/iCache.scala:32:7]
     if (is_hit_handshake)	// @[src/main/cache/iCache.scala:79:32]
       send_rdata <= hit ? casez_tmp_1 : 32'h0;	// @[src/main/cache/iCache.scala:37:25, :58:61, :70:{43,55}, :86:24]
-    else if (io_in_rvalid_0 & io_in_rready)	// @[src/main/cache/iCache.scala:82:38, :127:20, :131:26]
+    else if (io_in_rvalid_0 & io_in_rready)	// @[src/main/cache/iCache.scala:82:38, :154:20, :158:26]
       send_rdata <= io_out_rdata;	// @[src/main/cache/iCache.scala:37:25]
     if (is_ifu_ar_fire)	// @[src/main/cache/iCache.scala:78:40]
       send_araddr <= io_in_araddr;	// @[src/main/cache/iCache.scala:38:26]
@@ -201,45 +208,48 @@ module iCache(	// @[src/main/cache/iCache.scala:32:7]
       icache_3_set_0_valid <= 1'h0;	// @[src/main/cache/iCache.scala:58:{25,61}]
       icache_3_set_0_tag <= 28'h0;	// @[src/main/cache/iCache.scala:58:{25,61}]
       icache_3_set_0_data_0 <= 32'h0;	// @[src/main/cache/iCache.scala:58:{25,61}]
-      c_state <= 2'h0;	// @[src/main/cache/iCache.scala:52:25, :63:26]
-      is_fencei_r <= 1'h0;	// @[src/main/cache/iCache.scala:58:61, :184:30]
-      fencei_counter <= 2'h0;	// @[src/main/cache/iCache.scala:52:25, :185:33]
+      c_state <= 3'h0;	// @[src/main/cache/iCache.scala:63:26]
+      is_fencei_r <= 1'h0;	// @[src/main/cache/iCache.scala:58:61, :119:30]
+      fencei_counter <= 2'h0;	// @[src/main/cache/iCache.scala:52:25, :120:33]
     end
     else begin	// @[src/main/cache/iCache.scala:32:7]
-      icache_0_set_0_valid <=
-        ~(io_fencei_is_fencei & fencei_counter == 2'h0)
-        & (_GEN_4 ? io_out_rlast : icache_0_set_0_valid);	// @[src/main/cache/iCache.scala:52:25, :58:25, :167:51, :169:35, :185:33, :201:20, :203:49]
-      if (_GEN_4) begin	// @[src/main/cache/iCache.scala:58:25, :167:51, :169:35]
+      if (_GEN_2 & req_index == 2'h0) begin	// @[src/main/cache/iCache.scala:49:32, :52:25, :58:25, :138:18, :194:{51,63}, :196:35, :198:35]
+        icache_0_set_0_valid <= io_out_rlast;	// @[src/main/cache/iCache.scala:58:25]
         icache_0_set_0_tag <= req_tag;	// @[src/main/cache/iCache.scala:51:30, :58:25]
         icache_0_set_0_data_0 <= io_out_rdata;	// @[src/main/cache/iCache.scala:58:25]
       end
-      icache_1_set_0_valid <=
-        ~(io_fencei_is_fencei & fencei_counter == 2'h1)
-        & (_GEN_5 ? io_out_rlast : icache_1_set_0_valid);	// @[src/main/cache/iCache.scala:58:25, :121:53, :167:51, :169:35, :185:33, :201:20, :203:49]
-      if (_GEN_5) begin	// @[src/main/cache/iCache.scala:58:25, :167:51, :169:35]
+      else	// @[src/main/cache/iCache.scala:58:25, :194:63, :196:35]
+        icache_0_set_0_valid <=
+          ~(fencing & fencei_counter == 2'h0) & icache_0_set_0_valid;	// @[src/main/cache/iCache.scala:52:25, :58:25, :120:33, :126:29, :138:18, :140:49]
+      if (_GEN_2 & req_index == 2'h1) begin	// @[src/main/cache/iCache.scala:49:32, :58:25, :138:18, :140:49, :194:{51,63}, :196:35, :198:35]
+        icache_1_set_0_valid <= io_out_rlast;	// @[src/main/cache/iCache.scala:58:25]
         icache_1_set_0_tag <= req_tag;	// @[src/main/cache/iCache.scala:51:30, :58:25]
         icache_1_set_0_data_0 <= io_out_rdata;	// @[src/main/cache/iCache.scala:58:25]
       end
-      icache_2_set_0_valid <=
-        ~(io_fencei_is_fencei & fencei_counter == 2'h2)
-        & (_GEN_6 ? io_out_rlast : icache_2_set_0_valid);	// @[src/main/cache/iCache.scala:58:25, :121:53, :167:51, :169:35, :185:33, :201:20, :203:49]
-      if (_GEN_6) begin	// @[src/main/cache/iCache.scala:58:25, :167:51, :169:35]
+      else	// @[src/main/cache/iCache.scala:58:25, :194:63, :196:35]
+        icache_1_set_0_valid <=
+          ~(fencing & fencei_counter == 2'h1) & icache_1_set_0_valid;	// @[src/main/cache/iCache.scala:58:25, :120:33, :126:29, :138:18, :140:49]
+      if (_GEN_2 & req_index == 2'h2) begin	// @[src/main/cache/iCache.scala:49:32, :58:25, :138:18, :140:49, :194:{51,63}, :196:35, :198:35]
+        icache_2_set_0_valid <= io_out_rlast;	// @[src/main/cache/iCache.scala:58:25]
         icache_2_set_0_tag <= req_tag;	// @[src/main/cache/iCache.scala:51:30, :58:25]
         icache_2_set_0_data_0 <= io_out_rdata;	// @[src/main/cache/iCache.scala:58:25]
       end
-      icache_3_set_0_valid <=
-        ~(io_fencei_is_fencei & (&fencei_counter))
-        & (_GEN_7 ? io_out_rlast : icache_3_set_0_valid);	// @[src/main/cache/iCache.scala:58:25, :167:51, :169:35, :185:33, :201:20, :203:49]
-      if (_GEN_7) begin	// @[src/main/cache/iCache.scala:58:25, :167:51, :169:35]
+      else	// @[src/main/cache/iCache.scala:58:25, :194:63, :196:35]
+        icache_2_set_0_valid <=
+          ~(fencing & fencei_counter == 2'h2) & icache_2_set_0_valid;	// @[src/main/cache/iCache.scala:58:25, :120:33, :126:29, :138:18, :140:49]
+      if (_GEN_2 & (&req_index)) begin	// @[src/main/cache/iCache.scala:49:32, :58:25, :138:18, :194:{51,63}, :196:35, :198:35]
+        icache_3_set_0_valid <= io_out_rlast;	// @[src/main/cache/iCache.scala:58:25]
         icache_3_set_0_tag <= req_tag;	// @[src/main/cache/iCache.scala:51:30, :58:25]
         icache_3_set_0_data_0 <= io_out_rdata;	// @[src/main/cache/iCache.scala:58:25]
       end
+      else	// @[src/main/cache/iCache.scala:58:25, :194:63, :196:35]
+        icache_3_set_0_valid <= ~(fencing & (&fencei_counter)) & icache_3_set_0_valid;	// @[src/main/cache/iCache.scala:58:25, :120:33, :126:29, :138:18, :140:49]
       c_state <= n_state;	// @[src/main/cache/iCache.scala:63:26, :64:30]
-      is_fencei_r <= io_fencei_is_fencei | ~(&fencei_counter) & is_fencei_r;	// @[src/main/cache/iCache.scala:184:30, :185:33, :186:37, :191:20, :192:21, :193:27, :194:21]
-      if ((io_fencei_is_fencei | is_fencei_r) & ~(&fencei_counter))	// @[src/main/cache/iCache.scala:184:30, :185:33, :186:37, :196:{21,36,39}]
-        fencei_counter <= fencei_counter + 2'h1;	// @[src/main/cache/iCache.scala:121:53, :185:33, :197:42]
-      else	// @[src/main/cache/iCache.scala:196:36]
-        fencei_counter <= 2'h0;	// @[src/main/cache/iCache.scala:52:25, :185:33]
+      is_fencei_r <= io_fencei_is_fencei | ~(&fencei_counter) & is_fencei_r;	// @[src/main/cache/iCache.scala:119:30, :120:33, :121:37, :128:20, :129:21, :130:27, :131:21]
+      if (fencing & ~(&fencei_counter))	// @[src/main/cache/iCache.scala:120:33, :121:37, :126:29, :133:{18,21}]
+        fencei_counter <= fencei_counter + 2'h1;	// @[src/main/cache/iCache.scala:120:33, :134:42, :140:49]
+      else	// @[src/main/cache/iCache.scala:133:18]
+        fencei_counter <= 2'h0;	// @[src/main/cache/iCache.scala:52:25, :120:33]
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// @[src/main/cache/iCache.scala:32:7]
@@ -269,23 +279,23 @@ module iCache(	// @[src/main/cache/iCache.scala:32:7]
         icache_3_set_0_valid = _RANDOM[4'h7][23];	// @[src/main/cache/iCache.scala:32:7, :58:25]
         icache_3_set_0_tag = {_RANDOM[4'h7][31:24], _RANDOM[4'h8][19:0]};	// @[src/main/cache/iCache.scala:32:7, :58:25]
         icache_3_set_0_data_0 = {_RANDOM[4'h8][31:20], _RANDOM[4'h9][19:0]};	// @[src/main/cache/iCache.scala:32:7, :58:25]
-        c_state = _RANDOM[4'h9][21:20];	// @[src/main/cache/iCache.scala:32:7, :58:25, :63:26]
-        is_fencei_r = _RANDOM[4'h9][22];	// @[src/main/cache/iCache.scala:32:7, :58:25, :184:30]
-        fencei_counter = _RANDOM[4'h9][24:23];	// @[src/main/cache/iCache.scala:32:7, :58:25, :185:33]
+        c_state = _RANDOM[4'h9][22:20];	// @[src/main/cache/iCache.scala:32:7, :58:25, :63:26]
+        is_fencei_r = _RANDOM[4'h9][23];	// @[src/main/cache/iCache.scala:32:7, :58:25, :119:30]
+        fencei_counter = _RANDOM[4'h9][25:24];	// @[src/main/cache/iCache.scala:32:7, :58:25, :120:33]
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/cache/iCache.scala:32:7]
       `FIRRTL_AFTER_INITIAL	// @[src/main/cache/iCache.scala:32:7]
     `endif // FIRRTL_AFTER_INITIAL
   `endif // ENABLE_INITIAL_REG_
-  assign io_in_arready = io_in_arready_0;	// @[src/main/cache/iCache.scala:32:7, :127:20, :132:27]
+  assign io_in_arready = io_in_arready_0;	// @[src/main/cache/iCache.scala:32:7, :154:20, :159:27]
   assign io_in_rdata = send_rdata;	// @[src/main/cache/iCache.scala:32:7, :37:25]
-  assign io_in_rvalid = io_in_rvalid_0;	// @[src/main/cache/iCache.scala:32:7, :127:20, :131:26]
+  assign io_in_rvalid = io_in_rvalid_0;	// @[src/main/cache/iCache.scala:32:7, :154:20, :158:26]
   assign io_out_araddr = send_araddr;	// @[src/main/cache/iCache.scala:32:7, :38:26]
-  assign io_out_arvalid = io_out_arvalid_0;	// @[src/main/cache/iCache.scala:32:7, :127:20, :228:24]
-  assign io_out_arsize = _GEN_1 ? 3'h0 : {1'h0, _GEN_0, 1'h0};	// @[src/main/cache/iCache.scala:32:7, :58:61, :127:20, :231:23, :252:25]
-  assign io_out_arburst = _GEN_1 ? 2'h0 : {1'h0, _GEN_0};	// @[src/main/cache/iCache.scala:32:7, :52:25, :58:61, :127:20, :231:23, :232:24, :252:25, :253:25]
-  assign io_out_rready = io_out_rready_0;	// @[src/main/cache/iCache.scala:32:7, :127:20, :143:27, :233:23]
-  assign io_fencei_fencei_done = &fencei_counter;	// @[src/main/cache/iCache.scala:32:7, :185:33, :186:37]
+  assign io_out_arvalid = io_out_arvalid_0;	// @[src/main/cache/iCache.scala:32:7, :154:20, :231:24]
+  assign io_out_arsize = _GEN_0 ? 3'h0 : {1'h0, _GEN, 1'h0};	// @[src/main/cache/iCache.scala:32:7, :58:61, :63:26, :154:20, :234:23, :255:25]
+  assign io_out_arburst = _GEN_0 ? 2'h0 : {1'h0, _GEN};	// @[src/main/cache/iCache.scala:32:7, :52:25, :58:61, :154:20, :234:23, :235:24, :255:25, :256:25]
+  assign io_out_rready = io_out_rready_0;	// @[src/main/cache/iCache.scala:32:7, :154:20, :170:27, :236:23]
+  assign io_fencei_fencei_done = &fencei_counter;	// @[src/main/cache/iCache.scala:32:7, :120:33, :121:37]
 endmodule
 
