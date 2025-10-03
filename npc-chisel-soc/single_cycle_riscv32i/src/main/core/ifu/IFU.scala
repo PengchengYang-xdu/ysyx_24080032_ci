@@ -51,7 +51,7 @@ class IFU extends Module {
     val io_pipe = IO(new IFUIO_pipe)
     val io_bj = IO(Flipped(new EXU_BJIO))
     val io_flush = IO(new FLUSHIO)
-    val io_fencei_flush = IO(new FENCEI_FLUSH_IO)
+    val io_fencei_flush = IO(Flipped(new FENCEI_FLUSH_IO))
 
     dontTouch(io_pipe)
 
