@@ -133,7 +133,7 @@ class EXU extends Module {
 
 
 
-    io_bj.valid := alu.io_bj.valid | csr.io_bj.valid | fencei_done
+    io_bj.valid := alu.io_bj.valid | csr.io_bj.valid | io_fencei.is_fencei
     io_bj.target := Mux(alu.io_bj.valid, ch3, Mux(csr.io_bj.valid, csr.io_bj.target, alu.io.out.bits.alu_out))
 
     val exefsh = csr.io.out.valid | alu.io.out.valid | lsu.io.out.valid | fencei_done

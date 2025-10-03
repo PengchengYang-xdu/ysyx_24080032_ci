@@ -59,7 +59,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     dontTouch(icache)
 
     /*-----------------------FSM-----------------------*/
-    val s_IDLE :: s_icache_lookup :: s_fetch :: s_outdone ::  Nil = Enum(4)
+    val s_IDLE :: s_icache_lookup :: s_fetch :: s_outdone :: s_fencei :: Nil = Enum(5)
     val c_state = RegInit(s_IDLE)
     val n_state = WireDefault(c_state)
     dontTouch(n_state)
@@ -144,10 +144,11 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
-        s_IDLE           ->  Mux(is_ifu_ar_fire, Mux(is_sdram_raddr, s_icache_lookup, s_fetch), s_IDLE),
+        s_IDLE           ->  Mux(is_ifu_ar_fire, Mux(is_sdram_raddr, s_icache_lookup, s_fetch), Mux(is_fencei, s_fencei, s_IDLE)),
         s_icache_lookup  ->  Mux(is_hit_handshake, s_IDLE, s_fetch),
         s_fetch          ->  Mux(is_imem_ar_fire, s_outdone, s_fetch),
-        s_outdone        ->  Mux(is_imem_r_fire, Mux(burst_done || ~is_sdram_raddr, s_IDLE, s_outdone), s_outdone)
+        s_outdone        ->  Mux(is_imem_r_fire, Mux(burst_done || ~is_sdram_raddr, s_IDLE, s_outdone), s_outdone),
+        s_fencei         ->  Mux(fencei_fsh, s_IDLE, s_fencei)
     ))
 
     switch(c_state){//third phase
