@@ -129,7 +129,7 @@ class EXU extends Module {
 */
     io_fencei.is_fencei := io_pipe.in.fire && processunit === ProcessUnit.MOU
     val fencei_done = io_fencei.fencei_done
-    io_fencei_flush.fencei_flush := fencei_done
+    io_fencei_flush.fencei_flush := io_fencei.is_fencei
 
 
 
