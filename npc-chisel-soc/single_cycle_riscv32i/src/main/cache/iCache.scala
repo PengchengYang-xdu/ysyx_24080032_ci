@@ -7,6 +7,10 @@ import npc.common.Config._
 import npc.common.Instructions._
 import npc.bus.axi._
 import npc.core.exu._
+
+class FENCEI_FLUSH_IO_ICACHE extends Bundle{
+    val fencing = Output(Bool())
+}
 /*
              ___ ____    _    ____ _   _ _____
             |_ _/ ___|  / \  / ___| | | | ____|
@@ -32,6 +36,7 @@ class iCacheSet(val m: Int, val n: Int, val ways: Int) extends Bundle{
 class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val io = IO(new iCacheIO)
     val io_fencei = IO(Flipped(new FENCEI_IO))
+    val io_fencei_flush_icache = IO(new FENCEI_FLUSH_IO_ICACHE)
 
     // 寄存读出的数据以及要读的地址
     val send_rdata = Reg(UInt(WORD_LEN.W))
@@ -124,6 +129,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     io_fencei.fencei_done := fencei_fsh
 
     val fencing = is_fencei | is_fencei_r
+    io_fencei_flush_icache.fencing := fencing
 
     when(is_fencei){
         is_fencei_r := true.B

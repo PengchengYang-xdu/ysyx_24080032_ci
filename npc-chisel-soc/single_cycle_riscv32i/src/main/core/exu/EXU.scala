@@ -34,6 +34,9 @@ class FENCEI_IO extends Bundle{//for icache
     val is_fencei = Output(Bool())
     val fencei_done = Input(Bool())
 }
+class FENCEI_FLUSH_IO_EXU extends Bundle{
+    val fencei_flush_target = Output(UInt(WORD_LEN.W))
+}
 /*
              ____ ___ ____  _____ ____ ___ ____
             |  _ \_ _|  _ \| ____/ ___|_ _/ ___|
@@ -66,6 +69,7 @@ class EXU extends Module {
     val io_pipe = IO(new EXUIO_pipe)
     val io_for = IO(new EXUIO_FOR)
     val io_fencei = IO(new FENCEI_IO)
+    val io_fencei_flush_exu = IO(new FENCEI_FLUSH_IO_EXU)
 
     val processunit = io_pipe.in.bits.is2exe_processunit
     val processtpe = io_pipe.in.bits.is2exe_processtpe
@@ -130,11 +134,10 @@ class EXU extends Module {
 
 
 
+    io_fencei_flush_exu.fencei_flush_target := alu.io.out.bits.alu_out
 
-
-
-    io_bj.valid := alu.io_bj.valid | csr.io_bj.valid | io_fencei.is_fencei
-    io_bj.target := Mux(alu.io_bj.valid, ch3, Mux(csr.io_bj.valid, csr.io_bj.target, alu.io.out.bits.alu_out))
+    io_bj.valid := alu.io_bj.valid | csr.io_bj.valid
+    io_bj.target := Mux(alu.io_bj.valid, ch3, Mux(csr.io_bj.valid, csr.io_bj.target, 0.U))
 
     val exefsh = csr.io.out.valid | alu.io.out.valid | lsu.io.out.valid | fencei_done
     val gpr_wdata = Mux(processunit === ProcessUnit.CSR, csr.io.out.bits.csr_rdata, Mux(processunit === ProcessUnit.LSU, lsu.io.out.bits.gpr_wdata, alu.io.out.bits.alu_out))
