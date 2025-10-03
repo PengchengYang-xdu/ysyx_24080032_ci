@@ -7,6 +7,7 @@ import npc.common._
 import npc.common.Instructions._
 import npc.core.wbu._
 import npc.core.exu._
+import npc.core.icache._
 import npc.bus.axi._
 
 /*
