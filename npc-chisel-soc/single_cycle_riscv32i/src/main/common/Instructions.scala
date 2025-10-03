@@ -163,7 +163,7 @@ object Instructions{
         def name = "ch1tpe"
         def chiselType = UInt(CH1Tpe.CH1Tpe_Width.W)
         def genTable(i: Insn): BitPat = {
-            if(i.hasArg("rs1") && i.inst.name != "jalr") BitPat(CH1Tpe.CH1Tpe_RS1)
+            if(i.hasArg("rs1") && i.inst.name != "jalr" && i.inst.name != "fence.i") BitPat(CH1Tpe.CH1Tpe_RS1)
             else if(i.inst.name == "lui") BitPat(CH1Tpe.CH1Tpe_RS1)
             else BitPat(CH1Tpe.CH1Tpe_PC)
         }
@@ -175,7 +175,7 @@ object Instructions{
         def genTable(i: Insn): BitPat = {
             if(i.hasArg("rs2")) BitPat(CH2Tpe.CH2Tpe_RS2)
             else if(i.hasArg("csr")) BitPat(CH2Tpe.CH2Tpe_CSR_ADDR)
-            else if(i.inst.name == "jal" || i.inst.name == "jalr") BitPat(CH2Tpe.CH2Tpe_4)
+            else if(i.inst.name == "jal" || i.inst.name == "jalr" || i.inst.name == "fence.i") BitPat(CH2Tpe.CH2Tpe_4)
             else BitPat(CH2Tpe.CH2Tpe_IMM)
         }
     }

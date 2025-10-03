@@ -51,7 +51,6 @@ class IFU extends Module {
     val io_pipe = IO(new IFUIO_pipe)
     val io_bj = IO(Flipped(new EXU_BJIO))
     val io_flush = IO(new FLUSHIO)
-    val io_fencei_flush = IO(Flipped(new FENCEI_FLUSH_IO))
 
     dontTouch(io_pipe)
 
@@ -71,12 +70,11 @@ class IFU extends Module {
     io_pipe.out.bits.if2id_inst := io.imem.rdata
 
     //flush
-    io_flush.flush_flg := io_bj.valid | io_fencei_flush.fencei_flush
-    val bj_flush =  io_bj.valid && (io_bj.target =/= reg_pc)
-    val flush_flg = bj_flush | io_fencei_flush.fencei_flush
+    io_flush.flush_flg := io_bj.valid
+    val flush_flg = io_bj.valid && (io_bj.target =/= reg_pc)
 
     //connect
-    io.imem.araddr := Mux(bj_flush, io_bj.target, reg_pc)
+    io.imem.araddr := Mux(flush_flg, io_bj.target, reg_pc)
 
 
 
