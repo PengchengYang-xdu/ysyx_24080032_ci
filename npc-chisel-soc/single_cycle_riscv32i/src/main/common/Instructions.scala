@@ -82,6 +82,11 @@ object Instructions{
         val bjInst =Set(
             bjInst_j ++ bjInst_beq ++ bjInst_bne ++ bjInst_blt ++ bjInst_bltu ++ bjInst_bge ++ bjInst_bgeu
         ).flatten
+
+        val mouInst_fence_i = Set("fence.i")
+        val mouInst = Set(
+            mouInst_fence_i
+        ).flatten
     }
 
     object MyProcessUnit extends DecodeField[Insn, UInt] with InstCateg{
@@ -91,6 +96,7 @@ object Instructions{
             case name if aluInst.contains(name) || bjInst.contains(name) => BitPat(ProcessUnit.ALU)
             case name if csrInst.contains(name) => BitPat(ProcessUnit.CSR)
             case name if lsuInst.contains(name) => BitPat(ProcessUnit.LSU)
+            case name if mouInst.contains(name) => BitPat(ProcessUnit.MOU)
             case _ => BitPat(ProcessUnit.ALU)
         }
     }

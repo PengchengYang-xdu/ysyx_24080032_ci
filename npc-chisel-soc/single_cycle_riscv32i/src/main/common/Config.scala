@@ -19,7 +19,7 @@ object Config{
     val ADDR_LEN = 4 // rs1,rs2,wb
     val CSR_ADDR_LEN = 12
 
-    val DIFFTEST = true
+    val DIFFTEST = false
 }
 
 object ProcessUnit{
@@ -27,6 +27,7 @@ object ProcessUnit{
     def ALU = 0.U(ProcessUnit_Width.W)
     def CSR = 1.U(ProcessUnit_Width.W)
     def LSU = 2.U(ProcessUnit_Width.W)
+    def MOU = 3.U(ProcessUnit_Width.W)//for fence.i
 }
 
 object ProcessTpe{

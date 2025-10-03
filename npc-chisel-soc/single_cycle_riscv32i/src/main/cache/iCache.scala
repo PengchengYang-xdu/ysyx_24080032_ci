@@ -6,6 +6,7 @@ import scala.math._
 import npc.common.Config._
 import npc.common.Instructions._
 import npc.bus.axi._
+import npc.core.exu._
 /*
              ___ ____    _    ____ _   _ _____
             |_ _/ ___|  / \  / ___| | | | ____|
@@ -30,6 +31,7 @@ class iCacheSet(val m: Int, val n: Int, val ways: Int) extends Bundle{
 
 class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     val io = IO(new iCacheIO)
+    val io_fencei = IO(Flipped(new FENCEI_IO))
 
     // 寄存读出的数据以及要读的地址
     val send_rdata = Reg(UInt(WORD_LEN.W))
@@ -175,6 +177,30 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
             set(randomIndex).valid := io.out.rlast
             set(randomIndex).tag := req_tag
             set(randomIndex).data(count) := io.out.rdata
+        }
+    }
+
+    //fencei
+    val is_fencei_r = RegInit(false.B)
+    val fencei_counter = RegInit(0.U(n.W))
+    val fencei_fsh = fencei_counter === sets.U - 1.U
+
+    val is_fencei = io_fencei.is_fencei
+    io_fencei.fencei_done = fencei_fsh
+
+    when(is_fencei){
+        is_fencei_r := true.B
+    }.elsewhen(fencei_fsh){
+        is_fencei_r := false.B
+    }
+    when((is_fencei | is_fencei_r) && ~fencei_fsh){
+        fencei_counter := fencei_counter + 1.U
+    }.otherwise{
+        fencei_counter := 0.U
+    }
+    when(is_fencei){
+        for(i <- 0 until ways){
+            icache(fencei_counter).set(i).valid := false.B
         }
     }
 
