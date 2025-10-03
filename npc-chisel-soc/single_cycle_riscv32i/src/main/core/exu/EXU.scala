@@ -66,7 +66,6 @@ class EXU extends Module {
     val io_pipe = IO(new EXUIO_pipe)
     val io_for = IO(new EXUIO_FOR)
     val io_fencei = IO(new FENCEI_IO)
-    val io_fencei_flush = IO(new FENCEI_FLUSH_IO)
 
     val processunit = io_pipe.in.bits.is2exe_processunit
     val processtpe = io_pipe.in.bits.is2exe_processtpe
