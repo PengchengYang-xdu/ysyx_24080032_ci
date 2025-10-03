@@ -52,7 +52,7 @@ class Core extends Module {
              | || |  | | |___| |  | | | (_>  <  | | |___ / ___ \ |___|  _  | |___
             |___|_|  |_|_____|_|  |_|  \___/\/ |___\____/_/   \_\____|_| |_|_____|
 */
-    val icache = Module(new iCache(16, 4, 1))
+    val icache = Module(new iCache(4, 4, 1))
     io.imem <> icache.io.out
     icache.io.in <> ifu.io.imem
 /*

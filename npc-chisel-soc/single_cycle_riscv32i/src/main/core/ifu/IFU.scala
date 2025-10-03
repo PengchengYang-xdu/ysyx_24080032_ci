@@ -70,7 +70,6 @@ class IFU extends Module {
     val flush_flg = bj_flush || fencei_flush
 
     //main process
-
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
     pc_next := Mux(io_bj.valid, io_bj.target, Mux(fencei_flush, io_fencei_flush_exu.fencei_flush_target, pc_plus4))
