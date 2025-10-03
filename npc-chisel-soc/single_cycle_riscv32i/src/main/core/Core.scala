@@ -83,6 +83,8 @@ class Core extends Module {
     idu.io_flush.flush_flg := ifu.io_flush.flush_flg
     isu.io_flush.flush_flg := ifu.io_flush.flush_flg
 
+    icache.io_fencei <> exu.io_fencei
+
 
 
 
