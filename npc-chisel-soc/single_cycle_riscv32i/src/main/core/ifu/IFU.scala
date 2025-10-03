@@ -57,6 +57,9 @@ class IFU extends Module {
 
     dontTouch(io_pipe)
 
+    val pc_next = Wire(UInt(WORD_LEN.W))
+    dontTouch(pc_next)
+
     //flush
     io_flush.flush_flg := io_bj.valid | io_fencei_flush_icache.fencing
     val fencei_flush = io_fencei_flush_icache.fencing
@@ -67,8 +70,6 @@ class IFU extends Module {
     val flush_flg = bj_flush || fencei_flush
 
     //main process
-    val pc_next = Wire(UInt(WORD_LEN.W))
-    dontTouch(pc_next)
 
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)
 
