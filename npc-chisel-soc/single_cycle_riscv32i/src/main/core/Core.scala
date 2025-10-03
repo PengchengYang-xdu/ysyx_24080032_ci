@@ -76,6 +76,7 @@ class Core extends Module {
 
     ifu.io_bj <> exu.io_bj
     ifu.io_fencei_flush_exu <> exu.io_fencei_flush_exu
+    ifu.io_fencei_flush_icache <> icache.io_fencei_flush_icache
 
     isu.io_for_ex <> exu.io_for
     isu.io_for_wb <> wbu.io_for
