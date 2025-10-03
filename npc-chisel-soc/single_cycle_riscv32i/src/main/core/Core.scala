@@ -53,6 +53,8 @@ class Core extends Module {
             |___|_|  |_|_____|_|  |_|  \___/\/ |___\____/_/   \_\____|_| |_|_____|
 */
     val icache = Module(new iCache(4, 4, 1))
+    /*due to the area limit, icache dosen't realise plru, only support random.
+    final icache is 4, 4, 1, so replace policy dosen't matter*/
     io.imem <> icache.io.out
     icache.io.in <> ifu.io.imem
 /*

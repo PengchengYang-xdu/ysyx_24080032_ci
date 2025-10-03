@@ -147,6 +147,14 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
         }
     }
 
+    /*fencei while fetch do not fill*/
+    val while_fence = RegInit(false.B)
+    when(is_fencei){
+        while_fence := true.B
+    }.elsewhen(n_state === s_IDLE){
+        while_fence := false.B
+    }
+
     c_state := n_state//first phase
 
     n_state := MuxLookup(c_state, s_IDLE)(Seq(//second phase
@@ -197,7 +205,7 @@ class iCache(val block_size: Int, val sets: Int, val ways: Int) extends Module{
     }
 
 
-    when(is_imem_r_fire && ~hit && is_sdram_raddr && ~fencing){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM, 这里注意hit了就不需要替换或填充
+    when(is_imem_r_fire && ~hit && is_sdram_raddr && ~while_fence){//替换或填充逻辑, 这里需要补充根据配置选择LRU或者FIFO或者RANDOM, 这里注意hit了就不需要替换或填充
         val set = icache(req_index).set
         when(hasEmpty === true.B) {
             // 如果有空闲块，填充

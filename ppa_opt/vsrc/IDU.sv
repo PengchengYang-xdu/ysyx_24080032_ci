@@ -87,7 +87,7 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
   wire [2:0]  _decodeBundle_andMatrixOutputs_T_2 =
     {io_pipe_in_bits_if2id_inst[2], decodeBundle_invInputs[1], decodeBundle_invInputs[2]};	// @[src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:53]
   wire [2:0]  _decodeBundle_andMatrixOutputs_T_4 =
-    {io_pipe_in_bits_if2id_inst[2], decodeBundle_invInputs[2], decodeBundle_invInputs[4]};	// @[src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:53]
+    {io_pipe_in_bits_if2id_inst[2], decodeBundle_invInputs[2], decodeBundle_invInputs[3]};	// @[src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:53]
   wire [1:0]  _decodeBundle_andMatrixOutputs_T_6 =
     {io_pipe_in_bits_if2id_inst[2], io_pipe_in_bits_if2id_inst[4]};	// @[src/main/scala/chisel3/util/pla.scala:90:45, :98:53]
   wire [3:0]  _decodeBundle_andMatrixOutputs_T_7 =
@@ -318,19 +318,18 @@ module IDU(	// @[src/main/core/idu/IDU.scala:54:7]
   assign io_pipe_out_bits_id2is_rd_addr = io_pipe_in_bits_if2id_inst[10:7];	// @[src/main/core/idu/IDU.scala:54:7, :74:39, :99:36]
   assign io_pipe_out_bits_id2is_ch1tpe =
     |{&_decodeBundle_andMatrixOutputs_T_2,
-      &{io_pipe_in_bits_if2id_inst[2],
-        decodeBundle_invInputs[1],
-        decodeBundle_invInputs[3]},
+      &{io_pipe_in_bits_if2id_inst[2], decodeBundle_invInputs[3]},
+      &_decodeBundle_andMatrixOutputs_T_4,
       &_decodeBundle_andMatrixOutputs_T_8,
       &_decodeBundle_andMatrixOutputs_T_10,
       &_decodeBundle_andMatrixOutputs_T_27};	// @[src/main/core/idu/IDU.scala:54:7, src/main/scala/chisel3/util/pla.scala:78:21, :90:45, :91:29, :98:{53,70}, :114:{19,36}]
   assign io_pipe_out_bits_id2is_ch2tpe =
     {|{&_decodeBundle_andMatrixOutputs_T_2,
+       &_decodeBundle_andMatrixOutputs_T_4,
        &_decodeBundle_andMatrixOutputs_T_8,
        &_decodeBundle_andMatrixOutputs_T_16,
        &_decodeBundle_andMatrixOutputs_T_20},
      |{&_decodeBundle_andMatrixOutputs_T,
-       &_decodeBundle_andMatrixOutputs_T_4,
        &_decodeBundle_andMatrixOutputs_T_6,
        &_decodeBundle_andMatrixOutputs_T_10,
        &_decodeBundle_andMatrixOutputs_T_16,

@@ -1,11 +1,11 @@
 ### Report: NPC.rpt (first 11 lines)
-Generate the report at 2025-10-03T14:25:29, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-10-03T16:19:35, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 +---------------+-------------+------------+------------+---------------+-------+-------+-----------+
 | Endpoint      | Clock Group | Delay Type | Path Delay | Path Required | CPPR  | Slack | Freq(MHz) |
 +---------------+-------------+------------+------------+---------------+-------+-------+-----------+
-| core/_3011_:D | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
-| core/_3006_:D | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
-| core/_3012_:D | core_clock  | max        | 1.760f     | 1.961         | 0.000 | 0.201 | 555.842   |
+| core/_3009_:D | core_clock  | max        | 1.735f     | 1.961         | 0.000 | 0.226 | 563.699   |
+| core/_3012_:D | core_clock  | max        | 1.735f     | 1.961         | 0.000 | 0.226 | 563.699   |
+| core/_3008_:D | core_clock  | max        | 1.735f     | 1.961         | 0.000 | 0.226 | 563.699   |
 | core/_2972_:D | core_clock  | min        | 0.081f     | 0.002         | 0.000 | 0.079 | NA        |
 | core/_2972_:D | core_clock  | min        | 0.088r     | 0.006         | 0.000 | 0.082 | NA        |
 | core/_2973_:D | core_clock  | min        | 0.124f     | 0.002         | 0.000 | 0.122 | NA        |
@@ -16,15 +16,15 @@ Generate the report at 2025-10-03T14:25:29, GitVersion: aa25008b3778a76ae1975c83
    Chip area for module '\CSR': 1872.374000
    Chip area for module '\Clint': 1141.672000
    Chip area for module '\Core': 2952.068000
-   Chip area for module '\EXU': 494.760000
-   Chip area for module '\IDU': 343.672000
-   Chip area for module '\IFU': 752.248000
+   Chip area for module '\EXU': 489.706000
+   Chip area for module '\IDU': 331.436000
+   Chip area for module '\IFU': 942.970000
    Chip area for module '\ISU': 1585.892000
    Chip area for module '\LSU': 1248.072000
    Chip area for module '\NPC': 61.712000
    Chip area for module '\WBU': 61.180000
    Chip area for module '\Xbar': 1067.458000
-   Chip area for module '\gpr_16x32': 6436.934000
-   Chip area for module '\iCache': 3606.960000
-   Chip area for top module '\NPC': 23094.120000
+   Chip area for module '\gpr_16x32': 6526.310000
+   Chip area for module '\iCache': 3608.024000
+   Chip area for top module '\NPC': 23357.992000
 
