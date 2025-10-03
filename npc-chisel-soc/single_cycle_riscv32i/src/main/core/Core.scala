@@ -74,8 +74,8 @@ class Core extends Module {
     isu.io.gpr_waddr := wbu.io.gpr_waddr
     isu.io.gpr_wdata := wbu.io.gpr_wdata
 
-    ifu.io_bj.valid := exu.io_bj.valid
-    ifu.io_bj.target := exu.io_bj.target
+    ifu.io_bj <> exu.io_bj
+    ifu.io_fencei_flush <> exu.io_fencei_flush
 
     isu.io_for_ex <> exu.io_for
     isu.io_for_wb <> wbu.io_for
