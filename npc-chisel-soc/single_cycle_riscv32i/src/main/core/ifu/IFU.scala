@@ -59,13 +59,11 @@ class IFU extends Module {
 
     //flush
     io_flush.flush_flg := io_bj.valid | io_fencei_flush_icache.fencing
-    val bj_flush = io_bj.valid && (io_bj.target =/= reg_pc)
-
     val reg_pc = withReset(reset.asAsyncReset){
         RegEnable(pc_next, START_ADDR, io_pipe.out.fire || io_bj.valid || fencei_flush)
     }
-
     val fencei_flush = io_fencei_flush_icache.fencing
+    val bj_flush = io_bj.valid && (io_bj.target =/= reg_pc)
     val flush_flg = bj_flush || fencei_flush
 
     //main process
