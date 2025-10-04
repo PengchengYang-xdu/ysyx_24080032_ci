@@ -106,7 +106,7 @@ class IDU extends Module{
     io_pipe.out.bits.id2is_csr_addr := inst(31, 20)
 
 
-    class Ebreak extends BlackBox with HasBlackBoxInline{
+    class ysyx_24080032_Ebreak extends BlackBox with HasBlackBoxInline{
         val io = IO(new Bundle{
             val inst = Input(UInt(WORD_LEN.W))
         })
@@ -126,7 +126,7 @@ class IDU extends Module{
         """.stripMargin)
     }
 
-    val ebreak = Module(new Ebreak)
+    val ebreak = Module(new ysyx_24080032_Ebreak)
     ebreak.io.inst := inst
 
 
