@@ -109,105 +109,96 @@
                                                    : ... note: In instance 'ysyx_24080032.clint'
   999 |     logic [31:0] _RANDOM[0:3];  
       |                  ^~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1154:18: Signal is not driven, nor used: '_RANDOM'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1151:18: Signal is not driven, nor used: '_RANDOM'
                                                     : ... note: In instance 'ysyx_24080032.core.ifu'
- 1154 |     logic [31:0] _RANDOM[0:1];  
+ 1151 |     logic [31:0] _RANDOM[0:1];  
       |                  ^~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1259:15: Bits of signal are not used: 'decodeBundle_invInputs'[27:20,17:13,9:5]
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1254:15: Bits of signal are not used: 'decodeBundle_invInputs'[27:20,17:13,9:5]
                                                     : ... note: In instance 'ysyx_24080032.core.idu'
- 1259 |   wire [28:0] decodeBundle_invInputs = ~(io_pipe_in_bits_if2id_inst[30:2]);  
+ 1254 |   wire [28:0] decodeBundle_invInputs = ~(io_pipe_in_bits_if2id_inst[30:2]);  
       |               ^~~~~~~~~~~~~~~~~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1383:18: Signal is not driven, nor used: '_RANDOM'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1378:18: Signal is not driven, nor used: '_RANDOM'
                                                     : ... note: In instance 'ysyx_24080032.core.idu'
- 1383 |     logic [31:0] _RANDOM[0:0];  
+ 1378 |     logic [31:0] _RANDOM[0:0];  
       |                  ^~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1660:15: Bits of signal are not used: '_ch3Ready_T_3'[15:1]
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1655:15: Bits of signal are not used: '_ch3Ready_T_3'[15:1]
                                                     : ... note: In instance 'ysyx_24080032.core.isu'
- 1660 |   wire [15:0] _ch3Ready_T_3 = busy >> io_pipe_in_bits_id2is_rs1_addr;  
+ 1655 |   wire [15:0] _ch3Ready_T_3 = busy >> io_pipe_in_bits_id2is_rs1_addr;  
       |               ^~~~~~~~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1661:15: Bits of signal are not used: '_wbClearMask_T_8'[30:16,0]
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1656:15: Bits of signal are not used: '_wbClearMask_T_8'[30:16,0]
                                                     : ... note: In instance 'ysyx_24080032.core.isu'
- 1661 |   wire [30:0] _wbClearMask_T_8 = 31'h1 << io_for_wb_gpr_waddr;  
+ 1656 |   wire [30:0] _wbClearMask_T_8 = 31'h1 << io_for_wb_gpr_waddr;  
       |               ^~~~~~~~~~~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1662:15: Bits of signal are not used: '_isuFireSetMask_T_1'[30:16,0]
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1657:15: Bits of signal are not used: '_isuFireSetMask_T_1'[30:16,0]
                                                     : ... note: In instance 'ysyx_24080032.core.isu'
- 1662 |   wire [30:0] _isuFireSetMask_T_1 = 31'h1 << io_pipe_in_bits_id2is_rd_addr;  
+ 1657 |   wire [30:0] _isuFireSetMask_T_1 = 31'h1 << io_pipe_in_bits_id2is_rd_addr;  
       |               ^~~~~~~~~~~~~~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1663:15: Bits of signal are not used: '_ch2Ready_T'[15:1]
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1658:15: Bits of signal are not used: '_ch2Ready_T'[15:1]
                                                     : ... note: In instance 'ysyx_24080032.core.isu'
- 1663 |   wire [15:0] _ch2Ready_T = busy >> io_pipe_in_bits_id2is_rs2_addr;  
+ 1658 |   wire [15:0] _ch2Ready_T = busy >> io_pipe_in_bits_id2is_rs2_addr;  
       |               ^~~~~~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1702:18: Signal is not driven, nor used: '_RANDOM'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1697:18: Signal is not driven, nor used: '_RANDOM'
                                                     : ... note: In instance 'ysyx_24080032.core.isu'
- 1702 |     logic [31:0] _RANDOM[0:0];  
+ 1697 |     logic [31:0] _RANDOM[0:0];  
       |                  ^~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1890:18: Signal is not driven, nor used: '_RANDOM'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1885:18: Signal is not driven, nor used: '_RANDOM'
                                                     : ... note: In instance 'ysyx_24080032.core.exu'
- 1890 |     logic [31:0] _RANDOM[0:0];  
+ 1885 |     logic [31:0] _RANDOM[0:0];  
       |                  ^~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1987:17: Signal is not used: 'io_pipe_in_valid'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1982:17: Signal is not used: 'io_pipe_in_valid'
                                                     : ... note: In instance 'ysyx_24080032.core.wbu'
- 1987 |   input         io_pipe_in_valid,  
+ 1982 |   input         io_pipe_in_valid,  
       |                 ^~~~~~~~~~~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1991:17: Signal is not used: 'io_pipe_out_ready'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:1986:17: Signal is not used: 'io_pipe_out_ready'
                                                     : ... note: In instance 'ysyx_24080032.core.wbu'
- 1991 |   input         io_pipe_out_ready,  
+ 1986 |   input         io_pipe_out_ready,  
       |                 ^~~~~~~~~~~~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2616:15: Signal is not used: 'req_offset'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2611:15: Signal is not used: 'req_offset'
                                                     : ... note: In instance 'ysyx_24080032.core.icache'
- 2616 |   wire [1:0]  req_offset = send_araddr[1:0];  
+ 2611 |   wire [1:0]  req_offset = send_araddr[1:0];  
       |               ^~~~~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2618:15: Signal is not used: 'addr_align'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2613:15: Signal is not used: 'addr_align'
                                                     : ... note: In instance 'ysyx_24080032.core.icache'
- 2618 |   wire [31:0] addr_align = {send_araddr[31:2], 2'h0};  
+ 2613 |   wire [31:0] addr_align = {send_araddr[31:2], 2'h0};  
       |               ^~~~~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2792:18: Signal is not driven, nor used: '_RANDOM'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2787:18: Signal is not driven, nor used: '_RANDOM'
                                                     : ... note: In instance 'ysyx_24080032.core.icache'
- 2792 |     logic [31:0] _RANDOM[0:9];  
+ 2787 |     logic [31:0] _RANDOM[0:9];  
       |                  ^~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2070:17: Signal is not used: 'R0_clk'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2065:17: Signal is not used: 'R0_clk'
                                                     : ... note: In instance 'ysyx_24080032.core.isu.gpr_ext'
- 2070 |                 R0_clk,
+ 2065 |                 R0_clk,
       |                 ^~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2074:17: Signal is not used: 'R1_clk'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2069:17: Signal is not used: 'R1_clk'
                                                     : ... note: In instance 'ysyx_24080032.core.isu.gpr_ext'
- 2074 |                 R1_clk,
+ 2069 |                 R1_clk,
       |                 ^~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2088:16: Signal is not driven, nor used: '_RANDOM_MEM'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2083:16: Signal is not driven, nor used: '_RANDOM_MEM'
                                                     : ... note: In instance 'ysyx_24080032.core.isu.gpr_ext'
- 2088 |     reg [31:0] _RANDOM_MEM;  
+ 2083 |     reg [31:0] _RANDOM_MEM;  
       |                ^~~~~~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2153:17: Bits of signal are not used: 'io_in_bits_op2'[31:12]
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2148:17: Bits of signal are not used: 'io_in_bits_op2'[31:12]
                                                     : ... note: In instance 'ysyx_24080032.core.exu.csr'
- 2153 |                 io_in_bits_op2,  
+ 2148 |                 io_in_bits_op2,  
       |                 ^~~~~~~~~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2211:18: Signal is not driven, nor used: '_RANDOM'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2206:18: Signal is not driven, nor used: '_RANDOM'
                                                     : ... note: In instance 'ysyx_24080032.core.exu.csr'
- 2211 |     logic [31:0] _RANDOM[0:3];  
+ 2206 |     logic [31:0] _RANDOM[0:3];  
       |                  ^~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2259:15: Bits of signal are not used: 'sll_out'[62:32]
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2254:15: Bits of signal are not used: 'sll_out'[62:32]
                                                     : ... note: In instance 'ysyx_24080032.core.exu.alu'
- 2259 |   wire [62:0] sll_out = {31'h0, io_in_bits_op1} << io_in_bits_op2[4:0];  
+ 2254 |   wire [62:0] sll_out = {31'h0, io_in_bits_op1} << io_in_bits_op2[4:0];  
       |               ^~~~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2386:15: Bits of signal are not used: 'wdata'[62:32]
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2381:15: Bits of signal are not used: 'wdata'[62:32]
                                                     : ... note: In instance 'ysyx_24080032.core.exu.lsu'
- 2386 |   reg  [62:0] wdata;  
+ 2381 |   reg  [62:0] wdata;  
       |               ^~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2387:15: Bits of signal are not used: 'wstrb'[6:4]
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2382:15: Bits of signal are not used: 'wstrb'[6:4]
                                                     : ... note: In instance 'ysyx_24080032.core.exu.lsu'
- 2387 |   reg  [6:0]  wstrb;  
+ 2382 |   reg  [6:0]  wstrb;  
       |               ^~~~~
-%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2495:18: Signal is not driven, nor used: '_RANDOM'
+%Warning-UNUSEDSIGNAL: vsrc/ysyx_24080032.sv:2490:18: Signal is not driven, nor used: '_RANDOM'
                                                     : ... note: In instance 'ysyx_24080032.core.exu.lsu'
- 2495 |     logic [31:0] _RANDOM[0:5];  
+ 2490 |     logic [31:0] _RANDOM[0:5];  
       |                  ^~~~~~~
-%Warning-SYNCASYNCNET: vsrc/ysyx_24080032.sv:4:17: Signal flopped as both synchronous and async: 'reset'
-                       vsrc/ysyx_24080032.sv:1123:9: ... Location of async usage
- 1123 |     if (reset)  
-      |         ^~~~~
-                       vsrc/ysyx_24080032.sv:421:9: ... Location of sync usage
-  421 |     if (reset)  
-      |         ^~~~~
-                       ... For warning description see https://verilator.org/warn/SYNCASYNCNET?v=5.041
-                       ... Use "/* verilator lint_off SYNCASYNCNET */" and lint_on around source to disable this message.
-%Error: Exiting due to 51 warning(s)
+%Error: Exiting due to 50 warning(s)
