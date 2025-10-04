@@ -46,11 +46,12 @@ GEN_DIR = ./vsrc
 PRJ = playground
 ################################        FLAG        ################################
 MILLFLAG = --split-verilog --target-dir $(GEN_DIR)
+NEW_FIRTOOL_PATH := /home/yangpengcheng/workspace/temp/circt/build/bin/
 ################################       COMMAND       ################################
 verilog:
 	$(call git_commit, "generate verilog")
 	mkdir -p $(GEN_DIR)
-	mill -i $(PRJ).runMain Elaborate \
+	CHISEL_FIRTOOL_PATH=$(NEW_FIRTOOL_PATH) mill -i $(PRJ).runMain Elaborate \
 	$(MILLFLAG)
 
 # IMG_CHAR = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/char-test/build/char-test.bin
