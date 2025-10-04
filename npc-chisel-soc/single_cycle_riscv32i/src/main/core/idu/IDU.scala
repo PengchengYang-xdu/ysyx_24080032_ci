@@ -106,7 +106,7 @@ class IDU extends Module{
     io_pipe.out.bits.id2is_csr_addr := inst(31, 20)
 
 
-    class Ebreak extends BlackBox with HasBlackBoxPath{
+    class ysyx_24080032_Ebreak extends BlackBox with HasBlackBoxPath{
         val io = IO(new Bundle{
             val inst = Input(UInt(WORD_LEN.W))
         })
