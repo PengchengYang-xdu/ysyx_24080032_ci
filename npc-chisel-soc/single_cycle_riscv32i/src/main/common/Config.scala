@@ -21,7 +21,7 @@ object Config{
 
     val DIFFTEST = true
 
-    val RENAME = true
+    val RENAME = false
 }
 
 object ProcessUnit{

@@ -13,7 +13,9 @@ class NPCIO extends Bundle{
 }
 
 class NPC extends Module {
+    if(RENAME){
     withModulePrefix("ysyx_24080032") {
+    }
         val io = IO(new NPCIO)
 
         io.slave.arready := false.B
@@ -70,5 +72,7 @@ class NPC extends Module {
         core.io.dmem              <>    xbar.io.dmem
         xbar.io.clint             <>    clint.io.axi4
         xbar.io.soc               <>    io.master
+    if(RENAME){
+    }
     }
 }
