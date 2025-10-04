@@ -29,8 +29,6 @@ VL_ATTR_COLD void VysyxSoCFull___024root___eval_static(VysyxSoCFull___024root* v
         = vlSelfRef.ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__clock;
     vlSelfRef.__Vtrigprevexpr___TOP__ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__clock__0 
         = vlSelfRef.ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__clock;
-    vlSelfRef.__Vtrigprevexpr___TOP__ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__reset__0 
-        = vlSelfRef.ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__reset;
     vlSelfRef.__Vtrigprevexpr___TOP__ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT__clock__0 
         = vlSelfRef.ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT__clock;
     vlSelfRef.__Vtrigprevexpr___TOP__ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__clock__0 
@@ -311,9 +309,6 @@ VL_ATTR_COLD void VysyxSoCFull___024root___eval_initial__TOP(VysyxSoCFull___024r
     vlSelfRef.ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__io_slave_bresp = 0U;
     vlSelfRef.ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__io_slave_bvalid = 0U;
     vlSelfRef.ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__io_slave_bid = 0U;
-    if (vlSelfRef.ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__reset) {
-        vlSelfRef.ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__reg_pc = 0x30000000U;
-    }
     vlSelfRef.ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__wbu__DOT__io_pipe_in_ready = 1U;
     vlSelfRef.ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__wbu__DOT__io_pipe_out_valid = 1U;
     vlSelfRef.ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__is_ifu_require = 1U;
@@ -561,358 +556,355 @@ VL_ATTR_COLD void VysyxSoCFull___024root___dump_triggers__act(VysyxSoCFull___024
         VL_DBG_MSGF("         'act' region trigger index 7 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.ifu.clock)\n");
     }
     if ((0x100ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 8 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.ifu.reset)\n");
+        VL_DBG_MSGF("         'act' region trigger index 8 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.idu.clock)\n");
     }
     if ((0x200ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 9 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.idu.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 9 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.isu.clock)\n");
     }
     if ((0x400ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 10 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.isu.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 10 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.isu.gpr_ext.W0_clk)\n");
     }
     if ((0x800ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 11 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.isu.gpr_ext.W0_clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 11 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.exu.clock)\n");
     }
     if ((0x1000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 12 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.exu.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 12 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.exu.csr.clock)\n");
     }
     if ((0x2000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 13 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.exu.csr.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 13 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.exu.lsu.clock)\n");
     }
     if ((0x4000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 14 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.exu.lsu.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 14 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.wbu.clock)\n");
     }
     if ((0x8000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 15 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.wbu.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 15 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.icache.clock)\n");
     }
     if ((0x10000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 16 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.icache.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 16 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.xbar.clock)\n");
     }
     if ((0x20000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 17 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.xbar.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 17 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.clint.clock)\n");
     }
     if ((0x40000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 18 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.clint.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 18 is active: @(posedge ysyxSoCFull.asic.luart.muart.clock)\n");
     }
     if ((0x80000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 19 is active: @(posedge ysyxSoCFull.asic.luart.muart.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 19 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.clk)\n");
     }
     if ((0x100000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 20 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 20 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.wb_rst_i)\n");
     }
     if ((0x200000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 21 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.wb_rst_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 21 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.clk)\n");
     }
     if ((0x400000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 22 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 22 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.wb_rst_i)\n");
     }
     if ((0x800000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 23 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.wb_rst_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 23 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.fifo_tx.clk)\n");
     }
     if ((0x1000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 24 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.fifo_tx.clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 24 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.fifo_tx.wb_rst_i)\n");
     }
     if ((0x2000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 25 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.fifo_tx.wb_rst_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 25 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.fifo_tx.tfifo.clk)\n");
     }
     if ((0x4000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 26 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.fifo_tx.tfifo.clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 26 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.i_uart_sync_flops.clk_i)\n");
     }
     if ((0x8000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 27 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.i_uart_sync_flops.clk_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 27 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.i_uart_sync_flops.rst_i)\n");
     }
     if ((0x10000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 28 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.i_uart_sync_flops.rst_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 28 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.clk)\n");
     }
     if ((0x20000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 29 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 29 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.wb_rst_i)\n");
     }
     if ((0x40000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 30 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.wb_rst_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 30 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.fifo_rx.clk)\n");
     }
     if ((0x80000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 31 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.fifo_rx.clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 31 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.fifo_rx.wb_rst_i)\n");
     }
     if ((0x100000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 32 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.fifo_rx.wb_rst_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 32 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.fifo_rx.rfifo.clk)\n");
     }
     if ((0x200000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 33 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.fifo_rx.rfifo.clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 33 is active: @(posedge ysyxSoCFull.asic.lgpio.mgpio.clock)\n");
     }
     if ((0x400000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 34 is active: @(posedge ysyxSoCFull.asic.lgpio.mgpio.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 34 is active: @(posedge ysyxSoCFull.asic.lkeyboard.mps2.clock)\n");
     }
     if ((0x800000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 35 is active: @(posedge ysyxSoCFull.asic.lkeyboard.mps2.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 35 is active: @(posedge ysyxSoCFull.asic.lkeyboard.mps2.ps2ChiselHelper.clk)\n");
     }
     if ((0x1000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 36 is active: @(posedge ysyxSoCFull.asic.lkeyboard.mps2.ps2ChiselHelper.clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 36 is active: @(posedge ysyxSoCFull.asic.lvga.mvga.vgaChiselHelper.pclk)\n");
     }
     if ((0x2000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 37 is active: @(posedge ysyxSoCFull.asic.lvga.mvga.vgaChiselHelper.pclk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 37 is active: @(posedge ysyxSoCFull.asic.lvga.mvga.vgaChiselHelper.reset)\n");
     }
     if ((0x4000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 38 is active: @(posedge ysyxSoCFull.asic.lvga.mvga.vgaChiselHelper.reset)\n");
+        VL_DBG_MSGF("         'act' region trigger index 38 is active: @(posedge ysyxSoCFull.asic.lvga.mvga.buffer_ext.W0_clk)\n");
     }
     if ((0x8000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 39 is active: @(posedge ysyxSoCFull.asic.lvga.mvga.buffer_ext.W0_clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 39 is active: @(posedge ysyxSoCFull.asic.lspi.clock)\n");
     }
     if ((0x10000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 40 is active: @(posedge ysyxSoCFull.asic.lspi.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 40 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.wb_clk_i)\n");
     }
     if ((0x20000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 41 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.wb_clk_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 41 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.wb_rst_i)\n");
     }
     if ((0x40000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 42 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.wb_rst_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 42 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.clgen.clk_in)\n");
     }
     if ((0x80000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 43 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.clgen.clk_in)\n");
+        VL_DBG_MSGF("         'act' region trigger index 43 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.clgen.rst)\n");
     }
     if ((0x100000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 44 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.clgen.rst)\n");
+        VL_DBG_MSGF("         'act' region trigger index 44 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.shift.clk)\n");
     }
     if ((0x200000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 45 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.shift.clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 45 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.shift.rst)\n");
     }
     if ((0x400000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 46 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.shift.rst)\n");
+        VL_DBG_MSGF("         'act' region trigger index 46 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.clk_i)\n");
     }
     if ((0x800000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 47 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.clk_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 47 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.rst_i)\n");
     }
     if ((0x1000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 48 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.rst_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 48 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.MR.clk)\n");
     }
     if ((0x2000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 49 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.MR.clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 49 is active: @(negedge ysyxSoCFull.asic.lpsram.mpsram.u0.MR.rst_n)\n");
     }
     if ((0x4000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 50 is active: @(negedge ysyxSoCFull.asic.lpsram.mpsram.u0.MR.rst_n)\n");
+        VL_DBG_MSGF("         'act' region trigger index 50 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.MW.clk)\n");
     }
     if ((0x8000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 51 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.MW.clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 51 is active: @(negedge ysyxSoCFull.asic.lpsram.mpsram.u0.MW.rst_n)\n");
     }
     if ((0x10000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 52 is active: @(negedge ysyxSoCFull.asic.lpsram.mpsram.u0.MW.rst_n)\n");
+        VL_DBG_MSGF("         'act' region trigger index 52 is active: @(posedge ysyxSoCFull.asic.lmrom.clock)\n");
     }
     if ((0x20000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 53 is active: @(posedge ysyxSoCFull.asic.lmrom.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 53 is active: @(posedge ysyxSoCFull.asic.axi4ram.clock)\n");
     }
     if ((0x40000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 54 is active: @(posedge ysyxSoCFull.asic.axi4ram.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 54 is active: @(posedge ysyxSoCFull.asic.axi4ram.mem_ext.R0_clk)\n");
     }
     if ((0x80000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 55 is active: @(posedge ysyxSoCFull.asic.axi4ram.mem_ext.R0_clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 55 is active: @(posedge ysyxSoCFull.asic.axi4ram.mem_ext.W0_clk)\n");
     }
     if ((0x100000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 56 is active: @(posedge ysyxSoCFull.asic.axi4ram.mem_ext.W0_clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 56 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.clk_i)\n");
     }
     if ((0x200000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 57 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.clk_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 57 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.rst_i)\n");
     }
     if ((0x400000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 58 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.rst_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 58 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_requests.clk_i)\n");
     }
     if ((0x800000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 59 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_requests.clk_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 59 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_requests.rst_i)\n");
     }
     if ((0x1000000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 60 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_requests.rst_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 60 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_response.clk_i)\n");
     }
     if ((0x2000000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 61 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_response.clk_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 61 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_response.rst_i)\n");
     }
     if ((0x4000000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 62 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_response.rst_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 62 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_core.clk_i)\n");
     }
     if ((0x8000000000000000ULL & vlSelfRef.__VactTriggered.word(0U))) {
-        VL_DBG_MSGF("         'act' region trigger index 63 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_core.clk_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 63 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_core.rst_i)\n");
     }
     if ((1ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 64 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_core.rst_i)\n");
+        VL_DBG_MSGF("         'act' region trigger index 64 is active: @(posedge ysyxSoCFull.asic.apbdelay_delayer.clock)\n");
     }
     if ((2ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 65 is active: @(posedge ysyxSoCFull.asic.apbdelay_delayer.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 65 is active: @(posedge ysyxSoCFull.asic.axi42apb.clock)\n");
     }
     if ((4ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 66 is active: @(posedge ysyxSoCFull.asic.axi42apb.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 66 is active: @(posedge ysyxSoCFull.asic.axi4yank.clock)\n");
     }
     if ((8ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 67 is active: @(posedge ysyxSoCFull.asic.axi4yank.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 67 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap.clock)\n");
     }
     if ((0x10ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 68 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 68 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_1.clock)\n");
     }
     if ((0x20ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 69 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_1.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 69 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_2.clock)\n");
     }
     if ((0x40ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 70 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_2.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 70 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_3.clock)\n");
     }
     if ((0x80ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 71 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_3.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 71 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_4.clock)\n");
     }
     if ((0x100ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 72 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_4.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 72 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_5.clock)\n");
     }
     if ((0x200ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 73 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_5.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 73 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_6.clock)\n");
     }
     if ((0x400ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 74 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_6.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 74 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_7.clock)\n");
     }
     if ((0x800ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 75 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_7.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 75 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_8.clock)\n");
     }
     if ((0x1000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 76 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_8.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 76 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_9.clock)\n");
     }
     if ((0x2000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 77 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_9.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 77 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_10.clock)\n");
     }
     if ((0x4000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 78 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_10.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 78 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_11.clock)\n");
     }
     if ((0x8000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 79 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_11.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 79 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_12.clock)\n");
     }
     if ((0x10000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 80 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_12.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 80 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_13.clock)\n");
     }
     if ((0x20000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 81 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_13.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 81 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_14.clock)\n");
     }
     if ((0x40000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 82 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_14.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 82 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_15.clock)\n");
     }
     if ((0x80000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 83 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_15.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 83 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_16.clock)\n");
     }
     if ((0x100000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 84 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_16.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 84 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_17.clock)\n");
     }
     if ((0x200000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 85 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_17.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 85 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_18.clock)\n");
     }
     if ((0x400000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 86 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_18.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 86 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_19.clock)\n");
     }
     if ((0x800000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 87 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_19.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 87 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_20.clock)\n");
     }
     if ((0x1000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 88 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_20.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 88 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_21.clock)\n");
     }
     if ((0x2000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 89 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_21.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 89 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_22.clock)\n");
     }
     if ((0x4000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 90 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_22.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 90 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_23.clock)\n");
     }
     if ((0x8000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 91 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_23.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 91 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_24.clock)\n");
     }
     if ((0x10000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 92 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_24.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 92 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_25.clock)\n");
     }
     if ((0x20000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 93 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_25.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 93 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_26.clock)\n");
     }
     if ((0x40000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 94 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_26.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 94 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_27.clock)\n");
     }
     if ((0x80000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 95 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_27.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 95 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_28.clock)\n");
     }
     if ((0x100000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 96 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_28.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 96 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_29.clock)\n");
     }
     if ((0x200000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 97 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_29.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 97 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_30.clock)\n");
     }
     if ((0x400000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 98 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_30.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 98 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_31.clock)\n");
     }
     if ((0x800000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 99 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_31.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 99 is active: @(posedge ysyxSoCFull.asic.axi4frag.clock)\n");
     }
     if ((0x1000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 100 is active: @(posedge ysyxSoCFull.asic.axi4frag.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 100 is active: @(posedge ysyxSoCFull.asic.axi4frag.deq_q.clock)\n");
     }
     if ((0x2000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 101 is active: @(posedge ysyxSoCFull.asic.axi4frag.deq_q.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 101 is active: @(posedge ysyxSoCFull.asic.axi4frag.deq_q_1.clock)\n");
     }
     if ((0x4000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 102 is active: @(posedge ysyxSoCFull.asic.axi4frag.deq_q_1.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 102 is active: @(posedge ysyxSoCFull.asic.axi4frag.in_wdeq_q.clock)\n");
     }
     if ((0x8000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 103 is active: @(posedge ysyxSoCFull.asic.axi4frag.in_wdeq_q.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 103 is active: @(posedge ysyxSoCFull.asic.axi4delay_delayer.clock)\n");
     }
     if ((0x10000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 104 is active: @(posedge ysyxSoCFull.asic.axi4delay_delayer.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 104 is active: @(posedge ysyxSoCFull.asic.cpu_reset_chain.output_chain.clock)\n");
     }
     if ((0x20000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 105 is active: @(posedge ysyxSoCFull.asic.cpu_reset_chain.output_chain.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 105 is active: @(posedge ysyxSoCFull.flash.reset)\n");
     }
     if ((0x40000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 106 is active: @(posedge ysyxSoCFull.flash.reset)\n");
+        VL_DBG_MSGF("         'act' region trigger index 106 is active: @(posedge ysyxSoCFull.flash.sck)\n");
     }
     if ((0x80000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 107 is active: @(posedge ysyxSoCFull.flash.sck)\n");
+        VL_DBG_MSGF("         'act' region trigger index 107 is active: @(posedge ysyxSoCFull.flash.flash_cmd_i.clock)\n");
     }
     if ((0x100000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 108 is active: @(posedge ysyxSoCFull.flash.flash_cmd_i.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 108 is active: @(posedge ysyxSoCFull.bitrev.io_sck)\n");
     }
     if ((0x200000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 109 is active: @(posedge ysyxSoCFull.bitrev.io_sck)\n");
+        VL_DBG_MSGF("         'act' region trigger index 109 is active: @(posedge ysyxSoCFull.bitrev.io_ss)\n");
     }
     if ((0x400000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 110 is active: @(posedge ysyxSoCFull.bitrev.io_ss)\n");
+        VL_DBG_MSGF("         'act' region trigger index 110 is active: @(posedge ysyxSoCFull.psram.io_ce_n)\n");
     }
     if ((0x800000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 111 is active: @(posedge ysyxSoCFull.psram.io_ce_n)\n");
+        VL_DBG_MSGF("         'act' region trigger index 111 is active: @(posedge ysyxSoCFull.psram.io_sck)\n");
     }
     if ((0x1000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 112 is active: @(posedge ysyxSoCFull.psram.io_sck)\n");
+        VL_DBG_MSGF("         'act' region trigger index 112 is active: @(posedge ysyxSoCFull.psram.psramChiselHelper.clock)\n");
     }
     if ((0x2000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 113 is active: @(posedge ysyxSoCFull.psram.psramChiselHelper.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 113 is active: @(posedge ysyxSoCFull.sdram.bank0.chip0._GEN)\n");
     }
     if ((0x4000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 114 is active: @(posedge ysyxSoCFull.sdram.bank0.chip0._GEN)\n");
+        VL_DBG_MSGF("         'act' region trigger index 114 is active: @(posedge ysyxSoCFull.sdram.bank0.chip0.io_clk)\n");
     }
     if ((0x8000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 115 is active: @(posedge ysyxSoCFull.sdram.bank0.chip0.io_clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 115 is active: @(posedge ysyxSoCFull.sdram.bank0.chip0.sdramChiselHelper.clock)\n");
     }
     if ((0x10000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 116 is active: @(posedge ysyxSoCFull.sdram.bank0.chip0.sdramChiselHelper.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 116 is active: @(posedge ysyxSoCFull.sdram.bank0.chip1._GEN)\n");
     }
     if ((0x20000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 117 is active: @(posedge ysyxSoCFull.sdram.bank0.chip1._GEN)\n");
+        VL_DBG_MSGF("         'act' region trigger index 117 is active: @(posedge ysyxSoCFull.sdram.bank0.chip1.io_clk)\n");
     }
     if ((0x40000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 118 is active: @(posedge ysyxSoCFull.sdram.bank0.chip1.io_clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 118 is active: @(posedge ysyxSoCFull.sdram.bank0.chip1.sdramChiselHelper.clock)\n");
     }
     if ((0x80000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 119 is active: @(posedge ysyxSoCFull.sdram.bank0.chip1.sdramChiselHelper.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 119 is active: @(posedge ysyxSoCFull.sdram.bank1.chip0._GEN)\n");
     }
     if ((0x100000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 120 is active: @(posedge ysyxSoCFull.sdram.bank1.chip0._GEN)\n");
+        VL_DBG_MSGF("         'act' region trigger index 120 is active: @(posedge ysyxSoCFull.sdram.bank1.chip0.io_clk)\n");
     }
     if ((0x200000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 121 is active: @(posedge ysyxSoCFull.sdram.bank1.chip0.io_clk)\n");
+        VL_DBG_MSGF("         'act' region trigger index 121 is active: @(posedge ysyxSoCFull.sdram.bank1.chip0.sdramChiselHelper.clock)\n");
     }
     if ((0x400000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 122 is active: @(posedge ysyxSoCFull.sdram.bank1.chip0.sdramChiselHelper.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 122 is active: @(posedge ysyxSoCFull.sdram.bank1.chip1._GEN)\n");
     }
     if ((0x800000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 123 is active: @(posedge ysyxSoCFull.sdram.bank1.chip1._GEN)\n");
+        VL_DBG_MSGF("         'act' region trigger index 123 is active: @(posedge ysyxSoCFull.sdram.bank1.chip1.io_clk)\n");
     }
     if ((0x1000000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 124 is active: @(posedge ysyxSoCFull.sdram.bank1.chip1.io_clk)\n");
-    }
-    if ((0x2000000000000000ULL & vlSelfRef.__VactTriggered.word(1U))) {
-        VL_DBG_MSGF("         'act' region trigger index 125 is active: @(posedge ysyxSoCFull.sdram.bank1.chip1.sdramChiselHelper.clock)\n");
+        VL_DBG_MSGF("         'act' region trigger index 124 is active: @(posedge ysyxSoCFull.sdram.bank1.chip1.sdramChiselHelper.clock)\n");
     }
 }
 #endif  // VL_DEBUG
@@ -951,358 +943,355 @@ VL_ATTR_COLD void VysyxSoCFull___024root___dump_triggers__nba(VysyxSoCFull___024
         VL_DBG_MSGF("         'nba' region trigger index 7 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.ifu.clock)\n");
     }
     if ((0x100ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 8 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.ifu.reset)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 8 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.idu.clock)\n");
     }
     if ((0x200ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 9 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.idu.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 9 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.isu.clock)\n");
     }
     if ((0x400ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 10 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.isu.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 10 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.isu.gpr_ext.W0_clk)\n");
     }
     if ((0x800ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 11 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.isu.gpr_ext.W0_clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 11 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.exu.clock)\n");
     }
     if ((0x1000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 12 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.exu.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 12 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.exu.csr.clock)\n");
     }
     if ((0x2000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 13 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.exu.csr.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 13 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.exu.lsu.clock)\n");
     }
     if ((0x4000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 14 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.exu.lsu.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 14 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.wbu.clock)\n");
     }
     if ((0x8000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 15 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.wbu.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 15 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.icache.clock)\n");
     }
     if ((0x10000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 16 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.core.icache.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 16 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.xbar.clock)\n");
     }
     if ((0x20000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 17 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.xbar.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 17 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.clint.clock)\n");
     }
     if ((0x40000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 18 is active: @(posedge ysyxSoCFull.asic.cpu.cpu.clint.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 18 is active: @(posedge ysyxSoCFull.asic.luart.muart.clock)\n");
     }
     if ((0x80000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 19 is active: @(posedge ysyxSoCFull.asic.luart.muart.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 19 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.clk)\n");
     }
     if ((0x100000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 20 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 20 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.wb_rst_i)\n");
     }
     if ((0x200000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 21 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.wb_rst_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 21 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.clk)\n");
     }
     if ((0x400000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 22 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 22 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.wb_rst_i)\n");
     }
     if ((0x800000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 23 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.wb_rst_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 23 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.fifo_tx.clk)\n");
     }
     if ((0x1000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 24 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.fifo_tx.clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 24 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.fifo_tx.wb_rst_i)\n");
     }
     if ((0x2000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 25 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.fifo_tx.wb_rst_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 25 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.fifo_tx.tfifo.clk)\n");
     }
     if ((0x4000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 26 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.transmitter.fifo_tx.tfifo.clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 26 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.i_uart_sync_flops.clk_i)\n");
     }
     if ((0x8000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 27 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.i_uart_sync_flops.clk_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 27 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.i_uart_sync_flops.rst_i)\n");
     }
     if ((0x10000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 28 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.i_uart_sync_flops.rst_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 28 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.clk)\n");
     }
     if ((0x20000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 29 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 29 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.wb_rst_i)\n");
     }
     if ((0x40000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 30 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.wb_rst_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 30 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.fifo_rx.clk)\n");
     }
     if ((0x80000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 31 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.fifo_rx.clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 31 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.fifo_rx.wb_rst_i)\n");
     }
     if ((0x100000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 32 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.fifo_rx.wb_rst_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 32 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.fifo_rx.rfifo.clk)\n");
     }
     if ((0x200000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 33 is active: @(posedge ysyxSoCFull.asic.luart.muart.Uregs.receiver.fifo_rx.rfifo.clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 33 is active: @(posedge ysyxSoCFull.asic.lgpio.mgpio.clock)\n");
     }
     if ((0x400000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 34 is active: @(posedge ysyxSoCFull.asic.lgpio.mgpio.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 34 is active: @(posedge ysyxSoCFull.asic.lkeyboard.mps2.clock)\n");
     }
     if ((0x800000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 35 is active: @(posedge ysyxSoCFull.asic.lkeyboard.mps2.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 35 is active: @(posedge ysyxSoCFull.asic.lkeyboard.mps2.ps2ChiselHelper.clk)\n");
     }
     if ((0x1000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 36 is active: @(posedge ysyxSoCFull.asic.lkeyboard.mps2.ps2ChiselHelper.clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 36 is active: @(posedge ysyxSoCFull.asic.lvga.mvga.vgaChiselHelper.pclk)\n");
     }
     if ((0x2000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 37 is active: @(posedge ysyxSoCFull.asic.lvga.mvga.vgaChiselHelper.pclk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 37 is active: @(posedge ysyxSoCFull.asic.lvga.mvga.vgaChiselHelper.reset)\n");
     }
     if ((0x4000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 38 is active: @(posedge ysyxSoCFull.asic.lvga.mvga.vgaChiselHelper.reset)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 38 is active: @(posedge ysyxSoCFull.asic.lvga.mvga.buffer_ext.W0_clk)\n");
     }
     if ((0x8000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 39 is active: @(posedge ysyxSoCFull.asic.lvga.mvga.buffer_ext.W0_clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 39 is active: @(posedge ysyxSoCFull.asic.lspi.clock)\n");
     }
     if ((0x10000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 40 is active: @(posedge ysyxSoCFull.asic.lspi.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 40 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.wb_clk_i)\n");
     }
     if ((0x20000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 41 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.wb_clk_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 41 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.wb_rst_i)\n");
     }
     if ((0x40000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 42 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.wb_rst_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 42 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.clgen.clk_in)\n");
     }
     if ((0x80000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 43 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.clgen.clk_in)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 43 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.clgen.rst)\n");
     }
     if ((0x100000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 44 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.clgen.rst)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 44 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.shift.clk)\n");
     }
     if ((0x200000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 45 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.shift.clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 45 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.shift.rst)\n");
     }
     if ((0x400000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 46 is active: @(posedge ysyxSoCFull.asic.lspi.mspi.u0_spi_top.shift.rst)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 46 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.clk_i)\n");
     }
     if ((0x800000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 47 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.clk_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 47 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.rst_i)\n");
     }
     if ((0x1000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 48 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.rst_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 48 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.MR.clk)\n");
     }
     if ((0x2000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 49 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.MR.clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 49 is active: @(negedge ysyxSoCFull.asic.lpsram.mpsram.u0.MR.rst_n)\n");
     }
     if ((0x4000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 50 is active: @(negedge ysyxSoCFull.asic.lpsram.mpsram.u0.MR.rst_n)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 50 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.MW.clk)\n");
     }
     if ((0x8000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 51 is active: @(posedge ysyxSoCFull.asic.lpsram.mpsram.u0.MW.clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 51 is active: @(negedge ysyxSoCFull.asic.lpsram.mpsram.u0.MW.rst_n)\n");
     }
     if ((0x10000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 52 is active: @(negedge ysyxSoCFull.asic.lpsram.mpsram.u0.MW.rst_n)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 52 is active: @(posedge ysyxSoCFull.asic.lmrom.clock)\n");
     }
     if ((0x20000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 53 is active: @(posedge ysyxSoCFull.asic.lmrom.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 53 is active: @(posedge ysyxSoCFull.asic.axi4ram.clock)\n");
     }
     if ((0x40000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 54 is active: @(posedge ysyxSoCFull.asic.axi4ram.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 54 is active: @(posedge ysyxSoCFull.asic.axi4ram.mem_ext.R0_clk)\n");
     }
     if ((0x80000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 55 is active: @(posedge ysyxSoCFull.asic.axi4ram.mem_ext.R0_clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 55 is active: @(posedge ysyxSoCFull.asic.axi4ram.mem_ext.W0_clk)\n");
     }
     if ((0x100000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 56 is active: @(posedge ysyxSoCFull.asic.axi4ram.mem_ext.W0_clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 56 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.clk_i)\n");
     }
     if ((0x200000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 57 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.clk_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 57 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.rst_i)\n");
     }
     if ((0x400000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 58 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.rst_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 58 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_requests.clk_i)\n");
     }
     if ((0x800000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 59 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_requests.clk_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 59 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_requests.rst_i)\n");
     }
     if ((0x1000000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 60 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_requests.rst_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 60 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_response.clk_i)\n");
     }
     if ((0x2000000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 61 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_response.clk_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 61 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_response.rst_i)\n");
     }
     if ((0x4000000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 62 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_axi.u_response.rst_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 62 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_core.clk_i)\n");
     }
     if ((0x8000000000000000ULL & vlSelfRef.__VnbaTriggered.word(0U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 63 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_core.clk_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 63 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_core.rst_i)\n");
     }
     if ((1ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 64 is active: @(posedge ysyxSoCFull.asic.lsdram_axi.msdram.u_sdram_axi.u_core.rst_i)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 64 is active: @(posedge ysyxSoCFull.asic.apbdelay_delayer.clock)\n");
     }
     if ((2ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 65 is active: @(posedge ysyxSoCFull.asic.apbdelay_delayer.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 65 is active: @(posedge ysyxSoCFull.asic.axi42apb.clock)\n");
     }
     if ((4ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 66 is active: @(posedge ysyxSoCFull.asic.axi42apb.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 66 is active: @(posedge ysyxSoCFull.asic.axi4yank.clock)\n");
     }
     if ((8ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 67 is active: @(posedge ysyxSoCFull.asic.axi4yank.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 67 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap.clock)\n");
     }
     if ((0x10ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 68 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 68 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_1.clock)\n");
     }
     if ((0x20ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 69 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_1.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 69 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_2.clock)\n");
     }
     if ((0x40ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 70 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_2.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 70 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_3.clock)\n");
     }
     if ((0x80ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 71 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_3.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 71 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_4.clock)\n");
     }
     if ((0x100ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 72 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_4.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 72 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_5.clock)\n");
     }
     if ((0x200ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 73 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_5.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 73 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_6.clock)\n");
     }
     if ((0x400ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 74 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_6.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 74 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_7.clock)\n");
     }
     if ((0x800ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 75 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_7.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 75 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_8.clock)\n");
     }
     if ((0x1000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 76 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_8.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 76 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_9.clock)\n");
     }
     if ((0x2000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 77 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_9.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 77 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_10.clock)\n");
     }
     if ((0x4000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 78 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_10.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 78 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_11.clock)\n");
     }
     if ((0x8000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 79 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_11.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 79 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_12.clock)\n");
     }
     if ((0x10000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 80 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_12.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 80 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_13.clock)\n");
     }
     if ((0x20000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 81 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_13.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 81 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_14.clock)\n");
     }
     if ((0x40000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 82 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_14.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 82 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_15.clock)\n");
     }
     if ((0x80000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 83 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_15.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 83 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_16.clock)\n");
     }
     if ((0x100000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 84 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_16.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 84 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_17.clock)\n");
     }
     if ((0x200000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 85 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_17.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 85 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_18.clock)\n");
     }
     if ((0x400000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 86 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_18.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 86 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_19.clock)\n");
     }
     if ((0x800000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 87 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_19.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 87 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_20.clock)\n");
     }
     if ((0x1000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 88 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_20.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 88 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_21.clock)\n");
     }
     if ((0x2000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 89 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_21.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 89 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_22.clock)\n");
     }
     if ((0x4000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 90 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_22.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 90 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_23.clock)\n");
     }
     if ((0x8000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 91 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_23.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 91 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_24.clock)\n");
     }
     if ((0x10000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 92 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_24.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 92 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_25.clock)\n");
     }
     if ((0x20000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 93 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_25.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 93 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_26.clock)\n");
     }
     if ((0x40000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 94 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_26.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 94 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_27.clock)\n");
     }
     if ((0x80000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 95 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_27.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 95 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_28.clock)\n");
     }
     if ((0x100000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 96 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_28.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 96 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_29.clock)\n");
     }
     if ((0x200000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 97 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_29.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 97 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_30.clock)\n");
     }
     if ((0x400000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 98 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_30.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 98 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_31.clock)\n");
     }
     if ((0x800000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 99 is active: @(posedge ysyxSoCFull.asic.axi4yank.Queue1_BundleMap_31.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 99 is active: @(posedge ysyxSoCFull.asic.axi4frag.clock)\n");
     }
     if ((0x1000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 100 is active: @(posedge ysyxSoCFull.asic.axi4frag.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 100 is active: @(posedge ysyxSoCFull.asic.axi4frag.deq_q.clock)\n");
     }
     if ((0x2000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 101 is active: @(posedge ysyxSoCFull.asic.axi4frag.deq_q.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 101 is active: @(posedge ysyxSoCFull.asic.axi4frag.deq_q_1.clock)\n");
     }
     if ((0x4000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 102 is active: @(posedge ysyxSoCFull.asic.axi4frag.deq_q_1.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 102 is active: @(posedge ysyxSoCFull.asic.axi4frag.in_wdeq_q.clock)\n");
     }
     if ((0x8000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 103 is active: @(posedge ysyxSoCFull.asic.axi4frag.in_wdeq_q.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 103 is active: @(posedge ysyxSoCFull.asic.axi4delay_delayer.clock)\n");
     }
     if ((0x10000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 104 is active: @(posedge ysyxSoCFull.asic.axi4delay_delayer.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 104 is active: @(posedge ysyxSoCFull.asic.cpu_reset_chain.output_chain.clock)\n");
     }
     if ((0x20000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 105 is active: @(posedge ysyxSoCFull.asic.cpu_reset_chain.output_chain.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 105 is active: @(posedge ysyxSoCFull.flash.reset)\n");
     }
     if ((0x40000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 106 is active: @(posedge ysyxSoCFull.flash.reset)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 106 is active: @(posedge ysyxSoCFull.flash.sck)\n");
     }
     if ((0x80000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 107 is active: @(posedge ysyxSoCFull.flash.sck)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 107 is active: @(posedge ysyxSoCFull.flash.flash_cmd_i.clock)\n");
     }
     if ((0x100000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 108 is active: @(posedge ysyxSoCFull.flash.flash_cmd_i.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 108 is active: @(posedge ysyxSoCFull.bitrev.io_sck)\n");
     }
     if ((0x200000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 109 is active: @(posedge ysyxSoCFull.bitrev.io_sck)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 109 is active: @(posedge ysyxSoCFull.bitrev.io_ss)\n");
     }
     if ((0x400000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 110 is active: @(posedge ysyxSoCFull.bitrev.io_ss)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 110 is active: @(posedge ysyxSoCFull.psram.io_ce_n)\n");
     }
     if ((0x800000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 111 is active: @(posedge ysyxSoCFull.psram.io_ce_n)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 111 is active: @(posedge ysyxSoCFull.psram.io_sck)\n");
     }
     if ((0x1000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 112 is active: @(posedge ysyxSoCFull.psram.io_sck)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 112 is active: @(posedge ysyxSoCFull.psram.psramChiselHelper.clock)\n");
     }
     if ((0x2000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 113 is active: @(posedge ysyxSoCFull.psram.psramChiselHelper.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 113 is active: @(posedge ysyxSoCFull.sdram.bank0.chip0._GEN)\n");
     }
     if ((0x4000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 114 is active: @(posedge ysyxSoCFull.sdram.bank0.chip0._GEN)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 114 is active: @(posedge ysyxSoCFull.sdram.bank0.chip0.io_clk)\n");
     }
     if ((0x8000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 115 is active: @(posedge ysyxSoCFull.sdram.bank0.chip0.io_clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 115 is active: @(posedge ysyxSoCFull.sdram.bank0.chip0.sdramChiselHelper.clock)\n");
     }
     if ((0x10000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 116 is active: @(posedge ysyxSoCFull.sdram.bank0.chip0.sdramChiselHelper.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 116 is active: @(posedge ysyxSoCFull.sdram.bank0.chip1._GEN)\n");
     }
     if ((0x20000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 117 is active: @(posedge ysyxSoCFull.sdram.bank0.chip1._GEN)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 117 is active: @(posedge ysyxSoCFull.sdram.bank0.chip1.io_clk)\n");
     }
     if ((0x40000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 118 is active: @(posedge ysyxSoCFull.sdram.bank0.chip1.io_clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 118 is active: @(posedge ysyxSoCFull.sdram.bank0.chip1.sdramChiselHelper.clock)\n");
     }
     if ((0x80000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 119 is active: @(posedge ysyxSoCFull.sdram.bank0.chip1.sdramChiselHelper.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 119 is active: @(posedge ysyxSoCFull.sdram.bank1.chip0._GEN)\n");
     }
     if ((0x100000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 120 is active: @(posedge ysyxSoCFull.sdram.bank1.chip0._GEN)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 120 is active: @(posedge ysyxSoCFull.sdram.bank1.chip0.io_clk)\n");
     }
     if ((0x200000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 121 is active: @(posedge ysyxSoCFull.sdram.bank1.chip0.io_clk)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 121 is active: @(posedge ysyxSoCFull.sdram.bank1.chip0.sdramChiselHelper.clock)\n");
     }
     if ((0x400000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 122 is active: @(posedge ysyxSoCFull.sdram.bank1.chip0.sdramChiselHelper.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 122 is active: @(posedge ysyxSoCFull.sdram.bank1.chip1._GEN)\n");
     }
     if ((0x800000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 123 is active: @(posedge ysyxSoCFull.sdram.bank1.chip1._GEN)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 123 is active: @(posedge ysyxSoCFull.sdram.bank1.chip1.io_clk)\n");
     }
     if ((0x1000000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 124 is active: @(posedge ysyxSoCFull.sdram.bank1.chip1.io_clk)\n");
-    }
-    if ((0x2000000000000000ULL & vlSelfRef.__VnbaTriggered.word(1U))) {
-        VL_DBG_MSGF("         'nba' region trigger index 125 is active: @(posedge ysyxSoCFull.sdram.bank1.chip1.sdramChiselHelper.clock)\n");
+        VL_DBG_MSGF("         'nba' region trigger index 124 is active: @(posedge ysyxSoCFull.sdram.bank1.chip1.sdramChiselHelper.clock)\n");
     }
 }
 #endif  // VL_DEBUG
@@ -2743,8 +2732,8 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     for (int __Vi0 = 0; __Vi0 < 1; ++__Vi0) {
         vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT___RANDOM[__Vi0] = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 6348228617659028504ull);
     }
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT____VdfgRegularize_h52656aab_0_9 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 562001625848711867ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT____VdfgRegularize_h52656aab_0_14 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 17534290811395303175ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT____VdfgRegularize_h4aa0d2d1_0_9 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 12914352479896021288ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT____VdfgRegularize_h4aa0d2d1_0_14 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 3261053980313672338ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT__ebreak__DOT__inst = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 2390447988530746917ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__clock = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 6198035070992292521ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__reset = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 15057607569988514527ull);
@@ -2793,11 +2782,12 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT___gpr_ext_R1_data = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 11016283244773018417ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT___rs1_data_T = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 16604690601327254984ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__validForEX = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 3661453450677079288ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__dontForEX = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11878888183455823228ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__rs1DependEX = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 8263471933619667518ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__rs2DependEX = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 6032282913864846387ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT___rs2ForEX_T = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 7318584193696240206ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__rs1ForEX = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 4699196299564781910ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__rs2ForEX = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 12948129389077575450ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT___GEN = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 16347881942161897491ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__rs1ForWB = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 8296538824875188264ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__rs2ForWB = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 13362516227466300777ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__busy = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 3590819009718055885ull);
@@ -2810,14 +2800,14 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__out_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 2482204908699097017ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__c_state = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 4172668951075661202ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__n_state = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 13328747585952455810ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT___ch3Ready_T_3 = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 1650764847897525432ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT___wbClearMask_T_8 = VL_SCOPED_RAND_RESET_I(31, __VscopeHash, 340437057512320013ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT___isuFireSetMask_T_1 = VL_SCOPED_RAND_RESET_I(31, __VscopeHash, 8289785223347480477ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT___ch3Ready_T_3 = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 1650764847897525432ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT___ch2Ready_T = VL_SCOPED_RAND_RESET_I(16, __VscopeHash, 3439443605945496985ull);
     for (int __Vi0 = 0; __Vi0 < 1; ++__Vi0) {
         vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT___RANDOM[__Vi0] = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 11959088002942530921ull);
     }
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT____VdfgRegularize_h38e3ce32_0_5 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 2180878410531003172ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT____VdfgRegularize_h3b1f97ec_0_4 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 5523189304283709377ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__gpr_ext__DOT__R0_addr = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 13286418892282428620ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__gpr_ext__DOT__R0_en = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 9156571981521956607ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__gpr_ext__DOT__R0_clk = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 677949855461010437ull);
@@ -3092,10 +3082,14 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__io_in_rvalid_0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 872825013670090695ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___GEN_1 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11288956560002495447ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___GEN_2 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 1216222417825141456ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___GEN_3 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 10950203717910558169ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___GEN_4 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11138975879258257876ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___GEN_5 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 732141637924725215ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___GEN_6 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 12644452203161671236ull);
     for (int __Vi0 = 0; __Vi0 < 10; ++__Vi0) {
         vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___RANDOM[__Vi0] = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 9419492925365444120ull);
     }
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT____VdfgRegularize_h27e6b67c_0_1 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 10944612377616829302ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT____VdfgRegularize_h520b9443_0_1 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 17725956663541674373ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT__clock = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 13305432178719829919ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT__reset = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 17548905729075383847ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT__io_imem_araddr = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 608949335889515865ull);
@@ -3152,11 +3146,11 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT__io_clint_rready = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 123511061927865265ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT__c_state = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 3423795032964697993ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT__isdmem = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 14814353032758998223ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT___n_state_T_12 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 18183744258753543926ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT__isimem = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 4452807161447142823ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT__isclint = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 6568887858980509019ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT___n_state_T_2 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 9962718846630827850ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT___n_state_T_10 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 10256508487491671314ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT___n_state_T_12 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 18183744258753543926ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT__casez_tmp = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 6056568225472194975ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT__n_state = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 5626604902954178793ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT___GEN = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 12320263510034159331ull);
@@ -3172,10 +3166,10 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     for (int __Vi0 = 0; __Vi0 < 1; ++__Vi0) {
         vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT___RANDOM[__Vi0] = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 13960466883683969331ull);
     }
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT____VdfgRegularize_h8eba6f27_0_3 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 8362037620704633543ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT____VdfgRegularize_h8eba6f27_0_4 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 8395453305349622291ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT____VdfgRegularize_h8eba6f27_0_5 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 17427868622782737286ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT____VdfgRegularize_h8eba6f27_0_6 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 5397387420071291795ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT____VdfgRegularize_hbaf002cb_0_3 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11128900953063991457ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT____VdfgRegularize_hbaf002cb_0_4 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 8581433031777479815ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT____VdfgRegularize_hbaf002cb_0_5 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 1650484341701509470ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT____VdfgRegularize_hbaf002cb_0_6 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 5244780745066457835ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__clint__DOT__clock = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 7624290403117486204ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__clint__DOT__reset = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 13289073911074878874ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__clint__DOT__io_axi4_araddr = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 18106645400145212056ull);
@@ -5723,7 +5717,6 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->__Vtrigprevexpr___TOP__ysyxSoCFull__DOT__asic__DOT__axi4xbar_1__DOT__awIn_0__DOT__ram_ext__DOT__W0_clk__0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 6555789913690790971ull);
     vlSelf->__Vtrigprevexpr___TOP__ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__clock__0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 8352955314864636582ull);
     vlSelf->__Vtrigprevexpr___TOP__ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__clock__0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 16051665781004093234ull);
-    vlSelf->__Vtrigprevexpr___TOP__ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__reset__0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 8066003148260802235ull);
     vlSelf->__Vtrigprevexpr___TOP__ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT__clock__0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 5970177525536871933ull);
     vlSelf->__Vtrigprevexpr___TOP__ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__clock__0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 13423575966799347480ull);
     vlSelf->__Vtrigprevexpr___TOP__ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__gpr_ext__DOT__W0_clk__0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 14963016558213286450ull);

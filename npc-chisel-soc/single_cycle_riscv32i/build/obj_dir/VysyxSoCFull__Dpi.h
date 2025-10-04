@@ -20,7 +20,7 @@ extern "C" {
     extern void flash_read(int addr, int* data);
     // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:8170:30
     extern void mrom_read(int raddr, int* rdata);
-    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/vsrc/Ebreak.sv:7:30
+    // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/final_rtl/build/ysyx_24080032.sv:2958:30
     extern void npc_trap();
     // DPI import at /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/build/ysyxSoCFull.v:8191:30
     extern void psram_read(int addr, int* rdata);
