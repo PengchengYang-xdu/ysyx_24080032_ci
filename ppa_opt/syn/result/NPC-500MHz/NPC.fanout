@@ -1,0 +1,11 @@
+Generate the report at 2025-10-03T16:40:45, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
++----------------------+-----------+--------+-------------+-------------+------+
+| Net / Pin            | MaxFanout | Fanout | FanoutSlack | LibCellPort | Note |
++----------------------+-----------+--------+-------------+-------------+------+
+| fanout_net_48        |           |        |             |             |      |
+| fanout_buf_48:Z      | NA        | 30     | NA          | BUF_X8/Z    |      |
+| fanout_net_39        |           |        |             |             |      |
+| fanout_buf_39:Z      | NA        | 30     | NA          | BUF_X8/Z    |      |
+| core/icache/_0032_   |           |        |             |             |      |
+| core/icache/_4288_:Z | NA        | 1      | NA          | BUF_X1/Z    |      |
++----------------------+-----------+--------+-------------+-------------+------+

@@ -2545,6 +2545,8 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___icache_io_in_arready = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 6912828634149843105ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___icache_io_in_rdata = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 1514842416312982417ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___icache_io_in_rvalid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 3404412792877209078ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___icache_io_fencei_fencei_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 90407393178409266ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___icache_io_fencei_flush_icache_fencing = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 5501317011942826947ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___wbu_io_gpr_we = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 12838821041963119194ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___wbu_io_gpr_waddr = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 11888511680188216620ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___wbu_io_gpr_wdata = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 14276779211183176554ull);
@@ -2566,6 +2568,8 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___exu_io_for_gpr_we = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 1724740444251683904ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___exu_io_for_gpr_wdata = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 9562903225537961537ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___exu_io_for_gpr_waddr = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 17455896259024259007ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___exu_io_fencei_is_fencei = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 8645340718485180497ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___exu_io_fencei_flush_exu_fencei_flush_target = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 13676213524783537624ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___isu_io_pipe_in_ready = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 7106331437390291988ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___isu_io_pipe_out_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 17839395593015546302ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT___isu_io_pipe_out_bits_is2exe_processunit = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 6014875349231917033ull);
@@ -2659,11 +2663,14 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__io_bj_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 14055776886992770391ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__io_bj_target = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 9254913622879276358ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__io_flush_flush_flg = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 8118020647802808689ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__io_fencei_flush_exu_fencei_flush_target = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 17611624481648012673ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__io_fencei_flush_icache_fencing = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 16194456530128255737ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__io_pipe_out_valid_0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 16184654131235150791ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT___n_state_T_5 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 13326502410370078558ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__reg_pc = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 762259860461807241ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__pc_next = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 11829562351443329884ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__bj_flush = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 15058638932943204669ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__flush_flg = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 6807043222340500472ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__pc_next = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 11829562351443329884ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__in_ready = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 12522378546908388761ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__out_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 5226421678405241772ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__ifu__DOT__arvalid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 17445094740650813570ull);
@@ -2705,9 +2712,9 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT__io_flush_flush_flg = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 8224646452417741630ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT__decodeBundle_invInputs = VL_SCOPED_RAND_RESET_I(29, __VscopeHash, 3281225321028168810ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT___decodeBundle_andMatrixOutputs_T = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 11609721854423088926ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT___decodeBundle_andMatrixOutputs_T_1 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 13404775132675202062ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT___decodeBundle_andMatrixOutputs_T_1 = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 13404775132675202062ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT___decodeBundle_andMatrixOutputs_T_2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 3792404448622496607ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT___decodeBundle_andMatrixOutputs_T_4 = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 16570012539653065794ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT___decodeBundle_andMatrixOutputs_T_4 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 16570012539653065794ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT___decodeBundle_andMatrixOutputs_T_6 = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 13758081657852038694ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT___decodeBundle_andMatrixOutputs_T_7 = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 1960135550189295268ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT___decodeBundle_andMatrixOutputs_T_8 = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 3566551939717360586ull);
@@ -2736,7 +2743,7 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     for (int __Vi0 = 0; __Vi0 < 1; ++__Vi0) {
         vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT___RANDOM[__Vi0] = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 6348228617659028504ull);
     }
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT____VdfgRegularize_h52656aab_0_10 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 13097208810548800040ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT____VdfgRegularize_h52656aab_0_9 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 562001625848711867ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT____VdfgRegularize_h52656aab_0_14 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 17534290811395303175ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__idu__DOT__ebreak__DOT__inst = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 2390447988530746917ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__isu__DOT__clock = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 6198035070992292521ull);
@@ -2872,6 +2879,9 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__exu__DOT__io_for_gpr_we = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 745386014693506578ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__exu__DOT__io_for_gpr_wdata = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 8064196312531130625ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__exu__DOT__io_for_gpr_waddr = VL_SCOPED_RAND_RESET_I(4, __VscopeHash, 4411748512696340818ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__exu__DOT__io_fencei_is_fencei = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 4179040378139052332ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__exu__DOT__io_fencei_fencei_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 14759564967375973093ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__exu__DOT__io_fencei_flush_exu_fencei_flush_target = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 7205721563361449352ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__exu__DOT__in_ready = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 1347299941977910099ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__exu__DOT___lsu_io_in_ready = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 14250534767970750807ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__exu__DOT___lsu_io_out_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 5739552869217926569ull);
@@ -3033,6 +3043,9 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__io_out_rvalid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 12896139100273882541ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__io_out_rready = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11128324730464394960ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__io_out_rlast = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 12300650889461347756ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__io_fencei_is_fencei = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 10900758819114519303ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__io_fencei_fencei_done = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 6981869550154139919ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__io_fencei_flush_icache_fencing = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 15008513047202497789ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__io_out_arvalid_0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 1294900237129066690ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__io_in_arready_0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 651753569275376713ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__io_out_rready_0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 15219108882356041150ull);
@@ -3055,7 +3068,7 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__icache_3_set_0_valid = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 6649110952390092460ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__icache_3_set_0_tag = VL_SCOPED_RAND_RESET_I(28, __VscopeHash, 7962345262956475027ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__icache_3_set_0_data_0 = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 7686478435072807784ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__c_state = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 11935400750017163869ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__c_state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 11935400750017163869ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__casez_tmp = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 1335544928753791107ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__casez_tmp_0 = VL_SCOPED_RAND_RESET_I(28, __VscopeHash, 7322018296634728780ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__casez_tmp_1 = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 2904631066566615502ull);
@@ -3064,20 +3077,25 @@ VL_ATTR_COLD void VysyxSoCFull___024root___ctor_var_reset(VysyxSoCFull___024root
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__is_ifu_ar_fire = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 9920871775447135876ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__is_hit_handshake = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 16116481235939853929ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__is_imem_r_fire = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 1966026306056701763ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___n_state_T_8 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 10043023435335894625ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__is_fencei_r = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 16626117636044314196ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__fencei_counter = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 6579049951557144473ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__fencing = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 17706882984032056325ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__while_fence = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 16678637756307247784ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___n_state_T_10 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 9941562650356503424ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__casez_tmp_2 = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 15793374741194500126ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__n_state = VL_SCOPED_RAND_RESET_I(2, __VscopeHash, 4609957147772975207ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___n_state_T_12 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 14025774435981884782ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___n_state_T_14 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 7454267400996821222ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___n_state_T_16 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 6232424188100892594ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__casez_tmp_2 = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 15793374741194500126ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__n_state = VL_SCOPED_RAND_RESET_I(3, __VscopeHash, 4609957147772975207ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___GEN = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 7440082249437906702ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___GEN_0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 14454542631488994953ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___GEN_1 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11288956560002495447ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT__io_in_rvalid_0 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 872825013670090695ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___GEN_1 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 11288956560002495447ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___GEN_2 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 1216222417825141456ull);
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___GEN_3 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 10950203717910558169ull);
     for (int __Vi0 = 0; __Vi0 < 10; ++__Vi0) {
         vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT___RANDOM[__Vi0] = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 9419492925365444120ull);
     }
-    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT____VdfgRegularize_h27e6b67c_0_2 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 9273841154068720683ull);
+    vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__core__DOT__icache__DOT____VdfgRegularize_h27e6b67c_0_1 = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 10944612377616829302ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT__clock = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 13305432178719829919ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT__reset = VL_SCOPED_RAND_RESET_I(1, __VscopeHash, 17548905729075383847ull);
     vlSelf->ysyxSoCFull__DOT__asic__DOT__cpu__DOT__cpu__DOT__xbar__DOT__io_imem_araddr = VL_SCOPED_RAND_RESET_I(32, __VscopeHash, 608949335889515865ull);
