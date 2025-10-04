@@ -4,7 +4,8 @@ include /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/Makefile
 ################################################################        VERILATOR        ################################################################
 ################################        SRC        ################################
 TOPNAME = ysyxSoCFull
-VSRC = $(shell find $(abspath ./vsrc) -maxdepth 1 -type f \( -name "*.sv" -o -name "*.v" \))
+# VSRC = $(shell find $(abspath ./vsrc) -maxdepth 1 -type f \( -name "*.sv" -o -name "*.v" \))
+VSRC = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/final_rtl/build/ysyx_24080032.sv
 CSRC = $(shell find $(abspath ./csrc) -name "*.c" -or -name "*.cc" -or -name "*.cpp")
 IMG ?= program.bin #image
 
