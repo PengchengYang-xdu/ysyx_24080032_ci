@@ -4,7 +4,7 @@ CONFIG_FILE = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single
 ################################################################        YOSYS        ################################################################
 PRJ_PATH ?= .
 
-DESIGN ?= NPC
+DESIGN ?= ysyx_24080032
 SDC_FILE ?= $(PRJ_PATH)/syn/sdc/NPC.sdc
 RTL_FILES ?= $(shell find $(PRJ_PATH)/vsrc -name "*.sv" -or -name "*.v")
 export CLK_FREQ_MHZ ?= 500
