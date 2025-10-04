@@ -31,6 +31,7 @@ $(NETLIST_FIXED_V): $(SCRIPT_DIR)/fix-fanout.tcl $(SDC_FILE) $(NETLIST_SYN_V)
 COPY_FILE:
 	@rm -rf $(PRJ_PATH)/syn/result/*
 	@rm -rf $(PRJ_PATH)/vsrc/*
+	@rm -rf /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/vsrc/verfication
 	@cp $(SOC_PATH)/* $(PRJ_PATH)/vsrc
 	@sed -i '/import "DPI-C" function void npc_trap();/d' $(PRJ_PATH)/vsrc/Ebreak.sv
 	@sed -i "/npc_trap()/c\;" $(PRJ_PATH)/vsrc/Ebreak.sv
