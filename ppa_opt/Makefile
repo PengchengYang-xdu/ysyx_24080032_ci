@@ -32,8 +32,8 @@ COPY_FILE:
 	@rm -rf $(PRJ_PATH)/syn/result/*
 	@rm -rf $(PRJ_PATH)/vsrc/*
 	@cp /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/final_rtl/build/ysyx_24080032.sv $(PRJ_PATH)/vsrc
-	# @sed -i '/import "DPI-C" function void npc_trap();/d' $(PRJ_PATH)/vsrc/Ebreak.sv
-	# @sed -i "/npc_trap()/c\;" $(PRJ_PATH)/vsrc/Ebreak.sv
+	@sed -i '/import "DPI-C" function void npc_trap();/d' $(PRJ_PATH)/vsrc/ysyx_24080032.sv
+	@sed -i "/npc_trap()/c\;" $(PRJ_PATH)/vsrc/ysyx_24080032.sv
 	# @sed -i "s/\([^a-zA-Z0-9_]\)\(io_pipe_in_bits_id2exe_exe_fun == 5'hB\)/\1(\2)/g" $(PRJ_PATH)/vsrc/EXU.sv
 	# @sed -i "s/^\(io_pipe_in_bits_id2exe_exe_fun == 5'hB\)/(\1)/g" $(PRJ_PATH)/vsrc/EXU.sv
 	# @sed -i "s/\([^a-zA-Z0-9_]\)\(io_pipe_in_bits_id2exe_exe_fun == 5'hD\)/\1(\2)/g" $(PRJ_PATH)/vsrc/EXU.sv
