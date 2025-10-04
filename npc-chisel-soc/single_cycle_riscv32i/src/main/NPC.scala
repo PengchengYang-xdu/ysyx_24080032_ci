@@ -5,6 +5,7 @@ import chisel3.util._
 import npc.core._
 import npc.perip._
 import npc.bus._
+import npc.common.Config._
 
 class NPCIO extends Bundle{
     val interrupt = Input(Bool())
