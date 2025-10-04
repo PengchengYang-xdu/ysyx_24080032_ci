@@ -13,7 +13,7 @@ class NPCIO extends Bundle{
     val slave = new npc.bus.axi.AXI4WithoutClk
 }
 
-class ysyx_24080032_NPC extends Module {
+class ysyx_24080032 extends Module {
 
 if(RENAME){
     withModulePrefix("ysyx_24080032") {
