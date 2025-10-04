@@ -67,4 +67,31 @@ $(TIMING_RPT): $(SCRIPT_DIR)/sta.tcl $(SDC_FILE) $(NETLIST_FIXED_V)
 	@make TRUNC
 
 
-.PHONY: init syn fix-fanout ppa clean
+lint_log := $(PRJ_PATH)/lint/lint.log
+VSRC_FILE := $(PRJ_PATH)/vsrc/ysyx_24080032.sv
+
+lint: $(VSRC_FILE)
+	@echo ">> 关闭 DIFFTEST"
+	@sed -i 's/val DIFFTEST = true/val DIFFTEST = false/' $(CONFIG_FILE)
+	@$(MAKE) clean GEN_NPC COPY_FILE || { \
+		echo "出错，恢复 DIFFTEST"; \
+		sed -i 's/val DIFFTEST = false/val DIFFTEST = true/' $(CONFIG_FILE); \
+		exit 1; \
+	}
+	# 执行实际的 Lint 检查
+	@echo "Running lint with Verilator, output saved to $(lint_log)..."
+	verilator --lint-only -Wall -Wno-DECLFILENAME -Wno-EOFNEWLINE \
+		$(VSRC_FILE) 2>&1 | tee $(lint_log)
+
+	# 检查 Verilator 是否成功（可选，但推荐）
+	@if [ $$? -ne 0 ]; then \
+		echo "Verilator lint failed. Restoring DIFFTEST."; \
+		sed -i 's/val DIFFTEST = false/val DIFFTEST = true/' $(CONFIG_FILE); \
+		exit 1; \
+	fi
+
+	@echo ">> 恢复 DIFFTEST"
+	@sed -i 's/val DIFFTEST = false/val DIFFTEST = true/' $(CONFIG_FILE)
+
+
+.PHONY: init syn fix-fanout ppa clean lint
