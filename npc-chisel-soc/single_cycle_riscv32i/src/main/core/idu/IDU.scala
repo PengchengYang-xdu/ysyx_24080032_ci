@@ -106,15 +106,8 @@ class IDU extends Module{
     io_pipe.out.bits.id2is_csr_addr := inst(31, 20)
 
 
-    class ysyx_24080032_Ebreak extends BlackBox with HasBlackBoxPath{
-        val io = IO(new Bundle{
-            val inst = Input(UInt(WORD_LEN.W))
-        })
-        addPath("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/src/main/core/idu/ysyx_24080032_Ebreak.sv")
-    }
-
-    val ebreak = Some(Module(new ysyx_24080032_Ebreak))
-    ebreak.get.io.inst := inst
+    val ebreak = Module(new Ebreak)
+    ebreak.io.inst := inst
 
 
 
