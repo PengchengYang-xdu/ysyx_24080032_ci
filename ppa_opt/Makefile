@@ -78,18 +78,9 @@ lint: $(VSRC_FILE)
 		sed -i 's/val DIFFTEST = false/val DIFFTEST = true/' $(CONFIG_FILE); \
 		exit 1; \
 	}
-	# 执行实际的 Lint 检查
-	@echo "Running lint with Verilator, output saved to $(lint_log)..."
+	@echo "正在执行verilator的lint检查"
 	verilator --lint-only -Wall -Wno-DECLFILENAME -Wno-EOFNEWLINE \
 		$(VSRC_FILE) 2>&1 | tee $(lint_log)
-
-	# 检查 Verilator 是否成功（可选，但推荐）
-	@if [ $$? -ne 0 ]; then \
-		echo "Verilator lint failed. Restoring DIFFTEST."; \
-		sed -i 's/val DIFFTEST = false/val DIFFTEST = true/' $(CONFIG_FILE); \
-		exit 1; \
-	fi
-
 	@echo ">> 恢复 DIFFTEST"
 	@sed -i 's/val DIFFTEST = false/val DIFFTEST = true/' $(CONFIG_FILE)
 
