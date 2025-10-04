@@ -50,7 +50,7 @@ MILLFLAG = --split-verilog --target-dir $(GEN_DIR)
 verilog:
 	$(call git_commit, "generate verilog")
 	mkdir -p $(GEN_DIR)
-	mill -i $(PRJ).runMain Elaborate \
+	CHISEL_FIRTOOL_PATH=/home/yangpengcheng/workspace/tools/firtool-1.131.0/bin mill -i $(PRJ).runMain Elaborate \
 	$(MILLFLAG)
 
 # IMG_CHAR = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ysyxSoC/char-test/build/char-test.bin
