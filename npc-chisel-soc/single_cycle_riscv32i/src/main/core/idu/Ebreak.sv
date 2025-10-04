@@ -1,5 +1,5 @@
 
-module Ebreak(
+module ysyx_24080032_Ebreak(
   input [31:0] inst
 );
 
