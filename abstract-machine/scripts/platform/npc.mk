@@ -11,7 +11,7 @@ AM_SRCS := riscv/npc/start.S \
 CFLAGS    += -fdata-sections -ffunction-sections
 LDFLAGS   += -T $(AM_HOME)/scripts/linkernpc.ld \
 						 --defsym=_pmem_start=0x80000000 --defsym=_entry_offset=0x0 \
-						 --defsym=_sram_start=0x0f000000 --defsym=_sram_size=0x2000 
+						 --defsym=_sram_start=0x0f000000 --defsym=_sram_size=0x2000
 LDFLAGS   += --gc-sections -e _start
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
 
@@ -40,8 +40,8 @@ NPCFLAGS += -d /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/singl
 # run: image
 # 	$(MAKE) -C $(NPC_HOME)/single_cycle_riscv32i_refactor run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
 run: image
-	$(MAKE) -C $(NPC_CHISEL_HOME)/single_cycle_riscv32i clr
-	$(MAKE) -C $(NPC_CHISEL_HOME)/single_cycle_riscv32i verilog
-	$(MAKE) -C $(NPC_CHISEL_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
+	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i clr
+	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i verilog
+	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
 # run: image
 # 	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
