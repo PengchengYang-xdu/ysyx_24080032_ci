@@ -20,14 +20,14 @@ object Elaborate extends App {
 
 
 
-    val firtoolOptions = Array("--lowering-options=" + List(
-      // make yosys happy
-      // see https://github.com/llvm/circt/blob/main/docs/VerilogGeneration.md
-      "disallowLocalVariables",
-      "disallowPackedArrays",
-      "locationInfoStyle=wrapInAtSquareBracket",
-      "prefix=ysyx_24080032_"
-    ).reduce(_ + "," + _))
+    val firtoolOptions = Array(
+        "--module-name-prefix=ysyx_24080032_",
+        "--lowering-options=" + List(
+        "disallowLocalVariables",
+        "disallowPackedArrays",
+        "locationInfoStyle=wrapInAtSquareBracket"
+        ).mkString(",")
+    )
     // circt.stage.ChiselStage.emitSystemVerilogFile(new npc.core.Core, args, firtoolOptions)
     circt.stage.ChiselStage.emitSystemVerilogFile(new npc.NPC, args, firtoolOptions)
     // circt.stage.ChiselStage.emitSystemVerilogFile(new npc.core.ifu.IFU, args, firtoolOptions)
