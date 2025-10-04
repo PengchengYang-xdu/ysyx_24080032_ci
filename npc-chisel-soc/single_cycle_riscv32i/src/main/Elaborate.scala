@@ -9,26 +9,27 @@ import npc.core.exu._
 import npc.core.wbu._
 import npc.perip._
 
+import firrtl.options.StageOptions
+import firrtl.stage.FirrtlOptions
+import firrtl.transforms.ModulePrefixAnnotation
+
 object Elaborate extends App {
-    // // === 单独测试 instList ===
-    // println("=== Instruction List ===")
-    // instList.foreach { InstructionPattern =>
-    //   println(s"${InstructionPattern.toString}")
-    // }
+  val annos = Seq(
+    ModulePrefixAnnotation("ysyx_24080032_")
+  )
 
+  val firtoolOptions = Array(
+    "--lowering-options=" + List(
+      "disallowLocalVariables",
+      "disallowPackedArrays",
+      "locationInfoStyle=wrapInAtSquareBracket"
+    ).mkString(",")
+  )
 
-
-
-
-    val firtoolOptions = Array(
-        "--module-name-prefix=ysyx_24080032_",
-        "--lowering-options=" + List(
-        "disallowLocalVariables",
-        "disallowPackedArrays",
-        "locationInfoStyle=wrapInAtSquareBracket"
-        ).mkString(",")
-    )
-    // circt.stage.ChiselStage.emitSystemVerilogFile(new npc.core.Core, args, firtoolOptions)
-    circt.stage.ChiselStage.emitSystemVerilogFile(new npc.NPC, args, firtoolOptions)
-    // circt.stage.ChiselStage.emitSystemVerilogFile(new npc.core.ifu.IFU, args, firtoolOptions)
+  circt.stage.ChiselStage.emitSystemVerilogFile(
+    new npc.NPC,
+    args,
+    firtoolOptions,
+    annos
+  )
 }
