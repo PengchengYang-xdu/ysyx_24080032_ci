@@ -113,7 +113,7 @@ class IDU extends Module{
         addPath("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel/single_cycle_riscv32i/src/main/core/idu/ysyx_24080032_Ebreak.sv")
     }
 
-    val ebreak = Some(Module(new Ebreak))
+    val ebreak = Some(Module(new ysyx_24080032_Ebreak))
     ebreak.get.io.inst := inst
 
 
