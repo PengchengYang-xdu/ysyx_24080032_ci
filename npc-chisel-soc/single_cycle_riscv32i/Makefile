@@ -45,7 +45,7 @@ $(BIN):  $(CSRC) $(VSRC)
 GEN_DIR = ./vsrc
 PRJ = playground
 ################################        FLAG        ################################
-MILLFLAG = --split-verilog --target-dir $(GEN_DIR)
+MILLFLAG = --split-verilog --target-dir $(GEN_DIR) --module-name-prefix ysyx_24080032_
 ################################       COMMAND       ################################
 verilog:
 	$(call git_commit, "generate verilog")
