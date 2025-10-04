@@ -16,7 +16,6 @@ LDFLAGS   += --gc-sections -e _start
 CFLAGS += -DMAINARGS=\"$(mainargs)\"
 
 NPC_CHISEL_HOME = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel
-NPC_CHISEL_SOC_HOME = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc
 
 NPCFLAGS += -l $(shell dirname $(IMAGE).elf)/npc-log.txt
 NPCFLAGS += -b
@@ -40,8 +39,8 @@ NPCFLAGS += -d /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/singl
 # run: image
 # 	$(MAKE) -C $(NPC_HOME)/single_cycle_riscv32i_refactor run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
 run: image
-	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i clr
-	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i verilog
-	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
+	$(MAKE) -C $(NPC_CHISEL_HOME)/single_cycle_riscv32i clr
+	$(MAKE) -C $(NPC_CHISEL_HOME)/single_cycle_riscv32i verilog
+	$(MAKE) -C $(NPC_CHISEL_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
 # run: image
 # 	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
