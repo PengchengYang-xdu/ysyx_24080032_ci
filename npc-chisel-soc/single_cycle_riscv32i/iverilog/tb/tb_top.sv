@@ -12,14 +12,14 @@ reg reset = 1;
 always #5 clock = ~clock;
 
 initial begin
-		repeat (100) @(posedge clk);
+		repeat (100) @(posedge clock);
 		reset <= 0;
 end
 
 initial begin
 	$dumpfile("../wave/top.vcd");
-	$dumpvars(0, testbench);
-	repeat (1000000) @(posedge clk);
+	$dumpvars(0, tb_top);
+	repeat (1000000) @(posedge clock);
 	$display("TIMEOUT");
 	$finish;
 end
@@ -91,8 +91,8 @@ ysyx_24080032 cpu (
     .io_master_wlast   (auto_master_out_wlast),
     .io_master_bready       (auto_master_out_bready),
     .io_master_bvalid       (auto_master_out_bvalid),
-    .io_master_bid     (0),
-    .io_master_bresp   (0),
+    .io_master_bid     (4'b0000),
+    .io_master_bresp   (2'b00),
     .io_master_arready      (auto_master_out_arready),
     .io_master_arvalid      (auto_master_out_arvalid),
     .io_master_arid    (auto_master_out_arid),
@@ -102,10 +102,10 @@ ysyx_24080032 cpu (
     .io_master_arburst (auto_master_out_arburst),
     .io_master_rready       (auto_master_out_rready),
     .io_master_rvalid       (auto_master_out_rvalid),
-    .io_master_rid     (0),
+    .io_master_rid     (4'b0000),
     .io_master_rdata   (auto_master_out_rdata),
-    .io_master_rresp   (0),
-    .io_master_rlast   (1),
+    .io_master_rresp   (2'b00),
+    .io_master_rlast   (1'b1),
     .io_slave_awready       (/* unused */),
     .io_slave_awvalid       (1'h0),
     .io_slave_awid     (4'h0),
@@ -148,7 +148,7 @@ axi4_memory #(
         .mem_axi_awvalid (auto_master_out_awvalid),
         .mem_axi_awready (auto_master_out_awready),
         .mem_axi_awaddr  (auto_master_out_awaddr),
-        .mem_axi_awprot  (0),
+        .mem_axi_awprot  (3'b000),
 
         // W Channel
         .mem_axi_wvalid  (auto_master_out_wvalid),
