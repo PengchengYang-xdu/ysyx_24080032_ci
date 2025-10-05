@@ -244,14 +244,11 @@ iverilog:
 	@sed -i 's/val START_ADDR = "h30000000"/val START_ADDR = "h80000000"/' $(CONFIG_FILE)
 
 	@echo ">> mill生成v文件..."
-	@{ \
-		set -e; \
-		trap 'echo "\n[!] 发生错误，自动恢复 Config.scala 为 0x30000000"; \
-		      sed -i '\''s/val START_ADDR = "h80000000"/val START_ADDR = "h30000000"/'\'' $(CONFIG_FILE)' EXIT; \
-		make clr; \
-		make verilog; \
-		make -C ./final_rtl verilog; \
-	} || exit 1
+	@make clr
+	@make verilog
+
+	@echo ">> 合并大文件..."
+	@make -C ./final_rtl verilog
 
 	@echo ">> 切换pc从0x30000000开始..."
 	@sed -i 's/val START_ADDR = "h80000000"/val START_ADDR = "h30000000"/' $(CONFIG_FILE)
@@ -269,6 +266,8 @@ iverilog:
 	@echo ">> 编译完成，开始执行仿真..."
 	@vvp $(IVERILOG_OUT)
 	@echo ">> 仿真完成，波形文件生成在: $(IVERILOG_WAVE)"
+
+
 
 iverilog_clr:
 	@rm -rf ./iverilog/hex
