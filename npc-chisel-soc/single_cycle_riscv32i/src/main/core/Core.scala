@@ -40,17 +40,23 @@ class Core extends Module {
     wbu.io_pipe.out.ready := true.B
     val ready_r = RegNext(ifu.io_pipe.in.ready)
 
-    val valid_default = RegInit(false.B)
-    when(ifu.io_pipe.in.ready & ready_r){
-        valid_default := true.B
-    }.otherwise{
-        valid_default := valid_default
-    }
-    ifu.io_pipe.in.valid := valid_default
+    ifu.io_pipe.in.valid := RegEnable(true.B, false.B, ifu.io_pipe.in.ready & ready_r)
 
     pipelineConnect(ifu.io_pipe.out, idu.io_pipe.in)
     pipelineConnect(idu.io_pipe.out, isu.io_pipe.in)
-    pipelineConnect(isu.io_pipe.out, exu.io_pipe.in)
+
+    // pipelineConnect(isu.io_pipe.out, exu.io_pipe.in)
+    isu.io_pipe.out.ready := exu.io_pipe.in.ready
+    exu.io_pipe.in.bits.is2exe_processunit := RegEnable(isu.io_pipe.out.bits.is2exe_processunit, false.B, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
+    exu.io_pipe.in.bits.is2exe_processtpe := RegEnable(isu.io_pipe.out.bits.is2exe_processtpe, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
+    exu.io_pipe.in.bits.is2exe_bjtpe := RegEnable(isu.io_pipe.out.bits.is2exe_bjtpe, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
+    exu.io_pipe.in.bits.is2exe_rfwe := RegEnable(isu.io_pipe.out.bits.is2exe_rfwe, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
+    exu.io_pipe.in.bits.is2exe_rd_addr := RegEnable(isu.io_pipe.out.bits.is2exe_rd_addr, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
+    exu.io_pipe.in.bits.is2exe_ch1 := RegEnable(isu.io_pipe.out.bits.is2exe_ch1, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
+    exu.io_pipe.in.bits.is2exe_ch2 := RegEnable(isu.io_pipe.out.bits.is2exe_ch2, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
+    exu.io_pipe.in.bits.is2exe_ch3 := RegEnable(isu.io_pipe.out.bits.is2exe_ch3, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
+    if(DIFFTEST) exu.io_pipe.in.bits.diff := RegEnable(isu.io_pipe.out.bits.diff, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
+
     pipelineConnect(exu.io_pipe.out, wbu.io_pipe.in)
 
 /*

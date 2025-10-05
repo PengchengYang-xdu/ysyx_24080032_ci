@@ -127,7 +127,7 @@ class EXU extends Module {
             |  _| | |___| |\  | |___| |___ _ | |
             |_|   |_____|_| \_|\____|_____(_)___|
 */
-    io_fencei.is_fencei := RegNext(io_pipe.in.fire && processunit === ProcessUnit.MOU, false.B)
+    io_fencei.is_fencei := io_pipe.in.fire && processunit === ProcessUnit.MOU
     val fencei_done = io_fencei.fencei_done
 
 
@@ -136,7 +136,7 @@ class EXU extends Module {
 
     io_fencei_flush_exu.fencei_flush_target := alu.io.out.bits.alu_out
 
-    io_bj.valid := RegNext(alu.io_bj.valid | csr.io_bj.valid, false.B)
+    io_bj.valid := alu.io_bj.valid | csr.io_bj.valid
     io_bj.target := Mux(alu.io_bj.valid, ch3, Mux(csr.io_bj.valid, csr.io_bj.target, 0.U))
 
     val exefsh = csr.io.out.valid | alu.io.out.valid | lsu.io.out.valid | fencei_done

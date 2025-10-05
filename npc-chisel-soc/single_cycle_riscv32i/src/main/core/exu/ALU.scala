@@ -72,7 +72,7 @@ class ALU extends Module{
     io_bj.target := DontCare
 
     //handshake
-    io.in.ready := true.B
+    io.in.ready := io.out.ready
     io.out.valid := io.in.valid
 
 
