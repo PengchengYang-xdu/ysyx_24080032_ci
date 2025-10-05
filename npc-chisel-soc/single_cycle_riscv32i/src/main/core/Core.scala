@@ -55,7 +55,7 @@ class Core extends Module {
     exu.io_pipe.in.bits.is2exe_ch1 := RegEnable(isu.io_pipe.out.bits.is2exe_ch1, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
     exu.io_pipe.in.bits.is2exe_ch2 := RegEnable(isu.io_pipe.out.bits.is2exe_ch2, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
     exu.io_pipe.in.bits.is2exe_ch3 := RegEnable(isu.io_pipe.out.bits.is2exe_ch3, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
-    if(DIFFTEST) exu.io_pipe.in.bits.diff := RegEnable(isu.io_pipe.out.bits.diff, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
+    if(DIFFTEST) {exu.io_pipe.in.bits.diff := RegEnable(isu.io_pipe.out.bits.diff, isu.io_pipe.out.valid && exu.io_pipe.in.ready)}
 
     pipelineConnect(exu.io_pipe.out, wbu.io_pipe.in)
 
