@@ -44,23 +44,7 @@ class Core extends Module {
 
     pipelineConnect(ifu.io_pipe.out, idu.io_pipe.in)
     pipelineConnect(idu.io_pipe.out, isu.io_pipe.in)
-
-    // pipelineConnect(isu.io_pipe.out, exu.io_pipe.in)
-    isu.io_pipe.out.ready := exu.io_pipe.in.ready
-    exu.io_pipe.in.bits.is2exe_processunit := RegEnable(isu.io_pipe.out.bits.is2exe_processunit, 4.U, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
-    exu.io_pipe.in.bits.is2exe_processtpe := RegEnable(isu.io_pipe.out.bits.is2exe_processtpe, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
-    exu.io_pipe.in.bits.is2exe_bjtpe := RegEnable(isu.io_pipe.out.bits.is2exe_bjtpe, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
-    exu.io_pipe.in.bits.is2exe_rfwe := RegEnable(isu.io_pipe.out.bits.is2exe_rfwe, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
-    exu.io_pipe.in.bits.is2exe_rd_addr := RegEnable(isu.io_pipe.out.bits.is2exe_rd_addr, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
-    exu.io_pipe.in.bits.is2exe_ch1 := RegEnable(isu.io_pipe.out.bits.is2exe_ch1, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
-    exu.io_pipe.in.bits.is2exe_ch2 := RegEnable(isu.io_pipe.out.bits.is2exe_ch2, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
-    exu.io_pipe.in.bits.is2exe_ch3 := RegEnable(isu.io_pipe.out.bits.is2exe_ch3, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
-
-    exu.io_pipe.in.bits.diff.get.pc := RegEnable(isu.io_pipe.out.bits.diff.get.pc, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
-    exu.io_pipe.in.bits.diff.get.inst := RegEnable(isu.io_pipe.out.bits.diff.get.inst, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
-
-    exu.io_pipe.in.valid := RegEnable(isu.io_pipe.out.valid, false.B, exu.io_pipe.in.ready)
-
+    pipelineConnect(isu.io_pipe.out, exu.io_pipe.in)
     pipelineConnect(exu.io_pipe.out, wbu.io_pipe.in)
 
 /*
