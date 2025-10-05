@@ -304,6 +304,8 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
   wire        _exu_io_pipe_out_bits_exe2wb_gpr_we;	// @[src/main/core/Core.scala:30:21]
   wire [31:0] _exu_io_pipe_out_bits_exe2wb_gpr_wdata;	// @[src/main/core/Core.scala:30:21]
   wire [3:0]  _exu_io_pipe_out_bits_exe2wb_gpr_waddr;	// @[src/main/core/Core.scala:30:21]
+  wire [31:0] _exu_io_pipe_out_bits_diff_pc;	// @[src/main/core/Core.scala:30:21]
+  wire [31:0] _exu_io_pipe_out_bits_diff_inst;	// @[src/main/core/Core.scala:30:21]
   wire        _exu_io_for_valid;	// @[src/main/core/Core.scala:30:21]
   wire [1:0]  _exu_io_for_processunit;	// @[src/main/core/Core.scala:30:21]
   wire        _exu_io_for_gpr_we;	// @[src/main/core/Core.scala:30:21]
@@ -321,6 +323,8 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
   wire [31:0] _isu_io_pipe_out_bits_is2exe_ch1;	// @[src/main/core/Core.scala:29:21]
   wire [31:0] _isu_io_pipe_out_bits_is2exe_ch2;	// @[src/main/core/Core.scala:29:21]
   wire [31:0] _isu_io_pipe_out_bits_is2exe_ch3;	// @[src/main/core/Core.scala:29:21]
+  wire [31:0] _isu_io_pipe_out_bits_diff_pc;	// @[src/main/core/Core.scala:29:21]
+  wire [31:0] _isu_io_pipe_out_bits_diff_inst;	// @[src/main/core/Core.scala:29:21]
   wire        _idu_io_pipe_in_ready;	// @[src/main/core/Core.scala:28:21]
   wire        _idu_io_pipe_out_valid;	// @[src/main/core/Core.scala:28:21]
   wire [1:0]  _idu_io_pipe_out_bits_id2is_processunit;	// @[src/main/core/Core.scala:28:21]
@@ -335,6 +339,8 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
   wire [31:0] _idu_io_pipe_out_bits_id2is_reg_pc;	// @[src/main/core/Core.scala:28:21]
   wire [31:0] _idu_io_pipe_out_bits_id2is_imm;	// @[src/main/core/Core.scala:28:21]
   wire [11:0] _idu_io_pipe_out_bits_id2is_csr_addr;	// @[src/main/core/Core.scala:28:21]
+  wire [31:0] _idu_io_pipe_out_bits_diff_pc;	// @[src/main/core/Core.scala:28:21]
+  wire [31:0] _idu_io_pipe_out_bits_diff_inst;	// @[src/main/core/Core.scala:28:21]
   wire [31:0] _ifu_io_imem_araddr;	// @[src/main/core/Core.scala:27:21]
   wire        _ifu_io_imem_arvalid;	// @[src/main/core/Core.scala:27:21]
   wire        _ifu_io_imem_rready;	// @[src/main/core/Core.scala:27:21]
@@ -360,6 +366,8 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
   reg  [31:0] isu_io_pipe_in_bits_r_id2is_reg_pc;	// @[src/main/core/Core.scala:105:33]
   reg  [31:0] isu_io_pipe_in_bits_r_id2is_imm;	// @[src/main/core/Core.scala:105:33]
   reg  [11:0] isu_io_pipe_in_bits_r_id2is_csr_addr;	// @[src/main/core/Core.scala:105:33]
+  reg  [31:0] isu_io_pipe_in_bits_r_diff_pc;	// @[src/main/core/Core.scala:105:33]
+  reg  [31:0] isu_io_pipe_in_bits_r_diff_inst;	// @[src/main/core/Core.scala:105:33]
   reg         isu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:106:34]
   reg  [1:0]  exu_io_pipe_in_bits_r_is2exe_processunit;	// @[src/main/core/Core.scala:105:33]
   reg  [3:0]  exu_io_pipe_in_bits_r_is2exe_processtpe;	// @[src/main/core/Core.scala:105:33]
@@ -369,10 +377,14 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
   reg  [31:0] exu_io_pipe_in_bits_r_is2exe_ch1;	// @[src/main/core/Core.scala:105:33]
   reg  [31:0] exu_io_pipe_in_bits_r_is2exe_ch2;	// @[src/main/core/Core.scala:105:33]
   reg  [31:0] exu_io_pipe_in_bits_r_is2exe_ch3;	// @[src/main/core/Core.scala:105:33]
+  reg  [31:0] exu_io_pipe_in_bits_r_diff_pc;	// @[src/main/core/Core.scala:105:33]
+  reg  [31:0] exu_io_pipe_in_bits_r_diff_inst;	// @[src/main/core/Core.scala:105:33]
   reg         exu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:106:34]
   reg         wbu_io_pipe_in_bits_r_exe2wb_gpr_we;	// @[src/main/core/Core.scala:105:33]
   reg  [31:0] wbu_io_pipe_in_bits_r_exe2wb_gpr_wdata;	// @[src/main/core/Core.scala:105:33]
   reg  [3:0]  wbu_io_pipe_in_bits_r_exe2wb_gpr_waddr;	// @[src/main/core/Core.scala:105:33]
+  reg  [31:0] wbu_io_pipe_in_bits_r_diff_pc;	// @[src/main/core/Core.scala:105:33]
+  reg  [31:0] wbu_io_pipe_in_bits_r_diff_inst;	// @[src/main/core/Core.scala:105:33]
   reg         wbu_io_pipe_in_valid_r;	// @[src/main/core/Core.scala:106:34]
   always @(posedge clock) begin	// @[src/main/core/Core.scala:24:7]
     ready_r <= _ifu_io_pipe_in_ready;	// @[src/main/core/Core.scala:27:21, :41:26]
@@ -395,6 +407,8 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
       isu_io_pipe_in_bits_r_id2is_reg_pc <= _idu_io_pipe_out_bits_id2is_reg_pc;	// @[src/main/core/Core.scala:28:21, :105:33]
       isu_io_pipe_in_bits_r_id2is_imm <= _idu_io_pipe_out_bits_id2is_imm;	// @[src/main/core/Core.scala:28:21, :105:33]
       isu_io_pipe_in_bits_r_id2is_csr_addr <= _idu_io_pipe_out_bits_id2is_csr_addr;	// @[src/main/core/Core.scala:28:21, :105:33]
+      isu_io_pipe_in_bits_r_diff_pc <= _idu_io_pipe_out_bits_diff_pc;	// @[src/main/core/Core.scala:28:21, :105:33]
+      isu_io_pipe_in_bits_r_diff_inst <= _idu_io_pipe_out_bits_diff_inst;	// @[src/main/core/Core.scala:28:21, :105:33]
     end
     if (_isu_io_pipe_in_ready)	// @[src/main/core/Core.scala:29:21]
       isu_io_pipe_in_valid_r <= _idu_io_pipe_out_valid;	// @[src/main/core/Core.scala:28:21, :106:34]
@@ -408,6 +422,8 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
       exu_io_pipe_in_bits_r_is2exe_ch1 <= _isu_io_pipe_out_bits_is2exe_ch1;	// @[src/main/core/Core.scala:29:21, :105:33]
       exu_io_pipe_in_bits_r_is2exe_ch2 <= _isu_io_pipe_out_bits_is2exe_ch2;	// @[src/main/core/Core.scala:29:21, :105:33]
       exu_io_pipe_in_bits_r_is2exe_ch3 <= _isu_io_pipe_out_bits_is2exe_ch3;	// @[src/main/core/Core.scala:29:21, :105:33]
+      exu_io_pipe_in_bits_r_diff_pc <= _isu_io_pipe_out_bits_diff_pc;	// @[src/main/core/Core.scala:29:21, :105:33]
+      exu_io_pipe_in_bits_r_diff_inst <= _isu_io_pipe_out_bits_diff_inst;	// @[src/main/core/Core.scala:29:21, :105:33]
     end
     if (_exu_io_pipe_in_ready)	// @[src/main/core/Core.scala:30:21]
       exu_io_pipe_in_valid_r <= _isu_io_pipe_out_valid;	// @[src/main/core/Core.scala:29:21, :106:34]
@@ -415,6 +431,8 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
       wbu_io_pipe_in_bits_r_exe2wb_gpr_we <= _exu_io_pipe_out_bits_exe2wb_gpr_we;	// @[src/main/core/Core.scala:30:21, :105:33]
       wbu_io_pipe_in_bits_r_exe2wb_gpr_wdata <= _exu_io_pipe_out_bits_exe2wb_gpr_wdata;	// @[src/main/core/Core.scala:30:21, :105:33]
       wbu_io_pipe_in_bits_r_exe2wb_gpr_waddr <= _exu_io_pipe_out_bits_exe2wb_gpr_waddr;	// @[src/main/core/Core.scala:30:21, :105:33]
+      wbu_io_pipe_in_bits_r_diff_pc <= _exu_io_pipe_out_bits_diff_pc;	// @[src/main/core/Core.scala:30:21, :105:33]
+      wbu_io_pipe_in_bits_r_diff_inst <= _exu_io_pipe_out_bits_diff_inst;	// @[src/main/core/Core.scala:30:21, :105:33]
     end
     if (_wbu_io_pipe_in_ready)	// @[src/main/core/Core.scala:31:21]
       wbu_io_pipe_in_valid_r <= _exu_io_pipe_out_valid;	// @[src/main/core/Core.scala:30:21, :106:34]
@@ -427,14 +445,14 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
     `ifdef FIRRTL_BEFORE_INITIAL	// @[src/main/core/Core.scala:24:7]
       `FIRRTL_BEFORE_INITIAL	// @[src/main/core/Core.scala:24:7]
     `endif // FIRRTL_BEFORE_INITIAL
-    logic [31:0] _RANDOM[0:9];	// @[src/main/core/Core.scala:24:7]
+    logic [31:0] _RANDOM[0:15];	// @[src/main/core/Core.scala:24:7]
     initial begin	// @[src/main/core/Core.scala:24:7]
       `ifdef INIT_RANDOM_PROLOG_	// @[src/main/core/Core.scala:24:7]
         `INIT_RANDOM_PROLOG_	// @[src/main/core/Core.scala:24:7]
       `endif // INIT_RANDOM_PROLOG_
       `ifdef RANDOMIZE_REG_INIT	// @[src/main/core/Core.scala:24:7]
-        for (logic [3:0] i = 4'h0; i < 4'hA; i += 4'h1) begin
-          _RANDOM[i] = `RANDOM;	// @[src/main/core/Core.scala:24:7]
+        for (logic [4:0] i = 5'h0; i < 5'h10; i += 5'h1) begin
+          _RANDOM[i[3:0]] = `RANDOM;	// @[src/main/core/Core.scala:24:7]
         end	// @[src/main/core/Core.scala:24:7]
         ready_r = _RANDOM[4'h0][0];	// @[src/main/core/Core.scala:24:7, :41:26]
         ifu_io_pipe_in_valid_r = _RANDOM[4'h0][1];	// @[src/main/core/Core.scala:24:7, :41:26, :42:38]
@@ -453,21 +471,27 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
         isu_io_pipe_in_bits_r_id2is_reg_pc = {_RANDOM[4'h2][31:29], _RANDOM[4'h3][28:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
         isu_io_pipe_in_bits_r_id2is_imm = {_RANDOM[4'h3][31:29], _RANDOM[4'h4][28:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
         isu_io_pipe_in_bits_r_id2is_csr_addr = {_RANDOM[4'h4][31:29], _RANDOM[4'h5][8:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
-        isu_io_pipe_in_valid_r = _RANDOM[4'h5][9];	// @[src/main/core/Core.scala:24:7, :105:33, :106:34]
-        exu_io_pipe_in_bits_r_is2exe_processunit = _RANDOM[4'h5][11:10];	// @[src/main/core/Core.scala:24:7, :105:33]
-        exu_io_pipe_in_bits_r_is2exe_processtpe = _RANDOM[4'h5][15:12];	// @[src/main/core/Core.scala:24:7, :105:33]
-        exu_io_pipe_in_bits_r_is2exe_bjtpe = _RANDOM[4'h5][19:16];	// @[src/main/core/Core.scala:24:7, :105:33]
-        exu_io_pipe_in_bits_r_is2exe_rfwe = _RANDOM[4'h5][20];	// @[src/main/core/Core.scala:24:7, :105:33]
-        exu_io_pipe_in_bits_r_is2exe_rd_addr = _RANDOM[4'h5][24:21];	// @[src/main/core/Core.scala:24:7, :105:33]
-        exu_io_pipe_in_bits_r_is2exe_ch1 = {_RANDOM[4'h5][31:25], _RANDOM[4'h6][24:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
-        exu_io_pipe_in_bits_r_is2exe_ch2 = {_RANDOM[4'h6][31:25], _RANDOM[4'h7][24:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
-        exu_io_pipe_in_bits_r_is2exe_ch3 = {_RANDOM[4'h7][31:25], _RANDOM[4'h8][24:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
-        exu_io_pipe_in_valid_r = _RANDOM[4'h8][25];	// @[src/main/core/Core.scala:24:7, :105:33, :106:34]
-        wbu_io_pipe_in_bits_r_exe2wb_gpr_we = _RANDOM[4'h8][26];	// @[src/main/core/Core.scala:24:7, :105:33]
+        isu_io_pipe_in_bits_r_diff_pc = {_RANDOM[4'h5][31:9], _RANDOM[4'h6][8:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
+        isu_io_pipe_in_bits_r_diff_inst = {_RANDOM[4'h6][31:9], _RANDOM[4'h7][8:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
+        isu_io_pipe_in_valid_r = _RANDOM[4'h7][9];	// @[src/main/core/Core.scala:24:7, :105:33, :106:34]
+        exu_io_pipe_in_bits_r_is2exe_processunit = _RANDOM[4'h7][11:10];	// @[src/main/core/Core.scala:24:7, :105:33]
+        exu_io_pipe_in_bits_r_is2exe_processtpe = _RANDOM[4'h7][15:12];	// @[src/main/core/Core.scala:24:7, :105:33]
+        exu_io_pipe_in_bits_r_is2exe_bjtpe = _RANDOM[4'h7][19:16];	// @[src/main/core/Core.scala:24:7, :105:33]
+        exu_io_pipe_in_bits_r_is2exe_rfwe = _RANDOM[4'h7][20];	// @[src/main/core/Core.scala:24:7, :105:33]
+        exu_io_pipe_in_bits_r_is2exe_rd_addr = _RANDOM[4'h7][24:21];	// @[src/main/core/Core.scala:24:7, :105:33]
+        exu_io_pipe_in_bits_r_is2exe_ch1 = {_RANDOM[4'h7][31:25], _RANDOM[4'h8][24:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
+        exu_io_pipe_in_bits_r_is2exe_ch2 = {_RANDOM[4'h8][31:25], _RANDOM[4'h9][24:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
+        exu_io_pipe_in_bits_r_is2exe_ch3 = {_RANDOM[4'h9][31:25], _RANDOM[4'hA][24:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
+        exu_io_pipe_in_bits_r_diff_pc = {_RANDOM[4'hA][31:25], _RANDOM[4'hB][24:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
+        exu_io_pipe_in_bits_r_diff_inst = {_RANDOM[4'hB][31:25], _RANDOM[4'hC][24:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
+        exu_io_pipe_in_valid_r = _RANDOM[4'hC][25];	// @[src/main/core/Core.scala:24:7, :105:33, :106:34]
+        wbu_io_pipe_in_bits_r_exe2wb_gpr_we = _RANDOM[4'hC][26];	// @[src/main/core/Core.scala:24:7, :105:33]
         wbu_io_pipe_in_bits_r_exe2wb_gpr_wdata =
-          {_RANDOM[4'h8][31:27], _RANDOM[4'h9][26:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
-        wbu_io_pipe_in_bits_r_exe2wb_gpr_waddr = _RANDOM[4'h9][30:27];	// @[src/main/core/Core.scala:24:7, :105:33]
-        wbu_io_pipe_in_valid_r = _RANDOM[4'h9][31];	// @[src/main/core/Core.scala:24:7, :105:33, :106:34]
+          {_RANDOM[4'hC][31:27], _RANDOM[4'hD][26:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
+        wbu_io_pipe_in_bits_r_exe2wb_gpr_waddr = _RANDOM[4'hD][30:27];	// @[src/main/core/Core.scala:24:7, :105:33]
+        wbu_io_pipe_in_bits_r_diff_pc = {_RANDOM[4'hD][31], _RANDOM[4'hE][30:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
+        wbu_io_pipe_in_bits_r_diff_inst = {_RANDOM[4'hE][31], _RANDOM[4'hF][30:0]};	// @[src/main/core/Core.scala:24:7, :105:33]
+        wbu_io_pipe_in_valid_r = _RANDOM[4'hF][31];	// @[src/main/core/Core.scala:24:7, :105:33, :106:34]
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/core/Core.scala:24:7]
@@ -517,6 +541,8 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
     .io_pipe_out_bits_id2is_reg_pc      (_idu_io_pipe_out_bits_id2is_reg_pc),
     .io_pipe_out_bits_id2is_imm         (_idu_io_pipe_out_bits_id2is_imm),
     .io_pipe_out_bits_id2is_csr_addr    (_idu_io_pipe_out_bits_id2is_csr_addr),
+    .io_pipe_out_bits_diff_pc           (_idu_io_pipe_out_bits_diff_pc),
+    .io_pipe_out_bits_diff_inst         (_idu_io_pipe_out_bits_diff_inst),
     .io_flush_flush_flg                 (_ifu_io_flush_flush_flg)	// @[src/main/core/Core.scala:27:21]
   );	// @[src/main/core/Core.scala:28:21]
   ysyx_24080032_ISU isu (	// @[src/main/core/Core.scala:29:21]
@@ -536,6 +562,8 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
     .io_pipe_in_bits_id2is_reg_pc        (isu_io_pipe_in_bits_r_id2is_reg_pc),	// @[src/main/core/Core.scala:105:33]
     .io_pipe_in_bits_id2is_imm           (isu_io_pipe_in_bits_r_id2is_imm),	// @[src/main/core/Core.scala:105:33]
     .io_pipe_in_bits_id2is_csr_addr      (isu_io_pipe_in_bits_r_id2is_csr_addr),	// @[src/main/core/Core.scala:105:33]
+    .io_pipe_in_bits_diff_pc             (isu_io_pipe_in_bits_r_diff_pc),	// @[src/main/core/Core.scala:105:33]
+    .io_pipe_in_bits_diff_inst           (isu_io_pipe_in_bits_r_diff_inst),	// @[src/main/core/Core.scala:105:33]
     .io_pipe_out_ready                   (_exu_io_pipe_in_ready),	// @[src/main/core/Core.scala:30:21]
     .io_pipe_out_valid                   (_isu_io_pipe_out_valid),
     .io_pipe_out_bits_is2exe_processunit (_isu_io_pipe_out_bits_is2exe_processunit),
@@ -546,6 +574,8 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
     .io_pipe_out_bits_is2exe_ch1         (_isu_io_pipe_out_bits_is2exe_ch1),
     .io_pipe_out_bits_is2exe_ch2         (_isu_io_pipe_out_bits_is2exe_ch2),
     .io_pipe_out_bits_is2exe_ch3         (_isu_io_pipe_out_bits_is2exe_ch3),
+    .io_pipe_out_bits_diff_pc            (_isu_io_pipe_out_bits_diff_pc),
+    .io_pipe_out_bits_diff_inst          (_isu_io_pipe_out_bits_diff_inst),
     .io_gpr_we                           (_wbu_io_gpr_we),	// @[src/main/core/Core.scala:31:21]
     .io_gpr_wdata                        (_wbu_io_gpr_wdata),	// @[src/main/core/Core.scala:31:21]
     .io_gpr_waddr                        (_wbu_io_gpr_waddr),	// @[src/main/core/Core.scala:31:21]
@@ -591,11 +621,15 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
     .io_pipe_in_bits_is2exe_ch1              (exu_io_pipe_in_bits_r_is2exe_ch1),	// @[src/main/core/Core.scala:105:33]
     .io_pipe_in_bits_is2exe_ch2              (exu_io_pipe_in_bits_r_is2exe_ch2),	// @[src/main/core/Core.scala:105:33]
     .io_pipe_in_bits_is2exe_ch3              (exu_io_pipe_in_bits_r_is2exe_ch3),	// @[src/main/core/Core.scala:105:33]
+    .io_pipe_in_bits_diff_pc                 (exu_io_pipe_in_bits_r_diff_pc),	// @[src/main/core/Core.scala:105:33]
+    .io_pipe_in_bits_diff_inst               (exu_io_pipe_in_bits_r_diff_inst),	// @[src/main/core/Core.scala:105:33]
     .io_pipe_out_ready                       (_wbu_io_pipe_in_ready),	// @[src/main/core/Core.scala:31:21]
     .io_pipe_out_valid                       (_exu_io_pipe_out_valid),
     .io_pipe_out_bits_exe2wb_gpr_we          (_exu_io_pipe_out_bits_exe2wb_gpr_we),
     .io_pipe_out_bits_exe2wb_gpr_wdata       (_exu_io_pipe_out_bits_exe2wb_gpr_wdata),
     .io_pipe_out_bits_exe2wb_gpr_waddr       (_exu_io_pipe_out_bits_exe2wb_gpr_waddr),
+    .io_pipe_out_bits_diff_pc                (_exu_io_pipe_out_bits_diff_pc),
+    .io_pipe_out_bits_diff_inst              (_exu_io_pipe_out_bits_diff_inst),
     .io_for_valid                            (_exu_io_for_valid),
     .io_for_processunit                      (_exu_io_for_processunit),
     .io_for_gpr_we                           (_exu_io_for_gpr_we),
@@ -607,6 +641,7 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
       (_exu_io_fencei_flush_exu_fencei_flush_target)
   );	// @[src/main/core/Core.scala:30:21]
   ysyx_24080032_WBU wbu (	// @[src/main/core/Core.scala:31:21]
+    .clock                            (clock),
     .io_gpr_we                        (_wbu_io_gpr_we),
     .io_gpr_waddr                     (_wbu_io_gpr_waddr),
     .io_gpr_wdata                     (_wbu_io_gpr_wdata),
@@ -615,6 +650,8 @@ module ysyx_24080032_Core(	// @[src/main/core/Core.scala:24:7]
     .io_pipe_in_bits_exe2wb_gpr_we    (wbu_io_pipe_in_bits_r_exe2wb_gpr_we),	// @[src/main/core/Core.scala:105:33]
     .io_pipe_in_bits_exe2wb_gpr_wdata (wbu_io_pipe_in_bits_r_exe2wb_gpr_wdata),	// @[src/main/core/Core.scala:105:33]
     .io_pipe_in_bits_exe2wb_gpr_waddr (wbu_io_pipe_in_bits_r_exe2wb_gpr_waddr),	// @[src/main/core/Core.scala:105:33]
+    .io_pipe_in_bits_diff_pc          (wbu_io_pipe_in_bits_r_diff_pc),	// @[src/main/core/Core.scala:105:33]
+    .io_pipe_in_bits_diff_inst        (wbu_io_pipe_in_bits_r_diff_inst),	// @[src/main/core/Core.scala:105:33]
     .io_pipe_out_ready                (1'h1),
     .io_pipe_out_valid                (/* unused */),
     .io_for_gpr_we                    (_wbu_io_for_gpr_we),
@@ -757,7 +794,7 @@ module ysyx_24080032_Xbar(	// @[src/main/bus/Xbar.scala:28:7]
   wire        _n_state_T_2 = isdmem & isclint;	// @[src/main/bus/Xbar.scala:40:38, :43:33, :55:21]
   wire        _n_state_T_10 = c_state == 2'h1;	// @[src/main/bus/Xbar.scala:33:26, :51:42, src/main/scala/chisel3/util/Mux.scala:130:16]
   reg  [1:0]  casez_tmp;	// @[src/main/bus/Xbar.scala:51:42]
-  always_comb begin	// @[src/main/bus/Xbar.scala:41:{61,86}, :51:42]
+  always @(*) begin	// @[src/main/bus/Xbar.scala:41:{61,86}, :51:42]
     casez (c_state)	// @[src/main/bus/Xbar.scala:33:26, :41:{61,86}, :51:42]
       2'b00:
         casez_tmp = isimem ? 2'h1 : isdmem & ~isclint ? 2'h2 : {2{_n_state_T_2}};	// @[src/main/bus/Xbar.scala:40:38, :41:{21,61,86}, :43:33, :51:42, :54:{21,24}, :55:21, src/main/scala/chisel3/util/Mux.scala:130:16]
@@ -768,14 +805,14 @@ module ysyx_24080032_Xbar(	// @[src/main/bus/Xbar.scala:28:7]
       default:
         casez_tmp = io_clint_rvalid | io_soc_bvalid ? 2'h0 : 2'h3;	// @[src/main/bus/Xbar.scala:41:{61,86}, :49:40, :51:42, :59:27]
     endcase	// @[src/main/bus/Xbar.scala:33:26, :41:{61,86}, :51:42]
-  end // always_comb
+  end // always @(*)
   wire [1:0]  n_state = casez_tmp;	// @[src/main/bus/Xbar.scala:34:30, :51:42]
   wire        _GEN = c_state == 2'h0;	// @[src/main/bus/Xbar.scala:33:26, :67:20]
   wire        _GEN_0 = isdmem & ~isclint;	// @[src/main/bus/Xbar.scala:40:38, :43:33, :54:24, :71:31]
   wire        _GEN_1 = isimem | _GEN_0;	// @[src/main/bus/Xbar.scala:41:21, :69:25, :71:{31,42}, :73:41, :140:25]
   wire        _GEN_2 = _GEN ? isimem : _n_state_T_10;	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:41:21, :51:42, :67:20, :69:25, :92:23]
   reg  [31:0] casez_tmp_0;	// @[src/main/bus/Xbar.scala:67:20, :69:25]
-  always_comb begin	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:41:86, :51:42, :67:20, :69:25, :119:23]
+  always @(*) begin	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:41:86, :51:42, :67:20, :69:25, :119:23]
     casez (c_state)	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:33:26, :41:86, :51:42, :67:20, :69:25, :119:23]
       2'b00:
         casez_tmp_0 = isimem ? io_imem_araddr : _GEN_0 ? io_dmem_araddr : 32'h0;	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:41:{21,86}, :51:42, :67:20, :69:25, :71:{31,42}, :119:23]
@@ -786,9 +823,9 @@ module ysyx_24080032_Xbar(	// @[src/main/bus/Xbar.scala:28:7]
       default:
         casez_tmp_0 = 32'h0;	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:41:86, :51:42, :67:20, :69:25, :119:23]
     endcase	// @[src/main/bus/AXI.scala:90:25, src/main/bus/Xbar.scala:33:26, :41:86, :51:42, :67:20, :69:25, :119:23]
-  end // always_comb
+  end // always @(*)
   reg  [2:0]  casez_tmp_1;	// @[src/main/bus/Xbar.scala:67:20, :69:25]
-  always_comb begin	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:41:86, :51:42, :67:20, :69:25, :123:23]
+  always @(*) begin	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:41:86, :51:42, :67:20, :69:25, :123:23]
     casez (c_state)	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:33:26, :41:86, :51:42, :67:20, :69:25, :123:23]
       2'b00:
         casez_tmp_1 = isimem ? io_imem_arsize : _GEN_0 ? io_dmem_arsize : 3'h0;	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:41:{21,86}, :51:42, :67:20, :69:25, :71:{31,42}, :123:23]
@@ -799,11 +836,11 @@ module ysyx_24080032_Xbar(	// @[src/main/bus/Xbar.scala:28:7]
       default:
         casez_tmp_1 = 3'h0;	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:41:86, :51:42, :67:20, :69:25, :123:23]
     endcase	// @[src/main/bus/AXI.scala:94:25, src/main/bus/Xbar.scala:33:26, :41:86, :51:42, :67:20, :69:25, :123:23]
-  end // always_comb
+  end // always @(*)
   wire        _GEN_3 = _GEN ? isimem | ~_GEN_0 : _n_state_T_10 | ~_n_state_T_12;	// @[src/main/bus/AXI.scala:109:25, src/main/bus/Xbar.scala:41:{21,86}, :51:42, :67:20, :69:25, :71:{31,42}]
   wire        _GEN_4 = _n_state_T_10 | _n_state_T_12;	// @[src/main/bus/Xbar.scala:41:86, :51:42, :67:20, :140:25]
   reg  [31:0] casez_tmp_2;	// @[src/main/bus/Xbar.scala:67:20, :69:25]
-  always_comb begin	// @[src/main/bus/Xbar.scala:67:20, :69:25, :140:25]
+  always @(*) begin	// @[src/main/bus/Xbar.scala:67:20, :69:25, :140:25]
     casez (c_state)	// @[src/main/bus/Xbar.scala:33:26, :67:20, :69:25, :140:25]
       2'b00:
         casez_tmp_2 = _GEN_1 | ~_n_state_T_2 ? 32'h0 : io_dmem_araddr;	// @[src/main/bus/Xbar.scala:55:21, :67:20, :69:25, :71:42, :73:41, :140:25]
@@ -814,9 +851,9 @@ module ysyx_24080032_Xbar(	// @[src/main/bus/Xbar.scala:28:7]
       default:
         casez_tmp_2 = _GEN_4 | ~(&c_state) ? 32'h0 : io_dmem_araddr;	// @[src/main/bus/Xbar.scala:33:26, :41:61, :67:20, :69:25, :140:25]
     endcase	// @[src/main/bus/Xbar.scala:33:26, :67:20, :69:25, :140:25]
-  end // always_comb
+  end // always @(*)
   reg  [31:0] casez_tmp_3;	// @[src/main/bus/Xbar.scala:67:20, :69:25]
-  always_comb begin	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:41:{61,86}, :51:42, :67:20, :69:25, :106:23]
+  always @(*) begin	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:41:{61,86}, :51:42, :67:20, :69:25, :106:23]
     casez (c_state)	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:33:26, :41:{61,86}, :51:42, :67:20, :69:25, :106:23]
       2'b00:
         casez_tmp_3 =
@@ -828,7 +865,7 @@ module ysyx_24080032_Xbar(	// @[src/main/bus/Xbar.scala:28:7]
       default:
         casez_tmp_3 = io_clint_rdata;	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:41:{61,86}, :51:42, :67:20, :69:25, :106:23]
     endcase	// @[src/main/bus/AXI.scala:100:24, src/main/bus/Xbar.scala:33:26, :41:{61,86}, :51:42, :67:20, :69:25, :106:23]
-  end // always_comb
+  end // always @(*)
   always @(posedge clock) begin	// @[src/main/bus/Xbar.scala:28:7]
     if (reset)	// @[src/main/bus/Xbar.scala:28:7]
       c_state <= 2'h0;	// @[src/main/bus/Xbar.scala:33:26]
@@ -1127,7 +1164,7 @@ module ysyx_24080032_IFU(	// @[src/main/core/ifu/IFU.scala:50:7]
   wire        _GEN_4 = _GEN_1 | _GEN_2 | _GEN_3;	// @[src/main/core/ifu/IFU.scala:108:27, :143:20, :162:22, :170:22, :178:22]
   always @(posedge clock) begin	// @[src/main/core/ifu/IFU.scala:50:7]
     if (reset) begin	// @[src/main/core/ifu/IFU.scala:50:7]
-      reg_pc <= 32'h30000000;	// @[src/main/core/ifu/IFU.scala:66:27]
+      reg_pc <= 32'h80000000;	// @[src/main/core/ifu/IFU.scala:66:27]
       in_ready <= 1'h0;	// @[src/main/core/ifu/IFU.scala:50:7, :108:27]
       out_valid <= 1'h0;	// @[src/main/core/ifu/IFU.scala:50:7, :109:28]
       arvalid <= 1'h0;	// @[src/main/core/ifu/IFU.scala:50:7, :113:26]
@@ -1248,6 +1285,8 @@ module ysyx_24080032_IDU(	// @[src/main/core/idu/IDU.scala:54:7]
   output [31:0] io_pipe_out_bits_id2is_reg_pc,	// @[src/main/core/idu/IDU.scala:55:21]
                 io_pipe_out_bits_id2is_imm,	// @[src/main/core/idu/IDU.scala:55:21]
   output [11:0] io_pipe_out_bits_id2is_csr_addr,	// @[src/main/core/idu/IDU.scala:55:21]
+  output [31:0] io_pipe_out_bits_diff_pc,	// @[src/main/core/idu/IDU.scala:55:21]
+                io_pipe_out_bits_diff_inst,	// @[src/main/core/idu/IDU.scala:55:21]
   input         io_flush_flush_flg	// @[src/main/core/idu/IDU.scala:56:22]
 );
 
@@ -1520,6 +1559,8 @@ module ysyx_24080032_IDU(	// @[src/main/core/idu/IDU.scala:54:7]
               ? {{11{imm_j[20]}}, imm_j}
               : decodeBundle_immtpe == 3'h5 ? imm_u : {{20{_imm_T_1[11]}}, _imm_T_1};	// @[src/main/core/idu/IDU.scala:54:7, :74:48, :75:77, :76:79, :77:46, :78:37, src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106]
   assign io_pipe_out_bits_id2is_csr_addr = imm_i;	// @[src/main/core/idu/IDU.scala:54:7, :73:30]
+  assign io_pipe_out_bits_diff_pc = io_pipe_in_bits_if2id_reg_pc;	// @[src/main/core/idu/IDU.scala:54:7]
+  assign io_pipe_out_bits_diff_inst = io_pipe_in_bits_if2id_inst;	// @[src/main/core/idu/IDU.scala:54:7]
 endmodule
 
 // Generated by CIRCT firtool-1.131.0
@@ -1584,6 +1625,8 @@ module ysyx_24080032_ISU(	// @[src/main/core/isu/ISU.scala:56:7]
   input  [31:0] io_pipe_in_bits_id2is_reg_pc,	// @[src/main/core/isu/ISU.scala:57:21]
                 io_pipe_in_bits_id2is_imm,	// @[src/main/core/isu/ISU.scala:57:21]
   input  [11:0] io_pipe_in_bits_id2is_csr_addr,	// @[src/main/core/isu/ISU.scala:57:21]
+  input  [31:0] io_pipe_in_bits_diff_pc,	// @[src/main/core/isu/ISU.scala:57:21]
+                io_pipe_in_bits_diff_inst,	// @[src/main/core/isu/ISU.scala:57:21]
   input         io_pipe_out_ready,	// @[src/main/core/isu/ISU.scala:57:21]
   output        io_pipe_out_valid,	// @[src/main/core/isu/ISU.scala:57:21]
   output [1:0]  io_pipe_out_bits_is2exe_processunit,	// @[src/main/core/isu/ISU.scala:57:21]
@@ -1594,6 +1637,8 @@ module ysyx_24080032_ISU(	// @[src/main/core/isu/ISU.scala:56:7]
   output [31:0] io_pipe_out_bits_is2exe_ch1,	// @[src/main/core/isu/ISU.scala:57:21]
                 io_pipe_out_bits_is2exe_ch2,	// @[src/main/core/isu/ISU.scala:57:21]
                 io_pipe_out_bits_is2exe_ch3,	// @[src/main/core/isu/ISU.scala:57:21]
+                io_pipe_out_bits_diff_pc,	// @[src/main/core/isu/ISU.scala:57:21]
+                io_pipe_out_bits_diff_inst,	// @[src/main/core/isu/ISU.scala:57:21]
   input         io_gpr_we,	// @[src/main/core/isu/ISU.scala:58:16]
   input  [31:0] io_gpr_wdata,	// @[src/main/core/isu/ISU.scala:58:16]
   input  [3:0]  io_gpr_waddr,	// @[src/main/core/isu/ISU.scala:58:16]
@@ -1748,6 +1793,8 @@ module ysyx_24080032_ISU(	// @[src/main/core/isu/ISU.scala:56:7]
          | (rs1ForWB ? io_for_wb_gpr_wdata : 32'h0)
          | (_ch3_rs1_T | _rs1_data_T ? 32'h0 : _gpr_ext_R1_data))
     + io_pipe_in_bits_id2is_imm;	// @[src/main/core/isu/GPR.scala:11:18, :12:44, src/main/core/isu/ISU.scala:56:7, :88:{80,102}, :98:32, :100:32, :106:46, :127:75, :137:24, :142:{18,51,82,138}]
+  assign io_pipe_out_bits_diff_pc = io_pipe_in_bits_diff_pc;	// @[src/main/core/isu/ISU.scala:56:7]
+  assign io_pipe_out_bits_diff_inst = io_pipe_in_bits_diff_inst;	// @[src/main/core/isu/ISU.scala:56:7]
 endmodule
 
 // Generated by CIRCT firtool-1.131.0
@@ -1827,11 +1874,15 @@ module ysyx_24080032_EXU(	// @[src/main/core/exu/EXU.scala:66:7]
   input  [31:0] io_pipe_in_bits_is2exe_ch1,	// @[src/main/core/exu/EXU.scala:69:21]
                 io_pipe_in_bits_is2exe_ch2,	// @[src/main/core/exu/EXU.scala:69:21]
                 io_pipe_in_bits_is2exe_ch3,	// @[src/main/core/exu/EXU.scala:69:21]
+                io_pipe_in_bits_diff_pc,	// @[src/main/core/exu/EXU.scala:69:21]
+                io_pipe_in_bits_diff_inst,	// @[src/main/core/exu/EXU.scala:69:21]
   input         io_pipe_out_ready,	// @[src/main/core/exu/EXU.scala:69:21]
   output        io_pipe_out_valid,	// @[src/main/core/exu/EXU.scala:69:21]
                 io_pipe_out_bits_exe2wb_gpr_we,	// @[src/main/core/exu/EXU.scala:69:21]
   output [31:0] io_pipe_out_bits_exe2wb_gpr_wdata,	// @[src/main/core/exu/EXU.scala:69:21]
   output [3:0]  io_pipe_out_bits_exe2wb_gpr_waddr,	// @[src/main/core/exu/EXU.scala:69:21]
+  output [31:0] io_pipe_out_bits_diff_pc,	// @[src/main/core/exu/EXU.scala:69:21]
+                io_pipe_out_bits_diff_inst,	// @[src/main/core/exu/EXU.scala:69:21]
   output        io_for_valid,	// @[src/main/core/exu/EXU.scala:70:20]
   output [1:0]  io_for_processunit,	// @[src/main/core/exu/EXU.scala:70:20]
   output        io_for_gpr_we,	// @[src/main/core/exu/EXU.scala:70:20]
@@ -1964,6 +2015,8 @@ module ysyx_24080032_EXU(	// @[src/main/core/exu/EXU.scala:66:7]
   assign io_pipe_out_bits_exe2wb_gpr_we = io_pipe_in_bits_is2exe_rfwe;	// @[src/main/core/exu/EXU.scala:66:7]
   assign io_pipe_out_bits_exe2wb_gpr_wdata = gpr_wdata;	// @[src/main/core/exu/EXU.scala:66:7, :143:24]
   assign io_pipe_out_bits_exe2wb_gpr_waddr = io_pipe_in_bits_is2exe_rd_addr;	// @[src/main/core/exu/EXU.scala:66:7]
+  assign io_pipe_out_bits_diff_pc = io_pipe_in_bits_diff_pc;	// @[src/main/core/exu/EXU.scala:66:7]
+  assign io_pipe_out_bits_diff_inst = io_pipe_in_bits_diff_inst;	// @[src/main/core/exu/EXU.scala:66:7]
   assign io_for_valid = exefsh;	// @[src/main/core/exu/EXU.scala:66:7, :142:{35,54,73}]
   assign io_for_processunit = io_pipe_in_bits_is2exe_processunit;	// @[src/main/core/exu/EXU.scala:66:7]
   assign io_for_gpr_we = io_pipe_in_bits_is2exe_rfwe;	// @[src/main/core/exu/EXU.scala:66:7]
@@ -1974,7 +2027,52 @@ module ysyx_24080032_EXU(	// @[src/main/core/exu/EXU.scala:66:7]
 endmodule
 
 // Generated by CIRCT firtool-1.131.0
+
+// Include register initializers in init blocks unless synthesis is set
+`ifndef RANDOMIZE
+  `ifdef RANDOMIZE_REG_INIT
+    `define RANDOMIZE
+  `endif // RANDOMIZE_REG_INIT
+`endif // not def RANDOMIZE
+`ifndef SYNTHESIS
+  `ifndef ENABLE_INITIAL_REG_
+    `define ENABLE_INITIAL_REG_
+  `endif // not def ENABLE_INITIAL_REG_
+`endif // not def SYNTHESIS
+
+// Standard header to adapt well known macros for register randomization.
+
+// RANDOM may be set to an expression that produces a 32-bit random unsigned value.
+`ifndef RANDOM
+  `define RANDOM $random
+`endif // not def RANDOM
+
+// Users can define INIT_RANDOM as general code that gets injected into the
+// initializer block for modules with registers.
+`ifndef INIT_RANDOM
+  `define INIT_RANDOM
+`endif // not def INIT_RANDOM
+
+// If using random initialization, you can also define RANDOMIZE_DELAY to
+// customize the delay used, otherwise 0.002 is used.
+`ifndef RANDOMIZE_DELAY
+  `define RANDOMIZE_DELAY 0.002
+`endif // not def RANDOMIZE_DELAY
+
+// Define INIT_RANDOM_PROLOG_ for use in our modules below.
+`ifndef INIT_RANDOM_PROLOG_
+  `ifdef RANDOMIZE
+    `ifdef VERILATOR
+      `define INIT_RANDOM_PROLOG_ `INIT_RANDOM
+    `else  // VERILATOR
+      `define INIT_RANDOM_PROLOG_ `INIT_RANDOM #`RANDOMIZE_DELAY begin end
+    `endif // VERILATOR
+  `else  // RANDOMIZE
+    `define INIT_RANDOM_PROLOG_
+  `endif // RANDOMIZE
+`endif // not def INIT_RANDOM_PROLOG_
 module ysyx_24080032_WBU(	// @[src/main/core/wbu/WBU.scala:46:7]
+  input         clock,	// @[src/main/core/wbu/WBU.scala:46:7]
   output        io_gpr_we,	// @[src/main/core/wbu/WBU.scala:47:16]
   output [3:0]  io_gpr_waddr,	// @[src/main/core/wbu/WBU.scala:47:16]
   output [31:0] io_gpr_wdata,	// @[src/main/core/wbu/WBU.scala:47:16]
@@ -1983,6 +2081,8 @@ module ysyx_24080032_WBU(	// @[src/main/core/wbu/WBU.scala:46:7]
                 io_pipe_in_bits_exe2wb_gpr_we,	// @[src/main/core/wbu/WBU.scala:48:21]
   input  [31:0] io_pipe_in_bits_exe2wb_gpr_wdata,	// @[src/main/core/wbu/WBU.scala:48:21]
   input  [3:0]  io_pipe_in_bits_exe2wb_gpr_waddr,	// @[src/main/core/wbu/WBU.scala:48:21]
+  input  [31:0] io_pipe_in_bits_diff_pc,	// @[src/main/core/wbu/WBU.scala:48:21]
+                io_pipe_in_bits_diff_inst,	// @[src/main/core/wbu/WBU.scala:48:21]
   input         io_pipe_out_ready,	// @[src/main/core/wbu/WBU.scala:48:21]
   output        io_pipe_out_valid,	// @[src/main/core/wbu/WBU.scala:48:21]
                 io_for_gpr_we,	// @[src/main/core/wbu/WBU.scala:49:20]
@@ -1990,11 +2090,32 @@ module ysyx_24080032_WBU(	// @[src/main/core/wbu/WBU.scala:46:7]
   output [3:0]  io_for_gpr_waddr	// @[src/main/core/wbu/WBU.scala:49:20]
 );
 
+  reg diffvalid;	// @[src/main/core/wbu/WBU.scala:65:32]
+  always @(posedge clock)	// @[src/main/core/wbu/WBU.scala:46:7]
+    diffvalid <= io_pipe_in_valid;	// @[src/main/core/wbu/WBU.scala:65:32]
+  `ifdef ENABLE_INITIAL_REG_	// @[src/main/core/wbu/WBU.scala:46:7]
+    `ifdef FIRRTL_BEFORE_INITIAL	// @[src/main/core/wbu/WBU.scala:46:7]
+      `FIRRTL_BEFORE_INITIAL	// @[src/main/core/wbu/WBU.scala:46:7]
+    `endif // FIRRTL_BEFORE_INITIAL
+    logic [31:0] _RANDOM[0:0];	// @[src/main/core/wbu/WBU.scala:46:7]
+    initial begin	// @[src/main/core/wbu/WBU.scala:46:7]
+      `ifdef INIT_RANDOM_PROLOG_	// @[src/main/core/wbu/WBU.scala:46:7]
+        `INIT_RANDOM_PROLOG_	// @[src/main/core/wbu/WBU.scala:46:7]
+      `endif // INIT_RANDOM_PROLOG_
+      `ifdef RANDOMIZE_REG_INIT	// @[src/main/core/wbu/WBU.scala:46:7]
+        _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// @[src/main/core/wbu/WBU.scala:46:7]
+        diffvalid = _RANDOM[/*Zero width*/ 1'b0][0];	// @[src/main/core/wbu/WBU.scala:46:7, :65:32]
+      `endif // RANDOMIZE_REG_INIT
+    end // initial
+    `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/core/wbu/WBU.scala:46:7]
+      `FIRRTL_AFTER_INITIAL	// @[src/main/core/wbu/WBU.scala:46:7]
+    `endif // FIRRTL_AFTER_INITIAL
+  `endif // ENABLE_INITIAL_REG_
   assign io_gpr_we = io_pipe_in_bits_exe2wb_gpr_we;	// @[src/main/core/wbu/WBU.scala:46:7]
   assign io_gpr_waddr = io_pipe_in_bits_exe2wb_gpr_waddr;	// @[src/main/core/wbu/WBU.scala:46:7]
   assign io_gpr_wdata = io_pipe_in_bits_exe2wb_gpr_wdata;	// @[src/main/core/wbu/WBU.scala:46:7]
-  assign io_pipe_in_ready = 1'h1;	// @[src/main/core/wbu/WBU.scala:46:7, :53:22]
-  assign io_pipe_out_valid = 1'h1;	// @[src/main/core/wbu/WBU.scala:46:7, :53:22]
+  assign io_pipe_in_ready = 1'h1;	// @[src/main/core/wbu/WBU.scala:46:7]
+  assign io_pipe_out_valid = 1'h1;	// @[src/main/core/wbu/WBU.scala:46:7]
   assign io_for_gpr_we = io_pipe_in_bits_exe2wb_gpr_we;	// @[src/main/core/wbu/WBU.scala:46:7]
   assign io_for_gpr_wdata = io_pipe_in_bits_exe2wb_gpr_wdata;	// @[src/main/core/wbu/WBU.scala:46:7]
   assign io_for_gpr_waddr = io_pipe_in_bits_exe2wb_gpr_waddr;	// @[src/main/core/wbu/WBU.scala:46:7]
@@ -2253,7 +2374,7 @@ module ysyx_24080032_ALU(	// @[src/main/core/exu/ALU.scala:25:7]
   wire [31:0] srl_out = io_in_bits_op1 >> _GEN;	// @[src/main/core/exu/ALU.scala:39:36, :40:28]
   wire [62:0] sll_out = {31'h0, io_in_bits_op1} << io_in_bits_op2[4:0];	// @[src/main/core/exu/ALU.scala:30:25, :41:28]
   reg  [31:0] casez_tmp;	// @[src/main/core/exu/ALU.scala:42:58]
-  always_comb begin	// @[src/main/core/exu/ALU.scala:42:58]
+  always @(*) begin	// @[src/main/core/exu/ALU.scala:42:58]
     casez (io_in_bits_processtpe[2:0])	// @[src/main/core/exu/ALU.scala:42:{42,58}]
       3'b000:
         casez_tmp = and_out;	// @[src/main/core/exu/ALU.scala:36:28, :42:58]
@@ -2272,7 +2393,7 @@ module ysyx_24080032_ALU(	// @[src/main/core/exu/ALU.scala:25:7]
       default:
         casez_tmp = sll_out[31:0];	// @[src/main/core/exu/ALU.scala:41:28, :42:58]
     endcase	// @[src/main/core/exu/ALU.scala:42:{42,58}]
-  end // always_comb
+  end // always @(*)
   wire [31:0] _io_out_bits_alu_out_T_5 =
     io_in_bits_processtpe[3]
       ? add_sub_out[31:0]
@@ -2384,7 +2505,7 @@ module ysyx_24080032_LSU(	// @[src/main/core/exu/LSU.scala:29:7]
   reg         bready;	// @[src/main/core/exu/LSU.scala:63:25]
   reg  [1:0]  c_state;	// @[src/main/core/exu/LSU.scala:77:26]
   reg  [1:0]  casez_tmp;	// @[src/main/core/exu/LSU.scala:86:51]
-  always_comb begin	// @[src/main/core/exu/LSU.scala:86:51]
+  always @(*) begin	// @[src/main/core/exu/LSU.scala:86:51]
     casez (c_state)	// @[src/main/core/exu/LSU.scala:77:26, :86:51]
       2'b00:
         casez_tmp = {1'h0, in_ready & io_in_valid};	// @[src/main/core/exu/LSU.scala:48:27, :86:51, :87:44, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
@@ -2399,11 +2520,11 @@ module ysyx_24080032_LSU(	// @[src/main/core/exu/LSU.scala:29:7]
       default:
         casez_tmp = io_out_ready & out_valid ? 2'h0 : 2'h3;	// @[src/main/core/exu/LSU.scala:49:28, :55:25, :86:51, :89:44, :90:44, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
     endcase	// @[src/main/core/exu/LSU.scala:77:26, :86:51]
-  end // always_comb
+  end // always @(*)
   wire [1:0]  n_state = casez_tmp;	// @[src/main/core/exu/LSU.scala:78:30, :86:51]
   reg  [31:0] dmem_rdata;	// @[src/main/core/exu/LSU.scala:93:29]
   reg  [1:0]  casez_tmp_0;	// @[src/main/core/exu/LSU.scala:101:20, :112:20]
-  always_comb begin	// @[src/main/core/exu/LSU.scala:55:25, :94:31, :101:20, :112:20, :118:23, :121:20, :131:23, :134:20, :151:20]
+  always @(*) begin	// @[src/main/core/exu/LSU.scala:55:25, :94:31, :101:20, :112:20, :118:23, :121:20, :131:23, :134:20, :151:20]
     casez (n_state)	// @[src/main/core/exu/LSU.scala:55:25, :78:30, :94:31, :101:20, :112:20, :118:23, :121:20, :131:23, :134:20, :151:20]
       2'b00:
         casez_tmp_0 = 2'h2;	// @[src/main/core/exu/LSU.scala:55:25, :88:44, :94:31, :101:20, :112:20, :118:23, :121:20, :131:23, :134:20, :151:20]
@@ -2414,10 +2535,10 @@ module ysyx_24080032_LSU(	// @[src/main/core/exu/LSU.scala:29:7]
       default:
         casez_tmp_0 = 2'h2;	// @[src/main/core/exu/LSU.scala:55:25, :88:44, :94:31, :101:20, :112:20, :118:23, :121:20, :131:23, :134:20, :151:20]
     endcase	// @[src/main/core/exu/LSU.scala:55:25, :78:30, :94:31, :101:20, :112:20, :118:23, :121:20, :131:23, :134:20, :151:20]
-  end // always_comb
+  end // always @(*)
   reg  [31:0] casez_tmp_1;	// @[src/main/core/exu/LSU.scala:168:72]
   wire [31:0] shift_rdata = dmem_rdata >> {27'h0, io_in_bits_op1[1:0], 3'h0};	// @[src/main/core/exu/LSU.scala:29:7, :93:29, :156:29, :167:34]
-  always_comb begin	// @[src/main/core/exu/LSU.scala:168:72]
+  always @(*) begin	// @[src/main/core/exu/LSU.scala:168:72]
     casez (io_in_bits_processtpe[2:0])	// @[src/main/core/exu/LSU.scala:168:{52,72}]
       3'b000:
         casez_tmp_1 = {{24{shift_rdata[7]}}, shift_rdata[7:0]};	// @[src/main/core/exu/LSU.scala:167:34, :168:72, :169:{24,29,45,62}]
@@ -2436,7 +2557,7 @@ module ysyx_24080032_LSU(	// @[src/main/core/exu/LSU.scala:29:7]
       default:
         casez_tmp_1 = shift_rdata;	// @[src/main/core/exu/LSU.scala:167:34, :168:72]
     endcase	// @[src/main/core/exu/LSU.scala:168:{52,72}]
-  end // always_comb
+  end // always @(*)
   wire        _GEN = n_state == 2'h0;	// @[src/main/core/exu/LSU.scala:55:25, :78:30, :101:20]
   wire        _GEN_0 = n_state == 2'h1;	// @[src/main/core/exu/LSU.scala:78:30, :101:20, :160:56]
   wire        _GEN_1 = n_state == 2'h2;	// @[src/main/core/exu/LSU.scala:78:30, :88:44, :101:20]
@@ -2625,7 +2746,7 @@ module ysyx_24080032_iCache(	// @[src/main/cache/iCache.scala:36:7]
   reg  [31:0] icache_3_set_0_data_0;	// @[src/main/cache/iCache.scala:63:25]
   reg  [2:0]  c_state;	// @[src/main/cache/iCache.scala:68:26]
   reg         casez_tmp;	// @[src/main/cache/iCache.scala:75:43]
-  always_comb begin	// @[src/main/cache/iCache.scala:75:43]
+  always @(*) begin	// @[src/main/cache/iCache.scala:75:43]
     casez (req_index)	// @[src/main/cache/iCache.scala:54:32, :75:43]
       2'b00:
         casez_tmp = icache_0_set_0_valid;	// @[src/main/cache/iCache.scala:63:25, :75:43]
@@ -2636,9 +2757,9 @@ module ysyx_24080032_iCache(	// @[src/main/cache/iCache.scala:36:7]
       default:
         casez_tmp = icache_3_set_0_valid;	// @[src/main/cache/iCache.scala:63:25, :75:43]
     endcase	// @[src/main/cache/iCache.scala:54:32, :75:43]
-  end // always_comb
+  end // always @(*)
   reg  [27:0] casez_tmp_0;	// @[src/main/cache/iCache.scala:75:43]
-  always_comb begin	// @[src/main/cache/iCache.scala:75:43]
+  always @(*) begin	// @[src/main/cache/iCache.scala:75:43]
     casez (req_index)	// @[src/main/cache/iCache.scala:54:32, :75:43]
       2'b00:
         casez_tmp_0 = icache_0_set_0_tag;	// @[src/main/cache/iCache.scala:63:25, :75:43]
@@ -2649,9 +2770,9 @@ module ysyx_24080032_iCache(	// @[src/main/cache/iCache.scala:36:7]
       default:
         casez_tmp_0 = icache_3_set_0_tag;	// @[src/main/cache/iCache.scala:63:25, :75:43]
     endcase	// @[src/main/cache/iCache.scala:54:32, :75:43]
-  end // always_comb
+  end // always @(*)
   reg  [31:0] casez_tmp_1;	// @[src/main/cache/iCache.scala:75:43]
-  always_comb begin	// @[src/main/cache/iCache.scala:75:43]
+  always @(*) begin	// @[src/main/cache/iCache.scala:75:43]
     casez (req_index)	// @[src/main/cache/iCache.scala:54:32, :75:43]
       2'b00:
         casez_tmp_1 = icache_0_set_0_data_0;	// @[src/main/cache/iCache.scala:63:25, :75:43]
@@ -2662,7 +2783,7 @@ module ysyx_24080032_iCache(	// @[src/main/cache/iCache.scala:36:7]
       default:
         casez_tmp_1 = icache_3_set_0_data_0;	// @[src/main/cache/iCache.scala:63:25, :75:43]
     endcase	// @[src/main/cache/iCache.scala:54:32, :75:43]
-  end // always_comb
+  end // always @(*)
   wire        hit = casez_tmp_0 == req_tag & casez_tmp;	// @[src/main/cache/iCache.scala:56:30, :75:{43,55}]
   wire        is_sdram_raddr = send_araddr > 32'h9FFFFFFF & send_araddr[31:30] != 2'h3;	// @[src/main/cache/iCache.scala:43:26, :82:{39,69,84}]
   wire        is_ifu_ar_fire = io_in_arvalid & io_in_arready_0;	// @[src/main/cache/iCache.scala:83:40, :168:20, :173:27]
@@ -2677,7 +2798,7 @@ module ysyx_24080032_iCache(	// @[src/main/cache/iCache.scala:36:7]
   wire        _n_state_T_14 = c_state == 3'h2;	// @[src/main/cache/iCache.scala:68:26, :160:42]
   wire        _n_state_T_16 = c_state == 3'h3;	// @[src/main/cache/iCache.scala:68:26, :160:42]
   reg  [2:0]  casez_tmp_2;	// @[src/main/cache/iCache.scala:160:42]
-  always_comb begin	// @[src/main/cache/iCache.scala:160:42]
+  always @(*) begin	// @[src/main/cache/iCache.scala:160:42]
     casez (c_state)	// @[src/main/cache/iCache.scala:68:26, :160:42]
       3'b000:
         casez_tmp_2 =
@@ -2697,7 +2818,7 @@ module ysyx_24080032_iCache(	// @[src/main/cache/iCache.scala:36:7]
       default:
         casez_tmp_2 = 3'h0;	// @[src/main/cache/iCache.scala:160:42]
     endcase	// @[src/main/cache/iCache.scala:68:26, :160:42]
-  end // always_comb
+  end // always @(*)
   wire [2:0]  n_state = casez_tmp_2;	// @[src/main/cache/iCache.scala:69:30, :160:42]
   wire        _GEN = _n_state_T_14 | _n_state_T_16;	// @[src/main/cache/iCache.scala:160:42, :168:20, :248:23, :269:25]
   wire        _GEN_0 = _n_state_T_10 | _n_state_T_12;	// @[src/main/cache/iCache.scala:160:42, :168:20, :248:23]
