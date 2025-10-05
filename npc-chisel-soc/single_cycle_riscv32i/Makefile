@@ -253,9 +253,6 @@ iverilog:
 		make -C ./final_rtl verilog; \
 	} || exit 1
 
-	@echo ">> 合并大文件..."
-	@make -C ./final_rtl verilog
-
 	@echo ">> 切换pc从0x30000000开始..."
 	@sed -i 's/val START_ADDR = "h80000000"/val START_ADDR = "h30000000"/' $(CONFIG_FILE)
 
@@ -273,3 +270,7 @@ iverilog:
 	@vvp $(IVERILOG_OUT)
 	@echo ">> 仿真完成，波形文件生成在: $(IVERILOG_WAVE)"
 
+iverilog_clr:
+	@rm -rf ./iverilog/hex
+	@rm -rf ./iverilog/build
+	@rm -rf ./iverilog/wave
