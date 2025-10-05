@@ -97,7 +97,7 @@ $(TIMING_RPT): $(SCRIPT_DIR)/sta.tcl $(SDC_FILE) $(NETLIST_FIXED_V)
 clean:
 	-rm -rf $(PRJ_PATH)/syn/result/
 
-.PHONY: init syn fix-fanout sta clean verilog
+.PHONY: init syn fix-fanout sta clean verilog iverilog
 
 
 
@@ -189,3 +189,87 @@ save_perf:
 	cat $(PERF_MD) > $(SAVE_MD); \
 	echo -e "本次提交哈希值: $$CURRENT_HASH $(EXPLAIN)" >> $(SAVE_MD); \
 	echo "性能数据保存到: $(SAVE_MD)"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################################################################        IVERILOG        ################################################################
+CONFIG_FILE = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Config.scala
+AM_DIR = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/am-kernels/tests/am-tests
+IVERILOG_DIR = ./iverilog
+
+IVERILOG_TB_SRC = $(IVERILOG_DIR)/tb/tb_top.sv
+IVERILOG_MEM_SRC =  $(IVERILOG_DIR)/mem/axi4_memory.sv #存放额外实现的mem的axi读写接口
+IVERILOG_V_SRC =  ./final_rtl/ysyx_24080032.sv #存放额外实现的mem的axi读写接口
+
+IVERILOG_ELF_SRC = $(AM_DIR)/build/amtest-riscv32e-npc.elf
+IVERILOG_HEX_SRC = ./iverilog/hex/amtest-riscv32e-npc.hex
+
+IVERILOG_OUT = $(IVERILOG_DIR)/build/top.vvp
+IVERILOG_WAVE = $(IVERILOG_DIR)/wave/top.vcd
+
+iverilog:
+	@echo ">> am-test编译出elf文件..."
+	@make -C $(AM_DIR) ARCH=riscv32e-npc
+
+	@echo ">> 切换pc从0x80000000开始..."
+	@sed -i 's/val START_ADDR = "h30000000"/val START_ADDR = "h80000000"/' $(CONFIG_FILE)
+
+	@echo ">> mill生成v文件..."
+	@{ \
+		set -e; \
+		trap 'echo "\n[!] 发生错误，自动恢复 Config.scala 为 0x30000000"; \
+		      sed -i '\''s/val START_ADDR = "h80000000"/val START_ADDR = "h30000000"/'\'' $(CONFIG_FILE)' EXIT; \
+		make clr; \
+		make verilog; \
+		make -C ./final_rtl verilog; \
+	} || exit 1
+
+	@echo ">> 合并大文件..."
+	@make -C ./final_rtl verilog
+
+	@echo ">> 切换pc从0x30000000开始..."
+	@sed -i 's/val START_ADDR = "h80000000"/val START_ADDR = "h30000000"/' $(CONFIG_FILE)
+
+	@echo ">> 从elf生成hex文件..."
+	@mkdir -p $(dir $(IVERILOG_HEX_SRC))
+	@riscv64-unknown-linux-gnu-objcopy -O verilog --adjust-vma -0x80000000 $(IVERILOG_ELF_SRC) $(IVERILOG_HEX_SRC)
+
+	@echo ">> 开始iverilog编译..."
+	@mkdir -p $(dir $(IVERILOG_OUT))
+	@mkdir -p $(dir $(IVERILOG_WAVE))
+	@iverilog -g2012 -Wall -D__ICARUS__ -o $(IVERILOG_OUT) \
+		$(IVERILOG_TB_SRC) $(IVERILOG_MEM_SRC) $(IVERILOG_V_SRC)
+
+	@echo ">> 编译完成，开始执行仿真..."
+	@vvp $(IVERILOG_OUT)
+	@echo ">> 仿真完成，波形文件生成在: $(IVERILOG_WAVE)"
+
