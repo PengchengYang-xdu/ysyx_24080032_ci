@@ -61,12 +61,27 @@ class IFU extends Module {
     dontTouch(pc_next)
 
     //flush
-    io_flush.flush_flg := io_bj.valid | io_fencei_flush_icache.fencing
+    io_flush.flush_flg := WireDefault(false.B)
+    when(io_bj.valid | io_fencei_flush_icache.fencing){
+        io_flush.flush_flg := true.B
+    }.otherwise{
+        io_flush.flush_flg := false.B
+    }
+
+
     val fencei_flush = io_fencei_flush_icache.fencing
     val reg_pc = RegEnable(pc_next, START_ADDR, io_pipe.out.fire || io_bj.valid || fencei_flush)
 
     val bj_flush = io_bj.valid && (io_bj.target =/= reg_pc)
-    val flush_flg = bj_flush || fencei_flush
+
+
+    val flush_flg = WireDefault(false.B)
+    when(bj_flush || fencei_flush){
+        flush_flg := true.B
+    }.otherwise{
+        flush_flg := false.B
+    }
+
 
     //main process
     val pc_plus4 = reg_pc + 4.U(WORD_LEN.W)

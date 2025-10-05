@@ -40,13 +40,13 @@ class Core extends Module {
     wbu.io_pipe.out.ready := true.B
     val ready_r = RegNext(ifu.io_pipe.in.ready)
 
-    val temp_valid = RegInit(false.B)
+    val valid_default = RegInit(false.B)
     when(ifu.io_pipe.in.ready & ready_r){
-        temp_valid := true.B
+        valid_default := true.B
     }.otherwise{
-        temp_valid := temp_valid
+        valid_default := valid_default
     }
-    ifu.io_pipe.in.valid := temp_valid
+    ifu.io_pipe.in.valid := valid_default
 
     pipelineConnect(ifu.io_pipe.out, idu.io_pipe.in)
     pipelineConnect(idu.io_pipe.out, isu.io_pipe.in)
