@@ -1,25 +1,25 @@
 STUDENT_ID := 24080032
 VERILOG_SRC_DIR := ../vsrc
 OUTPUT_DIR := ./build
-OUTPUT_FILE := $(OUTPUT_DIR)/ysyx_$(STUDENT_ID).sv
+OUTPUT_FILE := $(OUTPUT_DIR)/ysyx_$(STUDENT_ID).v
 
 
 INPUT_FILES := \
-	ysyx_24080032.sv \
-	ysyx_24080032_Core.sv \
-	ysyx_24080032_Xbar.sv \
-	ysyx_24080032_Clint.sv \
-	ysyx_24080032_IFU.sv \
-	ysyx_24080032_IDU.sv \
-	ysyx_24080032_ISU.sv \
-	ysyx_24080032_EXU.sv \
-	ysyx_24080032_WBU.sv \
-	ysyx_24080032_gpr_16x32.sv \
-	ysyx_24080032_CSR.sv \
-	ysyx_24080032_ALU.sv \
-	ysyx_24080032_LSU.sv \
-	ysyx_24080032_iCache.sv \
-	ysyx_24080032_Ebreak.sv
+	ysyx_24080032.v \
+	ysyx_24080032_Core.v \
+	ysyx_24080032_Xbar.v \
+	ysyx_24080032_Clint.v \
+	ysyx_24080032_IFU.v \
+	ysyx_24080032_IDU.v \
+	ysyx_24080032_ISU.v \
+	ysyx_24080032_EXU.v \
+	ysyx_24080032_WBU.v \
+	ysyx_24080032_gpr_16x32.v \
+	ysyx_24080032_CSR.v \
+	ysyx_24080032_ALU.v \
+	ysyx_24080032_LSU.v \
+	ysyx_24080032_iCache.v \
+	ysyx_24080032_Ebreak.v
 
 # ==============================================================================
 # 目标 (Targets)
