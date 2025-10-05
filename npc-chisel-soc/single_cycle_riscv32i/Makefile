@@ -228,7 +228,7 @@ IVERILOG_DIR = ./iverilog
 
 IVERILOG_TB_SRC = $(IVERILOG_DIR)/tb/tb_top.sv
 IVERILOG_MEM_SRC =  $(IVERILOG_DIR)/mem/axi4_memory.sv #存放额外实现的mem的axi读写接口
-IVERILOG_V_SRC =  ./final_rtl/ysyx_24080032.sv #存放额外实现的mem的axi读写接口
+IVERILOG_V_SRC =  ./final_rtl/build/ysyx_24080032.sv #存放额外实现的mem的axi读写接口
 
 IVERILOG_ELF_SRC = $(AM_DIR)/build/amtest-riscv32e-npc.elf
 IVERILOG_HEX_SRC = ./iverilog/hex/amtest-riscv32e-npc.hex
