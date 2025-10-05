@@ -39,7 +39,12 @@ class Core extends Module {
 */
     wbu.io_pipe.out.ready := true.B
     val ready_r = RegNext(ifu.io_pipe.in.ready)
-    ifu.io_pipe.in.valid := RegEnable(true.B, ifu.io_pipe.in.valid, ifu.io_pipe.in.ready & ready_r)
+    val ifu.io_pipe.in.valid = RegInit(false.B)
+    when(ifu.io_pipe.in.ready & ready_r){
+        ifu.io_pipe.in.valid := true.B
+    }.otherwise{
+        ifu.io_pipe.in.valid := ifu.io_pipe.in.valid
+    }
     pipelineConnect(ifu.io_pipe.out, idu.io_pipe.in)
     pipelineConnect(idu.io_pipe.out, isu.io_pipe.in)
     pipelineConnect(isu.io_pipe.out, exu.io_pipe.in)
