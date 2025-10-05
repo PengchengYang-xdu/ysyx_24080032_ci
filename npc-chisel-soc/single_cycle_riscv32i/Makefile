@@ -228,7 +228,9 @@ IVERILOG_DIR = ./iverilog
 
 IVERILOG_TB_SRC = $(IVERILOG_DIR)/tb/tb_top.sv
 IVERILOG_MEM_SRC =  $(IVERILOG_DIR)/mem/axi4_memory.sv #存放额外实现的mem的axi读写接口
-IVERILOG_V_SRC =  ./final_rtl/build/ysyx_24080032.sv #存放额外实现的mem的axi读写接口
+IVERILOG_V_SRC = $(IVERILOG_DIR)/src/ysyx_24080032.sv
+
+IVERILOG_FINAL_V_SRC =  ./final_rtl/build/ysyx_24080032.sv #存放额外实现的mem的axi读写接口
 
 IVERILOG_ELF_SRC = $(AM_DIR)/build/amtest-riscv32e-npc.elf
 IVERILOG_HEX_SRC = ./iverilog/hex/amtest-riscv32e-npc.hex
@@ -249,6 +251,11 @@ iverilog:
 
 	@echo ">> 合并大文件..."
 	@make -C ./final_rtl verilog
+	@cp $(IVERILOG_FINAL_V_SRC) $(dir $(IVERILOG_V_SRC))
+
+	@echo ">> 删除DPI-C ECALL"
+	@sed -i '/import "DPI-C" function void npc_trap();/d' $(IVERILOG_V_SRC)
+	@sed -i "/npc_trap()/c\;" $(IVERILOG_V_SRC)
 
 	@echo ">> 切换pc从0x30000000开始..."
 	@sed -i 's/val START_ADDR = "h80000000"/val START_ADDR = "h30000000"/' $(CONFIG_FILE)
@@ -271,5 +278,6 @@ iverilog:
 
 iverilog_clr:
 	@rm -rf ./iverilog/hex
+	@rm -rf ./iverilog/src
 	@rm -rf ./iverilog/build
 	@rm -rf ./iverilog/wave
