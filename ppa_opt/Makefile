@@ -31,13 +31,13 @@ $(NETLIST_FIXED_V): $(SCRIPT_DIR)/fix-fanout.tcl $(SDC_FILE) $(NETLIST_SYN_V)
 COPY_FILE:
 	@rm -rf $(PRJ_PATH)/syn/result/*
 	@rm -rf $(PRJ_PATH)/vsrc/*
-	@cp /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/final_rtl/build/ysyx_24080032.v $(PRJ_PATH)/vsrc
-	@sed -i '/import "DPI-C" function void npc_trap();/d' $(PRJ_PATH)/vsrc/ysyx_24080032.v
-	@sed -i "/npc_trap()/c\;" $(PRJ_PATH)/vsrc/ysyx_24080032.v
-	# @sed -i "s/\([^a-zA-Z0-9_]\)\(io_pipe_in_bits_id2exe_exe_fun == 5'hB\)/\1(\2)/g" $(PRJ_PATH)/vsrc/EXU.v
-	# @sed -i "s/^\(io_pipe_in_bits_id2exe_exe_fun == 5'hB\)/(\1)/g" $(PRJ_PATH)/vsrc/EXU.v
-	# @sed -i "s/\([^a-zA-Z0-9_]\)\(io_pipe_in_bits_id2exe_exe_fun == 5'hD\)/\1(\2)/g" $(PRJ_PATH)/vsrc/EXU.v
-	# @sed -i "s/^\(io_pipe_in_bits_id2exe_exe_fun == 5'hD\)/(\1)/g" $(PRJ_PATH)/vsrc/EXU.v
+	@cp /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/final_rtl/build/ysyx_24080032.sv $(PRJ_PATH)/vsrc
+	@sed -i '/import "DPI-C" function void npc_trap();/d' $(PRJ_PATH)/vsrc/ysyx_24080032.sv
+	@sed -i "/npc_trap()/c\;" $(PRJ_PATH)/vsrc/ysyx_24080032.sv
+	# @sed -i "s/\([^a-zA-Z0-9_]\)\(io_pipe_in_bits_id2exe_exe_fun == 5'hB\)/\1(\2)/g" $(PRJ_PATH)/vsrc/EXU.sv
+	# @sed -i "s/^\(io_pipe_in_bits_id2exe_exe_fun == 5'hB\)/(\1)/g" $(PRJ_PATH)/vsrc/EXU.sv
+	# @sed -i "s/\([^a-zA-Z0-9_]\)\(io_pipe_in_bits_id2exe_exe_fun == 5'hD\)/\1(\2)/g" $(PRJ_PATH)/vsrc/EXU.sv
+	# @sed -i "s/^\(io_pipe_in_bits_id2exe_exe_fun == 5'hD\)/(\1)/g" $(PRJ_PATH)/vsrc/EXU.sv
 
 GEN_NPC:
 	@make -C /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i verilog
@@ -68,7 +68,7 @@ $(TIMING_RPT): $(SCRIPT_DIR)/sta.tcl $(SDC_FILE) $(NETLIST_FIXED_V)
 
 
 lint_log := $(PRJ_PATH)/lint/lint.log
-VSRC_FILE := $(PRJ_PATH)/vsrc/ysyx_24080032.v
+VSRC_FILE := $(PRJ_PATH)/vsrc/ysyx_24080032.sv
 
 lint: $(VSRC_FILE)
 	@echo ">> 关闭 DIFFTEST"
