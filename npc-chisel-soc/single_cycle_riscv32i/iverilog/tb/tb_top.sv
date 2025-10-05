@@ -17,7 +17,7 @@ initial begin
 end
 
 initial begin
-	$dumpfile("../wave/top.vcd");
+	$dumpfile("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/iverilog/wave/top.vcd");
 	$dumpvars(0, tb_top);
 	repeat (1000000) @(posedge clock);
 	$display("TIMEOUT");
@@ -27,7 +27,7 @@ end
 
 reg [1023:0] hex_file;
 initial begin
-    hex_file = "../hex/amtest-riscv32e-npc.hex";
+    hex_file = "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/iverilog/hex/amtest-riscv32e-npc.hex";
     $readmemh(hex_file, mem.memory);
 end
 
