@@ -263,7 +263,7 @@ iverilog:
 
 	@echo ">> 从elf生成hex文件..."
 	@mkdir -p $(dir $(IVERILOG_HEX_SRC))
-	@riscv64-unknown-linux-gnu-objcopy -O verilog --adjust-vma 0x0 $(IVERILOG_ELF_SRC) $(IVERILOG_HEX_SRC)
+	@riscv64-unknown-linux-gnu-objcopy -O verilog --adjust-vma -0x80000000 $(IVERILOG_ELF_SRC) $(IVERILOG_HEX_SRC)
 
 	@echo ">> 开始iverilog编译..."
 	@mkdir -p $(dir $(IVERILOG_OUT))

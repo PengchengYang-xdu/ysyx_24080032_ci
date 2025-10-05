@@ -147,7 +147,7 @@ axi4_memory #(
         // AW Channel
         .mem_axi_awvalid (auto_master_out_awvalid),
         .mem_axi_awready (auto_master_out_awready),
-        .mem_axi_awaddr  (auto_master_out_awaddr),
+        .mem_axi_awaddr  (auto_master_out_awaddr - 0x80000000),
         .mem_axi_awprot  (3'b000),
 
         // W Channel
@@ -163,7 +163,7 @@ axi4_memory #(
         // AR Channel
         .mem_axi_arvalid (auto_master_out_arvalid),
         .mem_axi_arready (auto_master_out_arready),
-        .mem_axi_araddr  (auto_master_out_araddr),
+        .mem_axi_araddr  (auto_master_out_araddr - 0x80000000),
         .mem_axi_arprot  (3'b100),
 
         // R Channel
