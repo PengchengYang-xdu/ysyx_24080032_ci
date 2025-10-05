@@ -137,6 +137,11 @@ ysyx_24080032 cpu (
     .io_slave_rlast    (/* unused */)
   );
 
+wire [31:0] araddr_pro;
+assign araddr_pro = auto_master_out_araddr - 32'h80000000;
+wire [31:0] awaddr_pro;
+assign awaddr_pro = auto_master_out_awaddr - 32'h80000000;
+
 axi4_memory #(
         .AXI_TEST   (0),
         .VERBOSE    (0)
@@ -147,7 +152,7 @@ axi4_memory #(
         // AW Channel
         .mem_axi_awvalid (auto_master_out_awvalid),
         .mem_axi_awready (auto_master_out_awready),
-        .mem_axi_awaddr  (auto_master_out_awaddr - 0x80000000),
+        .mem_axi_awaddr  (awaddr_pro),
         .mem_axi_awprot  (3'b000),
 
         // W Channel
@@ -163,7 +168,7 @@ axi4_memory #(
         // AR Channel
         .mem_axi_arvalid (auto_master_out_arvalid),
         .mem_axi_arready (auto_master_out_arready),
-        .mem_axi_araddr  (auto_master_out_araddr - 0x80000000),
+        .mem_axi_araddr  (araddr_pro),
         .mem_axi_arprot  (3'b100),
 
         // R Channel
