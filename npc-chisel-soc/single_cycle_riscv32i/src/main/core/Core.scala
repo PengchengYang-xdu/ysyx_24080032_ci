@@ -47,7 +47,7 @@ class Core extends Module {
 
     // pipelineConnect(isu.io_pipe.out, exu.io_pipe.in)
     isu.io_pipe.out.ready := exu.io_pipe.in.ready
-    exu.io_pipe.in.bits.is2exe_processunit := RegEnable(isu.io_pipe.out.bits.is2exe_processunit, false.B, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
+    exu.io_pipe.in.bits.is2exe_processunit := RegEnable(isu.io_pipe.out.bits.is2exe_processunit, 4.U, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
     exu.io_pipe.in.bits.is2exe_processtpe := RegEnable(isu.io_pipe.out.bits.is2exe_processtpe, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
     exu.io_pipe.in.bits.is2exe_bjtpe := RegEnable(isu.io_pipe.out.bits.is2exe_bjtpe, isu.io_pipe.out.valid && exu.io_pipe.in.ready)
     exu.io_pipe.in.bits.is2exe_rfwe := RegEnable(isu.io_pipe.out.bits.is2exe_rfwe, isu.io_pipe.out.valid && exu.io_pipe.in.ready)

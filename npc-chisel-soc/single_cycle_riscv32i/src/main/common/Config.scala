@@ -25,11 +25,12 @@ object Config{
 }
 
 object ProcessUnit{
-    val ProcessUnit_Width = 2
+    val ProcessUnit_Width = 3
     def ALU = 0.U(ProcessUnit_Width.W)
     def CSR = 1.U(ProcessUnit_Width.W)
     def LSU = 2.U(ProcessUnit_Width.W)
     def MOU = 3.U(ProcessUnit_Width.W)//for fence.i
+    def XXX = 4.U(ProcessUnit_Width.W)
 }
 
 object ProcessTpe{
