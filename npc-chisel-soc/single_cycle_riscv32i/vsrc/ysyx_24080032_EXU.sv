@@ -67,7 +67,7 @@ module ysyx_24080032_EXU(	// @[src/main/core/exu/EXU.scala:66:7]
   output [31:0] io_bj_target,	// @[src/main/core/exu/EXU.scala:68:19]
   output        io_pipe_in_ready,	// @[src/main/core/exu/EXU.scala:69:21]
   input         io_pipe_in_valid,	// @[src/main/core/exu/EXU.scala:69:21]
-  input  [1:0]  io_pipe_in_bits_is2exe_processunit,	// @[src/main/core/exu/EXU.scala:69:21]
+  input  [2:0]  io_pipe_in_bits_is2exe_processunit,	// @[src/main/core/exu/EXU.scala:69:21]
   input  [3:0]  io_pipe_in_bits_is2exe_processtpe,	// @[src/main/core/exu/EXU.scala:69:21]
                 io_pipe_in_bits_is2exe_bjtpe,	// @[src/main/core/exu/EXU.scala:69:21]
   input         io_pipe_in_bits_is2exe_rfwe,	// @[src/main/core/exu/EXU.scala:69:21]
@@ -85,7 +85,7 @@ module ysyx_24080032_EXU(	// @[src/main/core/exu/EXU.scala:66:7]
   output [31:0] io_pipe_out_bits_diff_pc,	// @[src/main/core/exu/EXU.scala:69:21]
                 io_pipe_out_bits_diff_inst,	// @[src/main/core/exu/EXU.scala:69:21]
   output        io_for_valid,	// @[src/main/core/exu/EXU.scala:70:20]
-  output [1:0]  io_for_processunit,	// @[src/main/core/exu/EXU.scala:70:20]
+  output [2:0]  io_for_processunit,	// @[src/main/core/exu/EXU.scala:70:20]
   output        io_for_gpr_we,	// @[src/main/core/exu/EXU.scala:70:20]
   output [31:0] io_for_gpr_wdata,	// @[src/main/core/exu/EXU.scala:70:20]
   output [3:0]  io_for_gpr_waddr,	// @[src/main/core/exu/EXU.scala:70:20]
@@ -107,8 +107,9 @@ module ysyx_24080032_EXU(	// @[src/main/core/exu/EXU.scala:66:7]
   wire        _csr_io_bj_valid;	// @[src/main/core/exu/EXU.scala:89:21]
   wire [31:0] _csr_io_bj_target;	// @[src/main/core/exu/EXU.scala:89:21]
   wire        _n_state_T_1 = in_ready & io_pipe_in_valid;	// @[src/main/core/exu/EXU.scala:163:27, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
-  wire        _gpr_wdata_T = io_pipe_in_bits_is2exe_processunit == 2'h1;	// @[src/main/core/exu/EXU.scala:90:55]
-  wire        _gpr_wdata_T_1 = io_pipe_in_bits_is2exe_processunit == 2'h2;	// @[src/main/core/exu/EXU.scala:117:55]
+  wire        _gpr_wdata_T = io_pipe_in_bits_is2exe_processunit == 3'h1;	// @[src/main/core/exu/EXU.scala:90:55]
+  wire        _io_fencei_is_fencei_T_1 = io_pipe_in_bits_is2exe_processunit == 3'h3;	// @[src/main/core/exu/EXU.scala:103:91]
+  wire        _gpr_wdata_T_1 = io_pipe_in_bits_is2exe_processunit == 3'h2;	// @[src/main/core/exu/EXU.scala:117:55]
   wire        exefsh =
     _csr_io_out_valid | _alu_io_out_valid | _lsu_io_out_valid | io_fencei_fencei_done;	// @[src/main/core/exu/EXU.scala:89:21, :102:21, :116:21, :142:{35,54,73}]
   wire [31:0] gpr_wdata =
@@ -166,8 +167,7 @@ module ysyx_24080032_EXU(	// @[src/main/core/exu/EXU.scala:66:7]
     .io_in_ready           (_alu_io_in_ready),
     .io_in_valid
       (_n_state_T_1
-       & (io_pipe_in_bits_is2exe_processunit == 2'h0
-          | (&io_pipe_in_bits_is2exe_processunit))),	// @[src/main/core/exu/EXU.scala:103:{40,56,76,91}, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
+       & (io_pipe_in_bits_is2exe_processunit == 3'h0 | _io_fencei_is_fencei_T_1)),	// @[src/main/core/exu/EXU.scala:103:{40,56,76,91}, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
     .io_in_bits_op1        (io_pipe_in_bits_is2exe_ch1),
     .io_in_bits_op2        (io_pipe_in_bits_is2exe_ch2),
     .io_in_bits_processtpe (io_pipe_in_bits_is2exe_processtpe),
@@ -223,7 +223,7 @@ module ysyx_24080032_EXU(	// @[src/main/core/exu/EXU.scala:66:7]
   assign io_for_gpr_we = io_pipe_in_bits_is2exe_rfwe;	// @[src/main/core/exu/EXU.scala:66:7]
   assign io_for_gpr_wdata = gpr_wdata;	// @[src/main/core/exu/EXU.scala:66:7, :143:24]
   assign io_for_gpr_waddr = io_pipe_in_bits_is2exe_rd_addr;	// @[src/main/core/exu/EXU.scala:66:7]
-  assign io_fencei_is_fencei = _n_state_T_1 & (&io_pipe_in_bits_is2exe_processunit);	// @[src/main/core/exu/EXU.scala:66:7, :103:91, :130:44, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
+  assign io_fencei_is_fencei = _n_state_T_1 & _io_fencei_is_fencei_T_1;	// @[src/main/core/exu/EXU.scala:66:7, :103:91, :130:44, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
   assign io_fencei_flush_exu_fencei_flush_target = _alu_io_out_bits_alu_out;	// @[src/main/core/exu/EXU.scala:66:7, :102:21]
 endmodule
 

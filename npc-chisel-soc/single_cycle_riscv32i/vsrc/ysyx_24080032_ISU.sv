@@ -48,7 +48,7 @@ module ysyx_24080032_ISU(	// @[src/main/core/isu/ISU.scala:56:7]
                 reset,	// @[src/main/core/isu/ISU.scala:56:7]
   output        io_pipe_in_ready,	// @[src/main/core/isu/ISU.scala:57:21]
   input         io_pipe_in_valid,	// @[src/main/core/isu/ISU.scala:57:21]
-  input  [1:0]  io_pipe_in_bits_id2is_processunit,	// @[src/main/core/isu/ISU.scala:57:21]
+  input  [2:0]  io_pipe_in_bits_id2is_processunit,	// @[src/main/core/isu/ISU.scala:57:21]
   input  [3:0]  io_pipe_in_bits_id2is_processtpe,	// @[src/main/core/isu/ISU.scala:57:21]
                 io_pipe_in_bits_id2is_bjtpe,	// @[src/main/core/isu/ISU.scala:57:21]
   input         io_pipe_in_bits_id2is_rfwe,	// @[src/main/core/isu/ISU.scala:57:21]
@@ -64,7 +64,7 @@ module ysyx_24080032_ISU(	// @[src/main/core/isu/ISU.scala:56:7]
                 io_pipe_in_bits_diff_inst,	// @[src/main/core/isu/ISU.scala:57:21]
   input         io_pipe_out_ready,	// @[src/main/core/isu/ISU.scala:57:21]
   output        io_pipe_out_valid,	// @[src/main/core/isu/ISU.scala:57:21]
-  output [1:0]  io_pipe_out_bits_is2exe_processunit,	// @[src/main/core/isu/ISU.scala:57:21]
+  output [2:0]  io_pipe_out_bits_is2exe_processunit,	// @[src/main/core/isu/ISU.scala:57:21]
   output [3:0]  io_pipe_out_bits_is2exe_processtpe,	// @[src/main/core/isu/ISU.scala:57:21]
                 io_pipe_out_bits_is2exe_bjtpe,	// @[src/main/core/isu/ISU.scala:57:21]
   output        io_pipe_out_bits_is2exe_rfwe,	// @[src/main/core/isu/ISU.scala:57:21]
@@ -78,7 +78,7 @@ module ysyx_24080032_ISU(	// @[src/main/core/isu/ISU.scala:56:7]
   input  [31:0] io_gpr_wdata,	// @[src/main/core/isu/ISU.scala:58:16]
   input  [3:0]  io_gpr_waddr,	// @[src/main/core/isu/ISU.scala:58:16]
   input         io_for_ex_valid,	// @[src/main/core/isu/ISU.scala:59:23]
-  input  [1:0]  io_for_ex_processunit,	// @[src/main/core/isu/ISU.scala:59:23]
+  input  [2:0]  io_for_ex_processunit,	// @[src/main/core/isu/ISU.scala:59:23]
   input         io_for_ex_gpr_we,	// @[src/main/core/isu/ISU.scala:59:23]
   input  [31:0] io_for_ex_gpr_wdata,	// @[src/main/core/isu/ISU.scala:59:23]
   input  [3:0]  io_for_ex_gpr_waddr,	// @[src/main/core/isu/ISU.scala:59:23]
@@ -88,86 +88,82 @@ module ysyx_24080032_ISU(	// @[src/main/core/isu/ISU.scala:56:7]
   input         io_flush_flush_flg	// @[src/main/core/isu/ISU.scala:61:22]
 );
 
-  wire        io_pipe_out_valid_0;	// @[src/main/core/isu/ISU.scala:170:36]
+  wire        io_pipe_out_valid_0;	// @[src/main/core/isu/ISU.scala:175:36]
   wire [31:0] _gpr_ext_R0_data;	// @[src/main/core/isu/GPR.scala:11:18]
   wire [31:0] _gpr_ext_R1_data;	// @[src/main/core/isu/GPR.scala:11:18]
-  wire        _rs1_data_T = io_pipe_in_bits_id2is_rs1_addr == 4'h0;	// @[src/main/core/isu/GPR.scala:12:44]
-  wire        validForEX = io_for_ex_valid & ~io_for_ex_gpr_we;	// @[src/main/core/isu/ISU.scala:89:{38,59}]
+  wire [31:0] rs1_data =
+    io_pipe_in_bits_id2is_rs1_addr == 4'h0 ? 32'h0 : _gpr_ext_R1_data;	// @[src/main/core/isu/GPR.scala:11:18, :12:{38,44}]
+  wire [31:0] rs2_data =
+    io_pipe_in_bits_id2is_rs2_addr == 4'h0 ? 32'h0 : _gpr_ext_R0_data;	// @[src/main/core/isu/GPR.scala:11:18, :12:{38,44}]
+  wire        validForEX = io_for_ex_valid & ~io_for_ex_gpr_we;	// @[src/main/core/isu/ISU.scala:91:{38,59}]
   wire        rs1DependEX =
     (|io_pipe_in_bits_id2is_rs1_addr)
-    & io_pipe_in_bits_id2is_rs1_addr == io_for_ex_gpr_waddr & validForEX;	// @[src/main/core/isu/ISU.scala:88:{71,80,89,102}, :89:38]
+    & io_pipe_in_bits_id2is_rs1_addr == io_for_ex_gpr_waddr & validForEX;	// @[src/main/core/isu/ISU.scala:90:{71,80,89,102}, :91:38]
   wire        rs2DependEX =
     (|io_pipe_in_bits_id2is_rs2_addr)
-    & io_pipe_in_bits_id2is_rs2_addr == io_for_ex_gpr_waddr & validForEX;	// @[src/main/core/isu/ISU.scala:88:{71,80,89,102}, :89:38]
-  wire        _rs2ForEX_T = io_for_ex_processunit != 2'h1;	// @[src/main/core/isu/ISU.scala:90:43, :98:35]
-  wire        rs1ForEX = rs1DependEX & _rs2ForEX_T;	// @[src/main/core/isu/ISU.scala:88:{80,102}, :90:43, :98:{32,35}]
-  wire        rs2ForEX = rs2DependEX & _rs2ForEX_T;	// @[src/main/core/isu/ISU.scala:88:{80,102}, :90:43, :98:35, :99:32]
-  wire        _GEN = io_for_ex_processunit != 2'h1;	// @[src/main/core/isu/ISU.scala:90:43]
+    & io_pipe_in_bits_id2is_rs2_addr == io_for_ex_gpr_waddr & validForEX;	// @[src/main/core/isu/ISU.scala:90:{71,80,89,102}, :91:38]
+  wire        _rs2ForEX_T = io_for_ex_processunit != 3'h1;	// @[src/main/core/isu/ISU.scala:92:43, :100:35]
+  wire        rs1ForEX = rs1DependEX & _rs2ForEX_T;	// @[src/main/core/isu/ISU.scala:90:{80,102}, :92:43, :100:{32,35}]
+  wire        rs2ForEX = rs2DependEX & _rs2ForEX_T;	// @[src/main/core/isu/ISU.scala:90:{80,102}, :92:43, :100:35, :101:32]
+  wire        _GEN = io_for_ex_processunit != 3'h1;	// @[src/main/core/isu/ISU.scala:92:43]
   wire        rs1ForWB =
     (|io_pipe_in_bits_id2is_rs1_addr)
     & io_pipe_in_bits_id2is_rs1_addr == io_for_wb_gpr_waddr & ~io_for_wb_gpr_we
-    & (_GEN | ~rs1DependEX);	// @[src/main/core/isu/ISU.scala:88:{71,80,89,102}, :90:43, :94:39, :100:{32,38,50}]
+    & (_GEN | ~rs1DependEX);	// @[src/main/core/isu/ISU.scala:90:{71,80,89,102}, :92:43, :96:39, :102:{32,38,50}]
   wire        rs2ForWB =
     (|io_pipe_in_bits_id2is_rs2_addr)
     & io_pipe_in_bits_id2is_rs2_addr == io_for_wb_gpr_waddr & ~io_for_wb_gpr_we
-    & (_GEN | ~rs2DependEX);	// @[src/main/core/isu/ISU.scala:88:{71,80,89,102}, :90:43, :94:39, :101:{32,38,50}]
+    & (_GEN | ~rs2DependEX);	// @[src/main/core/isu/ISU.scala:90:{71,80,89,102}, :92:43, :96:39, :103:{32,38,50}]
   reg  [15:0] busy;	// @[src/main/core/isu/GPR.scala:26:21]
-  wire        _n_state_T_2 = io_pipe_out_ready & io_pipe_out_valid_0;	// @[src/main/core/isu/ISU.scala:170:36, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
-  wire        _ch3_rs1_T = rs1ForEX | rs1ForWB;	// @[src/main/core/isu/ISU.scala:88:{80,102}, :98:32, :100:32, :127:75]
-  wire        _ch2_T_6 = io_pipe_in_bits_id2is_ch2tpe == 2'h0;	// @[src/main/core/isu/ISU.scala:132:39]
+  wire [15:0] _ch3Ready_T_3 = busy >> io_pipe_in_bits_id2is_rs1_addr;	// @[src/main/core/isu/GPR.scala:26:21, :27:37]
+  wire [15:0] _ch2Ready_T = busy >> io_pipe_in_bits_id2is_rs2_addr;	// @[src/main/core/isu/GPR.scala:26:21, :27:37]
+  wire        isudone =
+    (|{~(_ch3Ready_T_3[0]) | rs1ForEX | rs1ForWB | io_pipe_in_bits_id2is_ch1tpe,
+       ~(_ch2Ready_T[0]) | rs2ForEX | rs2ForWB,
+       io_pipe_in_bits_id2is_ch2tpe})
+    | (|{~((|io_pipe_in_bits_id2is_bjtpe) | io_pipe_in_bits_id2is_processunit == 3'h2),
+         io_pipe_in_bits_id2is_bjtpe}) | ~(_ch3Ready_T_3[0]) | rs1ForEX | rs1ForWB;	// @[src/main/core/isu/GPR.scala:27:37, src/main/core/isu/ISU.scala:90:{80,102}, :100:32, :101:32, :102:32, :103:32, :106:{20,41,53,65}, :107:{20,41,53,65,97}, :108:{46,50,87}, :109:{20,28,63,67,88,100}, :111:{28,40}]
+  wire [30:0] _wbClearMask_T_8 = 31'h1 << io_for_wb_gpr_waddr;	// @[src/main/core/isu/GPR.scala:28:41]
+  wire [15:0] wbClearMask =
+    io_for_wb_gpr_we | (|io_for_wb_gpr_waddr) & io_for_wb_gpr_waddr == io_for_ex_gpr_waddr
+    & ~io_for_ex_gpr_we
+      ? 16'h0
+      : _wbClearMask_T_8[15:0];	// @[src/main/core/isu/GPR.scala:28:{41,48}, src/main/core/isu/ISU.scala:90:{71,80,89,102}, :91:59, :114:26]
+  wire        _n_state_T_2 = io_pipe_out_ready & io_pipe_out_valid_0;	// @[src/main/core/isu/ISU.scala:175:36, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
+  wire [30:0] _isuFireSetMask_T_1 = 31'h1 << io_pipe_in_bits_id2is_rd_addr;	// @[src/main/core/isu/GPR.scala:28:41]
+  wire [15:0] isuFireSetMask = _n_state_T_2 ? _isuFireSetMask_T_1[15:0] : 16'h0;	// @[src/main/core/isu/GPR.scala:28:{41,48}, src/main/core/isu/ISU.scala:115:29, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
+  wire        _ch3_rs1_T = rs1ForEX | rs1ForWB;	// @[src/main/core/isu/ISU.scala:90:{80,102}, :100:32, :102:32, :132:75]
+  wire        _ch2_T_6 = io_pipe_in_bits_id2is_ch2tpe == 2'h0;	// @[src/main/core/isu/ISU.scala:137:39]
   wire [31:0] _ch2_T_11 =
-    io_pipe_in_bits_id2is_ch2tpe == 2'h1 ? io_pipe_in_bits_id2is_imm : 32'h0;	// @[src/main/core/isu/ISU.scala:90:43, :129:20, :130:39]
+    io_pipe_in_bits_id2is_ch2tpe == 2'h1 ? io_pipe_in_bits_id2is_imm : 32'h0;	// @[src/main/core/isu/ISU.scala:134:20, :135:39]
   wire [31:0] _ch2_T_20 =
     {_ch2_T_11[31:12],
      _ch2_T_11[11:0]
        | ((&io_pipe_in_bits_id2is_ch2tpe) ? io_pipe_in_bits_id2is_csr_addr : 12'h0)}
     | (_ch2_T_6 & rs2ForEX ? io_for_ex_gpr_wdata : 32'h0)
     | (_ch2_T_6 & rs2ForWB ? io_for_wb_gpr_wdata : 32'h0)
-    | (~(_ch2_T_6 & ~(rs2ForEX | rs2ForWB)) | io_pipe_in_bits_id2is_rs2_addr == 4'h0
-         ? 32'h0
-         : _gpr_ext_R0_data);	// @[src/main/core/isu/GPR.scala:11:18, :12:44, src/main/core/isu/ISU.scala:88:{80,102}, :99:32, :101:32, :129:20, :131:39, :132:{39,61}, :133:61, :134:{61,64,75}]
-  reg         in_ready;	// @[src/main/core/isu/ISU.scala:167:27]
-  reg         out_valid;	// @[src/main/core/isu/ISU.scala:168:28]
-  assign io_pipe_out_valid_0 = out_valid & ~io_flush_flush_flg;	// @[src/main/core/isu/ISU.scala:168:28, :170:{36,39}]
-  reg         c_state;	// @[src/main/core/isu/ISU.scala:173:26]
+    | (_ch2_T_6 & ~(rs2ForEX | rs2ForWB) ? rs2_data : 32'h0);	// @[src/main/core/isu/GPR.scala:12:38, src/main/core/isu/ISU.scala:90:{80,102}, :101:32, :103:32, :134:20, :136:39, :137:{39,61}, :138:61, :139:{61,64,75}]
+  reg         in_ready;	// @[src/main/core/isu/ISU.scala:172:27]
+  reg         out_valid;	// @[src/main/core/isu/ISU.scala:173:28]
+  assign io_pipe_out_valid_0 = out_valid & ~io_flush_flush_flg;	// @[src/main/core/isu/ISU.scala:173:28, :175:{36,39}]
+  reg         c_state;	// @[src/main/core/isu/ISU.scala:178:26]
   wire        n_state =
-    ~io_flush_flush_flg & (c_state ? ~_n_state_T_2 : in_ready & io_pipe_in_valid);	// @[src/main/core/isu/ISU.scala:167:27, :173:26, :174:30, :179:29, :180:17, :182:{17,55}, :184:37, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
-  wire [15:0] _ch3Ready_T_3 = busy >> io_pipe_in_bits_id2is_rs1_addr;	// @[src/main/core/isu/GPR.scala:26:21, :27:37]
-  wire [30:0] _wbClearMask_T_8 = 31'h1 << io_for_wb_gpr_waddr;	// @[src/main/core/isu/GPR.scala:28:41]
-  wire [30:0] _isuFireSetMask_T_1 = 31'h1 << io_pipe_in_bits_id2is_rd_addr;	// @[src/main/core/isu/GPR.scala:28:41]
-  wire [15:0] _ch2Ready_T = busy >> io_pipe_in_bits_id2is_rs2_addr;	// @[src/main/core/isu/GPR.scala:26:21, :27:37]
+    ~io_flush_flush_flg & (c_state ? ~_n_state_T_2 : in_ready & io_pipe_in_valid);	// @[src/main/core/isu/ISU.scala:172:27, :178:26, :179:30, :184:29, :185:17, :187:{17,55}, :189:37, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
   always @(posedge clock) begin	// @[src/main/core/isu/ISU.scala:56:7]
     if (reset) begin	// @[src/main/core/isu/ISU.scala:56:7]
       busy <= 16'h0;	// @[src/main/core/isu/GPR.scala:26:21]
-      in_ready <= 1'h0;	// @[src/main/core/isu/ISU.scala:56:7, :167:27]
-      out_valid <= 1'h0;	// @[src/main/core/isu/ISU.scala:56:7, :168:28]
-      c_state <= 1'h0;	// @[src/main/core/isu/ISU.scala:56:7, :173:26]
+      in_ready <= 1'h0;	// @[src/main/core/isu/ISU.scala:56:7, :172:27]
+      out_valid <= 1'h0;	// @[src/main/core/isu/ISU.scala:56:7, :173:28]
+      c_state <= 1'h0;	// @[src/main/core/isu/ISU.scala:56:7, :178:26]
     end
     else begin	// @[src/main/core/isu/ISU.scala:56:7]
       busy <=
         io_flush_flush_flg
           ? 16'h0
-          : {busy[15:1]
-               & ~(io_for_wb_gpr_we | (|io_for_wb_gpr_waddr)
-                   & io_for_wb_gpr_waddr == io_for_ex_gpr_waddr & ~io_for_ex_gpr_we
-                     ? 15'h0
-                     : _wbClearMask_T_8[15:1])
-               | (_n_state_T_2 ? _isuFireSetMask_T_1[15:1] : 15'h0),
-             1'h0};	// @[src/main/core/isu/GPR.scala:26:21, :28:{41,48}, :34:{10,16,24,26,38}, src/main/core/isu/ISU.scala:56:7, :88:{71,80,89,102}, :89:59, :111:26, :112:29, :113:31, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
-      in_ready <= ~n_state | ~n_state & in_ready;	// @[src/main/core/isu/ISU.scala:167:27, :174:30, :188:20, :190:22, :194:22]
-      out_valid <=
-        n_state
-        & (n_state
-             ? ((|{~(_ch3Ready_T_3[0]) | rs1ForEX | rs1ForWB
-                     | io_pipe_in_bits_id2is_ch1tpe,
-                   ~(_ch2Ready_T[0]) | rs2ForEX | rs2ForWB,
-                   io_pipe_in_bits_id2is_ch2tpe})
-                | (|{~((|io_pipe_in_bits_id2is_bjtpe)
-                       | io_pipe_in_bits_id2is_processunit == 2'h2),
-                     io_pipe_in_bits_id2is_bjtpe}) | ~(_ch3Ready_T_3[0]) | rs1ForEX
-                | rs1ForWB) & ~io_flush_flush_flg
-             : out_valid);	// @[src/main/core/isu/GPR.scala:27:37, src/main/core/isu/ISU.scala:88:{80,102}, :98:32, :99:32, :100:32, :101:32, :104:{20,41,53,65}, :105:{20,41,53,65,97}, :106:{46,50,87}, :107:{20,28,63,67,88,100}, :109:{28,40}, :168:28, :170:39, :174:30, :188:20, :191:23, :195:{23,44}]
-      c_state <= n_state;	// @[src/main/core/isu/ISU.scala:173:26, :174:30]
+          : {busy[15:1] & ~(wbClearMask[15:1]) | isuFireSetMask[15:1], 1'h0};	// @[src/main/core/isu/GPR.scala:26:21, :34:{10,16,24,26,38}, src/main/core/isu/ISU.scala:56:7, :114:26, :115:29, :118:31]
+      in_ready <= ~n_state | ~n_state & in_ready;	// @[src/main/core/isu/ISU.scala:172:27, :179:30, :193:20, :195:22, :199:22]
+      out_valid <= n_state & (n_state ? isudone & ~io_flush_flush_flg : out_valid);	// @[src/main/core/isu/ISU.scala:111:40, :173:28, :175:39, :179:30, :193:20, :196:23, :200:{23,44}]
+      c_state <= n_state;	// @[src/main/core/isu/ISU.scala:178:26, :179:30]
     end
   end // always @(posedge)
   `ifdef ENABLE_INITIAL_REG_	// @[src/main/core/isu/ISU.scala:56:7]
@@ -182,9 +178,9 @@ module ysyx_24080032_ISU(	// @[src/main/core/isu/ISU.scala:56:7]
       `ifdef RANDOMIZE_REG_INIT	// @[src/main/core/isu/ISU.scala:56:7]
         _RANDOM[/*Zero width*/ 1'b0] = `RANDOM;	// @[src/main/core/isu/ISU.scala:56:7]
         busy = _RANDOM[/*Zero width*/ 1'b0][15:0];	// @[src/main/core/isu/GPR.scala:26:21, src/main/core/isu/ISU.scala:56:7]
-        in_ready = _RANDOM[/*Zero width*/ 1'b0][16];	// @[src/main/core/isu/GPR.scala:26:21, src/main/core/isu/ISU.scala:56:7, :167:27]
-        out_valid = _RANDOM[/*Zero width*/ 1'b0][17];	// @[src/main/core/isu/GPR.scala:26:21, src/main/core/isu/ISU.scala:56:7, :168:28]
-        c_state = _RANDOM[/*Zero width*/ 1'b0][18];	// @[src/main/core/isu/GPR.scala:26:21, src/main/core/isu/ISU.scala:56:7, :173:26]
+        in_ready = _RANDOM[/*Zero width*/ 1'b0][16];	// @[src/main/core/isu/GPR.scala:26:21, src/main/core/isu/ISU.scala:56:7, :172:27]
+        out_valid = _RANDOM[/*Zero width*/ 1'b0][17];	// @[src/main/core/isu/GPR.scala:26:21, src/main/core/isu/ISU.scala:56:7, :173:28]
+        c_state = _RANDOM[/*Zero width*/ 1'b0][18];	// @[src/main/core/isu/GPR.scala:26:21, src/main/core/isu/ISU.scala:56:7, :178:26]
       `endif // RANDOMIZE_REG_INIT
     end // initial
     `ifdef FIRRTL_AFTER_INITIAL	// @[src/main/core/isu/ISU.scala:56:7]
@@ -201,12 +197,12 @@ module ysyx_24080032_ISU(	// @[src/main/core/isu/ISU.scala:56:7]
     .R1_clk  (clock),
     .R1_data (_gpr_ext_R1_data),
     .W0_addr (io_gpr_waddr),
-    .W0_en   (~io_gpr_we & (|io_gpr_waddr)),	// @[src/main/core/isu/ISU.scala:74:{20,36,52}]
+    .W0_en   (~io_gpr_we & (|io_gpr_waddr)),	// @[src/main/core/isu/ISU.scala:76:{20,36,52}]
     .W0_clk  (clock),
     .W0_data (io_gpr_wdata)
   );	// @[src/main/core/isu/GPR.scala:11:18]
-  assign io_pipe_in_ready = in_ready;	// @[src/main/core/isu/ISU.scala:56:7, :167:27]
-  assign io_pipe_out_valid = io_pipe_out_valid_0;	// @[src/main/core/isu/ISU.scala:56:7, :170:36]
+  assign io_pipe_in_ready = in_ready;	// @[src/main/core/isu/ISU.scala:56:7, :172:27]
+  assign io_pipe_out_valid = io_pipe_out_valid_0;	// @[src/main/core/isu/ISU.scala:56:7, :175:36]
   assign io_pipe_out_bits_is2exe_processunit = io_pipe_in_bits_id2is_processunit;	// @[src/main/core/isu/ISU.scala:56:7]
   assign io_pipe_out_bits_is2exe_processtpe = io_pipe_in_bits_id2is_processtpe;	// @[src/main/core/isu/ISU.scala:56:7]
   assign io_pipe_out_bits_is2exe_bjtpe = io_pipe_in_bits_id2is_bjtpe;	// @[src/main/core/isu/ISU.scala:56:7]
@@ -216,18 +212,15 @@ module ysyx_24080032_ISU(	// @[src/main/core/isu/ISU.scala:56:7]
     (io_pipe_in_bits_id2is_ch1tpe ? io_pipe_in_bits_id2is_reg_pc : 32'h0)
     | (~io_pipe_in_bits_id2is_ch1tpe & rs1ForEX ? io_for_ex_gpr_wdata : 32'h0)
     | (~io_pipe_in_bits_id2is_ch1tpe & rs1ForWB ? io_for_wb_gpr_wdata : 32'h0)
-    | (io_pipe_in_bits_id2is_ch1tpe | _ch3_rs1_T | _rs1_data_T
-         ? 32'h0
-         : _gpr_ext_R1_data);	// @[src/main/core/isu/GPR.scala:11:18, :12:44, src/main/core/isu/ISU.scala:56:7, :88:{80,102}, :98:32, :100:32, :123:20, :125:{39,61}, :126:61, :127:75]
+    | (io_pipe_in_bits_id2is_ch1tpe | _ch3_rs1_T ? 32'h0 : rs1_data);	// @[src/main/core/isu/GPR.scala:12:38, src/main/core/isu/ISU.scala:56:7, :90:{80,102}, :100:32, :102:32, :128:20, :130:{39,61}, :131:61, :132:75]
   assign io_pipe_out_bits_is2exe_ch2 =
-    {_ch2_T_20[31:3], _ch2_T_20[2:0] | {io_pipe_in_bits_id2is_ch2tpe == 2'h2, 2'h0}};	// @[src/main/core/isu/ISU.scala:56:7, :106:87, :129:20, :135:39]
+    {_ch2_T_20[31:3], _ch2_T_20[2:0] | {io_pipe_in_bits_id2is_ch2tpe == 2'h2, 2'h0}};	// @[src/main/core/isu/ISU.scala:56:7, :134:20, :140:39]
   assign io_pipe_out_bits_is2exe_ch3 =
     ((|io_pipe_in_bits_id2is_bjtpe) & io_pipe_in_bits_id2is_bjtpe != 4'h9
        ? io_pipe_in_bits_id2is_reg_pc
        : (rs1ForEX ? io_for_ex_gpr_wdata : 32'h0)
-         | (rs1ForWB ? io_for_wb_gpr_wdata : 32'h0)
-         | (_ch3_rs1_T | _rs1_data_T ? 32'h0 : _gpr_ext_R1_data))
-    + io_pipe_in_bits_id2is_imm;	// @[src/main/core/isu/GPR.scala:11:18, :12:44, src/main/core/isu/ISU.scala:56:7, :88:{80,102}, :98:32, :100:32, :106:46, :127:75, :137:24, :142:{18,51,82,138}]
+         | (rs1ForWB ? io_for_wb_gpr_wdata : 32'h0) | (_ch3_rs1_T ? 32'h0 : rs1_data))
+    + io_pipe_in_bits_id2is_imm;	// @[src/main/core/isu/GPR.scala:12:38, src/main/core/isu/ISU.scala:56:7, :90:{80,102}, :100:32, :102:32, :108:46, :132:75, :142:24, :147:{18,51,82,138}]
   assign io_pipe_out_bits_diff_pc = io_pipe_in_bits_diff_pc;	// @[src/main/core/isu/ISU.scala:56:7]
   assign io_pipe_out_bits_diff_inst = io_pipe_in_bits_diff_inst;	// @[src/main/core/isu/ISU.scala:56:7]
 endmodule
