@@ -35,18 +35,18 @@ end
 
 
 //检测退出
-always @(posedge clock) begin
-    if(cpu.core.wbu.io_pipe_out_valid && cpu.core.exu.io_pipe_out_bits_diff_inst == 32'h00100073) begin
-        if(cpu.core.isu.gpr_ext.Memory[10] == 32'h0) begin
-            $display("hit good trap!");
-            $finish();
-        end
-        else begin
-            $display("hit bad trap!");
-            $finish();
-        end
-    end
-end
+// always @(posedge clock) begin
+//     if(cpu.core.wbu.io_pipe_out_valid && cpu.core.exu.io_pipe_out_bits_diff_inst == 32'h00100073) begin
+//         if(cpu.core.isu.gpr_ext.Memory[10] == 32'h0) begin
+//             $display("hit good trap!");
+//             $finish();
+//         end
+//         else begin
+//             $display("hit bad trap!");
+//             $finish();
+//         end
+//     end
+// end
 
 
 
