@@ -1,5 +1,5 @@
 module axi4_memory #(
-	parameter AXI_TEST = 0,
+    parameter AXI_TEST = 0,
 	parameter VERBOSE = 0
 ) (
 	/* verilator lint_off MULTIDRIVEN */
@@ -27,11 +27,28 @@ module axi4_memory #(
 	input             mem_axi_rready,
 	output reg [31:0] mem_axi_rdata
 );
-	reg [31:0]   memory [0:128*1024/4-1] /* verilator public */;
+
+    parameter DEVICE_BASE     =                32'ha0000000;
+    parameter MMIO_BASE       =                32'ha0000000;
+    parameter SERIAL_PORT     = (DEVICE_BASE + 32'h00003f8);
+    parameter KBD_ADDR        = (DEVICE_BASE + 32'h0000060);
+    parameter RTC_ADDR        = (DEVICE_BASE + 32'h0000048);
+    parameter VGACTL_ADDR     = (DEVICE_BASE + 32'h0000100);
+    parameter AUDIO_ADDR      = (DEVICE_BASE + 32'h0000200);
+    parameter DISK_ADDR       = (DEVICE_BASE + 32'h0000300);
+    parameter FB_ADDR         = (MMIO_BASE   + 32'h1000000);
+    parameter AUDIO_SBUF_ADDR = (MMIO_BASE   + 32'h1200000);
+
+
+
+    parameter MEM_SIZE = 128*128*1024;
+
+
+	reg [31:0]   memory [0:MEM_SIZE/4-1] /* verilator public */;
+
 	reg verbose;
 	initial verbose = $test$plusargs("verbose") || VERBOSE;
-
-	reg axi_test;
+    reg axi_test;
 	initial axi_test = $test$plusargs("axi_test") || AXI_TEST;
 
 	initial begin
@@ -42,7 +59,7 @@ module axi4_memory #(
 		mem_axi_rvalid = 0;
 	end
 
-	reg [63:0] xorshift64_state = 64'd88172645463325252;
+    reg [63:0] xorshift64_state = 64'd88172645463325252;
 
 	task xorshift64_next;
 		begin
@@ -104,7 +121,7 @@ module axi4_memory #(
 	task handle_axi_rvalid; begin
 		if (verbose)
 			$display("RD: ADDR=%08x DATA=%08x%s", latched_raddr, memory[latched_raddr >> 2], latched_rinsn ? " INSN" : "");
-		if (latched_raddr < 128*1024) begin
+		if (latched_raddr < MEM_SIZE) begin
 			mem_axi_rdata <= memory[latched_raddr >> 2];
 			mem_axi_rvalid <= 1;
 			latched_raddr_en = 0;
@@ -117,25 +134,23 @@ module axi4_memory #(
 	task handle_axi_bvalid; begin
 		if (verbose)
 			$display("WR: ADDR=%08x DATA=%08x STRB=%04b", latched_waddr, latched_wdata, latched_wstrb);
-		if (latched_waddr < 128*1024) begin
+		if (latched_waddr < MEM_SIZE) begin
 			if (latched_wstrb[0]) memory[latched_waddr >> 2][ 7: 0] <= latched_wdata[ 7: 0];
 			if (latched_wstrb[1]) memory[latched_waddr >> 2][15: 8] <= latched_wdata[15: 8];
 			if (latched_wstrb[2]) memory[latched_waddr >> 2][23:16] <= latched_wdata[23:16];
 			if (latched_wstrb[3]) memory[latched_waddr >> 2][31:24] <= latched_wdata[31:24];
 		end else
-		if (latched_waddr == 32'h1000_0000) begin//写字符串
-			if (verbose) begin
-				if (32 <= latched_wdata && latched_wdata < 128)
-					$display("OUT: '%c'", latched_wdata[7:0]);
-				else
-					$display("OUT: %3d", latched_wdata);
-			end else begin
-				$write("%c", latched_wdata[7:0]);
-				$fflush();
-			end
-		end else
-		if (latched_waddr == 32'h2000_0000) begin
-			if (latched_wdata == 123456789);
+		if (latched_waddr == (SERIAL_PORT - 32'h80000000)) begin//写字符串
+			$write("%c", latched_wdata[7:0]);
+			$fflush();
+		// end else
+        // if (latched_waddr == (SERIAL_PORT - 32'h80000000)) begin//写字符串
+		// 	$write("%c", latched_wdata[7:0]);
+		// 	$fflush();
+		// end else
+        // if (latched_waddr == (SERIAL_PORT - 32'h80000000)) begin//写字符串
+		// 	$write("%c", latched_wdata[7:0]);
+		// 	$fflush();
 		end else begin
 			$display("OUT-OF-BOUNDS MEMORY WRITE TO %08x", latched_waddr);
 			$finish;
@@ -194,4 +209,13 @@ module axi4_memory #(
 		if (!mem_axi_rvalid && latched_raddr_en && !delay_axi_transaction[3]) handle_axi_rvalid;
 		if (!mem_axi_bvalid && latched_waddr_en && latched_wdata_en && !delay_axi_transaction[4]) handle_axi_bvalid;
 	end
+
+
+
+
+
+
+
+
+
 endmodule
