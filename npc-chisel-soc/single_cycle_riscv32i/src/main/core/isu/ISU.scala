@@ -103,6 +103,7 @@ class ISU extends Module{
     val rs2ForWB = rs2DependWB && Mux(dontForEX, ~rs2DependEX, true.B)
 
     val sb = new ScoreBoard
+    dontTouch(sb)
     val ch1Ready = ~sb.isBusy(rs1_addr) || rs1ForEX || rs1ForWB || io_pipe.in.bits.id2is_ch1tpe =/= CH1Tpe.CH1Tpe_RS1
     val ch2Ready = ~sb.isBusy(rs2_addr) || rs2ForEX || rs2ForWB || io_pipe.in.bits.id2is_ch2tpe =/= CH2Tpe.CH2Tpe_RS2
     val useCh3 = io_pipe.in.bits.id2is_bjtpe.orR || io_pipe.in.bits.id2is_processunit === ProcessUnit.LSU
