@@ -140,17 +140,9 @@ module axi4_memory #(
 			if (latched_wstrb[2]) memory[latched_waddr >> 2][23:16] <= latched_wdata[23:16];
 			if (latched_wstrb[3]) memory[latched_waddr >> 2][31:24] <= latched_wdata[31:24];
 		end else
-		if (latched_waddr == (SERIAL_PORT - 32'h80000000)) begin//写字符串
+		if (latched_waddr == (SERIAL_PORT - 32'h80000000)) begin//目前只实现字符串
 			$write("%c", latched_wdata[7:0]);
 			$fflush();
-		// end else
-        // if (latched_waddr == (SERIAL_PORT - 32'h80000000)) begin//写字符串
-		// 	$write("%c", latched_wdata[7:0]);
-		// 	$fflush();
-		// end else
-        // if (latched_waddr == (SERIAL_PORT - 32'h80000000)) begin//写字符串
-		// 	$write("%c", latched_wdata[7:0]);
-		// 	$fflush();
 		end else begin
 			$display("OUT-OF-BOUNDS MEMORY WRITE TO %08x", latched_waddr);
 			$finish;
