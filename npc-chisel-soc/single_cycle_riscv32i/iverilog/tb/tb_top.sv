@@ -21,7 +21,7 @@ initial begin
 	$dumpvars(0, tb_top);
 	// repeat (1000000) @(posedge clock);
 	// $display("TIMEOUT");
-	$finish;
+	// $finish;
 end
 
 
