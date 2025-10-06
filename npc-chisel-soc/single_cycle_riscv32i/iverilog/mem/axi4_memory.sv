@@ -39,6 +39,16 @@ module axi4_memory #(
     parameter FB_ADDR         = (MMIO_BASE   + 32'h1000000);
     parameter AUDIO_SBUF_ADDR = (MMIO_BASE   + 32'h1200000);
 
+    reg [63:0] rtc_time;
+
+
+    initial begin
+        rtc_time <= 64'h0;
+    end
+    always @(posedge clk) begin
+        rtc_time <= rtc_time + 64'd1000;  // 每周期加1000 ns = 1us
+    end
+
 
 
     parameter MEM_SIZE = 128*128*1024;
@@ -130,12 +140,12 @@ module axi4_memory #(
 
 
 		if (latched_raddr == (RTC_ADDR - 32'h80000000)) begin
-            mem_axi_rdata <= $time & 32'hffffffff;
+            mem_axi_rdata <= rtc_time[31:0];
             mem_axi_rvalid <= 1;
             latched_raddr_en = 0;
         end else
         if (latched_raddr == (RTC_ADDR + 32'h4 - 32'h80000000)) begin
-            mem_axi_rdata <= ($time >> 32) & 32'hffffffff;
+            mem_axi_rdata <= rtc_time[63:32];
             mem_axi_rvalid <= 1;
             latched_raddr_en = 0;
 
