@@ -227,9 +227,9 @@ IVERILOG_DIR = ./iverilog
 
 SIM_OPTION ?= front
 ifeq ($(SIM_OPTION), front)
-	IVERILOG_FINAL_V_SRC =  ./final_rtl/build/ysyx_24080032.sv
+	IVERILOG_FINAL_V_SRC = ./final_rtl/build/ysyx_24080032.sv
 else ifeq ($(SIM_OPTION), netlist)
-    IVERILOG_FINAL_V_SRC =  /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/syn/result/ysyx_24080032-500MHz/ysyx_24080032.v
+    IVERILOG_FINAL_V_SRC = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/syn/result/ysyx_24080032-500MHz/ysyx_24080032.v
 else
     $(error Unknown SIM_OPTION "$(SIM_OPTION)")
 endif
@@ -295,7 +295,7 @@ iverilog:
 	@mkdir -p $(dir $(IVERILOG_OUT))
 	@mkdir -p $(dir $(IVERILOG_WAVE))
 	@iverilog -g2012 -Wall -D__ICARUS__ -o $(IVERILOG_OUT) \
-		$(IVERILOG_TB_SRC) $(IVERILOG_MEM_SRC) $(IVERILOG_V_SRC)
+		$(IVERILOG_TB_SRC) $(IVERILOG_MEM_SRC) $(IVERILOG_V_SRC) /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/syn/nangate45/sim/cells.v
 
 	@echo ">> 编译完成，开始执行仿真..."
 	@vvp $(IVERILOG_OUT)
