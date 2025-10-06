@@ -277,7 +277,7 @@ iverilog:
 	@echo ">> 合并大文件..."
 	@make -C ./final_rtl verilog
 	@mkdir -p $(dir $(IVERILOG_V_SRC))
-	@cp $(IVERILOG_FINAL_V_SRC) $(dir $(IVERILOG_V_SRC))
+	@cp $(IVERILOG_FINAL_V_SRC) $(IVERILOG_V_SRC)
 
 	@echo ">> 删除DPI-C ECALL"
 	@sed -i '/import "DPI-C" function void npc_trap();/d' $(IVERILOG_V_SRC)
