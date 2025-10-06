@@ -225,6 +225,17 @@ save_perf:
 CONFIG_FILE = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Config.scala
 IVERILOG_DIR = ./iverilog
 
+SIM_OPTION ?= front
+ifeq ($(SIM_OPTION), front)
+	IVERILOG_FINAL_V_SRC =  ./final_rtl/build/ysyx_24080032.sv
+else ifeq ($(SIM_OPTION), netlist)
+    IVERILOG_FINAL_V_SRC =  /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/ppa_opt/syn/result/ysyx_24080032-500MHz/ysyx_24080032.v
+else
+    $(error Unknown SIM_OPTION "$(SIM_OPTION)")
+endif
+
+
+
 TARGET ?= amtest
 
 AM_DIR = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/am-kernels/tests/am-tests
@@ -244,8 +255,6 @@ endif
 IVERILOG_TB_SRC = $(IVERILOG_DIR)/tb/tb_top.sv
 IVERILOG_MEM_SRC =  $(IVERILOG_DIR)/mem/axi4_memory.sv #存放额外实现的mem的axi读写接口
 IVERILOG_V_SRC = $(IVERILOG_DIR)/src/ysyx_24080032.sv
-
-IVERILOG_FINAL_V_SRC =  ./final_rtl/build/ysyx_24080032.sv #存放额外实现的mem的axi读写接口
 
 IVERILOG_ELF_SRC = $(TARGET_DIR)/build/$(TARGET)-riscv32e-npc.elf
 IVERILOG_BIN_SRC = $(TARGET_DIR)/build/$(TARGET)-riscv32e-npc.bin
