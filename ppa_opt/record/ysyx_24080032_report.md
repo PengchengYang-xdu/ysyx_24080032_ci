@@ -1,5 +1,5 @@
 ### Report: ysyx_24080032.rpt (first 11 lines)
-Generate the report at 2025-10-06T19:57:41, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
+Generate the report at 2025-10-06T20:19:33, GitVersion: aa25008b3778a76ae1975c839d4cc459f7f7b3b7.
 +----------------------+-------------+------------+------------+---------------+-------+-------+-----------+
 | Endpoint             | Clock Group | Delay Type | Path Delay | Path Required | CPPR  | Slack | Freq(MHz) |
 +----------------------+-------------+------------+------------+---------------+-------+-------+-----------+
