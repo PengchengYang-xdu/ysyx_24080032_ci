@@ -287,7 +287,7 @@ iverilog:
 	@mkdir -p $(dir $(IVERILOG_OUT))
 	@mkdir -p $(dir $(IVERILOG_WAVE))
 	@iverilog -g2012 -Wall -D__ICARUS__ -o $(IVERILOG_OUT) \
-		$(IVERILOG_TB_SRC) $(IVERILOG_MEM_SRC) $(IVERILOG_V_SRC)
+		$(IVERILOG_TB_SRC) $(IVERILOG_MEM_SRC) $(IVERILOG_V_SRC) ../../ppa_opt/syn/nangate45/sim/cells.v
 
 	@echo ">> 编译完成，开始执行仿真..."
 	@vvp $(IVERILOG_OUT)
