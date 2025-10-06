@@ -103,7 +103,6 @@ class ISU extends Module{
     val rs2ForWB = rs2DependWB && Mux(dontForEX, ~rs2DependEX, true.B)
 
     val sb = new ScoreBoard
-    dontTouch(sb)
     val ch1Ready = ~sb.isBusy(rs1_addr) || rs1ForEX || rs1ForWB || io_pipe.in.bits.id2is_ch1tpe =/= CH1Tpe.CH1Tpe_RS1
     val ch2Ready = ~sb.isBusy(rs2_addr) || rs2ForEX || rs2ForWB || io_pipe.in.bits.id2is_ch2tpe =/= CH2Tpe.CH2Tpe_RS2
     val useCh3 = io_pipe.in.bits.id2is_bjtpe.orR || io_pipe.in.bits.id2is_processunit === ProcessUnit.LSU
@@ -114,6 +113,8 @@ class ISU extends Module{
 
     val wbClearMask = Mux(io_for_wb.gpr_we === RFwe.RFwe_y && !isDepend(io_for_wb.gpr_waddr, io_for_ex.gpr_waddr, io_for_ex.gpr_we === RFwe.RFwe_y), sb.mask(io_for_wb.gpr_waddr), 0.U(GPR_NUM.W))
     val isuFireSetMask = Mux(io_pipe.out.fire, sb.mask(io_pipe.in.bits.id2is_rd_addr), 0.U)
+    dontTouch(wbClearMask)
+    dontTouch(isuFireSetMask)
     when (io_flush.flush_flg) { sb.update(0.U, Fill(GPR_NUM, 1.U(1.W))) }
     .otherwise { sb.update(isuFireSetMask, wbClearMask) }
 
