@@ -245,8 +245,8 @@ IVERILOG_TB_SRC = $(IVERILOG_DIR)/tb/tb_top.sv
 IVERILOG_MEM_SRC =  $(IVERILOG_DIR)/mem/axi4_memory.sv #存放额外实现的mem的axi读写接口
 IVERILOG_V_SRC = $(IVERILOG_DIR)/src/ysyx_24080032.sv
 
-# IVERILOG_FINAL_V_SRC =  ./final_rtl/build/ysyx_24080032.sv #前仿
-IVERILOG_FINAL_V_SRC =  ../../ppa_opt/syn/result/ysyx_24080032-500MHz/ysyx_24080032.v #网表仿真
+IVERILOG_FINAL_V_SRC =  ./final_rtl/build/ysyx_24080032.sv #前仿
+# IVERILOG_FINAL_V_SRC =  ../../ppa_opt/syn/result/ysyx_24080032-500MHz/ysyx_24080032.v #网表仿真
 
 IVERILOG_ELF_SRC = $(TARGET_DIR)/build/$(TARGET)-riscv32e-npc.elf
 IVERILOG_BIN_SRC = $(TARGET_DIR)/build/$(TARGET)-riscv32e-npc.bin
