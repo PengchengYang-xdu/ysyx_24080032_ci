@@ -23,7 +23,7 @@ module ysyx_24080032_ALU(	// @[src/main/core/exu/ALU.scala:25:7]
   wire [31:0] srl_out = io_in_bits_op1 >> _GEN;	// @[src/main/core/exu/ALU.scala:39:36, :40:28]
   wire [62:0] sll_out = {31'h0, io_in_bits_op1} << io_in_bits_op2[4:0];	// @[src/main/core/exu/ALU.scala:30:25, :41:28]
   reg  [31:0] casez_tmp;	// @[src/main/core/exu/ALU.scala:42:58]
-  always_comb begin	// @[src/main/core/exu/ALU.scala:42:58]
+  always @(*) begin	// @[src/main/core/exu/ALU.scala:42:58]
     casez (io_in_bits_processtpe[2:0])	// @[src/main/core/exu/ALU.scala:42:{42,58}]
       3'b000:
         casez_tmp = and_out;	// @[src/main/core/exu/ALU.scala:36:28, :42:58]
@@ -42,7 +42,7 @@ module ysyx_24080032_ALU(	// @[src/main/core/exu/ALU.scala:25:7]
       default:
         casez_tmp = sll_out[31:0];	// @[src/main/core/exu/ALU.scala:41:28, :42:58]
     endcase	// @[src/main/core/exu/ALU.scala:42:{42,58}]
-  end // always_comb
+  end // always @(*)
   wire [31:0] _io_out_bits_alu_out_T_5 =
     io_in_bits_processtpe[3]
       ? add_sub_out[31:0]

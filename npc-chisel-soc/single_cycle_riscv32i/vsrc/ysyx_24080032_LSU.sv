@@ -88,7 +88,7 @@ module ysyx_24080032_LSU(	// @[src/main/core/exu/LSU.scala:29:7]
   reg         bready;	// @[src/main/core/exu/LSU.scala:63:25]
   reg  [1:0]  c_state;	// @[src/main/core/exu/LSU.scala:77:26]
   reg  [1:0]  casez_tmp;	// @[src/main/core/exu/LSU.scala:86:51]
-  always_comb begin	// @[src/main/core/exu/LSU.scala:86:51]
+  always @(*) begin	// @[src/main/core/exu/LSU.scala:86:51]
     casez (c_state)	// @[src/main/core/exu/LSU.scala:77:26, :86:51]
       2'b00:
         casez_tmp = {1'h0, in_ready & io_in_valid};	// @[src/main/core/exu/LSU.scala:48:27, :86:51, :87:44, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
@@ -103,11 +103,11 @@ module ysyx_24080032_LSU(	// @[src/main/core/exu/LSU.scala:29:7]
       default:
         casez_tmp = io_out_ready & out_valid ? 2'h0 : 2'h3;	// @[src/main/core/exu/LSU.scala:49:28, :55:25, :86:51, :89:44, :90:44, src/main/scala/chisel3/util/ReadyValidIO.scala:48:35]
     endcase	// @[src/main/core/exu/LSU.scala:77:26, :86:51]
-  end // always_comb
+  end // always @(*)
   wire [1:0]  n_state = casez_tmp;	// @[src/main/core/exu/LSU.scala:78:30, :86:51]
   reg  [31:0] dmem_rdata;	// @[src/main/core/exu/LSU.scala:93:29]
   reg  [1:0]  casez_tmp_0;	// @[src/main/core/exu/LSU.scala:101:20, :112:20]
-  always_comb begin	// @[src/main/core/exu/LSU.scala:55:25, :94:31, :101:20, :112:20, :118:23, :121:20, :131:23, :134:20, :151:20]
+  always @(*) begin	// @[src/main/core/exu/LSU.scala:55:25, :94:31, :101:20, :112:20, :118:23, :121:20, :131:23, :134:20, :151:20]
     casez (n_state)	// @[src/main/core/exu/LSU.scala:55:25, :78:30, :94:31, :101:20, :112:20, :118:23, :121:20, :131:23, :134:20, :151:20]
       2'b00:
         casez_tmp_0 = 2'h2;	// @[src/main/core/exu/LSU.scala:55:25, :88:44, :94:31, :101:20, :112:20, :118:23, :121:20, :131:23, :134:20, :151:20]
@@ -118,10 +118,10 @@ module ysyx_24080032_LSU(	// @[src/main/core/exu/LSU.scala:29:7]
       default:
         casez_tmp_0 = 2'h2;	// @[src/main/core/exu/LSU.scala:55:25, :88:44, :94:31, :101:20, :112:20, :118:23, :121:20, :131:23, :134:20, :151:20]
     endcase	// @[src/main/core/exu/LSU.scala:55:25, :78:30, :94:31, :101:20, :112:20, :118:23, :121:20, :131:23, :134:20, :151:20]
-  end // always_comb
+  end // always @(*)
   reg  [31:0] casez_tmp_1;	// @[src/main/core/exu/LSU.scala:168:72]
   wire [31:0] shift_rdata = dmem_rdata >> {27'h0, io_in_bits_op1[1:0], 3'h0};	// @[src/main/core/exu/LSU.scala:29:7, :93:29, :156:29, :167:34]
-  always_comb begin	// @[src/main/core/exu/LSU.scala:168:72]
+  always @(*) begin	// @[src/main/core/exu/LSU.scala:168:72]
     casez (io_in_bits_processtpe[2:0])	// @[src/main/core/exu/LSU.scala:168:{52,72}]
       3'b000:
         casez_tmp_1 = {{24{shift_rdata[7]}}, shift_rdata[7:0]};	// @[src/main/core/exu/LSU.scala:167:34, :168:72, :169:{24,29,45,62}]
@@ -140,7 +140,7 @@ module ysyx_24080032_LSU(	// @[src/main/core/exu/LSU.scala:29:7]
       default:
         casez_tmp_1 = shift_rdata;	// @[src/main/core/exu/LSU.scala:167:34, :168:72]
     endcase	// @[src/main/core/exu/LSU.scala:168:{52,72}]
-  end // always_comb
+  end // always @(*)
   wire        _GEN = n_state == 2'h0;	// @[src/main/core/exu/LSU.scala:55:25, :78:30, :101:20]
   wire        _GEN_0 = n_state == 2'h1;	// @[src/main/core/exu/LSU.scala:78:30, :101:20, :160:56]
   wire        _GEN_1 = n_state == 2'h2;	// @[src/main/core/exu/LSU.scala:78:30, :88:44, :101:20]
