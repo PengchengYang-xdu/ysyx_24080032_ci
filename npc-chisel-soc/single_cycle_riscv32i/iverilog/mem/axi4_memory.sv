@@ -39,14 +39,19 @@ module axi4_memory #(
     parameter FB_ADDR         = (MMIO_BASE   + 32'h1000000);
     parameter AUDIO_SBUF_ADDR = (MMIO_BASE   + 32'h1200000);
 
+    reg [63:0] counter;
     reg [63:0] rtc_time;
 
 
     initial begin
+        counter <= 64'h0;
         rtc_time <= 64'h0;
     end
+
     always @(posedge clk) begin
-        rtc_time <= rtc_time + 64'd1000000000;  // 每周期加1000 ns = 1us
+        counter <= counter + 64'h1;
+        if(counter == 64'd1000000)
+            rtc_time <= rtc_time + 64'h1;
     end
 
 
