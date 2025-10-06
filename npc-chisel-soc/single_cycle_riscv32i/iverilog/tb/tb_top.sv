@@ -17,8 +17,8 @@ initial begin
 end
 
 initial begin
-	$dumpfile("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/iverilog/wave/top.vcd");
-	$dumpvars(0, tb_top);
+	// $dumpfile("/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/iverilog/wave/top.vcd");
+	// $dumpvars(0, tb_top);
 	// repeat (1000000) @(posedge clock);
 	// $display("TIMEOUT");
 	// $finish;
