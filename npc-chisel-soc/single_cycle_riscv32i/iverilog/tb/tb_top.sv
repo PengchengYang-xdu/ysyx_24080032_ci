@@ -156,7 +156,7 @@ assign awaddr_pro = auto_master_out_awaddr - 32'h80000000;
 
 axi4_memory #(
         .AXI_TEST   (0),
-        .VERBOSE    (1)
+        .VERBOSE    (0)
 ) mem (
         // 端口连接 (Port Connections by Name)
         .clk             (clock),
