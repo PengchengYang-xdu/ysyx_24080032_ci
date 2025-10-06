@@ -107,6 +107,7 @@ class ISU extends Module{
     val ch3Ready = ~useCh3 || io_pipe.in.bits.id2is_bjtpe.orR || (~sb.isBusy(rs1_addr) || rs1ForEX || rs1ForWB)
 
     val isudone = ch1Ready || ch2Ready || ch3Ready
+    dontTouch(isudone)
 
     val wbClearMask = Mux(io_for_wb.gpr_we === RFwe.RFwe_y && !isDepend(io_for_wb.gpr_waddr, io_for_ex.gpr_waddr, io_for_ex.gpr_we === RFwe.RFwe_y), sb.mask(io_for_wb.gpr_waddr), 0.U(GPR_NUM.W))
     val isuFireSetMask = Mux(io_pipe.out.fire, sb.mask(io_pipe.in.bits.id2is_rd_addr), 0.U)
