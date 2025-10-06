@@ -233,6 +233,7 @@ IVERILOG_V_SRC = $(IVERILOG_DIR)/src/ysyx_24080032.sv
 IVERILOG_FINAL_V_SRC =  ./final_rtl/build/ysyx_24080032.sv #存放额外实现的mem的axi读写接口
 
 IVERILOG_ELF_SRC = $(AM_DIR)/build/amtest-riscv32e-npc.elf
+IVERILOG_BIN_SRC = $(AM_DIR)/build/amtest-riscv32e-npc.bin
 IVERILOG_HEX_SRC = ./iverilog/hex/amtest-riscv32e-npc.hex
 
 IVERILOG_OUT = $(IVERILOG_DIR)/build/top.vvp
@@ -263,7 +264,8 @@ iverilog:
 
 	@echo ">> 从elf生成hex文件..."
 	@mkdir -p $(dir $(IVERILOG_HEX_SRC))
-	@riscv64-unknown-linux-gnu-objcopy -O verilog --adjust-vma -0x80000000 $(IVERILOG_ELF_SRC) $(IVERILOG_HEX_SRC)
+	# @riscv64-unknown-linux-gnu-objcopy -O verilog --adjust-vma -0x80000000 $(IVERILOG_ELF_SRC) $(IVERILOG_HEX_SRC)
+	@python $(IVERILOG_DIR)/hex/makehex.py $(IVERILOG_BIN_SRC) 32768 > $(IVERILOG_HEX_SRC)
 
 	@echo ">> 开始iverilog编译..."
 	@mkdir -p $(dir $(IVERILOG_OUT))
@@ -278,7 +280,7 @@ iverilog:
 
 
 iverilog_clr:
-	@rm -rf ./iverilog/hex
+	@rm -rf ./iverilog/hex/amtest-riscv32e-npc.hex
 	@rm -rf ./iverilog/src
 	@rm -rf ./iverilog/build
 	@rm -rf ./iverilog/wave
