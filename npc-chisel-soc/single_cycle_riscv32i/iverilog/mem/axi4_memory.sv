@@ -56,7 +56,7 @@ module axi4_memory #(
 
 
 
-    parameter MEM_SIZE = 128*128*1024;
+    parameter MEM_SIZE = 1024*128*1024;
 
 
 	reg [31:0]   memory [0:MEM_SIZE/4-1] /* verilator public */;
