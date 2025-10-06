@@ -27,7 +27,7 @@ end
 
 reg [1023:0] hex_file;
 initial begin
-    hex_file = "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/iverilog/hex/amtest-riscv32e-npc.hex";
+    hex_file = "/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/iverilog/hex/code-riscv32e-npc.hex";
     $readmemh(hex_file, mem.memory);
 end
 

@@ -223,8 +223,23 @@ save_perf:
 
 ################################################################        IVERILOG        ################################################################
 CONFIG_FILE = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/src/main/common/Config.scala
-AM_DIR = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/am-kernels/tests/am-tests
 IVERILOG_DIR = ./iverilog
+
+TARGET ?= amtest
+
+AM_DIR = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/am-kernels/tests/am-tests
+RTT_DIR = /home/yangpengcheng/ysyx/rt-thread-am/bsp/abstract-machine
+MB_DIR = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/am-kernels/benchmarks/microbench
+
+ifeq ($(TARGET), amtest)
+	TARGET_DIR = $(AM_DIR)
+else ifeq ($(TARGET), rtthread)
+    TARGET_DIR = $(RTT_DIR)
+else ifeq ($(TARGET), microbench)
+    TARGET_DIR = $(MB_DIR)
+else
+    $(error Unknown TARGET "$(TARGET)")
+endif
 
 IVERILOG_TB_SRC = $(IVERILOG_DIR)/tb/tb_top.sv
 IVERILOG_MEM_SRC =  $(IVERILOG_DIR)/mem/axi4_memory.sv #存放额外实现的mem的axi读写接口
@@ -232,16 +247,16 @@ IVERILOG_V_SRC = $(IVERILOG_DIR)/src/ysyx_24080032.sv
 
 IVERILOG_FINAL_V_SRC =  ./final_rtl/build/ysyx_24080032.sv #存放额外实现的mem的axi读写接口
 
-IVERILOG_ELF_SRC = $(AM_DIR)/build/amtest-riscv32e-npc.elf
-IVERILOG_BIN_SRC = $(AM_DIR)/build/amtest-riscv32e-npc.bin
-IVERILOG_HEX_SRC = ./iverilog/hex/amtest-riscv32e-npc.hex
+IVERILOG_ELF_SRC = $(TARGET_DIR)/build/$(TARGET)-riscv32e-npc.elf
+IVERILOG_BIN_SRC = $(TARGET_DIR)/build/$(TARGET)-riscv32e-npc.bin
+IVERILOG_HEX_SRC = ./iverilog/hex/code-riscv32e-npc.hex
 
 IVERILOG_OUT = $(IVERILOG_DIR)/build/top.vvp
 IVERILOG_WAVE = $(IVERILOG_DIR)/wave/top.vcd
 
 iverilog:
-	@echo ">> am-test编译出elf文件..."
-	@make -C $(AM_DIR) ARCH=riscv32e-npc
+	@echo ">> 编译出elf文件..."
+	@make -C $(TARGET_DIR) ARCH=riscv32e-npc
 
 	@echo ">> 切换pc从0x80000000开始..."
 	@sed -i 's/val START_ADDR = "h30000000"/val START_ADDR = "h80000000"/' $(CONFIG_FILE)
@@ -280,7 +295,7 @@ iverilog:
 
 
 iverilog_clr:
-	@rm -rf ./iverilog/hex/amtest-riscv32e-npc.hex
+	@rm -rf ./iverilog/hex/code-riscv32e-npc.hex
 	@rm -rf ./iverilog/src
 	@rm -rf ./iverilog/build
 	@rm -rf ./iverilog/wave
