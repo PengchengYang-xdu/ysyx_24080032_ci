@@ -125,6 +125,23 @@ module axi4_memory #(
 			mem_axi_rdata <= memory[latched_raddr >> 2];
 			mem_axi_rvalid <= 1;
 			latched_raddr_en = 0;
+        end else
+
+
+
+		if (latched_raddr == (RTC_ADDR - 32'h80000000)) begin
+            mem_axi_rdata <= $time & 32'hffffffff;
+            mem_axi_rvalid <= 1;
+            latched_raddr_en = 0;
+        end else
+        if (latched_raddr == (RTC_ADDR + 32'h4 - 32'h80000000)) begin
+            mem_axi_rdata <= ($time >> 32) & 32'hffffffff;
+            mem_axi_rvalid <= 1;
+            latched_raddr_en = 0;
+
+
+
+
 		end else begin
 			$display("OUT-OF-BOUNDS MEMORY READ FROM %08x", latched_raddr);
 			$finish;
@@ -140,9 +157,16 @@ module axi4_memory #(
 			if (latched_wstrb[2]) memory[latched_waddr >> 2][23:16] <= latched_wdata[23:16];
 			if (latched_wstrb[3]) memory[latched_waddr >> 2][31:24] <= latched_wdata[31:24];
 		end else
+
+
+
 		if (latched_waddr == (SERIAL_PORT - 32'h80000000)) begin//目前只实现字符串
 			$write("%c", latched_wdata[7:0]);
 			$fflush();
+
+
+
+
 		end else begin
 			$display("OUT-OF-BOUNDS MEMORY WRITE TO %08x", latched_waddr);
 			$finish;
