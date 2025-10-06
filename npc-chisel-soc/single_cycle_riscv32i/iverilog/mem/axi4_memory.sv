@@ -46,7 +46,7 @@ module axi4_memory #(
         rtc_time <= 64'h0;
     end
     always @(posedge clk) begin
-        rtc_time <= rtc_time + 64'd1000;  // 每周期加1000 ns = 1us
+        rtc_time <= rtc_time + 64'd1000000000;  // 每周期加1000 ns = 1us
     end
 
 
