@@ -34,7 +34,13 @@ end
 
 
 
-
+//检测退出
+always @(posedge clk) begin
+    if(cpu.core.wbu.io_pipe_out_valid && cpu.core.exu.io_pipe_out_bits_diff_inst == 32'h00100073) begin
+        $display("hit good trap!");
+        $finish();
+    end
+end
 
 
 
