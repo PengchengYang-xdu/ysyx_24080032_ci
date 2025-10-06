@@ -11,7 +11,7 @@ object Config{
     val WORD_LEN = 32
     val BYTE_LEN = 8
 
-    // val START_ADDR = "h80000000".U(WORD_LEN.W) /*THIS IS NPC MODE*/
+    // val START_ADDR = "h30000000".U(WORD_LEN.W) /*THIS IS NPC MODE*/
     // val START_ADDR = "h20000000".U(WORD_LEN.W) /*THIS IS MROM MODE*/
     val START_ADDR = "h80000000".U(WORD_LEN.W) /*THIS IS FLASH MODE*/
 
@@ -19,7 +19,7 @@ object Config{
     val ADDR_LEN = 4 // rs1,rs2,wb
     val CSR_ADDR_LEN = 12
 
-    val DIFFTEST = true
+    val DIFFTEST = false
 
     val RENAME = true
 }
