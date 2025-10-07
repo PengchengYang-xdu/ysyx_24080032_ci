@@ -1,8 +1,0 @@
-{
-    "value": [
-        "qref:v1:a789b6b0:/home/yangpengcheng/.cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.14/scala-library-2.13.14.jar",
-        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/rvdecoderdb/rvdecoderdb/src/compile-resources"
-    ],
-    "valueHash": -201171192,
-    "inputsHash": -1864517763
-}
