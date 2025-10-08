@@ -1,0 +1,14 @@
+ysyx_24080032_IFU.sv
+ysyx_24080032_IDU.sv
+ysyx_24080032_gpr_16x32.sv
+ysyx_24080032_ISU.sv
+ysyx_24080032_CSR.sv
+ysyx_24080032_ALU.sv
+ysyx_24080032_LSU.sv
+ysyx_24080032_EXU.sv
+ysyx_24080032_WBU.sv
+ysyx_24080032_iCache.sv
+ysyx_24080032_Core.sv
+ysyx_24080032_Xbar.sv
+ysyx_24080032_Clint.sv
+ysyx_24080032.sv
