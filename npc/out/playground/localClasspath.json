@@ -1,0 +1,9 @@
+{
+    "value": [
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc/src/compile-resources",
+        "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc/src/src/main/resources",
+        "ref:v0:91d0b252:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc/out/playground/compile.dest/classes"
+    ],
+    "valueHash": -1038408525,
+    "inputsHash": -942550307
+}

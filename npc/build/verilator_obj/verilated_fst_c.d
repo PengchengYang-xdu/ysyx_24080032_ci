@@ -1,0 +1,19 @@
+verilated_fst_c.o: \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_fst_c.cpp \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_config.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilatedos.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_types.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_funcs.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_fst_c.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_trace.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/gtkwave/fastlz.c \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/gtkwave/fastlz.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/gtkwave/fastlz.c \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/gtkwave/fstapi.c \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/gtkwave/fstapi.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/gtkwave/lz4.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/gtkwave/lz4.c \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_trace_imp.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_intrinsics.h \
+ /home/yangpengcheng/workspace/tools/verilator/share/verilator/include/verilated_threads.h
