@@ -1,13 +1,13 @@
-From 09929ebf5936f1b1c1e82e1986d4be937851bca9 Mon Sep 17 00:00:00 2001
+From 590dcfd498646ebd4221bbd15e6ade9a8ed1d96f Mon Sep 17 00:00:00 2001
 From: PengchengYang-xdu <24241214835@stu.xidian.edu.cn>
 Date: Tue, 7 Oct 2025 14:15:51 +0800
-Subject: [PATCH 68/72] this is ysyxSoC commit
+Subject: [PATCH 1/4] this is ysyxSoC commit
 
 ---
  .gitignore                                   |   0
  .gitmodules                                  |   0
- .mill-version                                |   1 +
- Makefile                                     |   3 +-
+ .mill-version                                |   2 +-
+ Makefile                                     |   1 +
  build.sc                                     |   0
  patch/rocket-chip.patch                      |   0
  perip/.gitignore                             |   0
@@ -83,10 +83,9 @@ Subject: [PATCH 68/72] this is ysyxSoC commit
  src/device/Uart16550.scala                   |   0
  src/device/VGA.scala                         | 128 ++++++++-
  src/util/TriState.scala                      |   0
- 79 files changed, 1047 insertions(+), 87 deletions(-)
+ 79 files changed, 1046 insertions(+), 87 deletions(-)
  mode change 100644 => 100755 .gitignore
  mode change 100644 => 100755 .gitmodules
- create mode 100755 .mill-version
  mode change 100644 => 100755 Makefile
  mode change 100644 => 100755 build.sc
  mode change 100644 => 100755 patch/rocket-chip.patch
@@ -171,24 +170,20 @@ diff --git a/.gitmodules b/.gitmodules
 old mode 100644
 new mode 100755
 diff --git a/.mill-version b/.mill-version
-new file mode 100755
-index 00000000..62d5dbdf
---- /dev/null
+index 7fd0b1e8..e01e0ddd 100644
+--- a/.mill-version
 +++ b/.mill-version
-@@ -0,0 +1 @@
-+0.11.5
+@@ -1 +1 @@
+-0.12.4
+\ No newline at end of file
++0.12.4
 diff --git a/Makefile b/Makefile
 old mode 100644
 new mode 100755
-index 6d76a223..657a2592
+index c30262ea..4f8f16c0
 --- a/Makefile
 +++ b/Makefile
-@@ -3,10 +3,11 @@ V_FILE_FINAL = build/ysyxSoCFull.v
- SCALA_FILES = $(shell find src/ -name "*.scala")
- 
- $(V_FILE_FINAL): $(SCALA_FILES)
--	mill -i ysyxsoc.runMain ysyx.Elaborate --target-dir $(@D)
-+	CHISEL_FIRTOOL_PATH=/home/yangpengcheng/workspace/tools/firtool-1.66.0/bin mill -i ysyxsoc.runMain ysyx.Elaborate --target-dir $(@D)
+@@ -15,6 +15,7 @@ $(V_FILE_FINAL): $(SCALA_FILES)
  	mv $(V_FILE_GEN) $@
  	sed -i -e 's/_\(aw\|ar\|w\|r\|b\)_\(\|bits_\)/_\1/g' $@
  	sed -i '/firrtl_black_box_resource_files.f/, $$d' $@
@@ -864,7 +859,7 @@ new mode 100755
 diff --git a/src/SoC.scala b/src/SoC.scala
 old mode 100644
 new mode 100755
-index 4be26359..ae2a7047
+index 1c65cd87..e82b3ad1
 --- a/src/SoC.scala
 +++ b/src/SoC.scala
 @@ -135,14 +135,14 @@ class ysyxSoCFull(implicit p: Parameters) extends LazyModule {

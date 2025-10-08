@@ -1,7 +1,7 @@
-From 6a1a409d1b1ab0013a067fe78a6dadeffdde14e4 Mon Sep 17 00:00:00 2001
+From ce1b22d62e274f80ac5ef58160f510613d6382d9 Mon Sep 17 00:00:00 2001
 From: PengchengYang-xdu <24241214835@stu.xidian.edu.cn>
 Date: Tue, 7 Oct 2025 14:28:44 +0800
-Subject: [PATCH 70/72] this is ysyxSoC commit rename ysyx_24080032 from src
+Subject: [PATCH 3/4] this is ysyxSoC commit rename ysyx_24080032 from src
  instead makefile
 
 ---
@@ -10,10 +10,10 @@ Subject: [PATCH 70/72] this is ysyxSoC commit rename ysyx_24080032 from src
  2 files changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 03a7add1..54309cea 100755
+index 4f8f16c0..c30262ea 100755
 --- a/Makefile
 +++ b/Makefile
-@@ -7,7 +7,6 @@ $(V_FILE_FINAL): $(SCALA_FILES)
+@@ -15,7 +15,6 @@ $(V_FILE_FINAL): $(SCALA_FILES)
  	mv $(V_FILE_GEN) $@
  	sed -i -e 's/_\(aw\|ar\|w\|r\|b\)_\(\|bits_\)/_\1/g' $@
  	sed -i '/firrtl_black_box_resource_files.f/, $$d' $@

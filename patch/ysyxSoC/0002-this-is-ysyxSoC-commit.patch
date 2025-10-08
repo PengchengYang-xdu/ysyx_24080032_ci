@@ -1,27 +1,13 @@
-From f5a5724659e1a0291daab8cdacf670826120f82c Mon Sep 17 00:00:00 2001
+From 5eb478dc8f0b692ba94d085a5358897a8f4119c4 Mon Sep 17 00:00:00 2001
 From: PengchengYang-xdu <24241214835@stu.xidian.edu.cn>
 Date: Tue, 7 Oct 2025 14:20:14 +0800
-Subject: [PATCH 69/72] this is ysyxSoC commit
+Subject: [PATCH 2/4] this is ysyxSoC commit
 
 ---
- Makefile |   2 +-
- firtool  | Bin 0 -> 25403288 bytes
- 2 files changed, 1 insertion(+), 1 deletion(-)
+ firtool | Bin 0 -> 25403288 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
  create mode 100755 firtool
 
-diff --git a/Makefile b/Makefile
-index 657a2592..03a7add1 100755
---- a/Makefile
-+++ b/Makefile
-@@ -3,7 +3,7 @@ V_FILE_FINAL = build/ysyxSoCFull.v
- SCALA_FILES = $(shell find src/ -name "*.scala")
- 
- $(V_FILE_FINAL): $(SCALA_FILES)
--	CHISEL_FIRTOOL_PATH=/home/yangpengcheng/workspace/tools/firtool-1.66.0/bin mill -i ysyxsoc.runMain ysyx.Elaborate --target-dir $(@D)
-+	CHISEL_FIRTOOL_PATH=./ mill -i ysyxsoc.runMain ysyx.Elaborate --target-dir $(@D)
- 	mv $(V_FILE_GEN) $@
- 	sed -i -e 's/_\(aw\|ar\|w\|r\|b\)_\(\|bits_\)/_\1/g' $@
- 	sed -i '/firrtl_black_box_resource_files.f/, $$d' $@
 diff --git a/firtool b/firtool
 new file mode 100755
 index 0000000000000000000000000000000000000000..e2cc922ef459462afbed4fe53412d63cae36714f
