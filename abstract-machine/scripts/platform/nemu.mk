@@ -8,6 +8,7 @@ AM_SRCS := platform/nemu/trm.c \
            platform/nemu/mpe.c
 
 CFLAGS    += -fdata-sections -ffunction-sections
+CFLAGS    += -I$(AM_HOME)/am/src/platform/nemu/include
 LDFLAGS   += -T $(AM_HOME)/scripts/linker.ld \
              --defsym=_pmem_start=0x30000000 --defsym=_entry_offset=0x0
 LDFLAGS   += --gc-sections -e _start
@@ -16,38 +17,28 @@ NEMUFLAGS += -b
 # '-b' added by ypc 20240919
 NEMUFLAGS += -e $(IMAGE).elf
 # '-e' added by ypc 20240919
-CFLAGS += -DMAINARGS=\"$(mainargs)\"
-CFLAGS += -I$(AM_HOME)/am/src/platform/nemu/include
-.PHONY: $(AM_HOME)/am/src/platform/nemu/trm.c
+# CFLAGS += -DMAINARGS=\"$(mainargs)\"
+# CFLAGS += -I$(AM_HOME)/am/src/platform/nemu/include
+# .PHONY: $(AM_HOME)/am/src/platform/nemu/trm.c
+
+MAINARGS_MAX_LEN = 64
+MAINARGS_PLACEHOLDER = The insert-arg rule in Makefile will insert mainargs here.
+CFLAGS += -DMAINARGS_MAX_LEN=$(MAINARGS_MAX_LEN) -DMAINARGS_PLACEHOLDER=\""$(MAINARGS_PLACEHOLDER)"\"
+
+insert-arg: image
+	@python $(AM_HOME)/tools/insert-arg.py $(IMAGE).bin $(MAINARGS_MAX_LEN) "$(MAINARGS_PLACEHOLDER)" "$(mainargs)"
 
 image: $(IMAGE).elf
 	@$(OBJDUMP) -d $(IMAGE).elf > $(IMAGE).txt
 	@echo + OBJCOPY "->" $(IMAGE_REL).bin
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
 
-run: image
+# run: image
+run: insert-arg
 	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(IMAGE).bin
 
-gdb: image
+# gdb: image
+gdb: insert-arg
 	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) gdb ARGS="$(NEMUFLAGS)" IMG=$(IMAGE).bin
 
-
-
-
-
-
-MICROBENCH_HOME = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/am-kernels/benchmarks/microbench
-
-YSYXSOC_IMAGE := $(subst nemu,ysyxsoc,$(IMAGE))
-
-ICACHESIM_LOG_PRE_DIR = /home/yangpengcheng/ysyx/ysyx
-
-icachesim:
-#首先制作ysyxsoc的microbench train程序流
-	$(MAKE) -C $(MICROBENCH_HOME) ARCH=riscv32e-ysyxsoc mainargs=test
-#之后用nemu执行ysyxsoc的程序流, 从而生成icachesim.log
-	$(MAKE) -C $(NEMU_HOME) ISA=$(ISA) run ARGS="$(NEMUFLAGS)" IMG=$(YSYXSOC_IMAGE).bin ADD_CFLAGS=1
-#之后用pbzip2进行压缩
-	pbzip2 -p8 -kv -c $(ICACHESIM_LOG_PRE_DIR)/icachesim.log > $(AM_HOME)/../icachesim/icachesim_log/icachesim.log.bz2
-#删除大文件
-	rm -rf $(ICACHESIM_LOG_PRE_DIR)/icachesim.log
+.PHONY: insert-arg

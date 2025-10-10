@@ -1,22 +1,23 @@
-*.*
-*
-!*/
-!/nemu/*
-!/nexus-am/*
-!/nanos-lite/*
-!/navy-apps/*
-!/npc/*
-!/npc-chisel/**
-!/npc-chisel-soc/**
-!/icachesim/**
-!/ppa_opt/**
-!Makefile
-!README.md
-!.gitignore
-!init.sh
-npc-chisel-soc/single_cycle_riscv32i/build/*.fst
-npc-chisel-soc/single_cycle_riscv32i/out/mill-launcher/0.11.5.jar
-npc-chisel/single_cycle_riscv32i/out/mill-launcher/0.12.8.jar
+# *.*
+# *
+# !*/
+# !/nemu/*
+# !/nexus-am/*
+# !/nanos-lite/*
+# !/navy-apps/*
+# !/npc/*
+# !/patch/*
+# !/npc-chisel/**
+# !/npc-chisel-soc/**
+# !/icachesim/**
+# !/ppa_opt/**
+# !Makefile
+# !README.md
+# !.gitignore
+# !init.sh
+# npc-chisel-soc/single_cycle_riscv32i/build/*.fst
+# npc-chisel-soc/single_cycle_riscv32i/out/mill-launcher/0.11.5.jar
+# npc-chisel/single_cycle_riscv32i/out/mill-launcher/0.12.8.jar
 # !/fceux-am/*
 # !/nvboard/*
 # !/am-kernels/*
@@ -24,3 +25,13 @@ npc-chisel/single_cycle_riscv32i/out/mill-launcher/0.12.8.jar
 # !/c_exp/*
 # !/digital_circuit_exp/*
 # !/ysyxSoC/*
+/ysyxSoC/
+/rt-thread-am/
+/am-kernels/
+/nvboard/
+/riscv-arch-test-am/
+
+/npc/Makefile_old
+/npc/build/
+/npc/out/
+# /npc/riscv32-nemu-interpreter-so_20250602

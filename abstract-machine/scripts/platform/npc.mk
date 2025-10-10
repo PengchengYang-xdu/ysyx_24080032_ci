@@ -13,34 +13,31 @@ LDFLAGS   += -T $(AM_HOME)/scripts/linkernpc.ld \
 						 --defsym=_pmem_start=0x80000000 --defsym=_entry_offset=0x0 \
 						 --defsym=_sram_start=0x0f000000 --defsym=_sram_size=0x2000
 LDFLAGS   += --gc-sections -e _start
-CFLAGS += -DMAINARGS=\"$(mainargs)\"
+# CFLAGS += -DMAINARGS=\"$(mainargs)\"
 
-NPC_CHISEL_HOME = /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel
+
+MAINARGS_MAX_LEN = 64
+MAINARGS_PLACEHOLDER = The insert-arg rule in Makefile will insert mainargs here.
+CFLAGS += -DMAINARGS_MAX_LEN=$(MAINARGS_MAX_LEN) -DMAINARGS_PLACEHOLDER=\""$(MAINARGS_PLACEHOLDER)"\"
+
+insert-arg: image
+	@python $(AM_HOME)/tools/insert-arg.py $(IMAGE).bin $(MAINARGS_MAX_LEN) "$(MAINARGS_PLACEHOLDER)" "$(mainargs)"
+
+NPC_CHISEL_HOME = $(AM_HOME)/../npc
 
 NPCFLAGS += -l $(shell dirname $(IMAGE).elf)/npc-log.txt
 NPCFLAGS += -b
 NPCFLAGS += -e $(IMAGE).elf
 
-.PHONY: $(AM_HOME)/am/src/riscv/npc/trm.c
+# .PHONY: $(AM_HOME)/am/src/riscv/npc/trm.c
 
 image: $(IMAGE).elf
 	@$(OBJDUMP) -d $(IMAGE).elf > $(IMAGE).txt
 	@echo + OBJCOPY "->" $(IMAGE_REL).bin
 	@$(OBJCOPY) -S --set-section-flags .bss=alloc,contents -O binary $(IMAGE).elf $(IMAGE).bin
 
-
-
-
-# NPCFLAGS += -d /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc/single_cycle_riscv32i_refactor/ref/riscv32-nemu-interpreter-so_20241012
-NPCFLAGS += -d /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/ref/riscv32-nemu-interpreter-so_20250130
-# NPCFLAGS += -d /home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc-chisel-soc/single_cycle_riscv32i/ref/riscv32-nemu-interpreter-so_20241012
-
-
 # run: image
-# 	$(MAKE) -C $(NPC_HOME)/single_cycle_riscv32i_refactor run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
-run: image
-	$(MAKE) -C $(NPC_CHISEL_HOME)/single_cycle_riscv32i clr
-	$(MAKE) -C $(NPC_CHISEL_HOME)/single_cycle_riscv32i verilog
-	$(MAKE) -C $(NPC_CHISEL_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
-# run: image
-# 	$(MAKE) -C $(NPC_CHISEL_SOC_HOME)/single_cycle_riscv32i run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
+run: insert-arg
+	$(MAKE) -C $(NPC_CHISEL_HOME) run ARGS="$(NPCFLAGS)" IMG=$(IMAGE).bin
+
+.PHONY: insert-arg
