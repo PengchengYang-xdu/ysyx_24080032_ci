@@ -25,8 +25,8 @@
         "qref:v1:bec2c4d4:/home/yangpengcheng/.cache/coursier/v1/https/repo.scala-sbt.org/scalasbt/maven-releases/com/lihaoyi/upickle-core_2.13/3.3.1/upickle-core_2.13-3.3.1.jar",
         "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc/src/compile-resources",
         "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc/src/src/main/resources",
-        "ref:v0:91d0b252:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc/out/playground/compile.dest/classes"
+        "ref:v0:f54af890:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc/out/playground/compile.dest/classes"
     ],
-    "valueHash": -401315766,
-    "inputsHash": -1975459414
+    "valueHash": 322146559,
+    "inputsHash": -1099885598
 }

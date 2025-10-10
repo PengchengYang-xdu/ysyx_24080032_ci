@@ -64,6 +64,8 @@ module ysyx_24080032_IDU(	// @[src/main/core/idu/IDU.scala:54:7]
   output [31:0] io_pipe_out_bits_id2is_reg_pc,	// @[src/main/core/idu/IDU.scala:55:21]
                 io_pipe_out_bits_id2is_imm,	// @[src/main/core/idu/IDU.scala:55:21]
   output [11:0] io_pipe_out_bits_id2is_csr_addr,	// @[src/main/core/idu/IDU.scala:55:21]
+  output [31:0] io_pipe_out_bits_diff_pc,	// @[src/main/core/idu/IDU.scala:55:21]
+                io_pipe_out_bits_diff_inst,	// @[src/main/core/idu/IDU.scala:55:21]
   input         io_flush_flush_flg	// @[src/main/core/idu/IDU.scala:56:22]
 );
 
@@ -340,5 +342,7 @@ module ysyx_24080032_IDU(	// @[src/main/core/idu/IDU.scala:54:7]
               ? {{11{imm_j[20]}}, imm_j}
               : decodeBundle_immtpe == 3'h5 ? imm_u : {{20{_imm_T_1[11]}}, _imm_T_1};	// @[src/main/core/idu/IDU.scala:54:7, :74:48, :75:77, :76:79, :77:46, :78:37, src/main/scala/chisel3/util/experimental/decode/DecoderBundle.scala:88:106]
   assign io_pipe_out_bits_id2is_csr_addr = imm_i;	// @[src/main/core/idu/IDU.scala:54:7, :73:30]
+  assign io_pipe_out_bits_diff_pc = io_pipe_in_bits_if2id_reg_pc;	// @[src/main/core/idu/IDU.scala:54:7]
+  assign io_pipe_out_bits_diff_inst = io_pipe_in_bits_if2id_inst;	// @[src/main/core/idu/IDU.scala:54:7]
 endmodule
 
