@@ -2,8 +2,8 @@
     "value": [
         "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc/src/compile-resources",
         "ref:v0:c984eca8:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc/src/src/main/resources",
-        "ref:v0:f54af890:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc/out/playground/compile.dest/classes"
+        "ref:v0:91d0b252:/home/yangpengcheng/ysyx/ysyx/ysyx-workbench/npc/out/playground/compile.dest/classes"
     ],
-    "valueHash": 964827435,
-    "inputsHash": -230068030
+    "valueHash": -1038408525,
+    "inputsHash": -1384800148
 }
